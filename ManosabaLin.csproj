@@ -1,0 +1,111 @@
+﻿<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <Import Project=".\local.props" Condition="Exists('.\local.props')"/>
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <ImplicitUsings>true</ImplicitUsings>
+        <LangVersion>12.0</LangVersion>
+        <Nullable>enable</Nullable>
+        <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
+        <PathMap>$(AppOutputBase)=.\</PathMap>
+        <EnableDynamicLoading>true</EnableDynamicLoading>
+        <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
+        <RootNamespace>ManosabaLin</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GodotExportPreset>Windows Desktop</GodotExportPreset>
+
+        <ModOutputDir>$(Sts2Dir)\mods\$(MSBuildProjectName)\</ModOutputDir>
+        <ModPckPath>$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
+        <RunPckExport Condition="'$(RunPckExport)' == '' and '$(DesignTimeBuild)' != 'true'">true</RunPckExport>
+        <RunPckExport Condition="'$(RunPckExport)' == ''">true</RunPckExport>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
+        <!--        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />-->
+        <PackageReference Include="STS2.RitsuLib" Version="*"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Publicize Include="sts2" IncludeVirtualMembers="false" IncludeCompilerGeneratedMembers="false"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="0Harmony" HintPath="$(Sts2DataDir)\0Harmony.dll" Private="True"/>
+        <Reference Include="sts2" HintPath="$(Sts2DataDir)\sts2.dll" Private="True"/>
+        <Reference Include="Steamworks.NET" HintPath="$(Sts2DataDir)\Steamworks.NET.dll" Private="True"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="ManosabaLin/localization/**/*.json"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="ManosabaLin/**"/>
+        <Compile Remove="materials/**"/>
+        <Compile Remove="shaders/**"/>
+        <Compile Remove="images/**"/>
+        <EmbeddedResource Remove="ManosabaLin/**"/>
+        <EmbeddedResource Remove="materials/**"/>
+        <EmbeddedResource Remove="shaders/**"/>
+        <EmbeddedResource Remove="images/**"/>
+        <Compile Remove="ManosabaLin\audio\**"/>
+        <EmbeddedResource Remove="ManosabaLin\audio\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Condition="Exists('Directory.Build.props')" Include="Directory.Build.props"/>
+        <None Include=".gitignore"/>
+        <None Include="ManosabaLin.json"/>
+        <None Include="project.godot"/>
+        <None Include="ManosabaLin/**"/>
+        <!--        <None Remove="ManosabaLin\audio\**"/>-->
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="ManosabaLinCode\Audio\"/>
+        <Folder Include="ManosabaLinCode\Characters\Anan\"/>
+        <Folder Include="ManosabaLinCode\Characters\Ema\"/>
+        <Folder Include="ManosabaLinCode\Characters\Hanna\"/>
+        <Folder Include="ManosabaLinCode\Characters\Hiro\Ancients\"/>
+        <Folder Include="ManosabaLinCode\Characters\Hiro\Potions\"/>
+        <Folder Include="ManosabaLinCode\Characters\Koko\"/>
+        <Folder Include="ManosabaLinCode\Characters\Leia\"/>
+        <Folder Include="ManosabaLinCode\Characters\Sherry\"/>
+        <Folder Include="ManosabaLin\images\powers\big\"/>
+        <Folder Include="ManosabaLin\images\relics\big\"/>
+    </ItemGroup>
+
+    <Target Name="EnsureLocalProps" BeforeTargets="PrepareForBuild" Condition="!Exists('.\local.props')">
+        <Error Text="Missing '.\local.props'. Copy '.\local.props.template' to '.\local.props', then update 'Sts2Dir' / 'GodotExe' / 'RitsuLibDir' for your local environment."/>
+    </Target>
+
+    <Target Name="ValidateSts2GameInstall" BeforeTargets="ResolveAssemblyReferences">
+        <Error
+                Condition="!Exists('$(Sts2DataDir)\sts2.dll')"
+                Text="Could not find sts2.dll under '$(Sts2DataDir)'. Set Sts2Dir in local.props following the WineFox pattern."/>
+    </Target>
+
+    <Target Name="CopyMod" AfterTargets="PostBuildEvent">
+        <Message Text="Copying mod to Slay the Spire 2 mods folder..." Importance="high"/>
+        <ItemGroup>
+            <ModLooseAudio
+                    Include="$(MSBuildProjectDirectory)\ManosabaLin\audio\**\*.*"
+                    Exclude="$(MSBuildProjectDirectory)\ManosabaLin\audio\**\*.import"/>
+        </ItemGroup>
+        <MakeDir Directories="$(ModOutputDir)"/>
+        <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModOutputDir)"/>
+        <Copy SourceFiles="$(MSBuildProjectDirectory)\ManosabaLin.json" DestinationFolder="$(ModOutputDir)"/>
+        <MakeDir Directories="@(ModLooseAudio->'$(ModOutputDir)audio\%(RecursiveDir)')"/>
+        <Copy SourceFiles="@(ModLooseAudio)" DestinationFiles="@(ModLooseAudio->'$(ModOutputDir)audio\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true"/>
+    </Target>
+
+    <Target Name="ExportPCK" AfterTargets="Build" Condition="'$(RunPckExport)' == 'true' and '$(STS2_SKIP_PCK_EXPORT)' != '1' and Exists('$(GodotExe)')">
+        <Message Text="Exporting mod PCK with MegaDot..." Importance="high"/>
+        <MakeDir Directories="$(ModOutputDir)"/>
+        <Exec Command="&quot;$(GodotExe)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;$(GodotExportPreset)&quot; &quot;$(ModPckPath)&quot;" EnvironmentVariables="STS2_SKIP_PCK_EXPORT=1"/>
+    </Target>
+
+</Project>

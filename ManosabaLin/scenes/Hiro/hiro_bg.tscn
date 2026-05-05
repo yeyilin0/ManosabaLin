@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Hiro/NikaidoHiroBg.png" id="1"]
+
+[node name="NikaidoHiroBg" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 1063.1825
+offset_top = 381.71997
+offset_right = 3623.1826
+offset_bottom = 1581.72
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1280, 600)
+
+[node name="NikaidoHiroBg" type="Sprite2D" parent="."]
+position = Vector2(-798.1825, -230.71997)
+scale = Vector2(1.3553905, 1.4114298)
+texture = ExtResource("1")

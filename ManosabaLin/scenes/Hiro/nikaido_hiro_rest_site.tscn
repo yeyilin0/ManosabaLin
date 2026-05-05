@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Hiro/NikaidoHiroRest.png" id="2"]
+[ext_resource type="PackedScene" path="res://ManosabaLin/scenes/selection_reticle.tscn" id="3"]
+
+[node name="JogasakiNoaRestSite" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-2.0720212, 22.409128)
+scale = Vector2(0.2562792, 0.2461375)
+texture = ExtResource("2")
+
+[node name="ControlRoot" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("3")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -260.0
+offset_top = -345.0
+offset_right = 227.0
+offset_bottom = 377.0
+
+[node name="Hitbox" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -272.0
+offset_top = -347.0
+offset_right = 203.0
+offset_bottom = 380.0
+
+[node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -21.432007
+offset_top = -66.20697
+offset_right = -21.432007
+offset_bottom = -66.20697
+
+[node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -54.10205
+offset_top = -55.316956
+offset_right = -54.10205
+offset_bottom = -55.316956
