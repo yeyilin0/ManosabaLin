@@ -10,14 +10,14 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Hiro.Cards;
 
 [RegisterCard(typeof(HiroCardPool))]
-public sealed class Twelve() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly)
+public sealed class Twelve() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
 {
     private const int RequiredSuspectAmount = 2;
 
-    // 固定基础值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<SuspectPower>(2m),
+        new DynamicVar("ConsumeAmount", 2m),
+        new PowerVar<SuspectPower>(3m),
         new EnergyVar(2)
     ];
 
@@ -29,17 +29,15 @@ public sealed class Twelve() : ManosabaCardTemplate(1, CardType.Skill, CardRarit
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var source = this;
-        var target = cardPlay.Target;
-
-        ArgumentNullException.ThrowIfNull(target);
+        var target = cardPlay.Target ?? source.Owner.Creature;
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        // 消耗目标队友的嫌疑（有多少消耗多少，最多2层）
+        // 消耗目标的嫌疑
         var targetSuspectPower = target.GetPower<SuspectPower>();
         if (targetSuspectPower != null && targetSuspectPower.Amount > 0)
         {
-            var consumeAmount = Math.Min(targetSuspectPower.Amount, RequiredSuspectAmount);
+            var consumeAmount = Math.Min(targetSuspectPower.Amount, source.DynamicVars["ConsumeAmount"].IntValue);
             await PowerCmd.ModifyAmount(
                 choiceContext, targetSuspectPower,
                 -consumeAmount,
@@ -58,7 +56,7 @@ public sealed class Twelve() : ManosabaCardTemplate(1, CardType.Skill, CardRarit
             false
         );
 
-        // 给目标队友能量
+        // 给目标能量
         await PlayerCmd.GainEnergy(
             source.DynamicVars.Energy.IntValue,
             target.Player
@@ -68,6 +66,7 @@ public sealed class Twelve() : ManosabaCardTemplate(1, CardType.Skill, CardRarit
     protected override void OnUpgrade()
     {
         base.OnUpgrade();
+        DynamicVars["ConsumeAmount"].UpgradeValueBy(1m);
         DynamicVars["SuspectPower"].UpgradeValueBy(1m);
         DynamicVars.Energy.UpgradeValueBy(1);
     }

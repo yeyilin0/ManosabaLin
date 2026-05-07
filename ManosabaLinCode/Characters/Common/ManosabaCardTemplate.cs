@@ -34,4 +34,6 @@ public abstract class ManosabaCardTemplate(
             return new CardAssetProfile(portrait, betaPortrait);
         }
     }
+
+    protected override bool ShouldGlowRedInternal => true;
 }

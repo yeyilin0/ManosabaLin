@@ -3,6 +3,7 @@ using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 
@@ -20,6 +21,16 @@ public sealed class CardSix : ManosabaCardTemplate
         get { yield return CardKeyword.Exhaust; }
     }
 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips
+    {
+        get
+        {
+            yield return HoverTipFactory.FromPower<PerjuryPower>();
+            yield return HoverTipFactory.FromPower<JusticePower>();
+            yield return HoverTipFactory.FromCard<Hiroparanoid>();
+        }
+    }
+
     protected override IEnumerable<DynamicVar> CanonicalVars
     {
         get { yield return new DynamicVar("ParanoidCount", 1m); }
@@ -31,18 +42,17 @@ public sealed class CardSix : ManosabaCardTemplate
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        // 第一步：根据伪证层数抽牌
+        // 根据伪证层数抽牌
         var perjury = source.Owner.Creature.GetPower<PerjuryPower>();
         var cardsToDraw = perjury?.Amount ?? 0;
         if (cardsToDraw > 0) await CardPileCmd.Draw(choiceContext, cardsToDraw, source.Owner);
 
-        // 第二步：根据正义层数回复能量
+        // 根据正义层数回复能量
         var justice = source.Owner.Creature.GetPower<JusticePower>();
         var energyToGain = justice?.Amount ?? 0;
         if (energyToGain > 0) await PlayerCmd.GainEnergy(energyToGain, source.Owner);
 
-        // 第三步：将一张 HiroParanoid 加入抽牌堆（Metamorphosis 风格）
-        // 第三步：将一张 HiroParanoid 加入抽牌堆（Metamorphosis 风格）
+        // 将 Hiroparanoid 加入抽牌堆
         var paranoid = source.CombatState.CreateCard<Hiroparanoid>(source.Owner);
         CardCmd.PreviewCardPileAdd(await CardPileCmd.AddGeneratedCardToCombat(paranoid, PileType.Draw, source.Owner,
             CardPilePosition.Random));
