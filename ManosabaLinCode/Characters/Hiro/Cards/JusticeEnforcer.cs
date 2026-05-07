@@ -28,9 +28,6 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
         }
     }
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { TransmigrationRules.TransmigrationKeywordId };
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var source = this;
