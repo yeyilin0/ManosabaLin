@@ -192,5 +192,7 @@
   "MANOSABA_LIN_CARD_LY_XL.title": "蕾雅与希罗",
   "MANOSABA_LIN_CARD_LY_XL.description": "自身死亡\n使目标获得100层[b]【魔女化】[/b]，1层[gold]【能力33】[/gold]，1层[b]【魔女仪式】[/b]",
   "MANOSABA_LIN_CARD_POWERFOURFOURCARD.title": "魔女监狱",
-  "MANOSABA_LIN_CARD_POWERFOUEFOUECARD.description":"回合开始时获得40层[b]【魔女化】[/b]"
+  "MANOSABA_LIN_CARD_POWERFOUEFOUECARD.description":"回合开始时获得40层[b]【魔女化】[/b]",
+  "MANOSABA_LIN_CARD_JUSTICE_ENFORCER.title": "正义的执行者",
+  "MANOSABA_LIN_CARD_JUSTICE_ENFORCER.description":"[red]原罪[/red]\n消耗手牌中所有[red]【轮回】[/red]卡，每张生成随机[red]【轮回】[/red]卡，获得1层[red]【伪证】[/red]并回复1点生命\n消耗所有[red]【伪证】[/red]，每层对随机敌人造成2+[b]【魔女化】[/b]一半点伤害，获得等量[red]【正义】[/red]\n消耗所有[b]【嫌疑】[/b]，每层获得15层[b]【魔女化】[/b]并回复1点能量\n按照[red]【正义】[/red]层数全体回血，≥10层则所有手牌获得[red]【轮回】[/red]\n若[b]【魔女化】[/b]≥100，额外获得1层[red]【原罪】[/red]"
 }
