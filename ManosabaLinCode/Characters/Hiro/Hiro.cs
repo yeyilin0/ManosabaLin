@@ -25,6 +25,8 @@ public class Hiro : ModCharacterTemplate<HiroCardPool, HiroRelicPool, HiroPotion
     // 能量图标轮廓颜色
     public override Color EnergyLabelOutlineColor => new(0.1f, 0.1f, 1f);
 
+    public override Color MapDrawingColor => new (0.8f, 0.4f, 0.4f);
+
     // 模板角色默认使用中性性别。
     public override CharacterGender Gender => CharacterGender.Feminine;
 

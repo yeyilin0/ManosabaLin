@@ -18,11 +18,9 @@ public sealed class CardTwentyOne() : ManosabaCardTemplate(1, CardType.Attack, C
     private const int RequiredPerjuryAmount = 1;
     private const int RequiredJusticeAmount = 1;
 
-    // 固定基础值
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(13m, ValueProp.Move),
-        new PowerVar<StrengthPower>(3m),
         new PowerVar<PerjuryPower>(1m),
         new PowerVar<JusticePower>(1m)
     ];
@@ -33,7 +31,6 @@ public sealed class CardTwentyOne() : ManosabaCardTemplate(1, CardType.Attack, C
         {
             yield return HoverTipFactory.FromPower<PerjuryPower>();
             yield return HoverTipFactory.FromPower<JusticePower>();
-            yield return HoverTipFactory.FromPower<StrengthPower>();
         }
     }
 
@@ -41,8 +38,7 @@ public sealed class CardTwentyOne() : ManosabaCardTemplate(1, CardType.Attack, C
     {
         get
         {
-            if (!base.IsPlayable)
-                return false;
+            if (!base.IsPlayable) return false;
 
             var perjuryPower = Owner.Creature.GetPower<PerjuryPower>();
             var perjuryAmount = perjuryPower?.Amount ?? 0;
@@ -64,24 +60,12 @@ public sealed class CardTwentyOne() : ManosabaCardTemplate(1, CardType.Attack, C
         // 消耗 1 层伪证
         var perjuryPower = source.Owner.Creature.GetPower<PerjuryPower>();
         if (perjuryPower != null && perjuryPower.Amount >= RequiredPerjuryAmount)
-            await PowerCmd.ModifyAmount(
-                choiceContext, perjuryPower,
-                -RequiredPerjuryAmount,
-                source.Owner.Creature,
-                source,
-                false
-            );
+            await PowerCmd.ModifyAmount(choiceContext, perjuryPower, -RequiredPerjuryAmount, source.Owner.Creature, source, false);
 
         // 消耗 1 层正义
         var justicePower = source.Owner.Creature.GetPower<JusticePower>();
         if (justicePower != null && justicePower.Amount >= RequiredJusticeAmount)
-            await PowerCmd.ModifyAmount(
-                choiceContext, justicePower,
-                -RequiredJusticeAmount,
-                source.Owner.Creature,
-                source,
-                false
-            );
+            await PowerCmd.ModifyAmount(choiceContext, justicePower, -RequiredJusticeAmount, source.Owner.Creature, source, false);
 
         // 造成伤害
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
@@ -90,26 +74,16 @@ public sealed class CardTwentyOne() : ManosabaCardTemplate(1, CardType.Attack, C
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        // 降低敌人力量
-        var strengthLoss = source.DynamicVars["StrengthPower"].IntValue;
-        await PowerCmd.Apply<StrengthPower>(
-            choiceContext, cardPlay.Target,
-            -strengthLoss,
-            source.Owner.Creature,
-            source
-        );
+        // 降低敌人力量 — 用 CrushUnderPower
+        await PowerCmd.Apply<CrushUnderPower>(
+            choiceContext, cardPlay.Target, 3, source.Owner.Creature, source);
     }
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         var source = this;
-
-        if (player != source.Owner)
-            return;
-
-        if (source.Pile.Type == PileType.Hand)
-            return;
-
+        if (player != source.Owner) return;
+        if (source.Pile.Type == PileType.Hand) return;
         await CardPileCmd.Add(source, PileType.Hand);
     }
 
@@ -117,6 +91,5 @@ public sealed class CardTwentyOne() : ManosabaCardTemplate(1, CardType.Attack, C
     {
         base.OnUpgrade();
         DynamicVars.Damage.UpgradeValueBy(13m);
-        DynamicVars["StrengthPower"].UpgradeValueBy(1m);
     }
 }

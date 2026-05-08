@@ -62,5 +62,9 @@
   "MANOSABA_LIN_POWER_ORIGINALSINJUSTICE_POWER.description":"回合结束时\n消耗1层[color=#CC6666]【伪证】[/color]获得1层[color=#CC6666]【正义】[/color]\n消耗1层[b]【嫌疑】[/b]获得2层[b]【魔女化】[/b]",
   "MANOSABA_LIN_POWER_JUDGEMENT_CHAIN_POWER.title": "审判链",
   "MANOSABA_LIN_POWER_JUDGEMENT_CHAIN_POWER.description": "回合开始时获得1点能量",
-  "MANOSABA_LIN_POWER_JUDGEMENT_CHAIN_POWER.smartDescription": "回合开始时获得1点能量"
+  "MANOSABA_LIN_POWER_JUDGEMENT_CHAIN_POWER.smartDescription": "回合开始时获得1点能量",
+  "MANOSABA_LIN_POWER_NYM_POWER.title": "城崎诺亚的魔法",
+  "MANOSABA_LIN_POWER_NYM_POWER.description":"当有本能力的目标被攻击时再受到一次等于伤害数值的伤害，然后清除一层",
+  "MANOSABA_LIN_POWER_KKM_POWER.title": "泽度可可的魔法",
+  "MANOSABA_LIN_POWER_KKM_POWER.description": "回合开始时，根据场上敌人的意图获得对应增益：\n攻击：获得5点格挡\n防御/增益：获得1点力量\n减益：获得1点敏捷\n其他：随机敌人获得1层虚弱"
 }
