@@ -1,11 +1,11 @@
 {
   "MANOSABA_LIN_RELIC_PEN.title": "希罗的钢笔",
-  "MANOSABA_LIN_RELIC_PEN.description": "每场战斗开始时，获得3层 [red]【正义】[/red]。",
-  "MANOSABA_LIN_RELIC_PEN.flavor": "[red]希罗[/red]初中时常用的钢笔，本来应该已经送给雪了",
+  "MANOSABA_LIN_RELIC_PEN.description": "每场战斗开始时，获得3层 [color=#CC6666]【正义】[color]",
+  "MANOSABA_LIN_RELIC_PEN.flavor": "[color=#CC6666]希罗[color]初中时常用的钢笔，本来应该已经送给雪了",
   "MANOSABA_LIN_RELIC_WITCH_FACTOR.title": "魔女因子",
   "MANOSABA_LIN_RELIC_WITCH_FACTOR.description": "当你打出攻击牌时获得15层[b]【魔女化】[/b]，当你打出技能或者能力牌时减少10层[b]【魔女化】[/b]",
   "MANOSABA_LIN_RELIC_WITCH_FACTOR.flavor": "魔女因子过度活跃时人会失去理智，变成怪物一样的存在，被视为必须消灭的危险个体",
   "MANOSABA_LIN_RELIC_WITHHIRO.title": "大魔女曾附身之物",
-  "MANOSABA_LIN_RELIC_WITHHIRO.description": "[red]「雪......你是错误的」[/red]\n每场战斗开始时获得6层[red]【正义】[/red]\n回合开始时可选择一张手卡返回抽牌堆\n当你本场战斗第一次获得[b]【嫌疑】[/b]时减少两层",
-  "MANOSABA_LIN_RELIC_WITHHIRO.flavor": "[red]「但......我依然想找到[/red][b]你[/b][red]」[/red]\n[red]「我现在就去找你————为了审判我们的[/red][b]【罪行】[/b][red]」[/red]"
+  "MANOSABA_LIN_RELIC_WITHHIRO.description": "[color=#CC6666]「雪......你是错误的」[/color]\n每场战斗开始时获得6层[color=#CC6666]【正义】[/color]\n回合开始时可选择一张手卡返回抽牌堆\n当你本场战斗第一次获得[b]【嫌疑】[/b]时减少两层",
+  "MANOSABA_LIN_RELIC_WITHHIRO.flavor": "[color=#CC6666]「但......我依然想找到[/color][b]你[/b][color=#CC6666]」[/color]\n[color=#CC6666]「我现在就去找你————为了审判我们的[/color][b]【罪行】[/b][color=#CC6666]」[/color]"
 }
