@@ -11,7 +11,6 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCard(typeof(HiroCardPool))]
 public sealed class Seven() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
 {
-    public override CardMultiplayerConstraint MultiplayerConstraint => (CardMultiplayerConstraint)1;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {

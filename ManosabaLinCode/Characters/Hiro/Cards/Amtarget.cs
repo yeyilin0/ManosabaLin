@@ -14,54 +14,52 @@ using System.Linq;
 namespace ManosabaLin.Characters.Hiro.Cards;
 
 [RegisterCard(typeof(HiroCardPool))]
-public sealed class Attackfivefive() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public sealed class Amtarget() : ManosabaCardTemplate(1, CardType.Power, CardRarity.Uncommon, TargetType.AnyPlayer)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords
+    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        get { yield return CardKeyword.Exhaust; }
-    }
+        new DamageVar(3m, ValueProp.Unpowered),
+        new PowerVar<JusticePower>(3m)
+    };
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
         get
         {
             yield return HoverTipFactory.FromPower<JusticePower>();
-            yield return HoverTipFactory.Static(StaticHoverTip.Fatal);
         }
     }
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
-        new DamageVar(10m, ValueProp.Move)
-    };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var source = this;
-        var target = cardPlay.Target;
-        ArgumentNullException.ThrowIfNull(target);
+        var target = cardPlay.Target ?? source.Owner.Creature;
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        bool shouldTriggerFatal = target.Powers.All(p => p.ShouldOwnerDeathTriggerFatal());
-
-        var attack = await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
+        // 给选中目标 3 点不受力量影响的伤害
+        await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
             .FromCard(source)
             .Targeting(target)
-            .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        if (!shouldTriggerFatal || !attack.Results.SelectMany(r => r).Any(r => r.WasTargetKilled))
-            return;
+        // 给全体队友 3 层正义
+        var allies = source.Owner.Creature.CombatState.Creatures
+            .Where(c => c.IsAlive && !c.IsEnemy)
+            .ToList();
 
-        var justice = source.Owner.Creature.GetPower<JusticePower>();
-        var healAmount = justice?.Amount ?? 0;
-        if (healAmount > 0)
-            await CreatureCmd.Heal(source.Owner.Creature, healAmount);
+        foreach (var ally in allies)
+        {
+            await PowerCmd.Apply<JusticePower>(
+                choiceContext, ally,
+                source.DynamicVars["JusticePower"].BaseValue,
+                source.Owner.Creature, source, false
+            );
+        }
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
+        EnergyCost.UpgradeBy(-1);
     }
 }

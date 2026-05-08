@@ -113,7 +113,9 @@ public sealed class Justice : ManosabaCardTemplate
                             .WithHitFx("vfx/vfx_attack_slash")
                             .Execute(choiceContext);
 
-                        var totalDamage = attackCmd.Results.Sum(r => r.TotalDamage + r.OverkillDamage);
+                        var totalDamage = attackCmd.Results
+                            .SelectMany(r => r)
+                            .Sum(r => r.TotalDamage + r.OverkillDamage);
                         if (totalDamage > 0)
                             await CreatureCmd.GainBlock(
                                 source.Owner.Creature,

@@ -1,13 +1,18 @@
 {
   "id": "ManosabaLin",
   "name": "ManosabaLin",
-  "author": "Author",
+  "author": "Lin",
   "description": "Slay the Spire 2 character mod built on RitsuLib",
-  "version": "v0.0.0",
+  "version": "v0.0.1",
   "has_pck": true,
   "has_dll": true,
+  "affects_gameplay": true,
+  "min_game_version": "0.0.0",
   "dependencies": [
-    "STS2-RitsuLib"
-  ],
-  "affects_gameplay": true
+    {
+      "id": "STS2-RitsuLib",
+      "min_version": "0.2.27"
+    }
+  ]
+
 }

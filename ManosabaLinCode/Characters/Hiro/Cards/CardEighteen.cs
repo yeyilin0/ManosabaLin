@@ -68,9 +68,9 @@ public sealed class CardEighteen() : ManosabaCardTemplate(0, CardType.Skill, Car
     }
 
     // 返回手牌而不是弃牌堆
-    protected override PileType GetResultPileType()
+    protected override PileType GetResultPileTypeForCardPlay()
     {
-        var resultPileType = base.GetResultPileType();
+        var resultPileType = base.GetResultPileTypeForCardPlay();
         return resultPileType != PileType.Discard ? resultPileType : PileType.Hand;
     }
 

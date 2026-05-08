@@ -1,10 +1,12 @@
 using System.Reflection;
 using Godot;
 using HarmonyLib;
+using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using STS2RitsuLib;
 using STS2RitsuLib.Interop;
+using STS2RitsuLib.Scaffolding.Cards.HandOutline;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace ManosabaLin;
@@ -26,6 +28,13 @@ public partial class MainFile : Node
     // 这是模组被框架调用的初始化入口。
     public static void Initialize()
     {
+        var ctx = RitsuLibFramework.CreateContentPack(ModId)
+            .CardHandOutline<ManosabaCardTemplate>(new ModCardHandOutlineRule(
+                card => true,
+                new Color(204f / 255f, 102f / 255f, 102f / 255f)
+            ))
+            .Apply();
+        
         var assembly = Assembly.GetExecutingAssembly();
         RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);

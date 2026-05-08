@@ -1,5 +1,6 @@
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
+using ManosabaLin.ManosabaLinCode.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -8,32 +9,39 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
 [RegisterCard(typeof(HiroCardPool))]
-public sealed class Attackfivefive() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class Lyhelp : ManosabaCardTemplate
 {
+    private const int BaseEnergyCost = 2;
+    private const CardType CardKind = CardType.Attack;
+    private const CardRarity CardRarityValue = CardRarity.Uncommon;
+    private const TargetType CardTarget = TargetType.AnyEnemy;
+
+    public Lyhelp() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget)
+    {
+    }
+
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
         get { yield return CardKeyword.Exhaust; }
     }
 
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new DamageVar(8m, ValueProp.Move)
+    ];
+
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
         get
         {
-            yield return HoverTipFactory.FromPower<JusticePower>();
-            yield return HoverTipFactory.Static(StaticHoverTip.Fatal);
+            yield return HoverTipFactory.FromPower<LymPower>();
         }
     }
-
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
-        new DamageVar(10m, ValueProp.Move)
-    };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -43,25 +51,23 @@ public sealed class Attackfivefive() : ManosabaCardTemplate(1, CardType.Attack, 
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        bool shouldTriggerFatal = target.Powers.All(p => p.ShouldOwnerDeathTriggerFatal());
-
-        var attack = await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
+        await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
             .FromCard(source)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        if (!shouldTriggerFatal || !attack.Results.SelectMany(r => r).Any(r => r.WasTargetKilled))
-            return;
+        await PowerCmd.Apply<LymPower>(
+            choiceContext, target, 1,
+            source.Owner.Creature, source, false);
 
-        var justice = source.Owner.Creature.GetPower<JusticePower>();
-        var healAmount = justice?.Amount ?? 0;
-        if (healAmount > 0)
-            await CreatureCmd.Heal(source.Owner.Creature, healAmount);
+        var redirectPower = target.Powers.OfType<LymPower>().FirstOrDefault();
+        if (redirectPower is not null)
+            await redirectPower.ChooseMoveTarget(choiceContext);
     }
 
     protected override void OnUpgrade()
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
+        EnergyCost.UpgradeBy(-1);
     }
 }

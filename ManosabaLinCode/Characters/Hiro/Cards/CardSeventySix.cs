@@ -32,8 +32,8 @@ public sealed class CardSeventySix : ManosabaCardTemplate
     // 固定基础值
     protected override IEnumerable<DynamicVar> CanonicalVars => [
     
-        new PowerVar<WithPower>(10m),
-        new PowerVar<SuspectPower>(2m)
+        new PowerVar<WithPower>(25m),
+        new PowerVar<SuspectPower>(1m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -65,6 +65,6 @@ public sealed class CardSeventySix : ManosabaCardTemplate
     {
         base.OnUpgrade();
         DynamicVars["WithPower"].UpgradeValueBy(5m);
-        DynamicVars["SuspectPower"].UpgradeValueBy(1m);
+      
     }
 }

@@ -58,7 +58,7 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
         }
     }
 
-    public override bool HasTurnEndInHandEffect => true;
+
 
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext,
@@ -160,7 +160,9 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
         return Task.CompletedTask;
     }
 
-    public override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
+    public override bool HasTurnEndInHandEffect => true;
+
+    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
     {
         var source = this;
 

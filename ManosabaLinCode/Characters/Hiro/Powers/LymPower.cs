@@ -27,7 +27,7 @@ public  class LymPower : ManosabaPowerTemplate
 
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Single;
-    public override bool IsInstanced => true;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
     public override bool ShouldReceiveCombatHooks => true;
 
     internal Creature? ChosenMoveTarget => IsValidMoveTarget(_chosenMoveTarget) ? _chosenMoveTarget : null;

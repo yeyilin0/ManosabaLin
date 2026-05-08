@@ -2,10 +2,12 @@
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Linq;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -15,8 +17,7 @@ public sealed class Three : ManosabaCardTemplate
     private const int EnergyCost = 1;
     private const CardType Type = CardType.Skill;
     private const CardRarity Rarity = CardRarity.Uncommon;
-    private const TargetType TargetType = (TargetType)6;
-    private const CardMultiplayerConstraint Multiplayer = (CardMultiplayerConstraint)1;
+    private const TargetType TargetType = MegaCrit.Sts2.Core.Entities.Cards.TargetType.AnyPlayer;
 
     private const int WithPowerReduction = 20;
     private const int CardsToDraw = 1;
@@ -24,8 +25,6 @@ public sealed class Three : ManosabaCardTemplate
     public Three() : base(EnergyCost, Type, Rarity, TargetType)
     {
     }
-
-    public override CardMultiplayerConstraint MultiplayerConstraint => Multiplayer;
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -35,15 +34,13 @@ public sealed class Three : ManosabaCardTemplate
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<WithPower>("Reduction", WithPowerReduction),
-        new CardsVar("Draw", CardsToDraw) // key 是 "Draw"
+        new CardsVar("Draw", CardsToDraw)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var source = this;
-        var target = cardPlay.Target;
-
-        ArgumentNullException.ThrowIfNull(target, "cardPlay.Target");
+        var target = cardPlay.Target ?? source.Owner.Creature;
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
@@ -67,19 +64,19 @@ public sealed class Three : ManosabaCardTemplate
         // 2. 自己抽牌
         await CardPileCmd.Draw(
             choiceContext,
-            source.DynamicVars["Draw"].IntValue, // ★ "Cards" → "Draw"
+            source.DynamicVars["Draw"].IntValue,
             source.Owner,
             false
         );
 
-        // 3. 目标队友抽牌
+        // 3. 目标抽牌
         if (target.IsPlayer)
         {
             var targetPlayer = source.CombatState.Players.FirstOrDefault(p => p.Creature == target);
             if (targetPlayer != null)
                 await CardPileCmd.Draw(
                     choiceContext,
-                    source.DynamicVars["Draw"].IntValue, // ★ "Cards" → "Draw"
+                    source.DynamicVars["Draw"].IntValue,
                     targetPlayer,
                     false
                 );
@@ -88,6 +85,6 @@ public sealed class Three : ManosabaCardTemplate
 
     protected override void OnUpgrade()
     {
-        DynamicVars["Draw"].UpgradeValueBy(1m); // ★ "Cards" → "Draw"
+        DynamicVars["Draw"].UpgradeValueBy(1m);
     }
 }

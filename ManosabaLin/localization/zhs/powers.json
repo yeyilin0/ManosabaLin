@@ -56,7 +56,7 @@
   "MANOSABA_LIN_POWER_POWERONEONE.description":"回合开始时失去1层[red]【正义】[/red]，获得1点能量",
   "MANOSABA_LIN_POWER_POWERTHREETHREE.title": "共犯",
   "MANOSABA_LIN_POWER_POWERTHREETHREE.description":"回合开始时每有100层[b]【魔女化】[/b]就从抽牌堆抽取随机一张攻击牌，本回合可以[gold]免费打出[/gold]",
-  "MANOSABA_LIN_POWER_POWERFOUEFOUE.title": "魔女监狱",
+  "MANOSABA_LIN_POWER_POWERFOURFOUR.title": "魔女监狱",
   "MANOSABA_LIN_POWER_POWERFOURFOUR.description":"回合开始时获得40层[b]【魔女化】[/b]",
   "MANOSABA_LIN_POWER_ORIGINALSINJUSTICE_POWER.title": "原罪",
   "MANOSABA_LIN_POWER_ORIGINALSINJUSTICE_POWER.description":"回合结束时\n消耗1层[red]【伪证】[/red]获得1层[red]【正义】[/red]\n消耗1层[b]【嫌疑】[/b]获得2层[b]【魔女化】[/b]"

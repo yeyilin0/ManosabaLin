@@ -192,7 +192,13 @@
   "MANOSABA_LIN_CARD_LY_XL.title": "蕾雅与希罗",
   "MANOSABA_LIN_CARD_LY_XL.description": "[gold]「我想让希罗只看着我一个人」[/gold]\n自身死亡\n使目标获得100层[b]【魔女化】[/b]，1层[gold]【共犯】[/gold]，1层[b]【魔女仪式】[/b]",
   "MANOSABA_LIN_CARD_POWERFOURFOURCARD.title": "魔女监狱",
-  "MANOSABA_LIN_CARD_POWERFOUEFOUECARD.description":"回合开始时获得40层[b]【魔女化】[/b]",
+  "MANOSABA_LIN_CARD_POWERFOURFOURCARD.description":"回合开始时获得40层[b]【魔女化】[/b]",
   "MANOSABA_LIN_CARD_JUSTICE_ENFORCER.title": "正义的执行者",
-  "MANOSABA_LIN_CARD_JUSTICE_ENFORCER.description":"[red]原罪[/red]\n消耗手牌中所有[red]【轮回】[/red]卡，每张生成随机[red]【轮回】[/red]卡，获得1层[red]【伪证】[/red]并回复1点生命\n消耗所有[red]【伪证】[/red]，每层对随机敌人造成2+[b]【魔女化】[/b]一半点伤害，获得等量[red]【正义】[/red]\n消耗所有[b]【嫌疑】[/b]，每层获得15层[b]【魔女化】[/b]并回复1点能量\n按照[red]【正义】[/red]层数全体回血，≥10层则所有手牌获得[red]【轮回】[/red]\n若[b]【魔女化】[/b]≥100，额外获得1层[red]【原罪】[/red]"
+  "MANOSABA_LIN_CARD_JUSTICE_ENFORCER.description":"[red]原罪[/red]\n消耗手牌中所有[red]【轮回】[/red]卡，每张生成随机[red]【轮回】[/red]卡，获得1层[red]【伪证】[/red]并回复1点生命\n消耗所有[red]【伪证】[/red]，每层对随机敌人造成2+[b]【魔女化】[/b]一半点伤害，获得等量[red]【正义】[/red]\n消耗所有[b]【嫌疑】[/b]，每层获得15层[b]【魔女化】[/b]并回复1点能量\n按照[red]【正义】[/red]层数全体回血，≥10层则所有手牌获得[red]【轮回】[/red]\n若[b]【魔女化】[/b]≥100，额外获得1层[red]【原罪】[/red]",
+  "MANOSABA_LIN_CARD_LYHELP.title": "蕾雅的协力",
+  "MANOSABA_LIN_CARD_LYHELP.description":"选择一个敌人将其意图目标转给一个敌方，造成8点伤害",
+  "MANOSABA_LIN_CARD_AMTARGET.title": "希罗的针对",
+  "MANOSABA_LIN_CARD_AMTARGET.description":"使一个友方失去3点血量，全体获得3层[red]【正义】[/red]",
+  "MANOSABA_LIN_CARD_AMHELP.title": "艾玛的协力",
+  "MANOSABA_LIN_CARD_AMHELP.description":"自身失去3点血量，使全体队友获得{Block:diff()}点护盾，恢复{HealAmount:diff()}点血量"
 }
