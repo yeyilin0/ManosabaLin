@@ -59,5 +59,8 @@
   "MANOSABA_LIN_POWER_POWERFOURFOUR.title": "魔女监狱",
   "MANOSABA_LIN_POWER_POWERFOURFOUR.description":"回合开始时获得40层[b]【魔女化】[/b]",
   "MANOSABA_LIN_POWER_ORIGINALSINJUSTICE_POWER.title": "原罪",
-  "MANOSABA_LIN_POWER_ORIGINALSINJUSTICE_POWER.description":"回合结束时\n消耗1层[color=#CC6666]【伪证】[/color]获得1层[color=#CC6666]【正义】[/color]\n消耗1层[b]【嫌疑】[/b]获得2层[b]【魔女化】[/b]"
+  "MANOSABA_LIN_POWER_ORIGINALSINJUSTICE_POWER.description":"回合结束时\n消耗1层[color=#CC6666]【伪证】[/color]获得1层[color=#CC6666]【正义】[/color]\n消耗1层[b]【嫌疑】[/b]获得2层[b]【魔女化】[/b]",
+  "MANOSABA_LIN_POWER_JUDGEMENT_CHAIN_POWER.title": "审判链",
+  "MANOSABA_LIN_POWER_JUDGEMENT_CHAIN_POWER.description": "回合开始时获得1点能量",
+  "MANOSABA_LIN_POWER_JUDGEMENT_CHAIN_POWER.smartDescription": "回合开始时获得1点能量"
 }

@@ -202,5 +202,9 @@
   "MANOSABA_LIN_CARD_AMHELP.title": "艾玛的协力",
   "MANOSABA_LIN_CARD_AMHELP.description":"自身失去3点血量，使全体队友获得{Block:diff()}点护盾，恢复{HealAmount:diff()}点血量",
   "MANOSABA_LIN_CARD_XHELP.title": "雪的协力",
-  "MANOSABA_LIN_CARD_XHELP.description":"给予目标{Block:diff()}点格挡，给予全体队友{JusticePower:diff()}层[color=#CC6666]【正义】[/color]，获得1层[b]【嫌疑】[/b]，若目标[b]【魔女化】[/b]≥50，消耗10%[b]【魔女化】[/b]换取2倍护盾"
+  "MANOSABA_LIN_CARD_XHELP.description":"给予目标{Block:diff()}点格挡，给予全体队友{JusticePower:diff()}层[color=#CC6666]【正义】[/color]，获得1层[b]【嫌疑】[/b]，若目标[b]【魔女化】[/b]≥50，消耗10%[b]【魔女化】[/b]换取2倍护盾",
+  "MANOSABA_LIN_CARD_SHADOW_SLASH.title": "残影斩",
+  "MANOSABA_LIN_CARD_SHADOW_SLASH.description": "造成{Damage:diff()}点伤害，若本回合通过[color=#CC6666]【轮回】[/color]打出过卡牌，额外造成{BonusDamage:diff()}点伤害",
+  "MANOSABA_LIN_CARD_ATTACKSIXSIX.title": "终审",
+  "MANOSABA_LIN_CARD_ATTACKSIXSIX.description": "造成{Damage:diff()}点伤害，若本回合已打出3张攻击牌，获得1层[color=#CC6666]【审判链】[/color]"
 }

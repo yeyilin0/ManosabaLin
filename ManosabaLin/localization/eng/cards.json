@@ -65,5 +65,9 @@
   "MANOSABA_LIN_CARD_CARD_TWENTY_FIVE.title": "Card Twenty-Five",
   "MANOSABA_LIN_CARD_CARD_TWENTY_FIVE.description": "Discard all cards in your hand.\nFor each card discarded, add a [gold]{IfUpgraded:show:CardTwentySix+|CardTwentySix}[/gold] to your hand.",
   "MANOSABA_LIN_CARD_HIRO_WITH.title": "Witch Power",
-  "MANOSABA_LIN_CARD_HIRO_WITH.description": "[red][b]\"Ah, so you were with me all along...\"[/b][/red]\nUsable at 100 [b]Witchification[/b]. Gain 1 [b]Ritual Ceremony[/b], gain 2 Intangible, and double your damage next turn."
+  "MANOSABA_LIN_CARD_HIRO_WITH.description": "[red][b]\"Ah, so you were with me all along...\"[/b][/red]\nUsable at 100 [b]Witchification[/b]. Gain 1 [b]Ritual Ceremony[/b], gain 2 Intangible, and double your damage next turn.",
+  "MANOSABA_LIN_CARD_SHADOW_SLASH.title": "Shadow Slash",
+  "MANOSABA_LIN_CARD_SHADOW_SLASH.description": "Deal {Damage:diff()} damage. If a card was played via [red]Transmigration[/red] this turn, deal {BonusDamage:diff()} additional damage.",
+  "MANOSABA_LIN_CARD_ATTACKSIXSIX.title": "Final Trial",
+  "MANOSABA_LIN_CARD_ATTACKSIXSIX.description": "Deal {Damage:diff()} damage. If you've played 3+ Attack cards this turn, gain 1 [b]Judgement Chain[/b]."
 }
