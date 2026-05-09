@@ -1,10 +1,14 @@
 <Project>
     <PropertyGroup>
-        <!-- Megadot current version is 4.5.1, and the game won't load your .pck if the Godot version used is newer. -->
-        <!-- MegaDot / Godot 4.5.1 mono executable used for export-pack when publishing -->
-        <GodotPath>D:\222\dark\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64.exe</GodotPath>
+        <AutoSteamPath>$(registry:HKEY_CURRENT_USER\Software\Valve\Steam@SteamPath)\steamapps</AutoSteamPath>
+        <SteamLibraryPath Condition="Exists('$(AutoSteamPath)/common/Slay the Spire 2')">$(AutoSteamPath)</SteamLibraryPath>
 
-        <!-- If sts2 is not found automatically, uncomment the following and set it manually -->
-        <Sts2Path>D:\Program Files (x86)\Steam\steamapps\common\Slay the Spire 2</Sts2Path>
+        <GodotPath Condition="'$(GodotPath)' == ''">D:\222\dark\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64.exe</GodotPath>
+        <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">C:/Program Files (x86)/Steam/steamapps</SteamLibraryPath>
+
+        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
+        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
+        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/data_sts2_windows_x86_64</Sts2DataDir>
+        <RitsuLibDeployDir>$(ModsPath)RitsuLib/</RitsuLibDeployDir>
     </PropertyGroup>
 </Project>

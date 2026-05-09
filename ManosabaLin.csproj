@@ -18,8 +18,6 @@
 
         <ModOutputDir>$(Sts2Dir)\mods\$(MSBuildProjectName)\</ModOutputDir>
         <ModPckPath>$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
-        <RunPckExport Condition="'$(RunPckExport)' == '' and '$(DesignTimeBuild)' != 'true'">true</RunPckExport>
-        <RunPckExport Condition="'$(RunPckExport)' == ''">true</RunPckExport>
     </PropertyGroup>
 
     <ItemGroup>
@@ -39,6 +37,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Update="ManosabaLinCode\" NameSpaceProvider="False" />
         <AdditionalFiles Include="ManosabaLin/localization/**/*.json"/>
     </ItemGroup>
 
@@ -79,7 +78,7 @@
     </ItemGroup>
 
     <Target Name="EnsureLocalProps" BeforeTargets="PrepareForBuild" Condition="!Exists('.\local.props')">
-        <Error Text="Missing '.\local.props'. Copy '.\local.props.template' to '.\local.props', then update 'Sts2Dir' / 'GodotExe' / 'RitsuLibDir' for your local environment."/>
+        <Error Text="Missing '.\local.props'. Copy '.\local.props.template' to '.\local.props', then update 'Sts2Dir' / 'GodotPath' / 'RitsuLibDir' for your local environment."/>
     </Target>
 
     <Target Name="ValidateSts2GameInstall" BeforeTargets="ResolveAssemblyReferences">
@@ -102,10 +101,10 @@
         <Copy SourceFiles="@(ModLooseAudio)" DestinationFiles="@(ModLooseAudio->'$(ModOutputDir)audio\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true"/>
     </Target>
 
-    <Target Name="ExportPCK" AfterTargets="Build" Condition="'$(RunPckExport)' == 'true' and '$(STS2_SKIP_PCK_EXPORT)' != '1' and Exists('$(GodotExe)')">
+    <Target Name="ExportPCK" AfterTargets="Publish" Condition="'$(STS2_SKIP_PCK_EXPORT)' != '1' and Exists('$(GodotPath)')">
         <Message Text="Exporting mod PCK with MegaDot..." Importance="high"/>
         <MakeDir Directories="$(ModOutputDir)"/>
-        <Exec Command="&quot;$(GodotExe)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;$(GodotExportPreset)&quot; &quot;$(ModPckPath)&quot;" EnvironmentVariables="STS2_SKIP_PCK_EXPORT=1"/>
+        <Exec Command="&quot;$(GodotPath)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;$(GodotExportPreset)&quot; &quot;$(ModPckPath)&quot;" EnvironmentVariables="STS2_SKIP_PCK_EXPORT=1"/>
     </Target>
 
 </Project>
