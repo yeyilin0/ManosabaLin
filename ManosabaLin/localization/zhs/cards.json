@@ -142,7 +142,7 @@
   "MANOSABA_LIN_CARD_CARD_SIXTY.description": "选择{SelectCount}张手牌获得[color=#CC6666]【轮回】[/color]，将其复制{CopyCount:diff()}张加入抽牌堆",
   "MANOSABA_LIN_CARD_CARD_SIXTY.selectionScreenPrompt": "选择卡",
   "MANOSABA_LIN_CARD_THE_END.title": "结局",
-  "MANOSABA_LIN_CARD_THE_END.description": "[pink]「只要大家全部[/pink][b]去死[/b][pink]不就好了」[/pink]\n[color=#CC6666]「休想迷惑我！」[color]\n[/color=#CC6666]击杀敌方全场敌人[/color]，从卡组里移除[b]【死亡回溯】[/b]",
+  "MANOSABA_LIN_CARD_THE_END.description": "[color=#ff99cc]「只要大家全部[/color][b]去死[/b][color=#ff99cc]不就好了」[/color]\n[color=#CC6666]「休想迷惑我！」[color]\n[/color=#CC6666]击杀敌方全场敌人[/color]，从卡组里移除[b]【死亡回溯】[/b]",
   "MANOSABA_LIN_CARD_HAPPY_ENDING.title": "不举行安息仪式",
   "MANOSABA_LIN_CARD_HAPPY_ENDING.description": "[color=#CC6666]「果然，我没办法举行仪式」[/color]\n获得一张[color=#CC6666]【ERROR】[/color]",
   "MANOSABA_LIN_CARD_ERROR.title": "我来亲手，把这一切终结",
@@ -188,7 +188,7 @@
   "MANOSABA_LIN_CARD_ATTACKFIVEFIVE.title": "攻击55",
   "MANOSABA_LIN_CARD_ATTACKFIVEFIVE.description":"造成{Damage:diff()}点伤害，斩杀时恢复等于[color=#CC6666]【正义】[/color]层数的血量",
   "MANOSABA_LIN_CARD_POWERTHREETHREECARD.title": "誓言",
-  "MANOSABA_LIN_CARD_POWERTHREETHREECARD.description":"[color=#CC6666]「应该道谢的，是我才对」[/color]\n指定目标获得一张[gold]【蕾雅[/gold]与[color=#CC6666]希罗】[/color]",
+  "MANOSABA_LIN_CARD_POWERTHREETHREECARD.description":"[color=#CC6666]「应该道谢的，是我才对」[/color]\n指定目标获得一张\n[gold]【蕾雅[/gold]与[color=#CC6666]希罗】[/color]",
   "MANOSABA_LIN_CARD_LY_XL.title": "蕾雅与希罗",
   "MANOSABA_LIN_CARD_LY_XL.description": "[gold]「我想让希罗只看着我一个人」[/gold]\n自身死亡\n使目标获得100层[b]【魔女化】[/b]，1层[gold]【共犯】[/gold]，1层[b]【魔女仪式】[/b]",
   "MANOSABA_LIN_CARD_POWERFOURFOURCARD.title": "魔女监狱",
@@ -210,5 +210,9 @@
   "MANOSABA_LIN_CARD_NYM.title": "城崎诺亚",
   "MANOSABA_LIN_CARD_NYM.description": "造成{Damage:diff()}点伤害，获得1层[b]【嫌疑】[/b]，获得10层[b]【魔女化】[/b]，给予目标1层\n[blue]【城崎诺亚的魔法】[/blue]",
   "MANOSABA_LIN_CARD_KKM.title": "泽度可可",
-  "MANOSABA_LIN_CARD_KKM.description":"选择1个友方造成1点伤害，使其获得{KkmPower:diff()}层\n[color=#ff9966]【泽度可可的魔法】[/color]"
+  "MANOSABA_LIN_CARD_KKM.description":"选择1个友方造成1点伤害，使其获得{KkmPower:diff()}层\n[color=#ff9966]【泽度可可的魔法】[/color]",
+  "MANOSABA_LIN_CARD_NYXM.title": "黑部奈叶香",
+  "MANOSABA_LIN_CARD_NYXM.description": "造成{Damage:diff()}点伤害,获得1层\n[color=#999999]【黑部奈叶香的魔法】[/color]",
+  "MANOSABA_LIN_CARD_AMM.title": "樱羽艾玛",
+  "MANOSABA_LIN_CARD_AMM.description":"造成{Damage:diff()}+[b]【嫌疑】[/b]层数+[b]【魔女化】[/b]÷20点伤害,获得1层[b]【嫌疑】[/b]和10层[b]【魔女化】[/b]\n获得[color=#ff99cc]【樱羽艾玛的魔法】[/color]"
 }
