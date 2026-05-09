@@ -1,4 +1,4 @@
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.ManosabaLinCode.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -12,14 +12,14 @@ using ManosabaLin.Characters.Hiro;
 namespace ManosabaLin.ManosabaLinCode.Characters.Hiro.Cards;
 
 [RegisterCard(typeof(HiroCardPool))]
-public class Lym : ManosabaCardTemplate
+public class Aam : ManosabaCardTemplate
 {
     private const int BaseEnergyCost = 2;
-    private const CardType CardKind = CardType.Skill;
-    private const CardRarity CardRarityValue = CardRarity.Rare;
+    private const CardType CardKind = CardType.Power;
+    private const CardRarity CardRarityValue = CardRarity.Uncommon;
     private const TargetType CardTarget = TargetType.AnyEnemy;
 
-    public Lym() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget)
+    public Aam() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget)
     {
     }
 
@@ -27,7 +27,7 @@ public class Lym : ManosabaCardTemplate
     {
         get
         {
-            yield return HoverTipFactory.FromPower<LymPower>();
+            yield return HoverTipFactory.FromPower<AamPower>();
             yield return HoverTipFactory.FromPower<SuspectPower>();
         }
     }
@@ -39,16 +39,16 @@ public class Lym : ManosabaCardTemplate
         ArgumentNullException.ThrowIfNull(markedEnemy);
 
         await PowerCmd.Apply<SuspectPower>(
-            choiceContext, source.Owner.Creature, 5,
+            choiceContext, source.Owner.Creature, 3,
             source.Owner.Creature, source, false);
 
-        await PowerCmd.Apply<LymPower>(
+        await PowerCmd.Apply<AamPower>(
             choiceContext, markedEnemy, 1,
             source.Owner.Creature, source, false);
 
-        var redirectPower = markedEnemy.Powers.OfType<LymPower>().FirstOrDefault();
+        var redirectPower = markedEnemy.Powers.OfType<AamPower>().FirstOrDefault();
         if (redirectPower is not null)
-            await redirectPower.ChooseMoveTarget(choiceContext, source.Owner);
+            await redirectPower.ChooseMoveAndTarget(choiceContext, source.Owner);
     }
 
     protected override void OnUpgrade()

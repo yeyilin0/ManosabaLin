@@ -64,7 +64,7 @@ public sealed class Xhelp() : ManosabaCardTemplate(2, CardType.Attack, CardRarit
             var consumeAmount = (int)(with.Amount / 10);
             await PowerCmd.ModifyAmount(choiceContext, with, -consumeAmount, target, source, false);
             // 直接用 Heal 或者通过临时 BlockVar 绕过
-            target.GainBlockInternal(consumeAmount * 2);
+            target.GainBlockInternal(consumeAmount * 1);
         }
 
         // 自己获得 1 层嫌疑

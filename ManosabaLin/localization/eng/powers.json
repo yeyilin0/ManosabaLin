@@ -32,7 +32,6 @@
   "MANOSABA_LIN_POWER_CARD_TWENTY_FOUR_POWER.title": "24",
   "MANOSABA_LIN_POWER_CARD_TWENTY_FOUR_POWER.description": "On turns where Perjury converts into Justice, damage you take cannot exceed 30.",
   "MANOSABA_LIN_POWER_CARD_TWENTY_FOUR_POWER.smartDescription": "On turns where Perjury converts into Justice, damage you take cannot exceed 30.",
-  "MANOSABA_LIN_POWER_JUDGEMENT_CHAIN_POWER.title": "Judgement Chain",
-  "MANOSABA_LIN_POWER_JUDGEMENT_CHAIN_POWER.description": "At the start of your turn, gain 1 Energy.",
-  "MANOSABA_LIN_POWER_JUDGEMENT_CHAIN_POWER.smartDescription": "At the start of your turn, gain 1 Energy."
+  "MANOSABA_LIN_POWER_AAM_POWER.title": "Ama's Guardian",
+  "MANOSABA_LIN_POWER_AAM_POWER.description": "Redirect the target's intent to an ally."
 }

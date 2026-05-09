@@ -2,6 +2,7 @@
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -23,7 +24,11 @@ public sealed class Twelve() : ManosabaCardTemplate(0, CardType.Skill, CardRarit
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
-        get { yield return HoverTipFactory.FromPower<SuspectPower>(); }
+        get
+        {
+            yield return HoverTipFactory.FromPower<SuspectPower>();
+            yield return HoverTipFactory.FromPower<YlsmPower>();
+        }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -60,6 +65,12 @@ public sealed class Twelve() : ManosabaCardTemplate(0, CardType.Skill, CardRarit
         await PlayerCmd.GainEnergy(
             source.DynamicVars.Energy.IntValue,
             target.Player
+        );
+
+        // 给自己 1 层 YlsmPower
+        await PowerCmd.Apply<YlsmPower>(
+            choiceContext, source.Owner.Creature, 1,
+            source.Owner.Creature, source, false
         );
     }
 
