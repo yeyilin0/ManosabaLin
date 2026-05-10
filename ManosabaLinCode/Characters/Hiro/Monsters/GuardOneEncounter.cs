@@ -3,6 +3,8 @@ using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Rooms;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using ManosabaLin.Extensions;
+using MegaCrit.Sts2.Core.Logging;
 
 namespace ManosabaLin.Characters.Hiro.Monsters;
 
@@ -10,8 +12,19 @@ namespace ManosabaLin.Characters.Hiro.Monsters;
 public sealed class GuardOneEncounter : ModEncounterTemplate
 {
     public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<GuardOneMonster>()];
-    
-    protected override bool HasCustomBackground => false;
+
+    protected override bool UseActCombatBackground => false;
+
+    public override string CustomBackgroundScenePath => this.BackgroungScenePath;
+
+    public override string CustomBackgroundLayersDirectoryPath
+    {
+        get
+        {
+            Log.Warn($"Call. {this.BackgroundLayersDirectoryPath}");
+            return this.BackgroundLayersDirectoryPath;
+        }
+    }
 
     public override RoomType RoomType => RoomType.Boss;
 
