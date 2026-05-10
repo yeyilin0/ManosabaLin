@@ -142,7 +142,7 @@
   "MANOSABA_LIN_CARD_CARD_SIXTY.description": "选择{SelectCount}张手牌获得[color=#CC6666]【轮回】[/color]，将其复制{CopyCount:diff()}张加入抽牌堆",
   "MANOSABA_LIN_CARD_CARD_SIXTY.selectionScreenPrompt": "选择卡",
   "MANOSABA_LIN_CARD_THE_END.title": "结局",
-  "MANOSABA_LIN_CARD_THE_END.description": "[color=#ff99cc]「只要大家全部[/color][b]去死[/b][color=#ff99cc]不就好了」[/color]\n[color=#CC6666]「休想迷惑我！」[color]\n[/color=#CC6666]击杀敌方全场敌人[/color]，从卡组里移除[b]【死亡回溯】[/b]",
+  "MANOSABA_LIN_CARD_THE_END.description": "[color=#ff99cc]「只要大家全部[/color][b]去死[/b][color=#ff99cc]不就好了」[/color]\n[color=#CC6666]「休想迷惑我！」[ /color]\n[/color=#CC6666]击杀敌方全场敌人[/color]，从卡组里移除[b]【死亡回溯】[/b]",
   "MANOSABA_LIN_CARD_HAPPY_ENDING.title": "不举行安息仪式",
   "MANOSABA_LIN_CARD_HAPPY_ENDING.description": "[color=#CC6666]「果然，我没办法举行仪式」[/color]\n获得一张[color=#CC6666]【ERROR】[/color]",
   "MANOSABA_LIN_CARD_ERROR.title": "我来亲手，把这一切终结",
@@ -208,7 +208,7 @@
   "MANOSABA_LIN_CARD_ATTACKSIXSIX.title": "终审",
   "MANOSABA_LIN_CARD_ATTACKSIXSIX.description": "造成{Damage:diff()}点伤害，若本回合已打出3张攻击牌，获得1层[color=#CC6666]【审判链】[/color]",
   "MANOSABA_LIN_CARD_NYM.title": "城崎诺亚",
-  "MANOSABA_LIN_CARD_NYM.description": "造成{Damage:diff()}点伤害，获得1层[b]【嫌疑】[/b]，获得10层[b]【魔女化】[/b]，给予目标1层\n[blue]【城崎诺亚的魔法】[/blue]",
+  "MANOSABA_LIN_CARD_NYM.description": "造成{Damage:diff()}点伤害，获得1层[b]【嫌疑】[/b]，获得10层[b]【魔女化】[/b]，给予目标2层\n[blue]【城崎诺亚的魔法】[/blue]",
   "MANOSABA_LIN_CARD_KKM.title": "泽度可可",
   "MANOSABA_LIN_CARD_KKM.description":"选择1个友方造成1点伤害，使其获得{KkmPower:diff()}层\n[color=#ff9966]【泽度可可的魔法】[/color]",
   "MANOSABA_LIN_CARD_NYXM.title": "黑部奈叶香",
@@ -220,5 +220,12 @@
   "MANOSABA_LIN_CARD_WITCH_MARK.title": "魔女印记",
   "MANOSABA_LIN_CARD_WITCH_MARK.description": "回合结束时若在手牌中，获得{WithPower:diff()}层[b]【魔女化】[/b]",
   "MANOSABA_LIN_CARD_WITCH_BURN.title": "魔女灼烧",
-  "MANOSABA_LIN_CARD_WITCH_BURN.description": "回合开始时返回手牌\n回合结束时对自己造成{Damage}点伤害"
+  "MANOSABA_LIN_CARD_WITCH_BURN.description": "回合开始时返回手牌\n回合结束时对自己造成{Damage}点伤害",
+  "MANOSABA_LIN_CARD_NYM_SLASH.title": "诺亚的协力",
+  "MANOSABA_LIN_CARD_NYM_SLASH.description": "造成{Damage:diff()}点伤害，给予目标{NymPower:diff()}层[blue]【城崎诺亚的魔法】[/blue]",
+  "MANOSABA_LIN_CARD_REVOKATION.title": "撤回",
+  "MANOSABA_LIN_CARD_REVOKATION.description": "降低3点血量上限，造成{Damage:diff()}点伤害\n可选择抽牌堆、弃牌堆或手牌中的1张[color=#CC6666]【死亡回溯】[/color]消耗，移除自身的[color=#CC6666]【死亡回溯】[/color]能力\n若成功消耗卡牌或移除能力，加入一张[b]保留[/b]的[color=#CC6666]【正义】[/color]进入手牌",
+  "MANOSABA_LIN_CARD_REVOKATION.selectionScreenPrompt": "选择1张【死亡回溯】消耗",
+  "MANOSABA_LIN_CARD_PERJURY_AURA.title": "1伪证",
+  "MANOSABA_LIN_CARD_PERJURY_AURA.description":"回合开始获得伪证"
 }

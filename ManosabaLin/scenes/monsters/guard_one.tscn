@@ -7,7 +7,7 @@
 [node name="Visuals" type="Node2D" parent="."]
 unique_name_in_owner = true
 
-[node name="GuardOne" type="Sprite2D" parent="Visuals"]
+[node name="NCreatureVisuals" type="Sprite2D" parent="Visuals"]
 unique_name_in_owner = true
 position = Vector2(20, -210.99998)
 scale = Vector2(0.22021174, 0.2317055)

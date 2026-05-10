@@ -71,5 +71,10 @@
   "MANOSABA_LIN_CARD_WITCH_MARK.title": "Witch Mark",
   "MANOSABA_LIN_CARD_WITCH_MARK.description": "[b]Retain[/b]\nAt end of turn, if in hand, gain {WithPower:diff()} [b]Witchification[/b]",
   "MANOSABA_LIN_CARD_WITCH_BURN.title": "Witch Burn",
-  "MANOSABA_LIN_CARD_WITCH_BURN.description": "Returns to hand at start of turn\nAt end of turn, deals {Damage} damage to self\n[b]Retain[/b]"
+  "MANOSABA_LIN_CARD_WITCH_BURN.description": "Returns to hand at start of turn\nAt end of turn, deals {Damage} damage to self\n[b]Retain[/b]",
+  "MANOSABA_LIN_CARD_NYM_SLASH.title": "Noah Slash",
+  "MANOSABA_LIN_CARD_NYM_SLASH.description": "Deal {Damage:diff()} damage. Give target {NymPower:diff()} [blue]Noah's Magic[/blue]",
+  "MANOSABA_LIN_CARD_REVOKATION.title": "Revokation",
+  "MANOSABA_LIN_CARD_REVOKATION.description": "Lose 3 Max HP. Deal {Damage:diff()} damage.\nChoose 1 [red]Death Rewind[/red] from draw pile, discard pile, or hand to Exhaust. Remove your [red]Death Rewind[/red] power.\nIf a card was Exhausted or power removed, add a [b]Retain[/b] [red]Justice[/red] to hand.",
+  "MANOSABA_LIN_CARD_REVOKATION.selectionScreenPrompt": "Choose 1 Death Rewind to Exhaust."
 }

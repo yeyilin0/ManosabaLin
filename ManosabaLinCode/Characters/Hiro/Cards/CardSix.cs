@@ -12,7 +12,7 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCard(typeof(HiroCardPool))]
 public sealed class CardSix : ManosabaCardTemplate
 {
-    public CardSix() : base(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+    public CardSix() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
     }
 
@@ -63,5 +63,6 @@ public sealed class CardSix : ManosabaCardTemplate
     protected override void OnUpgrade()
     {
         RemoveKeyword(CardKeyword.Exhaust);
+        EnergyCost.UpgradeBy(-1);
     }
 }
