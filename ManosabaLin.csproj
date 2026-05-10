@@ -4,7 +4,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <ImplicitUsings>true</ImplicitUsings>
-        <LangVersion>12.0</LangVersion>
+        <LangVersion>preview</LangVersion>
         <Nullable>enable</Nullable>
         <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
         <PathMap>$(AppOutputBase)=.\</PathMap>
@@ -37,7 +37,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Update="ManosabaLinCode\" NameSpaceProvider="False" />
         <AdditionalFiles Include="ManosabaLin/localization/**/*.json"/>
     </ItemGroup>
 
