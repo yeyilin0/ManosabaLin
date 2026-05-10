@@ -26,6 +26,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="ManosabaLin"
 
+[editor]
+
+export/convert_text_resources_to_binary=false
+
 [rendering]
 
 renderer/rendering_method="mobile"
