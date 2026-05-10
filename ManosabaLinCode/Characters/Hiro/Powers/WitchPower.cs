@@ -25,7 +25,7 @@ public sealed class WithPower : ManosabaPowerTemplate
     {
         if (dealer != Owner) return 1m;
         if (props.HasFlag(ValueProp.Unpowered)) return 1m;
-        return 1m + Amount / 100m;
+        return 1m + Amount / 200m;  // /100 → /200
     }
 
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
@@ -33,9 +33,8 @@ public sealed class WithPower : ManosabaPowerTemplate
     {
         if (dealer != Owner) return 0m;
         if (props.HasFlag(ValueProp.Unpowered)) return 0m;
-        return Amount / 25;
+        return Amount / 50;  // /25 → /50
     }
-
     // ===== 300层+：技能牌打出后进入消耗堆 =====
     public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
         CardModel card, bool isAutoPlay, ResourceInfo resources, PileType pileType, CardPilePosition position)

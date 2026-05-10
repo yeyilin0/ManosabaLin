@@ -37,11 +37,10 @@ public sealed class Amtarget() : ManosabaCardTemplate(1, CardType.Power, CardRar
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        // 给选中目标 3 点不受力量影响的伤害
-        await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-            .FromCard(source)
-            .Targeting(target)
-            .Execute(choiceContext);
+        // 给选中目标 3 点不受力量/魔女化影响的伤害
+        await CreatureCmd.Damage(choiceContext, target,
+            source.DynamicVars.Damage.BaseValue,
+            ValueProp.Unpowered | ValueProp.Move, source);
 
         // 给全体队友 3 层正义
         var allies = source.Owner.Creature.CombatState.Creatures

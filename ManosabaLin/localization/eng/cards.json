@@ -67,5 +67,9 @@
   "MANOSABA_LIN_CARD_HIRO_WITH.title": "Witch Power",
   "MANOSABA_LIN_CARD_HIRO_WITH.description": "[red][b]\"Ah, so you were with me all along...\"[/b][/red]\nUsable at 100 [b]Witchification[/b]. Gain 1 [b]Ritual Ceremony[/b], gain 2 Intangible, and double your damage next turn.",
   "MANOSABA_LIN_CARD_AAM.title": "Ama's Guardian",
-  "MANOSABA_LIN_CARD_AAM.description": "Gain 3 [b]Suspect[/b]. Choose an enemy, replace its move, then choose an ally as the new target."
+  "MANOSABA_LIN_CARD_AAM.description": "Gain 3 [b]Suspect[/b]. Choose an enemy, replace its move, then choose an ally as the new target.",
+  "MANOSABA_LIN_CARD_WITCH_MARK.title": "Witch Mark",
+  "MANOSABA_LIN_CARD_WITCH_MARK.description": "[b]Retain[/b]\nAt end of turn, if in hand, gain {WithPower:diff()} [b]Witchification[/b]",
+  "MANOSABA_LIN_CARD_WITCH_BURN.title": "Witch Burn",
+  "MANOSABA_LIN_CARD_WITCH_BURN.description": "Returns to hand at start of turn\nAt end of turn, deals {Damage} damage to self\n[b]Retain[/b]"
 }

@@ -32,11 +32,9 @@ public sealed class Kkm() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-            .FromCard(source)
-            .Targeting(target)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(choiceContext);
+        await CreatureCmd.Damage(choiceContext, target,
+            source.DynamicVars.Damage.BaseValue,
+            ValueProp.Unpowered | ValueProp.Move, source);
 
         await PowerCmd.Apply<KkmPower>(
             choiceContext, target,

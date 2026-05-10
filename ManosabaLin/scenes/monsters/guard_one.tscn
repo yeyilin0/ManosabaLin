@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyb2vnrhtoe75"]
+
+[ext_resource type="Texture2D" uid="uid://dem61afy82ywb" path="res://ManosabaLin/images/mosters/guard_one.png" id="1_u7tvx"]
+
+[node name="GuardOne" type="Node2D"]
+
+[node name="Visuals" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="GuardOne" type="Sprite2D" parent="Visuals"]
+unique_name_in_owner = true
+position = Vector2(20, -210.99998)
+scale = Vector2(0.22021174, 0.2317055)
+texture = ExtResource("1_u7tvx")
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -80.0
+offset_top = -400.0
+offset_right = 80.0
+offset_bottom = -50.0
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -420)
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -250)
+
+[node name="TalkPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -350)

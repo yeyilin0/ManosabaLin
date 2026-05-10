@@ -216,5 +216,9 @@
   "MANOSABA_LIN_CARD_AMM.title": "樱羽艾玛",
   "MANOSABA_LIN_CARD_AMM.description":"造成{Damage:diff()}+[b]【嫌疑】[/b]层数+[b]【魔女化】[/b]÷20点伤害,获得1层[b]【嫌疑】[/b]和10层[b]【魔女化】[/b]\n获得[color=#ff99cc]【樱羽艾玛的魔法】[/color]",
   "MANOSABA_LIN_CARD_AAM.title": "夏目安安",
-  "MANOSABA_LIN_CARD_AAM.description": "获得3层[b]【嫌疑】[/b]，选择一个敌人获得\n[color=#6666cc]【夏目安安的魔法】[/color]"
+  "MANOSABA_LIN_CARD_AAM.description": "获得3层[b]【嫌疑】[/b]，选择一个敌人获得\n[color=#6666cc]【夏目安安的魔法】[/color]",
+  "MANOSABA_LIN_CARD_WITCH_MARK.title": "魔女印记",
+  "MANOSABA_LIN_CARD_WITCH_MARK.description": "回合结束时若在手牌中，获得{WithPower:diff()}层[b]【魔女化】[/b]",
+  "MANOSABA_LIN_CARD_WITCH_BURN.title": "魔女灼烧",
+  "MANOSABA_LIN_CARD_WITCH_BURN.description": "回合开始时返回手牌\n回合结束时对自己造成{Damage}点伤害"
 }
