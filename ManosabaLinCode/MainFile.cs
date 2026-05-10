@@ -4,6 +4,7 @@ using HarmonyLib;
 using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib;
 using STS2RitsuLib.Interop;
 using STS2RitsuLib.Scaffolding.Cards.HandOutline;
@@ -30,11 +31,11 @@ public partial class MainFile : Node
     {
         var ctx = RitsuLibFramework.CreateContentPack(ModId)
             .CardHandOutline<ManosabaCardTemplate>(new ModCardHandOutlineRule(
-                card => true,
+                _ => true,
                 new Color(204f / 255f, 102f / 255f, 102f / 255f)
             ))
             .Apply();
-        
+
         var assembly = Assembly.GetExecutingAssembly();
         RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);

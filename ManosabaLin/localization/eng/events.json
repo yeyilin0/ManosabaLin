@@ -1,10 +1,10 @@
 {
-  "GUARD_ONE_EVENT.title": "Guard's Trial",
-  "GUARD_ONE_EVENT.pages.INITIAL.description": "By the campfire, you encounter a mysterious guard. He offers two trials:",
-  "GUARD_ONE_EVENT.pages.INITIAL.options.POWER.title": "Accept the Power Trial",
-  "GUARD_ONE_EVENT.pages.INITIAL.options.POWER.description": "Gain 13 max HP, upgrade a card, but the Boss will be replaced by a Guard",
-  "GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.title": "Accept the Healing Trial",
-  "GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.description": "Heal 13 HP, upgrade a card",
-  "GUARD_ONE_EVENT.pages.OPTION_POWER.description": "You accepted the Power Trial. Max HP increased, card upgraded. But the Boss ahead has been replaced...",
-  "GUARD_ONE_EVENT.pages.OPTION_HEAL.description": "You accepted the Healing Trial. HP restored, card upgraded."
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.title": "Guard's Trial",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.description": "By the campfire, you encounter a mysterious guard. He offers two trials:",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.POWER.title": "Accept the Power Trial",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.POWER.description": "Gain 13 max HP, upgrade a card, but the Boss will be replaced by a Guard",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.title": "Accept the Healing Trial",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.description": "Heal 13 HP, upgrade a card",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.OPTION_POWER.description": "You accepted the Power Trial. Max HP increased, card upgraded. But the Boss ahead has been replaced...",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.OPTION_HEAL.description": "You accepted the Healing Trial. HP restored, card upgraded."
 }

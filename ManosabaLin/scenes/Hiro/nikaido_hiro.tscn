@@ -4,26 +4,28 @@
 load_path = "res://.godot/imported/NikaidoHiro.png-d7d841a82d7163c583fc78464f3f77e3.ctex"
 
 [node name="NikaidoHiro" type="Node2D"]
+scale = Vector2(2.4313061, 2.4313061)
 
 [node name="Visuals" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-9.445733, -280.62308)
-scale = Vector2(0.33244574, 0.33499998)
+position = Vector2(-8.445732, -100.62307)
+scale = Vector2(0.195, 0.195)
 texture = SubResource("CompressedTexture2D_adbnn")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -148.0
-offset_top = -652.0
-offset_right = 175.0
-offset_bottom = 67.0
+offset_left = -56.0
+offset_top = -204.0
+offset_right = 57.0
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1, -289)
+position = Vector2(0, -222)
 
 [node name="CenterPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-0.6666565, -289)
+position = Vector2(0, -119)
