@@ -1,7 +1,7 @@
 {
-  "GUARD_ONE_MONSTER_GUARD_ONE_MONSTER.name": "Guard",
-  "GUARD_ONE_MONSTER_GUARD_ONE_MONSTER.moves.ATTACK_MOVE.title": "Double Strike",
-  "GUARD_ONE_MONSTER_GUARD_ONE_MONSTER.moves.ATTACK_MOVE.banter": "[jitter]Take this![/jitter]",
-  "GUARD_ONE_MONSTER_GUARD_ONE_MONSTER.moves.DEFEND_MOVE.title": "Defensive Stance",
-  "GUARD_ONE_MONSTER_GUARD_ONE_MONSTER.moves.BUFF_MOVE.title": "Power Up"
+  "MANOSABA_LIN_MONSTER_GUARD_ONE_MONSTER.name": "Guard",
+  "MANOSABA_LIN_MONSTER_GUARD_ONE_MONSTER.moves.ATTACK_MOVE.title": "Double Strike",
+  "MANOSABA_LIN_MONSTER_GUARD_ONE_MONSTER.moves.ATTACK_MOVE.banter": "[jitter]Take this![/jitter]",
+  "MANOSABA_LIN_MONSTER_GUARD_ONE_MONSTER.moves.DEFEND_MOVE.title": "Defensive Stance",
+  "MANOSABA_LIN_MONSTER_GUARD_ONE_MONSTER.moves.BUFF_MOVE.title": "Power Up"
 }
