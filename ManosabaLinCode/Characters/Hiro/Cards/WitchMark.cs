@@ -9,7 +9,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
-[RegisterCard(typeof(HiroCardPool))]
+[RegisterCard(typeof(LinCardPool))]
 public sealed class WitchMark() : ManosabaCardTemplate(-1, CardType.Status, CardRarity.Status, TargetType.None)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords

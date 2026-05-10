@@ -11,7 +11,7 @@ public sealed class GuardOneEncounter : ModEncounterTemplate
 {
     public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<GuardOneMonster>()];
     
-    protected override bool HasCustomBackground => true;
+    protected override bool HasCustomBackground => false;
 
     public override RoomType RoomType => RoomType.Boss;
 

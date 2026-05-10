@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://7jjw1p7pyae3"]
+
+[ext_resource type="Texture2D" uid="uid://c8dcf6vbe0fuj" path="res://ManosabaLin/scenes/backgrounds/manosaba_lin_encounter_guard_one_encounter/layers/1.png" id="1_bfvtt"]
+
+[node name="guard_one_boss_bg_01_a" type="Node2D"]
+
+[node name="guard_one_boss_bg_01_a" type="Sprite2D" parent="."]
+position = Vector2(959.9999, 550)
+scale = Vector2(0.46679688, 0.54345703)
+texture = ExtResource("1_bfvtt")

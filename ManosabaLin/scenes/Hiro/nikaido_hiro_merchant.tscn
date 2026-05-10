@@ -6,6 +6,6 @@
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-15.909451, -406.99997)
-scale = Vector2(0.49041128, 0.5568622)
+position = Vector2(-3.7025144, -276.29605)
+scale = Vector2(0.41796878, 0.4123749)
 texture = ExtResource("2")

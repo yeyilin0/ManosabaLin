@@ -12,7 +12,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
-[RegisterCard(typeof(HiroCardPool))]
+[RegisterCard(typeof(LinCardPool))]
 public sealed class Save : ManosabaCardTemplate
 {
     public Save() : base(0, CardType.Skill, CardRarity.Token, TargetType.AnyPlayer)

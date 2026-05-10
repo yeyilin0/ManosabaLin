@@ -10,8 +10,8 @@ using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
-[RegisterCard(typeof(HiroCardPool))]
-public sealed class WitchBurn() : ManosabaCardTemplate(-1, CardType.Status, CardRarity.Status, TargetType.None)
+[RegisterCard(typeof(LinCardPool))]
+public sealed class WitchBurn() : ManosabaCardTemplate(-1, CardType.Status, CardRarity.Ancient, TargetType.None)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
@@ -42,7 +42,7 @@ public sealed class WitchBurn() : ManosabaCardTemplate(-1, CardType.Status, Card
             choiceContext,
             source.Owner.Creature,
             source.DynamicVars["Damage"].BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move,
+            ValueProp.Unblockable | ValueProp.Move,
             source
         );
     }
