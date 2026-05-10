@@ -75,6 +75,6 @@
   "MANOSABA_LIN_POWER_AAM_POWER.description": "修改目标意图并修改对象为任一友方",
   "MANOSABA_LIN_POWER_YLSM_POWER.title": "紫藤亚里沙的魔法",
   "MANOSABA_LIN_POWER_YLSM_POWER.description":"回合结束失去1点血量然后移除",
-  "MANOSABA_LIN_POWER_PERJURY_AURA.title": "1伪证",
-  "MANOSABA_LIN_POWER_PERJURY_AURA.description":"回合开始获得1层[color=#CC6666]【伪证】[/color]"
+  "MANOSABA_LIN_POWER_PERJURY_AURA_POWER.title": "1伪证",
+  "MANOSABA_LIN_POWER_PERJURY_AURA_POWER.description":"回合开始获得1层[color=#CC6666]【伪证】[/color]"
 }

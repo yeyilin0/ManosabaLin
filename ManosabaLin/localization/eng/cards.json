@@ -76,5 +76,9 @@
   "MANOSABA_LIN_CARD_NYM_SLASH.description": "Deal {Damage:diff()} damage. Give target {NymPower:diff()} [blue]Noah's Magic[/blue]",
   "MANOSABA_LIN_CARD_REVOKATION.title": "Revokation",
   "MANOSABA_LIN_CARD_REVOKATION.description": "Lose 3 Max HP. Deal {Damage:diff()} damage.\nChoose 1 [red]Death Rewind[/red] from draw pile, discard pile, or hand to Exhaust. Remove your [red]Death Rewind[/red] power.\nIf a card was Exhausted or power removed, add a [b]Retain[/b] [red]Justice[/red] to hand.",
-  "MANOSABA_LIN_CARD_REVOKATION.selectionScreenPrompt": "Choose 1 Death Rewind to Exhaust."
+  "MANOSABA_LIN_CARD_REVOKATION.selectionScreenPrompt": "Choose 1 Death Rewind to Exhaust.",
+  "MANOSABA_LIN_CARD_ELEVATOR_TRIAL.title": "Elevator Trial - Endless Fall",
+  "MANOSABA_LIN_CARD_ELEVATOR_TRIAL.description": "Deal {Damage:diff()} damage.\n[red]Endless Fall[/red]: After playing, shuffle into draw pile. Each time played this combat, damage +{RecursionDamage:diff()}.\nExhaust 1 random non-Attack card from hand.",
+  "MANOSABA_LIN_CARD_WITCH_CHAOS.title": "Witch Frenzy - Friendly Fire",
+  "MANOSABA_LIN_CARD_WITCH_CHAOS.description": "Attack random enemies or allies {HitCount:diff()} times for {Damage:diff()} damage (unaffected by Strength or Witchification).\nOn enemy hit: randomly apply [red]Suspect[/red], [b]Weak[/b], Aam's Magic, Lym's Magic, or Noah's Magic.\nOn ally hit: randomly gain Merruru's, Mgm's, Shirley's, Hannah's, Noah's, Coco's, Nyx's, Emma's, or Arisa's Magic."
 }

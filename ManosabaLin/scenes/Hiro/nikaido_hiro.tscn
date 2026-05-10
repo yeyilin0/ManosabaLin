@@ -1,25 +1,24 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://cmqkxjxdccrky"]
 
-[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Hiro/NikaidoHiro.png" id="2"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_adbnn"]
+load_path = "res://.godot/imported/NikaidoHiro.png-d7d841a82d7163c583fc78464f3f77e3.ctex"
 
 [node name="NikaidoHiro" type="Node2D"]
 
 [node name="Visuals" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-
-[node name="NikaidoHiro" type="Sprite2D" parent="Visuals"]
-position = Vector2(0, -221.99997)
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("2")
+position = Vector2(-9.445733, -280.62308)
+scale = Vector2(0.33244574, 0.33499998)
+texture = SubResource("CompressedTexture2D_adbnn")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -70.5
-offset_top = -387.0
-offset_right = 88.5
-offset_bottom = -85.0
+offset_left = -148.0
+offset_top = -652.0
+offset_right = 175.0
+offset_bottom = 67.0
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true

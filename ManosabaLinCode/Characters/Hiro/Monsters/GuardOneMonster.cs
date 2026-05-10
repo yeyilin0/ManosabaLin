@@ -8,9 +8,11 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
+using STS2RitsuLib.Scaffolding.Godot;
 
 namespace ManosabaLin.Characters.Hiro.Monsters;
 
@@ -28,6 +30,11 @@ public sealed class GuardOneMonster : ModMonsterTemplate
         VisualsScenePath: "res://ManosabaLin/scenes/monsters/guard_one.tscn"
     );
 
+    protected override NCreatureVisuals? TryCreateCreatureVisuals()
+    {
+        return RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(
+            AssetProfile.VisualsScenePath!);
+    }
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {
         var attack = new MoveState("ATTACK_MOVE", AttackMove,

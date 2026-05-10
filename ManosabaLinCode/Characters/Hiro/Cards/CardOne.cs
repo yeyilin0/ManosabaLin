@@ -15,12 +15,7 @@ public sealed class CardOne() : ManosabaCardTemplate(1, CardType.Skill, CardRari
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
-        get
-        {
-            // 未升级：有消耗；升级后：无消耗
-            if (!IsUpgraded)
-                yield return CardKeyword.Exhaust;
-        }
+        get { yield return CardKeyword.Exhaust; }
     }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
@@ -69,6 +64,6 @@ public sealed class CardOne() : ManosabaCardTemplate(1, CardType.Skill, CardRari
     {
         base.OnUpgrade();
         DynamicVars["PerjuryPower"].UpgradeValueBy(1m);
-        // 失去消耗由 CanonicalKeywords 中的 IsUpgraded 判断处理
+        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

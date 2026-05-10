@@ -4,27 +4,24 @@
 
 [node name="GuardOne" type="Node2D"]
 
-[node name="Visuals" type="Node2D" parent="."]
+[node name="Visuals" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-
-[node name="NCreatureVisuals" type="Sprite2D" parent="Visuals"]
-unique_name_in_owner = true
-position = Vector2(20, -210.99998)
-scale = Vector2(0.22021174, 0.2317055)
+position = Vector2(4.9348755, -200.95233)
+scale = Vector2(0.20365584, 0.22138646)
 texture = ExtResource("1_u7tvx")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -80.0
-offset_top = -400.0
-offset_right = 80.0
-offset_bottom = -50.0
+offset_left = -182.0
+offset_top = -570.0
+offset_right = 205.0
+offset_bottom = 170.0
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -420)
+position = Vector2(-3.8497314, -583.08246)
 
 [node name="CenterPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
@@ -32,4 +29,4 @@ position = Vector2(0, -250)
 
 [node name="TalkPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -350)
+position = Vector2(-239.18, -449.50003)

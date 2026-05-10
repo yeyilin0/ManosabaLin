@@ -49,6 +49,7 @@ public class Hiro : ModCharacterTemplate<HiroCardPool, HiroRelicPool, HiroPotion
             null,
             null,
             "hiro_map.png".CharacterImgPath(CharacterId)),
+        
         Multiplayer: new CharacterMultiplayerAssetSet(
             "nikaido_hiro_arm_pointing.png".CharacterImgPath(CharacterId),
             "nikaido_hiro_arm_rock.png".CharacterImgPath(CharacterId),
@@ -62,8 +63,22 @@ public class Hiro : ModCharacterTemplate<HiroCardPool, HiroRelicPool, HiroPotion
 
     protected override NCreatureVisuals? TryCreateCreatureVisuals()
     {
-        return RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(
+        var visuals = RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(
             "nikaido_hiro.tscn".CharacterScenePath(CharacterId));
+
+        ApplyVisualScale(visuals);
+
+        return visuals;
+    }
+
+    private static void ApplyVisualScale(NCreatureVisuals? visuals)
+    {
+        var sprite = visuals?.GetNodeOrNull<Sprite2D>("Visuals/NikaidoHiro");
+        if (sprite != null)
+        {
+            sprite.Position = new Vector2(-1, -380);
+            sprite.Scale = new Vector2(0.37337497f, 0.37558335f);
+        }
     }
 
     // 攻击建筑师的攻击特效列表
