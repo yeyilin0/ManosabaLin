@@ -10,6 +10,8 @@ namespace ManosabaLin.Characters.Hiro.Monsters;
 public sealed class GuardOneEncounter : ModEncounterTemplate
 {
     public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<GuardOneMonster>()];
+    
+    protected override bool HasCustomBackground => true;
 
     public override RoomType RoomType => RoomType.Boss;
 
