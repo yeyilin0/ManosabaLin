@@ -75,14 +75,11 @@ public sealed class GuardOneEvent : ModEventTemplate
             var runState = Owner?.RunState;
             if (runState == null) return;
 
-            var act = runState.Acts[runState.CurrentActIndex];
             var encounter = ModelDb.Get<GuardOneEncounter>();
-            if (encounter == null) return;
 
-            act.SetBossEncounter(encounter);
             MapCmd.SetBossEncounter(runState, encounter);
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             MainFile.Logger.Info($"[GuardOneEvent] ReplaceBoss failed: {ex.Message}");
         }

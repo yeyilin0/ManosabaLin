@@ -18,6 +18,10 @@ public sealed class GuardOneEncounter : ModEncounterTemplate
 
     public override string CustomBackgroundLayersDirectoryPath => this.BackgroundLayersDirectoryPath;
 
+    public override string? CustomRunHistoryIconPath => this.RunHistoryIconPath;
+
+    public override string? CustomRunHistoryIconOutlinePath => this.RunHistoryIconOutlinePath;
+
     public override RoomType RoomType => RoomType.Boss;
 
     protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>

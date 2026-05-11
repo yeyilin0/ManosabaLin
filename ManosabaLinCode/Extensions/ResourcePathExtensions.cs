@@ -18,5 +18,11 @@ public static class ResourcePathExtensions
 
         public string BackgroundLayersDirectoryPath =>
             BuildResPath("scenes", "backgrounds", encounter.Id.Entry.ToLowerInvariant(), "layers");
+
+        public string RunHistoryIconPath =>
+            BuildResPath("images", "ui", "run_history", encounter.Id.Entry.ToLowerInvariant() + ".png");
+
+        public string RunHistoryIconOutlinePath =>
+            BuildResPath("images", "ui", "run_history", encounter.Id.Entry.ToLowerInvariant() + "_outline.png");
     }
 }

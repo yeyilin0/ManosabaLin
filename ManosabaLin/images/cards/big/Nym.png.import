@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgomet53vcasm"
-path="res://.godot/imported/nym.png-0bdefc1fe461911f835391e3fbe507f6.ctex"
+path="res://.godot/imported/Nym.png-728a5a056140c20c498055bc36cae32a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/cards/big/nym.png"
-dest_files=["res://.godot/imported/nym.png-0bdefc1fe461911f835391e3fbe507f6.ctex"]
+source_file="res://ManosabaLin/images/cards/big/Nym.png"
+dest_files=["res://.godot/imported/Nym.png-728a5a056140c20c498055bc36cae32a.ctex"]
 
 [params]
 
