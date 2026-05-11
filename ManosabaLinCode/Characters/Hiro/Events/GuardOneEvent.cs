@@ -2,6 +2,7 @@ using ManosabaLin.Characters.Hiro.Monsters;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Events;
+using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
@@ -20,7 +21,6 @@ public sealed class GuardOneEvent : ModEventTemplate
 
     public override bool IsAllowed(IRunState runState)
     {
-        // 只在第一次进入火堆时出现
         return GuardOneEventState.ShouldTrigger;
     }
 
@@ -31,7 +31,7 @@ public sealed class GuardOneEvent : ModEventTemplate
     ];
 
     private async Task ChoosePower()
-    {               
+    {
         if (Owner?.Creature == null) return;
 
         await CreatureCmd.GainMaxHp(Owner.Creature, 13m);
@@ -73,22 +73,14 @@ public sealed class GuardOneEvent : ModEventTemplate
         try
         {
             var runState = Owner?.RunState;
-            if (runState == null)
-            {
-                MainFile.Logger.Info("[GuardOneEvent] ReplaceBoss: runState is null");
-                return;
-            }
+            if (runState == null) return;
 
             var act = runState.Acts[runState.CurrentActIndex];
             var encounter = ModelDb.Get<GuardOneEncounter>();
-            if (encounter == null)
-            {
-                MainFile.Logger.Info("[GuardOneEvent] ReplaceBoss: GuardOneEncounter not found in ModelDb");
-                return;
-            }
+            if (encounter == null) return;
 
             act.SetBossEncounter(encounter);
-            MainFile.Logger.Info("[GuardOneEvent] ReplaceBoss: Boss encounter set to GuardOne");
+            MapCmd.SetBossEncounter(runState, encounter);
         }
         catch (System.Exception ex)
         {

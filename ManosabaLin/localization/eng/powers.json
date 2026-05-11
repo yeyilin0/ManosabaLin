@@ -33,5 +33,22 @@
   "MANOSABA_LIN_POWER_CARD_TWENTY_FOUR_POWER.description": "On turns where Perjury converts into Justice, damage you take cannot exceed 30.",
   "MANOSABA_LIN_POWER_CARD_TWENTY_FOUR_POWER.smartDescription": "On turns where Perjury converts into Justice, damage you take cannot exceed 30.",
   "MANOSABA_LIN_POWER_AAM_POWER.title": "Ama's Guardian",
-  "MANOSABA_LIN_POWER_AAM_POWER.description": "Redirect the target's intent to an ally."
+  "MANOSABA_LIN_POWER_AAM_POWER.description": "Redirect the target's intent to an ally.",
+  "MANOSABA_LIN_POWER_GUARD_ONE_PHASE_POWER.title": "Witch Awakening",
+  "MANOSABA_LIN_POWER_GUARD_ONE_PHASE_POWER.description": "When HP drops below half, become stunned, gain Block equal to twice your Witchification, and switch to the second intent set.",
+
+  "MANOSABA_LIN_POWER_GUARD_TWO_PHASE_POWER.title": "Fury Awakening",
+  "MANOSABA_LIN_POWER_GUARD_TWO_PHASE_POWER.description": "When HP drops below half, become stunned, gain Block equal to twice your Witchification, and switch to the second intent set.",
+
+  "MANOSABA_LIN_POWER_GUARD_THREE_PHASE_POWER.title": "Battle Awakening",
+  "MANOSABA_LIN_POWER_GUARD_THREE_PHASE_POWER.description": "When HP drops below half, become stunned, gain Block equal to twice your Witchification, and switch to the second intent set.",
+
+  "MANOSABA_LIN_POWER_EMA_AND_HIRO_PHASE_POWER.title": "Bond Awakening",
+  "MANOSABA_LIN_POWER_EMA_AND_HIRO_PHASE_POWER.description": "When HP drops below half, become stunned, gain Block equal to twice your Witchification, and switch to the second intent set.",
+
+  "MANOSABA_LIN_POWER_GREAT_WITCH_YUKI_PHASE_POWER.title": "Dark Awakening",
+  "MANOSABA_LIN_POWER_GREAT_WITCH_YUKI_PHASE_POWER.description": "When HP drops below half, become stunned, gain Block equal to twice your Witchification, and switch to the second intent set.",
+
+  "MANOSABA_LIN_POWER_MALICES_PHASE_POWER.title": "Malice Awakening",
+  "MANOSABA_LIN_POWER_MALICES_PHASE_POWER.description": "When HP drops below half, become stunned, gain Block equal to twice your Witchification, and switch to the second intent set."
 }

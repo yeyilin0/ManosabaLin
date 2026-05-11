@@ -35,24 +35,6 @@ public sealed class WitchChaos : ManosabaCardTemplate
         new IntVar("HitCount", 13)
     ];
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips
-    {
-        get
-        {
-            yield return HoverTipFactory.FromPower<WeakPower>();
-            yield return HoverTipFactory.FromPower<SuspectPower>();
-            yield return HoverTipFactory.FromPower<StrengthPower>();
-            yield return HoverTipFactory.FromPower<NymPower>();
-            yield return HoverTipFactory.FromPower<MllmPower>();
-            yield return HoverTipFactory.FromPower<MgmPower>();
-            yield return HoverTipFactory.FromPower<XlmPower>();
-            yield return HoverTipFactory.FromPower<HnmPower>();
-            yield return HoverTipFactory.FromPower<KkmPower>();
-            yield return HoverTipFactory.FromPower<NyxmPower>();
-            yield return HoverTipFactory.FromPower<AmmPower>();
-            yield return HoverTipFactory.FromPower<YlsmPower>();
-        }
-    }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

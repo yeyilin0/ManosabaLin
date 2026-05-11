@@ -47,6 +47,7 @@ public sealed class GuardOneMonster : ModMonsterTemplate
 
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {
+        // === 第一组意图（HP > 50%）===
         var attack = new MoveState("ATTACK_MOVE", AttackMove,
             new SingleAttackIntent(AttackDamage));
 
@@ -59,6 +60,7 @@ public sealed class GuardOneMonster : ModMonsterTemplate
         var mark = new MoveState("MARK_MOVE", MarkMove,
             new AbstractIntent[] { new SingleAttackIntent(MarkDamage), new CardDebuffIntent() });
 
+        // === 第二组意图（HP <= 50%）===
         var poisonAttack = new MoveState("POISON_ATTACK_MOVE", PoisonAttackMove,
             new AbstractIntent[] { new SingleAttackIntent(PoisonAttackDamage), new DebuffIntent() });
 
@@ -68,15 +70,13 @@ public sealed class GuardOneMonster : ModMonsterTemplate
         var frenzy = new MoveState("FRENZY_MOVE", FrenzyMove,
             new AbstractIntent[] { new DebuffIntent(), new MultiAttackIntent(FrenzyDamage, 2) });
 
-        var branch = new ConditionalBranchState("HP_BRANCH");
-        branch.AddState(poisonAttack, () => Creature.CurrentHp <= Creature.MaxHp / 2);
-        branch.AddState(attack, () => Creature.CurrentHp > Creature.MaxHp / 2);
-
+        // === 第一组循环：attack → poison → debuffShield → mark → attack ===
         attack.FollowUpState = poison;
         poison.FollowUpState = debuffShield;
         debuffShield.FollowUpState = mark;
-        mark.FollowUpState = branch;
+        mark.FollowUpState = attack;
 
+        // === 第二组循环：poisonAttack → witchBurn → frenzy → poisonAttack ===
         poisonAttack.FollowUpState = witchBurn;
         witchBurn.FollowUpState = frenzy;
         frenzy.FollowUpState = poisonAttack;
@@ -84,11 +84,18 @@ public sealed class GuardOneMonster : ModMonsterTemplate
         var states = new MonsterState[]
         {
             attack, poison, debuffShield, mark,
-            branch,
             poisonAttack, witchBurn, frenzy
         };
 
         return new MonsterMoveStateMachine(states, attack);
+    }
+
+    public override async Task AfterAddedToRoom()
+    {
+        await Task.CompletedTask;
+
+        await PowerCmd.Apply<GuardOnePhasePower>(
+            new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
     }
 
     private async Task AttackMove(IReadOnlyList<Creature> targets)

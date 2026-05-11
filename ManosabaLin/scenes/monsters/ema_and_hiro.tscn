@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" uid="uid://dem61afy82ywb" path="res://ManosabaLin/images/mosters/guard_one.png" id="1_placeholder"]
+
+[node name="EmaAndHiro" type="Node2D"]
+
+[node name="Visuals" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(4.9348755, -200.95233)
+scale = Vector2(0.20365584, 0.22138646)
+texture = ExtResource("1_placeholder")
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -182.0
+offset_top = -570.0
+offset_right = 205.0
+offset_bottom = 170.0
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-3.8497314, -583.08246)
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -250)
+
+[node name="TalkPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-239.18, -449.50003)
