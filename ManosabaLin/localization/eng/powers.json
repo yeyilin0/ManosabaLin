@@ -33,7 +33,5 @@
   "MANOSABA_LIN_POWER_CARD_TWENTY_FOUR_POWER.description": "On turns where Perjury converts into Justice, damage you take cannot exceed 30.",
   "MANOSABA_LIN_POWER_CARD_TWENTY_FOUR_POWER.smartDescription": "On turns where Perjury converts into Justice, damage you take cannot exceed 30.",
   "MANOSABA_LIN_POWER_AAM_POWER.title": "Ama's Guardian",
-  "MANOSABA_LIN_POWER_AAM_POWER.description": "Redirect the target's intent to an ally.",
-  "MANOSABA_LIN_POWER_SUSPECT_RESONANCE_POWER.title": "Suspect Resonance",
-  "MANOSABA_LIN_POWER_SUSPECT_RESONANCE_POWER.description": "At the start of each turn, apply {Amount} [red]Suspect[/red] to all enemies."
+  "MANOSABA_LIN_POWER_AAM_POWER.description": "Redirect the target's intent to an ally."
 }

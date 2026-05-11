@@ -77,6 +77,8 @@
   "MANOSABA_LIN_POWER_YLSM_POWER.description":"回合结束失去1点血量然后移除",
   "MANOSABA_LIN_POWER_PERJURY_AURA_POWER.title": "1伪证",
   "MANOSABA_LIN_POWER_PERJURY_AURA_POWER.description":"回合开始获得1层[color=#CC6666]【伪证】[/color]",
+  "MANOSABA_LIN_POWER_GUILTY_CHAIN_POWER.title": "罪链",
+  "MANOSABA_LIN_POWER_GUILTY_CHAIN_POWER.description": "每回合当你对有[color=#CC6666]【嫌疑】[/color]的敌人打出牌时，随机给另一名敌人施加1层[color=#CC6666]【嫌疑】[/color]，每回合最多触发2次",
   "MANOSABA_LIN_POWER_SUSPECT_RESONANCE_POWER.title": "嫌疑共鸣",
   "MANOSABA_LIN_POWER_SUSPECT_RESONANCE_POWER.description": "回合开始时，对所有敌人施加{Amount}层[color=#CC6666]【嫌疑】[/color]"
 }
