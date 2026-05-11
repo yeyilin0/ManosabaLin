@@ -2,6 +2,7 @@ using System.Reflection;
 using Godot;
 using HarmonyLib;
 using ManosabaLin.Characters.Common;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
@@ -19,6 +20,9 @@ public partial class MainFile : Node
 {
     // 定义模组唯一 Id，后续会被资源路径和日志器复用。
     public const string ModId = "ManosabaLin";
+
+    // 定义模组 Slug，通常用于资源路径中，保持小写和连字符风格。
+    public static readonly string Slug = StringHelper.Slugify(ModId);
 
     // 拼出当前模组在 Godot 资源系统中的根目录。
     public const string ResPath = $"res://{ModId}";

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nh4d7bub3ul3"
-path="res://.godot/imported/1.png-7d68df5bd0af2208f95f19c5f7ef4e68.ctex"
+uid="uid://477c6wooy2cx"
+path="res://.godot/imported/guard_one_encounter.png-3a95632c6569c2b46ef4478512993015.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/scenes/backgrounds/manosaba_lin_encounter_guard_one_encounter/layers/1.png"
-dest_files=["res://.godot/imported/1.png-7d68df5bd0af2208f95f19c5f7ef4e68.ctex"]
+source_file="res://ManosabaLin/images/ui/run_history/guard_one_encounter.png"
+dest_files=["res://.godot/imported/guard_one_encounter.png-3a95632c6569c2b46ef4478512993015.ctex"]
 
 [params]
 

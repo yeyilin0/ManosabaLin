@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cmp2f4rrqa1j1"]
 
-[ext_resource type="Texture2D" uid="uid://nh4d7bub3ul3" path="res://ManosabaLin/scenes/backgrounds/manosaba_lin_encounter_guard_one_encounter/images/guard_one_bg_00_a.png" id="1_bfvtt"]
+[ext_resource type="Texture2D" uid="uid://nh4d7bub3ul3" path="res://ManosabaLin/scenes/backgrounds/guard_one_encounter/images/guard_one_bg_00_a.png" id="1_bfvtt"]
 
 [node name="A" type="TextureRect"]
 anchors_preset = 8
