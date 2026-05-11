@@ -106,33 +106,3 @@ internal static class GuardOneCreateRoomPatch
         return false; // 跳过原方法
     }
 }
-
-/// <summary>
-///     调试用：每次创建房间后，强制设置 Boss 遭遇为 GuardOne
-///     测试完成后删除此补丁
-/// </summary>
-[HarmonyPatch(typeof(RunManager), "CreateRoom")]
-internal static class GuardOneDebugBossPatch
-{
-    private static void Postfix(ref AbstractRoom __result, RoomType roomType)
-    {
-        if (roomType != RoomType.Boss) return;
-
-        try
-        {
-            var runState = RunManager.Instance?.State;
-            if (runState == null) return;
-
-            var act = runState.Acts[runState.CurrentActIndex];
-            var encounter = ModelDb.Get<GuardOneEncounter>();
-            if (encounter == null) return;
-
-            act.SetBossEncounter(encounter);
-            MainFile.Logger.Info("[Debug] Boss 遭遇已强制设置为 GuardOne");
-        }
-        catch (System.Exception ex)
-        {
-            MainFile.Logger.Info($"[Debug] 设置 Boss 遭遇失败: {ex.Message}");
-        }
-    }
-}
