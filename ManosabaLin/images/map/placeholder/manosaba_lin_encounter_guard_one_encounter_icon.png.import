@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cguyato2lyf2l"
-path="res://.godot/imported/guard_one_icon.png-94b446a36b1aa591294a790a3176d5ab.ctex"
+uid="uid://cnwujrigh6tvl"
+path="res://.godot/imported/manosaba_lin_encounter_guard_one_encounter_icon.png-a712d17e24990c8715f3892de9f64ee2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/mosters/guard_one_icon.png"
-dest_files=["res://.godot/imported/guard_one_icon.png-94b446a36b1aa591294a790a3176d5ab.ctex"]
+source_file="res://ManosabaLin/images/map/placeholder/manosaba_lin_encounter_guard_one_encounter_icon.png"
+dest_files=["res://.godot/imported/manosaba_lin_encounter_guard_one_encounter_icon.png-a712d17e24990c8715f3892de9f64ee2.ctex"]
 
 [params]
 

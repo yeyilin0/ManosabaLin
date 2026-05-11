@@ -24,5 +24,8 @@ public static class ResourcePathExtensions
 
         public string RunHistoryIconOutlinePath =>
             BuildResPath("images", "ui", "run_history", encounter.Id.Entry.ToLowerInvariant() + "_outline.png");
+
+        public string BossMapNodePath =>
+            BuildResPath("images", "map", "placeholder", encounter.Id.Entry.ToLowerInvariant() + "_icon");
     }
 }

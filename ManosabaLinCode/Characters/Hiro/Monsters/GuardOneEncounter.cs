@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Rooms;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using ManosabaLin.Extensions;
+using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 
 namespace ManosabaLin.Characters.Hiro.Monsters;
 
@@ -21,6 +22,10 @@ public sealed class GuardOneEncounter : ModEncounterTemplate
     public override string? CustomRunHistoryIconPath => this.RunHistoryIconPath;
 
     public override string? CustomRunHistoryIconOutlinePath => this.RunHistoryIconOutlinePath;
+
+    public override string BossNodePath => this.BossMapNodePath;
+
+    public override MegaSkeletonDataResource? BossNodeSpineResource => null;
 
     public override RoomType RoomType => RoomType.Boss;
 
