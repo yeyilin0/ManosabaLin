@@ -88,5 +88,9 @@
   "MANOSABA_LIN_CARD_SUSPECT_VERDICT.title": "Suspect Verdict",
   "MANOSABA_LIN_CARD_SUSPECT_VERDICT.description": "Consume all [red]Suspect[/red] on target. Deal {Damage:diff()} damage per stack.\n[b]Exhaust[/b]",
   "MANOSABA_LIN_CARD_SUSPECT_RESONANCE.title": "Suspect Resonance",
-  "MANOSABA_LIN_CARD_SUSPECT_RESONANCE.description": "At the start of each turn, apply {SuspectResonancePower:diff()} [red]Suspect[/red] to all enemies."
+  "MANOSABA_LIN_CARD_SUSPECT_RESONANCE.description": "At the start of each turn, apply {SuspectResonancePower:diff()} [red]Suspect[/red] to all enemies.",
+  "MANOSABA_LIN_CARD_BULLET_CARD.title": "Bullet",
+  "MANOSABA_LIN_CARD_BULLET_CARD.description": "Deal {Damage:diff()} damage. Draw {Cards:diff()} card. [b]Exhaust[/b].",
+  "MANOSABA_LIN_CARD_WITCHRESTCEREMONY.title": "Witch Rest Ceremony",
+  "MANOSABA_LIN_CARD_WITCHRESTCEREMONY.description": "Gain {RitualCeremonyPower:diff()} [b]Ritual Ceremony[/b]. Gain {WithPower:diff()} [b]Witchification[/b]."
 }

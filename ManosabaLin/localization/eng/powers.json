@@ -50,5 +50,7 @@
   "MANOSABA_LIN_POWER_GREAT_WITCH_YUKI_PHASE_POWER.description": "When HP drops below half, become stunned, gain Block equal to twice your Witchification, and switch to the second intent set.",
 
   "MANOSABA_LIN_POWER_MALICES_PHASE_POWER.title": "Malice Awakening",
-  "MANOSABA_LIN_POWER_MALICES_PHASE_POWER.description": "When HP drops below half, become stunned, gain Block equal to twice your Witchification, and switch to the second intent set."
+  "MANOSABA_LIN_POWER_MALICES_PHASE_POWER.description": "When HP drops below half, become stunned, gain Block equal to twice your Witchification, and switch to the second intent set.",
+  "MANOSABA_LIN_POWER_CRIMSONBUTTERFLY_POWER.title": "Crimson Butterfly",
+  "MANOSABA_LIN_POWER_CRIMSONBUTTERFLY_POWER.description": "Record damage taken this turn. At the start of each turn, heal HP equal to the recorded amount, then lose 1 stack. Each stack extends duration by 1 turn."
 }
