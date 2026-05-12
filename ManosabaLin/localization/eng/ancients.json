@@ -2,5 +2,11 @@
   "THE_ARCHITECT.talk.MANOSABA_LIN_CHARACTER_HIRO.0-0r.char": "I am angry at the architect",
   "THE_ARCHITECT.talk.MANOSABA_LIN_CHARACTER_HIRO.0-0r.next": "Continue",
   "THE_ARCHITECT.talk.MANOSABA_LIN_CHARACTER_HIRO.0-1r.ancient": "You die",
-  "THE_ARCHITECT.talk.MANOSABA_LIN_CHARACTER_HIRO.0-attack": "Both"
+  "THE_ARCHITECT.talk.MANOSABA_LIN_CHARACTER_HIRO.0-attack": "Both",
+  "MANOSABA_LIN_ANCIENT_WITCHOFTHEISLAND.title": "The Witch of the Island",
+  "MANOSABA_LIN_ANCIENT_WITCHOFTHEISLAND.epithet": "The Forgotten Guardian",
+  "MANOSABA_LIN_ANCIENT_WITCHOFTHEISLAND.talk.firstVisitEver.0-0.ancient": "...You've finally come.\nI've waited on this island for so long, even the tides have forgotten their direction.\nSit down, traveler. Let me see what stories you've brought.",
+  "MANOSABA_LIN_ANCIENT_WITCHOFTHEISLAND.talk.ANY.0-0r.ancient": "You again? The sea wind always blows familiar faces back.\nCome, let me prepare something different for you this time.",
+  "MANOSABA_LIN_ANCIENT_WITCHOFTHEISLAND.talk.ANY.1-0r.ancient": "This island remembers every soul that has set foot upon it.\nYou're starting to be remembered too.",
+  "MANOSABA_LIN_ANCIENT_WITCHOFTHEISLAND.talk.ANY.2-0r.ancient": "A witch's power is not a curse, but a choice.\nAre you ready to make yours?"
 }

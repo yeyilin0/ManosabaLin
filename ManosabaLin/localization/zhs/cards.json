@@ -192,7 +192,7 @@
   "MANOSABA_LIN_CARD_WITCH_CHAOS.title": "无限制魔法格斗大赛",
   "MANOSABA_LIN_CARD_WITCH_CHAOS.description": "[color=#CC6666][jitter]「你错了，我不是邪恶」[/jitter][/color]\n随机攻击敌方或友方[b]1[/b]点伤害[b]{HitCount:diff()}[/b]次\n命中敌方随机施加负面\n命中友方随机获得[b]【魔法】[/b]",
   "MANOSABA_LIN_CARD_SUSPECT_SPREAD.title": "嫌疑扩散",
-  "MANOSABA_LIN_CARD_SUSPECT_SPREAD.description": "造成{Damage:diff()}点伤害，每有1层自身[color=#CC6666]【嫌疑】[/color]伤害+1\n给目标和自身各施加1层[color=#CC6666]【嫌疑】[/color]",
+  "MANOSABA_LIN_CARD_SUSPECT_SPREAD.description": "造成{Damage:diff()}点伤害，每有1层自身[b]【嫌疑】[/b]伤害+1\n给目标和自身各施加1层[b]【嫌疑】[/b]",
   "MANOSABA_LIN_CARD_GUILTY_CHAIN.title": "罪链",
   "MANOSABA_LIN_CARD_GUILTY_CHAIN.description": "获得1层[b]【罪链】[/b]\n每回合当你对有[color=#CC6666]【嫌疑】[/color]的敌人打出牌时，随机给另一名敌人施加1层[color=#CC6666]【嫌疑】[/color]，每回合最多触发2次",
   "MANOSABA_LIN_CARD_POWERTHREETHREECARD.title": "誓言",

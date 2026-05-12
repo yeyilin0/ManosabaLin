@@ -2,7 +2,9 @@
   "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "轮回",
   "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[color=#CC6666]【死亡回溯】[/color]的馈赠，[color=#CC6666]【死亡回溯】[/color]的诅咒\n当你打出一张带[color=#CC6666]【轮回】[/color]的牌时，自动打出你抽牌堆中也带有[color=#CC6666]【轮回】[/color]的同名牌（最多 2 张）",
   "MANOSABA_LIN_KEYWORD_HIRO.title": "希罗的结局",
-  "MANOSABA_LIN_KEYWORD_HIRO.description": "[b]此牌回合开始时会返回手卡[/b]\n当打出此牌时[color=#CC6666]死亡[/color]，降低队友50层[color=#CC6666]魔女化[/color]，消耗队友卡组里的状态与诅咒，给予队友3点能量，抽3",
+  "MANOSABA_LIN_KEYWORD_HIRO.description": "[b]此牌回合开始时会返回手卡[/b]\n当打出此牌时[color=#CC6666]死亡[/color]，降低队友50层[b]魔女化[/b]，消耗队友卡组里的状态与诅咒，给予队友3点能量，抽3",
   "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "轮轮轮回回回",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "当你打出带有[color=#CC6666]【轮轮轮回回回】[/color]的卡牌，从任意地方打出带有[color=#CC6666]【轮轮轮回回回】[/color]的卡"
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "当你打出带有[color=#CC6666]【轮轮轮回回回】[/color]的卡牌，从任意地方打出带有[color=#CC6666]【轮轮轮回回回】[/color]的卡",
+  "MANOSABA_LIN_KEYWORD_EXECUTOR_OF_JUSTICE.title": "正义的执行者",
+  "MANOSABA_LIN_KEYWORD_EXECUTOR_OF_JUSTICE.description": "[color=#CC6666][jitter]她至今走过的路，未曾有一星污点。\n在那个名为独善的理想乡中，容不得绞刑台这般异物的存在[/jitter][/color]"
 }

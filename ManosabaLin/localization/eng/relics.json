@@ -33,5 +33,8 @@
   "MANOSABA_LIN_RELIC_MLLNOTE.flavor": "The contract reads: with the end of the old, a new beginning is granted.",
   "MANOSABA_LIN_RELIC_RITUALSWORD.title": "Ritual Sword",
   "MANOSABA_LIN_RELIC_RITUALSWORD.description": "Upon obtaining, add a [b]Witch Rest Ceremony[/b] to your deck.",
-  "MANOSABA_LIN_RELIC_RITUALSWORD.flavor": "This sword has witnessed countless witch rest ceremonies."
+  "MANOSABA_LIN_RELIC_RITUALSWORD.flavor": "This sword has witnessed countless witch rest ceremonies.",
+  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.title": "External Information",
+  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.description": "When entering a node, choose 1 card to upgrade. Lose 3 [b]max HP[/b] for each card upgraded.",
+  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.flavor": "The price of information is always heavier than expected."
 }

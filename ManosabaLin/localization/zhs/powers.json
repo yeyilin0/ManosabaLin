@@ -79,10 +79,8 @@
   "MANOSABA_LIN_POWER_PERJURY_AURA_POWER.description":"回合开始获得1层[color=#CC6666]【伪证】[/color]",
   "MANOSABA_LIN_POWER_GUILTY_CHAIN_POWER.title": "罪链",
   "MANOSABA_LIN_POWER_GUILTY_CHAIN_POWER.description": "每回合当你对有[color=#CC6666]【嫌疑】[/color]的敌人打出牌时，随机给另一名敌人施加1层[color=#CC6666]【嫌疑】[/color]，每回合最多触发2次",
-  "MANOSABA_LIN_POWER_SUSPECT_RESONANCE_POWER.title": "嫌疑共鸣",
-  "MANOSABA_LIN_POWER_SUSPECT_RESONANCE_POWER.description": "回合开始时，对所有敌人施加{Amount}层[color=#CC6666]【嫌疑】[/color]",
   "MANOSABA_LIN_POWER_GUARD_ONE_PHASE_POWER.title": "魔女之力",
   "MANOSABA_LIN_POWER_GUARD_ONE_PHASE_POWER.description": "[jitter][color=#cccccc]「魔女之岛再一次翱翔于天际」[/color][/jitter]\n生命值降至一半时获得等于魔女化两倍的护盾，切换意图",
-  "MANOSABA_LIN_POWER_CRIMSONBUTTERFLY_POWER.title": "绯红蝴蝶",
+  "MANOSABA_LIN_POWER_CRIMSONBUTTERFLY_POWER.title": "蝴蝶",
   "MANOSABA_LIN_POWER_CRIMSONBUTTERFLY_POWER.description": "记录本回合受到的伤害。回合开始时回复等于记录值的血量，然后减少一层。每层多持续1回合。"
 }

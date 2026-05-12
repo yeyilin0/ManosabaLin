@@ -37,5 +37,8 @@
   "MANOSABA_LIN_RELIC_MLLNOTE.flavor": "契约上写着：以旧的终结，换取新的开始",
   "MANOSABA_LIN_RELIC_RITUALSWORD.title": "仪式之剑",
   "MANOSABA_LIN_RELIC_RITUALSWORD.description": "获得时，将一张[b]【魔女安息仪式】[/b]加入卡组。",
-  "MANOSABA_LIN_RELIC_RITUALSWORD.flavor": "这把剑曾见证无数魔女的安息仪式"
+  "MANOSABA_LIN_RELIC_RITUALSWORD.flavor": "这把剑曾见证无数魔女的安息仪式",
+  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.title": "外部情报",
+  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.description": "进入节点时，可选择升级1张卡牌。每升级1张卡牌，失去3点[b]最大生命上限[/b]。",
+  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.flavor": "情报的代价，总是比想象中更沉重"
 }
