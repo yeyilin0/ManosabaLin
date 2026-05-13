@@ -72,8 +72,10 @@
         <Folder Include="ManosabaLinCode\Characters\Koko\"/>
         <Folder Include="ManosabaLinCode\Characters\Leia\"/>
         <Folder Include="ManosabaLinCode\Characters\Sherry\"/>
+        <Folder Include="ManosabaLin\images\map\placeholder\" />
         <Folder Include="ManosabaLin\images\powers\big\"/>
         <Folder Include="ManosabaLin\images\relics\big\"/>
+        <Folder Include="ManosabaLin\images\ui\run_history\" />
     </ItemGroup>
 
     <Target Name="EnsureLocalProps" BeforeTargets="PrepareForBuild" Condition="!Exists('.\local.props')">
