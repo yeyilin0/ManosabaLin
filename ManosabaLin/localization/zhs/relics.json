@@ -40,5 +40,8 @@
   "MANOSABA_LIN_RELIC_RITUALSWORD.flavor": "这把剑曾见证无数魔女的安息仪式",
   "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.title": "外部情报",
   "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.description": "进入节点时，可选择升级1张卡牌。每升级1张卡牌，失去3点[b]最大生命上限[/b]。",
-  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.flavor": "情报的代价，总是比想象中更沉重"
+  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.flavor": "情报的代价，总是比想象中更沉重",
+  "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.title": "魔法狙击步枪",
+  "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.description": "每进入一个节点获得1点弹药（最多6点）。回合开始时消耗1点弹药，将一张[b]【子弹】[/b]加入手牌",
+  "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.flavor": "每一枚射出的子弹都是无法收回的判决。在冰冷的瞄准镜后，所有的“原罪”都不过是待处理的标靶。"
 }

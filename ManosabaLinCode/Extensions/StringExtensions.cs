@@ -75,8 +75,28 @@ public static class StringExtensions
         {
             return BuildResPath("images", "charui", path);
         }
-        
-  
+
+        public string EventBackgroundScenePath()
+        {
+            return BuildResPath("scenes", "events", "background_scenes", path);
+        }
+
+        public string EventBackgroundImagePath()
+        {
+            return BuildResPath("images", "events", "background_scenes", path);
+        }
+
+        public string AncientMapIconPath()
+        {
+            return BuildResPath("images", "map", "ancients", path);
+        }
+
+        public string RunHistoryIconPath()
+        {
+            return BuildResPath("images", "ui", "run_history", path);
+        }
+
+
 
 // ↓ 新增
         public string EmalinCardsImagePath()
