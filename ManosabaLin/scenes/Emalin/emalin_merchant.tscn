@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Emalin/emalin_char_select.png" id="1"]
+
+[node name="EmalinMerchant" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-3.7025144, -276.29605)
+scale = Vector2(0.41796878, 0.4123749)
+texture = ExtResource("1")
