@@ -13,25 +13,25 @@ namespace ManosabaLin.Characters.Hiro.Relics;
 [RegisterRelic(typeof(HiroRelicPool))]
 public sealed class Mllnote : ManosabaRelicTemplate
 {
-    public override RelicRarity Rarity => RelicRarity.Ancient;
+	public override RelicRarity Rarity => RelicRarity.Ancient;
 
-    public override bool HasUponPickupEffect => true;
+	public override bool HasUponPickupEffect => true;
 
-    public override async Task AfterObtained()
-    {
-        var relic = this;
+	public override async Task AfterObtained()
+	{
+		var relic = this;
 
-        // 移除卡组里所有死亡回溯
-        var deathRewindCards = PileType.Deck.GetPile(relic.Owner)
-            .Cards
-            .Where(c => c is DeathRewind)
-            .ToList();
+		// 移除卡组里所有死亡回溯
+		var deathRewindCards = PileType.Deck.GetPile(relic.Owner)
+			.Cards
+			.Where(c => c is DeathRewind)
+			.ToList();
 
-        foreach (var card in deathRewindCards)
-            await CardPileCmd.RemoveFromDeck(card, showPreview: false);
+		foreach (var card in deathRewindCards)
+			await CardPileCmd.RemoveFromDeck(card, showPreview: false);
 
-        // 加一张新的死亡回溯进卡组
-        var newCard = relic.Owner.RunState.CreateCard<DeathRewind>(relic.Owner);
-        CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(newCard, PileType.Deck));
-    }
+		// 加一张新的死亡回溯进卡组
+		var newCard = relic.Owner.RunState.CreateCard<DeathRewind>(relic.Owner);
+		CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(newCard, PileType.Deck));
+	}
 }

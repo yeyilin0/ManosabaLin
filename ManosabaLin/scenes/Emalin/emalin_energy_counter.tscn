@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://ba30jr5ujy8ln"]
+[gd_scene load_steps=6 format=3 uid="uid://s7sss070fcjg"]
 
-[ext_resource type="Texture2D" uid="uid://ch78alk6dyftq" path="res://ManosabaLin/images/characters/Hiro/nikaido_hiro_energy.png" id="2"]
-[ext_resource type="FontFile" uid="uid://dw06xuu3rgihj" path="res://ManosabaLin/font/kreon_bold.ttf" id="3"]
+[ext_resource type="Texture2D" uid="uid://cu66r276r36dt" path="res://ManosabaLin/images/characters/Emalin/emalin_energy.png" id="1_j5jpe"]
+[ext_resource type="FontFile" uid="uid://dw06xuu3rgihj" path="res://ManosabaLin/font/kreon_bold.ttf" id="2_4co8v"]
 
 [sub_resource type="Curve" id="Curve_umldk"]
 _data = [Vector2(0.00596422, 0.0309963), 0.0, 4.46389, 0, 0, Vector2(0.298211, 0.736162), 0.832039, 0.832039, 0, 0, Vector2(0.99006, 0.932841), -0.247478, 0.0, 0, 0]
@@ -15,7 +15,7 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 _data = [Vector2(0.00596422, 0.0309963), 0.0, 2.09119, 0, 0, Vector2(1, 0.995203), 0.241291, 0.0, 0, 0]
 point_count = 2
 
-[node name="NikaidoHiroEnergyCounter" type="Control"]
+[node name="EmalinEnergyCounter" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 128.0
@@ -51,21 +51,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Layer1" type="TextureRect" parent="Layers"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -1.0
-offset_bottom = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = ExtResource("2")
-expand_mode = 1
-stretch_mode = 5
-
 [node name="RotationLayers" type="Control" parent="Layers"]
 unique_name_in_owner = true
 layout_mode = 1
@@ -75,6 +60,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="EmalinEnergy" type="TextureRect" parent="Layers"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 336.0
+offset_bottom = 331.0
+scale = Vector2(0.36755952, 0.37537766)
+texture = ExtResource("1_j5jpe")
 
 [node name="BurstFront" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true
@@ -96,6 +89,7 @@ color = Color(0.894118, 0.654902, 0.215686, 0.6)
 color_ramp = SubResource("Gradient_4pfys")
 
 [node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,12 +102,12 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.964706, 0.886275, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.188235)
-theme_override_colors/font_outline_color = Color(0.8, 0.4, 0.4, 1)
+theme_override_colors/font_outline_color = Color(1, 0.6, 0.8, 1)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/outline_size = 16
 theme_override_constants/shadow_outline_size = 16
-theme_override_fonts/font = ExtResource("3")
+theme_override_fonts/font = ExtResource("2_4co8v")
 theme_override_font_sizes/font_size = 36
 text = "3/3"
 horizontal_alignment = 1

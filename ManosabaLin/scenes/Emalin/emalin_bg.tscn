@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://nl6hxtsaca27"]
+
+[ext_resource type="Texture2D" uid="uid://7b1uo7tebaks" path="res://ManosabaLin/images/characters/Emalin/EmalinBg.png" id="1_to7mj"]
+
+[node name="EmalinBg" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -51.0
+offset_right = 2503.0
+offset_bottom = 1149.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1280, 600)
+
+[node name="EmalinBg" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(87.68741, 50.21878)
+scale = Vector2(0.96710205, 0.93364805)
+texture = ExtResource("1_to7mj")

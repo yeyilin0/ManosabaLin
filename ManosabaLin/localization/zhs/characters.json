@@ -12,5 +12,19 @@
   "MANOSABA_LIN_CHARACTER_HIRO.pronounPossessive": "她的",
   "MANOSABA_LIN_CHARACTER_HIRO.pronounSubject": "她",
   "MANOSABA_LIN_CHARACTER_HIRO.title": "希罗",
-  "MANOSABA_LIN_CHARACTER_HIRO.titleObject": "希罗"
+  "MANOSABA_LIN_CHARACTER_HIRO.titleObject": "希罗",
+  "MANOSABA_LIN_CHARACTER_EMALIN.aromaPrinciple": "希罗......没事吧",
+  "MANOSABA_LIN_CHARACTER_EMALIN.banter.alive.endTurnPing": "这样的我，才是最需要导正的......",
+  "MANOSABA_LIN_CHARACTER_EMALIN.banter.dead.endTurnPing": "如果能够实现，真想再一次和你们相见......",
+  "MANOSABA_LIN_CHARACTER_EMALIN.cardsModifierDescription": "艾玛卡牌将出现在奖励与商店中",
+  "MANOSABA_LIN_CHARACTER_EMALIN.cardsModifierTitle": "艾玛卡牌",
+  "MANOSABA_LIN_CHARACTER_EMALIN.description": "她对外界表现开朗，只是因为害怕变得[color=#ff99cc]【孤单】[/color]。思维敏捷，能够冷静地观察事物并做出判断，但害怕被讨厌，有时会选择[color=#ff99cc]【故意】[/color]犯错",
+  "MANOSABA_LIN_CHARACTER_EMALIN.eventDeathPrevention": "只要大家齐心协力，一定可以渡过难关",
+  "MANOSABA_LIN_CHARACTER_EMALIN.goldMonologue": "感谢",
+  "MANOSABA_LIN_CHARACTER_EMALIN.possessiveAdjective": "她的",
+  "MANOSABA_LIN_CHARACTER_EMALIN.pronounObject": "她",
+  "MANOSABA_LIN_CHARACTER_EMALIN.pronounPossessive": "她的",
+  "MANOSABA_LIN_CHARACTER_EMALIN.pronounSubject": "她",
+  "MANOSABA_LIN_CHARACTER_EMALIN.title": "艾玛",
+  "MANOSABA_LIN_CHARACTER_EMALIN.titleObject": "艾玛"
 }

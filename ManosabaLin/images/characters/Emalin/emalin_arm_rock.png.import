@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgomet53vcasm"
-path="res://.godot/imported/nym.png-0bdefc1fe461911f835391e3fbe507f6.ctex"
+uid="uid://0rjqk04xl3up"
+path="res://.godot/imported/emalin_arm_rock.png-39c7aafe82c5751253b393446e99e54a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/cards/big/nym.png"
-dest_files=["res://.godot/imported/nym.png-0bdefc1fe461911f835391e3fbe507f6.ctex"]
+source_file="res://ManosabaLin/images/characters/Emalin/emalin_arm_rock.png"
+dest_files=["res://.godot/imported/emalin_arm_rock.png-39c7aafe82c5751253b393446e99e54a.ctex"]
 
 [params]
 

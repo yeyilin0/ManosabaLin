@@ -6,18 +6,22 @@ using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using ManosabaLin;
 using ManosabaLin.Characters.Hiro.Monsters;
+using STS2RitsuLib.Utils;
 
 namespace ManosabaLin.Characters.Hiro.Events;
 
 internal static class GuardOneEventState
 {
-    private static bool _hasTriggered;
+    // 使用 SavedAttachedState 将状态附加到 RunState，自动随存档保存/加载
+    // 每次新运行 RunState 是新实例，默认值为 false
+    private static readonly SavedAttachedState<RunState, bool> HasTriggered =
+        new("guard_one_event_triggered", () => false);
 
-    internal static bool ShouldTrigger => !_hasTriggered;
+    internal static bool ShouldTrigger(RunState runState) => !HasTriggered[runState];
 
-    internal static void MarkTriggered() => _hasTriggered = true;
+    internal static void MarkTriggered(RunState runState) => HasTriggered[runState] = true;
 
-    internal static void Reset() => _hasTriggered = false;
+    internal static void Reset(RunState runState) => HasTriggered[runState] = false;
 
     internal static bool IsFirstRestSite(IRunState runState)
     {
@@ -42,7 +46,9 @@ internal static class GuardOneEventState
     /// </summary>
     public static void TriggerDebug()
     {
-        _hasTriggered = false; // 重置状态，允许再次触发
+        var runState = RunManager.Instance?.State;
+        if (runState == null) return;
+        Reset(runState);
         MainFile.Logger.Info("[Debug] GuardOne 事件已重置，下次进入火堆将触发");
     }
 
@@ -89,15 +95,15 @@ internal static class GuardOneCreateRoomPatch
     private static bool Prefix(ref AbstractRoom __result, RoomType roomType)
     {
         if (roomType != RoomType.RestSite) return true; // 不拦截，继续原方法
-        if (!GuardOneEventState.ShouldTrigger) return true;
 
         var runState = RunManager.Instance.State;
         if (runState == null) return true;
 
+        if (!GuardOneEventState.ShouldTrigger(runState)) return true;
         if (!GuardOneEventState.IsFirstRestSite(runState)) return true;
 
         // 条件满足：替换为 GuardOneEvent 事件房间
-        GuardOneEventState.MarkTriggered();
+        GuardOneEventState.MarkTriggered(runState);
 
         var guardOneEvent = ModelDb.Get<GuardOneEvent>();
         if (guardOneEvent == null) return true;

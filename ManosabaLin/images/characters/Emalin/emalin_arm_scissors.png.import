@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgomet53vcasm"
-path="res://.godot/imported/nym.png-0bdefc1fe461911f835391e3fbe507f6.ctex"
+uid="uid://dcm6eujmw0ctt"
+path="res://.godot/imported/emalin_arm_scissors.png-a4a2256f292682997916be1b1692efd0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/cards/big/nym.png"
-dest_files=["res://.godot/imported/nym.png-0bdefc1fe461911f835391e3fbe507f6.ctex"]
+source_file="res://ManosabaLin/images/characters/Emalin/emalin_arm_scissors.png"
+dest_files=["res://.godot/imported/emalin_arm_scissors.png-a4a2256f292682997916be1b1692efd0.ctex"]
 
 [params]
 

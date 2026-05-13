@@ -21,7 +21,9 @@ public sealed class GuardOneEvent : ModEventTemplate
 
     public override bool IsAllowed(IRunState runState)
     {
-        return GuardOneEventState.ShouldTrigger;
+        if (runState is RunState concreteRunState)
+            return GuardOneEventState.ShouldTrigger(concreteRunState);
+        return false;
     }
 
     protected override IReadOnlyList<EventOption> GenerateInitialOptions() =>

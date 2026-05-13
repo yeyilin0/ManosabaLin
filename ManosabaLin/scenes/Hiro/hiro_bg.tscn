@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://cvxpisitbxmds"]
 
-[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Hiro/NikaidoHiroBg.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dfnqm4o0xcjt6" path="res://ManosabaLin/images/characters/Hiro/NikaidoHiroBg.png" id="1"]
 
 [node name="NikaidoHiroBg" type="Control"]
 layout_mode = 3
@@ -18,6 +18,6 @@ grow_vertical = 2
 pivot_offset = Vector2(1280, 600)
 
 [node name="NikaidoHiroBg" type="Sprite2D" parent="."]
-position = Vector2(-798.1825, -230.71997)
-scale = Vector2(1.3553905, 1.4114298)
+position = Vector2(-852.6625, -302.88297)
+scale = Vector2(1.5063283, 1.4514902)
 texture = ExtResource("1")
