@@ -81,6 +81,11 @@ public static class StringExtensions
             return BuildResPath("scenes", "events", "background_scenes", path);
         }
 
+        public string EventBackgroundImagePath()
+        {
+            return BuildResPath("images", "events", "background_scenes", path);
+        }
+
         public string AncientMapIconPath()
         {
             return BuildResPath("images", "map", "ancients", path);

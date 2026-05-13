@@ -1,4 +1,3 @@
-using System;
 using ManosabaLin.Extensions;
 using STS2RitsuLib.Scaffolding.Content;
 
