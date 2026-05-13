@@ -36,7 +36,11 @@ public partial class MainFile : Node
         var ctx = RitsuLibFramework.CreateContentPack(ModId)
             .CardHandOutline<ManosabaCardTemplate>(new ModCardHandOutlineRule(
                 _ => true,
-                new Color(204f / 255f, 102f / 255f, 102f / 255f)
+                new Color(204f / 255f, 102f / 255f, 102f / 255f) // 希罗 #CC6666
+            ))
+            .CardHandOutline<ManosabaEmalinCardTemplate>(new ModCardHandOutlineRule(
+                _ => true,
+                new Color(1f, 0.6f, 0.8f) // 艾玛 #FF99CC
             ))
             .Apply();
 
@@ -44,11 +48,7 @@ public partial class MainFile : Node
         RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
 
-        // 使用模组 Id 创建 Harmony 实例，便于标识补丁来源。
         Harmony harmony = new(ModId);
-
-
-        // 扫描当前程序集并应用所有 Harmony 补丁。
         harmony.PatchAll();
     }
 }

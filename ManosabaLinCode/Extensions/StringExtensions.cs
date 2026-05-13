@@ -75,5 +75,24 @@ public static class StringExtensions
         {
             return BuildResPath("images", "charui", path);
         }
+        
+  
+
+// ↓ 新增
+        public string EmalinCardsImagePath()
+        {
+            return BuildResPath("images", "cards", "emalin", path);
+        }
+
+        public string EmalinBigCardsImagePath()
+        {
+            return BuildResPath("images", "cards", "emalin", "big", path);
+        }
+// ↑ 新增
+
+        public string EmalinPowerImagePath()
+        {
+            return BuildResPath("images", "powers", path);
+        }
     }
 }
