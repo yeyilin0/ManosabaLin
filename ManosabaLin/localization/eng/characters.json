@@ -12,5 +12,19 @@
   "MANOSABA_LIN_CHARACTER_HIRO.pronounPossessive": "his/hers/its",
   "MANOSABA_LIN_CHARACTER_HIRO.pronounSubject": "he/she/it",
   "MANOSABA_LIN_CHARACTER_HIRO.title": "Hiro",
-  "MANOSABA_LIN_CHARACTER_HIRO.titleObject": "Hiro"
+  "MANOSABA_LIN_CHARACTER_HIRO.titleObject": "Hiro",
+  "MANOSABA_LIN_CHARACTER_EMALIN.aromaPrinciple": "Lore",
+  "MANOSABA_LIN_CHARACTER_EMALIN.banter.alive.endTurnPing": "Co-op hurry up end turn ping message",
+  "MANOSABA_LIN_CHARACTER_EMALIN.banter.dead.endTurnPing": "...",
+  "MANOSABA_LIN_CHARACTER_EMALIN.cardsModifierDescription": "__ cards will now appear in rewards and shops.",
+  "MANOSABA_LIN_CHARACTER_EMALIN.cardsModifierTitle": "__ Cards",
+  "MANOSABA_LIN_CHARACTER_EMALIN.description": "Character Selection\nScreen Description",
+  "MANOSABA_LIN_CHARACTER_EMALIN.eventDeathPrevention": "Co-op survival line",
+  "MANOSABA_LIN_CHARACTER_EMALIN.goldMonologue": "Line spoken when obtaining a large amount of gold",
+  "MANOSABA_LIN_CHARACTER_EMALIN.possessiveAdjective": "his/her/its",
+  "MANOSABA_LIN_CHARACTER_EMALIN.pronounObject": "him/her/it",
+  "MANOSABA_LIN_CHARACTER_EMALIN.pronounPossessive": "his/hers/its",
+  "MANOSABA_LIN_CHARACTER_EMALIN.pronounSubject": "he/she/it",
+  "MANOSABA_LIN_CHARACTER_EMALIN.title": "Ema",
+  "MANOSABA_LIN_CHARACTER_EMALIN.titleObject": "Ema"
 }

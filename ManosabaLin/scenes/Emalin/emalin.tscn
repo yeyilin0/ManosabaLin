@@ -1,15 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmqkxjxdccrky"]
+[gd_scene load_steps=2 format=3 uid="uid://lhijhq7rmh4y"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_adbnn"]
-load_path = "res://.godot/imported/NikaidoHiro.png-d7d841a82d7163c583fc78464f3f77e3.ctex"
+[ext_resource type="Texture2D" uid="uid://crrdiblbka77n" path="res://ManosabaLin/images/characters/Emalin/emalin_char_visual.png" id="1"]
 
-[node name="NikaidoHiro" type="Node2D"]
+[node name="Emalin" type="Node2D"]
 
 [node name="Visuals" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-20.534, -244.645)
-scale = Vector2(0.4741, 0.4741)
-texture = SubResource("CompressedTexture2D_adbnn")
+position = Vector2(-5.8689823, -246.204)
+scale = Vector2(0.3404377, 0.34043768)
+texture = ExtResource("1")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

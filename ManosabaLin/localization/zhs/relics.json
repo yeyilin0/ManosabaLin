@@ -44,4 +44,7 @@
   "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.title": "魔法狙击步枪",
   "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.description": "每进入一个节点获得1点弹药（最多6点）。回合开始时消耗1点弹药，将一张[b]【子弹】[/b]加入手牌",
   "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.flavor": "每一枚射出的子弹都是无法收回的判决。在冰冷的瞄准镜后，所有的“原罪”都不过是待处理的标靶。"
+  "MANOSABA_LIN_RELIC_EMASRIBBON.title": "艾玛的缎带",
+  "MANOSABA_LIN_RELIC_EMASRIBBON.description": "一份小小的纪念品。（无效果）",
+  "MANOSABA_LIN_RELIC_EMASRIBBON.flavor": "艾玛一直珍藏的缎带。"
 }
