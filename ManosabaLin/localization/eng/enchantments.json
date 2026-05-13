@@ -3,6 +3,12 @@
   "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE_ENCHANTMENT_EMAAPPLE.extraCardText": "When you play this card, gain 1 max HP.",
   "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE_ENCHANTMENT_EMAAPPLE.description": "When you play this card, gain 1 [b]max HP[/b].",
   "MANOSABA_LIN_ENCHANTMENT_REBUTTAL_ENCHANTMENT_REBUTTAL.title": "Rebuttal",
-  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL_ENCHANTMENT_REBUTTAL.extraCardText": "Played {Amount} cards with Rebuttal this turn.",
-  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL_ENCHANTMENT_REBUTTAL.description": "Records how many cards with [b]Rebuttal[/b] were played this turn. Resets each turn."
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL_ENCHANTMENT_REBUTTAL.extraCardText": "Played {Amount} cards with Rebuttal this turn.\n×1: 1 damage. ×2: Strength. ×3: Vulnerable. ×4: Random hits. ×5: Replay card.",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL_ENCHANTMENT_REBUTTAL.description": "Records how many cards with [b]Rebuttal[/b] were played this turn. Resets each turn.\n×1: Deal 1 damage\n×2: Gain 1 Strength\n×3: Apply 1 Vulnerable to all enemies\n×4: Deal 1 damage randomly, counter times\n×5: This card plays an additional time",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT_ENCHANTMENT_AGREEMENT.title": "Agreement",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT_ENCHANTMENT_AGREEMENT.extraCardText": "Played {Amount} cards with Agreement this turn.\n×1: 3 Block. ×2: 3 Block self. ×3: Temp Dexterity. ×4: Temp Strength. ×5: Free card + Energy.",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT_ENCHANTMENT_AGREEMENT.description": "Records how many cards with [b]Agreement[/b] were played this turn. Resets each turn.\n×1: All allies gain 3 Block\n×2: Self gains 3 Block\n×3: All allies gain 1 temporary Dexterity\n×4: All allies gain 2 temporary Strength\n×5: Next card is free, all allies gain 1 Energy",
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT_ENCHANTMENT_DOUBT.title": "Doubt",
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT_ENCHANTMENT_DOUBT.extraCardText": "Played {Amount} cards with Doubt this turn.\n×1: 1 Block. ×2: Draw. ×3: Energy. ×4: Retrieve. ×5: Replay + Enchant.",
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT_ENCHANTMENT_DOUBT.description": "Records how many cards with [b]Doubt[/b] were played this turn. Resets each turn.\n×1: Gain 1 Block\n×2: Draw 1 card\n×3: Gain 1 Energy\n×4: Retrieve 1 random card from discard to hand\n×5: Random hand card gains Replay, choose 1 deck card to enchant with Rebuttal/Agreement/Doubt"
 }

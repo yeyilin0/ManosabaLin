@@ -92,5 +92,11 @@
   "MANOSABA_LIN_CARD_BULLET_CARD.title": "Bullet",
   "MANOSABA_LIN_CARD_BULLET_CARD.description": "Deal {Damage:diff()} damage. Draw {Cards:diff()} card. [b]Exhaust[/b].",
   "MANOSABA_LIN_CARD_WITCHRESTCEREMONY.title": "Witch Rest Ceremony",
-  "MANOSABA_LIN_CARD_WITCHRESTCEREMONY.description": "Gain {RitualCeremonyPower:diff()} [b]Ritual Ceremony[/b]. Gain {WithPower:diff()} [b]Witchification[/b]."
+  "MANOSABA_LIN_CARD_WITCHRESTCEREMONY.description": "Gain {RitualCeremonyPower:diff()} [b]Ritual Ceremony[/b]. Gain {WithPower:diff()} [b]Witchification[/b].",
+  "MANOSABA_LIN_CARD_EMALINATTACK.title": "Strike",
+  "MANOSABA_LIN_CARD_EMALINATTACK.description": "Deal {Damage:diff()} damage.",
+  "MANOSABA_LIN_CARD_EMALINDEFEND.title": "Defend",
+  "MANOSABA_LIN_CARD_EMALINDEFEND.description": "Gain {Block:diff()} Block.",
+  "MANOSABA_LIN_CARD_EMALINMENTALTRAUMA.title": "Mental Trauma",
+  "MANOSABA_LIN_CARD_EMALINMENTALTRAUMA.description": "Gain {WithPower:diff()} [b]Witchification[/b]."
 }

@@ -176,7 +176,7 @@
   "MANOSABA_LIN_CARD_POWERONEONECARD.description":"消耗{PerjuryCost:diff()}层[color=#CC6666]【伪证】[/color]\n回合开始时失去1层[color=#CC6666]【正义】[/color]，获得1点能量",
   "MANOSABA_LIN_CARD_POWERTWOTWOCARD.title": "能力22",
   "MANOSABA_LIN_CARD_POWERTWOTWOCARD.description": "100层[b]魔女化[/b]可用，获得{RitualCeremonyPower:diff()}层[b]【魔女仪式】[/b]",
-  "MANOSABA_LIN_CARD_ATTACKONEONE.title": "攻击11",
+  "MANOSABA_LIN_CARD_ATTACKONEONE.title": "裁碎知厄",
   "MANOSABA_LIN_CARD_ATTACKONEONE.description":"造成{Damage}点伤害，随机一张手牌添加[color=#CC6666]【轮回】[/color]，获得{PerjuryIncrease:diff()}层伪证\n本场战斗每打出一次，伤害+{Increase:diff()}，伪证+{PerjuryIncrease:diff()}",
   "MANOSABA_LIN_CARD_ATTACKONEONE.selectionScreenPrompt": "选择",
   "MANOSABA_LIN_CARD_ATTACKTWOTWO.title": "攻击22",
@@ -239,5 +239,11 @@
   "MANOSABA_LIN_CARD_BULLET_CARD.title": "子弹",
   "MANOSABA_LIN_CARD_BULLET_CARD.description": "造成{Damage:diff()}点伤害，抽{Cards:diff()}张牌。[b]消耗[/b]。",
   "MANOSABA_LIN_CARD_WITCHRESTCEREMONY.title": "魔女安息仪式",
-  "MANOSABA_LIN_CARD_WITCHRESTCEREMONY.description": "获得{RitualCeremonyPower:diff()}层[b]【魔女仪式】[/b]，获得{WithPower:diff()}层[b]【魔女化】[/b]"
+  "MANOSABA_LIN_CARD_WITCHRESTCEREMONY.description": "获得{RitualCeremonyPower:diff()}层[b]【魔女仪式】[/b]，获得{WithPower:diff()}层[b]【魔女化】[/b]",
+  "MANOSABA_LIN_CARD_EMALINATTACK.title": "打击",
+  "MANOSABA_LIN_CARD_EMALINATTACK.description": "造成{Damage:diff()}点伤害。",
+  "MANOSABA_LIN_CARD_EMALINDEFEND.title": "防御",
+  "MANOSABA_LIN_CARD_EMALINDEFEND.description": "获得{Block:diff()}点格挡。",
+  "MANOSABA_LIN_CARD_EMALINMENTALTRAUMA.title": "精神创伤",
+  "MANOSABA_LIN_CARD_EMALINMENTALTRAUMA.description": "获得{WithPower:diff()}层[b]【魔女化】[/b]"
 }
