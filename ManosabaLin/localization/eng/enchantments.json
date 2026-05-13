@@ -1,5 +1,8 @@
 {
   "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE_ENCHANTMENT_EMAAPPLE.title": "Ema's Apple",
   "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE_ENCHANTMENT_EMAAPPLE.extraCardText": "When you play this card, gain 1 max HP.",
-  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE_ENCHANTMENT_EMAAPPLE.description": "When you play this card, gain 1 [b]max HP[/b]."
+  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE_ENCHANTMENT_EMAAPPLE.description": "When you play this card, gain 1 [b]max HP[/b].",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL_ENCHANTMENT_REBUTTAL.title": "Rebuttal",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL_ENCHANTMENT_REBUTTAL.extraCardText": "Played {Amount} cards with Rebuttal this turn.",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL_ENCHANTMENT_REBUTTAL.description": "Records how many cards with [b]Rebuttal[/b] were played this turn. Resets each turn."
 }

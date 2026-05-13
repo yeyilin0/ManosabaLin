@@ -65,7 +65,6 @@
     <ItemGroup>
         <Folder Include="ManosabaLinCode\Audio\"/>
         <Folder Include="ManosabaLinCode\Characters\Anan\"/>
-        <Folder Include="ManosabaLinCode\Characters\Ema\"/>
         <Folder Include="ManosabaLinCode\Characters\Hanna\"/>
         <Folder Include="ManosabaLinCode\Characters\Hiro\Ancients\"/>
         <Folder Include="ManosabaLinCode\Characters\Hiro\Potions\"/>
