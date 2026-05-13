@@ -40,5 +40,8 @@
   "MANOSABA_LIN_RELIC_RITUALSWORD.flavor": "这把剑曾见证无数魔女的安息仪式",
   "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.title": "外部情报",
   "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.description": "进入节点时，可选择升级1张卡牌。每升级1张卡牌，失去3点[b]最大生命上限[/b]。",
-  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.flavor": "情报的代价，总是比想象中更沉重"
+  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.flavor": "情报的代价，总是比想象中更沉重",
+  "MANOSABA_LIN_RELIC_EMASRIBBON.title": "艾玛的缎带",
+  "MANOSABA_LIN_RELIC_EMASRIBBON.description": "一份小小的纪念品。（无效果）",
+  "MANOSABA_LIN_RELIC_EMASRIBBON.flavor": "艾玛一直珍藏的缎带。"
 }

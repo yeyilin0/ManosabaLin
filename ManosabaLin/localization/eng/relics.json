@@ -36,5 +36,8 @@
   "MANOSABA_LIN_RELIC_RITUALSWORD.flavor": "This sword has witnessed countless witch rest ceremonies.",
   "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.title": "External Information",
   "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.description": "When entering a node, choose 1 card to upgrade. Lose 3 [b]max HP[/b] for each card upgraded.",
-  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.flavor": "The price of information is always heavier than expected."
+  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.flavor": "The price of information is always heavier than expected.",
+  "MANOSABA_LIN_RELIC_EMASRIBBON.title": "Ema's Ribbon",
+  "MANOSABA_LIN_RELIC_EMASRIBBON.description": "A small keepsake. (No effect.)",
+  "MANOSABA_LIN_RELIC_EMASRIBBON.flavor": "A ribbon carefully kept by Ema."
 }
