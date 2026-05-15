@@ -8,9 +8,9 @@
   "MANOSABA_LIN_KEYWORD_EXECUTOR_OF_JUSTICE.title": "正义的执行者",
   "MANOSABA_LIN_KEYWORD_EXECUTOR_OF_JUSTICE.description": "[color=#CC6666][jitter]她至今走过的路，未曾有一星污点。\n在那个名为独善的理想乡中，容不得绞刑台这般异物的存在[/jitter][/color]",
   "MANOSABA_LIN_KEYWORD_AGREE.title": "赞同",
-  "MANOSABA_LIN_KEYWORD_AGREE.description":"打出时获得格挡并支援同伴。连击越高效果越强",
+  "MANOSABA_LIN_KEYWORD_AGREE.description":"打出若为1到5的倍数则触发效果\n×1：全体友方获得3点护盾\n×2：自身获得3点护盾\n×3：全体友方获得1层临时迅捷\n×4：全体友方获得2层临时力量\n×5：下一张卡免费打出，全体友方获得1点能量",
   "MANOSABA_LIN_KEYWORD_DOUBT.title": "疑问",
-  "MANOSABA_LIN_KEYWORD_DOUBT.description":"打出时获得能量和过牌。连击越高效果越强",
+  "MANOSABA_LIN_KEYWORD_DOUBT.description":"打出若为1到5的倍数则触发效果\n×1:自身获得1护盾\n×2:自身抽1牌\n×3:自身获得1能量\n×4:回收弃牌堆1张卡\n×5:选择一张手卡添加重放1,选择一张手卡选择1个附魔",
   "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "反驳",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.description":"打出时造成额外伤害。连击越高效果越强"
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.description":"打出若为1到5的倍数则触发效果\n×1：随机造成1点伤害\n×2：自身获得1点力量\n×3：敌方全体获得1层易伤\n×4：随机造成等次数的1点伤害\n×5：下一张攻击牌额外多打出一次"
 }

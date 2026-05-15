@@ -3,12 +3,15 @@
   "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.extraCardText": "打出这张牌时，获得1点血量上限。",
   "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.description": "打出这张牌时，获得1点[b]血量上限[/b]。",
   "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.title": "反驳",
-  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.extraCardText": "本回合已打出{Amount}张带有【反驳】的卡牌。\n每点计数造成1点伤害。2倍数获得力量，3倍数施加易伤，4倍数随机攻击，5倍数下张攻击翻倍。",
-  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.description": "记录本回合打出的带有[b]【反驳】[/b]附魔的卡牌数量。\n每回合重置。\n×1：造成1点伤害\n×2：获得1点力量\n×3：敌方全体获得1层易伤\n×4：随机造成等次数的1点伤害\n×5：额外多打出一次",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.extraCardText": "已打出{Amount}张【反驳】卡牌",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.description": "记录本回合打出的带有[b]【反驳】[/b]附魔的卡牌数量。\n每回合重置",
   "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.title": "赞同",
-  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.extraCardText": "本回合已打出{Amount}张带有【赞同】的卡牌。\n×1:全体3护盾 ×2:自身3护盾 ×3:临时迅捷 ×4:临时力量 ×5:免费卡+能量",
-  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.description": "记录本回合打出的带有[b]【赞同】[/b]附魔的卡牌数量。\n每回合重置。\n×1：全体友方获得3点护盾\n×2：自身获得3点护盾\n×3：全体友方获得1层临时迅捷\n×4：全体友方获得2层临时力量\n×5：下一张卡免费打出，全体友方获得1点能量",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.extraCardText": "已打出{Amount}张【赞同】卡牌",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.description": "记录本回合打出的带有[b]【赞同】[/b]附魔的卡牌数量。\n每回合重置",
   "MANOSABA_LIN_ENCHANTMENT_DOUBT.title": "疑问",
-  "MANOSABA_LIN_ENCHANTMENT_DOUBT.extraCardText": "本回合已打出{Amount}张带有【疑问】的卡牌。\n×1:1护盾 ×2:抽牌 ×3:能量 ×4:回收 ×5:重放+附魔",
-  "MANOSABA_LIN_ENCHANTMENT_DOUBT.description": "记录本回合打出的带有[b]【疑问】[/b]附魔的卡牌数量。\n每回合重置。\n×1：获得1点护盾\n×2：抽1张卡\n×3：恢复1点能量\n×4：从弃牌堆随机拿回1张卡到手卡\n×5：随机1张手牌获得重放，选择1张牌组卡获得【反驳】/【赞同】/【疑问】附魔"
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT.extraCardText": "已打出{Amount}张【疑问】卡牌",
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT.description": "记录本回合打出的带有[b]【疑问】[/b]附魔的卡牌数量。\n每回合重置",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.title": "魔女化",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.extraCardText": "打出此牌时再自动打出一次",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.description": "打出此牌时再自动打出一次"
 }

@@ -8,6 +8,9 @@ using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Keywords;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ManosabaLin.Characters.Common.HiroKeywords;
 
@@ -61,14 +64,18 @@ public static class Transmigration3Rules
         if (!HasTransmigration3(card)) return;
 
         var matchingCards = GetMatchingCardsFromAllPiles(card);
-
         if (matchingCards.Count == 0) return;
 
         foreach (var matchingCard in matchingCards)
         {
+            // 如果牌在手牌中，先移到弃牌堆再打出，避免递归
+            if (matchingCard.Pile?.Type == PileType.Hand)
+            {
+                await CardPileCmd.Add(matchingCard, PileType.Discard);
+            }
+
             matchingCard.SetToFreeThisTurn();
 
-            // 跳过所有动画，直接自动打出
             await CardCmd.AutoPlay(
                 choiceContext,
                 matchingCard,
@@ -95,7 +102,9 @@ public static class Transmigration3Rules
 
         public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
         {
+            // 自动打出的牌不再触发此效果，防止无限循环
             if (cardPlay.IsAutoPlay) return Task.CompletedTask;
+
             return TriggerTransmigration3Effect(cardPlay.Card, context, cardPlay.Target);
         }
     }

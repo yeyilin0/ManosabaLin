@@ -14,6 +14,7 @@ using STS2RitsuLib.Keywords;
 using System.Collections.Generic;
 using System.Linq;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using Godot;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -22,6 +23,7 @@ public sealed class Attackoneone : ManosabaCardTemplate
 {
     private const int BaseDamage = 7;
     private const int BasePerjury = 1;
+    private const int MaxGrowth = 20;
     private int _increasedDamage;
     private int _increasedPerjury;
 
@@ -46,7 +48,7 @@ public sealed class Attackoneone : ManosabaCardTemplate
     public int IncreasedDamage
     {
         get => _increasedDamage;
-        set { AssertMutable(); _increasedDamage = value; UpdateDamage(); }
+        set { AssertMutable(); _increasedDamage = Mathf.Clamp(value, 0, MaxGrowth * 3); UpdateDamage(); }
     }
 
     [SavedProperty]
@@ -56,7 +58,7 @@ public sealed class Attackoneone : ManosabaCardTemplate
         set
         {
             AssertMutable();
-            _increasedPerjury = value;
+            _increasedPerjury = Mathf.Clamp(value, 0, MaxGrowth);
             DynamicVars["PerjuryIncrease"].BaseValue = CurrentPerjury;
         }
     }
@@ -90,7 +92,6 @@ public sealed class Attackoneone : ManosabaCardTemplate
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        // 随机给一张手牌加轮回
         var handCards = PileType.Hand.GetPile(source.Owner).Cards
             .Where(c => c != source).ToList();
 
@@ -106,7 +107,7 @@ public sealed class Attackoneone : ManosabaCardTemplate
         );
 
         var damageIncrease = source.DynamicVars["Increase"].IntValue;
-        var perjuryIncrease = CurrentPerjury;
+        var perjuryIncrease = 1;
         source.BuffFromPlay(damageIncrease, perjuryIncrease);
 
         if (source.DeckVersion is Attackoneone deckVersion)

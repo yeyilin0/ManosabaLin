@@ -24,7 +24,8 @@ public class BondPower : ManosabaPowerTemplate, IPowerExtraIconAmountLabelsProvi
         set
         {
             AssertMutable();
-            _affinity = value;
+            var max = Estrangement >= 13 ? 12 : 13;
+            _affinity = Mathf.Clamp(value, 0, max);
             InvokeDisplayAmountChanged();
         }
     }
@@ -36,7 +37,8 @@ public class BondPower : ManosabaPowerTemplate, IPowerExtraIconAmountLabelsProvi
         set
         {
             AssertMutable();
-            _estrangement = value;
+            var max = Affinity >= 13 ? 12 : 13;
+            _estrangement = Mathf.Clamp(value, 0, max);
             InvokeDisplayAmountChanged();
         }
     }
@@ -51,14 +53,14 @@ public class BondPower : ManosabaPowerTemplate, IPowerExtraIconAmountLabelsProvi
             {
                 Text = Affinity.ToString(),
                 Corner = ExtraIconAmountLabelCorner.TopLeft,
-                FontColor = new Color(0.4f, 0.8f, 0.4f),
+                FontColor = new Color(1f, 0.6f, 0.8f),
                 FontOutlineColor = new Color(0f, 0f, 0f),
             },
             new()
             {
                 Text = Estrangement.ToString(),
                 Corner = ExtraIconAmountLabelCorner.TopRight,
-                FontColor = new Color(0.8f, 0.3f, 0.3f),
+                FontColor = new Color(0.8f, 0.4f, 0.4f),
                 FontOutlineColor = new Color(0f, 0f, 0f),
             }
         };

@@ -40,6 +40,9 @@ public sealed class GuardOneEvent : ModEventTemplate
         await UpgradeOneCard();
         ReplaceBoss();
 
+        if (Owner?.RunState is RunState runState)
+            GuardOneEventState.MarkTriggered(runState);
+
         SetEventFinished(PageDescription("OPTION_POWER"));
     }
 
@@ -49,6 +52,9 @@ public sealed class GuardOneEvent : ModEventTemplate
 
         await CreatureCmd.Heal(Owner.Creature, 13m);
         await UpgradeOneCard();
+
+        if (Owner?.RunState is RunState runState)
+            GuardOneEventState.MarkTriggered(runState);
 
         SetEventFinished(PageDescription("OPTION_HEAL"));
     }

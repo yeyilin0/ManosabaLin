@@ -176,5 +176,40 @@
   "MANOSABA_LIN_CARD_EMAFRIEND.description": "Gain 1 Suspect. Choose a [blue]Shirley{IfUpgraded:show:+|}[/blue] or [green]Hannah{IfUpgraded:show:+|}[/green] to add to your hand.",
   "MANOSABA_LIN_CARD_EMAFRIEND.selectionScreenPrompt": "Choose an ability",
   "MANOSABA_LIN_CARD_EMAWITCHKILLERCARD.title": "Ema Witch Killer",
-  "MANOSABA_LIN_CARD_EMAWITCHKILLERCARD.description": "Gain 1 [b]Ema Witch Killer[/b]."
+  "MANOSABA_LIN_CARD_EMAWITCHKILLERCARD.description": "Gain 1 [b]Ema Witch Killer[/b].",
+  "MANOSABA_LIN_CARD_ENCHANT_TRANSFORM.title": "Enchant Transform",
+  "MANOSABA_LIN_CARD_ENCHANT_TRANSFORM.description": "Choose a hand card to gain Replay. If [blue]Rebuttal[/blue] count >= 3 this turn, choose a hand card to read its keyword, then choose any number of cards with the same keyword from draw/hand/discard piles to transform into cards from your character pool with the same keyword.",
+  "MANOSABA_LIN_CARD_ENCHANT_TRANSFORM.replayPrompt": "Choose a hand card to gain Replay",
+  "MANOSABA_LIN_CARD_ENCHANT_TRANSFORM.keywordPrompt": "Choose a card to read its keyword",
+  "MANOSABA_LIN_CARD_ENCHANT_TRANSFORM.transformPrompt": "Choose cards to transform (can choose 0)",
+
+  "MANOSABA_LIN_CARD_SWAPBODYSUCCESS.title": "Substitute's Tenderness",
+  "MANOSABA_LIN_CARD_SWAPBODYSUCCESS.description": "Affinity +1. Gain a random 0-cost card. If Affinity > Estrangement, gain an additional random 0-cost card.",
+
+  "MANOSABA_LIN_CARD_BALLOONFRAGMENTS.title": "Balloon Fragments",
+  "MANOSABA_LIN_CARD_BALLOONFRAGMENTS.description": "Deal {Damage:diff()} damage. Estrangement +1. If Estrangement > Affinity, apply 2 Weak. Gain {Block:diff()} Block.",
+
+  "MANOSABA_LIN_CARD_GUARDIANOATH.title": "Guardian's Oath",
+  "MANOSABA_LIN_CARD_GUARDIANOATH.description": "Affinity +1. Apply 3 Arisa's Magic to a random target. If target is ally: gain 1 Energy, if Affinity > Estrangement heal 1 HP. If target is enemy: apply 1 Vulnerable.",
+
+  "MANOSABA_LIN_CARD_STEPPINGBACK.title": "Stepping Back Gently",
+  "MANOSABA_LIN_CARD_STEPPINGBACK.description": "Estrangement +1. Apply 3 Arisa's Magic to a random target. If target is ally: gain 1 Energy. If target is enemy: apply 1 Vulnerable.",
+
+  "MANOSABA_LIN_CARD_SHAREDFATE.title": "Resonance of Fate",
+  "MANOSABA_LIN_CARD_SHAREDFATE.description": "Affinity +1. Gain 5 Shirley's Magic. If Affinity > Estrangement, all allies gain 5 Strength.",
+
+  "MANOSABA_LIN_CARD_CRACKEDMIRROR.title": "Cracked Mirror",
+  "MANOSABA_LIN_CARD_CRACKEDMIRROR.description": "Estrangement +1. Gain 5 Shirley's Magic. If Estrangement > Affinity, all enemies lose 5 Strength.",
+
+  "MANOSABA_LIN_CARD_DOLLGIFT.title": "Doll's Gift",
+  "MANOSABA_LIN_CARD_DOLLGIFT.description": "Affinity +1. Gain 1 Intangible. If Affinity > Estrangement, all allies also gain 1 Intangible.",
+
+  "MANOSABA_LIN_CARD_STABBINGBLADE.title": "Stabbing Blade",
+  "MANOSABA_LIN_CARD_STABBINGBLADE.description": "Estrangement +1. Choose an Attack card to enchant with Witchification. If Estrangement > Affinity, play it immediately.",
+
+  "MANOSABA_LIN_CARD_SHATTEREDRESONANCE.title": "Shattered Resonance",
+  "MANOSABA_LIN_CARD_SHATTEREDRESONANCE.description": "Estrangement +1. Gain 1 Hannah's Magic. All enemies gain 5 Strength. If Estrangement > Affinity, all enemies lose 10 Strength.",
+
+  "MANOSABA_LIN_CARD_WITCHCLEANSING.title": "Witch Cleansing",
+  "MANOSABA_LIN_CARD_WITCHCLEANSING.description": "Estrangement +1. Deal 5 damage to yourself. Remove a quarter of Witchification from all allies. If Estrangement > Affinity, removed Witchification transfers to yourself."
 }
