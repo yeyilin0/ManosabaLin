@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://cnrokp80feede"]
 
-[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Emalin/emalin_char_select.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://cited8os1ltgy" path="res://ManosabaLin/images/characters/Emalin/emalin_char_select.png" id="1"]
 
 [node name="EmalinMerchant" type="Node2D"]
 

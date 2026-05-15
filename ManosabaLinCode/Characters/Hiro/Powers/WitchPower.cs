@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Hiro.Cards;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
@@ -9,6 +10,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Linq;
+using ManosabaLin.Characters.Ema.Cards;
+using ManosabaLin.Characters.Emalin;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -19,13 +23,12 @@ public sealed class WithPower : ManosabaPowerTemplate
     public override PowerStackType StackType => PowerStackType.Counter;
     public override bool AllowNegative => false;
 
-    // ===== 增伤（不影响 Unpowered 的伤害）=====
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource)
     {
         if (dealer != Owner) return 1m;
         if (props.HasFlag(ValueProp.Unpowered)) return 1m;
-        return 1m + Amount / 200m;  // /100 → /200
+        return 1m + Amount / 200m;
     }
 
     public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
@@ -33,9 +36,9 @@ public sealed class WithPower : ManosabaPowerTemplate
     {
         if (dealer != Owner) return 0m;
         if (props.HasFlag(ValueProp.Unpowered)) return 0m;
-        return Amount / 50;  // /25 → /50
+        return Amount / 50;
     }
-    // ===== 300层+：技能牌打出后进入消耗堆 =====
+
     public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
         CardModel card, bool isAutoPlay, ResourceInfo resources, PileType pileType, CardPilePosition position)
     {
@@ -44,13 +47,11 @@ public sealed class WithPower : ManosabaPowerTemplate
         return (PileType.Exhaust, position);
     }
 
-    // ===== 打出卡牌时 =====
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
         var source = this;
         if (cardPlay.Card.Owner.Creature != source.Owner) return;
 
-        // [200层+] 打出技能/能力牌失去血量
         if (source.Amount >= 200)
             if (cardPlay.Card.Type == CardType.Skill || cardPlay.Card.Type == CardType.Power)
             {
@@ -67,11 +68,10 @@ public sealed class WithPower : ManosabaPowerTemplate
                 );
             }
 
-        // [300层+] 打出攻击牌时获得 3 血
-        if (source.Amount >= 300 && cardPlay.Card.Type == CardType.Attack) await CreatureCmd.Heal(source.Owner, 3m);
+        if (source.Amount >= 300 && cardPlay.Card.Type == CardType.Attack)
+            await CreatureCmd.Heal(source.Owner, 3m);
     }
 
-    // ===== 回合结束扣血 =====
     public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
     {
         if (side != Owner.Side) return;
@@ -86,25 +86,32 @@ public sealed class WithPower : ManosabaPowerTemplate
             );
     }
 
-    // ===== DeathRewind 获取 =====
     public override async Task AfterPowerAmountChanged(
-        PlayerChoiceContext choiceContext, // ★ 新增
+        PlayerChoiceContext choiceContext,
         PowerModel power,
         decimal amount,
         Creature? applier,
         CardModel? cardSource)
     {
         if (power != this) return;
-        await CheckAndGiveDeathRewind();
+        await CheckAndGiveCharacterReward();
     }
 
-    private async Task CheckAndGiveDeathRewind()
+    private async Task CheckAndGiveCharacterReward()
     {
         if (Amount < 100) return;
         if (Owner?.Player == null) return;
 
-        if (Owner.Player.Character.GetType() != typeof(Hiro)) return;
+        var characterType = Owner.Player.Character.GetType();
 
+        if (characterType == typeof(Hiro))
+            await GiveDeathRewind();
+        else if (characterType == typeof(Emalin.Emalin))
+            await GiveWitchKillerCard();
+    }
+
+    private async Task GiveDeathRewind()
+    {
         var deck = Owner.Player.Deck;
         if (deck.Cards.Any(c => c is DeathRewind)) return;
 
@@ -115,11 +122,29 @@ public sealed class WithPower : ManosabaPowerTemplate
         await CardPileCmd.Add(permanentCard, PileType.Deck);
         CardCmd.PreviewCardPileAdd(new CardPileAddResult { success = true, cardAdded = permanentCard });
 
-        if (Owner.Player.Deck.Cards.Any(c => c is DeathRewind))
-            if (Owner.CombatState != null)
-            {
-                var tempCard = Owner.CombatState.CreateCard(cardModel, Owner.Player);
-                await CardPileCmd.AddGeneratedCardToCombat(tempCard, PileType.Hand, Owner.Player);
-            }
+        if (Owner.CombatState != null)
+        {
+            var tempCard = Owner.CombatState.CreateCard(cardModel, Owner.Player);
+            await CardPileCmd.AddGeneratedCardToCombat(tempCard, PileType.Hand, Owner.Player);
+        }
+    }
+
+    private async Task GiveWitchKillerCard()
+    {
+        var deck = Owner.Player.Deck;
+        if (deck.Cards.Any(c => c is EmaWitchKillerCard)) return;
+
+        var cardModel = ModelDb.GetById<CardModel>(ModelDb.GetId<EmaWitchKillerCard>());
+        if (cardModel == null) return;
+
+        var permanentCard = Owner.Player.RunState.CreateCard(cardModel, Owner.Player);
+        await CardPileCmd.Add(permanentCard, PileType.Deck);
+        CardCmd.PreviewCardPileAdd(new CardPileAddResult { success = true, cardAdded = permanentCard });
+
+        if (Owner.CombatState != null)
+        {
+            var tempCard = Owner.CombatState.CreateCard(cardModel, Owner.Player);
+            await CardPileCmd.AddGeneratedCardToCombat(tempCard, PileType.Hand, Owner.Player);
+        }
     }
 }

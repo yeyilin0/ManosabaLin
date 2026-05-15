@@ -20,8 +20,8 @@ public abstract class ManosabaEmalinCardTemplate(
             var slug = GetType().Name.ToLowerInvariant();
             var fileName = $"{slug}.png";
 
-            var big = fileName.EmalinBigCardsImagePath();
-            var small = fileName.EmalinCardsImagePath();
+            var big = fileName.BigCardsImagePath();
+            var small = fileName.CardsImagePath();
 
             var portrait = ResourceLoader.Exists(big)
                 ? big
@@ -29,10 +29,7 @@ public abstract class ManosabaEmalinCardTemplate(
                     ? small
                     : "card.png".CardsImagePath();
 
-            var beta = $"emalin/beta/{fileName}".EmalinCardsImagePath();
-            var betaPortrait = ResourceLoader.Exists(beta) ? beta : null;
-
-            return new CardAssetProfile(portrait, betaPortrait);
+            return new CardAssetProfile(portrait, null);
         }
     }
 }

@@ -37,6 +37,6 @@ public sealed class Bloodiedclothing : ManosabaRelicTemplate
             .ToList();
 
         foreach (var card in skillCards)
-            CardCmd.Enchant<Adroit>(card, 1m);
+            CardCmd.Enchant<Adroit>(card, 4m);
     }
 }

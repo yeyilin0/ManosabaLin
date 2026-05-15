@@ -24,7 +24,8 @@ public sealed class WitchChaos : ManosabaCardTemplate
     private static readonly Type[] AllyBuffTypes =
     [
         typeof(MllmPower), typeof(MgmPower), typeof(XlmPower), typeof(HnmPower),
-        typeof(NymPower), typeof(KkmPower), typeof(NyxmPower), typeof(AmmPower), typeof(YlsmPower)
+        typeof(NymPower), typeof(KkmPower), typeof(NyxmPower), typeof(AmmPower), typeof(YlsmPower),
+        typeof(HiroMagicRevivePower)
     ];
 
     public WitchChaos() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies) { }
@@ -102,6 +103,8 @@ public sealed class WitchChaos : ManosabaCardTemplate
             await PowerCmd.Apply<AmmPower>(choiceContext, target, amount, source.Owner.Creature, source, false);
         else if (powerType == typeof(YlsmPower))
             await PowerCmd.Apply<YlsmPower>(choiceContext, target, amount, source.Owner.Creature, source, false);
+        else if (powerType == typeof(HiroMagicRevivePower))
+            await PowerCmd.Apply<HiroMagicRevivePower>(choiceContext, target, amount, source.Owner.Creature, source, false);
     }
 
     protected override void OnUpgrade()

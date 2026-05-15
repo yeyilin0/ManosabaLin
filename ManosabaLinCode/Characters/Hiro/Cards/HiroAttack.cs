@@ -1,4 +1,4 @@
-﻿using ManosabaLin.Audio;
+using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Commands;
@@ -14,28 +14,28 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCharacterStarterCard(typeof(Hiro), 4)]
 public class HiroAttack() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 {
-    protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
+	protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => new[]
-    {
-        new DamageVar(6, ValueProp.Move)
-    };
+	protected override IEnumerable<DynamicVar> CanonicalVars => new[]
+	{
+		new DamageVar(6, ValueProp.Move)
+	};
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        ArgumentNullException.ThrowIfNull(cardPlay.Target);
+	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+	{
+		ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        ManosabaAudio.TryPlayOneShot("hiro_attack.wav".CardsAudioPath(), 0.8f);
+		ManosabaAudio.TryPlayOneShot("hiro_attack.wav".CardsAudioPath(), 0.8f);
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
-            .Targeting(cardPlay.Target)
-            .WithHitFx("vfx/vfx_attack_slash")
-            .Execute(choiceContext);
-    }
+		await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+			.FromCard(this)
+			.Targeting(cardPlay.Target)
+			.WithHitFx("vfx/vfx_attack_slash")
+			.Execute(choiceContext);
+	}
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(2m);
-    }
+	protected override void OnUpgrade()
+	{
+		DynamicVars.Damage.UpgradeValueBy(2m);
+	}
 }

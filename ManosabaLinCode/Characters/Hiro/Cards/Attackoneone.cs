@@ -53,7 +53,12 @@ public sealed class Attackoneone : ManosabaCardTemplate
     public int IncreasedPerjury
     {
         get => _increasedPerjury;
-        set { AssertMutable(); _increasedPerjury = value; }
+        set
+        {
+            AssertMutable();
+            _increasedPerjury = value;
+            DynamicVars["PerjuryIncrease"].BaseValue = CurrentPerjury;
+        }
     }
 
     public int CurrentDamage
@@ -68,7 +73,7 @@ public sealed class Attackoneone : ManosabaCardTemplate
     {
         new DamageVar(CurrentDamage, ValueProp.Move),
         new IntVar("Increase", 3),
-        new IntVar("PerjuryIncrease", 1)
+        new IntVar("PerjuryIncrease", CurrentPerjury)
     };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -101,7 +106,7 @@ public sealed class Attackoneone : ManosabaCardTemplate
         );
 
         var damageIncrease = source.DynamicVars["Increase"].IntValue;
-        var perjuryIncrease = source.DynamicVars["PerjuryIncrease"].IntValue;
+        var perjuryIncrease = CurrentPerjury;
         source.BuffFromPlay(damageIncrease, perjuryIncrease);
 
         if (source.DeckVersion is Attackoneone deckVersion)
@@ -112,6 +117,7 @@ public sealed class Attackoneone : ManosabaCardTemplate
     {
         DynamicVars["Increase"].UpgradeValueBy(1);
         DynamicVars["PerjuryIncrease"].UpgradeValueBy(1);
+        IncreasedPerjury += 1;
     }
 
     public void BuffFromPlay(int extraDamage, int extraPerjury)

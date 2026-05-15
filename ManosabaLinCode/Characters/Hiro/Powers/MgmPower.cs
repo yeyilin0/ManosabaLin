@@ -24,6 +24,14 @@ public class MgmPower : ManosabaPowerTemplate
         if (player != Owner.Player) return;
         if (Owner.IsDead) return;
 
+        await PowerCmd.Decrement(this);
+    }
+
+    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    {
+        if (side != Owner.Side) return;
+        if (Owner.IsDead) return;
+
         var hand = PileType.Hand.GetPile(Owner.Player);
 
         var playableCards = hand.Cards
@@ -32,19 +40,11 @@ public class MgmPower : ManosabaPowerTemplate
 
         if (playableCards.Count == 0) return;
 
-        for (int i = 0; i < Amount; i++)
+        var card = Owner.Player.RunState.Rng.Shuffle.NextItem(playableCards);
+        if (card != null)
         {
-            var card = player.RunState.Rng.Shuffle.NextItem(playableCards);
-            if (card != null)
-                await CardCmd.AutoPlay(choiceContext, card, null);
+            await CardCmd.AutoPlay(choiceContext, card, null);
+            Flash();
         }
-
-        Flash();
-    }
-
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
-    {
-        if (side != Owner.Side) return;
-        await PowerCmd.Decrement(this);
     }
 }

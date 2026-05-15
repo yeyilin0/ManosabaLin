@@ -1,0 +1,35 @@
+using ManosabaLin.Characters.Common;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2RitsuLib.Interop.AutoRegistration;
+using System.Linq;
+using ManosabaLin.Characters.Emalin;
+
+namespace ManosabaLin.Characters.Ema.Cards;
+
+/// <summary>共犯的沉默 - 2费技能, 1能量, 打过赞同和反驳额外全体队友1能量, 升级1费</summary>
+[RegisterCard(typeof(EmalinCardPool))]
+public sealed class AccompliceSilence : ManosabaEmalinCardTemplate
+{
+    public AccompliceSilence() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        await PlayerCmd.GainEnergy(1m, Owner);
+
+        if (EmalinCombatHelper.HasPlayedBothAgreementAndRebuttal(Owner.Creature, CombatState))
+        {
+            foreach (var player in CombatState.Players.Where(p => p != Owner))
+                await PlayerCmd.GainEnergy(1m, player);
+        }
+    }
+
+    protected override void OnUpgrade()
+    {
+        EnergyCost.UpgradeBy(-1);
+    }
+}

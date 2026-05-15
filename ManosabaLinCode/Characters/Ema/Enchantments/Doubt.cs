@@ -1,3 +1,4 @@
+using ManosabaLin.Characters.Ema.Relics;
 using ManosabaLin.Characters.Hiro.Enchantments;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -27,20 +28,17 @@ public class Doubt : ModEnchantmentTemplate
         IconPath: "res://ManosabaLin/images/enchantments/doubt.png"
     );
 
-    public override void RecalculateValues()
-    {
-        Amount = 0;
-    }
-
     public override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
     {
-        Amount++;
-        var count = Amount;
         var card = Card;
         var owner = card.Owner;
         var ownerCreature = owner.Creature;
 
-        // ×1：获得1点护盾（每次都触发）
+        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault();
+        badge?.IncrementCount(this);
+        var count = badge?.DoubtCount ?? 0;
+
+        // ×1：获得1点护盾
         await CreatureCmd.GainBlock(ownerCreature, 1m, ValueProp.Move, cardPlay);
 
         // ×2：抽一张卡
@@ -64,39 +62,37 @@ public class Doubt : ModEnchantmentTemplate
         }
 
         // ×5：随机一张手牌获得重放，选择一张牌组卡获得反驳/赞同/疑问附魔
+        // ×5：随机一张手牌获得重放，随机一张手牌获得随机审判附魔
         if (count % 5 == 0)
         {
-            // 随机一张手牌获得重放
             var handCards = PileType.Hand.GetPile(owner).Cards
                 .Where(c => c != card)
                 .ToList();
+
             if (handCards.Count > 0)
             {
-                var replayCard = owner.RunState.Rng.CombatCardSelection.NextItem(handCards);
+                var rng = owner.RunState.Rng.CombatCardSelection;
+
+                // 随机一张手牌获得重放
+                var replayCard = rng.NextItem(handCards);
                 replayCard.BaseReplayCount++;
                 CardCmd.Preview(replayCard);
-            }
 
-            // 选择一张牌组卡获得附魔
-            var rng = owner.RunState.Rng.CombatCardSelection;
-            var enchantmentOptions = new EnchantmentModel[]
-            {
-                ModelDb.Enchantment<Rebuttal>().ToMutable(),
-                ModelDb.Enchantment<Agreement>().ToMutable(),
-                ModelDb.Enchantment<Doubt>().ToMutable()
-            };
-            var chosenEnchantment = rng.NextItem(enchantmentOptions);
-
-            var prefs = new CardSelectorPrefs(
-                CardSelectorPrefs.EnchantSelectionPrompt, 1);
-
-            var selected = await CardSelectCmd.FromDeckForEnchantment(
-                owner, chosenEnchantment, 1, prefs);
-
-            foreach (var enchantedCard in selected)
-            {
-                CardCmd.Enchant(chosenEnchantment, enchantedCard, 1m);
-                CardCmd.Preview(enchantedCard);
+                // 随机一张手牌获得随机审判附魔（排除刚给过重放的）
+                var enchantTargets = handCards.Where(c => c != replayCard).ToList();
+                if (enchantTargets.Count > 0)
+                {
+                    var enchantCard = rng.NextItem(enchantTargets);
+                    var enchantmentOptions = new EnchantmentModel[]
+                    {
+                        ModelDb.Enchantment<Rebuttal>().ToMutable(),
+                        ModelDb.Enchantment<Agreement>().ToMutable(),
+                        ModelDb.Enchantment<Doubt>().ToMutable()
+                    };
+                    var chosenEnchantment = rng.NextItem(enchantmentOptions);
+                    CardCmd.Enchant(chosenEnchantment, enchantCard, 1m);
+                    CardCmd.Preview(enchantCard);
+                }
             }
         }
     }

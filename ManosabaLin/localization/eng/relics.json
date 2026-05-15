@@ -39,5 +39,11 @@
   "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.flavor": "The price of information is always heavier than expected.",
   "MANOSABA_LIN_RELIC_EMASRIBBON.title": "Ema's Ribbon",
   "MANOSABA_LIN_RELIC_EMASRIBBON.description": "A small keepsake. (No effect.)",
-  "MANOSABA_LIN_RELIC_EMASRIBBON.flavor": "A ribbon carefully kept by Ema."
+  "MANOSABA_LIN_RELIC_EMASRIBBON.flavor": "A ribbon carefully kept by Ema.",
+  "MANOSABA_LIN_RELIC_EMAWITCHFACTOR.title": "Witch Factor",
+  "MANOSABA_LIN_RELIC_EMAWITCHFACTOR.description": "Whenever you play an Attack, gain 15 Witchification. Whenever you play a Skill or Power, lose 10 Witchification.",
+  "MANOSABA_LIN_RELIC_EMAWITCHFACTOR.flavor": "When the witch factor becomes too active, people lose reason and turn into dangerous monster-like beings.",
+  "MANOSABA_LIN_RELIC_TRIALBADGE.title": "Trial Badge",
+  "MANOSABA_LIN_RELIC_TRIALBADGE.description": "At the start of each combat, automatically enchant cards by keyword: Agreement→Agreement, Rebuttal→Rebuttal, Doubt→Doubt. Reset enchantment counters each turn.",
+  "MANOSABA_LIN_RELIC_TRIALBADGE.flavor": "A badge carrying the will of judgment, witnessing every verdict."
 }

@@ -1,3 +1,4 @@
+using ManosabaLin.Characters.Ema.Relics;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -26,43 +27,42 @@ public class Rebuttal : ModEnchantmentTemplate
         IconPath: "res://ManosabaLin/images/enchantments/rebuttal.png"
     );
 
-    public override void RecalculateValues()
-    {
-        // 每回合重置计数
-        Amount = 0;
-    }
-
-    // ×5：计数器到达5的倍数时多打出一次整张卡
     public override int EnchantPlayCount(int originalPlayCount)
     {
-        // OnPlay 会先 +1，所以检查 (Amount + 1) % 5
-        return (Amount + 1) % 5 == 0 ? originalPlayCount + 1 : originalPlayCount;
+        var badge = Card?.Owner?.Relics.OfType<EmaTrialBadge>().FirstOrDefault();
+        var count = badge?.RebuttalCount ?? 0;
+        return (count + 1) % 5 == 0 ? originalPlayCount + 1 : originalPlayCount;
     }
 
     public override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
     {
-        Amount++;
-        var count = Amount;
         var card = Card;
-        var owner = card.Owner.Creature;
+        var owner = card.Owner;
+        var ownerCreature = owner.Creature;
 
-        // ×1：每点计数造成1点伤害（每次都触发）
+        // 从遗物获取计数器并递增
+        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault();
+        badge?.IncrementCount(this);
+        var count = badge?.RebuttalCount ?? 0;
+
+        // ×1：每点计数造成1点伤害
         if (cardPlay?.Target is { IsAlive: true } target)
             await CreatureCmd.Damage(choiceContext, target, 1m,
-                ValueProp.Unpowered, owner, null);
+                ValueProp.Unpowered, ownerCreature, null);
+
         // ×2：获得1点力量
         if (count % 2 == 0)
-            await PowerCmd.Apply<StrengthPower>(choiceContext, owner, 1m, owner, null);
+            await PowerCmd.Apply<StrengthPower>(choiceContext, ownerCreature, 1m, ownerCreature, null, false);
 
-        // ×3：给敌方全体1层易伤
+        // ×3：敌方全体1层易伤
         if (count % 3 == 0)
         {
             var enemies = card.CombatState.Enemies.Where(e => e is { IsAlive: true });
             foreach (var enemy in enemies)
-                await PowerCmd.Apply<VulnerablePower>(choiceContext, enemy, 1m, owner, null);
+                await PowerCmd.Apply<VulnerablePower>(choiceContext, enemy, 1m, ownerCreature, null, false);
         }
 
-        // ×4：按照计数器数值造成等次数的1点伤害
+        // ×4：按计数器数值造成等次数的1点伤害
         if (count % 4 == 0)
         {
             for (var i = 0; i < count; i++)
@@ -73,9 +73,8 @@ public class Rebuttal : ModEnchantmentTemplate
                 if (randomTarget.Count == 0) break;
                 var t = randomTarget[Random.Shared.Next(randomTarget.Count)];
                 await CreatureCmd.Damage(choiceContext, t, 1m,
-                    ValueProp.Unpowered, owner, null);
+                    ValueProp.Unpowered, ownerCreature, null);
             }
         }
-
     }
 }
