@@ -92,7 +92,7 @@
   "MANOSABA_LIN_POWER_TRUECRIMINAL_POWER.title": "真犯人",
   "MANOSABA_LIN_POWER_TRUECRIMINAL_POWER.description": "同一回合连续打出赞同/反驳/疑问附魔牌达到5的倍数时，对生命值最低的敌人造成15点无视护盾伤害",
   "MANOSABA_LIN_POWER_BOND_POWER.title": "羁绊",
-  "MANOSABA_LIN_POWER_BOND_POWER.description": "记录亲近与疏远的数值",
+  "MANOSABA_LIN_POWER_BOND_POWER.description": "记录[color=#ff99cc][b]【亲近】[/b][/color]与[color=#CC6666][b]【疏远】[/b][/color]的数值\n当你打出[b]「亲近」[/b]卡[color=#ff99cc]亲近[/color]加1，当你打出[b]「疏远」[/b]卡[color=#CC6666]【疏远】[/color]加1",
   "MANOSABA_LIN_POWER_EMA_WITCH_FACTOR_POWER.title": "魔女因子",
   "MANOSABA_LIN_POWER_EMA_WITCH_FACTOR_POWER.description": "生命值低于{Amount}时，立即死亡。",
   "MANOSABA_LIN_POWER_EMA_WITCH_FACTOR_POWER.smartDescription": "生命值低于[b]{Amount}[/b]时，立即死亡",
@@ -101,5 +101,11 @@
   "MANOSABA_LIN_POWER_EMA_WITCH_KILLER_POWER.smartDescription": "回合开始时，敌方+10层，友方+1层[b]【魔女因子】[/b]。敌方受伤+等量，友方受伤+四分之一",
   "MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.title": "二阶堂希罗的魔法",
   "MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.description": "死亡时复活并回复{ReviveHeal}点生命，然后失去1层。",
-  "MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.smartDescription": "死亡时复活并回复{ReviveHeal}点生命，然后失去1层。"
+  "MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.smartDescription": "死亡时复活并回复{ReviveHeal}点生命，然后失去1层。",
+  "MANOSABA_LIN_POWER_LOSE_ENERGY_POWER.title": "能量消耗",
+  "MANOSABA_LIN_POWER_LOSE_ENERGY_POWER.description": "下回合开始时失去{Amount}点能量。",
+  "MANOSABA_LIN_POWER_GAIN_ENERGY_POWER.title": "能量恢复",
+  "MANOSABA_LIN_POWER_GAIN_ENERGY_POWER.description": "下回合开始时获得{Amount}点能量。",
+  "MANOSABA_LIN_POWER_SHIELD_INTERCEPT_POWER.title": "替身之盾",
+  "MANOSABA_LIN_POWER_SHIELD_INTERCEPT_POWER.description": "本回合承受队友受到的伤害。下回合给予被保护的队友等于受到伤害的护盾。若亲近>疏远，你也获得等于受到伤害的护盾。"
 }

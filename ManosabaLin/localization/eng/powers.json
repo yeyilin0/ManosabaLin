@@ -7,5 +7,11 @@
   "MANOSABA_LIN_POWER_EMA_WITCH_FACTOR_POWER.smartDescription": "When HP drops below [blue]{Amount}[/blue], die instantly.",
   "MANOSABA_LIN_POWER_EMA_WITCH_KILLER_POWER.title": "Ema Witch Killer",
   "MANOSABA_LIN_POWER_EMA_WITCH_KILLER_POWER.description": "At the start of each turn, all enemies gain 10 Ema Witch Factor, all allies gain 1. When enemies take damage, gain equal stacks. When allies take damage, gain stacks equal to a quarter of the damage.",
-  "MANOSABA_LIN_POWER_EMA_WITCH_KILLER_POWER.smartDescription": "Turn start: enemies +10, allies +1 Ema Witch Factor. Enemy damage: +equal. Ally damage: +quarter."
+  "MANOSABA_LIN_POWER_EMA_WITCH_KILLER_POWER.smartDescription": "Turn start: enemies +10, allies +1 Ema Witch Factor. Enemy damage: +equal. Ally damage: +quarter.",
+  "MANOSABA_LIN_POWER_LOSE_ENERGY_POWER.title": "Energy Drain",
+  "MANOSABA_LIN_POWER_LOSE_ENERGY_POWER.description": "Lose {Amount} Energy at the start of next turn.",
+  "MANOSABA_LIN_POWER_GAIN_ENERGY_POWER.title": "Energy Surge",
+  "MANOSABA_LIN_POWER_GAIN_ENERGY_POWER.description": "Gain {Amount} Energy at the start of next turn.",
+  "MANOSABA_LIN_POWER_SHIELD_INTERCEPT_POWER.title": "Shield Substitute",
+  "MANOSABA_LIN_POWER_SHIELD_INTERCEPT_POWER.description": "Take damage for your ally this turn. Next turn, give the protected ally Block equal to damage taken. If Affinity > Estrangement, you also gain Block equal to damage taken."
 }

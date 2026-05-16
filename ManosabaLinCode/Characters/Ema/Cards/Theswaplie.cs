@@ -16,7 +16,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class Theswaplie : ManosabaEmalinCardTemplate
 {
-    public Theswaplie() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
+    public Theswaplie() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [

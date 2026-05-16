@@ -31,6 +31,7 @@ public sealed class Revokation() : ManosabaCardTemplate(1, CardType.Attack, Card
             yield return HoverTipFactory.FromCard<DeathRewind>();
             yield return HoverTipFactory.FromPower<DeathRewindPower>();
             yield return HoverTipFactory.FromPower<JusticePower>();
+            yield return HoverTipFactory.FromCard<Justice>();
         }
     }
 

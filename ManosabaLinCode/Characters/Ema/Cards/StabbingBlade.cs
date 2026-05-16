@@ -21,11 +21,16 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class StabbingBlade : ManosabaEmalinCardTemplate
 {
-    public StabbingBlade() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
+    public StabbingBlade() : base(2, CardType.Attack, CardRarity.Rare, TargetType.Self) { }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
-        get { yield return HoverTipFactory.FromPower<BondPower>(); }
+        get
+        {
+            yield return HoverTipFactory.FromPower<BondPower>();
+            foreach (var tip in HoverTipFactory.FromEnchantment<Witchification>())
+                yield return tip;
+        }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -33,11 +38,9 @@ public sealed class StabbingBlade : ManosabaEmalinCardTemplate
         var owner = Owner;
         var creature = owner.Creature;
 
-        // 疏远+1
         var bond = creature.GetPower<BondPower>();
         if (bond != null) bond.Estrangement++;
 
-        // 选择一张攻击卡附魔魔女化
         var attackCards = PileType.Hand.GetPile(owner).Cards
             .Where(c => c.Type == CardType.Attack && c.Enchantment == null)
             .ToList();
@@ -55,7 +58,6 @@ public sealed class StabbingBlade : ManosabaEmalinCardTemplate
             {
                 targetCard.SetToFreeThisTurn();
 
-                // 用 ToMutable 实例附魔
                 CardCmd.Enchant(ModelDb.Enchantment<Witchification>().ToMutable(), targetCard, 1m);
 
                 if (bond != null && bond.Estrangement > bond.Affinity)
@@ -70,5 +72,10 @@ public sealed class StabbingBlade : ManosabaEmalinCardTemplate
                 }
             }
         }
+    }
+
+    protected override void OnUpgrade()
+    {
+        EnergyCost.UpgradeBy(-1);
     }
 }

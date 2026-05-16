@@ -21,7 +21,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class WitchCleansing : ManosabaEmalinCardTemplate
 {
-    public WitchCleansing() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
+    public WitchCleansing() : base(1, CardType.Attack, CardRarity.Common, TargetType.Self) { }
 
     public override bool GainsBlock => true;
 
@@ -71,4 +71,10 @@ public sealed class WitchCleansing : ManosabaEmalinCardTemplate
                 choiceContext, creature, totalRemoved, creature, this, false);
         }
     }
-}
+
+    protected override void OnUpgrade()
+    {
+        EnergyCost.UpgradeBy(-1);
+    }
+    }
+

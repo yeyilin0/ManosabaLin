@@ -19,7 +19,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class Pistol : ManosabaEmalinCardTemplate
 {
-    public Pistol() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
+    public Pistol() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 
     public override bool GainsBlock => true;
 

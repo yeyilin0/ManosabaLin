@@ -17,7 +17,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class BloodyHeadband : ManosabaEmalinCardTemplate
 {
-    public BloodyHeadband() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
+    public BloodyHeadband() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 
     public override bool GainsBlock => true;
 

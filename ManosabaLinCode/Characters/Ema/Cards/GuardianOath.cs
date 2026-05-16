@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -19,23 +20,31 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class GuardianOath : ManosabaEmalinCardTemplate
 {
-    public GuardianOath() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
+    public GuardianOath() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.Self) { }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
-        get { yield return HoverTipFactory.FromPower<BondPower>(); }
+        get
+        {
+            yield return HoverTipFactory.FromPower<BondPower>();
+            yield return HoverTipFactory.FromPower<YlsmPower>();
+        }
     }
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
+    {
+        new IntVar("AmmStacks", 3),
+        new EnergyVar(1)
+    };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var owner = Owner;
         var creature = owner.Creature;
 
-        // 亲近+1
         var bond = creature.GetPower<BondPower>();
         if (bond != null) bond.Affinity++;
 
-        // 对随机目标施加3层亚里沙的魔法
         var allTargets = CombatState.Allies.Concat(CombatState.Enemies)
             .Where(c => c is { IsAlive: true })
             .ToList();
@@ -44,26 +53,31 @@ public sealed class GuardianOath : ManosabaEmalinCardTemplate
             var rng = owner.RunState.Rng.CombatTargets;
             var target = rng.NextItem(allTargets);
 
-            await PowerCmd.Apply<AmmPower>(
-                choiceContext, target, 3, creature, this, false);
+            // 分三次，每次施加1层
+            for (int i = 0; i < 3; i++)
+            {
+                await PowerCmd.Apply<YlsmPower>(
+                    choiceContext, target, 1, creature, this, false);
+            }
 
-            // 如果给到队友
             if (target.Side == creature.Side && target != creature)
             {
-                // 队友获得一点能量
                 if (target.Player != null)
-                    await PlayerCmd.GainEnergy(1m, target.Player);
+                    await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, target.Player);
 
-                // 亲近大于疏远时再回一血
                 if (bond != null && bond.Affinity > bond.Estrangement)
                     await CreatureCmd.Heal(target, 1m);
             }
-            // 如果给到敌人
             else if (target.Side != creature.Side)
             {
                 await PowerCmd.Apply<VulnerablePower>(
                     choiceContext, target, 1, creature, this, false);
             }
         }
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars.Energy.UpgradeValueBy(1);
     }
 }

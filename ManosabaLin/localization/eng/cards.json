@@ -211,5 +211,61 @@
   "MANOSABA_LIN_CARD_SHATTEREDRESONANCE.description": "Estrangement +1. Gain 1 Hannah's Magic. All enemies gain 5 Strength. If Estrangement > Affinity, all enemies lose 10 Strength.",
 
   "MANOSABA_LIN_CARD_WITCHCLEANSING.title": "Witch Cleansing",
-  "MANOSABA_LIN_CARD_WITCHCLEANSING.description": "Estrangement +1. Deal 5 damage to yourself. Remove a quarter of Witchification from all allies. If Estrangement > Affinity, removed Witchification transfers to yourself."
+  "MANOSABA_LIN_CARD_WITCHCLEANSING.description": "Estrangement +1. Deal 5 damage to yourself. Remove a quarter of Witchification from all allies. If Estrangement > Affinity, removed Witchification transfers to yourself.",
+
+  "MANOSABA_LIN_CARD_THEONLYCLUE.title": "The Only Clue",
+  "MANOSABA_LIN_CARD_THEONLYCLUE.description": "Affinity +1. Gain 2 Nyx's Magic, draw 2 cards then discard 1. If Affinity > Estrangement, discarded card gains Replay.",
+
+  "MANOSABA_LIN_CARD_CHAINEDTRUST.title": "Chained Trust",
+  "MANOSABA_LIN_CARD_CHAINEDTRUST.description": "Estrangement +1. Gain 1 Nyx's Magic, retrieve 1 card from discard pile. If Estrangement > Affinity, randomly play 1 Attack card from deck.",
+
+  "MANOSABA_LIN_CARD_SUBSTITUTECOST.title": "Substitute's Cost",
+  "MANOSABA_LIN_CARD_SUBSTITUTECOST.description": "Affinity +1. Gain Merruru's Magic. This turn all Attack cards deal +X damage (X = Affinity). Lose 2 Energy next turn. If Affinity > Estrangement, gain 1 Energy next turn.",
+
+  "MANOSABA_LIN_CARD_PAWNREALIZATION.title": "Pawn's Realization",
+  "MANOSABA_LIN_CARD_PAWNREALIZATION.description": "Estrangement +1. Gain Merruru's Magic. Deal damage to yourself equal to Estrangement. Gain Block equal to Estrangement×2. If Estrangement > Affinity, gain 1 extra Merruru's Magic.",
+
+  "MANOSABA_LIN_CARD_NOAHAFFINITY.title": "Water Cocoon",
+  "MANOSABA_LIN_CARD_NOAHAFFINITY.description": "Affinity +1. Attack any enemy equal to Affinity times. If Affinity > Estrangement, first randomly give an enemy Noah's Magic, then attack.",
+
+  "MANOSABA_LIN_CARD_NOAHESTRANGEMENT.title": "Silent Butterfly Fall",
+  "MANOSABA_LIN_CARD_NOAHESTRANGEMENT.description": "Estrangement +1. Choose a hand card to gain Replay, discard a hand card. If Estrangement > Affinity, gain 1 Crimson Butterfly.",
+
+  "MANOSABA_LIN_CARD_MARGARETAFFINITY.title": "Shield Substitute",
+  "MANOSABA_LIN_CARD_MARGARETAFFINITY.description": "Affinity +1. Gain Margaret's Magic. This turn, take damage for your ally. Next turn, give the chosen ally Block equal to damage taken. If Affinity > Estrangement, you also gain Block equal to damage taken.",
+
+  "MANOSABA_LIN_CARD_MARGARETESTRANGEMENT.title": "Fate's Mockery",
+  "MANOSABA_LIN_CARD_MARGARETESTRANGEMENT.description": "Estrangement +1. Gain Margaret's Magic. Choose an ally's deck to copy a card into your hand. If Estrangement > Affinity, the copied card can be played for free once.",
+
+  "MANOSABA_LIN_CARD_COCOAFFINITY.title": "Recognized Gaze",
+  "MANOSABA_LIN_CARD_COCOAFFINITY.description": "Affinity +1. Gain Coco's Magic. View all enemies' intents.\nAttack intent: All allies gain 30 Hardened Shell\nDefend/Buff intent: Gain 9 Ritual\nDebuff intent: All allies gain 5 Artifact\nIf Affinity > Estrangement, randomly gain one additional intent effect.",
+
+  "MANOSABA_LIN_CARD_COCOESTRANGEMENT.title": "Overlooking Gaze",
+  "MANOSABA_LIN_CARD_COCOESTRANGEMENT.description": "Estrangement +1. Gain Coco's Magic. Apply debuffs based on target's intent.\nAttack intent: Shrink\nDefend/Buff intent: Weak\nDebuff intent: Weak + Vulnerable\nIf Estrangement > Affinity, all effects affect all enemies.",
+
+  "MANOSABA_LIN_CARD_ANN_AFFINITY.title": "Chasing That Person",
+  "MANOSABA_LIN_CARD_ANN_AFFINITY.description": "Affinity +1. Choose a card from deck, randomly change its cost to 0-2. If Affinity > Estrangement, cost becomes 0.",
+
+  "MANOSABA_LIN_CARD_ANN_ESTRANGEMENT.title": "Deadly Brainwash",
+  "MANOSABA_LIN_CARD_ANN_ESTRANGEMENT.description": "Estrangement +1. Apply 2 Weak and 2 Frail to target. If Estrangement ≥ Affinity, deal Estrangement×2 damage to that enemy.",
+
+  "MANOSABA_LIN_CARD_EMAPOWERFOURFOURCARD.title": "Witch Prison",
+  "MANOSABA_LIN_CARD_EMAPOWERFOURFOURCARD.description": "Gain {Powerfourfour:diff()} [b]Witch Prison[/b].",
+  "MANOSABA_LIN_CARD_EMAPOWERTWOTWOCARD.title": "Ability 22",
+  "MANOSABA_LIN_CARD_EMAPOWERTWOTWOCARD.description": "Requires 100 [b]Witchification[/b] to play. Gain {RitualCeremonyPower:diff()} [b]Ritual Ceremony[/b].",
+  "MANOSABA_LIN_CARD_EMASUSPECTSPREAD.title": "Suspect Spread",
+  "MANOSABA_LIN_CARD_EMASUSPECTSPREAD.description": "Deal {Damage:diff()} damage. +1 damage per [b]Suspect[/b] on self. Apply 1 Suspect to target and self.",
+  "MANOSABA_LIN_CARD_EMATWO.title": "Prior Suspect",
+  "MANOSABA_LIN_CARD_EMATWO.description": "Gain {SuspectPower:diff()} [b]Suspect[/b]. Draw {Cards:diff()} cards.",
+  "MANOSABA_LIN_CARD_EMASEVEN.title": "Accomplice",
+  "MANOSABA_LIN_CARD_EMASEVEN.description": "Give an ally 3 copies of Prior Suspect{IfUpgraded:show:+|}.",
+  "MANOSABA_LIN_CARD_EMATHREE.title": "Reverse Witchification",
+  "MANOSABA_LIN_CARD_EMATHREE.description": "Reduce an ally's [b]Witchification[/b] by {Reduction:diff()}. Draw {Draw:diff()} cards.",
+
+  "MANOSABA_LIN_CARD_EMA_ONE.title": "Bone-Corroding Suspicion",
+  "MANOSABA_LIN_CARD_EMA_ONE.description": "Apply {SuspectPower:diff()} [b]Suspect[/b] and Weak to an enemy.",
+  "MANOSABA_LIN_CARD_EMA_EIGHT.title": "Absolution",
+  "MANOSABA_LIN_CARD_EMA_EIGHT.description": "Lose 1 [b]Suspect[/b]. Gain {Block:diff()} Block.",
+  "MANOSABA_LIN_CARD_EMA_GUILTY_CHAIN.title": "Guilty Chain",
+  "MANOSABA_LIN_CARD_EMA_GUILTY_CHAIN.description": "Each turn, when you play a card targeting an enemy with [red]Suspect[/red], apply 1 [red]Suspect[/red] to a random other enemy. Max 2 triggers per turn."
 }

@@ -17,7 +17,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class PrisonBlueprint : ManosabaEmalinCardTemplate
 {
-    public PrisonBlueprint() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
+    public PrisonBlueprint() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self) { }
 
     protected override IEnumerable<string> RegisteredKeywordIds =>
         new[] { EmalinKeywordRules.AgreeKeywordId };

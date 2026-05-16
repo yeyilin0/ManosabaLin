@@ -15,7 +15,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class ControlPanel : ManosabaEmalinCardTemplate
 {
-    public ControlPanel() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
+    public ControlPanel() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 
     protected override IEnumerable<string> RegisteredKeywordIds =>
         new[] { EmalinKeywordRules.DoubtKeywordId };

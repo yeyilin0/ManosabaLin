@@ -18,7 +18,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class BalloonFragments : ManosabaEmalinCardTemplate
 {
-    public BalloonFragments() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
+    public BalloonFragments() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) { }
 
     public override bool GainsBlock => true;
 

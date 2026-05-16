@@ -14,7 +14,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class Investigation : ManosabaEmalinCardTemplate
 {
-    public Investigation() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
+    public Investigation() : base(1, CardType.Power, CardRarity.Common, TargetType.Self) { }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new IntVar("Stacks", 1)];
 

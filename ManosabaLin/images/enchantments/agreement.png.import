@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c01sx46vtilhi"
-path="res://.godot/imported/suspectspread.png-6f010631a592025e289eaae20759e102.ctex"
+uid="uid://boqp0yb3i1g32"
+path="res://.godot/imported/agreement.png-10bddccf44e0be01d450237060761dcf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/cards/big/suspectspread.png"
-dest_files=["res://.godot/imported/suspectspread.png-6f010631a592025e289eaae20759e102.ctex"]
+source_file="res://ManosabaLin/images/enchantments/agreement.png"
+dest_files=["res://.godot/imported/agreement.png-10bddccf44e0be01d450237060761dcf.ctex"]
 
 [params]
 

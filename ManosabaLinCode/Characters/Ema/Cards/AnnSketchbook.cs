@@ -16,7 +16,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class AnnSketchbook : ManosabaEmalinCardTemplate
 {
-    public AnnSketchbook() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
+    public AnnSketchbook() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 
     protected override IEnumerable<string> RegisteredKeywordIds =>
         new[] { EmalinKeywordRules.DoubtKeywordId };

@@ -18,7 +18,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class DollGift : ManosabaEmalinCardTemplate
 {
-    public DollGift() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
+    public DollGift() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -47,5 +47,9 @@ public sealed class DollGift : ManosabaEmalinCardTemplate
                     choiceContext, ally, 1, creature, this, false);
             }
         }
+    }
+    protected override void OnUpgrade()
+    {
+        EnergyCost.UpgradeBy(-1);
     }
 }

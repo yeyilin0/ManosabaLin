@@ -8,10 +8,12 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
+using ManosabaLin.Characters.Common.Powers;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -22,37 +24,49 @@ public sealed class ShatteredResonance : ManosabaEmalinCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
-        get { yield return HoverTipFactory.FromPower<BondPower>(); }
+        get
+        {
+            yield return HoverTipFactory.FromPower<BondPower>();
+            yield return HoverTipFactory.FromPower<HnmPower>();
+        }
     }
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
+    {
+        new IntVar("StrGain", 4)
+    };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var owner = Owner;
         var creature = owner.Creature;
 
-        // 疏远+1
         var bond = creature.GetPower<BondPower>();
         if (bond != null) bond.Estrangement++;
 
-        // 获得一层汉娜的魔法
         await PowerCmd.Apply<HnmPower>(
             choiceContext, creature, 1, creature, this, false);
 
-        // 敌人全体获得5点力量
+        var strGain = DynamicVars["StrGain"].BaseValue;
+
         foreach (var enemy in CombatState.Enemies.Where(e => e is { IsAlive: true }))
         {
-            await PowerCmd.Apply<StrengthPower>(
-                choiceContext, enemy, 5, creature, this, false);
+            await PowerCmd.Apply<TempStrength>(
+                choiceContext, enemy, strGain, creature, this, false);
         }
 
-        // 疏远大于亲近时，敌人降低10力量
         if (bond != null && bond.Estrangement > bond.Affinity)
         {
             foreach (var enemy in CombatState.Enemies.Where(e => e is { IsAlive: true }))
             {
-                await PowerCmd.Apply<StrengthPower>(
+                await PowerCmd.Apply<CrushUnderPower>(
                     choiceContext, enemy, -10, creature, this, false);
             }
         }
+    }
+
+    protected override void OnUpgrade()
+    {
+        DynamicVars["StrGain"].UpgradeValueBy(2);
     }
 }
