@@ -38,4 +38,5 @@ public sealed class PrisonBlueprint : ManosabaEmalinCardTemplate
     {
         EnergyCost.UpgradeBy(-1);
     }
+    
 }
