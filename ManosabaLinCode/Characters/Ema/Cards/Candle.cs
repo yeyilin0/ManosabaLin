@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -29,7 +30,7 @@ public sealed class Candle : ManosabaEmalinCardTemplate
         new EnergyVar(1)
     ];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         await CreatureCmd.GainBlock(Owner.Creature, 4m, ValueProp.Move, cardPlay);
 
@@ -44,7 +45,7 @@ public sealed class Candle : ManosabaEmalinCardTemplate
             await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, player);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Energy.UpgradeValueBy(1);
     }

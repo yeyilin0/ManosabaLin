@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
@@ -42,7 +43,7 @@ public sealed class Hirodeath : ManosabaCardTemplate
                         && c.Pile.Type != PileType.Exhaust);
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -81,7 +82,7 @@ public sealed class Hirodeath : ManosabaCardTemplate
         }
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
     }
 }

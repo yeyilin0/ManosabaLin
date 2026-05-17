@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -28,7 +29,7 @@ public sealed class CardTwentySeven() : ManosabaCardTemplate(1, CardType.Skill, 
         new CardsVar(1)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -57,9 +58,8 @@ public sealed class CardTwentySeven() : ManosabaCardTemplate(1, CardType.Skill, 
         foreach (var card in selectedCards) await CardPileCmd.Add(card, PileType.Hand);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         DynamicVars.Cards.UpgradeValueBy(1);
     }
 }

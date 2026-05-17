@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -16,7 +17,7 @@ public sealed class CardSeventyTwo : ManosabaCardTemplate
     {
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -38,7 +39,7 @@ public sealed class CardSeventyTwo : ManosabaCardTemplate
         );
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1); // 能耗 3 → 2
     }

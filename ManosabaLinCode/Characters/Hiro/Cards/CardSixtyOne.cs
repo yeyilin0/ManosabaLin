@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -22,14 +23,13 @@ public class CardSixtyOne() : ManosabaCardTemplate(1, CardType.Skill, CardRarity
 
     protected override IEnumerable<string> RegisteredKeywordIds => [TransmigrationRules.TransmigrationKeywordId];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         // 升级：格挡 +3（5 → 8）
         DynamicVars.Block.BaseValue += 3;
     }

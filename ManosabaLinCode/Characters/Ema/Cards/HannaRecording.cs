@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -23,7 +24,7 @@ public sealed class HannaRecording : ManosabaEmalinCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1)];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
 
@@ -37,7 +38,7 @@ public sealed class HannaRecording : ManosabaEmalinCardTemplate
             await CardCmd.AutoPlay(choiceContext, card, null);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Energy.UpgradeValueBy(2);
     }

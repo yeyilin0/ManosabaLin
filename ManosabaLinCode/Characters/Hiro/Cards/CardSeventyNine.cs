@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -28,7 +29,7 @@ public sealed class CardSeventyNine() : ManosabaCardTemplate(1, CardType.Skill, 
     protected override IEnumerable<string> RegisteredKeywordIds =>
         new[] { TransmigrationRules.TransmigrationKeywordId };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
@@ -75,9 +76,8 @@ public sealed class CardSeventyNine() : ManosabaCardTemplate(1, CardType.Skill, 
         if (node != null) node.UpdateVisuals(card.Pile?.Type ?? PileType.Hand, CardPreviewMode.Normal);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         // 只有获得轮回的牌数 +1（1 → 2），失去轮回保持 1
         DynamicVars[GrantCountKey].UpgradeValueBy(1);
     }

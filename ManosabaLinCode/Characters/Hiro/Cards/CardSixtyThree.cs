@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -23,7 +24,7 @@ public sealed class CardSixtyThree() : ManosabaCardTemplate(0, CardType.Skill, C
         new DynamicVar("Cards", 1m)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -53,7 +54,7 @@ public sealed class CardSixtyThree() : ManosabaCardTemplate(0, CardType.Skill, C
         foreach (var card in selectedCards) card.AddModKeyword(TransmigrationRules.TransmigrationKeywordId);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars["Cards"].UpgradeValueBy(1m); // 升级后可选 2 张
     }

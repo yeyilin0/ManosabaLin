@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -29,10 +30,10 @@ public sealed class Hiroparanoid : ManosabaCardTemplate
     }
 
     // ★ 被抽到时触发（Void 风格）
-    public override async Task AfterCardDrawn(
+    protected override async Task AfterCardDrawn(
         PlayerChoiceContext choiceContext,
         CardModel card,
-        bool fromHandDraw)
+        bool fromHandDraw, ComponentContext componentContext)
     {
         var source = this;
         if (card != source) return;
@@ -47,7 +48,7 @@ public sealed class Hiroparanoid : ManosabaCardTemplate
     }
 
     // ★ 打出：选一张牌丢弃（Survivor 风格）
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -65,7 +66,7 @@ public sealed class Hiroparanoid : ManosabaCardTemplate
         await CardCmd.Discard(choiceContext, card);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
     }
 }

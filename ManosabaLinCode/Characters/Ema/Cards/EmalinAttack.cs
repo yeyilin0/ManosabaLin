@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
@@ -22,7 +23,7 @@ public class EmalinAttack() : ManosabaEmalinCardTemplate(1, CardType.Attack, Car
         new DamageVar(6, ValueProp.Move)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
@@ -35,7 +36,7 @@ public class EmalinAttack() : ManosabaEmalinCardTemplate(1, CardType.Attack, Car
             .Execute(choiceContext);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Damage.UpgradeValueBy(2m);
     }

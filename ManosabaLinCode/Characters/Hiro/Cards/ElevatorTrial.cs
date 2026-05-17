@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -44,7 +45,7 @@ public sealed class ElevatorTrial : ManosabaCardTemplate
         DynamicVars.Damage.BaseValue = BaseDamage + IncreasedDamage;
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var target = cardPlay.Target;
@@ -85,13 +86,13 @@ public sealed class ElevatorTrial : ManosabaCardTemplate
     }
 
     // 打出后洗回抽牌堆，而非进入弃牌堆
-    protected override PileType GetResultPileTypeForCardPlay()
+    protected override PileType GetResultPileTypeForCardPlayC()
     {
-        var resultPileType = base.GetResultPileTypeForCardPlay();
+        var resultPileType = base.GetResultPileTypeForCardPlayC();
         return resultPileType != PileType.Discard ? resultPileType : PileType.Draw;
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Damage.UpgradeValueBy(5m);       // 15 → 20
         DynamicVars["RecursionDamage"].UpgradeValueBy(3m); // 8 → 11

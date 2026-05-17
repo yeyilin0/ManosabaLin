@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -19,7 +20,7 @@ public sealed class CardSixtyEight() : ManosabaCardTemplate(1, CardType.Skill, C
         new RepeatVar(1)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -47,9 +48,8 @@ public sealed class CardSixtyEight() : ManosabaCardTemplate(1, CardType.Skill, C
         }
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         DynamicVars.Repeat.UpgradeValueBy(1);
     }
 }

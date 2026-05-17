@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
@@ -60,12 +61,12 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
 
 
 
-    public override async Task AfterPowerAmountChanged(
+    protected override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext,
         PowerModel power,
         decimal amountChanged,
         Creature? applier,
-        CardModel? cardSource)
+        CardModel? cardSource, ComponentContext componentContext)
     {
         var source = this;
 
@@ -77,7 +78,7 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
         await PowerCmd.ModifyAmount(choiceContext, power, -1, source.Owner.Creature, source, false);
     }
 
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    protected override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player, ComponentContext componentContext)
     {
         var source = this;
         if (player != source.Owner) return;
@@ -134,7 +135,7 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
         if (node != null) node.UpdateVisuals(card.Pile?.Type ?? PileType.Hand, CardPreviewMode.Normal);
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
+    protected override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         if (source.Pile?.Type != PileType.Hand) return;
@@ -152,7 +153,7 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
     }
 
 
-    public override Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    protected override Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, ComponentContext componentContext)
     {
         if (side != CombatSide.Player || Pile?.Type != PileType.Hand)
             return Task.CompletedTask;
@@ -160,9 +161,9 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
         return Task.CompletedTask;
     }
 
-    public override bool HasTurnEndInHandEffect => true;
+    protected override bool HasTurnEndInHandEffectC => true;
 
-    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
+    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext, ComponentContext componentContext)
     {
         var source = this;
 
@@ -182,7 +183,7 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
         );
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         if (source.CombatState == null) return;
@@ -198,20 +199,20 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, source);
     }
 
-    public override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card)
+    protected override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card, ComponentContext componentContext)
     {
         if (!ReferenceEquals(card, this)) return;
         await CardPileCmd.Add(this, PileType.Hand);
     }
 
-    public override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
-        bool causedByEthereal)
+    protected override async Task AfterCardExhausted(PlayerChoiceContext choiceContext, CardModel card,
+        bool causedByEthereal, ComponentContext componentContext)
     {
         if (!ReferenceEquals(card, this)) return;
         await CardPileCmd.Add(this, PileType.Hand);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
     }
 }

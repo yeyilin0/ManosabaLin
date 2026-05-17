@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
@@ -28,7 +29,7 @@ public sealed class Powerthreethreecard() : ManosabaCardTemplate(1, CardType.Pow
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var target = cardPlay.Target ?? source.Owner.Creature;
@@ -39,7 +40,7 @@ public sealed class Powerthreethreecard() : ManosabaCardTemplate(1, CardType.Pow
         await CardPileCmd.AddGeneratedCardToCombat(token, PileType.Hand, target.Player);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1);
     }

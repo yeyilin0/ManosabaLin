@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,7 +18,7 @@ public sealed class PrisonLaw : ManosabaEmalinCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move)];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var doubtCount = EmalinCombatHelper.GetDoubtPlaysThisTurn(Owner.Creature, CombatState);
         var totalDamage = DynamicVars.Damage.BaseValue + (doubtCount > 0 ? 4m : 0m);
@@ -29,7 +30,7 @@ public sealed class PrisonLaw : ManosabaEmalinCardTemplate
             .Execute(choiceContext);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Damage.UpgradeValueBy(3m);
     }

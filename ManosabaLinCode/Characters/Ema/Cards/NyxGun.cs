@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.Commands;
@@ -24,7 +25,7 @@ public sealed class NyxGun : ManosabaEmalinCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(15m, ValueProp.Move)];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)
@@ -49,7 +50,7 @@ public sealed class NyxGun : ManosabaEmalinCardTemplate
         }
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Damage.UpgradeValueBy(5m);
     }

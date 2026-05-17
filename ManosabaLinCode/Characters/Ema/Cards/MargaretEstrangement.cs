@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin;
@@ -25,7 +26,7 @@ public sealed class MargaretEstrangement : ManosabaEmalinCardTemplate
         get { yield return HoverTipFactory.FromPower<BondPower>(); }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var owner = Owner;
         var creature = owner.Creature;
@@ -64,7 +65,7 @@ public sealed class MargaretEstrangement : ManosabaEmalinCardTemplate
         CardCmd.PreviewCardPileAdd(
             await CardPileCmd.Add(clone, PileType.Hand));
     }
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1);
     }

@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -31,7 +32,7 @@ public sealed class CardSixty : ManosabaCardTemplate
     protected override IEnumerable<string> RegisteredKeywordIds =>
         new[] { TransmigrationRules.TransmigrationKeywordId };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var owner = source.Owner;
@@ -73,9 +74,8 @@ public sealed class CardSixty : ManosabaCardTemplate
         }
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         DynamicVars[CopyCountKey].UpgradeValueBy(1m);
     }
 }

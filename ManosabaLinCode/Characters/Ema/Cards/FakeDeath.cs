@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -17,7 +18,7 @@ public sealed class FakeDeath : ManosabaEmalinCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(2)];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var distinctTypes = EmalinCombatHelper.GetDistinctEnchantmentTypesThisTurn(Owner.Creature, CombatState);
 
@@ -35,7 +36,7 @@ public sealed class FakeDeath : ManosabaEmalinCardTemplate
         }
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1);
     }

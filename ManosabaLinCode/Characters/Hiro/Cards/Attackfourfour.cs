@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Common.HiroKeywords;
@@ -37,7 +38,7 @@ public sealed class Attackfourfour() : ManosabaCardTemplate(2, CardType.Attack, 
         new DamageVar(6m, ValueProp.Move)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var target = cardPlay.Target;
@@ -67,7 +68,7 @@ public sealed class Attackfourfour() : ManosabaCardTemplate(2, CardType.Attack, 
             await CardCmd.AutoPlay(choiceContext, card, null);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         RemoveKeyword(CardKeyword.Exhaust);
     }

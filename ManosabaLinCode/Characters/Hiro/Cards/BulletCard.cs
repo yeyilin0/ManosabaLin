@@ -1,14 +1,11 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
-using System;
-using System.Collections.Generic;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -26,7 +23,7 @@ public sealed class BulletCard() : ManosabaCardTemplate(0, CardType.Attack, Card
         new CardsVar(1)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var target = cardPlay.Target;
@@ -40,8 +37,11 @@ public sealed class BulletCard() : ManosabaCardTemplate(0, CardType.Attack, Card
 
         await CardPileCmd.Draw(choiceContext, source.DynamicVars.Cards.BaseValue, source.Owner);
 
-        PlayerCmd.GainEnergy(1m, source.Owner);
+        await PlayerCmd.GainEnergy(1m, source.Owner);
     }
 
-   
+    protected override void OnUpgrade(ComponentContext componentContext)
+    {
+        DynamicVars.Damage.UpgradeValueBy(3m);
+    }
 }

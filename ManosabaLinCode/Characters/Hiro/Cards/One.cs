@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -28,7 +29,7 @@ public sealed class One() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.C
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         ArgumentNullException.ThrowIfNull((object?)cardPlay.Target);
@@ -53,7 +54,7 @@ public sealed class One() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.C
         );
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Weak.UpgradeValueBy(1m); // 虚弱 2 → 3
         DynamicVars["SuspectPower"].UpgradeValueBy(1m); // 嫌疑 2 → 3

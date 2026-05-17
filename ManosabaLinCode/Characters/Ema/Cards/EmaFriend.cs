@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Ema.Cards;
@@ -36,7 +37,7 @@ public sealed class EmaFriend : ManosabaEmalinCardTemplate
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -64,7 +65,7 @@ public sealed class EmaFriend : ManosabaEmalinCardTemplate
             await CardPileCmd.AddGeneratedCardToCombat(chosen, PileType.Hand, source.Owner, CardPilePosition.Bottom);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
     }
 }

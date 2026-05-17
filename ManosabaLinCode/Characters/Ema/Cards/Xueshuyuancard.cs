@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ManosabaLin.Characters.Emalin;
+using MinionLib.Component.Core;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -24,12 +25,12 @@ public sealed class Xueshuyuancard() : ManosabaCardTemplate(1, CardType.Power, C
         get { yield return HoverTipFactory.FromPower<Xueshuyuanpower>(); }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         await PowerCmd.Apply<Xueshuyuanpower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1);
     }

@@ -1,16 +1,12 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
-using System.Linq;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -28,15 +24,14 @@ public sealed class PrisonBlueprint : ManosabaEmalinCardTemplate
         get { yield return HoverTipFactory.FromPower<PrisonBlueprintPower>(); }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         await PowerCmd.Apply<PrisonBlueprintPower>(
             choiceContext, Owner.Creature, 1m, Owner.Creature, this);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1);
     }
-    
 }

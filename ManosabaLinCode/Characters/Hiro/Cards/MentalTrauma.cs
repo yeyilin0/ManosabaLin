@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -29,7 +30,7 @@ public class MentalTrauma : ManosabaCardTemplate
         new PowerVar<WithPower>(20m)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         // 获得 20 层魔女化
         await PowerCmd.Apply<WithPower>(
@@ -44,7 +45,7 @@ public class MentalTrauma : ManosabaCardTemplate
         if (IsUpgraded) await CardPileCmd.Draw(choiceContext, 1m, Owner);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         // 先古卡的升级由遗物控制进化，这里留空
     }

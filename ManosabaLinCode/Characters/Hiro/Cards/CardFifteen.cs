@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -16,7 +17,7 @@ public sealed class CardFifteen() : ManosabaCardTemplate(2, CardType.Power, Card
         get { yield return HoverTipFactory.FromPower<CardFifteenPower>(); }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -29,7 +30,7 @@ public sealed class CardFifteen() : ManosabaCardTemplate(2, CardType.Power, Card
         );
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1); // 费用 2 → 1
     }

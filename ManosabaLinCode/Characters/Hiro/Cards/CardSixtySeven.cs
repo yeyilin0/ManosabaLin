@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Combat;
@@ -31,11 +32,11 @@ public sealed class CardSixtySeven : ManosabaCardTemplate
     protected override IEnumerable<string> RegisteredKeywordIds =>
         new[] { "Retain" };
 
-    protected override bool IsPlayable
+    protected override bool IsPlayableC
     {
         get
         {
-            if (!base.IsPlayable)
+            if (!base.IsPlayableC)
                 return false;
 
             var cardsPlayed = CombatManager.Instance?.History.Entries
@@ -46,7 +47,7 @@ public sealed class CardSixtySeven : ManosabaCardTemplate
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var target = cardPlay.Target;
@@ -67,9 +68,8 @@ public sealed class CardSixtySeven : ManosabaCardTemplate
         await PowerCmd.Apply<SuspectPower>(choiceContext, target, suspectAmount, source.Owner.Creature, source, false);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         DynamicVars.Damage.BaseValue = 52m;
         DynamicVars[SuspectAmountKey].BaseValue = 6m;
     }

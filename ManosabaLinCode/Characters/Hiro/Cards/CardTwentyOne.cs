@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -34,11 +35,11 @@ public sealed class CardTwentyOne() : ManosabaCardTemplate(1, CardType.Attack, C
         }
     }
 
-    protected override bool IsPlayable
+    protected override bool IsPlayableC
     {
         get
         {
-            if (!base.IsPlayable) return false;
+            if (!base.IsPlayableC) return false;
 
             var perjuryPower = Owner.Creature.GetPower<PerjuryPower>();
             var perjuryAmount = perjuryPower?.Amount ?? 0;
@@ -50,7 +51,7 @@ public sealed class CardTwentyOne() : ManosabaCardTemplate(1, CardType.Attack, C
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
@@ -79,7 +80,7 @@ public sealed class CardTwentyOne() : ManosabaCardTemplate(1, CardType.Attack, C
             choiceContext, cardPlay.Target, 3, source.Owner.Creature, source);
     }
 
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    protected override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player, ComponentContext componentContext)
     {
         var source = this;
         if (player != source.Owner) return;
@@ -87,9 +88,8 @@ public sealed class CardTwentyOne() : ManosabaCardTemplate(1, CardType.Attack, C
         await CardPileCmd.Add(source, PileType.Hand);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         DynamicVars.Damage.UpgradeValueBy(13m);
     }
 }

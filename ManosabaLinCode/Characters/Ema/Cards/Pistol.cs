@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -31,7 +32,7 @@ public sealed class Pistol : ManosabaEmalinCardTemplate
         new BlockVar(4m, ValueProp.Move)
     ];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var creature = Owner.Creature;
         var allies = CombatState.Allies.Where(a => a is { IsAlive: true } && a != creature).ToList();
@@ -45,7 +46,7 @@ public sealed class Pistol : ManosabaEmalinCardTemplate
         await CreatureCmd.GainBlock(creature, DynamicVars.Block, cardPlay);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars["StrengthPower"].UpgradeValueBy(2m);
         DynamicVars.Block.UpgradeValueBy(2m);

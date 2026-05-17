@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,7 +18,7 @@ public sealed class EmalinRestCeremony : ManosabaEmalinCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(12m, ValueProp.Move)];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var distinctTypes = EmalinCombatHelper.GetDistinctEnchantmentTypesThisTurn(Owner.Creature, CombatState);
         var totalDamage = DynamicVars.Damage.BaseValue + distinctTypes * 10m;
@@ -29,7 +30,7 @@ public sealed class EmalinRestCeremony : ManosabaEmalinCardTemplate
             .Execute(choiceContext);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Damage.UpgradeValueBy(4m);
     }

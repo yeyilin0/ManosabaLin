@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin;
@@ -33,7 +34,7 @@ public sealed class BalloonFragments : ManosabaEmalinCardTemplate
         get { yield return HoverTipFactory.FromPower<BondPower>(); }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var owner = Owner;
         var creature = owner.Creature;
@@ -61,7 +62,7 @@ public sealed class BalloonFragments : ManosabaEmalinCardTemplate
         await CreatureCmd.GainBlock(creature, DynamicVars.Block, cardPlay);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Damage.UpgradeValueBy(3m);
         DynamicVars.Block.UpgradeValueBy(2m);

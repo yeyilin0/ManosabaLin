@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -18,14 +19,14 @@ public sealed class WitchBurn() : ManosabaCardTemplate(-1, CardType.Status, Card
         get { yield return CardKeyword.Retain; }
     }
 
-    public override bool HasTurnEndInHandEffect => true;
+    protected override bool HasTurnEndInHandEffectC => true;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new[]
     {
         new DynamicVar("Damage", 1m)
     };
 
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    protected override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player, ComponentContext componentContext)
     {
         var source = this;
         if (player != source.Owner) return;
@@ -34,7 +35,7 @@ public sealed class WitchBurn() : ManosabaCardTemplate(-1, CardType.Status, Card
             await CardPileCmd.Add(source, PileType.Hand);
     }
 
-    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext)
+    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext, ComponentContext componentContext)
     {
         var source = this;
 
@@ -47,7 +48,7 @@ public sealed class WitchBurn() : ManosabaCardTemplate(-1, CardType.Status, Card
         );
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
     }
 }

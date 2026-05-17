@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.Commands;
@@ -17,7 +18,7 @@ public sealed class ReasoningEstablished : ManosabaEmalinCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(4m, ValueProp.Move)];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var enchantmentCount = EmalinCombatHelper.GetTotalEnchantmentPlaysThisTurn(Owner.Creature, CombatState);
         var bonusPerCard = IsUpgraded ? 3m : 2m;
@@ -30,7 +31,7 @@ public sealed class ReasoningEstablished : ManosabaEmalinCardTemplate
             .Execute(choiceContext);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Damage.UpgradeValueBy(3m);
     }

@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -16,7 +17,7 @@ public sealed class CardSixtyFive() : ManosabaCardTemplate(2, CardType.Power, Ca
         new DynamicVar("PowerAmount", 1m)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var owner = source.Owner;
@@ -27,7 +28,7 @@ public sealed class CardSixtyFive() : ManosabaCardTemplate(2, CardType.Power, Ca
         await PowerCmd.Apply<CardSixtyFivePower>(choiceContext, owner.Creature, amount, owner.Creature, source, false);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1);
     }

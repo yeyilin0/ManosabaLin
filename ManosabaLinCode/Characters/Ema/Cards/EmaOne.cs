@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Emalin;
@@ -31,7 +32,7 @@ public sealed class EmaOne() : ManosabaEmalinCardTemplate(1, CardType.Skill, Car
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         ArgumentNullException.ThrowIfNull((object?)cardPlay.Target);
@@ -56,7 +57,7 @@ public sealed class EmaOne() : ManosabaEmalinCardTemplate(1, CardType.Skill, Car
         );
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Weak.UpgradeValueBy(1m);
         DynamicVars["SuspectPower"].UpgradeValueBy(1m);

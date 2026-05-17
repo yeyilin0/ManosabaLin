@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -27,11 +28,11 @@ public sealed class Poweroneonecard() : ManosabaCardTemplate(1, CardType.Power, 
         }
     }
 
-    protected override bool IsPlayable
+    protected override bool IsPlayableC
     {
         get
         {
-            if (!base.IsPlayable) return false;
+            if (!base.IsPlayableC) return false;
 
             var perjury = Owner.Creature.GetPower<PerjuryPower>();
             var cost = DynamicVars["PerjuryCost"].IntValue;
@@ -39,7 +40,7 @@ public sealed class Poweroneonecard() : ManosabaCardTemplate(1, CardType.Power, 
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var cost = source.DynamicVars["PerjuryCost"].IntValue;
@@ -59,9 +60,8 @@ public sealed class Poweroneonecard() : ManosabaCardTemplate(1, CardType.Power, 
         );
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         DynamicVars["PerjuryCost"].UpgradeValueBy(-1m);
     }
 }

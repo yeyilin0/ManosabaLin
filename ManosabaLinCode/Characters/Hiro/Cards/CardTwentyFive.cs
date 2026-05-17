@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -19,7 +20,7 @@ public sealed class CardTwentyFive : ManosabaCardTemplate
         get { yield return HoverTipFactory.FromCard<CardTwentySix>(IsUpgraded); }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -51,7 +52,7 @@ public sealed class CardTwentyFive : ManosabaCardTemplate
         }
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         // 效果已在 OnPlay 中通过 IsUpgraded 处理
     }

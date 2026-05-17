@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -29,11 +30,11 @@ public sealed class Eight() : ManosabaCardTemplate(1, CardType.Skill, CardRarity
         get { yield return HoverTipFactory.FromPower<SuspectPower>(); }
     }
 
-    protected override bool IsPlayable
+    protected override bool IsPlayableC
     {
         get
         {
-            if (!base.IsPlayable)
+            if (!base.IsPlayableC)
                 return false;
 
             var suspectPower = Owner.Creature.GetPower<SuspectPower>();
@@ -43,7 +44,7 @@ public sealed class Eight() : ManosabaCardTemplate(1, CardType.Skill, CardRarity
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -64,9 +65,8 @@ public sealed class Eight() : ManosabaCardTemplate(1, CardType.Skill, CardRarity
         await CreatureCmd.GainBlock(source.Owner.Creature, source.DynamicVars.Block, cardPlay);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         // 升级：格挡 +3（5 → 8）
         DynamicVars.Block.BaseValue += 3;
     }

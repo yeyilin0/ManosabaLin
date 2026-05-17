@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -19,7 +20,7 @@ public sealed class CardEightyTwo() : ManosabaCardTemplate(1, CardType.Skill, Ca
         new DynamicVar("Cards", 3m)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var owner = source.Owner;
@@ -45,9 +46,8 @@ public sealed class CardEightyTwo() : ManosabaCardTemplate(1, CardType.Skill, Ca
             await CardPileCmd.Add(card, (PileType)1, (CardPilePosition)1, (AbstractModel)null, false);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         // 升级：返回卡牌数 +1（3 → 4）
         DynamicVars["Cards"].BaseValue += 1;
     }
