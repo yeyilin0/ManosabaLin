@@ -27,7 +27,11 @@ public sealed class Mlym : ManosabaCardTemplate
 
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
-        get { yield return CardKeyword.Retain; }
+        get
+        {
+            yield return CardKeyword.Retain;
+            yield return CardKeyword.Exhaust;
+        }
     }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
@@ -92,11 +96,12 @@ public sealed class Mlym : ManosabaCardTemplate
         }
 
         await PowerCmd.Remove<MlyPower>(cardPlay.Target);
-        await CardPileCmd.Add(this, PileType.Exhaust);
+    
     }
 
     protected override void OnUpgrade()
     {
         EnergyCost.UpgradeBy(-1);
+        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

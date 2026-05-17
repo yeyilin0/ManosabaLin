@@ -54,5 +54,6 @@ public sealed class Witchrestceremony() : ManosabaCardTemplate(3, CardType.Power
     {
         DynamicVars["RitualCeremonyPower"].UpgradeValueBy(1m);
         DynamicVars["WithPower"].UpgradeValueBy(50m);
+        EnergyCost.UpgradeBy(-1);
     }
 }

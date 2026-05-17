@@ -12,6 +12,14 @@
     {
       "id": "STS2-RitsuLib",
       "min_version": "0.2.29"
+    },
+    {
+      "id": "MinionLib",
+      "min_version": "0.4.1"
+    },
+    {
+      "id": "MinionLib.RitsuAdapters",
+      "min_version": "0.4.1"
     }
   ]
 

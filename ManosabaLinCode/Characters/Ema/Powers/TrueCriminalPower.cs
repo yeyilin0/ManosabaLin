@@ -27,7 +27,7 @@ public class TrueCriminalPower : ManosabaPowerTemplate
         if (cardPlay.Card.Enchantment is Rebuttal or Agreement or Doubt)
         {
             _consecutiveCount++;
-            if (_consecutiveCount % 5 == 0 && _consecutiveCount > 0)
+            if (_consecutiveCount % 5 == 0)
             {
                 Flash();
                 // 对生命值最低的敌人造成15点直接伤害（无视护盾）
@@ -41,10 +41,6 @@ public class TrueCriminalPower : ManosabaPowerTemplate
                         ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
                 }
             }
-        }
-        else
-        {
-            _consecutiveCount = 0;
         }
     }
 }

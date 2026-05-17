@@ -26,6 +26,8 @@ public sealed class GuardOneEvent : ModEventTemplate
         return false;
     }
 
+    public override bool IsShared => true;
+
     protected override IReadOnlyList<EventOption> GenerateInitialOptions() =>
     [
         new EventOption(this, ChoosePower, InitialOptionKey("POWER")),
@@ -84,7 +86,6 @@ public sealed class GuardOneEvent : ModEventTemplate
             if (runState == null) return;
 
             var encounter = ModelDb.Get<GuardOneEncounter>();
-
             MapCmd.SetBossEncounter(runState, encounter);
         }
         catch (Exception ex)

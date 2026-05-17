@@ -13,11 +13,13 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MinionLib.RightClick;
+using MinionLib.RightClick.Easy;
 
 namespace ManosabaLin.Characters.Hiro.Relics;
 
 [RegisterRelic(typeof(HiroRelicPool))]
-public sealed class Magicsniperrifle : ManosabaRelicTemplate
+public sealed class Magicsniperrifle : ManosabaRelicTemplate, IEasyRightClickableRelic
 {
     public const int MaxCounters = 6;
     private int _counters;
@@ -65,5 +67,10 @@ public sealed class Magicsniperrifle : ManosabaRelicTemplate
 
         var bullet = Owner.Creature.CombatState.CreateCard<BulletCard>(Owner);
         await CardPileCmd.AddGeneratedCardToCombat(bullet, PileType.Hand, Owner);
+    }
+
+    public async Task OnRightClick(PlayerChoiceContext choiceContext, RightClickContext clickContext)
+    {
+        // TODO: 实现效果
     }
 }

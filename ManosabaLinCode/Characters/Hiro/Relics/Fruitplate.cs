@@ -3,6 +3,7 @@ using ManosabaLin.Characters.Hiro.Enchantments;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Enchantments;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Threading.Tasks;
@@ -16,6 +17,15 @@ public sealed class Fruitplate : ManosabaRelicTemplate
     public override RelicRarity Rarity => RelicRarity.Ancient;
 
     public override bool HasUponPickupEffect => true;
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips
+    {
+        get
+        {
+            foreach (var tip in HoverTipFactory.FromEnchantment<Emaapple>())
+                yield return tip;
+        }
+    }
 
     public override async Task AfterObtained()
     {

@@ -1,10 +1,10 @@
 ﻿{
-  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.title": "守卫的试炼",
-  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.description": "在火堆旁，你遇到了一位神秘的守卫。他提出了两个试炼：",
-  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.POWER.title": "接受力量试炼",
-  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.POWER.description": "获得13点血量上限，升级一张卡，但Boss将被替换为守卫",
-  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.title": "接受治愈试炼",
-  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.description": "回复13血量，升级一张卡",
-  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.OPTION_POWER.description": "你接受了力量试炼。血量上限提升，卡牌已升级。但前方的Boss已被替换...",
-  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.OPTION_HEAL.description": "你接受了治愈试炼。血量回复，卡牌已升级。"
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.title": "谁人的幻象",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.description": "[jitter][b]火焰在眼前扭曲，空气中弥漫着铁锈与墨水的味道。[/b][/jitter]\n火堆不再是火堆——它裂开了一道缝隙。缝隙那边，有什么[jitter][b]东西[/b][/jitter]在看着你。\n一个[jitter][color=#cccccc]【声音】[/color][/jitter]从深处传来，像是在宣读判决：\n[jitter][color=#cccccc]「你来了。那么，魔女审判就此开始」[/color][/jitter]",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.POWER.title": "深入回想",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.POWER.description": "你向前一步。那个[jitter][color=#cccccc]【声音】[/color][/jitter]笑了。你感到某种力量涌入身体，但你知道——前方的敌人不再是你以为的那个\n获得13点血量上限，升级一张卡，但Boss将被替换",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.title": "惊醒退离",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.description": "你退后了。裂隙中传来一声[jitter][color=#cccccc]【轻叹】[/color][/jitter]。伤口的疼痛减轻了，但那个[jitter][color=#cccccc]【声音】[/color][/jitter]在你脑海中挥之不去\n回复13血量，升级一张卡",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.OPTION_POWER.description": "裂隙在你身后合拢。你感觉身体变轻了，但心脏却更沉重了。前方的塔顶，等待你的不再是普通的怪物。那个[jitter][color=#cccccc]【声音】[/color][/jitter]在你耳边低语：\n[jitter][color=#cccccc]「来吧，[/color][/jitter][b][color=#ff99cc]魔女[/color][/b][jitter][color=#cccccc]。我在终点等你」[/color][/jitter]",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.OPTION_HEAL.description": "伤口奇迹般地愈合了，但你的手指在颤抖。你低头看着自己的手，发现自己握着一支[b][color=#CC6666]笔[/color][/b]。那是谁给你的？你不知道。火堆恢复了原样。但你知道，这绝不是最后一次见到那幕[b]幻象[/b]"
 }

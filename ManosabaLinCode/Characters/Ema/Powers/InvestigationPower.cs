@@ -26,15 +26,16 @@ public class InvestigationPower : ManosabaPowerTemplate
         var drawPile = PileType.Draw.GetPile(player).Cards;
         if (drawPile.Count == 0) return;
 
-       var topCard = drawPile.Last();
-       var prefs = new CardSelectorPrefs(
-           new LocString("ui", "Choose"), 0, 1);
-       var selected = await CardSelectCmd.FromSimpleGrid(
-           choiceContext, new[] { topCard }, player, prefs);
+        var topCard = drawPile.Last();
+        var prefs = new CardSelectorPrefs(
+            new LocString("card_selection", "TO_DISCARD"), 0, 1);
+        var selected = await CardSelectCmd.FromSimpleGrid(
+            choiceContext, new[] { topCard }, player, prefs);
+
+        // 选了才弃掉，没选就不变（卡牌留在抽牌堆顶）
+        if (selected != null && selected.Any())
         {
-            // 弃掉
             await CardPileCmd.Add(topCard, PileType.Discard);
         }
-        // 选了就是放回（已经在抽牌堆）
     }
 }

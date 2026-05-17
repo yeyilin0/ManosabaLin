@@ -3,6 +3,7 @@ using ManosabaLin.Characters.Hiro.Cards;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,6 +16,11 @@ public sealed class Ritualsword : ManosabaRelicTemplate
     public override RelicRarity Rarity => RelicRarity.Ancient;
 
     public override bool HasUponPickupEffect => true;
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips
+    {
+        get { yield return HoverTipFactory.FromCard<Witchrestceremony>(); }
+    }
 
     public override async Task AfterObtained()
     {

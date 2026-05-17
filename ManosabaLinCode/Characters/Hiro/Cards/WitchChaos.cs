@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Linq;
+using ManosabaLin.Characters.Ema.Powers;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -25,7 +26,7 @@ public sealed class WitchChaos : ManosabaCardTemplate
     [
         typeof(MllmPower), typeof(MgmPower), typeof(XlmPower), typeof(HnmPower),
         typeof(NymPower), typeof(KkmPower), typeof(NyxmPower), typeof(AmmPower), typeof(YlsmPower),
-        typeof(HiroMagicRevivePower)
+        typeof(HiroMagicRevivePower),typeof(MlyPower)
     ];
 
     public WitchChaos() : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies) { }
@@ -105,6 +106,8 @@ public sealed class WitchChaos : ManosabaCardTemplate
             await PowerCmd.Apply<YlsmPower>(choiceContext, target, amount, source.Owner.Creature, source, false);
         else if (powerType == typeof(HiroMagicRevivePower))
             await PowerCmd.Apply<HiroMagicRevivePower>(choiceContext, target, amount, source.Owner.Creature, source, false);
+        else if (powerType == typeof(MlyPower))
+            await PowerCmd.Apply<MlyPower>(choiceContext, target, amount, source.Owner.Creature, source, false);
     }
 
     protected override void OnUpgrade()

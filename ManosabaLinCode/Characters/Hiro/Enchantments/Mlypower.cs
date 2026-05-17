@@ -18,7 +18,7 @@ public class Mlypower : ModEnchantmentTemplate
     public override bool HasExtraCardText => true;
 
     public override EnchantmentAssetProfile AssetProfile => new(
-        IconPath: "res://ManosabaLin/images/enchantments/hand_swap_curse.png"
+        IconPath: "res://ManosabaLin/images/enchantments/mlypower.png"
     );
 
     public override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)

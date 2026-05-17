@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://dsqbaobaalj81"]
 
-[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Emalin/EmalinBg.png" id="1"]
-[ext_resource type="PackedScene" path="res://ManosabaLin/scenes/selection_reticle.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://rdvmaotng22j" path="res://ManosabaLin/images/characters/Emalin/EmalinRest.png" id="1_jbl1i"]
+[ext_resource type="PackedScene" uid="uid://mtrlxduupxi0" path="res://ManosabaLin/scenes/selection_reticle.tscn" id="2"]
 
 [node name="EmalinRestSite" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-2.0720212, 22.409128)
-scale = Vector2(0.2562792, 0.2461375)
-texture = ExtResource("1")
+position = Vector2(-33.71527, 10.812681)
+scale = Vector2(0.4536133, 0.45548528)
+texture = ExtResource("1_jbl1i")
 
 [node name="ControlRoot" type="Control" parent="."]
 unique_name_in_owner = true

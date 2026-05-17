@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
-/// <summary>手枪 - 2费技能, 赞同附魔, 一名同伴3力量, 4格挡, 升级各+2</summary>
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class Pistol : ManosabaEmalinCardTemplate
 {
@@ -34,14 +33,16 @@ public sealed class Pistol : ManosabaEmalinCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        var allies = CombatState.Allies.Where(a => a is { IsAlive: true } && a != Owner.Creature).ToList();
-        if (allies.Count > 0)
-        {
-            var target = Owner.RunState.Rng.CombatTargets.NextItem(allies);
-            await PowerCmd.Apply<StrengthPower>(choiceContext, target, DynamicVars["StrengthPower"].BaseValue, Owner.Creature, this);
-        }
+        var creature = Owner.Creature;
+        var allies = CombatState.Allies.Where(a => a is { IsAlive: true } && a != creature).ToList();
 
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+        // 多人时选队友，单人默认自己
+        var target = allies.Count > 0
+            ? Owner.RunState.Rng.CombatTargets.NextItem(allies)
+            : creature;
+
+        await PowerCmd.Apply<StrengthPower>(choiceContext, target, DynamicVars["StrengthPower"].BaseValue, creature, this);
+        await CreatureCmd.GainBlock(creature, DynamicVars.Block, cardPlay);
     }
 
     protected override void OnUpgrade()

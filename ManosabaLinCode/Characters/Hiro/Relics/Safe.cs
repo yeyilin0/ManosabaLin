@@ -1,7 +1,9 @@
 using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Relics;
+using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Events;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -20,8 +22,15 @@ public sealed class Safe : ManosabaRelicTemplate
 
     private static IEnumerable<RelicModel> GetValidRelics(IRunState state)
     {
-        return ModelDb.AllRelics
-            .Where(r => r.IsAllowed(state) && r is not Safe);
+        var orobasOptions = ModelDb.Event<Orobas>().AllPossibleOptions
+            .Where(o => o.Relic != null && o.Relic.IsAllowed(state) && !(o.Relic is Safe));
+        var paelOptions = ModelDb.Event<Pael>().AllPossibleOptions
+            .Where(o => o.Relic != null && o.Relic.IsAllowed(state) && !(o.Relic is Safe));
+        var tezcataraOptions = ModelDb.Event<Tezcatara>().AllPossibleOptions
+            .Where(o => o.Relic != null && o.Relic.IsAllowed(state) && !(o.Relic is Safe));
+
+        return orobasOptions.Concat(paelOptions).Concat(tezcataraOptions)
+            .Select(o => o.Relic).OfType<RelicModel>();
     }
 
     public override async Task AfterObtained()
@@ -37,11 +46,12 @@ public sealed class Safe : ManosabaRelicTemplate
             .ToList();
 
         var rewards = selectedRelics
-            .Select(r => (Reward)new RelicReward(r.ToMutable(), relic.Owner))
+            .Select(r => (Reward)new RelicReward(r, relic.Owner))
             .ToList();
 
         await new RewardsSet(relic.Owner)
             .WithCustomRewards(rewards)
+            .WithSkippingDisallowed()
             .Offer();
     }
 }

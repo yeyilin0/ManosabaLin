@@ -23,17 +23,15 @@ public sealed class Bloodiedclothing : ManosabaRelicTemplate
     {
         var relic = this;
 
-        // 失去 26 最大生命上限
         await CreatureCmd.LoseMaxHp(
             new BlockingPlayerChoiceContext(),
             relic.Owner.Creature,
             MaxHpLoss,
             false);
 
-        // 使牌组里所有技能牌获得伶俐附魔
         var skillCards = PileType.Deck.GetPile(relic.Owner)
             .Cards
-            .Where(c => c.Type == CardType.Skill)
+            .Where(c => c.Type == CardType.Skill && c.Enchantment == null)
             .ToList();
 
         foreach (var card in skillCards)

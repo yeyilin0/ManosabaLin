@@ -6,8 +6,8 @@
         <ImplicitUsings>true</ImplicitUsings>
         <LangVersion>preview</LangVersion>
         <Nullable>enable</Nullable>
-        <AppOutputBase>$(MSBuildProjectDirectory)\</AppOutputBase>
-        <PathMap>$(AppOutputBase)=.\</PathMap>
+        <AppOutputBase>$(MSBuildProjectDirectory)/</AppOutputBase>
+        <PathMap>$(AppOutputBase)=./</PathMap>
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
         <RootNamespace>ManosabaLin</RootNamespace>
@@ -16,14 +16,18 @@
     <PropertyGroup>
         <GodotExportPreset>Windows Desktop</GodotExportPreset>
 
-        <ModOutputDir>$(Sts2Dir)\mods\$(MSBuildProjectName)\</ModOutputDir>
+        <ModOutputDir>$(Sts2Dir)/mods/$(MSBuildProjectName)/</ModOutputDir>
         <ModPckPath>$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
+
+        <ModsPath>$(Sts2Dir)/mods</ModsPath> <!-- 自动拷贝 MinionLib 到 mods 目录 -->
+        <RitsuLibDeployDir>$(Sts2Dir)/mods/RitsuLib</RitsuLibDeployDir> <!-- 自动拷贝 RitsuLib 到 mods 目录 -->
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <!--        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />-->
-        <PackageReference Include="STS2.RitsuLib" Version="0.2.31" />
+        <PackageReference Include="STS2.RitsuLib" Version="0.2.32" PrivateAssets="All"/>
+        <PackageReference Include="FuYnAloft.Sts2.MinionLib.RitsuAdapters" Version="0.4.1" PrivateAssets="All"/>
     </ItemGroup>
 
     <ItemGroup>

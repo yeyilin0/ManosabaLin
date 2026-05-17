@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://cnrokp80feede"]
 
-[ext_resource type="Texture2D" uid="uid://cited8os1ltgy" path="res://ManosabaLin/images/characters/Emalin/emalin_char_select.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://u5cmc4oxjuol" path="res://ManosabaLin/images/characters/Emalin/EmalinThink.png" id="1_sv1bb"]
 
 [node name="EmalinMerchant" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-3.7025144, -276.29605)
-scale = Vector2(0.41796878, 0.4123749)
-texture = ExtResource("1")
+position = Vector2(-7, -264)
+scale = Vector2(0.39105225, 0.39390057)
+texture = ExtResource("1_sv1bb")
