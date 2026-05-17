@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ManosabaLin.Characters.Hiro.Cards;
+using ManosabaLin.Characters.Hiro.Events;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ascension;
@@ -9,10 +7,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
@@ -214,5 +214,14 @@ public sealed class GuardOneMonster : ModMonsterTemplate
             .WithHitFx("vfx/vfx_attack_blunt")
             .WithHitCount(2)
             .Execute(null);
+    }
+
+    public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
+    {
+        if (creature == Creature)
+        {
+            RunManager.Instance.State?.Acts.ElementAtOrDefault(2)?._rooms.Ancient = ModelDb.AncientEvent<WitchoftheIsland>();
+        }
+        return Task.CompletedTask;
     }
 }
