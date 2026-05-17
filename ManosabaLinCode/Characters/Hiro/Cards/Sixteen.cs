@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -27,7 +28,7 @@ public sealed class Sixteen() : ManosabaCardTemplate(1, CardType.Attack, CardRar
         get { yield return HoverTipFactory.FromPower<SuspectPower>(); }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var target = cardPlay.Target;
@@ -53,9 +54,8 @@ public sealed class Sixteen() : ManosabaCardTemplate(1, CardType.Attack, CardRar
         );
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         // 升级：伤害 +3（8 → 11）
         DynamicVars.Damage.BaseValue += 3;
     }

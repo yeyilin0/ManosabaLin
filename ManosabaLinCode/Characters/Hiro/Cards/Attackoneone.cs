@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Common.HiroKeywords;
@@ -78,7 +79,7 @@ public sealed class Attackoneone : ManosabaCardTemplate
         new IntVar("PerjuryIncrease", CurrentPerjury)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var target = cardPlay.Target;
@@ -114,7 +115,7 @@ public sealed class Attackoneone : ManosabaCardTemplate
             deckVersion.BuffFromPlay(damageIncrease, perjuryIncrease);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars["Increase"].UpgradeValueBy(1);
         DynamicVars["PerjuryIncrease"].UpgradeValueBy(1);

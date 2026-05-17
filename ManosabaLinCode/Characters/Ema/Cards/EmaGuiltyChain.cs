@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Emalin;
@@ -17,7 +18,7 @@ public sealed class EmaGuiltyChain() : ManosabaEmalinCardTemplate(1, CardType.Po
         get { yield return HoverTipFactory.FromPower<GuiltyChainPower>(); }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 

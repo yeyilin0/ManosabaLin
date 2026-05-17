@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -27,7 +28,7 @@ public sealed class Witchrestceremony() : ManosabaCardTemplate(3, CardType.Power
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -50,7 +51,7 @@ public sealed class Witchrestceremony() : ManosabaCardTemplate(3, CardType.Power
         );
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars["RitualCeremonyPower"].UpgradeValueBy(1m);
         DynamicVars["WithPower"].UpgradeValueBy(50m);

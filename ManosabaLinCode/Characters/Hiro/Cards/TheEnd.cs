@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Extensions;
@@ -32,7 +33,7 @@ public sealed class TheEnd : ManosabaCardTemplate
 
     [SavedProperty] public bool HasBeenPlayed { get; set; }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -55,7 +56,7 @@ public sealed class TheEnd : ManosabaCardTemplate
         HasBeenPlayed = true;
     }
 
-    public override async Task AfterCombatEnd(CombatRoom _)
+    protected override async Task AfterCombatEnd(CombatRoom _, ComponentContext componentContext)
     {
         var source = this;
 
@@ -68,7 +69,7 @@ public sealed class TheEnd : ManosabaCardTemplate
                 await CardPileCmd.RemoveFromDeck(card);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1);
     }

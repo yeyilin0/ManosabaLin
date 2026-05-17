@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Emalin;
@@ -31,11 +32,11 @@ public sealed class EmaEight() : ManosabaEmalinCardTemplate(1, CardType.Skill, C
         get { yield return HoverTipFactory.FromPower<SuspectPower>(); }
     }
 
-    protected override bool IsPlayable
+    protected override bool IsPlayableC
     {
         get
         {
-            if (!base.IsPlayable)
+            if (!base.IsPlayableC)
                 return false;
 
             var suspectPower = Owner.Creature.GetPower<SuspectPower>();
@@ -45,7 +46,7 @@ public sealed class EmaEight() : ManosabaEmalinCardTemplate(1, CardType.Skill, C
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -66,9 +67,8 @@ public sealed class EmaEight() : ManosabaEmalinCardTemplate(1, CardType.Skill, C
         await CreatureCmd.GainBlock(source.Owner.Creature, source.DynamicVars.Block, cardPlay);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         DynamicVars.Block.BaseValue += 3;
     }
 }

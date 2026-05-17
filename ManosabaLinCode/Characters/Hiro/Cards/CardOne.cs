@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -33,7 +34,7 @@ public sealed class CardOne() : ManosabaCardTemplate(1, CardType.Skill, CardRari
         new PowerVar<PerjuryPower>(2m)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var cardSource = this;
 
@@ -60,9 +61,8 @@ public sealed class CardOne() : ManosabaCardTemplate(1, CardType.Skill, CardRari
         if (card != null) await CardPileCmd.Add(card, PileType.Hand);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         DynamicVars["PerjuryPower"].UpgradeValueBy(1m);
         RemoveKeyword(CardKeyword.Exhaust);
     }

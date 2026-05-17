@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -22,7 +23,7 @@ public sealed class CardSixtyNine() : ManosabaCardTemplate(0, CardType.Skill, Ca
     protected override IEnumerable<string> RegisteredKeywordIds =>
         [TransmigrationRules.TransmigrationKeywordId];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -38,9 +39,8 @@ public sealed class CardSixtyNine() : ManosabaCardTemplate(0, CardType.Skill, Ca
         source.RemoveModKeyword(TransmigrationRules.TransmigrationKeywordId);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         DynamicVars.Cards.UpgradeValueBy(1m);
         DynamicVars.Energy.UpgradeValueBy(1m);
     }

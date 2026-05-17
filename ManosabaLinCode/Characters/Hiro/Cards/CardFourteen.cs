@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -35,11 +36,11 @@ public sealed class CardFourteen() : ManosabaCardTemplate(0, CardType.Attack, Ca
     }
 
     // 控制卡牌是否可打出
-    protected override bool IsPlayable
+    protected override bool IsPlayableC
     {
         get
         {
-            if (!base.IsPlayable)
+            if (!base.IsPlayableC)
                 return false;
 
             var justicePower = Owner.Creature.GetPower<JusticePower>();
@@ -49,7 +50,7 @@ public sealed class CardFourteen() : ManosabaCardTemplate(0, CardType.Attack, Ca
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
@@ -84,7 +85,7 @@ public sealed class CardFourteen() : ManosabaCardTemplate(0, CardType.Attack, Ca
         );
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Damage.UpgradeValueBy(11m); // 伤害 33 → 44
     }

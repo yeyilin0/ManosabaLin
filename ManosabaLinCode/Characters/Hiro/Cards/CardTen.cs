@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -21,7 +22,7 @@ public class CardTen() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Comm
         new PowerVar<PerjuryPower>(2m)
     ];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         // 第一步：获得格挡
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
@@ -36,7 +37,7 @@ public class CardTen() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Comm
         );
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Block.UpgradeValueBy(3m);
         DynamicVars["PerjuryPower"].UpgradeValueBy(1m);

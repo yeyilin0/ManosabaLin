@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.ManosabaLinCode.Characters.Hiro.Powers;
@@ -38,7 +39,7 @@ public sealed class WitchChaos : ManosabaCardTemplate
     ];
 
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var rng = source.Owner.RunState.Rng;
@@ -110,7 +111,7 @@ public sealed class WitchChaos : ManosabaCardTemplate
             await PowerCmd.Apply<MlyPower>(choiceContext, target, amount, source.Owner.Creature, source, false);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars["HitCount"].UpgradeValueBy(13m); 
         EnergyCost.UpgradeBy(1);

@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -24,7 +25,7 @@ public sealed class Theswaplie : ManosabaEmalinCardTemplate
         new IntVar("TransformCount", 1)
     ];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -59,7 +60,7 @@ public sealed class Theswaplie : ManosabaEmalinCardTemplate
         }
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars["TransformCount"].UpgradeValueBy(1);
     }

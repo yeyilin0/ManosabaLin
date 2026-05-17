@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -41,7 +42,7 @@ public sealed class Error : ManosabaCardTemplate
         }
     }
 
-    public override Task AfterCardEnteredCombat(CardModel card)
+    protected override Task AfterCardEnteredCombat(CardModel card, ComponentContext componentContext)
     {
         if (card != this || IsClone)
             return Task.CompletedTask;
@@ -51,7 +52,7 @@ public sealed class Error : ManosabaCardTemplate
         return Task.CompletedTask;
     }
 
-    public override Task BeforeCardPlayed(CardPlay cardPlay)
+    protected override Task BeforeCardPlayed(CardPlay cardPlay, ComponentContext componentContext)
     {
         if (cardPlay.Card == this)
             return Task.CompletedTask;
@@ -73,7 +74,7 @@ public sealed class Error : ManosabaCardTemplate
         DynamicVars["ErrorHandAttackCount"].BaseValue = _handAttackCount;
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var target = cardPlay.Target;
@@ -94,7 +95,7 @@ public sealed class Error : ManosabaCardTemplate
         }
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1);
     }

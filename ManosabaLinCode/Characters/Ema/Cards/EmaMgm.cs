@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -35,7 +36,7 @@ public sealed class EmaMgm : ManosabaEmalinCardTemplate
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -54,9 +55,8 @@ public sealed class EmaMgm : ManosabaEmalinCardTemplate
         await CreatureCmd.GainBlock(source.Owner.Creature, source.DynamicVars.Block, cardPlay);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         DynamicVars["SuspectPower"].BaseValue = 2m;
         DynamicVars["MgmPower"].BaseValue = 2m;
         DynamicVars.Block.BaseValue = 10m;

@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Cards;
 using ManosabaLin.Characters.Emalin;
@@ -29,7 +30,7 @@ public sealed class EmaSeven() : ManosabaEmalinCardTemplate(1, CardType.Skill, C
         new CardsVar(3)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var target = cardPlay.Target ?? source.Owner.Creature;
@@ -45,7 +46,7 @@ public sealed class EmaSeven() : ManosabaEmalinCardTemplate(1, CardType.Skill, C
         }
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
     }
 }

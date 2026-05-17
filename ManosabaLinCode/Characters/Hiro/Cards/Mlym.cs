@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using ManosabaLin.Characters.Emalin.Enchantments;
@@ -44,7 +45,7 @@ public sealed class Mlym : ManosabaCardTemplate
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         if (cardPlay.Target == null) return;
 
@@ -99,7 +100,7 @@ public sealed class Mlym : ManosabaCardTemplate
     
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1);
         RemoveKeyword(CardKeyword.Exhaust);

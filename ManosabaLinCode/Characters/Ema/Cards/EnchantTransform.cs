@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using ManosabaLin.Characters.Emalin.Enchantments;
@@ -19,7 +20,7 @@ public sealed class EnchantTransform : ManosabaEmalinCardTemplate
 {
     public EnchantTransform() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var owner = Owner;
 

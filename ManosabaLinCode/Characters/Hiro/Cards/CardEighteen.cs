@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -29,11 +30,11 @@ public sealed class CardEighteen() : ManosabaCardTemplate(0, CardType.Skill, Car
     }
 
     // 控制卡牌是否可打出
-    protected override bool IsPlayable
+    protected override bool IsPlayableC
     {
         get
         {
-            if (!base.IsPlayable)
+            if (!base.IsPlayableC)
                 return false;
 
             var perjuryPower = Owner.Creature.GetPower<PerjuryPower>();
@@ -43,7 +44,7 @@ public sealed class CardEighteen() : ManosabaCardTemplate(0, CardType.Skill, Car
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -68,13 +69,13 @@ public sealed class CardEighteen() : ManosabaCardTemplate(0, CardType.Skill, Car
     }
 
     // 返回手牌而不是弃牌堆
-    protected override PileType GetResultPileTypeForCardPlay()
+    protected override PileType GetResultPileTypeForCardPlayC()
     {
-        var resultPileType = base.GetResultPileTypeForCardPlay();
+        var resultPileType = base.GetResultPileTypeForCardPlayC();
         return resultPileType != PileType.Discard ? resultPileType : PileType.Hand;
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Block.UpgradeValueBy(3m); // 格挡 8 → 11
     }

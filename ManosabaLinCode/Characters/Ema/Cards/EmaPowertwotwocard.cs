@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Emalin;
@@ -30,18 +31,18 @@ public sealed class EmaPowertwotwocard() : ManosabaEmalinCardTemplate(2, CardTyp
         }
     }
 
-    protected override bool IsPlayable
+    protected override bool IsPlayableC
     {
         get
         {
-            if (!base.IsPlayable) return false;
+            if (!base.IsPlayableC) return false;
 
             var with = Owner.Creature.GetPower<WithPower>();
             return (with?.Amount ?? 0) >= RequiredWithAmount;
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -52,9 +53,8 @@ public sealed class EmaPowertwotwocard() : ManosabaEmalinCardTemplate(2, CardTyp
         );
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         DynamicVars["RitualCeremonyPower"].UpgradeValueBy(1m);
     }
 }

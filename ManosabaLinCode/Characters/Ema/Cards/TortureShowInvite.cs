@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -26,7 +27,7 @@ public sealed class TortureShowInvite : ManosabaEmalinCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(4m, ValueProp.Move)];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         foreach (var ally in CombatState.Allies.Where(a => a is { IsAlive: true }))
             await CreatureCmd.GainBlock(ally, 4m, ValueProp.Move, cardPlay);
@@ -38,7 +39,7 @@ public sealed class TortureShowInvite : ManosabaEmalinCardTemplate
                 await CreatureCmd.GainBlock(ally, 4m, ValueProp.Move, cardPlay);
         }
     }
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Block.UpgradeValueBy(4m);
     }

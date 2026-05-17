@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -27,7 +28,7 @@ public sealed class Threehiro : ManosabaCardTemplate
     protected override IEnumerable<string> RegisteredKeywordIds =>
         new[] { Transmigration3Rules.Transmigration3KeywordId };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var owner = source.Owner;
@@ -81,7 +82,7 @@ public sealed class Threehiro : ManosabaCardTemplate
         if (node != null) node.UpdateVisuals(card.Pile?.Type ?? PileType.Hand, CardPreviewMode.Normal);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1);
     }

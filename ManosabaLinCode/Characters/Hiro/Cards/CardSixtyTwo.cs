@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -22,7 +23,7 @@ public class CardSixtyTwo() : ManosabaCardTemplate(1, CardType.Attack, CardRarit
 
     protected override IEnumerable<string> RegisteredKeywordIds => [TransmigrationRules.TransmigrationKeywordId];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
@@ -33,9 +34,8 @@ public class CardSixtyTwo() : ManosabaCardTemplate(1, CardType.Attack, CardRarit
             .Execute(choiceContext);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
-        base.OnUpgrade();
         // 升级：伤害 +3
         DynamicVars.Damage.BaseValue += 3; // 4 → 7
     }

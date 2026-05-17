@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Combat;
@@ -41,7 +42,7 @@ public sealed class Attacktwotwo() : ManosabaCardTemplate(0, CardType.Attack, Ca
         })
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         var hits = (int)((CalculatedVar)source.DynamicVars["CalculatedHits"]).Calculate(cardPlay.Target);
@@ -54,7 +55,7 @@ public sealed class Attacktwotwo() : ManosabaCardTemplate(0, CardType.Attack, Ca
             .Execute(choiceContext);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Damage.UpgradeValueBy(1m);
     }

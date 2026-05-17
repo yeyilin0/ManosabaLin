@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -28,7 +29,7 @@ public sealed class Friend() : ManosabaCardTemplate(1, CardType.Power, CardRarit
         }
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -56,7 +57,7 @@ public sealed class Friend() : ManosabaCardTemplate(1, CardType.Power, CardRarit
             await CardPileCmd.AddGeneratedCardToCombat(chosen, PileType.Hand, source.Owner, CardPilePosition.Bottom);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
     }
 }

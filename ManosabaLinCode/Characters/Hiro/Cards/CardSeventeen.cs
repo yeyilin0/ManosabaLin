@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -26,7 +27,7 @@ public class CardSevenTeen : ManosabaCardTemplate
         new PowerVar<JusticePower>(1m)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
@@ -41,12 +42,12 @@ public class CardSevenTeen : ManosabaCardTemplate
         if (IsUpgraded) await PlayerCmd.GainEnergy(1m, source.Owner);
     }
 
-    public override async Task AfterPowerAmountChanged(
+    protected override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext, // ★ 新增
         PowerModel power,
         decimal amountChanged,
         Creature? applier,
-        CardModel? cardSource)
+        CardModel? cardSource, ComponentContext componentContext)
     {
         var source = this;
 
@@ -74,7 +75,7 @@ public class CardSevenTeen : ManosabaCardTemplate
         for (var i = 0; i < triggerCount; i++) await CardPileCmd.Add(source, PileType.Hand);
     }
 
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    protected override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player, ComponentContext componentContext)
     {
         var source = this;
         if (player != source.Owner)
@@ -84,7 +85,7 @@ public class CardSevenTeen : ManosabaCardTemplate
         await Task.CompletedTask;
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
     }
 }

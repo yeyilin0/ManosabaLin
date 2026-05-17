@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.Powers;
 using ManosabaLin.Characters.Ema.Powers;
@@ -31,7 +32,7 @@ public sealed class SubstituteCost : ManosabaEmalinCardTemplate
         new IntVar("GainEnergy", 1)
     };
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var owner = Owner;
         var creature = owner.Creature;
@@ -56,7 +57,7 @@ public sealed class SubstituteCost : ManosabaEmalinCardTemplate
         }
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars["GainEnergy"].UpgradeValueBy(1);
     }

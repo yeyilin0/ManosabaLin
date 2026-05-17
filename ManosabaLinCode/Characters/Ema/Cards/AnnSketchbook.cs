@@ -1,3 +1,4 @@
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -23,7 +24,7 @@ public sealed class AnnSketchbook : ManosabaEmalinCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(3)];
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var drawPile = PileType.Draw.GetPile(Owner).Cards.ToList();
         var lookCount = DynamicVars.Cards.IntValue;
@@ -37,7 +38,7 @@ public sealed class AnnSketchbook : ManosabaEmalinCardTemplate
             await CardPileCmd.Add(card, PileType.Hand);
     }
 
-    protected override void OnUpgrade()
+    protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Cards.UpgradeValueBy(1);
     }

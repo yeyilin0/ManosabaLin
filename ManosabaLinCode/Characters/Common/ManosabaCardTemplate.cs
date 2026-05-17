@@ -1,6 +1,7 @@
 ﻿using Godot;
 using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MinionLib.RitsuAdapters;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace ManosabaLin.Characters.Common;
@@ -11,7 +12,7 @@ public abstract class ManosabaCardTemplate(
     CardRarity rarity,
     TargetType targetType,
     bool shouldShowInCardLibrary = true)
-    : ModCardTemplate(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
+    : ModComponentsCardTemplate(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
 {
     public override CardAssetProfile AssetProfile
     {
