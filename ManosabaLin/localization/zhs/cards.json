@@ -394,5 +394,7 @@
   "MANOSABA_LIN_CARD_EMA_ONE.title": "罪疑蚀骨",
   "MANOSABA_LIN_CARD_EMA_ONE.description": "使敌人获得{SuspectPower:diff()}层[b]【嫌疑】[/b]和虚弱",
   "MANOSABA_LIN_CARD_EMA_EIGHT.title": "脱罪",
-  "MANOSABA_LIN_CARD_EMA_EIGHT.description": "失去1层[b]【嫌疑】[/b]，获得{Block:diff()}点格挡"
+  "MANOSABA_LIN_CARD_EMA_EIGHT.description": "失去1层[b]【嫌疑】[/b]，获得{Block:diff()}点格挡",
+  "MANOSABA_LIN_CARD_MLYM.title": "佐伯米莉亚",
+  "MANOSABA_LIN_CARD_MLYM.description": "选择1个队友给予[color=#cc9966]【佐伯米莉亚的魔法】[/color]，交换你们的手牌然后给这些手牌附上[color=#cc9966]【魔法的遗症】[/color]"
 }

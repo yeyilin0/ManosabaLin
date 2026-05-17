@@ -13,5 +13,8 @@
   "MANOSABA_LIN_ENCHANTMENT_DOUBT.description": "记录本回合打出的带有[b][color=#cc9966]【疑问】[/color][/b]附魔的卡牌数量。\n每回合重置",
   "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.title": "魔女化",
   "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.extraCardText": "打出此牌时再自动打出一次",
-  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.description": "打出此牌时再自动打出一次"
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.description": "打出此牌时再自动打出一次",
+  "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.title": "魔法的遗症",
+  "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.exrtaCardText": "",
+  "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.description": "当你打出时受到一点伤害"
 }
