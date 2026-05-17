@@ -2,6 +2,7 @@ using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -21,7 +22,7 @@ public sealed class BulletCard() : ManosabaCardTemplate(0, CardType.Attack, Card
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(8m, ValueProp.Move),
+        new DamageVar(13m, ValueProp.Move),
         new CardsVar(1)
     };
 
@@ -38,10 +39,9 @@ public sealed class BulletCard() : ManosabaCardTemplate(0, CardType.Attack, Card
             .Execute(choiceContext);
 
         await CardPileCmd.Draw(choiceContext, source.DynamicVars.Cards.BaseValue, source.Owner);
+
+        PlayerCmd.GainEnergy(1m, source.Owner);
     }
 
-    protected override void OnUpgrade()
-    {
-        DynamicVars.Damage.UpgradeValueBy(3m);
-    }
+   
 }

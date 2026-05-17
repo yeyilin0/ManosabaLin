@@ -3,6 +3,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Linq;
@@ -22,11 +23,17 @@ public sealed class PrisonBlueprint : ManosabaEmalinCardTemplate
     protected override IEnumerable<string> RegisteredKeywordIds =>
         new[] { EmalinKeywordRules.AgreeKeywordId };
 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips
+    {
+        get { yield return HoverTipFactory.FromPower<PrisonBlueprintPower>(); }
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<PrisonBlueprintPower>(
             choiceContext, Owner.Creature, 1m, Owner.Creature, this);
     }
+
     protected override void OnUpgrade()
     {
         EnergyCost.UpgradeBy(-1);

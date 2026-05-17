@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0uu372jai7qj"
-path="res://.godot/imported/emaeight.png-bc96ba24ae16c0a283f332ca89287275.ctex"
+uid="uid://bqq2dtbxc2e3f"
+path="res://.godot/imported/powerfourfour.png-b8342d0e08c99547a520e3cf357a80de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/cards/big/emaeight.png"
-dest_files=["res://.godot/imported/emaeight.png-bc96ba24ae16c0a283f332ca89287275.ctex"]
+source_file="res://ManosabaLin/images/powers/big/powerfourfour.png"
+dest_files=["res://.godot/imported/powerfourfour.png-b8342d0e08c99547a520e3cf357a80de.ctex"]
 
 [params]
 

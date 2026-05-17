@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Rooms;
@@ -47,6 +48,11 @@ public sealed class Magicsniperrifle : ManosabaRelicTemplate, IEasyRightClickabl
         get { yield return new CardsVar(MaxCounters); }
     }
 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips
+    {
+        get { yield return HoverTipFactory.FromCard<BulletCard>(); }
+    }
+
     public override Task AfterRoomEntered(AbstractRoom room)
     {
         if (Counters < MaxCounters)
@@ -57,9 +63,8 @@ public sealed class Magicsniperrifle : ManosabaRelicTemplate, IEasyRightClickabl
         return Task.CompletedTask;
     }
 
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    public async Task OnRightClick(PlayerChoiceContext choiceContext, RightClickContext clickContext)
     {
-        if (player != Owner) return;
         if (Counters <= 0) return;
 
         Counters--;
@@ -67,10 +72,5 @@ public sealed class Magicsniperrifle : ManosabaRelicTemplate, IEasyRightClickabl
 
         var bullet = Owner.Creature.CombatState.CreateCard<BulletCard>(Owner);
         await CardPileCmd.AddGeneratedCardToCombat(bullet, PileType.Hand, Owner);
-    }
-
-    public async Task OnRightClick(PlayerChoiceContext choiceContext, RightClickContext clickContext)
-    {
-        // TODO: 实现效果
     }
 }

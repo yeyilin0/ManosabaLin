@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0uu372jai7qj"
-path="res://.godot/imported/emaeight.png-bc96ba24ae16c0a283f332ca89287275.ctex"
+uid="uid://dyxyij7ekb8vi"
+path="res://.godot/imported/guiltychainpower.png-89c2024e76598744afd686966dae5384.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/cards/big/emaeight.png"
-dest_files=["res://.godot/imported/emaeight.png-bc96ba24ae16c0a283f332ca89287275.ctex"]
+source_file="res://ManosabaLin/images/powers/guiltychainpower.png"
+dest_files=["res://.godot/imported/guiltychainpower.png-89c2024e76598744afd686966dae5384.ctex"]
 
 [params]
 

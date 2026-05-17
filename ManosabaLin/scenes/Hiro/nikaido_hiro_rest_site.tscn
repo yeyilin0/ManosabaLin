@@ -1,14 +1,14 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://byrla6ejd67xp"]
 
-[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Hiro/NikaidoHiroRest.png" id="2"]
-[ext_resource type="PackedScene" path="res://ManosabaLin/scenes/selection_reticle.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://0613shbe4xcy" path="res://ManosabaLin/images/characters/Hiro/NikaidoHiroRest.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://mtrlxduupxi0" path="res://ManosabaLin/scenes/selection_reticle.tscn" id="3"]
 
 [node name="JogasakiNoaRestSite" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-2.0720212, 22.409128)
-scale = Vector2(0.2562792, 0.2461375)
+position = Vector2(-18, 38.000008)
+scale = Vector2(0.47070313, 0.44661456)
 texture = ExtResource("2")
 
 [node name="ControlRoot" type="Control" parent="."]
