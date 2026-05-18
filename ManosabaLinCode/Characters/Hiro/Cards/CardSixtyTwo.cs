@@ -1,5 +1,5 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -21,7 +22,8 @@ public class CardSixtyTwo() : ManosabaCardTemplate(1, CardType.Attack, CardRarit
         new DamageVar(4m, ValueProp.Move)
     };
 
-    protected override IEnumerable<string> RegisteredKeywordIds => [TransmigrationRules.TransmigrationKeywordId];
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        [TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword()];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {

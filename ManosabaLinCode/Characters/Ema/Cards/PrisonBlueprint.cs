@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using STS2RitsuLib.Interop.AutoRegistration;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin;
+using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -16,8 +17,8 @@ public sealed class PrisonBlueprint : ManosabaEmalinCardTemplate
 {
     public PrisonBlueprint() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self) { }
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { EmalinKeywordRules.AgreeKeywordId };
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { EmalinKeywordRules.AgreeKeywordId.GetModCardKeyword() };
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

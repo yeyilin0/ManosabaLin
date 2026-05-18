@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -18,8 +19,8 @@ public sealed class ControlPanel : ManosabaEmalinCardTemplate
 {
     public ControlPanel() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { EmalinKeywordRules.DoubtKeywordId };
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { EmalinKeywordRules.DoubtKeywordId.GetModCardKeyword() };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(3)];
 

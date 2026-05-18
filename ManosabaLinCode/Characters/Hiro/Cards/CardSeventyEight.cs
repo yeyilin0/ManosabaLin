@@ -26,8 +26,8 @@ public class CardSeventyEight : ManosabaCardTemplate
         get { yield return new IntVar(GrantCountKey, IsUpgraded ? 2m : 1m); }
     }
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { TransmigrationRules.TransmigrationKeywordId };
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword() };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {

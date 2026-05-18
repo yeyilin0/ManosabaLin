@@ -10,6 +10,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -19,8 +20,8 @@ public sealed class SmallKey : ManosabaEmalinCardTemplate
 {
     public SmallKey() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { EmalinKeywordRules.DoubtKeywordId };
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { EmalinKeywordRules.DoubtKeywordId.GetModCardKeyword() };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(1)];
 

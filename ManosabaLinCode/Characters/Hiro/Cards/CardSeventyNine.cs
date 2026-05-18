@@ -26,8 +26,8 @@ public sealed class CardSeventyNine() : ManosabaCardTemplate(1, CardType.Skill, 
         new IntVar(GrantCountKey, 1)
     };
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { TransmigrationRules.TransmigrationKeywordId };
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword() };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {

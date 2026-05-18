@@ -11,6 +11,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -20,8 +21,8 @@ public sealed class NyxGun : ManosabaEmalinCardTemplate
 {
     public NyxGun() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { EmalinKeywordRules.RebuttalKeywordId };
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { EmalinKeywordRules.RebuttalKeywordId.GetModCardKeyword() };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(15m, ValueProp.Move)];
 

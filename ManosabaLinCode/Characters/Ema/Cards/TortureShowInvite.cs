@@ -11,6 +11,7 @@ using System.Linq;
 using ManosabaLin.Characters.Emalin;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -22,8 +23,8 @@ public sealed class TortureShowInvite : ManosabaEmalinCardTemplate
 
     public override bool GainsBlock => true;
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { EmalinKeywordRules.AgreeKeywordId };
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { EmalinKeywordRules.AgreeKeywordId.GetModCardKeyword() };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(4m, ValueProp.Move)];
 

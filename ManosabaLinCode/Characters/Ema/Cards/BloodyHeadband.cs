@@ -11,6 +11,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -22,8 +23,8 @@ public sealed class BloodyHeadband : ManosabaEmalinCardTemplate
 
     public override bool GainsBlock => true;
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { EmalinKeywordRules.AgreeKeywordId };
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { EmalinKeywordRules.AgreeKeywordId.GetModCardKeyword() };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

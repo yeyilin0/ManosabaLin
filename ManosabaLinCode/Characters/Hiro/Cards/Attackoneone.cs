@@ -1,5 +1,5 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -32,18 +32,17 @@ public sealed class Attackoneone : ManosabaCardTemplate
     {
     }
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get { yield return CardKeyword.Exhaust; }
-    }
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[]
+        {
+            CardKeyword.Exhaust,
+            TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword()
+        };
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
         get { yield return HoverTipFactory.FromPower<PerjuryPower>(); }
     }
-
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { TransmigrationRules.TransmigrationKeywordId };
 
     [SavedProperty]
     public int IncreasedDamage

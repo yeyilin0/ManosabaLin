@@ -10,6 +10,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using System.Linq;
 using ManosabaLin.Characters.Emalin;
 using System.Collections.Generic;
+using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -21,8 +22,8 @@ public sealed class Candle : ManosabaEmalinCardTemplate
 
     public override bool GainsBlock => true;
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { EmalinKeywordRules.AgreeKeywordId };
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { EmalinKeywordRules.AgreeKeywordId.GetModCardKeyword() };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => 
     [

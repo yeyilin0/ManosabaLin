@@ -1,5 +1,5 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -29,8 +29,8 @@ public sealed class CardSixty : ManosabaCardTemplate
         new DynamicVar(CopyCountKey, 1m)
     };
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { TransmigrationRules.TransmigrationKeywordId };
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword() };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {

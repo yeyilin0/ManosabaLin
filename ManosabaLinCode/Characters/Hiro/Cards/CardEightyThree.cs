@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -27,8 +28,8 @@ public class CardEightyThree : ManosabaCardTemplate
         new IntVar(DrawCountKey, 1)
     };
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { TransmigrationRules.TransmigrationKeywordId };
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword() };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {

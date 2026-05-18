@@ -1,5 +1,5 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
@@ -29,8 +29,8 @@ public sealed class CardSixtySeven : ManosabaCardTemplate
         new DynamicVar(SuspectAmountKey, 3m)
     };
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { "Retain" };
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { CardKeyword.Retain };
 
     protected override bool IsPlayableC
     {

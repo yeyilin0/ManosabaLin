@@ -1,5 +1,5 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Audio;
+using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using ManosabaLin.Characters.Hiro.Powers;
@@ -46,8 +46,8 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
         }
     }
 
-    protected override IEnumerable<string> RegisteredKeywordIds =>
-        new[] { HiroKeywordRules.HiroKeywordId };
+    public override IEnumerable<CardKeyword> CanonicalKeywords =>
+        new[] { HiroKeywordRules.HiroKeywordId.GetModCardKeyword() };
 
     public int CardsInHand
     {
