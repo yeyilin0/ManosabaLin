@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Combat.HealthBars;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -18,9 +19,23 @@ namespace ManosabaLin.Characters.Ema.Powers;
 public class EmaWitchFactorPower : ManosabaPowerTemplate, IHealthBarForecastSource
 {
     public override PowerType Type => PowerType.Debuff;
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Single;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
+
+    /// <summary>
+    /// 计算即死阈值：自身层数 + 灾厄层数（如果有）
+    /// </summary>
+    private int GetKillThreshold()
+    {
+        var doomAmount = Owner.GetPowerAmount<DoomPower>();
+        return Amount + doomAmount;
+    }
+
+    private bool ShouldDie()
+    {
+        return Owner.CurrentHp <= GetKillThreshold();
+    }
 
     public override async Task AfterDamageReceived(
         PlayerChoiceContext choiceContext,
@@ -31,8 +46,8 @@ public class EmaWitchFactorPower : ManosabaPowerTemplate, IHealthBarForecastSour
         CardModel? cardSource)
     {
         if (target != Owner) return;
-        if (Owner.CurrentHp > Amount) return;
         if (!Owner.IsAlive) return;
+        if (!ShouldDie()) return;
 
         // 直接击杀
         await CreatureCmd.Damage(choiceContext, Owner, Owner.CurrentHp,
@@ -43,7 +58,7 @@ public class EmaWitchFactorPower : ManosabaPowerTemplate, IHealthBarForecastSour
     public IEnumerable<HealthBarForecastSegment> GetHealthBarForecastSegments(HealthBarForecastContext context)
     {
         return HealthBarForecasts.Single(
-            context.Creature.GetPowerAmount<EmaWitchFactorPower>(),
+            GetKillThreshold(),
             new Color(1f, 0.6f, 0.8f), // #ff99cc
             HealthBarForecastGrowthDirection.FromLeft);
     }

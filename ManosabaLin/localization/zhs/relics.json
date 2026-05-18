@@ -48,6 +48,6 @@
   "MANOSABA_LIN_RELIC_EMA_WITCH_FACTOR.description": "当你打出攻击牌时获得15层[b]【魔女化】[/b]，当你打出技能或者能力牌时减少10层[b]【魔女化】[/b]",
   "MANOSABA_LIN_RELIC_EMA_WITCH_FACTOR.flavor": "魔女因子过度活跃时人会失去理智，变成怪物一样的存在，被视为必须消灭的危险个体",
   "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.title": "友人的遗物",
-  "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.description": "每场战斗开始时，根据关键词自动为卡牌附魔。每回合重置附魔计数器。",
+  "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.description": "战斗开始时，根据关键词为卡牌添加[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔。每回合重置附魔计数器。",
   "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.flavor": "[color=#CC6666]希罗[/color]死后剩下的钢笔，对[color=#ff99cc]艾玛[/color]来说有特殊意义"
 }

@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -18,7 +19,11 @@ public sealed class EmaWitchKillerCard : ManosabaEmalinCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
-        get { yield return HoverTipFactory.FromPower<EmaWitchKillerPower>(); }
+        get
+        {
+            yield return HoverTipFactory.FromPower<EmaWitchKillerPower>();
+            yield return HoverTipFactory.FromPower<EmaWitchFactorPower>();
+        }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
