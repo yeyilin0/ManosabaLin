@@ -415,5 +415,10 @@
   "MANOSABA_LIN_CARD_EMAWICHPOWER.description": "[color=#ff99cc][jitter]「我听到了一个声音，让我把魔女......大量屠杀」[/jitter][/color]\n100层[b]【魔女化】[/b]可用\n获得2层[b]【魔女仪式】[/b]，获得1层无实体，获得[purple]【死神形态】[/purple]",
   "MANOSABA_LIN_CARD_LAMORT.title": "死神",
   "MANOSABA_LIN_CARD_LAMORT.description": "[color=#ff99cc][jitter]「既没能帮助她，也没能为她发声，我是单纯在一旁看着的————旁观者!」[/jitter][/color]\n获得100层[b]【魔女化】[/b]，1层[b]【魔女仪式】[/b]，[color=#cccccc]传播[/color]1/4的[color=#ff99cc]【魔女因子】[/color]\n选择获得3点[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]，生成等量[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]牌，按照随机[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]较低值变成零费，可选择变成[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]卡并自由放入抽牌堆",
-  "MANOSABA_LIN_CARD_LAMORT.selectionScreenPrompt": ""
+  "MANOSABA_LIN_CARD_LAMORT.selectionScreenPrompt": "",
+  "MANOSABA_LIN_CARD_CARD_EIGHTY_SIX.title": "左右脑互博",
+  "MANOSABA_LIN_CARD_CARD_EIGHTY_SIX.description": "造成{Damage:diff()}点伤害。\n抽{Cards:diff()}张牌。{CompPost}\n随机[gold]附着[/gold]至抽排堆的一张牌。",
+
+
+  "ManosabaLin.GenerateComponent.postfix": "\n[purple]将「{CardTitle}」放回手牌[/purple]"
 }
