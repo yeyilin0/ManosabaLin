@@ -10,7 +10,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Hiro.Cards;
 
 [RegisterCard(typeof(HiroCardPool))]
-public sealed class GuiltyChain() : ManosabaCardTemplate(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class GuiltyChain() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -25,5 +25,10 @@ public sealed class GuiltyChain() : ManosabaCardTemplate(1, CardType.Power, Card
             choiceContext, source.Owner.Creature, 1,
             source.Owner.Creature, source, false
         );
+        
+    }
+    protected override void OnUpgrade(ComponentContext componentContext)
+    {
+        EnergyCost.UpgradeBy(-1);
     }
 }

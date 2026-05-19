@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfoo0uvdf57wy"
-path="res://.godot/imported/witchgrimoire.png-28388a78c5d53a609db23a46eadaea43.ctex"
+uid="uid://fgoaf2v4k84y"
+path="res://.godot/imported/cardsixtyfourpower.png-b30e4ed6b2b0ed64dde7e59c44556d2d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/relics/witchgrimoire.png"
-dest_files=["res://.godot/imported/witchgrimoire.png-28388a78c5d53a609db23a46eadaea43.ctex"]
+source_file="res://ManosabaLin/images/powers/big/cardsixtyfourpower.png"
+dest_files=["res://.godot/imported/cardsixtyfourpower.png-b30e4ed6b2b0ed64dde7e59c44556d2d.ctex"]
 
 [params]
 

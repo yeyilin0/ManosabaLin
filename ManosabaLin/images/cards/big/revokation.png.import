@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfoo0uvdf57wy"
-path="res://.godot/imported/witchgrimoire.png-28388a78c5d53a609db23a46eadaea43.ctex"
+uid="uid://bkbhlj68355nv"
+path="res://.godot/imported/revokation.png-4d1dfb61a7fefec21b7f54a0abf1b9f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/relics/witchgrimoire.png"
-dest_files=["res://.godot/imported/witchgrimoire.png-28388a78c5d53a609db23a46eadaea43.ctex"]
+source_file="res://ManosabaLin/images/cards/big/revokation.png"
+dest_files=["res://.godot/imported/revokation.png-4d1dfb61a7fefec21b7f54a0abf1b9f5.ctex"]
 
 [params]
 

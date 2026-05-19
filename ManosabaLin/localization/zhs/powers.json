@@ -112,5 +112,12 @@
   "MANOSABA_LIN_POWER_MLY_POWER.title": "佐伯米莉亚的魔法",
   "MANOSABA_LIN_POWER_MLY_POWER.description": "禁止出牌直到互换手牌结束",
   "MANOSABA_LIN_POWER_XUESHUYUANPOWER.title": "错乱的记忆",
-  "MANOSABA_LIN_POWER_XUESHUYUANPOWER.description": "回合开始时交换[color=#ff99cc][b]【亲近】[/b][/color]与[color=#CC6666][b]【疏远】[/b][/color]的数值"
+  "MANOSABA_LIN_POWER_XUESHUYUANPOWER.description": "回合开始时交换[color=#ff99cc][b]【亲近】[/b][/color]与[color=#CC6666][b]【疏远】[/b][/color]的数值",
+  "MANOSABA_LIN_POWER_HIROSHUYUANPOWER.title": "我讨厌你的事实永远都不会改变",
+  "MANOSABA_LIN_POWER_HIROSHUYUANPOWER.description": "每回合开始时，[color=#CC6666][b]【疏远】[/b][/color]＋1，选择一张手牌变成随机[color=#CC6666][b]【疏远】[/b][/color]牌",
+  "MANOSABA_LIN_POWER_HIROSHUYUANPOWER.smartDescription": "[color=#CC6666][b]选择[/b][/color]",
+  "MANOSABA_LIN_POWER_YALISABOND.title": "亚里沙的羁绊",
+  "MANOSABA_LIN_POWER_YALISABOND.description": "[color=#ff0000][b]【亲近】[/b][/color]增加时获得等量能量和[color=#ff0000]【紫藤亚里沙的魔法】[/color]\n[color=#ff0000][b]【疏远】[/b][/color]增加时消耗等量[color=#ff0000]【紫藤亚里沙的魔法】[/color]抽取等量卡牌",
+  "MANOSABA_LIN_POWER_RANDOMTRIALENCHANTPOWER.title": "先行投票",
+  "MANOSABA_LIN_POWER_RANDOMTRIALENCHANTPOWER.description":"随机使卡组中没有附魔的卡获得[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔"
 }

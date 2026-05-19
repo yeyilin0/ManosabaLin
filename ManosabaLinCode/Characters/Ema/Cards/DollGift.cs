@@ -36,7 +36,7 @@ public sealed class DollGift : ManosabaEmalinCardTemplate
         if (bond != null) bond.Affinity++;
 
         // 获得一层缓冲
-        await PowerCmd.Apply<IntangiblePower>(
+        await PowerCmd.Apply<BufferPower>(
             choiceContext, creature, 1, creature, this, false);
 
         // 亲近大于疏远时，队友也获得一层缓冲
@@ -44,7 +44,7 @@ public sealed class DollGift : ManosabaEmalinCardTemplate
         {
             foreach (var ally in CombatState.Allies.Where(a => a is { IsAlive: true } && a != creature))
             {
-                await PowerCmd.Apply<IntangiblePower>(
+                await PowerCmd.Apply<BufferPower>(
                     choiceContext, ally, 1, creature, this, false);
             }
         }

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfoo0uvdf57wy"
-path="res://.godot/imported/witchgrimoire.png-28388a78c5d53a609db23a46eadaea43.ctex"
+uid="uid://clwrexxlb1e0i"
+path="res://.godot/imported/yalisaband.png-1d8bca1583d1140d922fa8be17539932.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/relics/witchgrimoire.png"
-dest_files=["res://.godot/imported/witchgrimoire.png-28388a78c5d53a609db23a46eadaea43.ctex"]
+source_file="res://ManosabaLin/images/powers/yalisaband.png"
+dest_files=["res://.godot/imported/yalisaband.png-1d8bca1583d1140d922fa8be17539932.ctex"]
 
 [params]
 

@@ -1,0 +1,40 @@
+﻿using MinionLib.Component.Core;
+using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Ema.Powers;
+using ManosabaLin.Characters.Emalin;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using ManosabaLin.Characters.Hiro.Powers;
+
+namespace ManosabaLin.Characters.Ema.Cards;
+
+[RegisterCard(typeof(LinCardPool))]
+public sealed class Yalisaqinjin : ManosabaEmalinCardTemplate
+{
+    public Yalisaqinjin() : base(1, CardType.Power, CardRarity.Ancient, TargetType.Self) { }
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips
+    {
+        get
+        {
+            yield return HoverTipFactory.FromPower<Yalisabond>();
+            yield return HoverTipFactory.FromPower<YlsmPower>();
+        }
+        
+    }
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
+    {
+        await PowerCmd.Apply<Yalisabond>(
+            choiceContext, Owner.Creature, 1m, Owner.Creature, this, false);
+    }
+
+    protected override void OnUpgrade(ComponentContext componentContext)
+    {
+    }
+}

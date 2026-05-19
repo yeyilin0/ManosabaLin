@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfoo0uvdf57wy"
-path="res://.godot/imported/witchgrimoire.png-28388a78c5d53a609db23a46eadaea43.ctex"
+uid="uid://dbmex1gie87dt"
+path="res://.godot/imported/emamlym.png-b7ee72067dc4fd24ef51b2277c08796f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/relics/witchgrimoire.png"
-dest_files=["res://.godot/imported/witchgrimoire.png-28388a78c5d53a609db23a46eadaea43.ctex"]
+source_file="res://ManosabaLin/images/cards/big/emamlym.png"
+dest_files=["res://.godot/imported/emamlym.png-b7ee72067dc4fd24ef51b2277c08796f.ctex"]
 
 [params]
 

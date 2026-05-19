@@ -1,5 +1,6 @@
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
+using ManosabaLin.Characters.Ema.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -16,7 +17,7 @@ using System;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
-[RegisterCard(typeof(EmalinCardPool))]
+[RegisterCard(typeof(LinCardPool))]
 public sealed class Xueqinjincard2 : ManosabaEmalinCardTemplate
 {
     public Xueqinjincard2() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
@@ -30,6 +31,11 @@ public sealed class Xueqinjincard2 : ManosabaEmalinCardTemplate
     {
         var source = this;
         var owner = source.Owner;
+
+        // 亲近 +1
+        var bond = owner.Creature.GetPower<BondPower>();
+        if (bond != null)
+            bond.Affinity++;
 
         var allAffinityCards = new[]
         {

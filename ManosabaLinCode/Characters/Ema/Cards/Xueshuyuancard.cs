@@ -27,6 +27,14 @@ public sealed class Xueshuyuancard() : ManosabaCardTemplate(1, CardType.Power, C
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
+        var source = this;
+
+        // 疏远 +1
+        var bond = Owner.Creature.GetPower<BondPower>();
+        if (bond != null)
+            bond.Estrangement++;
+
+        // 获得能力
         await PowerCmd.Apply<Xueshuyuanpower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this);
     }
 

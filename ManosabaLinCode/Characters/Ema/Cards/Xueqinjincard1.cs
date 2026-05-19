@@ -1,19 +1,22 @@
-﻿using ManosabaLin.Characters.Common;
+﻿using MinionLib.Component.Core;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.ValueProps;
-using MinionLib.Component.Core;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
+using System;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -24,7 +27,11 @@ public sealed class Xueqinjincard1 : ManosabaEmalinCardTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
-        get { yield return HoverTipFactory.FromPower<BondPower>(); }
+        get
+        {
+            yield return HoverTipFactory.FromPower<BondPower>();
+            yield return HoverTipFactory.FromCard<Xueqinjincard2>();
+        }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
@@ -37,8 +44,8 @@ public sealed class Xueqinjincard1 : ManosabaEmalinCardTemplate
         // 如果亲近 > 7，本卡变形为 Xueqinjincard2 并加入手牌，跳过所有效果
         if (bond != null && bond.Affinity > 7)
         {
-            var newCard = source.CombatState.CreateCard<Xueqinjincard2>(owner);
-            await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, owner);
+            var transformedCard = source.CombatState.CreateCard<Xueqinjincard2>(owner);
+            await CardPileCmd.AddGeneratedCardToCombat(transformedCard, PileType.Hand, owner);
             return;
         }
 
@@ -52,7 +59,17 @@ public sealed class Xueqinjincard1 : ManosabaEmalinCardTemplate
                 ValueProp.Move, creature, this);
         }
 
-        // 随机生成一张疏远卡并加入手牌
+        // 选择一张手牌变成随机疏远牌
+        var handPile = PileType.Hand.GetPile(owner);
+        var handCards = handPile.Cards.ToList();
+        if (handCards.Count == 0) return;
+
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
+        var selected = await CardSelectCmd.FromHand(
+            choiceContext, owner, prefs, null, this);
+        var picked = selected.FirstOrDefault();
+        if (picked == null) return;
+
         var estrangementCards = new[]
         {
             typeof(BalloonFragments),
@@ -70,12 +87,12 @@ public sealed class Xueqinjincard1 : ManosabaEmalinCardTemplate
         var rng = owner.RunState.Rng.CombatCardSelection;
         var chosenType = rng.NextItem(estrangementCards);
 
-        var method = typeof(ICombatState).GetMethod("CreateCard", new Type[] { typeof(Player) })
-            ?.MakeGenericMethod(chosenType);
-        var generatedCard = (CardModel)method?.Invoke(source.CombatState, new object[] { owner });
+        var createCardMethod = typeof(ICombatState).GetMethod("CreateCard", new Type[] { typeof(Player) });
+        var genericMethod = createCardMethod.MakeGenericMethod(chosenType);
+        var estrangementCard = (CardModel)genericMethod.Invoke(source.CombatState, new object[] { owner });
+        estrangementCard.AddKeyword(CardKeyword.Retain);
 
-        generatedCard.AddKeyword(CardKeyword.Retain);
-        await CardPileCmd.AddGeneratedCardToCombat(generatedCard, PileType.Hand, owner);
+        await CardCmd.Transform(picked, estrangementCard);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

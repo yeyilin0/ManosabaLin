@@ -7,10 +7,12 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Rooms;
@@ -33,6 +35,19 @@ public sealed class EmaTrialBadge : ManosabaRelicTemplate
     public int AgreeCount => _agreeCount;
     public int DoubtCount => _doubtCount;
     public int RebuttalCount => _rebuttalCount;
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips
+    {
+        get
+        {
+            foreach (var tip in HoverTipFactory.FromEnchantment<Agreement>())
+                yield return tip;
+            foreach (var tip in HoverTipFactory.FromEnchantment<Rebuttal>())
+                yield return tip;
+            foreach (var tip in HoverTipFactory.FromEnchantment<Doubt>())
+                yield return tip;
+        }
+    }
 
     [SavedProperty]
     public int LastResetRound

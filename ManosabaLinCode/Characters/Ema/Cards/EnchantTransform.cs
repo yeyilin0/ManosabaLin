@@ -18,7 +18,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class EnchantTransform : ManosabaEmalinCardTemplate
 {
-    public EnchantTransform() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
+    public EnchantTransform() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
@@ -106,5 +106,9 @@ public sealed class EnchantTransform : ManosabaEmalinCardTemplate
             await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, owner, CardPilePosition.Bottom);
             CardCmd.Preview(newCard);
         }
+    }
+    protected override void OnUpgrade(ComponentContext componentContext)
+    {
+        EnergyCost.UpgradeBy(-1);
     }
 }
