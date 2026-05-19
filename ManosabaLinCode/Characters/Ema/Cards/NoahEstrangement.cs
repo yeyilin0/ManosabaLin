@@ -18,7 +18,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class NoahEstrangement : ManosabaEmalinCardTemplate
+public sealed class NoahEstrangement : ManosabaCardTemplate
 {
     public NoahEstrangement() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 

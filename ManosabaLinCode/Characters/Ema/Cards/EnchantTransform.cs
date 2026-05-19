@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EnchantTransform : ManosabaEmalinCardTemplate
+public sealed class EnchantTransform : ManosabaCardTemplate
 {
     public EnchantTransform() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 

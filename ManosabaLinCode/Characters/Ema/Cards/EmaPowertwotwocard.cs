@@ -13,7 +13,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmaPowertwotwocard() : ManosabaEmalinCardTemplate(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+public sealed class EmaPowertwotwocard() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     private const int RequiredWithAmount = 100;
 

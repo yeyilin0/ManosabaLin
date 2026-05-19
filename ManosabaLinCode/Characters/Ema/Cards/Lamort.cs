@@ -28,7 +28,7 @@
 // namespace ManosabaLin.Characters.Ema.Cards;
 //
 // [RegisterCard(typeof(EmalinCardPool))]
-// public sealed class Lamort : ManosabaEmalinCardTemplate
+// public sealed class Lamort : ManosabaCardTemplate
 // {
 //     public Lamort() : base(3, CardType.Power, CardRarity.Ancient, TargetType.Self)
 //     {

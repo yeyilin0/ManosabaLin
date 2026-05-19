@@ -15,7 +15,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>烧焦的痕迹 - 1费攻击, 反驳附魔, 10伤害+全体3伤害, 升级对单+4伤</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class BurntMarks : ManosabaEmalinCardTemplate
+public sealed class BurntMarks : ManosabaCardTemplate
 {
     public BurntMarks() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) { }
 

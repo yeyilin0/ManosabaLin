@@ -19,7 +19,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class ChainedTrust : ManosabaEmalinCardTemplate
+public sealed class ChainedTrust : ManosabaCardTemplate
 {
     public ChainedTrust() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.Self) { }
 

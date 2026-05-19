@@ -17,7 +17,7 @@ using ManosabaLin.Characters.Hiro.Powers;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Emawichpower : ManosabaEmalinCardTemplate
+public sealed class Emawichpower : ManosabaCardTemplate
 {
     private const int RequiredWitchFactorAmount = 100;
 

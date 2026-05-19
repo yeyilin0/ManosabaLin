@@ -13,7 +13,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmaSeven() : ManosabaEmalinCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
+public sealed class EmaSeven() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {

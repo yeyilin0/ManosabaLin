@@ -11,7 +11,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>真犯人 - 2费能力, 连续打出赞同反驳疑问附魔牌达到5倍数时,对生命值最低敌人造成15点直接伤害, 升级1费</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class TrueCriminal : ManosabaEmalinCardTemplate
+public sealed class TrueCriminal : ManosabaCardTemplate
 {
     public TrueCriminal() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self) { }
 

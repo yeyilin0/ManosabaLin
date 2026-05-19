@@ -11,7 +11,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmaGuiltyChain() : ManosabaEmalinCardTemplate(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class EmaGuiltyChain() : ManosabaCardTemplate(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

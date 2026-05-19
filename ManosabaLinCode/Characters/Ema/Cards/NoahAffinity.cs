@@ -19,7 +19,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class NoahAffinity : ManosabaEmalinCardTemplate
+public sealed class NoahAffinity : ManosabaCardTemplate
 {
     public NoahAffinity() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 

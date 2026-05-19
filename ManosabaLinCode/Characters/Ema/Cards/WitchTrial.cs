@@ -12,7 +12,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>魔女裁判 - 2费能力, 每回合开始赞同反驳疑问计数器+1, 升级1费</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class WitchTrial : ManosabaEmalinCardTemplate
+public sealed class WitchTrial : ManosabaCardTemplate
 {
     public WitchTrial() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self) { }
 

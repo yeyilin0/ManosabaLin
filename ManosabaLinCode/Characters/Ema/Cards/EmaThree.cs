@@ -14,7 +14,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmaThree : ManosabaEmalinCardTemplate
+public sealed class EmaThree : ManosabaCardTemplate
 {
     private const int EnergyCost = 1;
     private const CardType Type = CardType.Skill;

@@ -16,7 +16,7 @@ using System.Collections.Generic;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class MargaretAffinity : ManosabaEmalinCardTemplate
+public sealed class MargaretAffinity : ManosabaCardTemplate
 {
     public MargaretAffinity() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 

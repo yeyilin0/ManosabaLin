@@ -17,7 +17,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>拷问秀的邀请文 - 1费技能, 赞同附魔, 全体同伴4格挡, ≥2额外4格挡</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class TortureShowInvite : ManosabaEmalinCardTemplate
+public sealed class TortureShowInvite : ManosabaCardTemplate
 {
     public TortureShowInvite() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 

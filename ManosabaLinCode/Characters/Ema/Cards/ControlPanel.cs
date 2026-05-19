@@ -15,7 +15,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>控制面板 - 1费技能, 疑问附魔, 抽3张然后弃1张, 升级抽5张</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class ControlPanel : ManosabaEmalinCardTemplate
+public sealed class ControlPanel : ManosabaCardTemplate
 {
     public ControlPanel() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 

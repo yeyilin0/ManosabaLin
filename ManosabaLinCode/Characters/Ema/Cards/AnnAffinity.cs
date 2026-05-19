@@ -20,7 +20,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class AnnAffinity : ManosabaEmalinCardTemplate
+public sealed class AnnAffinity : ManosabaCardTemplate
 {
     public AnnAffinity() : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
 

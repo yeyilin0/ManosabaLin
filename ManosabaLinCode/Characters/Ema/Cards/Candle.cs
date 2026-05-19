@@ -16,7 +16,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>蜡烛 - 1费技能, 赞同附魔, 4格挡, 一名同伴回3血, 全体1能量, 升级全体2能量</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Candle : ManosabaEmalinCardTemplate
+public sealed class Candle : ManosabaCardTemplate
 {
     public Candle() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 

@@ -15,7 +15,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>坏掉的门锁 - 1费攻击, 反驳附魔, 8伤害, 无视护盾, 升级+4伤</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class BrokenDoorLock : ManosabaEmalinCardTemplate
+public sealed class BrokenDoorLock : ManosabaCardTemplate
 {
     public BrokenDoorLock() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) { }
 

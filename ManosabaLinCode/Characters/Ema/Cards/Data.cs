@@ -15,7 +15,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>资料 - 0费技能, 疑问附魔, 抽2张, 本回合所有疑问牌费用-1</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Data : ManosabaEmalinCardTemplate
+public sealed class Data : ManosabaCardTemplate
 {
     public Data() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 

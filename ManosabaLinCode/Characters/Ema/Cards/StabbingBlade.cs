@@ -20,7 +20,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class StabbingBlade : ManosabaEmalinCardTemplate
+public sealed class StabbingBlade : ManosabaCardTemplate
 {
     public StabbingBlade() : base(2, CardType.Attack, CardRarity.Rare, TargetType.Self) { }
 

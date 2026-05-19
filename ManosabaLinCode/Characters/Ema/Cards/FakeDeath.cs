@@ -12,7 +12,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>假死的真相 - 2费技能, 抽2, ≥3种附魔牌则抽4+队友回2血+全体2能量, 升级1费</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class FakeDeath : ManosabaEmalinCardTemplate
+public sealed class FakeDeath : ManosabaCardTemplate
 {
     public FakeDeath() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 

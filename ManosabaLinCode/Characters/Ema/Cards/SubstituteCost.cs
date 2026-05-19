@@ -18,7 +18,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class SubstituteCost : ManosabaEmalinCardTemplate
+public sealed class SubstituteCost : ManosabaCardTemplate
 {
     public SubstituteCost() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 

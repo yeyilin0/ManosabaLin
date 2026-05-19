@@ -17,7 +17,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class TheOnlyClue : ManosabaEmalinCardTemplate
+public sealed class TheOnlyClue : ManosabaCardTemplate
 {
     public TheOnlyClue() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 

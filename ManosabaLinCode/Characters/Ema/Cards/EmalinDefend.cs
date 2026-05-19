@@ -12,7 +12,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
 [RegisterCharacterStarterCard(typeof(Emalin.Emalin), 4)]
-public class EmalinDefend() : ManosabaEmalinCardTemplate(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+public class EmalinDefend() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
 {
     public override bool GainsBlock => true;
 

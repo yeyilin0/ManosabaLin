@@ -19,7 +19,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class GuardianOath : ManosabaEmalinCardTemplate
+public sealed class GuardianOath : ManosabaCardTemplate
 {
     public GuardianOath() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.Self) { }
 

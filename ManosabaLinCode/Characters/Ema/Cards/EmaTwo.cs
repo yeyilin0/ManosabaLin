@@ -11,7 +11,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmaTwo() : ManosabaEmalinCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class EmaTwo() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

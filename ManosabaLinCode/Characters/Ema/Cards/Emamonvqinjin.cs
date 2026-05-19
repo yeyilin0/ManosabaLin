@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(LinCardPool))]
-public sealed class Emamonvqinjin : ManosabaEmalinCardTemplate
+public sealed class Emamonvqinjin : ManosabaCardTemplate
 {
     public Emamonvqinjin() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self) { }
 

@@ -18,7 +18,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Xueqinjincard1 : ManosabaEmalinCardTemplate
+public sealed class Xueqinjincard1 : ManosabaCardTemplate
 {
     public Xueqinjincard1() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 

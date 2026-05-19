@@ -17,7 +17,7 @@ using System.Collections.Generic;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class BalloonFragments : ManosabaEmalinCardTemplate
+public sealed class BalloonFragments : ManosabaCardTemplate
 {
     public BalloonFragments() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) { }
 

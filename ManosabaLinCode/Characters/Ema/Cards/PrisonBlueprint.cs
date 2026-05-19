@@ -13,7 +13,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>监牢的设计图 - 2费能力, 赞同附魔, 每打出赞同牌获得1格挡, 同伴获得2格挡</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class PrisonBlueprint : ManosabaEmalinCardTemplate
+public sealed class PrisonBlueprint : ManosabaCardTemplate
 {
     public PrisonBlueprint() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self) { }
 

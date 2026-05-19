@@ -19,7 +19,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>弩枪的箭矢 - 1费攻击, 反驳附魔, 5伤害, 攻击意图翻倍, 升级+3伤</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class CrossbowBolt : ManosabaEmalinCardTemplate
+public sealed class CrossbowBolt : ManosabaCardTemplate
 {
     public CrossbowBolt() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 
