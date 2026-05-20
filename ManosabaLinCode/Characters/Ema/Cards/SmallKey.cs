@@ -16,7 +16,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>小钥匙 - 0费技能, 疑问附魔, 抽1张, 下一张疑问牌费用-1, 升级抽2张</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class SmallKey : ManosabaEmalinCardTemplate
+public sealed class SmallKey : ManosabaCardTemplate
 {
     public SmallKey() : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 

@@ -14,7 +14,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmaAmm : ManosabaEmalinCardTemplate
+public sealed class EmaAmm : ManosabaCardTemplate
 {
     public EmaAmm() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies) { }
 

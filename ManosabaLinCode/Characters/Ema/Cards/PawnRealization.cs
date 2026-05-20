@@ -17,7 +17,7 @@ using System.Collections.Generic;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class PawnRealization : ManosabaEmalinCardTemplate
+public sealed class PawnRealization : ManosabaCardTemplate
 {
     public PawnRealization() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.Self) { }
 

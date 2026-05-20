@@ -14,7 +14,7 @@ using ManosabaLin.Characters.Emalin;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmaLym : ManosabaEmalinCardTemplate
+public sealed class EmaLym : ManosabaCardTemplate
 {
     public EmaLym() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy) { }
 

@@ -13,7 +13,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>搜查 - 1费能力, 每回合检视抽牌堆顶部, 升级2层</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Investigation : ManosabaEmalinCardTemplate
+public sealed class Investigation : ManosabaCardTemplate
 {
     public Investigation() : base(1, CardType.Power, CardRarity.Common, TargetType.Self) { }
 

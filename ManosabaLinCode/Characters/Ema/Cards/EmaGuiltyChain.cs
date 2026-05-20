@@ -11,7 +11,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmaGuiltyChain() : ManosabaEmalinCardTemplate(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class EmaGuiltyChain() : ManosabaEmalinCardTemplate(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -26,10 +26,5 @@ public sealed class EmaGuiltyChain() : ManosabaEmalinCardTemplate(2, CardType.Po
             choiceContext, source.Owner.Creature, 1,
             source.Owner.Creature, source, false
         );
-    }
-
-    protected override void OnUpgrade(ComponentContext componentContext)
-    {
-        EnergyCost.UpgradeBy(-1);
     }
 }

@@ -15,7 +15,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>换身的谎言 - 1费技能, 抽1张, 疑问计数≥2时选择手牌变化为本角色随机牌, 升级变化2张</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Theswaplie : ManosabaEmalinCardTemplate
+public sealed class Theswaplie : ManosabaCardTemplate
 {
     public Theswaplie() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 

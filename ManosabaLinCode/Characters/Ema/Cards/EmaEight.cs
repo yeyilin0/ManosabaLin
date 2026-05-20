@@ -15,7 +15,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmaEight() : ManosabaEmalinCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class EmaEight() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     private const int RequiredSuspectAmount = 1;
 

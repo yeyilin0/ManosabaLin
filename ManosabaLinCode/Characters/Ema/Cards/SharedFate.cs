@@ -18,7 +18,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class SharedFate : ManosabaEmalinCardTemplate
+public sealed class SharedFate : ManosabaCardTemplate
 {
     public SharedFate() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 

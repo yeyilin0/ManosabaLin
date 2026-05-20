@@ -16,7 +16,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>汉娜的录音数据 - 1费技能, 疑问附魔, 获得1能量, 选择弃牌堆一张再次打出, 升级获得3能量</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class HannaRecording : ManosabaEmalinCardTemplate
+public sealed class HannaRecording : ManosabaCardTemplate
 {
     public HannaRecording() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 

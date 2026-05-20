@@ -11,7 +11,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>共犯的沉默 - 2费技能, 1能量, 打过赞同和反驳额外全体1能量, 升级1费</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class AccompliceSilence : ManosabaEmalinCardTemplate
+public sealed class AccompliceSilence : ManosabaCardTemplate
 {
     public AccompliceSilence() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 

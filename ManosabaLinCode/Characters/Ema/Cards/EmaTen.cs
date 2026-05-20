@@ -17,7 +17,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmaTen : ManosabaEmalinCardTemplate
+public sealed class EmaTen : ManosabaCardTemplate
 {
     public EmaTen() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.RandomEnemy)
     {

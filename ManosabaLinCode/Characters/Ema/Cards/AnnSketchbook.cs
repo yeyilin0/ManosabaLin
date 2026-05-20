@@ -16,7 +16,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>安安的素描本 - 1费技能, 疑问附魔, 检视抽牌堆顶部3张选1, 升级看4张选2</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class AnnSketchbook : ManosabaEmalinCardTemplate
+public sealed class AnnSketchbook : ManosabaCardTemplate
 {
     public AnnSketchbook() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 

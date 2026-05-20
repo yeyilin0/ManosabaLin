@@ -18,7 +18,7 @@ using STS2RitsuLib.Keywords;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Pistol : ManosabaEmalinCardTemplate
+public sealed class Pistol : ManosabaCardTemplate
 {
     public Pistol() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 

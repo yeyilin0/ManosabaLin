@@ -20,7 +20,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class WitchCleansing : ManosabaEmalinCardTemplate
+public sealed class WitchCleansing : ManosabaCardTemplate
 {
     public WitchCleansing() : base(1, CardType.Attack, CardRarity.Common, TargetType.Self) { }
 
@@ -78,4 +78,3 @@ public sealed class WitchCleansing : ManosabaEmalinCardTemplate
         EnergyCost.UpgradeBy(-1);
     }
     }
-

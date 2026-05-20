@@ -18,7 +18,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class CocoEstrangement : ManosabaEmalinCardTemplate
+public sealed class CocoEstrangement : ManosabaCardTemplate
 {
     public CocoEstrangement() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 

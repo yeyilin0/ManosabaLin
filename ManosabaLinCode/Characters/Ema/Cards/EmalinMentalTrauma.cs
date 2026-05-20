@@ -13,7 +13,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
 [RegisterCharacterStarterCard(typeof(Emalin.Emalin))]
-public class EmalinMentalTrauma : ManosabaEmalinCardTemplate
+public class EmalinMentalTrauma : ManosabaCardTemplate
 {
     public EmalinMentalTrauma() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
     {

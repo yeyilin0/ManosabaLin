@@ -20,7 +20,7 @@ using MegaCrit.Sts2.Core.Runs;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class SwapBodySuccess : ManosabaEmalinCardTemplate
+public sealed class SwapBodySuccess : ManosabaCardTemplate
 {
     public SwapBodySuccess() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 

@@ -19,7 +19,7 @@ using ManosabaLin.Characters.Common.Powers;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class ShatteredResonance : ManosabaEmalinCardTemplate
+public sealed class ShatteredResonance : ManosabaCardTemplate
 {
     public ShatteredResonance() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 

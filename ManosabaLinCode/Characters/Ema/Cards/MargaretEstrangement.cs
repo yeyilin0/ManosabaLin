@@ -17,7 +17,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class MargaretEstrangement : ManosabaEmalinCardTemplate
+public sealed class MargaretEstrangement : ManosabaCardTemplate
 {
     public MargaretEstrangement() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.Self) { }
 

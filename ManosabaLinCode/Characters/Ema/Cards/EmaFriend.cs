@@ -18,7 +18,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmaFriend : ManosabaEmalinCardTemplate
+public sealed class EmaFriend : ManosabaCardTemplate
 {
     public EmaFriend()
         : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)

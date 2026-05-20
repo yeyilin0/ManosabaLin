@@ -22,7 +22,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
 [RegisterCharacterStarterCard(typeof(Emalin.Emalin))]
-public sealed class Emamonv : ManosabaEmalinCardTemplate
+public sealed class Emamonv : ManosabaCardTemplate
 
 {
     public Emamonv() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self) { }

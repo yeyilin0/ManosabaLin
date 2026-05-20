@@ -13,7 +13,7 @@ using System.Collections.Generic;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmaWitchKillerCard : ManosabaEmalinCardTemplate
+public sealed class EmaWitchKillerCard : ManosabaCardTemplate
 {
     public EmaWitchKillerCard() : base(3, CardType.Power, CardRarity.Ancient, TargetType.Self) { }
 

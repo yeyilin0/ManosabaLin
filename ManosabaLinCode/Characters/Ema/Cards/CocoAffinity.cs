@@ -18,7 +18,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class CocoAffinity : ManosabaEmalinCardTemplate
+public sealed class CocoAffinity : ManosabaCardTemplate
 {
     public CocoAffinity() : base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy) { }
 

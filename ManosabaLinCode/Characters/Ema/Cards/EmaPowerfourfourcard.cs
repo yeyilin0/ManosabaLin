@@ -11,7 +11,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmaPowerfourfourcard() : ManosabaEmalinCardTemplate(2, CardType.Power, CardRarity.Uncommon, TargetType.AllAllies)
+public sealed class EmaPowerfourfourcard() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Uncommon, TargetType.AllAllies)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
