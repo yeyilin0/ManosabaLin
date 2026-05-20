@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Hiroshuyuancard : ManosabaEmalinCardTemplate
+public sealed class Hiroshuyuancard : ManosabaCardTemplate
 {
     public Hiroshuyuancard() : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self) { }
 

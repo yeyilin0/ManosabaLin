@@ -19,7 +19,7 @@ using ManosabaLin.Characters.Ema.Powers;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Emamlym : ManosabaEmalinCardTemplate
+public sealed class Emamlym : ManosabaCardTemplate
 {
     public Emamlym() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly) { }
 

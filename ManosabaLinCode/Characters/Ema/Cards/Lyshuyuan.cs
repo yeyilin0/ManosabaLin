@@ -23,7 +23,7 @@ using MegaCrit.Sts2.Core.Models;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Lyshuyuan : ManosabaEmalinCardTemplate
+public sealed class Lyshuyuan : ManosabaCardTemplate
 {
     public Lyshuyuan() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 

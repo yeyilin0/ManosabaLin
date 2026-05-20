@@ -408,3 +408,4 @@ FodyWeavers.xsd
 # Local Files
 .local/
 ManosabaLin.pck
+local.props

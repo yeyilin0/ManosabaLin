@@ -18,7 +18,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Lyqinjin : ManosabaEmalinCardTemplate
+public sealed class Lyqinjin : ManosabaCardTemplate
 {
     public Lyqinjin() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyAlly) { }
 

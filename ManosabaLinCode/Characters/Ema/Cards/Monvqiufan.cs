@@ -18,7 +18,7 @@ using ManosabaLin.Characters.Common.Powers;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Monvqiufan : ManosabaEmalinCardTemplate
+public sealed class Monvqiufan : ManosabaCardTemplate
 {
     public Monvqiufan() : base(3, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 

@@ -14,7 +14,7 @@ using ManosabaLin.Characters.Hiro.Powers;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(LinCardPool))]
-public sealed class Yalisaqinjin : ManosabaEmalinCardTemplate
+public sealed class Yalisaqinjin : ManosabaCardTemplate
 {
     public Yalisaqinjin() : base(1, CardType.Power, CardRarity.Ancient, TargetType.Self) { }
 

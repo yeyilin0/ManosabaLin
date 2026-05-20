@@ -22,7 +22,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class SwapBodySuccess : ManosabaCardTemplate
 {
-    public SwapBodySuccess() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
+    public SwapBodySuccess() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

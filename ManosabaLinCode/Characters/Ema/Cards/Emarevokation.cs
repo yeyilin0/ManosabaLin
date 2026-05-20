@@ -21,7 +21,7 @@ using ManosabaLin.Characters.Hiro.Powers;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Emarevokation() : ManosabaEmalinCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public sealed class Emarevokation() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     private const int MaxHpLoss = 3;
 

@@ -1,4 +1,4 @@
-﻿using MinionLib.Component.Core;
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin;
@@ -13,25 +13,25 @@ using System.Collections.Generic;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Randomtrialenchantcard : ManosabaCardTemplate
+public sealed class Trialenchantcyclecard : ManosabaCardTemplate
 {
-    public Randomtrialenchantcard() : base(1, CardType.Power, CardRarity.Common, TargetType.Self) { }
+    public Trialenchantcyclecard() : base(3, CardType.Power, CardRarity.Rare, TargetType.Self) { }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new IntVar("Stacks", 1)];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
-        get { yield return HoverTipFactory.FromPower<Randomtrialenchantpower>(); }
+        get { yield return HoverTipFactory.FromPower<Trialenchantcyclepower>(); }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
-        await PowerCmd.Apply<Randomtrialenchantpower>(
+        await PowerCmd.Apply<Trialenchantcyclepower>(
             choiceContext, Owner.Creature, DynamicVars["Stacks"].BaseValue, Owner.Creature, this, false);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars["Stacks"].UpgradeValueBy(1);
+        EnergyCost.UpgradeBy(-1);
     }
 }

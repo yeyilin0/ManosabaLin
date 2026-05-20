@@ -9,11 +9,12 @@ using MegaCrit.Sts2.Core.HoverTips;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ManosabaLin.Characters.Hiro.Powers;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class Yalisa : ManosabaEmalinCardTemplate
+public sealed class Yalisa : ManosabaCardTemplate
 {
     public Yalisa() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 
@@ -23,6 +24,8 @@ public sealed class Yalisa : ManosabaEmalinCardTemplate
         {
             yield return HoverTipFactory.FromPower<BondPower>();
             yield return HoverTipFactory.FromCard<Yalisaqinjin>();
+            yield return HoverTipFactory.FromPower<Yalisabond>();
+            yield return HoverTipFactory.FromPower<YlsmPower>();
         }
     }
 
