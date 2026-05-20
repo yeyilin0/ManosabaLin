@@ -37,11 +37,11 @@ public partial class MainFile : Node
     {
         var ctx = RitsuLibFramework.CreateContentPack(ModId)
             .CardHandOutline<ManosabaCardTemplate>(new ModCardHandOutlineRule(
-                card => card.VisualCardPool is HiroCardPool,
+                card => card.VisualCardPool is HiroCardPool && ((ManosabaCardTemplate)card).GlowColor == null,
                 new Color(204f / 255f, 102f / 255f, 102f / 255f) // 希罗 #CC6666
             ))
             .CardHandOutline<ManosabaCardTemplate>(new ModCardHandOutlineRule(
-                card => card.VisualCardPool is EmalinCardPool,
+                card => card.VisualCardPool is EmalinCardPool && ((ManosabaCardTemplate)card).GlowColor == null,
                 new Color(1f, 0.6f, 0.8f) // 艾玛 #FF99CC
             ))
             .Apply();

@@ -1,3 +1,4 @@
+using Godot;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -28,6 +29,8 @@ public sealed partial class GenerateComponent : CardComponent
     }
 
     public override IEnumerable<IHoverTip> HoverTips => _hovertip == null ? [] : [_hovertip];
+
+    public override Color? GlowColor => Colors.White;
 
     public GenerateComponent(CardModel card)
     {
