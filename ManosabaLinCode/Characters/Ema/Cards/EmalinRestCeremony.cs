@@ -12,7 +12,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>安息仪式 - 3费攻击, 12伤害, 每种附魔牌+6伤害, 升级+4基础伤害</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class EmalinRestCeremony : ManosabaEmalinCardTemplate
+public sealed class EmalinRestCeremony : ManosabaCardTemplate
 {
     public EmalinRestCeremony() : base(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy) { }
 

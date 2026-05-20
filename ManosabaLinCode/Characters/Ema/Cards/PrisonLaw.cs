@@ -12,7 +12,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>监狱的法则 - 1费攻击, 6伤害, 打过疑问+4伤害, 升级+3伤</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class PrisonLaw : ManosabaEmalinCardTemplate
+public sealed class PrisonLaw : ManosabaCardTemplate
 {
     public PrisonLaw() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 

@@ -18,7 +18,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>地下冷冻室 - 1费攻击, 反驳附魔, 8伤害, 目标-1力量, 升级+4伤</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class UndergroundFreezer : ManosabaEmalinCardTemplate
+public sealed class UndergroundFreezer : ManosabaCardTemplate
 {
     public UndergroundFreezer() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) { }
 

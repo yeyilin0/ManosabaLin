@@ -18,7 +18,7 @@ using System;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(LinCardPool))]
-public sealed class Xueqinjincard2 : ManosabaEmalinCardTemplate
+public sealed class Xueqinjincard2 : ManosabaCardTemplate
 {
     public Xueqinjincard2() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 

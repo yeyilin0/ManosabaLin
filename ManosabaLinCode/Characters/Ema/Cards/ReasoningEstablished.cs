@@ -12,7 +12,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>推理成立 - 1费攻击, 每打过赞同反驳疑问附魔牌+2伤害, 升级基础+3且每张+3</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class ReasoningEstablished : ManosabaEmalinCardTemplate
+public sealed class ReasoningEstablished : ManosabaCardTemplate
 {
     public ReasoningEstablished() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) { }
 

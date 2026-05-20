@@ -17,7 +17,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>沾血的发带 - 1费技能, 赞同附魔, 5格挡+3同伴格挡, 升级各+3</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class BloodyHeadband : ManosabaEmalinCardTemplate
+public sealed class BloodyHeadband : ManosabaCardTemplate
 {
     public BloodyHeadband() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 

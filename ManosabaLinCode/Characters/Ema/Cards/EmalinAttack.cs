@@ -14,7 +14,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
 [RegisterCharacterStarterCard(typeof(Emalin.Emalin), 4)]
-public class EmalinAttack() : ManosabaEmalinCardTemplate(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
+public class EmalinAttack() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Basic, TargetType.AnyEnemy)
 {
     protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Strike };
 

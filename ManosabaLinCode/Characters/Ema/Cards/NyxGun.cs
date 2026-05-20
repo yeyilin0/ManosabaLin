@@ -17,7 +17,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 
 /// <summary>奈叶香的枪 - 2费攻击, 反驳附魔, 15伤害, 反驳≥3额外命中一个敌人, 升级+5伤</summary>
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class NyxGun : ManosabaEmalinCardTemplate
+public sealed class NyxGun : ManosabaCardTemplate
 {
     public NyxGun() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 
