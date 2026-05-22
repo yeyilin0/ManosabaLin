@@ -5,15 +5,10 @@ using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -42,8 +37,7 @@ public sealed class AnnAffinity : ManosabaCardTemplate
 
         var pickCount = DynamicVars["PickCount"].IntValue;
 
-        var prefs = new CardSelectorPrefs(
-            new LocString("AnnAffinity", "选择一张卡改变费用"), 0, pickCount);
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, pickCount, pickCount);
         var selected = await CardSelectCmd.FromDeckGeneric(owner, prefs, null);
 
         foreach (var card in selected)

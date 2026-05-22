@@ -16,18 +16,18 @@
     <PropertyGroup>
         <GodotExportPreset>Windows Desktop</GodotExportPreset>
 
-        <ModOutputDir>$(Sts2Dir)/mods/$(MSBuildProjectName)/</ModOutputDir>
+        <ModOutputDir>$(Sts2Path)/mods/$(MSBuildProjectName)/</ModOutputDir>
         <ModPckPath>$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
 
-        <ModsPath>$(Sts2Dir)/mods</ModsPath> <!-- 自动拷贝 MinionLib 到 mods 目录 -->
-        <RitsuLibDeployDir>$(Sts2Dir)/mods/RitsuLib</RitsuLibDeployDir> <!-- 自动拷贝 RitsuLib 到 mods 目录 -->
+        <ModsPath>$(Sts2Path)/mods</ModsPath> <!-- 自动拷贝 MinionLib 到 mods 目录 -->
+        <RitsuLibDeployDir>$(Sts2Path)/mods/RitsuLib</RitsuLibDeployDir> <!-- 自动拷贝 RitsuLib 到 mods 目录 -->
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <!--        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />-->
         <PackageReference Include="STS2.RitsuLib" Version="0.2.40" PrivateAssets="All" />
-        <PackageReference Include="FuYnAloft.Sts2.MinionLib.RitsuAdapters" Version="0.4.2" PrivateAssets="All"/>
+        <PackageReference Include="FuYnAloft.Sts2.MinionLib.RitsuAdapters" Version="0.4.3" PrivateAssets="All"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -81,14 +81,10 @@
         <Folder Include="ManosabaLin\images\ui\run_history\" />
     </ItemGroup>
 
-    <Target Name="EnsureLocalProps" BeforeTargets="PrepareForBuild" Condition="!Exists('.\local.props')">
-        <Error Text="Missing '.\local.props'. Copy '.\local.props.template' to '.\local.props', then update 'Sts2Dir' / 'GodotPath' / 'RitsuLibDir' for your local environment."/>
-    </Target>
-
     <Target Name="ValidateSts2GameInstall" BeforeTargets="ResolveAssemblyReferences">
         <Error
                 Condition="!Exists('$(Sts2DataDir)\sts2.dll')"
-                Text="Could not find sts2.dll under '$(Sts2DataDir)'. Set Sts2Dir in local.props following the WineFox pattern."/>
+                Text="Could not find sts2.dll under '$(Sts2DataDir)'. Set Sts2Path in local.props following the WineFox pattern."/>
     </Target>
 
     <Target Name="CopyMod" AfterTargets="PostBuildEvent">
@@ -107,6 +103,7 @@
 
     <Target Name="ExportPCK" AfterTargets="Publish" Condition="'$(STS2_SKIP_PCK_EXPORT)' != '1' and Exists('$(GodotPath)')">
         <Message Text="Exporting mod PCK with MegaDot..." Importance="high"/>
+        <Message Text="Sts2Path=$(Sts2Path), Sts2DataDir=$(Sts2DataDir), ModOutputDir=$(ModOutputDir), ModPckPath=$(ModPckPath)" Importance="high"/>
         <MakeDir Directories="$(ModOutputDir)"/>
         <Exec Command="&quot;$(GodotPath)&quot; --headless --path &quot;$(MSBuildProjectDirectory)&quot; --export-pack &quot;$(GodotExportPreset)&quot; &quot;$(ModPckPath)&quot;" EnvironmentVariables="STS2_SKIP_PCK_EXPORT=1"/>
     </Target>

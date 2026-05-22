@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2RitsuLib.Combat.Ui.ExtraCornerAmountLabels;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
+using MegaCrit.Sts2.Core.Helpers;
 
 namespace ManosabaLin.Characters.Ema.Powers;
 
@@ -25,8 +26,19 @@ public class BondPower : ManosabaPowerTemplate, IPowerExtraIconAmountLabelsProvi
         {
             AssertMutable();
             var max = Estrangement >= 13 ? 12 : 13;
-            _affinity = Mathf.Clamp(value, 0, max);
+            var clamped = Mathf.Clamp(value, 0, max);
+            var delta = clamped - _affinity;
+            _affinity = clamped;
             InvokeDisplayAmountChanged();
+
+            if (delta > 0)
+            {
+                var yalisabond = Owner?.GetPower<Yalisabond>();
+                if (yalisabond != null)
+                {
+                    TaskHelper.RunSafely(yalisabond.ApplyBondDeltaAsync(delta, 0));
+                }
+            }
         }
     }
 
@@ -38,8 +50,19 @@ public class BondPower : ManosabaPowerTemplate, IPowerExtraIconAmountLabelsProvi
         {
             AssertMutable();
             var max = Affinity >= 13 ? 12 : 13;
-            _estrangement = Mathf.Clamp(value, 0, max);
+            var clamped = Mathf.Clamp(value, 0, max);
+            var delta = clamped - _estrangement;
+            _estrangement = clamped;
             InvokeDisplayAmountChanged();
+
+            if (delta > 0)
+            {
+                var yalisabond = Owner?.GetPower<Yalisabond>();
+                if (yalisabond != null)
+                {
+                    TaskHelper.RunSafely(yalisabond.ApplyBondDeltaAsync(0, delta));
+                }
+            }
         }
     }
 

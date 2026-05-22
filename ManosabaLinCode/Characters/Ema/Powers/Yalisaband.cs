@@ -23,38 +23,19 @@ public class Yalisabond : ManosabaPowerTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
 
-    private int _lastAffinity;
-    private int _lastEstrangement;
-
-    public override async Task AfterApplied(Creature? applier, CardModel? cardSource)
+    public async Task ApplyBondDeltaAsync(int affinityDelta, int estrangementDelta)
     {
-        var bond = Owner.GetPower<BondPower>();
-        if (bond != null)
-        {
-            _lastAffinity = bond.Affinity;
-            _lastEstrangement = bond.Estrangement;
-        }
-    }
+        if (Owner?.Player == null) return;
 
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
-    {
-        if (player != Owner.Player) return;
+        var choiceContext = new ThrowingPlayerChoiceContext();
 
-        var bond = Owner.GetPower<BondPower>();
-        if (bond == null) return;
-
-        var affinityDelta = bond.Affinity - _lastAffinity;
-        var estrangementDelta = bond.Estrangement - _lastEstrangement;
-
-        // 亲近增加 → 恢复能量，增加亚里沙的魔法
         if (affinityDelta > 0)
         {
-            Owner.Player.PlayerCombatState.Energy += affinityDelta;
+            await PlayerCmd.GainEnergy(affinityDelta, Owner.Player);
             await PowerCmd.Apply<YlsmPower>(
                 choiceContext, Owner, affinityDelta, Owner, null, false);
         }
 
-        // 疏远增加 → 消耗亚里沙的魔法，抽牌
         if (estrangementDelta > 0)
         {
             var magic = Owner.GetPower<YlsmPower>();
@@ -62,16 +43,12 @@ public class Yalisabond : ManosabaPowerTemplate
             {
                 for (int i = 0; i < estrangementDelta; i++)
                 {
-                    if (magic.Amount > 0)
-                    {
-                        magic.Amount--;
-                        await CardPileCmd.Draw(choiceContext, 1, Owner.Player);
-                    }
+                    if (magic.Amount <= 0) break;
+                    magic.Amount--;
+                    await CardPileCmd.Draw(choiceContext, 1, Owner.Player);
                 }
             }
         }
-
-        _lastAffinity = bond.Affinity;
-        _lastEstrangement = bond.Estrangement;
     }
+
 }
