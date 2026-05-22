@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ManosabaLin.Characters.Common;
 
@@ -15,13 +16,12 @@ public class OriginalsinjusticePower : ManosabaPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != Owner.Side || Owner.IsDead) return;
 
         Flash();
 
-        // 每回合自动触发一次原罪正义的效果（简化版）
         var perjury = Owner.GetPower<PerjuryPower>();
         var suspect = Owner.GetPower<SuspectPower>();
 

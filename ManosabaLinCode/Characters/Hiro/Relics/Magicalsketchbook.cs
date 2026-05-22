@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 
 namespace ManosabaLin.Characters.Hiro.Relics;
 
@@ -21,7 +22,7 @@ public sealed class Magicalsketchbook : ManosabaRelicTemplate
         get { yield return new PowerVar<CrimsonbutterflyPower>(3m); }
     }
 
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side,IReadOnlyList<Creature>participants,ICombatState combatState)
     {
         if (side != Owner.Creature.Side) return;
         if (combatState.RoundNumber != 1) return;

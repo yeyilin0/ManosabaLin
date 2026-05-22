@@ -12,6 +12,8 @@ using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System;
+using System.Collections.Generic;
 
 namespace ManosabaLin.Characters.Hiro.Relics;
 
@@ -37,8 +39,7 @@ public sealed class Withhiro : ManosabaRelicTemplate
         }
     }
 
-    // ★ 战斗开始时获得 6 层正义
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         var relic = this;
 
@@ -59,8 +60,6 @@ public sealed class Withhiro : ManosabaRelicTemplate
         }
     }
 
-    // ★ 回合开始：选择一张手牌返回抽牌堆
-    // ★ 回合开始：选择一张手牌返回抽牌堆（可不选，CardEleven 风格）
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         var relic = this;
@@ -69,7 +68,7 @@ public sealed class Withhiro : ManosabaRelicTemplate
         var handCards = PileType.Hand.GetPile(relic.Owner).Cards.ToList();
         if (handCards.Count == 0) return;
 
-        var prefs = new CardSelectorPrefs(relic.SelectionScreenPrompt, 0, 1); // 最少0，最多1，可选可不选
+        var prefs = new CardSelectorPrefs(relic.SelectionScreenPrompt, 0, 1);
         var selected = await CardSelectCmd.FromHand(
             choiceContext,
             relic.Owner,
@@ -81,7 +80,6 @@ public sealed class Withhiro : ManosabaRelicTemplate
         foreach (var card in selected) await CardPileCmd.Add(card, PileType.Draw, CardPilePosition.Random, null, false);
     }
 
-    // ★ 当获得嫌疑时，第一次减少 2 层
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext,
         PowerModel power,
@@ -102,7 +100,7 @@ public sealed class Withhiro : ManosabaRelicTemplate
         var reduction = Math.Min((int)relic.DynamicVars["SuspectPower"].BaseValue, (int)power.Amount);
         if (reduction > 0)
             await PowerCmd.ModifyAmount(
-                new ThrowingPlayerChoiceContext(), // ★ 第一个参数
+                new ThrowingPlayerChoiceContext(),
                 power,
                 -reduction,
                 relic.Owner.Creature,

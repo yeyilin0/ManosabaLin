@@ -104,9 +104,9 @@
   "MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.description": "死亡时复活并回复{ReviveHeal}点生命，然后失去1层",
   "MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.smartDescription": "死亡时复活并回复{ReviveHeal}点生命，然后失去1层",
   "MANOSABA_LIN_POWER_LOSE_ENERGY_POWER.title": "能量消耗",
-  "MANOSABA_LIN_POWER_LOSE_ENERGY_POWER.description": "下回合开始时失去{Amount}点能量",
+  "MANOSABA_LIN_POWER_LOSE_ENERGY_POWER.description": "下回合开始时失去1点能量",
   "MANOSABA_LIN_POWER_GAIN_ENERGY_POWER.title": "能量恢复",
-  "MANOSABA_LIN_POWER_GAIN_ENERGY_POWER.description": "下回合开始时获得{Amount}点能量",
+  "MANOSABA_LIN_POWER_GAIN_ENERGY_POWER.description": "下回合开始时获得1点能量",
   "MANOSABA_LIN_POWER_SHIELD_INTERCEPT_POWER.title": "替身之盾",
   "MANOSABA_LIN_POWER_SHIELD_INTERCEPT_POWER.description": "本回合承受队友受到的伤害。下回合给予被保护的队友等于受到伤害的护盾。若亲近>疏远，你也获得等于受到伤害的护盾",
   "MANOSABA_LIN_POWER_MLY_POWER.title": "佐伯米莉亚的魔法",
@@ -128,5 +128,7 @@
   "MANOSABA_LIN_POWER_BOND_EXCHANGEPOWER.title": "羁绊交换",
   "MANOSABA_LIN_POWER_BOND_EXCHANGEPOWER.description": "回合开始时，消耗2层[color=#CC6666]【疏远】[/color]选择手牌变[color=#CC6666]【疏远】[/color]卡，或消耗2层[color=#ff99cc]【亲近】[/color]生成[color=#ff99cc]【亲近】[/color]卡，均可免费打出1次",
   "MANOSABA_LIN_POWER_WITCHFACTORECHANTPOWER.title": "魔女因子之印",
-  "MANOSABA_LIN_POWER_WITCHFACTORECHANTPOWER.description": "打出卡牌时随机敌人获得3×层数层[color=#ff99cc]【魔女因子】[/color]"
+  "MANOSABA_LIN_POWER_WITCHFACTORECHANTPOWER.description": "打出卡牌时随机敌人获得3×层数层[color=#ff99cc]【魔女因子】[/color]",
+  "MANOSABA_LIN_POWER_TEMP_STRENGTH_DOWN.title": "临时降低力量",
+  "MANOSABA_LIN_POWER_TEMP_STRENGTH_DOWN.description": "回合结束时移除"
 }

@@ -9,7 +9,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,8 +45,7 @@ public sealed class TheOnlyClue : ManosabaCardTemplate
         var handCards = PileType.Hand.GetPile(owner).Cards;
         if (handCards.Count > 0)
         {
-            var prefs = new CardSelectorPrefs(
-                new LocString("TheOnlyClue", "选择1张卡弃掉"), 1, 1);
+            var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
             var selected = await CardSelectCmd.FromHand(
                 choiceContext, owner, prefs, null, this);
             var discarded = selected.FirstOrDefault();

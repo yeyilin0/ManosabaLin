@@ -9,7 +9,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -51,8 +50,7 @@ public sealed class ChainedTrust : ManosabaCardTemplate
         var discardPile = PileType.Discard.GetPile(owner);
         if (discardPile.Cards.Count > 0)
         {
-            var prefs = new CardSelectorPrefs(
-                new LocString("ChainedTrust", "选择1张卡回收"), 1, 1);
+            var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
             var selected = await CardSelectCmd.FromSimpleGrid(
                 choiceContext, discardPile.Cards, owner, prefs);
             var retrieved = selected.FirstOrDefault();

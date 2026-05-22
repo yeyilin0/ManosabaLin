@@ -101,8 +101,8 @@ public class CardEightySix() : ManosabaCardTemplate(1, CardType.Attack, CardRari
         Node2D? vfx;
         if (success)
         {
-            var targetPosition = PileType.Draw.GetTargetPosition(nodeToAnim);
-            vfx = NCardFlyVfx.Create(nodeToAnim, targetPosition, isAddingToPile: false,
+           
+            vfx = NCardFlyVfx.Create(nodeToAnim, PileType.Draw, isAddingToPile: false,
                 Owner.Character.TrailPath);
         }
         else

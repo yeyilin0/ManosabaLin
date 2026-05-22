@@ -76,6 +76,7 @@ public class Hiroshuyuanpower : ManosabaPowerTemplate
         var genericMethod = createCardMethod.MakeGenericMethod(chosenType);
         var newCard = (CardModel)genericMethod.Invoke(combatState, new object[] { Owner.Player });
 
-        await CardCmd.Transform(picked, newCard);
+        await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, Owner.Player);
+        await CardCmd.Exhaust(choiceContext, picked);
     }
 }

@@ -56,15 +56,15 @@ public sealed class MargaretEstrangement : ManosabaCardTemplate
         var sourceCard = rng2.NextItem(deckCards);
 
         // 复制卡牌
-        var clone = owner.RunState.CloneCard(sourceCard);
+        var clone = CombatState.CreateCard(sourceCard.CanonicalInstance, owner);
 
         // 疏远>亲近时，复制的卡能免费打出一次
         if (bond != null && bond.Estrangement > bond.Affinity)
             clone.SetToFreeThisCombat();
 
-        CardCmd.PreviewCardPileAdd(
-            await CardPileCmd.Add(clone, PileType.Hand));
+        await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Hand, owner);
     }
+
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1);

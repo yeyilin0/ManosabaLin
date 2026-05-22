@@ -22,6 +22,8 @@ public class Witchification : ModEnchantmentTemplate
 
     public override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
     {
+        if (cardPlay?.IsAutoPlay == true) return;
+
         var enemies = Card.Owner.Creature.CombatState.Enemies
             .Where(e => e is { IsAlive: true })
             .ToList();

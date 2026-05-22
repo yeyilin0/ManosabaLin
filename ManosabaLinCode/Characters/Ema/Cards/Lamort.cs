@@ -34,7 +34,6 @@ public sealed class Lamort : ManosabaCardTemplate
     {
     }
 
- 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
         get
@@ -67,7 +66,7 @@ public sealed class Lamort : ManosabaCardTemplate
             source.DynamicVars["WithPower"].BaseValue,
             creature, source, false);
 
-        // 2. 给予全体（所有敌人和所有友方）相当于血量四分之一的魔女因子
+        // 2. 给予全体相当于血量四分之一的魔女因子
         var allCreatures = combatState.Allies
             .Concat(combatState.Enemies)
             .Where(c => c.IsAlive)
@@ -90,39 +89,41 @@ public sealed class Lamort : ManosabaCardTemplate
             source.DynamicVars["RitualCeremonyPower"].BaseValue,
             creature, source, false);
 
-        // 4. 选择三次来打出亲近+1或疏远+1的卡
+        // 4. 手动选择三次来打出亲近+1或疏远+1的卡
         var bond = creature.GetPower<BondPower>();
-        var affinity = bond?.Affinity ?? 0;
-        var estrangement = bond?.Estrangement ?? 0;
-        var higherBond = affinity >= estrangement ? "affinity" : "estrangement";
-
-        var bondCardType = higherBond == "affinity" ? typeof(Emamonvqinjin) : typeof(Emamonvshuyuan);
         var createCardMethod = typeof(ICombatState).GetMethod("CreateCard", new Type[] { typeof(Player) });
 
         for (int i = 0; i < 3; i++)
         {
-            var genericMethod = createCardMethod.MakeGenericMethod(bondCardType);
-            var bondCard = (CardModel)genericMethod.Invoke(combatState, new object[] { owner });
-            bondCard.SetToFreeThisTurn();
-            await CardPileCmd.AddGeneratedCardToCombat(bondCard, PileType.Hand, owner);
+            var affinityCard = (CardModel)createCardMethod.MakeGenericMethod(typeof(Emamonvqinjin)).Invoke(combatState, new object[] { owner });
+            var estrangementCard = (CardModel)createCardMethod.MakeGenericMethod(typeof(Emamonvshuyuan)).Invoke(combatState, new object[] { owner });
+            affinityCard.SetToFreeThisTurn();
+            estrangementCard.SetToFreeThisTurn();
+
+            var options = new List<CardModel> { affinityCard, estrangementCard };
+            var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
+            var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, options, owner, prefs);
+            var picked = selected.FirstOrDefault();
+            if (picked == null) continue;
+
+            await CardPileCmd.AddGeneratedCardToCombat(picked, PileType.Hand, owner);
             await Cmd.Wait(0.1f);
 
-            // 自动打出这张卡
             Creature? autoTarget = null;
-            if (bondCard.TargetType == TargetType.AnyEnemy)
+            if (picked.TargetType == TargetType.AnyEnemy)
             {
                 autoTarget = combatState.GetOpponentsOf(creature)
                     .Where(c => c.IsAlive)
                     .FirstOrDefault();
             }
 
-            await CardCmd.AutoPlay(choiceContext, bondCard, autoTarget);
+            await CardCmd.AutoPlay(choiceContext, picked, autoTarget);
         }
 
         // 更新羁绊值
         bond = creature.GetPower<BondPower>();
-        affinity = bond?.Affinity ?? 0;
-        estrangement = bond?.Estrangement ?? 0;
+        var affinity = bond?.Affinity ?? 0;
+        var estrangement = bond?.Estrangement ?? 0;
         var higherBondValue = Math.Max(affinity, estrangement);
         var lowerBondValue = Math.Min(affinity, estrangement);
 
@@ -139,7 +140,6 @@ public sealed class Lamort : ManosabaCardTemplate
         {
             var bondCard = CreateRandomBondCard(combatState, owner, createCardMethod);
 
-            // 随机赋予一种附魔
             var chosenEnchant = rng.NextItem(enchantTypes);
             if (chosenEnchant == typeof(Rebuttal))
                 CardCmd.Enchant(rebuttalCanonical.ToMutable(), bondCard, 1m);
@@ -174,14 +174,14 @@ public sealed class Lamort : ManosabaCardTemplate
 
             foreach (var card in orderedCards)
             {
-                await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, owner);
+                CardCmd.PreviewCardPileAdd(
+                    await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Draw, owner, CardPilePosition.Random));
             }
         }
     }
 
     private CardModel CreateRandomBondCard(ICombatState combatState, Player owner, MethodInfo createCardMethod)
     {
-        // 占位：随机羁绊卡池，你后续替换
         var bondCardTypes = new[]
         {
             typeof(BalloonFragments),

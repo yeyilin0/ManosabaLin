@@ -13,6 +13,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
 
 namespace ManosabaLin.ManosabaLinCode.Characters.Hiro.Powers;
 
@@ -46,7 +47,7 @@ public class AamPower : ManosabaPowerTemplate, IRedirectPower
         await Task.CompletedTask;
     }
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side == CombatSide.Enemy)
             await PowerCmd.Remove(this);
@@ -60,10 +61,8 @@ public class AamPower : ManosabaPowerTemplate, IRedirectPower
         if (!LymPower.IsLocalPlayer(player)) return;
         if (Owner is not { IsAlive: true }) return;
 
-        // Step 1: Choose enemy move
         if (!await ChooseMove(choiceContext, player)) return;
 
-        // Step 2: Choose friendly target
         _chosenMoveTarget = await ChooseLocalTarget();
         await RefreshOwnerIntent();
     }

@@ -2,12 +2,14 @@
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -27,7 +29,7 @@ public class RitualCeremonyPower : ManosabaPowerTemplate
         }
     }
 
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         var source = this;
         if (side != source.Owner.Side) return;
@@ -37,7 +39,6 @@ public class RitualCeremonyPower : ManosabaPowerTemplate
         var netId = LocalContext.NetId;
         if (!netId.HasValue) return;
 
-        // 创建一个 HookPlayerChoiceContext 用于 Draw 调用
         var choiceContext = new HookPlayerChoiceContext(player, netId.Value, GameActionType.Combat);
 
         await PlayerCmd.GainEnergy(source.Amount, player);

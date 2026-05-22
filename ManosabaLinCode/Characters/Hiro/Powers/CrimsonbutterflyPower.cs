@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
@@ -33,7 +34,7 @@ public class CrimsonbutterflyPower : ManosabaPowerTemplate
         _recordedDamage += result.TotalDamage;
     }
 
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side) return;
 

@@ -77,10 +77,9 @@ public sealed class Reviveritual : ManosabaCardTemplate
 
         for (int i = 0; i < targetMaxHp; i++)
         {
-            // 随机选一个活着的队友
             var ally = rng.NextItem(aliveAllies);
             var allyPlayer = ally.Player;
-            var fragment = (CardModel)genericMethod.Invoke(combatState, new object[] { allyPlayer });
+            var fragment = combatState.CreateCard<Revivefragment>(allyPlayer);
             var pileType = rng.NextDouble() < 0.5 ? PileType.Draw : PileType.Discard;
             await CardPileCmd.AddGeneratedCardToCombat(fragment, pileType, allyPlayer);
         }

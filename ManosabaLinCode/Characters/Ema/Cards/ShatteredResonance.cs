@@ -29,6 +29,7 @@ public sealed class ShatteredResonance : ManosabaCardTemplate
         {
             yield return HoverTipFactory.FromPower<BondPower>();
             yield return HoverTipFactory.FromPower<HnmPower>();
+            yield return HoverTipFactory.FromPower<TempStrengthDown>();
         }
     }
 
@@ -52,7 +53,7 @@ public sealed class ShatteredResonance : ManosabaCardTemplate
 
         foreach (var enemy in CombatState.Enemies.Where(e => e is { IsAlive: true }))
         {
-            await PowerCmd.Apply<TempStrength>(
+            await PowerCmd.Apply<TempStrengthDown>(
                 choiceContext, enemy, strGain, creature, this, false);
         }
 

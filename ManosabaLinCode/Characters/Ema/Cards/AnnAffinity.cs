@@ -11,8 +11,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,9 +57,6 @@ public sealed class AnnAffinity : ManosabaCardTemplate
                 var randomCost = owner.RunState.Rng.CombatEnergyCosts.NextInt(3);
                 card.EnergyCost.SetThisCombat(randomCost);
             }
-
-            CardCmd.PreviewCardPileAdd(
-                await CardPileCmd.Add(card, PileType.Hand));
         }
     }
 

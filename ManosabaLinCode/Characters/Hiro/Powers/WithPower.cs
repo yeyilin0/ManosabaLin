@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
 using System.Linq;
 using ManosabaLin.Characters.Ema.Cards;
 using ManosabaLin.Characters.Emalin;
@@ -72,7 +73,7 @@ public sealed class WithPower : ManosabaPowerTemplate
             await CreatureCmd.Heal(source.Owner, 3m);
     }
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return;
         var source = this;

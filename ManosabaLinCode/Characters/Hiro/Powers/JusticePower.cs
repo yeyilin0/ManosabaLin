@@ -1,9 +1,12 @@
 using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -13,8 +16,7 @@ public class JusticePower : ManosabaPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return;
         if (Owner.IsDead) return;
@@ -22,10 +24,7 @@ public class JusticePower : ManosabaPowerTemplate
 
         Flash();
 
-        // 回复血量
         await CreatureCmd.Heal(Owner, Amount);
-
-        // 层数 -1（降至0时自动移除）
         await PowerCmd.Decrement(this);
     }
 }

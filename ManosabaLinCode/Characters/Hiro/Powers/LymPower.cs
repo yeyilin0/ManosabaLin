@@ -13,6 +13,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ManosabaLin.ManosabaLinCode.Characters.Hiro.Powers;
 
@@ -57,7 +59,7 @@ public class LymPower : ManosabaPowerTemplate, IRedirectPower
         await Task.CompletedTask;
     }
 
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side == CombatSide.Enemy)
             await PowerCmd.Remove(this);

@@ -24,8 +24,7 @@ public class EmaWitchKillerPower : ManosabaPowerTemplate
         get { yield return HoverTipFactory.FromPower<EmaWitchFactorPower>(); }
     }
 
-    // 回合开始：敌方+10，友方+1
-    public override async Task AfterSideTurnStart(CombatSide side, ICombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side) return;
 
@@ -40,7 +39,6 @@ public class EmaWitchKillerPower : ManosabaPowerTemplate
                 new ThrowingPlayerChoiceContext(), ally, 1m * Amount, Owner, null, false);
     }
 
-    // 友方受到伤害时：增加等于伤害四分之一的层数
     public override async Task AfterDamageReceived(
         PlayerChoiceContext choiceContext,
         Creature target,
@@ -59,7 +57,6 @@ public class EmaWitchKillerPower : ManosabaPowerTemplate
             choiceContext, target, stacks, Owner, null, false);
     }
 
-    // 敌方受到伤害时：增加等于伤害的层数（任何友方造成伤害都触发）
     public override async Task AfterDamageGiven(
         PlayerChoiceContext choiceContext,
         Creature? dealer,

@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -93,8 +94,7 @@ public sealed class SuspectPower : ManosabaPowerTemplate
         _isRestoring = true;
     }
 
-    // ★ 我方回合结束时归还能力
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (!_isRestoring) return;
         if (side != CombatSide.Player) return;

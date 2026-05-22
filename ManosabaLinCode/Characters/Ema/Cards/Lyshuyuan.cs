@@ -57,18 +57,28 @@ public sealed class Lyshuyuan : ManosabaCardTemplate
         // 疏远 +1
         bond.Estrangement++;
 
-        // 获取较高值，消耗掉
-        var higherValue = Math.Max(bond.Affinity, bond.Estrangement);
+        var deckPile = PileType.Deck.GetPile(owner);
+        var estrangement = bond.Estrangement;
+        var affinity = bond.Affinity;
+
+        // 获取较高值
+        var higherValue = Math.Max(affinity, estrangement);
         if (higherValue <= 0) return;
 
-        // 消耗较高值
-        if (bond.Affinity >= bond.Estrangement)
-            bond.Affinity -= higherValue;
-        else
-            bond.Estrangement -= higherValue;
+        var estrangementCards = new[]
+        {
+            typeof(BalloonFragments),
+            typeof(StabbingBlade),
+            typeof(ShatteredResonance),
+            typeof(WitchCleansing),
+            typeof(ChainedTrust),
+            typeof(PawnRealization),
+            typeof(NoahEstrangement),
+            typeof(MargaretEstrangement),
+            typeof(CocoEstrangement),
+            typeof(AnnEstrangement),
+        };
 
-        // 从卡组中收集可升级羁绊牌并升级
-        var deckPile = PileType.Deck.GetPile(owner);
         var bondCardTypes = new[]
         {
             typeof(SwapBodySuccess),
@@ -93,55 +103,47 @@ public sealed class Lyshuyuan : ManosabaCardTemplate
             typeof(AnnEstrangement),
         };
 
-        var bondCards = deckPile.Cards
+        // 1. 按疏远值选择卡组中的卡变形成随机疏远卡并升级
+        var deckCards = deckPile.Cards.ToList();
+        var selectCount = Math.Min(estrangement, deckCards.Count);
+        if (selectCount > 0)
+        {
+            var prefs = new CardSelectorPrefs(SelectionScreenPrompt, selectCount, selectCount);
+            var selected = await CardSelectCmd.FromSimpleGrid(
+                choiceContext, deckCards.Cast<CardModel>().ToList(), owner, prefs);
+            var picked = selected.ToList();
+
+            var rng = owner.RunState.Rng.CombatCardSelection;
+            var createCardMethod = typeof(ICombatState).GetMethod("CreateCard", new Type[] { typeof(Player) });
+
+            foreach (var card in picked)
+            {
+                await CardCmd.Exhaust(choiceContext, card);
+
+                var chosenType = rng.NextItem(estrangementCards);
+                var genericMethod = createCardMethod.MakeGenericMethod(chosenType);
+                var newCard = (CardModel)genericMethod.Invoke(combatState, new object[] { owner });
+                CardCmd.Upgrade(newCard);
+                await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Draw, owner);
+            }
+        }
+
+        // 2. 消耗较高值，升级卡组里面没升级的羁绊卡
+        var upgradeCards = deckPile.Cards
             .Where(c => bondCardTypes.Contains(c.GetType()) && c.IsUpgradable)
             .Take(higherValue)
             .ToList();
 
-        foreach (var card in bondCards)
+        foreach (var card in upgradeCards)
         {
             CardCmd.Upgrade(card);
         }
 
-        // 疏远 > 亲近时，从卡组选卡变形为随机疏远卡并升级
-        if (bond.Estrangement > bond.Affinity)
-        {
-            var deckCards = deckPile.Cards.ToList();
-            var selectCount = Math.Min(higherValue, deckCards.Count);
-            if (selectCount > 0)
-            {
-                var prefs = new CardSelectorPrefs(SelectionScreenPrompt, selectCount, selectCount);
-                var selected = await CardSelectCmd.FromSimpleGrid(
-                    choiceContext, deckCards.Cast<CardModel>().ToList(), owner, prefs);
-                var picked = selected.ToList();
-
-                var estrangementCards = new[]
-                {
-                    typeof(BalloonFragments),
-                    typeof(StabbingBlade),
-                    typeof(ShatteredResonance),
-                    typeof(WitchCleansing),
-                    typeof(ChainedTrust),
-                    typeof(PawnRealization),
-                    typeof(NoahEstrangement),
-                    typeof(MargaretEstrangement),
-                    typeof(CocoEstrangement),
-                    typeof(AnnEstrangement),
-                };
-
-                var rng = owner.RunState.Rng.CombatCardSelection;
-                var createCardMethod = typeof(ICombatState).GetMethod("CreateCard", new Type[] { typeof(Player) });
-
-                foreach (var card in picked)
-                {
-                    var chosenType = rng.NextItem(estrangementCards);
-                    var genericMethod = createCardMethod.MakeGenericMethod(chosenType);
-                    var newCard = (CardModel)genericMethod.Invoke(combatState, new object[] { owner });
-                    CardCmd.Upgrade(newCard);
-                    await CardCmd.Transform(card, newCard);
-                }
-            }
-        }
+        // 消耗较高值
+        if (affinity >= estrangement)
+            bond.Affinity -= Math.Min(bond.Affinity, higherValue);
+        else
+            bond.Estrangement -= Math.Min(bond.Estrangement, higherValue);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

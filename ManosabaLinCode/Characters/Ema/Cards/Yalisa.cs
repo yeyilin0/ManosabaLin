@@ -46,7 +46,8 @@ public sealed class Yalisa : ManosabaCardTemplate
         if (bond.Affinity + bond.Estrangement > 6)
         {
             var newCard = source.CombatState.CreateCard<Yalisaqinjin>(owner);
-            await CardCmd.Transform(this, newCard);
+            await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, owner);
+            await CardCmd.Exhaust(choiceContext, this);
         }
     }
 
