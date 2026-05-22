@@ -32,14 +32,10 @@ public sealed class WildDance : ManosabaCardTemplate
 
         var handPile = PileType.Hand.GetPile(owner);
         var attackCards = handPile.Cards
-            .Where(c => c.Type == CardType.Attack && c != this)
+            .Where(c => c.Type == CardType.Attack && c != this && !c.Keywords.Contains(CardKeyword.Unplayable))
             .ToList();
 
-        var allTargets = CombatState.Allies.Where(a => a.IsAlive)
-            .Concat(CombatState.Enemies.Where(e => e.IsAlive))
-            .ToList();
-
-        if (allTargets.Count == 0) return;
+        if (attackCards.Count == 0) return;
 
         await CreatureCmd.TriggerAnim(creature, "Cast", owner.Character.CastAnimDelay);
 
@@ -47,13 +43,21 @@ public sealed class WildDance : ManosabaCardTemplate
 
         foreach (var card in attackCards)
         {
+            var baseDamage = card.DynamicVars?.Damage?.BaseValue ?? 6m;
+
+            await CardCmd.AutoPlay(choiceContext, card, null);
+
+            var allTargets = CombatState.Allies.Where(a => a.IsAlive)
+                .Concat(CombatState.Enemies.Where(e => e.IsAlive))
+                .ToList();
+            if (allTargets.Count == 0) continue;
+
             var target = rng.NextItem(allTargets);
 
             if (target.IsEnemy)
             {
-                var baseDamage = card.DynamicVars?.Damage?.BaseValue ?? 6m;
                 await CreatureCmd.Damage(choiceContext, target, baseDamage * multiplier,
-                    ValueProp.Unpowered | ValueProp.Move, creature, card);
+                    ValueProp.Unpowered | ValueProp.Move, creature, this);
             }
             else
             {
@@ -71,14 +75,12 @@ public sealed class WildDance : ManosabaCardTemplate
                     if (poolCards.Count > 0)
                     {
                         var template = rng.NextItem(poolCards);
-                        var newCard = CombatState.CreateCard(template, owner);
+                        var newCard = CombatState.CreateCard(template, targetPlayer);
                         newCard.SetToFreeThisTurn();
-                        await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, owner, CardPilePosition.Bottom);
+                        await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, targetPlayer, CardPilePosition.Bottom);
                     }
                 }
             }
-
-            await CardCmd.Exhaust(choiceContext, card);
         }
     }
 

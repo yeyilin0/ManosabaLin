@@ -1,5 +1,5 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -26,6 +26,7 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
             yield return HoverTipFactory.FromPower<PerjuryPower>();
             yield return HoverTipFactory.FromPower<SuspectPower>();
             yield return HoverTipFactory.FromPower<WithPower>();
+            yield return HoverTipFactory.FromPower<OriginalsinjusticePower>();
         }
     }
 
@@ -44,7 +45,6 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
         var justiceAmt = justice?.Amount ?? 0;
         var withAmt = with?.Amount ?? 0;
 
-        // ===== 1. 轮回 =====
         var handCards = PileType.Hand.GetPile(owner).Cards.Where(c => c != source).ToList();
         var rebirthCards = handCards.Where(c => c.HasModKeyword(TransmigrationRules.TransmigrationKeywordId)).ToList();
 
@@ -76,7 +76,6 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
         perjuryAmt = perjury?.Amount ?? 0;
         suspectAmt = suspect?.Amount ?? 0;
 
-        // ===== 2. 伪证 =====
         if (perjuryAmt > 0)
         {
             var enemies = owner.Creature.CombatState.Creatures
@@ -98,7 +97,6 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
             await PowerCmd.Remove(perjury);
         }
 
-        // ===== 3. 嫌疑 =====
         if (suspectAmt > 0)
         {
             await PowerCmd.Apply<WithPower>(choiceContext, owner.Creature, suspectAmt * 20, owner.Creature, source, false);
@@ -106,7 +104,6 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
             await PowerCmd.Remove(suspect);
         }
 
-        // ===== 4. 正义 =====
         if (justiceAmt > 0)
         {
             var allies = owner.Creature.CombatState.Creatures
@@ -124,7 +121,6 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
             }
         }
 
-        // ===== 5. 魔女化 =====
         if (withAmt >= 100)
         {
             await PowerCmd.Apply<OriginalsinjusticePower>(

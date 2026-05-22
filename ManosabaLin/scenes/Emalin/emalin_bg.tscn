@@ -9,16 +9,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -57.0
-offset_top = -51.0
-offset_right = 2503.0
-offset_bottom = 1149.0
+offset_left = -30.0
+offset_top = 25.0
+offset_right = 2530.0
+offset_bottom = 1225.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(1280, 600)
 
 [node name="EmalinBg" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(87.68741, 50.21878)
-scale = Vector2(0.96710205, 0.93364805)
+position = Vector2(30.000004, -20.99998)
+scale = Vector2(0.51053333, 0.5622893)
 texture = ExtResource("1_to7mj")

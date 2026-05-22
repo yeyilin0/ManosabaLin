@@ -1,18 +1,18 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
 [RegisterCard(typeof(HiroCardPool))]
-public sealed class Seven() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyPlayer)
+public sealed class Seven() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllAllies)
 {
-
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
         get { yield return CardKeyword.Exhaust; }
@@ -32,14 +32,15 @@ public sealed class Seven() : ManosabaCardTemplate(1, CardType.Skill, CardRarity
     {
         var source = this;
         var target = cardPlay.Target ?? source.Owner.Creature;
+        var targetPlayer = target.Player ?? source.Owner;
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
         for (var i = 0; i < source.DynamicVars.Cards.IntValue; i++)
         {
-            var twoCard = source.CombatState.CreateCard<Two>(target.Player);
+            var twoCard = source.CombatState.CreateCard<Two>(targetPlayer);
             if (IsUpgraded) twoCard.UpgradeInternal();
-            await CardPileCmd.AddGeneratedCardToCombat(twoCard, PileType.Draw, target.Player);
+            await CardPileCmd.Add(twoCard, PileType.Draw);
             await Cmd.Wait(0.05f);
         }
     }

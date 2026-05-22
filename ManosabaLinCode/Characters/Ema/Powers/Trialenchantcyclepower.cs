@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Enchantments;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -48,22 +47,9 @@ public class Trialenchantcyclepower : ManosabaPowerTemplate
             }
         }
 
-        var removedCount = trialCards.Count;
-        if (removedCount == 0) return;
+        if (trialCards.Count == 0) return;
 
-        // Step 2: Remove and recreate each card without enchantment
-        foreach (var (card, pileType) in trialCards)
-        {
-            var template = card.CanonicalInstance;
-            var upgradeLevel = card.CurrentUpgradeLevel;
-            await CardPileCmd.RemoveFromCombat(card);
-            var newCard = Owner.CombatState.CreateCard(template, owner);
-            for (int i = 0; i < upgradeLevel; i++)
-                CardCmd.Upgrade(newCard);
-            await CardPileCmd.AddGeneratedCardToCombat(newCard, pileType, owner);
-        }
-
-        // Step 3: Pick one random trial enchantment type
+        // Step 2: Pick one random trial enchantment type
         var chosenType = rng.NextItem(EnchantTypes);
         EnchantmentModel canonical;
         string keywordId;
@@ -84,37 +70,26 @@ public class Trialenchantcyclepower : ManosabaPowerTemplate
             keywordId = EmalinKeywordRules.DoubtKeywordId;
         }
 
-        // Step 4: Enchant random unenchanted cards in deck
-        var unenchanted = PileType.Deck.GetPile(owner).Cards
-            .Where(c => c.Enchantment == null)
-            .ToList();
-
-        var toEnchant = unenchanted
-            .OrderBy(_ => rng.NextFloat())
-            .Take(removedCount)
-            .ToList();
-
-        foreach (var card in toEnchant)
+        // Step 3: Clear old enchantment and apply the new same one to all trial cards
+        foreach (var (card, _) in trialCards)
         {
+            CardCmd.ClearEnchantment(card);
             CardCmd.Enchant(canonical.ToMutable(), card, 1m);
         }
 
-        // Step 5: Generate a card with matching keyword, enchant it, add to hand
-        var generatedCards = CardFactory.GetDistinctForCombat(
-            owner,
-            owner.Character.CardPool
-                .GetUnlockedCards(owner.UnlockState, owner.RunState.CardMultiplayerConstraint)
-                .Where(c => c.HasModKeyword(keywordId)),
-            1,
-            owner.RunState.Rng.CombatCardGeneration
-        ).ToList();
+        // Step 4: Generate a matching keyword card, enchant it, add to hand with free this turn
+        var poolCards = owner.Character.CardPool
+            .GetUnlockedCards(owner.UnlockState, owner.RunState.CardMultiplayerConstraint)
+            .Where(c => c.HasModKeyword(keywordId))
+            .ToList();
 
-        if (generatedCards.Count > 0)
+        if (poolCards.Count > 0)
         {
-            var genCard = generatedCards[0];
-            if (genCard.Enchantment == null)
-                CardCmd.Enchant(canonical.ToMutable(), genCard, 1m);
-            await CardPileCmd.AddGeneratedCardToCombat(genCard, PileType.Hand, owner);
+            var template = rng.NextItem(poolCards);
+            var newCard = Owner.CombatState.CreateCard(template, owner);
+            CardCmd.Enchant(canonical.ToMutable(), newCard, 1m);
+            newCard.SetToFreeThisTurn();
+            await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, owner);
         }
 
         Flash();

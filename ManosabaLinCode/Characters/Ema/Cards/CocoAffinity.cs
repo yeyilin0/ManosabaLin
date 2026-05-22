@@ -39,6 +39,7 @@ public sealed class CocoAffinity : ManosabaCardTemplate
         if (target.Monster?.NextMove?.Intents == null) return;
 
         var multiplier = (bond != null && bond.Affinity > bond.Estrangement) ? 2 : 1;
+        var allies = CombatState.Allies.Where(a => a is { IsAlive: true }).ToList();
 
         foreach (var intent in target.Monster.NextMove.Intents)
         {
@@ -46,18 +47,19 @@ public sealed class CocoAffinity : ManosabaCardTemplate
             {
                 case IntentType.Attack:
                 case IntentType.DeathBlow:
-                    foreach (var ally in CombatState.Allies.Where(a => a is { IsAlive: true }))
+                    foreach (var ally in allies)
                         await PowerCmd.Apply<HardenedShellPower>(choiceContext, ally, 30 * multiplier, creature, this, false);
                     break;
 
                 case IntentType.Defend:
                 case IntentType.Buff:
-                    await PowerCmd.Apply<RitualPower>(choiceContext, creature, 9 * multiplier, creature, this, false);
+                    foreach (var ally in allies)
+                        await PowerCmd.Apply<RitualPower>(choiceContext, ally, 9 * multiplier, creature, this, false);
                     break;
 
                 case IntentType.Debuff:
                 case IntentType.DebuffStrong:
-                    foreach (var ally in CombatState.Allies.Where(a => a is { IsAlive: true }))
+                    foreach (var ally in allies)
                         await PowerCmd.Apply<ArtifactPower>(choiceContext, ally, 5 * multiplier, creature, this, false);
                     break;
             }

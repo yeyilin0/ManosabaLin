@@ -153,13 +153,7 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
     }
 
 
-    protected override Task BeforeTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, ComponentContext componentContext)
-    {
-        if (side != CombatSide.Player || Pile?.Type != PileType.Hand)
-            return Task.CompletedTask;
-        CardsInHand = Pile.Cards.Count;
-        return Task.CompletedTask;
-    }
+  
 
     protected override bool HasTurnEndInHandEffectC => true;
 

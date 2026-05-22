@@ -60,14 +60,20 @@ public sealed class BondSettlement : ManosabaCardTemplate
         if (bond != null)
             bond.Affinity++;
 
-        // ===== 消耗卡组内所有羁绊卡 =====
-        var deckPile = PileType.Deck.GetPile(owner);
-        var bondCards = deckPile.Cards
+        // ===== 消耗抽牌堆、手牌、弃牌堆中所有羁绊卡 =====
+        var drawPile = PileType.Draw.GetPile(owner);
+        var handPile = PileType.Hand.GetPile(owner);
+        var discardPile = PileType.Discard.GetPile(owner);
+
+        var allBondCards = drawPile.Cards
+            .Concat(handPile.Cards)
+            .Concat(discardPile.Cards)
             .Where(c => BondCardTypes.Contains(c.GetType()))
+            .Distinct()
             .ToList();
 
         var exhaustedCount = 0;
-        foreach (var card in bondCards)
+        foreach (var card in allBondCards)
         {
             await CardCmd.Exhaust(choiceContext, card);
             exhaustedCount++;
@@ -82,7 +88,7 @@ public sealed class BondSettlement : ManosabaCardTemplate
                 ValueProp.Unpowered, creature, this);
         }
 
-        // 重新读取亲和（亲近+1后）
+        // 重新读取亲和
         affinity = bond?.Affinity ?? 0;
 
         // ===== 按亲近层数生成等量随机亲近卡 =====
@@ -98,7 +104,7 @@ public sealed class BondSettlement : ManosabaCardTemplate
         // ===== 选择疏远层数张手牌减1费 =====
         if (estrangement > 0)
         {
-            var handCards = PileType.Hand.GetPile(owner).Cards;
+            var handCards = handPile.Cards;
             if (handCards.Count > 0)
             {
                 var maxSelect = Math.Min(estrangement, handCards.Count);

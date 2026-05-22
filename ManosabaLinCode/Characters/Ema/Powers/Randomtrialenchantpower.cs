@@ -30,15 +30,13 @@ public class Randomtrialenchantpower : ManosabaPowerTemplate
         if (player != Owner.Player) return;
         if (Owner.IsDead) return;
 
-        var deckPile = PileType.Deck.GetPile(Owner.Player);
-        var deckCards = deckPile.Cards.Where(c => c.Enchantment == null).ToList();
-        if (deckCards.Count == 0) return;
+        var drawPile = PileType.Draw.GetPile(Owner.Player);
+        var drawCards = drawPile.Cards.Where(c => c.Enchantment == null).ToList();
+        if (drawCards.Count == 0) return;
 
-        // 随机选一张没有附魔的卡
         var rng = Owner.Player.RunState.Rng.CombatCardSelection;
-        var targetCard = rng.NextItem(deckCards);
+        var targetCard = rng.NextItem(drawCards);
 
-        // 随机选一种审判附魔
         var enchantTypes = new[] { typeof(Rebuttal), typeof(Agreement), typeof(Doubt) };
         var chosenEnchant = rng.NextItem(enchantTypes);
 
