@@ -464,5 +464,8 @@
   "ManosabaLin.Executorofjustice.hovertip.description": "[color=#CC6666][jitter]她至今走过的路，未曾有一星污点\n在那个名为独善的理想乡中，容不得绞刑台这般异物的存在[/jitter][/color]",
   "ManosabaLin.UniqueComponent.prefix": "[gold]唯一。[/gold]",
   "ManosabaLin.UniqueComponent.hovertip.title": "唯一",
-  "ManosabaLin.UniqueComponent.hovertip.description": "牌组中最多存在一张同名牌。"
+  "ManosabaLin.UniqueComponent.hovertip.description": "牌组中最多存在一张同名牌。",
+  "ManosabaLin.EmaBadEndingRewardComponent.postfix": "[color=#4a0000]打出「{CardTitle}」（剩余{UseLeft}次）。[/color]",
+  "ManosabaLin.EmaTrueEndingRewardComponent.postfix": "获得{Amount}层EmaTrueEndingRewardAction。",
+  "ManosabaLin.EmaTrueEndingTagComponent.postfix": "[gold]移除。[/gold]{CanIncreaseAchieveCount:\n[color=#4a0000]使EmaTrueEndingPower计数减1。[/color]}"
 }
