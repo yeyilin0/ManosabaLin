@@ -49,7 +49,7 @@ public sealed class ShatteredResonance : ManosabaCardTemplate
 
         foreach (var enemy in CombatState.Enemies.Where(e => e is { IsAlive: true }))
         {
-            await PowerCmd.Apply<TempStrengthDown>(
+            await PowerCmd.Apply<StrengthPower>(
                 choiceContext, enemy, strGain, creature, this, false);
         }
 
@@ -57,8 +57,8 @@ public sealed class ShatteredResonance : ManosabaCardTemplate
         {
             foreach (var enemy in CombatState.Enemies.Where(e => e is { IsAlive: true }))
             {
-                await PowerCmd.Apply<StrengthPower>(
-                    choiceContext, enemy, -10, creature, this);
+                await PowerCmd.Apply<TempStrengthDown>(
+                    choiceContext, enemy, 10, creature, this);
             }
         }
     }

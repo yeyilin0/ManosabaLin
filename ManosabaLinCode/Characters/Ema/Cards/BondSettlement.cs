@@ -26,22 +26,45 @@ public sealed class BondSettlement : ManosabaCardTemplate
 
     private static readonly Type[] BondCardTypes =
     [
-        typeof(BalloonFragments), typeof(StabbingBlade), typeof(ShatteredResonance),
-        typeof(WitchCleansing), typeof(ChainedTrust), typeof(PawnRealization),
-        typeof(NoahEstrangement), typeof(MargaretEstrangement),
-        typeof(CocoEstrangement), typeof(AnnEstrangement),
-        typeof(SwapBodySuccess), typeof(GuardianOath), typeof(SharedFate),
-        typeof(DollGift), typeof(TheOnlyClue), typeof(SubstituteCost),
-        typeof(NoahAffinity), typeof(MargaretAffinity),
-        typeof(CocoAffinity), typeof(AnnAffinity)
+        typeof(BalloonFragments),
+        typeof(StabbingBlade),
+        typeof(ShatteredResonance),
+        typeof(WitchCleansing),
+        typeof(ChainedTrust),
+        typeof(PawnRealization),
+        typeof(NoahEstrangement),
+        typeof(MargaretEstrangement),
+        typeof(CocoEstrangement),
+        typeof(AnnEstrangement),
+        typeof(Hiroshuyuancard),
+        typeof(Lyshuyuan),
+        typeof(SwapBodySuccess),
+        typeof(GuardianOath),
+        typeof(SharedFate),
+        typeof(DollGift),
+        typeof(TheOnlyClue),
+        typeof(SubstituteCost),
+        typeof(NoahAffinity),
+        typeof(MargaretAffinity),
+        typeof(CocoAffinity),
+        typeof(AnnAffinity),
+        typeof(Lyqinjin),
+        typeof(BondSettlement),
     ];
 
     private static readonly Type[] AffinityTypes =
-    [
-        typeof(SwapBodySuccess), typeof(GuardianOath), typeof(SharedFate),
-        typeof(DollGift), typeof(TheOnlyClue), typeof(SubstituteCost),
-        typeof(NoahAffinity), typeof(MargaretAffinity),
-        typeof(CocoAffinity), typeof(AnnAffinity)
+    [ typeof(SwapBodySuccess),
+        typeof(GuardianOath),
+        typeof(SharedFate),
+        typeof(DollGift),
+        typeof(TheOnlyClue),
+        typeof(SubstituteCost),
+        typeof(NoahAffinity),
+        typeof(MargaretAffinity),
+        typeof(CocoAffinity),
+        typeof(AnnAffinity),
+        typeof(Lyqinjin),
+        typeof(BondSettlement),
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)

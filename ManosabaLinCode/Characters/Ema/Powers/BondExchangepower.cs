@@ -26,18 +26,34 @@ public class BondExchangepower : ManosabaPowerTemplate
 
     private static readonly Type[] EstrangementTypes =
     [
-        typeof(BalloonFragments), typeof(StabbingBlade), typeof(ShatteredResonance),
-        typeof(WitchCleansing), typeof(ChainedTrust), typeof(PawnRealization),
-        typeof(NoahEstrangement), typeof(MargaretEstrangement),
-        typeof(CocoEstrangement), typeof(AnnEstrangement)
+        typeof(BalloonFragments),
+        typeof(StabbingBlade),
+        typeof(ShatteredResonance),
+        typeof(WitchCleansing),
+        typeof(ChainedTrust),
+        typeof(PawnRealization),
+        typeof(NoahEstrangement),
+        typeof(MargaretEstrangement),
+        typeof(CocoEstrangement),
+        typeof(AnnEstrangement),
+        typeof(Hiroshuyuancard),
+        typeof(Lyshuyuan),
     ];
 
     private static readonly Type[] AffinityTypes =
     [
-        typeof(SwapBodySuccess), typeof(GuardianOath), typeof(SharedFate),
-        typeof(DollGift), typeof(TheOnlyClue), typeof(SubstituteCost),
-        typeof(NoahAffinity), typeof(MargaretAffinity),
-        typeof(CocoAffinity), typeof(AnnAffinity)
+        typeof(SwapBodySuccess),
+        typeof(GuardianOath),
+        typeof(SharedFate),
+        typeof(DollGift),
+        typeof(TheOnlyClue),
+        typeof(SubstituteCost),
+        typeof(NoahAffinity),
+        typeof(MargaretAffinity),
+        typeof(CocoAffinity),
+        typeof(AnnAffinity),
+        typeof(Lyqinjin),
+        typeof(BondSettlement),
     ];
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
@@ -71,7 +87,7 @@ public class BondExchangepower : ManosabaPowerTemplate
             var handCards = PileType.Hand.GetPile(owner).Cards;
             if (handCards.Count > 0)
             {
-                var prefs = new CardSelectorPrefs(new LocString("powers", "BondExchangepower.select_estrangement"), 1, 1);
+                var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
                 var selected = await CardSelectCmd.FromHand(choiceContext, owner, prefs, null, null);
                 var original = selected.FirstOrDefault();
 

@@ -194,6 +194,8 @@ public sealed class Lamort : ManosabaCardTemplate
             typeof(MargaretEstrangement),
             typeof(CocoEstrangement),
             typeof(AnnEstrangement),
+            typeof(Hiroshuyuancard),
+            typeof(Lyshuyuan),
             typeof(SwapBodySuccess),
             typeof(GuardianOath),
             typeof(SharedFate),
@@ -204,6 +206,9 @@ public sealed class Lamort : ManosabaCardTemplate
             typeof(MargaretAffinity),
             typeof(CocoAffinity),
             typeof(AnnAffinity),
+            typeof(Lyqinjin),
+            typeof(BondSettlement),
+
         };
 
         var rng = owner.RunState.Rng.CombatCardSelection;

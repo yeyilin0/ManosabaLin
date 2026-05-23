@@ -48,7 +48,7 @@ public class Hiroshuyuanpower : ManosabaPowerTemplate
         var handCards = handPile.Cards.ToList();
         if (handCards.Count == 0) return;
 
-        var prefs = new CardSelectorPrefs(new LocString("ui", "select_card_transform"), 1, 1);
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
         var selected = await CardSelectCmd.FromHand(
             choiceContext, Owner.Player, prefs, null, null);
         var picked = selected.FirstOrDefault();
@@ -66,6 +66,8 @@ public class Hiroshuyuanpower : ManosabaPowerTemplate
             typeof(MargaretEstrangement),
             typeof(CocoEstrangement),
             typeof(AnnEstrangement),
+            typeof(Hiroshuyuancard),
+            typeof(Lyshuyuan),
         };
 
         var combatState = Owner.Player.Creature.CombatState;

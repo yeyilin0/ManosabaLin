@@ -9,6 +9,8 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -37,8 +39,12 @@ public sealed class AnnAffinity : ManosabaCardTemplate
 
         var pickCount = DynamicVars["PickCount"].IntValue;
 
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, pickCount, pickCount);
-        var selected = await CardSelectCmd.FromDeckGeneric(owner, prefs, null);
+        var drawPile = PileType.Draw.GetPile(owner);
+        var drawCards = drawPile.Cards.ToList();
+        if (drawCards.Count == 0) return;
+
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, pickCount, Math.Min(pickCount, drawCards.Count));
+        var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, drawCards, owner, prefs);
 
         foreach (var card in selected)
         {
@@ -51,6 +57,7 @@ public sealed class AnnAffinity : ManosabaCardTemplate
                 var randomCost = owner.RunState.Rng.CombatEnergyCosts.NextInt(3);
                 card.EnergyCost.SetThisCombat(randomCost);
             }
+            card.InvokeEnergyCostChanged();
         }
     }
 

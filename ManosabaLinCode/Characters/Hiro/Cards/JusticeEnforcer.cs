@@ -1,5 +1,6 @@
 using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Emalin.Components;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.Commands;
@@ -12,6 +13,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Keywords;
 using System.Collections.Generic;
 using System.Linq;
+using MinionLib.Component.Interfaces;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -22,11 +24,9 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
     {
         get
         {
-            yield return HoverTipFactory.FromPower<JusticePower>();
-            yield return HoverTipFactory.FromPower<PerjuryPower>();
-            yield return HoverTipFactory.FromPower<SuspectPower>();
-            yield return HoverTipFactory.FromPower<WithPower>();
+      
             yield return HoverTipFactory.FromPower<OriginalsinjusticePower>();
+            yield return Executorofjustice.HoverTip;
         }
     }
 
@@ -34,6 +34,8 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
     {
         var source = this;
         var owner = source.Owner;
+
+        source.AddComponent(new Executorofjustice());
 
         var perjury = owner.Creature.GetPower<PerjuryPower>();
         var suspect = owner.Creature.GetPower<SuspectPower>();
@@ -128,6 +130,8 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
             );
         }
     }
+
+    protected override IEnumerable<ICardComponent> CanonicalComponents { get; }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {

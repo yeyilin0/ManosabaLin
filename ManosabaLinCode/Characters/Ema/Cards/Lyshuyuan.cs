@@ -77,10 +77,23 @@ public sealed class Lyshuyuan : ManosabaCardTemplate
             typeof(MargaretEstrangement),
             typeof(CocoEstrangement),
             typeof(AnnEstrangement),
+            typeof(Hiroshuyuancard),
+            typeof(Lyshuyuan),
         };
 
         var bondCardTypes = new[]
-        {
+        {typeof(BalloonFragments),
+            typeof(StabbingBlade),
+            typeof(ShatteredResonance),
+            typeof(WitchCleansing),
+            typeof(ChainedTrust),
+            typeof(PawnRealization),
+            typeof(NoahEstrangement),
+            typeof(MargaretEstrangement),
+            typeof(CocoEstrangement),
+            typeof(AnnEstrangement),
+            typeof(Hiroshuyuancard),
+            typeof(Lyshuyuan),
             typeof(SwapBodySuccess),
             typeof(GuardianOath),
             typeof(SharedFate),
@@ -91,16 +104,8 @@ public sealed class Lyshuyuan : ManosabaCardTemplate
             typeof(MargaretAffinity),
             typeof(CocoAffinity),
             typeof(AnnAffinity),
-            typeof(BalloonFragments),
-            typeof(StabbingBlade),
-            typeof(ShatteredResonance),
-            typeof(WitchCleansing),
-            typeof(ChainedTrust),
-            typeof(PawnRealization),
-            typeof(NoahEstrangement),
-            typeof(MargaretEstrangement),
-            typeof(CocoEstrangement),
-            typeof(AnnEstrangement),
+            typeof(Lyqinjin),
+            typeof(BondSettlement),
         };
 
         // 1. 按疏远值选择卡组中的卡变形成随机疏远卡并升级

@@ -203,7 +203,7 @@
   "MANOSABA_LIN_CARD_POWERFOURFOURCARD.title": "魔女监狱",
   "MANOSABA_LIN_CARD_POWERFOURFOURCARD.description":"回合开始时获得40层[b]【魔女化】[/b]",
   "MANOSABA_LIN_CARD_JUSTICE_ENFORCER.title": "正义的执行者",
-  "MANOSABA_LIN_CARD_JUSTICE_ENFORCER.description":"消耗手牌中所有[color=#CC6666]【轮回】[/color]卡，每张生成随机[color=#CC6666]【轮回】[/color]卡，获得1层[color=#CC6666]【伪证】[/color]并回复1点生命\n消耗所有[color=#CC6666]【伪证】[/color]，每层对随机敌人造成2+[b]【魔女化】[/b]一半点伤害，获得等量[color=#CC6666]【正义】[/color]\n消耗所有[b]【嫌疑】[/b]，每层获得15层[b]【魔女化】[/b]并回复1点能量\n按照[color=#CC6666]【正义】[/color]层数全体回血，≥10层则所有手牌获得[color=#CC6666]【轮回】[/color]\n若[b]【魔女化】[/b]≥100，额外获得1层[color=#CC6666]【原罪】[/color]",
+  "MANOSABA_LIN_CARD_JUSTICE_ENFORCER.description":"[color=#CC6666][b]原罪[/b][/color]\n消耗手牌中的[color=#CC6666]【轮回】[/color]卡每张生成随机[color=#CC6666]【轮回】[/color]卡，获得1层[color=#CC6666]【伪证】[/color]并回复1点生命\n消耗每层[color=#CC6666]【伪证】[/color]对随机敌人造成2+[b]【魔女化】[/b]一半点伤害，获得等量[color=#CC6666]【正义】[/color]\n消耗每层[b]【嫌疑】[/b]获得15层[b]【魔女化】[/b]并回复1点能量\n按照[color=#CC6666]【正义】[/color]层数全体回血，≥10层则所有手牌获得[color=#CC6666]【轮回】[/color]\n若[b]【魔女化】[/b]≥100，额外获得1层[color=#CC6666]【原罪】[/color]",
   "MANOSABA_LIN_CARD_LYHELP.title": "蕾雅的协力",
   "MANOSABA_LIN_CARD_LYHELP.description":"选择1个敌人将其意图目标转给1个敌方，造成8点伤害",
   "MANOSABA_LIN_CARD_AMTARGET.title": "希罗的针对",
@@ -370,7 +370,7 @@
   "MANOSABA_LIN_CARD_COCO_ESTRANGEMENT.title": "俯瞰的凝视",
   "MANOSABA_LIN_CARD_COCO_ESTRANGEMENT.description": "[color=#ff9966][b]「疏远」[/b][/color]\n根据目标意图施加减益，攻击意图：缩小，防御/增益意图：脆弱，减益意图：虚弱+易伤\n若[color=#ff9966]「疏远」[/color]>[color=#ff99cc]「亲近」[/color]\n所有效果对全体敌人生效",
   "MANOSABA_LIN_CARD_ANN_AFFINITY.title": "追向那个人",
-  "MANOSABA_LIN_CARD_ANN_AFFINITY.description": "[color=#6666cc][b]「亲近」[/b][/color]\n选择牌组 {PickCount:diff()}张卡，将其费用随机变为0~2费\n若[color=#6666cc]「亲近」[/color]>[color=#ff99cc]「疏远」[/color]\n变为0费",
+  "MANOSABA_LIN_CARD_ANN_AFFINITY.description": "[color=#6666cc][b]「亲近」[/b][/color]\n选择抽牌堆{PickCount:diff()}张卡，将其费用随机变为0~2费\n若[color=#6666cc]「亲近」[/color]>[color=#ff99cc]「疏远」[/color]\n变为0费",
   "MANOSABA_LIN_CARD_ANN_AFFINITY.selectionScreenPrompt":"[color=#6666cc]选择卡牌[/color]",
   "MANOSABA_LIN_CARD_ANN_ESTRANGEMENT.title": "致命的洗脑",
   "MANOSABA_LIN_CARD_ANN_ESTRANGEMENT.description": "[color=#6666cc][b]「疏远」[/b][/color]\n对目标施加2层虚弱和2层脆弱\n若[color=#6666cc]「疏远」[/color]>[color=#ff99cc]「亲近」[/color]\n额外造成疏远值乘{DamageMult:diff()}点伤害",
@@ -455,9 +455,12 @@
   "MANOSABA_LIN_CARD_BOND_SETTLEMENT.description": "[color=#ff99cc][b]「亲近」[/b][/color]\n消耗所有[color=#ff99cc]【亲近】[/color]和[color=#CC6666]【疏远】[/color]卡\n每张对随机敌人造成6点伤害\n按[color=#ff99cc]「亲近」[/color]层数生成等量随机[color=#ff99cc]【亲近】[/color]卡\n选择[color=#CC6666]「疏远」[/color]层数张手牌减1费",
   "MANOSABA_LIN_CARD_BOND_SETTLEMENT.selectionScreenPrompt": "选择卡牌减费",
   "MANOSABA_LIN_CARD_WILD_DANCE.title": "狂人日记",
-  "MANOSABA_LIN_CARD_WILD_DANCE.description": "[color=#4a0000][jitter]「在痛苦之中，去死就好了」[/jitter][/color]\n将手牌中所有攻击牌随机目标打出\n若命中敌人：造成{DamageMultiplier:diff()}倍伤害\n若命中友方：目标减少1层[b]【嫌疑】[/b]，获得1张该角色可免费打出1次的卡",
-  "ManosabaLin.Witchification.postfix": "[purple]魔女化[/purple]",
+  "MANOSABA_LIN_CARD_WILD_DANCE.description": "[color=#4a0000][jitter]「在痛苦之中，去死就好了」[/jitter][/color]\n将手牌中所有攻击牌随机目标打出\n若命中敌人总共打出{DamageMultiplier:diff()}次\n若命中友方：目标减少1层[b]【嫌疑】[/b]，获得1张该角色可免费打出1次的卡",
+  "ManosabaLin.Witchification.postfix": "[green]魔女化[/green]",
   "ManosabaLin.Witchification.hovertip.title": "魔女化",
-  "ManosabaLin.Witchification.hovertip.description": "额外打出一次"
+  "ManosabaLin.Witchification.hovertip.description": "额外打出一次",
+  "ManosabaLin.Executorofjustice.prefix": "[color=#CC6666][b]原罪[/b][/color]\n",
+  "ManosabaLin.Executorofjustice.hovertip.title": "正义的执行者",
+  "ManosabaLin.Executorofjustice.hovertip.description": "[color=#CC6666][jitter]她至今走过的路，未曾有一星污点\n在那个名为独善的理想乡中，容不得绞刑台这般异物的存在[/jitter][/color]"
 
 }

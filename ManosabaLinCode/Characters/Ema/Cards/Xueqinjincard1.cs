@@ -82,6 +82,8 @@ public sealed class Xueqinjincard1 : ManosabaCardTemplate
             typeof(MargaretEstrangement),
             typeof(CocoEstrangement),
             typeof(AnnEstrangement),
+            typeof(Hiroshuyuancard),
+            typeof(Lyshuyuan),
         };
 
         var rng = owner.RunState.Rng.CombatCardSelection;

@@ -49,6 +49,8 @@ public sealed class Xueqinjincard2 : ManosabaCardTemplate
             typeof(MargaretAffinity),
             typeof(CocoAffinity),
             typeof(AnnAffinity),
+            typeof(Lyqinjin),
+            typeof(BondSettlement),
         };
 
         var rng = owner.RunState.Rng.CombatCardSelection;
