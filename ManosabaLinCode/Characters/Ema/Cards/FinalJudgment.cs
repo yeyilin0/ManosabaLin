@@ -13,6 +13,8 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
+using ManosabaLin.Characters.Emalin.Components;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
 
 namespace ManosabaLin.Characters.Ema.Cards;
@@ -21,6 +23,14 @@ namespace ManosabaLin.Characters.Ema.Cards;
 public sealed class FinalJudgment : ManosabaCardTemplate
 {
     public FinalJudgment() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips
+    {
+        get
+        {
+   
+            yield return Hatedperson.HoverTip;
+        }
+    }
 
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)

@@ -8,6 +8,8 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using ManosabaLin.Characters.Emalin;
@@ -38,6 +40,8 @@ public sealed class EmaTen : ManosabaCardTemplate
         new PowerVar<SuspectPower>(1m)
     ];
 
+    [SavedProperty] public bool HasBeenPlayed { get; set; }
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
@@ -52,8 +56,20 @@ public sealed class EmaTen : ManosabaCardTemplate
             choiceContext, source.Owner.Creature,
             1m, source.Owner.Creature, source, false);
 
-        // 从牌组中永久移除此卡
-        await CardPileCmd.RemoveFromDeck(source);
+        HasBeenPlayed = true;
+    }
+
+    protected override async Task AfterCombatEnd(CombatRoom _, ComponentContext componentContext)
+    {
+        var source = this;
+
+        if (!HasBeenPlayed)
+            return;
+
+        var deckCards = PileType.Deck.GetPile(source.Owner).Cards.ToList();
+        foreach (var card in deckCards)
+            if (card is EmaTen)
+                await CardPileCmd.RemoveFromDeck(card);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

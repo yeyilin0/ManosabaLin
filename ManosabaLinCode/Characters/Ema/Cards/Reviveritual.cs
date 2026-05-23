@@ -2,6 +2,7 @@ using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin;
+using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -11,11 +12,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
-using MegaCrit.Sts2.Core.Combat;
-using System;
-using System.Reflection;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace ManosabaLin.Characters.Ema.Cards;
@@ -37,6 +34,7 @@ public sealed class Reviveritual : ManosabaCardTemplate
             yield return HoverTipFactory.FromPower<Reviveritualpower>();
             yield return HoverTipFactory.FromPower<BufferPower>();
             yield return HoverTipFactory.FromCard<Revivefragment>();
+            yield return HoverTipFactory.FromPower<HiroMagicRevivePower>();
         }
     }
 
@@ -50,38 +48,42 @@ public sealed class Reviveritual : ManosabaCardTemplate
 
         var targetMaxHp = (int)target.MaxHp;
 
-        // 击杀队友
-        await CreatureCmd.Kill(target);
+        // 给予 HiroMagicRevivePower
+        await PowerCmd.Apply<HiroMagicRevivePower>(
+            choiceContext, target, 1, source.Owner.Creature, this, false);
 
-        // 复活队友1点生命
-        await CreatureCmd.SetCurrentHp(target, 1);
+        // 999伤害
+        await CreatureCmd.Damage(choiceContext, target, 999m,
+            ValueProp.Unblockable | ValueProp.Unpowered, source.Owner.Creature, this);
+
+        // 失去39血
+        await CreatureCmd.Damage(choiceContext, target, 39m,
+            ValueProp.Unblockable | ValueProp.Unpowered, source.Owner.Creature, this);
 
         // 给予 Reviveritualpower 和 999 BufferPower
         await PowerCmd.Apply<Reviveritualpower>(
-            choiceContext, target, 1, source.Owner.Creature, this, false);
+            choiceContext, target, 3, source.Owner.Creature, this, false);
 
         await PowerCmd.Apply<BufferPower>(
             choiceContext, target, 999, source.Owner.Creature, this, false);
 
-        // 收集所有活着的友方玩家
+        // 塞碎片
         var aliveAllies = source.CombatState.Allies
             .Where(a => a.IsAlive && a.IsPlayer)
             .ToList();
 
-        if (aliveAllies.Count == 0) return;
-
-        var combatState = source.CombatState;
-        var rng = source.Owner.RunState.Rng.CombatCardSelection;
-        var createCardMethod = typeof(ICombatState).GetMethod("CreateCard", new Type[] { typeof(Player) });
-        var genericMethod = createCardMethod.MakeGenericMethod(typeof(Revivefragment));
-
-        for (int i = 0; i < targetMaxHp; i++)
+        if (aliveAllies.Count > 0)
         {
-            var ally = rng.NextItem(aliveAllies);
-            var allyPlayer = ally.Player;
-            var fragment = combatState.CreateCard<Revivefragment>(allyPlayer);
-            var pileType = rng.NextDouble() < 0.5 ? PileType.Draw : PileType.Discard;
-            await CardPileCmd.AddGeneratedCardToCombat(fragment, pileType, allyPlayer);
+            var rng = source.Owner.RunState.Rng.CombatCardSelection;
+
+            for (int i = 0; i < targetMaxHp; i++)
+            {
+                var ally = rng.NextItem(aliveAllies);
+                var allyPlayer = ally.Player;
+                var fragment = source.CombatState.CreateCard<Revivefragment>(allyPlayer);
+                var pileType = rng.NextDouble() < 0.5 ? PileType.Draw : PileType.Discard;
+                await CardPileCmd.AddGeneratedCardToCombat(fragment, pileType, allyPlayer);
+            }
         }
     }
 

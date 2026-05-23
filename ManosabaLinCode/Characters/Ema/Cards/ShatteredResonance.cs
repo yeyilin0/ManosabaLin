@@ -49,7 +49,7 @@ public sealed class ShatteredResonance : ManosabaCardTemplate
 
         foreach (var enemy in CombatState.Enemies.Where(e => e is { IsAlive: true }))
         {
-            await PowerCmd.Apply<StrengthPower>(
+            await PowerCmd.Apply<TempStrength>(
                 choiceContext, enemy, strGain, creature, this, false);
         }
 

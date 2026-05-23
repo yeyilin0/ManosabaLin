@@ -7,6 +7,8 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -22,7 +24,6 @@ public sealed class Revivefragment : ManosabaCardTemplate
         get { yield return CardKeyword.Exhaust; }
     }
 
-    // Auto-trigger when drawn: heal the killed ally, then vanish
     protected override async Task AfterCardDrawn(
         PlayerChoiceContext choiceContext,
         CardModel card,
@@ -32,26 +33,21 @@ public sealed class Revivefragment : ManosabaCardTemplate
 
         await Cmd.Wait(0.25f);
 
-        // Owner.Creature is the killed ally (set at creation time)
-        var target = Owner.Creature;
-        if (target is { IsAlive: true })
-        {
-            await CreatureCmd.Heal(target, 1m);
-        }
+        var allies = Owner.Creature.CombatState.Allies
+            .Where(a => a.IsAlive)
+            .ToList();
 
-        // Vanish: remove from combat entirely
+        foreach (var ally in allies)
+            await CreatureCmd.Heal(ally, 1m);
+
+        await CardPileCmd.Draw(choiceContext, 1m, Owner);
+
         await CardPileCmd.RemoveFromCombat(this);
     }
 
-    // Also handle manual play (if player plays it from hand)
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
-        var target = Owner.Creature;
-        if (target is { IsAlive: true })
-        {
-            await CreatureCmd.Heal(target, 1m);
-        }
-
+        await CardPileCmd.Draw(choiceContext, 1m, Owner);
         await CardPileCmd.RemoveFromCombat(this);
     }
 

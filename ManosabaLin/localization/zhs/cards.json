@@ -427,9 +427,9 @@
   "MANOSABA_LIN_CARD_CARD_EIGHTY_SIX.description": "造成{Damage:diff()}点伤害。\n抽{Cards:diff()}张牌。{CompPost}\n随机[gold]附着[/gold]至抽排堆的一张牌。",
   "ManosabaLin.GenerateComponent.postfix": "\n[color=#4a0000]将「{CardTitle}」放回手牌[/color]",
   "MANOSABA_LIN_CARD_REVIVERITUAL.title": "学姐的圣遗物",
-  "MANOSABA_LIN_CARD_REVIVERITUAL.description": "选择一个队友，将其击杀并复活，复活后最大生命值+1，给予1层[color=#ff99cc]【地雷】[/color]和999层[b]【缓冲】[/b]\n生成等于其最大生命值数量的[color=#ff99cc]【碎片】[/color]\n随机分配至所有队友的抽牌堆或弃牌堆",
+  "MANOSABA_LIN_CARD_REVIVERITUAL.description": "选择一个队友，将其击杀并复活回复1血，给予3层[color=#ff99cc]【地雷】[/color]和999层[b]【缓冲】[/b]\n生成等于其最大生命值数量的[color=#ff99cc]【碎片】[/color]\n随机分配至所有队友的抽牌堆",
   "MANOSABA_LIN_CARD_REVIVEFRAGMENT.title": "碎片",
-  "MANOSABA_LIN_CARD_REVIVEFRAGMENT.description": "被抽取时回复被击杀队友1点生命值，随后消失",
+  "MANOSABA_LIN_CARD_REVIVEFRAGMENT.description": "被抽取时自动打出，回复全体1点生命值，自己抽1",
   "MANOSABA_LIN_CARD_TRIALENCHANTCYCLECARD.title": "穷举法",
   "MANOSABA_LIN_CARD_TRIALENCHANTCYCLECARD.description": "回合开始时，清除所有[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔\n按照清除数量随机选一种附魔，给等量无附魔卡附上相同附魔\n生成1张对应关键词的零费卡并附上该附魔加入手牌",
   "MANOSABA_LIN_CARD_BOND_EXCHANGECARD.title": "旁观者的迎合",
@@ -438,7 +438,7 @@
   "MANOSABA_LIN_CARD_WITCHFACTORECHANTCARD.title": "魔女因子之印",
   "MANOSABA_LIN_CARD_WITCHFACTORECHANTCARD.description": "每有50层[b]【魔女化】[/b]获得1层[color=#ff99cc]【魔女因子之印】[/color]\n每获得1层时，为抽牌堆里随机无附魔卡获得随机[color=#339966]【反驳】[/color]/[color=#6699cc]【赞同】[/color]/[color=#cc9966]【疑问】[/color]附魔并减1费",
   "MANOSABA_LIN_CARD_FINAL_JUDGMENT.title": "受厌恶之人",
-  "MANOSABA_LIN_CARD_FINAL_JUDGMENT.description": "对全体敌人2倍([color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]+[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color])伤害\n[color=#ff99cc]「亲近」[/color]>[color=#CC6666]「疏远」[/color]：全体友方获得3倍[color=#ff99cc]「亲近」[/color]格挡，[color=#CC6666]「疏远」[/color]>[color=#ff99cc]「亲近」[/color]：全体敌人获得[color=#CC6666]「疏远」[/color]层易伤\n抽[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]+每50[b]【魔女化】[/b]张牌，每50[b]【魔女化】[/b]1点能量，每≥100额外2点，对每个有[b]【嫌疑】[/b]的敌人造成3倍[b]【嫌疑】[/b]+[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]值点伤害\n移除上述资源",
+  "MANOSABA_LIN_CARD_FINAL_JUDGMENT.description": "[color=#ff99cc][b]原罪[/b][/color]\n对全体敌人2倍([color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]+[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]卡)伤害\n[color=#ff99cc]「亲近」[/color]>[color=#CC6666]「疏远」[/color]：全体友方获得3倍[color=#ff99cc]「亲近」[/color]格挡，[color=#CC6666]「疏远」[/color]>[color=#ff99cc]「亲近」[/color]：全体敌人获得[color=#CC6666]「疏远」[/color]层易伤\n抽[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】卡[/color]+每50[b]【魔女化】[/b]张牌，每50[b]【魔女化】[/b]1点能量，每≥100额外2点，对每个有[b]【嫌疑】[/b]的敌人造成3倍[b]【嫌疑】[/b]+[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]值点伤害\n移除上述资源([color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]卡发生消耗效果)",
   "MANOSABA_LIN_CARD_LYSHUYUAN.title": "暗藏的嫉妒",
   "MANOSABA_LIN_CARD_LYSHUYUAN.description": "[gold][b]「疏远」[/b][/gold]\n造成{Damage:diff()}点伤害，消耗较高方的[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]值，升级牌组中等量的[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]卡\n若[gold]「疏远」[/gold]>[color=#ff99cc]「亲近」[/color]\n先选择所有相当于消耗数值的卡变成随机升级后的[gold]【疏远】[/gold]卡",
   "MANOSABA_LIN_CARD_LYSHUYUAN.selectionScreenPrompt": "[gold]选择[/gold]",
@@ -461,6 +461,8 @@
   "ManosabaLin.Witchification.hovertip.description": "额外打出一次",
   "ManosabaLin.Executorofjustice.prefix": "[color=#CC6666][b]原罪[/b][/color]\n",
   "ManosabaLin.Executorofjustice.hovertip.title": "正义的执行者",
-  "ManosabaLin.Executorofjustice.hovertip.description": "[color=#CC6666][jitter]她至今走过的路，未曾有一星污点\n在那个名为独善的理想乡中，容不得绞刑台这般异物的存在[/jitter][/color]"
-
+  "ManosabaLin.Executorofjustice.hovertip.description": "[color=#CC6666][jitter]她至今走过的路，未曾有一星污点。\n在那个名为独善的理想乡中，容不得绞刑台这般异物的存在[/jitter][/color]",
+  "ManosabaLin.Hatedperson.prefix": "[color=#ff99cc][b]原罪[/b][/color]\n",
+  "ManosabaLin.Hatedperson.hovertip.title": "受厌恶之人",
+  "ManosabaLin.Hatedperson.hovertip.description": "[color=#ff99cc][jitter]她是应受厌恶之人。\n而比任何人都厌恶她的，正是她本人[/jitter][/color]"
 }
