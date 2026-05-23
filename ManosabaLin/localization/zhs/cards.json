@@ -341,7 +341,7 @@
   "MANOSABA_LIN_CARD_DOLL_GIFT.description": "[green][b]「亲近」[/b][/green]\n获得1层缓冲\n若[green]「亲近」[/green]>[color=#ff99cc]「疏远」[/color]\n全体友方也获得1层缓冲",
   "MANOSABA_LIN_CARD_STABBING_BLADE.title": "背叛的利刃",
   "MANOSABA_LIN_CARD_STABBING_BLADE.description": "[green][b]「疏远」[/b][/green]\n选择1张攻击卡附魔[b]【魔女化】[/b]\n若[green]「疏远」[/green]>[color=#ff99cc]「亲近」[/color]\n立刻打出1次该卡",
-  "MANOSABA_LIN_CARD_STABBING_BLADE.selectionScreenPrompt":"[green]选择卡附魔[/green]",
+  "MANOSABA_LIN_CARD_STABBING_BLADE.selectionScreenPrompt":"选择一张攻击卡附魔魔女化",
   "MANOSABA_LIN_CARD_SHATTERED_RESONANCE.title": "碎裂的共鸣",
   "MANOSABA_LIN_CARD_SHATTERED_RESONANCE.description": "[color=#33ccff][b]「疏远」[/b][/color]\n获得1层[green]【远野汉娜的魔法】[/green]。全体敌人获得{StrGain:diff()}点力量\n若[color=#33ccff]「疏远」[/color]>[color=#ff99cc]「亲近」[/color]\n全体敌人降低10点力量",
   "MANOSABA_LIN_CARD_WITCH_CLEANSING.title": "可悲的自虐",
@@ -455,5 +455,9 @@
   "MANOSABA_LIN_CARD_BOND_SETTLEMENT.description": "[color=#ff99cc][b]「亲近」[/b][/color]\n消耗所有[color=#ff99cc]【亲近】[/color]和[color=#CC6666]【疏远】[/color]卡\n每张对随机敌人造成6点伤害\n按[color=#ff99cc]「亲近」[/color]层数生成等量随机[color=#ff99cc]【亲近】[/color]卡\n选择[color=#CC6666]「疏远」[/color]层数张手牌减1费",
   "MANOSABA_LIN_CARD_BOND_SETTLEMENT.selectionScreenPrompt": "选择卡牌减费",
   "MANOSABA_LIN_CARD_WILD_DANCE.title": "狂人日记",
-  "MANOSABA_LIN_CARD_WILD_DANCE.description": "[color=#4a0000][jitter]「在痛苦之中，去死就好了」[/jitter][/color]\n将手牌中所有攻击牌随机目标打出\n若命中敌人：造成{DamageMultiplier:diff()}倍伤害\n若命中友方：目标减少1层[b]【嫌疑】[/b]，并获得1张该角色可免费打出1次的卡"
+  "MANOSABA_LIN_CARD_WILD_DANCE.description": "[color=#4a0000][jitter]「在痛苦之中，去死就好了」[/jitter][/color]\n将手牌中所有攻击牌随机目标打出\n若命中敌人：造成{DamageMultiplier:diff()}倍伤害\n若命中友方：目标减少1层[b]【嫌疑】[/b]，获得1张该角色可免费打出1次的卡",
+  "ManosabaLin.Witchification.postfix": "[purple]魔女化[/purple]",
+  "ManosabaLin.Witchification.hovertip.title": "魔女化",
+  "ManosabaLin.Witchification.hovertip.description": "额外打出一次"
+
 }

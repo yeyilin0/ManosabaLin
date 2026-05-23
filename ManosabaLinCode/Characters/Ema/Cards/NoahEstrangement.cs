@@ -56,11 +56,13 @@ public sealed class NoahEstrangement : ManosabaCardTemplate
         if (discardHand.Count > 0)
         {
             var discardPrefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
-            var discardSelected = await CardSelectCmd.FromHand(
+            var discardSelected = await CardSelectCmd.FromHandForDiscard(
                 choiceContext, owner, discardPrefs, null, this);
             var discardCard = discardSelected.FirstOrDefault();
             if (discardCard != null)
-                await CardPileCmd.Add(discardCard, PileType.Discard);
+            {
+                await CardCmd.Discard(choiceContext, discardCard);
+            }
         }
 
         if (bond != null && bond.Estrangement > bond.Affinity)

@@ -5,15 +5,11 @@ using ManosabaLin.Characters.Emalin;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
-using System.Collections.Generic;
-using System.Linq;
 using ManosabaLin.Characters.Common.Powers;
 
 namespace ManosabaLin.Characters.Ema.Cards;
@@ -61,8 +57,8 @@ public sealed class ShatteredResonance : ManosabaCardTemplate
         {
             foreach (var enemy in CombatState.Enemies.Where(e => e is { IsAlive: true }))
             {
-                await PowerCmd.Apply<CrushUnderPower>(
-                    choiceContext, enemy, -10, creature, this, false);
+                await PowerCmd.Apply<StrengthPower>(
+                    choiceContext, enemy, -10, creature, this);
             }
         }
     }

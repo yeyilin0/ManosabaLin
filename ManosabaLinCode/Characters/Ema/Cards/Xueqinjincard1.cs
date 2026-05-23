@@ -45,7 +45,7 @@ public sealed class Xueqinjincard1 : ManosabaCardTemplate
         if (bond != null && bond.Affinity > 7)
         {
             var transformedCard = source.CombatState.CreateCard<Xueqinjincard2>(owner);
-            await CardPileCmd.AddGeneratedCardToCombat(transformedCard, PileType.Hand, owner);
+            await CardCmd.Transform(source, transformedCard);
             return;
         }
 
