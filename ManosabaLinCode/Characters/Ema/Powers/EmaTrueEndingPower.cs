@@ -42,14 +42,13 @@ public class EmaTrueEndingPower : ManosabaPowerTemplate, IEasyRightClickablePowe
     {
         if (card.Pile == null && card.Owner.Creature == Owner && card.HasComponent<EmaTrueEndingTagComponent>())
         {
-            _achievedCards.Add(card.Id.Entry);
-            InvokeDisplayAmountChanged();
-            Flash();
-        }
-
-        if (_achievedCards.Count >= AchieveCountTarget)
-        {
-            await OnAchieve();
+            if (_achievedCards.Add(card.Id.Entry))
+            {
+                InvokeDisplayAmountChanged();
+                Flash();
+                if (_achievedCards.Count == AchieveCountTarget)
+                    await OnAchieve();
+            }
         }
     }
 
