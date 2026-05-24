@@ -49,13 +49,13 @@ public sealed class Monvqiufan : ManosabaCardTemplate
         // 获得6层临时力量
         await PowerCmd.Apply<TempStrength>(
             choiceContext, creature,
-            source.DynamicVars["TempStrengthPower"].BaseValue,
+            source.DynamicVars["TempStrength"].BaseValue,
             creature, source, false);
 
         // 获得5层临时迅捷
         await PowerCmd.Apply<TempDexterity>(
             choiceContext, creature,
-            source.DynamicVars["TempDexterityPower"].BaseValue,
+            source.DynamicVars["TempDexterity"].BaseValue,
             creature, source, false);
 
         // 获得9点格挡

@@ -17,9 +17,8 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public class EmaEnding(): ManosabaCardTemplate(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public class EmaEnding() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
-  
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new EnergyVar(1), new CardsVar(1)];
 
@@ -31,10 +30,10 @@ public class EmaEnding(): ManosabaCardTemplate(1, CardType.Skill, CardRarity.Rar
             yield return HoverTipFactory.FromCard<EmaBadEnding>();
             yield return HoverTipFactory.FromPower<EmaBadEndingPower>();
             yield return HoverTipFactory.FromPower<EmaBadEndingRewardPower>();
-       
             yield return HoverTipFactory.FromPower<EmaTrueEndingRewardAction>();
         }
     }
+
     protected override IEnumerable<ICardComponent> CanonicalComponents => [new UniqueComponent()];
 
     protected override PileType GetResultPileTypeForCardPlayC()
@@ -48,6 +47,10 @@ public class EmaEnding(): ManosabaCardTemplate(1, CardType.Skill, CardRarity.Rar
     {
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+
+        var bond = Owner.Creature.GetPower<BondPower>();
+        if (bond != null)
+            bond.Affinity++;
     }
 
     protected override async Task AfterCardChangedPilesLate(CardModel card, PileType oldPileType, AbstractModel? source,
@@ -59,10 +62,11 @@ public class EmaEnding(): ManosabaCardTemplate(1, CardType.Skill, CardRarity.Rar
             if (bond is null) return;
             if (bond.Affinity >= 13 && bond.Affinity >= bond.Estrangement)
                 await CardCmd.TransformTo<EmaTrueEnding>(this);
-            else if(bond.Estrangement >= 13 && bond.Estrangement >= bond.Affinity)
+            else if (bond.Estrangement >= 13 && bond.Estrangement >= bond.Affinity)
                 await CardCmd.TransformTo<EmaBadEnding>(this);
         }
     }
+
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1);
