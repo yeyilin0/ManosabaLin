@@ -6,14 +6,16 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Rooms;
 using MinionLib.Component.Interfaces;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Ema.Powers;
 
+[RegisterPower]
 public sealed class EmaBadEndingRewardPower : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Buff;
 
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Single;
 
     public override async Task AfterCombatEnd(CombatRoom room)
     {

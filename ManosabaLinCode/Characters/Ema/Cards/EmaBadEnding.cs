@@ -11,10 +11,11 @@ using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
-[RegisterCard(typeof(TokenCardPool))]
-public sealed class EmaBadEnding() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+[RegisterCard(typeof(LinCardPool))]
+public sealed class EmaBadEnding() : ManosabaCardTemplate(3, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10, DamageProps.card)];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     public override int MaxUpgradeLevel => 0;
 

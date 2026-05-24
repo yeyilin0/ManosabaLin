@@ -5,9 +5,10 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Emalin.Actions;
-
+[RegisterPower]
 public sealed class EmaTrueEndingRewardAction : ManosabaActionTemplate
 {
     public override PowerType Type => PowerType.Buff;

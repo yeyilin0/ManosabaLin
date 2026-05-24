@@ -131,5 +131,13 @@
   "MANOSABA_LIN_POWER_WITCHFACTORECHANTPOWER.title": "魔女因子之印",
   "MANOSABA_LIN_POWER_WITCHFACTORECHANTPOWER.description": "打出卡牌时随机敌人获得3×层数层[color=#ff99cc]【魔女因子】[/color]",
   "MANOSABA_LIN_POWER_TEMP_STRENGTH_DOWN.title": "临时降低力量",
-  "MANOSABA_LIN_POWER_TEMP_STRENGTH_DOWN.description": "回合结束时移除"
+  "MANOSABA_LIN_POWER_TEMP_STRENGTH_DOWN.description": "回合结束时移除",
+  "MANOSABA_LIN_POWER_EMA_BAD_ENDING_POWER.title": "多周末的重演",
+  "MANOSABA_LIN_POWER_EMA_BAD_ENDING_POWER.description":"拥有此能力的敌人被造成攻击伤害时，每1层增加百分之10，每回合结束加一层",
+  "MANOSABA_LIN_POWER_EMA_BAD_ENDING_REWARD_POWER.title": "三周目的决定",
+  "MANOSABA_LIN_POWER_EMA_BAD_ENDING_REWARD_POWER.description":"战斗胜利时，从你的牌组中（排除【结局】本身）随机选取稀有或罕见的牌，将其复制进【结局】",
+  "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_REWARD_ACTION.title": "「明明希罗自己也在哭，还说我」",
+  "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_REWARD_ACTION.description": "右键选择一个敌人，使其失去四分之一生命，移除1层",
+  "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.title": "「真结局」",
+  "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.description":"当你打出同一张牌第2次时，打出的该牌会获得「魔女的记忆」标记，并且获得重放1和打出移除，每个卡名只生效一次\n若满足移除13张卡，给予卡组里面的【结局】1层[color=#ff99cc]「明明希罗自己也在哭，还说我」[/color]"
 }

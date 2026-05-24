@@ -39,7 +39,7 @@ public class EmaTrueEndingPower : ManosabaPowerTemplate, IEasyRightClickablePowe
             Flash();
         }
 
-        if (_achievedCards.Count >= AchieveCountTarget)
+        if (_achievedCards.Count == AchieveCountTarget)
         {
             await OnAchieve();
         }

@@ -9,8 +9,8 @@ using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
-[RegisterCard(typeof(TokenCardPool))]
-public sealed class EmaTrueEnding() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Rare, TargetType.AllEnemies)
+[RegisterCard(typeof(LinCardPool))]
+public sealed class EmaTrueEnding() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
