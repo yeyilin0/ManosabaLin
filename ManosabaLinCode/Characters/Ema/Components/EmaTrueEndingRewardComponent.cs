@@ -13,7 +13,7 @@ public sealed partial class EmaTrueEndingRewardComponent : AmountCardComponent
     public override IEnumerable<IHoverTip> HoverTips =>
         HoverTipFactory.FromPowerWithPowerHoverTips<EmaTrueEndingRewardAction>();
 
-    public EmaTrueEndingRewardComponent(int amount = 1)
+    public EmaTrueEndingRewardComponent(int amount)
     {
         Amount = amount;
     }
@@ -28,5 +28,7 @@ public sealed partial class EmaTrueEndingRewardComponent : AmountCardComponent
             Card!.Owner.Creature,
             Card
         );
+
+        ComponentsCard!.RefRemoveComponent(this);
     }
 }
