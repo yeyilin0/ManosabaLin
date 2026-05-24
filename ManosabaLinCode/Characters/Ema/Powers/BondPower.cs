@@ -15,20 +15,17 @@ public class BondPower : ManosabaPowerTemplate, IPowerExtraIconAmountLabelsProvi
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
 
-    private int _affinity;
-    private int _estrangement;
-
     [SavedProperty]
     public int Affinity
     {
-        get => _affinity;
+        get;
         set
         {
             AssertMutable();
             var max = Estrangement >= 13 ? 12 : 13;
             var clamped = Mathf.Clamp(value, 0, max);
-            var delta = clamped - _affinity;
-            _affinity = clamped;
+            var delta = clamped - field;
+            field = clamped;
             InvokeDisplayAmountChanged();
 
             if (delta > 0)
@@ -45,14 +42,14 @@ public class BondPower : ManosabaPowerTemplate, IPowerExtraIconAmountLabelsProvi
     [SavedProperty]
     public int Estrangement
     {
-        get => _estrangement;
+        get;
         set
         {
             AssertMutable();
             var max = Affinity >= 13 ? 12 : 13;
             var clamped = Mathf.Clamp(value, 0, max);
-            var delta = clamped - _estrangement;
-            _estrangement = clamped;
+            var delta = clamped - field;
+            field = clamped;
             InvokeDisplayAmountChanged();
 
             if (delta > 0)
