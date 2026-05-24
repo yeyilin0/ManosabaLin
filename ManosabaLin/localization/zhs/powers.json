@@ -139,5 +139,6 @@
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_REWARD_ACTION.title": "「明明希罗自己也在哭，还说我」",
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_REWARD_ACTION.description": "点击选择一个敌人，使其失去四分之一生命，失去1层并移除牌组1层「没办法，就待在你身边吧」",
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.title": "「真结局」",
-  "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.description":"当你打出同一张牌第2次时，打出的该牌会获得「魔女的记忆」标记，并且获得重放1和打出移除，每个卡名只生效一次\n若满足移除13张卡，给予卡组里面的【结局】1层[color=#ff99cc]「明明希罗自己也在哭，还说我」[/color]"
+  "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.description":"当你打出同一张牌第2次时，打出的该牌会获得「魔女的记忆」标记，并且获得重放1和打出移除，每个卡名只生效一次\n若满足移除13张卡，给予卡组里面的【结局】1层[color=#ff99cc]「明明希罗自己也在哭，还说我」[/color]",
+  "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.selectionScreenPrompt": "已移除的卡牌"
 }

@@ -8,6 +8,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
+using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
+using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MinionLib.RightClick;
 using MinionLib.RightClick.Easy;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -77,20 +80,21 @@ public class EmaTrueEndingPower : ManosabaPowerTemplate, IEasyRightClickablePowe
 
     public async Task OnRightClick(PlayerChoiceContext choiceContext, RightClickContext clickContext)
     {
-        if (!Owner.IsPlayer || _achievedCards.Count == 0) return;
+        if (!LocalContext.IsMe(clickContext.Player)) return;
+
+        if (_achievedCards.Count == 0) return;
 
         var cards = _achievedCards
             .Select(cardId => ModelDb.GetById<CardModel>(new ModelId("CARD", cardId)))
-            .Where(c => c != null)
-            .Cast<CardModel>()
             .ToList();
 
-        if (cards.Count == 0) return;
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0)
+        {
+            Cancelable = true,
+            RequireManualConfirmation = false
+        };
 
-        await CardSelectCmd.FromSimpleGrid(choiceContext, cards, Owner.Player!,
-            new CardSelectorPrefs(SelectionScreenPrompt, 0)
-            {
-                Cancelable = true
-            });
+        var screen = NDeckCardSelectScreen.Create(cards, prefs);
+        NOverlayStack.Instance!.Push(screen);
     }
 }

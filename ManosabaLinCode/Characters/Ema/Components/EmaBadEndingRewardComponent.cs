@@ -1,9 +1,12 @@
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
+using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using MinionLib.Component;
 using MinionLib.Component.Core;
@@ -91,16 +94,23 @@ public sealed partial class EmaBadEndingRewardComponent : CardComponent
 
     public override async Task OnRightClick(PlayerChoiceContext choiceContext, RightClickContext clickContext)
     {
+        if (!LocalContext.IsMe(clickContext.Player)) return;
+
         if (CardCount == 0) return;
+
         var cards = SavedCards
             .Select(CardModel.FromSerializable)
             .ToList();
+
         var prompt = new LocString("cards", $"{ComponentId}.rightClickPrompt");
         prompt.Add(nameof(CardCount), CardCount);
-        await CardSelectCmd.FromSimpleGrid(choiceContext, cards, Card!.Owner,
-            new CardSelectorPrefs(prompt, 0)
-            {
-                Cancelable = true
-            });
+        var prefs = new CardSelectorPrefs(prompt, 0)
+        {
+            Cancelable = true,
+            RequireManualConfirmation = false
+        };
+
+        var screen = NDeckCardSelectScreen.Create(cards, prefs);
+        NOverlayStack.Instance!.Push(screen);
     }
 }
