@@ -468,7 +468,6 @@
   "ManosabaLin.UniqueComponent.prefix": "[color=#ff99cc][b]唯[/b][/color][color=#CC6666][b]一[/b][/color]",
   "ManosabaLin.UniqueComponent.hovertip.title": "唯一",
   "ManosabaLin.UniqueComponent.hovertip.description": "牌组中最多存在一张同名牌。",
-  "ManosabaLin.EmaBadEndingRewardComponent.postfix": "[color=#ff99cc]打出「{CardTitle}」（剩余{UseLeft}次）。[/color]",
   "ManosabaLin.EmaTrueEndingRewardComponent.postfix": "获得{Amount}层「明明希罗自己也在哭，还说我」",
   "ManosabaLin.EmaTrueEndingRewardComponent.hovertip.title": "「没办法，就待在你身边吧」",
   "ManosabaLin.EmaTrueEndingTagComponent.postfix": "[gold]移除[/gold]{CanIncreaseAchieveCount:\n[color=#4a0000]使「真结局」计数减1。[/color]}",
@@ -478,9 +477,8 @@
   "MANOSABA_LIN_CARD_EMA_TRUE_ENDING.title": "「真结局」",
   "MANOSABA_LIN_CARD_EMA_TRUE_ENDING.description":"[color=#ff99cc][b]「亲[/b][/color][color=#CC6666][b]近」[/b][/color]\n当你打出同一张牌第2次时，打出的该牌会获得「魔女的记忆」标记，并且获得重放1和打出移除，每个卡名只生效一次\n若满足移除13张卡，给予卡组里面的【结局】1层[color=#ff99cc]「明明希罗自己也在哭，还说我」[/color]",
   "MANOSABA_LIN_CARD_EMA_BAD_ENDING.title": "「好结局」",
-  "MANOSABA_LIN_CARD_EMA_BAD_ENDING.description":"[color=#ff99cc][b]「疏[/b][/color][color=#CC6666][b]远」[/b][/color]\n使全体敌人获得1层[color=#CC6666]【多周目的重演】[/color]，自己获得1层[color=#CC6666]【三周目的决定】[/color]"
-  "ManosabaLin.EmaBadEndingRewardComponent.postfix": "[color=#4a0000]打出{CardCount}张附加的牌。[/color]",
-  "ManosabaLin.EmaBadEndingRewardComponent.rightClickPrompt": "以下为{CardCount}张附加的牌",
-  "ManosabaLin.EmaTrueEndingRewardComponent.postfix": "获得{Amount}层EmaTrueEndingRewardAction。",
-  "ManosabaLin.EmaTrueEndingTagComponent.postfix": "[gold]移除。[/gold]{CanIncreaseAchieveCount:\n[color=#4a0000]使EmaTrueEndingPower计数减1。[/color]|}"
+  "MANOSABA_LIN_CARD_EMA_BAD_ENDING.description":"[color=#ff99cc][b]「疏[/b][/color][color=#CC6666][b]远」[/b][/color]\n使全体敌人获得1层[color=#CC6666]【多周目的重演】[/color]，自己获得1层[color=#CC6666]【三周目的决定】[/color]",
+  "ManosabaLin.EmaBadEndingRewardComponent.postfix": "[color=#ff99cc]打出{CardCount}张附加的牌。[/color]",
+  "ManosabaLin.EmaBadEndingRewardComponent.rightClickPrompt": "以下为{CardCount}张附加的牌"
+
 }
