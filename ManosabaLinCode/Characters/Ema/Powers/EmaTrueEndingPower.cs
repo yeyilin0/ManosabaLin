@@ -81,6 +81,8 @@ public class EmaTrueEndingPower : ManosabaPowerTemplate, IEasyRightClickablePowe
 
         var cards = _achievedCards
             .Select(cardId => ModelDb.GetById<CardModel>(new ModelId("CARD", cardId)))
+            .Where(c => c != null)
+            .Cast<CardModel>()
             .ToList();
 
         if (cards.Count == 0) return;
