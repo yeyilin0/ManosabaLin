@@ -1,4 +1,6 @@
 using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Ema.Cards;
+using ManosabaLin.Characters.Emalin.Components;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -23,5 +25,8 @@ public sealed class EmaTrueEndingRewardAction : ManosabaActionTemplate
     {
         ArgumentNullException.ThrowIfNull(target);
         await CreatureCmd.Damage(choiceContext, target, (decimal)target.CurrentHp / 4, ValueProp.Unblockable, Owner);
+
+        var targetDeckCard = Owner.Player?.Deck.Cards.OfType<EmaEnding>().FirstOrDefault();
+        targetDeckCard?.SubtractComponent(new EmaTrueEndingRewardComponent(1));
     }
 }

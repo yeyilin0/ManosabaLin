@@ -6,6 +6,8 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.CardSelection;
+using MegaCrit.Sts2.Core.Commands;
 using MinionLib.RightClick;
 using MinionLib.RightClick.Easy;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -25,23 +27,28 @@ public class EmaTrueEndingPower : ManosabaPowerTemplate, IEasyRightClickablePowe
     public override int DisplayAmount => int.Clamp(AchieveCountTarget - _achievedCards.Count, 0, AchieveCountTarget);
 
 
-    private readonly HashSet<string> _achievedCards = [];
-    private readonly Dictionary<string, int> _cardCounter = new();
+    private HashSet<string> _achievedCards = [];
+    private Dictionary<string, int> _cardCounter = [];
 
     public IReadOnlySet<string> AchievedCards => _achievedCards;
+
+    protected override void AfterCloned()
+    {
+        _achievedCards = [];
+        _cardCounter = [];
+    }
 
     public override async Task AfterCardChangedPilesLate(CardModel card, PileType oldPileType, AbstractModel? clonedBy)
     {
         if (card.Pile == null && card.Owner.Creature == Owner && card.HasComponent<EmaTrueEndingTagComponent>())
         {
-            _achievedCards.Add(card.Id.Entry);
-            InvokeDisplayAmountChanged();
-            Flash();
-        }
-
-        if (_achievedCards.Count == AchieveCountTarget)
-        {
-            await OnAchieve();
+            if (_achievedCards.Add(card.Id.Entry))
+            {
+                InvokeDisplayAmountChanged();
+                Flash();
+                if (_achievedCards.Count == AchieveCountTarget)
+                    await OnAchieve();
+            }
         }
     }
 
@@ -70,14 +77,18 @@ public class EmaTrueEndingPower : ManosabaPowerTemplate, IEasyRightClickablePowe
 
     public async Task OnRightClick(PlayerChoiceContext choiceContext, RightClickContext clickContext)
     {
-        // TODO: 实现卡牌展示
+        if (!Owner.IsPlayer || _achievedCards.Count == 0) return;
 
-        // if(!Owner.IsPlayer || _achievedCards.Count <= 0) return;
-        // var cards = _achievedCards.Select(i => ModelDb.GetById<CardModel>(new ModelId("CARD", i))).ToList();
-        // await CardSelectCmd.FromSimpleGrid(choiceContext, cards, Owner.Player!,
-        //     new CardSelectorPrefs(SelectionScreenPrompt, 0)
-        //     {
-        //         Cancelable = true
-        //     });
+        var cards = _achievedCards
+            .Select(cardId => ModelDb.GetById<CardModel>(new ModelId("CARD", cardId)))
+            .ToList();
+
+        if (cards.Count == 0) return;
+
+        await CardSelectCmd.FromSimpleGrid(choiceContext, cards, Owner.Player!,
+            new CardSelectorPrefs(SelectionScreenPrompt, 0)
+            {
+                Cancelable = true
+            });
     }
 }
