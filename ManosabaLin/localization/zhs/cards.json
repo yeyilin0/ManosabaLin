@@ -467,5 +467,5 @@
   "ManosabaLin.UniqueComponent.hovertip.description": "牌组中最多存在一张同名牌。",
   "ManosabaLin.EmaBadEndingRewardComponent.postfix": "[color=#4a0000]打出「{CardTitle}」（剩余{UseLeft}次）。[/color]",
   "ManosabaLin.EmaTrueEndingRewardComponent.postfix": "获得{Amount}层EmaTrueEndingRewardAction。",
-  "ManosabaLin.EmaTrueEndingTagComponent.postfix": "[gold]移除。[/gold]{CanIncreaseAchieveCount:\n[color=#4a0000]使EmaTrueEndingPower计数减1。[/color]}"
+  "ManosabaLin.EmaTrueEndingTagComponent.postfix": "[gold]移除。[/gold]{CanIncreaseAchieveCount:\n[color=#4a0000]使EmaTrueEndingPower计数减1。[/color]|}"
 }
