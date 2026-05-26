@@ -13,8 +13,9 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using STS2RitsuLib.Interop.AutoRegistration;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using ManosabaLin.Characters.Common.GameActions;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Runs;
 
 namespace ManosabaLin.ManosabaLinCode.Characters.Hiro.Powers;
 
@@ -65,13 +66,25 @@ public class LymPower : ManosabaPowerTemplate, IRedirectPower
             await PowerCmd.Remove(this);
     }
 
-    internal async Task ChooseMoveTarget(PlayerChoiceContext choiceContext, Player player)
+    internal void ChooseMoveTarget(PlayerChoiceContext choiceContext, Player player)
     {
         _chosenMoveTarget = null;
 
         if (!IsLocalPlayer(player)) return;
 
-        _chosenMoveTarget = await ChooseLocalTarget(TargetType.AnyEnemy);
+        TaskHelper.RunSafely(ChooseMoveTargetLocal(player));
+    }
+
+    private async Task ChooseMoveTargetLocal(Player player)
+    {
+        var target = await ChooseLocalTarget(TargetType.AnyEnemy);
+        if (target is null) return;
+        RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(new LymPowerChosenAction(player, Owner, target));
+    }
+
+    public async Task HandleGameAction(Creature target)
+    {
+        _chosenMoveTarget = target;
         await RefreshOwnerIntentTarget();
     }
 

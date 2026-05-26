@@ -48,8 +48,7 @@ public class Lym : ManosabaCardTemplate
             source.Owner.Creature, source, false);
 
         var redirectPower = markedEnemy.Powers.OfType<LymPower>().FirstOrDefault();
-        if (redirectPower is not null)
-            await redirectPower.ChooseMoveTarget(choiceContext, source.Owner);
+        redirectPower?.ChooseMoveTarget(choiceContext, source.Owner);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
