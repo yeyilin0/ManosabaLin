@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Events;
 using MegaCrit.Sts2.Core.GameActions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Runs;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -12,7 +13,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace ManosabaLin.Characters.Hiro.Events;
 
-[RegisterSharedEvent]
+[RegisterActEvent(typeof(DeprecatedAct))]
 public sealed class GuardOneEvent : ModEventTemplate
 {
     public override EventAssetProfile AssetProfile => new(

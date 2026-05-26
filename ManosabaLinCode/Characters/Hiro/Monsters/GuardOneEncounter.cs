@@ -8,7 +8,7 @@ using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 
 namespace ManosabaLin.Characters.Hiro.Monsters;
 
-[RegisterActEncounter(typeof(Overgrowth))]
+[RegisterActEncounter(typeof(DeprecatedAct))]
 public sealed class GuardOneEncounter : ModEncounterTemplate
 {
     public override IEnumerable<MonsterModel> AllPossibleMonsters => [ModelDb.Monster<GuardOneMonster>()];
