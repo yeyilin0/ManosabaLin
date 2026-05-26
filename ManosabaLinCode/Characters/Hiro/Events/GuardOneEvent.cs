@@ -2,12 +2,9 @@ using ManosabaLin.Characters.Hiro.Monsters;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Events;
-using MegaCrit.Sts2.Core.GameActions;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
-using MegaCrit.Sts2.Core.Runs;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 
@@ -19,13 +16,6 @@ public sealed class GuardOneEvent : ModEventTemplate
     public override EventAssetProfile AssetProfile => new(
         InitialPortraitPath: "res://ManosabaLin/images/events/guard_one.png"
     );
-
-    public override bool IsAllowed(IRunState runState)
-    {
-        if (runState is RunState concreteRunState)
-            return GuardOneEventState.ShouldTrigger(concreteRunState);
-        return false;
-    }
 
     public override bool IsShared => true;
 
@@ -43,9 +33,6 @@ public sealed class GuardOneEvent : ModEventTemplate
         await UpgradeOneCard();
         ReplaceBoss();
 
-        if (Owner?.RunState is RunState runState)
-            GuardOneEventState.MarkTriggered(runState);
-
         SetEventFinished(PageDescription("OPTION_POWER"));
     }
 
@@ -55,9 +42,6 @@ public sealed class GuardOneEvent : ModEventTemplate
 
         await CreatureCmd.Heal(Owner.Creature, 13m);
         await UpgradeOneCard();
-
-        if (Owner?.RunState is RunState runState)
-            GuardOneEventState.MarkTriggered(runState);
 
         SetEventFinished(PageDescription("OPTION_HEAL"));
     }
