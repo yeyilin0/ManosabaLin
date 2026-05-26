@@ -7,10 +7,8 @@ using ManosabaLin.Characters.Hiro;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
-using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib;
 using STS2RitsuLib.Interop;
-using STS2RitsuLib.Scaffolding.Cards.HandOutline;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace ManosabaLin;
@@ -35,15 +33,18 @@ public partial class MainFile : Node
     // 这是模组被框架调用的初始化入口。
     public static void Initialize()
     {
+        using (RitsuLibFramework.BeginModDataRegistration("MyMod")) ;
+
         var ctx = RitsuLibFramework.CreateContentPack(ModId)
-            .CardHandOutline<ManosabaCardTemplate>(new ModCardHandOutlineRule(
-                card => card.VisualCardPool is HiroCardPool && ((ManosabaCardTemplate)card).GlowColor == null,
-                new Color(204f / 255f, 102f / 255f, 102f / 255f) // 希罗 #CC6666
-            ))
-            .CardHandOutline<ManosabaCardTemplate>(new ModCardHandOutlineRule(
-                card => card.VisualCardPool is EmalinCardPool && ((ManosabaCardTemplate)card).GlowColor == null,
-                new Color(1f, 0.6f, 0.8f) // 艾玛 #FF99CC
-            ))
+            .CardHandOutline<ManosabaCardTemplate>(card =>
+                card.GlowColor != null
+                    ? null
+                    : card.VisualCardPool switch
+                    {
+                        HiroCardPool => new Color(204f / 255f, 102f / 255f, 102f / 255f),
+                        EmalinCardPool => new Color(1f, 0.6f, 0.8f),
+                        _ => null
+                    })
             .Apply();
 
         var assembly = Assembly.GetExecutingAssembly();
