@@ -1,0 +1,20 @@
+{
+  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.title": "エマのりんご",
+  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.extraCardText": "このカード使用時、最大HPが1増加する。",
+  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.description": "このカード使用時、[b]最大HP[/b]が1増加する。",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.title": "反駁",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.extraCardText": "{Amount}枚の[color=#339966]【反駁】[/color]カードを使用済み",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.description": "このターンに[b][color=#339966]【反駁】[/color][/b]付魔付きで使用したカードの数を記録する。\n毎ターンリセット",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.title": "賛同",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.extraCardText": "{Amount}枚の[color=#6699cc]【賛同】[/color]カードを使用済み",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.description": "このターンに[b][color=#6699cc]【賛同】[/color][/b]付魔付きで使用したカードの数を記録する。\n毎ターンリセット",
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT.title": "疑問",
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT.extraCardText": "{Amount}枚の[color=#cc9966]【疑問】[/color]カードを使用済み",
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT.description": "このターンに[b][color=#cc9966]【疑問】[/color][/b]付魔付きで使用したカードの数を記録する。\n毎ターンリセット",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.title": "魔女化",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.extraCardText": "このカード使用時、自動的にもう1回使用する",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.description": "このカード使用時、自動的にもう1回使用する",
+  "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.title": "魔法の後遺症",
+  "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.extraCardText": "使用時に1ダメージを受ける",
+  "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.description": "使用時に1ダメージを受ける"
+}

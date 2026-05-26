@@ -1,0 +1,10 @@
+{
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.title": "誰かの幻影",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.description": "[jitter][b]炎が目の前で歪み、空気には錆とインクの匂いが漂っている。[/b][/jitter]\n焚き火はもう焚き火ではなかった——裂け目ができた。その向こうに、何か[jitter][b]もの[/b][/jitter]があなたを見ている。\n深淵から[jitter][color=#cccccc]【声】[/color][/jitter]が聞こえてきた。判決を読み上げるように：\n[jitter][color=#cccccc]「来たな。ならば、魔女裁判を始める」[/color][/jitter]",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.POWER.title": "深く思い出す",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.POWER.description": "あなたは一歩踏み出した。その[jitter][color=#cccccc]【声】[/color][/jitter]が笑った。何かしらの力が身体に流れ込んでくるが、あなたは知っている——先の敵はもう你以为のものではない\n最大HPが13増加し、カード1枚をアップグレードするが、ボスが置き換えられる",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.title": "驚いて後退",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.description": "あなたは後退した。裂け目から[jitter][color=#cccccc]【ため息】[/color][/jitter]が聞こえた。傷の痛みは和らいだが、あの[jitter][color=#cccccc]【声】[/color][/jitter]が頭から離れない\nHPが13回復し、カード1枚をアップグレードする",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.OPTION_POWER.description": "裂け目はあなたの後ろで閉じた。身体は軽くなったが、心はより重くなった。先の塔の頂上で待っているのは、もう普通のモンスターではない。あの[jitter][color=#cccccc]【声】[/color][/jitter]が耳元で囁く：\n[jitter][color=#cccccc]「来い、[/color][/jitter][b][color=#ff99cc]魔女[/color][/b][jitter][color=#cccccc]よ。終着点で待っている」[/color][/jitter]",
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.OPTION_HEAL.description": "傷が奇跡的に治ったが、指が震えている。自分の手を見下ろすと、[b][color=#CC6666]ペン[/color][/b]を握っていることに気づいた。誰が渡したのだろう？知らない。焚き火は元に戻った。しかし、これが最後にあの[b]幻影[/b]を見ることではないと分かっている"
+}

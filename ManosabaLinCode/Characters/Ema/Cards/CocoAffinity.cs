@@ -20,7 +20,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class CocoAffinity : ManosabaCardTemplate
 {
-    public CocoAffinity() : base(3, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy) { }
+    public CocoAffinity() : base(4, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy) { }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -48,7 +48,7 @@ public sealed class CocoAffinity : ManosabaCardTemplate
                 case IntentType.Attack:
                 case IntentType.DeathBlow:
                     foreach (var ally in allies)
-                        await PowerCmd.Apply<HardenedShellPower>(choiceContext, ally, 30 * multiplier, creature, this, false);
+                        await PowerCmd.Apply<HardenedShellPower>(choiceContext, ally, 20 * multiplier, creature, this, false);
                     break;
 
                 case IntentType.Defend:
@@ -61,6 +61,12 @@ public sealed class CocoAffinity : ManosabaCardTemplate
                 case IntentType.DebuffStrong:
                     foreach (var ally in allies)
                         await PowerCmd.Apply<ArtifactPower>(choiceContext, ally, 5 * multiplier, creature, this, false);
+                    break;
+
+                case IntentType.Summon:
+                case IntentType.StatusCard:
+                    foreach (var ally in allies)
+                        await PowerCmd.Apply<ThornsPower>(choiceContext, ally, 7 * multiplier, creature, this, false);
                     break;
             }
         }

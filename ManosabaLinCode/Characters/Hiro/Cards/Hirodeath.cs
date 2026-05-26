@@ -1,5 +1,5 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Audio;
+using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Extensions;
@@ -10,15 +10,19 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using ManosabaLin.Characters.Common.HiroKeywords;
+using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
 [RegisterCard(typeof(LinCardPool))]
 public sealed class Hirodeath : ManosabaCardTemplate
 {
-    private const int WithPowerReduction = 50;
-    private const int EnergyToGive = 3;
-    private const int CardsToDraw = 3;
+    private const int CycleThreshold = 20;
+    private const int CopiesToAdd = 2;
 
     public Hirodeath() : base(-1, CardType.Skill, CardRarity.Ancient, TargetType.AllAllies)
     {
@@ -30,17 +34,8 @@ public sealed class Hirodeath : ManosabaCardTemplate
     {
         get
         {
-            yield return new DynamicVar("WithReduction", WithPowerReduction);
-            yield return new EnergyVar("EnergyGain", EnergyToGive);
-            yield return new CardsVar("CardsDraw", CardsToDraw);
+            yield return new DynamicVar("CycleThreshold", CycleThreshold);
         }
-    }
-
-    private static IEnumerable<CardModel> GetStatusAndCurseCards(Player owner)
-    {
-        return owner.PlayerCombatState.AllCards
-            .Where(c => (c.Type == CardType.Status || c.Type == CardType.Curse)
-                        && c.Pile.Type != PileType.Exhaust);
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
@@ -51,34 +46,82 @@ public sealed class Hirodeath : ManosabaCardTemplate
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        var allPlayers = source.CombatState.Players;
-        foreach (var player in allPlayers)
-        {
-            var cardsToExhaust = GetStatusAndCurseCards(player).ToList();
-            foreach (var card in cardsToExhaust) await CardCmd.Exhaust(choiceContext, card);
-        }
+        // 获取当前正义层数
+        var justicePower = source.Owner.Creature.GetPower<JusticePower>();
+        var justiceAmount = (int)(justicePower?.Amount ?? 0);
+        var justiceToGive = justiceAmount / 2;
 
+        // 统计自己的轮回关键词个数
+        var rebirthId = TransmigrationRules.TransmigrationKeywordId;
+        var cycleCount = source.Owner.PlayerCombatState.AllCards
+            .Count(c => c.HasModKeyword(rebirthId));
+
+        // 计算影响卡牌数：每20张轮回卡影响1张
+        var cardsToAffect = Math.Max(1, cycleCount / CycleThreshold + 1);
+
+        // 对全体队友生效
         var teammates = source.CombatState.GetTeammatesOf(source.Owner.Creature)
             .Where(c => c != null && c.IsAlive && c.IsPlayer);
 
         foreach (var teammate in teammates)
         {
+            // 消耗50层魔女化
             var withPower = teammate.GetPower<WithPower>();
-            if (withPower != null)
+            if (withPower != null && withPower.Amount > 0)
             {
-                var reduction = Math.Min(WithPowerReduction, withPower.Amount);
-                if (reduction > 0)
-                    await PowerCmd.ModifyAmount(
-                        choiceContext, withPower,
-                        -reduction,
-                        source.Owner.Creature,
-                        source,
-                        false
-                    );
+                var withToRemove = Math.Min(50, (int)withPower.Amount);
+                await PowerCmd.ModifyAmount(choiceContext, withPower, -withToRemove, source.Owner.Creature, source, false);
             }
 
-            await PlayerCmd.GainEnergy(source.DynamicVars["EnergyGain"].BaseValue, teammate.Player);
-            await CardPileCmd.Draw(choiceContext, source.DynamicVars["CardsDraw"].BaseValue, teammate.Player);
+            // 消耗3层嫌疑
+            var suspectPower = teammate.GetPower<SuspectPower>();
+            if (suspectPower != null && suspectPower.Amount > 0)
+            {
+                var suspectToRemove = Math.Min(3, (int)suspectPower.Amount);
+                await PowerCmd.ModifyAmount(choiceContext, suspectPower, -suspectToRemove, source.Owner.Creature, source, false);
+            }
+
+            // 给予正义能力
+            if (justiceToGive > 0)
+            {
+                await PowerCmd.Apply<JusticePower>(
+                    choiceContext,
+                    teammate,
+                    justiceToGive,
+                    source.Owner.Creature,
+                    source,
+                    false
+                );
+            }
+
+            // 从抽牌堆随机选卡添加轮回关键词并复制
+            if (teammate.Player == null) continue;
+            var drawPile = PileType.Draw.GetPile(teammate.Player);
+            var eligibleCards = drawPile.Cards
+                .Where(c => !c.HasModKeyword(rebirthId))
+                .ToList();
+
+            if (eligibleCards.Count == 0) continue;
+
+            var rng = teammate.Player.RunState.Rng.CombatCardSelection;
+            var selectedCards = eligibleCards
+                .OrderBy(_ => rng.NextFloat())
+                .Take(cardsToAffect)
+                .ToList();
+
+            foreach (var card in selectedCards)
+            {
+                // 给原卡添加轮回关键词
+                card.AddModKeyword(rebirthId);
+
+                // 添加2张相同卡进入抽牌堆
+                for (int i = 0; i < CopiesToAdd; i++)
+                {
+                    var clone = CombatState.CreateCard(card.CanonicalInstance, teammate.Player);
+                    clone.AddModKeyword(rebirthId);
+                    await CardPileCmd.AddGeneratedCardToCombat(clone, PileType.Draw, teammate.Player, CardPilePosition.Random);
+                }
+            }
         }
     }
 

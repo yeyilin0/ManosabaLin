@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ManosabaLin.Characters.Common;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
@@ -33,9 +34,9 @@ public class HnmPower : ManosabaPowerTemplate
         return 0.5m;
     }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (side != Owner.Side) return;
+        if (player.Creature != Owner) return;
         await PowerCmd.Remove(this);
     }
 }

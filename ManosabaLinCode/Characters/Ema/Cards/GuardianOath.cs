@@ -69,7 +69,7 @@ public sealed class GuardianOath : ManosabaCardTemplate
                 if (bond != null && bond.Affinity > bond.Estrangement)
                     await CreatureCmd.Heal(target, 1m);
             }
-            else if (target.Side != creature.Side)
+            else if (bond != null && bond.Affinity > bond.Estrangement)
             {
                 await PowerCmd.Apply<VulnerablePower>(
                     choiceContext, target, 1, creature, this, false);

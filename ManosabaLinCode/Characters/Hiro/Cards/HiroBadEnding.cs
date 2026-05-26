@@ -20,7 +20,7 @@ using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
-[RegisterCard(typeof(LinCardPool))]
+[RegisterCard(typeof(HiroCardPool))]
 public sealed class HiroBadEnding : ManosabaCardTemplate
 {
     private const int DirectDamage = 999;

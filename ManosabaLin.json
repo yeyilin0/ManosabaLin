@@ -3,7 +3,7 @@
   "name": "ManosabaLin",
   "author": "Lin",
   "description": "Slay the Spire 2 character mod built on RitsuLib",
-  "version": "v0.0.1",
+  "version": "v0.2.1",
   "has_pck": true,
   "has_dll": true,
   "affects_gameplay": true,

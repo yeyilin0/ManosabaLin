@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -8,7 +9,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Characters;
 using STS2RitsuLib.Interop.AutoRegistration;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,9 +41,10 @@ public sealed class Witchgrimoire : ManosabaRelicTemplate
     {
         var relic = this;
         var hiroPool = ModelDb.Character<Hiro>().CardPool;
+        var emaPool = ModelDb.GetById<CharacterModel>(new ModelId("CHARACTER", "MANOSABA_LIN_CHARACTER_EMALIN")).CardPool;
 
         var options = CardCreationOptions.ForNonCombatWithUniformOdds(
-                new[] { hiroPool })
+                new CardPoolModel[] { hiroPool, emaPool })
             .WithFlags(CardCreationFlags.NoRarityModification | CardCreationFlags.NoCardPoolModifications);
 
         var cards = CardFactory.CreateForReward(relic.Owner, CardCount, options).ToList();

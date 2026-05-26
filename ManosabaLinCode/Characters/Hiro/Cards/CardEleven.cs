@@ -62,7 +62,7 @@ public sealed class CardEleven() : ManosabaCardTemplate(1, CardType.Skill, CardR
 
         // 第四步：根据消耗的牌数获得 JusticePower 层数
         if (exhaustCount > 0)
-            await PowerCmd.Apply<JusticePower>(
+            await PowerCmd.Apply<PerjuryPower>(
                 choiceContext, // ★ 第一个参数
                 cardSource.Owner.Creature,
                 exhaustCount,

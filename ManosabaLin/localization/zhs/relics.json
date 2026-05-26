@@ -10,7 +10,7 @@
   "MANOSABA_LIN_RELIC_WITHHIRO.selectionScreenPrompt":"选择一张卡",
   "MANOSABA_LIN_RELIC_WITHHIRO.flavor": "[color=#CC6666]「但......我依然想找到[/color][b]你[/b][color=#CC6666]」[/color]\n[color=#CC6666]「我现在就去找你————为了审判我们的[/color][b]【罪行】[/b][color=#CC6666]」[/color]",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.title": "魔女资料",
-  "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.description": "获得时，从希罗角色卡牌中随机生成13张卡牌，选择任意数量加入牌组。",
+  "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.description": "获得时，从预备魔女卡牌中随机生成13张卡牌，选择任意数量加入牌组。",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.flavor": "写有岛外与宅邸的物资交易，以及在押少女们的情报的大量资料。上面也有艾玛她们所有人的人物资料和人脸照片。解读似乎需要耗费大量时间",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.selectionScreenPrompt": "选择要加入牌组的卡牌",
   "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.title": "拆解零件",
@@ -49,5 +49,9 @@
   "MANOSABA_LIN_RELIC_EMA_WITCH_FACTOR.flavor": "魔女因子过度活跃时人会失去理智，变成怪物一样的存在，被视为必须消灭的危险个体",
   "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.title": "友人的遗物",
   "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.description": "战斗开始时，根据关键词为卡牌添加[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔。每回合重置附魔计数器。",
-  "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.flavor": "[color=#CC6666]希罗[/color]死后剩下的钢笔，对[color=#ff99cc]艾玛[/color]来说有特殊意义"
+  "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.flavor": "[color=#CC6666]希罗[/color]死后剩下的钢笔，对[color=#ff99cc]艾玛[/color]来说有特殊意义",
+  "SEA_GLASS.MANOSABA_LIN_CHARACTER_EMALIN.title": "海玻璃",
+  "SEA_GLASS.MANOSABA_LIN_CHARACTER_EMALIN.description": "从 樱羽艾玛 的卡牌池中选择 5 张牌加入牌组。",
+  "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.title": "海玻璃",
+  "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.description": "从 二阶堂希罗 的卡牌池中选择 5 张牌加入牌组。"
 }

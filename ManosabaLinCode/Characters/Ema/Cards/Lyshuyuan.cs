@@ -57,7 +57,6 @@ public sealed class Lyshuyuan : ManosabaCardTemplate
         // 疏远 +1
         bond.Estrangement++;
 
-        var deckPile = PileType.Deck.GetPile(owner);
         var estrangement = bond.Estrangement;
         var affinity = bond.Affinity;
 
@@ -82,7 +81,8 @@ public sealed class Lyshuyuan : ManosabaCardTemplate
         };
 
         var bondCardTypes = new[]
-        {typeof(BalloonFragments),
+        {
+            typeof(BalloonFragments),
             typeof(StabbingBlade),
             typeof(ShatteredResonance),
             typeof(WitchCleansing),
@@ -108,33 +108,45 @@ public sealed class Lyshuyuan : ManosabaCardTemplate
             typeof(BondSettlement),
         };
 
-        // 1. 按疏远值选择卡组中的卡变形成随机疏远卡并升级
-        var deckCards = deckPile.Cards.ToList();
-        var selectCount = Math.Min(estrangement, deckCards.Count);
-        if (selectCount > 0)
+        // 获取抽牌堆、手牌、弃牌堆的所有卡牌
+        var drawPile = PileType.Draw.GetPile(owner);
+        var handPile = PileType.Hand.GetPile(owner);
+        var discardPile = PileType.Discard.GetPile(owner);
+
+        var allNonDeckCards = drawPile.Cards
+            .Concat(handPile.Cards.Where(c => c != this))
+            .Concat(discardPile.Cards)
+            .ToList();
+        
+        // 1. 按疏远值选择这些牌中的卡变形成随机疏远卡并升级（仅当疏远 > 亲和时）
+        if (estrangement > affinity)
         {
-            var prefs = new CardSelectorPrefs(SelectionScreenPrompt, selectCount, selectCount);
-            var selected = await CardSelectCmd.FromSimpleGrid(
-                choiceContext, deckCards.Cast<CardModel>().ToList(), owner, prefs);
-            var picked = selected.ToList();
-
-            var rng = owner.RunState.Rng.CombatCardSelection;
-            var createCardMethod = typeof(ICombatState).GetMethod("CreateCard", new Type[] { typeof(Player) });
-
-            foreach (var card in picked)
+            var selectCount = Math.Min(estrangement, allNonDeckCards.Count);
+            if (selectCount > 0)
             {
-                await CardCmd.Exhaust(choiceContext, card);
+                var prefs = new CardSelectorPrefs(SelectionScreenPrompt, selectCount, selectCount);
+                var selected = await CardSelectCmd.FromSimpleGrid(
+                    choiceContext, allNonDeckCards, owner, prefs);
+                var picked = selected.ToList();
 
-                var chosenType = rng.NextItem(estrangementCards);
-                var genericMethod = createCardMethod.MakeGenericMethod(chosenType);
-                var newCard = (CardModel)genericMethod.Invoke(combatState, new object[] { owner });
-                CardCmd.Upgrade(newCard);
-                await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Draw, owner);
+                var rng = owner.RunState.Rng.CombatCardSelection;
+                var createCardMethod = typeof(ICombatState).GetMethod("CreateCard", new Type[] { typeof(Player) });
+
+                foreach (var card in picked)
+                {
+                    await CardCmd.Exhaust(choiceContext, card);
+
+                    var chosenType = rng.NextItem(estrangementCards);
+                    var genericMethod = createCardMethod.MakeGenericMethod(chosenType);
+                    var newCard = (CardModel)genericMethod.Invoke(combatState, new object[] { owner });
+                    CardCmd.Upgrade(newCard);
+                    await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Draw, owner);
+                }
             }
         }
 
-        // 2. 消耗较高值，升级卡组里面没升级的羁绊卡
-        var upgradeCards = deckPile.Cards
+        // 2. 消耗较高值，升级这些牌里面没升级的羁绊卡
+        var upgradeCards = allNonDeckCards
             .Where(c => bondCardTypes.Contains(c.GetType()) && c.IsUpgradable)
             .Take(higherValue)
             .ToList();

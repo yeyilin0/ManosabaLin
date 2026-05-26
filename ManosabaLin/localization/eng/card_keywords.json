@@ -1,4 +1,17 @@
 {
   "MANOSABA_LIN_KEYWORD_EXECUTOR_OF_JUSTICE.title": "Executor of Justice",
-  "MANOSABA_LIN_KEYWORD_EXECUTOR_OF_JUSTICE.description": "The executor of justice."
+  "MANOSABA_LIN_KEYWORD_EXECUTOR_OF_JUSTICE.description": "The executor of justice.",
+
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "Cycle",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[red]Death Rewind's[/red] gift, [red]Death Rewind's[/red] curse.\nWhen you play a card with [red]Cycle[/red], automatically play copies from your draw pile that also have [red]Cycle[/red] (max 2).",
+  "MANOSABA_LIN_KEYWORD_HIRO.title": "Hiro's Ending",
+  "MANOSABA_LIN_KEYWORD_HIRO.description": "[b]Returns to hand at the start of each turn.[/b]\nWhen played, [red]die[/red]. Reduce ally's Witchification by 50. Exhaust ally's Status and Curse cards. Give ally 3 Energy, draw 3.",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "Cycle Cycle Cycle",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "When playing a card with [red]Cycle Cycle Cycle[/red], play cards with [red]Cycle Cycle Cycle[/red] from anywhere.",
+  "MANOSABA_LIN_KEYWORD_AGREE.title": "Agreement",
+  "MANOSABA_LIN_KEYWORD_AGREE.description": "Triggers effect when played count is a multiple of 1-5.\n×1: All allies gain 3 Block.\n×2: Self gain 3 Block.\n×3: All allies gain 1 Temporary Dexterity.\n×4: All allies gain 2 Temporary Strength.\n×5: Next card is free. All allies gain 1 Energy.",
+  "MANOSABA_LIN_KEYWORD_DOUBT.title": "Doubt",
+  "MANOSABA_LIN_KEYWORD_DOUBT.description": "Triggers effect when played count is a multiple of 1-5.\n×1: Self gain 1 Block.\n×2: Self draw 1 card.\n×3: Self gain 1 Energy.\n×4: Retrieve 1 card from discard pile.\n×5: Choose 1 hand card to add Replay 1, choose 1 hand card to add an enchantment.",
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "Rebuttal",
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "Triggers effect when played count is a multiple of 1-5.\n×1: Deal 1 random damage.\n×2: Self gain 1 Strength.\n×3: All enemies gain 1 Vulnerable.\n×4: Deal 1 damage equal to play count to random targets.\n×5: Next Attack plays an additional time."
 }

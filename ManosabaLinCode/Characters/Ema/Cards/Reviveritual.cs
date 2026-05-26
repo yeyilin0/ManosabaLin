@@ -42,7 +42,12 @@ public sealed class Reviveritual : ManosabaCardTemplate
     {
         var source = this;
         var target = cardPlay.Target;
-        if (target == null) return;
+
+        // 单人模式没有目标时默认选自己
+        if (target == null)
+        {
+            target = source.Owner.Creature;
+        }
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
