@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.HoverTips;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Linq;
 using ManosabaLin.Characters.Hiro;
+using MegaCrit.Sts2.Core.Helpers;
 
 namespace ManosabaLin.ManosabaLinCode.Characters.Hiro.Cards;
 
@@ -49,7 +50,7 @@ public class Aam : ManosabaCardTemplate
 
         var redirectPower = markedEnemy.Powers.OfType<AamPower>().FirstOrDefault();
         if (redirectPower is not null)
-            await redirectPower.ChooseMoveAndTarget(choiceContext, source.Owner);
+            _ = TaskHelper.RunSafely(redirectPower.ChooseMoveAndTarget(choiceContext, source.Owner));
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

@@ -255,7 +255,7 @@ internal static class RedirectMoveChoiceScreen
 
     internal const string LocTable = "cards";
 
-    public static async Task<MoveChoiceSelection?> Choose(
+    public static async Task<int?> Choose(
         PlayerChoiceContext choiceContext,
         MonsterModel monster,
         IReadOnlyList<MoveState> moves,
@@ -280,10 +280,7 @@ internal static class RedirectMoveChoiceScreen
 
         if (selectedCard is null) return null;
 
-        var selectedIndex = Array.IndexOf(cards, selectedCard);
-        var selectedMove = selectedCard.Move ?? moves.ElementAtOrDefault(selectedIndex);
-
-        return selectedMove is null ? null : new MoveChoiceSelection(selectedMove, selectedCard);
+        return Array.IndexOf(cards, selectedCard);
     }
 
     private static MoveChoiceCard? CreateChoiceCard(MoveChoice choice, CardPoolModel cardPool, Player player, int index)
