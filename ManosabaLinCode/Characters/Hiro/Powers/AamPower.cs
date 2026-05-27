@@ -14,6 +14,8 @@ using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
+using ManosabaLin.Characters.Common.GameActions;
+using MegaCrit.Sts2.Core.Runs;
 
 namespace ManosabaLin.ManosabaLinCode.Characters.Hiro.Powers;
 
@@ -27,6 +29,7 @@ public class AamPower : ManosabaPowerTemplate, IRedirectPower
 
     private string? _chosenMoveStateId;
     private Creature? _chosenMoveTarget;
+    private IReadOnlyList<MoveState> _moves = [];
 
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Single;
@@ -57,33 +60,41 @@ public class AamPower : ManosabaPowerTemplate, IRedirectPower
     {
         _chosenMoveStateId = null;
         _chosenMoveTarget = null;
+        if (Owner is not { IsAlive: true, Monster: {} monster}) return;
+        _moves = RedirectMoveChoiceScreen.GetChoosableMoves(monster);
 
         if (!LymPower.IsLocalPlayer(player)) return;
-        if (Owner is not { IsAlive: true }) return;
+        var chosenMoveIndex = await ChooseMove(choiceContext, player);
+        if (chosenMoveIndex is null) return;
+        var chosenMoveTarget = await ChooseLocalTarget();
+        if (chosenMoveTarget is null) return;
 
-        if (!await ChooseMove(choiceContext, player)) return;
+        RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(
+            new AamPowerChosenAction(player, Owner, chosenMoveTarget, chosenMoveIndex.Value));
+    }
 
-        _chosenMoveTarget = await ChooseLocalTarget();
+    public async Task HandleGameAction(int chosenMoveIndex, Creature chosenMoveTarget)
+    {
+        var move = _moves.ElementAtOrDefault(chosenMoveIndex);
+        if (move is null) return;
+        _chosenMoveStateId = move.StateId;
+        Owner.Monster!.SetMoveImmediate(move, forceTransition: true);
+        _chosenMoveTarget = chosenMoveTarget;
         await RefreshOwnerIntent();
     }
 
-    private async Task<bool> ChooseMove(PlayerChoiceContext choiceContext, Player player)
+    private async Task<int?> ChooseMove(PlayerChoiceContext choiceContext, Player player)
     {
-        if (Owner.Monster is not { } monster) return false;
+        if (Owner.Monster is not { } monster) return null;
 
-        var moves = RedirectMoveChoiceScreen.GetChoosableMoves(monster);
-        var chosenMove = await RedirectMoveChoiceScreen.Choose(
+        var chosenMoveIndex = await RedirectMoveChoiceScreen.Choose(
             choiceContext,
             monster,
-            moves,
+            _moves,
             player,
             player.Character.CardPool);
 
-        if (chosenMove is null) return false;
-
-        _chosenMoveStateId = chosenMove.Value.Move.StateId;
-        monster.SetMoveImmediate(chosenMove.Value.Move, forceTransition: true);
-        return true;
+        return chosenMoveIndex;
     }
 
     private async Task<Creature?> ChooseLocalTarget()

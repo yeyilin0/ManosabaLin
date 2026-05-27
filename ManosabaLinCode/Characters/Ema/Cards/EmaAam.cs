@@ -10,6 +10,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using System.Linq;
 
 using ManosabaLin.Characters.Emalin;
+using MegaCrit.Sts2.Core.Helpers;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -43,7 +44,7 @@ public sealed class EmaAam : ManosabaCardTemplate
 
         var redirectPower = markedEnemy.Powers.OfType<AamPower>().FirstOrDefault();
         if (redirectPower is not null)
-            await redirectPower.ChooseMoveAndTarget(choiceContext, source.Owner);
+            _ = TaskHelper.RunSafely(redirectPower.ChooseMoveAndTarget(choiceContext, source.Owner));
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
