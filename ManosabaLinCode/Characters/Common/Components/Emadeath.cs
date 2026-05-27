@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Localization;
 using MinionLib.Component;
 
 namespace ManosabaLin.Characters.Emalin.Components;
-public sealed partial class Executorofjustice : KeywordLikeComponent
+public sealed partial class EmaDeath : KeywordLikeComponent
 {
    
 }

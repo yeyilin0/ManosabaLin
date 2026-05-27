@@ -22,7 +22,7 @@ using ManosabaLin.Characters.Emalin;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
-[RegisterCard(typeof(EmalinCardPool))]
+[RegisterCard(typeof(LinCardPool))]
 public sealed class Emadeath : ManosabaCardTemplate
 {
     public Emadeath() : base(-1, CardType.Skill, CardRarity.Ancient, TargetType.AllAllies)

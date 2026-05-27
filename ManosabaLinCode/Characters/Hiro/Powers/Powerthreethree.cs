@@ -38,11 +38,11 @@ public class Powerthreethree : ManosabaPowerTemplate
 
         if (attackCards.Count == 0) return;
 
-        // 洗乱
-        var rng = new Random();
+        // 用游戏同步的 RNG 洗乱
+        var rng = player.RunState.Rng.Shuffle;
         for (var i = attackCards.Count - 1; i > 0; i--)
         {
-            var j = rng.Next(i + 1);
+            var j = rng.NextInt(i + 1);
             (attackCards[i], attackCards[j]) = (attackCards[j], attackCards[i]);
         }
 

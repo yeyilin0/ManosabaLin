@@ -61,6 +61,9 @@
   "MANOSABA_LIN_RELIC_EMA_WITCH_FACTOR.description": "When playing an Attack, gain 15 [b]Witchification[/b]. When playing a Skill or Power, lose 10 [b]Witchification[/b].",
   "MANOSABA_LIN_RELIC_EMA_WITCH_FACTOR.flavor": "When the witch factor becomes too active, people lose reason and turn into dangerous monster-like beings.",
   "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.title": "Friend's Relic",
-  "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.description": "At the start of each combat, automatically enchant cards by keyword. Reset enchantment counters each turn.",
-  "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.flavor": "[red]Hiro's[/red] pen left behind after death, holding special meaning for [color=#ff99cc]Ema[/color]."
+  "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.description": "At the start of each combat, automatically enchant cards by keyword. Randomly add Agreement, Rebuttal, and Doubt components to 3 unenchanted cards. Reset enchantment counters each turn.",
+  "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.flavor": "[red]Hiro's[/red] pen left behind after death, holding special meaning for [color=#ff99cc]Ema[/color].",
+  "MANOSABA_LIN_RELIC_WITHEMA.title": "Vessel of the Great Witch",
+  "MANOSABA_LIN_RELIC_WITHEMA.description": "Has all effects of [color=#ff99cc]Friend's Relic[/color].\nAt the start of each turn, add a random Trial component to 1 card in hand and 1 card in discard pile.\nWhen [color=#ff99cc]Affinity[/color] first reaches 7, generate a 0-cost [color=#ff99cc]Affinity[/color] card.\nWhen [color=#CC6666]Estrangement[/color] first reaches 7, choose a hand card to become a 0-cost [color=#CC6666]Estrangement[/color] card.\nAt turn end, reduce 30 [b]Witchification[/b].",
+  "MANOSABA_LIN_RELIC_WITHEMA.flavor": "[color=#ff99cc]\"She forgot everyone, and everyone forgot her\"[/color]"
 }

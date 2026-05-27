@@ -15,11 +15,10 @@ using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
-/// <summary>沾血的发带 - 1费技能, 赞同附魔, 5格挡+3同伴格挡, 升级各+3</summary>
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class BloodyHeadband : ManosabaCardTemplate
 {
-    public BloodyHeadband() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
+    public BloodyHeadband() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyAlly) { }
 
     public override bool GainsBlock => true;
 
@@ -29,24 +28,30 @@ public sealed class BloodyHeadband : ManosabaCardTemplate
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(5m, ValueProp.Move),
-        new BlockVar("AllyBlock", 3m, ValueProp.Move)
+        new EnergyVar("EnergyGain", 1)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
+        // 自己获得 5 格挡
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
-        var allies = CombatState.Allies.Where(a => a is { IsAlive: true } && a != Owner.Creature).ToList();
-        if (allies.Count > 0)
+        // 选择一个队友获得 1 能量，单人默认自己
+        var target = cardPlay.Target;
+        if (target == null)
         {
-            var target = Owner.RunState.Rng.CombatTargets.NextItem(allies);
-            await CreatureCmd.GainBlock(target, DynamicVars["AllyBlock"].BaseValue, ValueProp.Move, cardPlay);
+            target = Owner.Creature;
+        }
+
+        if (target.Player != null)
+        {
+            await PlayerCmd.GainEnergy(DynamicVars["EnergyGain"].BaseValue, target.Player);
         }
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Block.UpgradeValueBy(3m);
-        DynamicVars["AllyBlock"].UpgradeValueBy(3m);
+        EnergyCost.UpgradeBy(-1);
     }
 }

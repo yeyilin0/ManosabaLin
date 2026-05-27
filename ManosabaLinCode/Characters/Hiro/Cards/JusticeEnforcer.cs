@@ -20,13 +20,12 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCard(typeof(HiroCardPool))]
 public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
+    protected override IEnumerable<ICardComponent> CanonicalComponents => [new Executorofjustice()];
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
         get
         {
-      
             yield return HoverTipFactory.FromPower<OriginalsinjusticePower>();
-            yield return Executorofjustice.HoverTip;
         }
     }
 
@@ -130,8 +129,6 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
             );
         }
     }
-
-    protected override IEnumerable<ICardComponent> CanonicalComponents { get; }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {

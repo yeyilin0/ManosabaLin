@@ -1,5 +1,6 @@
 ﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
+using ManosabaLin.Characters.Emalin.Components;
 using ManosabaLin.Characters.Emalin.Enchantments;
 using ManosabaLin.Characters.Ema.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -15,12 +16,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Rooms;
 
 namespace ManosabaLin.Characters.Ema.Relics;
 
 [RegisterRelic(typeof(EmalinRelicPool))]
 [RegisterCharacterStarterRelic(typeof(Emalin.Emalin))]
+[RegisterTouchOfOrobasRefinement(typeof(Withema))]
 public sealed class EmaTrialBadge : ManosabaRelicTemplate
 {
     private int _agreeCount;
@@ -115,19 +118,23 @@ public sealed class EmaTrialBadge : ManosabaRelicTemplate
 
     private void SyncCountersToEnchantments()
     {
-        foreach (var card in PileType.Hand.GetPile(Owner).Cards)
+        var piles = new[] { PileType.Hand, PileType.Draw, PileType.Discard };
+        foreach (var pileType in piles)
         {
-            switch (card.Enchantment)
+            foreach (var card in pileType.GetPile(Owner).Cards)
             {
-                case Agreement:
-                    card.Enchantment.Amount = _agreeCount;
-                    break;
-                case Doubt:
-                    card.Enchantment.Amount = _doubtCount;
-                    break;
-                case Rebuttal:
-                    card.Enchantment.Amount = _rebuttalCount;
-                    break;
+                switch (card.Enchantment)
+                {
+                    case Agreement:
+                        card.Enchantment.Amount = _agreeCount;
+                        break;
+                    case Doubt:
+                        card.Enchantment.Amount = _doubtCount;
+                        break;
+                    case Rebuttal:
+                        card.Enchantment.Amount = _rebuttalCount;
+                        break;
+                }
             }
         }
     }
@@ -158,6 +165,24 @@ public sealed class EmaTrialBadge : ManosabaRelicTemplate
             {
                 MainFile.Logger.Info($"[EmaTrialBadge] Skip {card.Id.Entry}: {ex.Message}");
             }
+        }
+
+        // 给随机卡牌添加审判组件
+        var componentPiles = new[] { PileType.Draw, PileType.Hand, PileType.Discard };
+        var availableCards = componentPiles
+            .SelectMany(p => p.GetPile(Owner).Cards)
+            .Where(c => c.Enchantment == null)
+            .Distinct()
+            .ToList();
+
+        if (availableCards.Count >= 3)
+        {
+            var rng = Owner.RunState.Rng.CombatCardSelection;
+            var shuffled = availableCards.OrderBy(_ => rng.NextFloat()).ToList();
+
+            shuffled[0].TryAddComponent(new AgreementTrialComponent());
+            shuffled[1].TryAddComponent(new RebuttalTrialComponent());
+            shuffled[2].TryAddComponent(new DoubtTrialComponent());
         }
 
         if (Owner?.Creature != null)

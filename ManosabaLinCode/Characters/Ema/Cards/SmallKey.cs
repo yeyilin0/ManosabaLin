@@ -14,7 +14,6 @@ using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
-/// <summary>小钥匙 - 0费技能, 疑问附魔, 抽1张, 下一张疑问牌费用-1, 升级抽2张</summary>
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class SmallKey : ManosabaCardTemplate
 {
@@ -29,10 +28,12 @@ public sealed class SmallKey : ManosabaCardTemplate
     {
         await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
 
-        var doubtCard = PileType.Hand.GetPile(Owner).Cards
-            .FirstOrDefault(c => c != this && c.Enchantment is Doubt && c.CanPlay());
-        if (doubtCard != null)
-            doubtCard.SetToFreeThisTurn();
+        var trialCard = PileType.Hand.GetPile(Owner).Cards
+            .FirstOrDefault(c => c != this 
+                                 && c.Enchantment is Rebuttal or Agreement or Doubt 
+                                 && c.CanPlay());
+        if (trialCard != null)
+            trialCard.EnergyCost.UpgradeBy(-1);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

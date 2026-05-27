@@ -47,10 +47,10 @@ public class EmaWitchKillerPower : ManosabaPowerTemplate
         Creature? dealer,
         CardModel? cardSource)
     {
-        if (result.TotalDamage <= 0) return;
+        if (result.UnblockedDamage <= 0) return;
         if (target.Side != Owner.Side) return;
 
-        var stacks = (int)(result.TotalDamage / 4m);
+        var stacks = (int)(result.UnblockedDamage / 4m);
         if (stacks <= 0) return;
 
         await PowerCmd.Apply<EmaWitchFactorPower>(
@@ -65,12 +65,12 @@ public class EmaWitchKillerPower : ManosabaPowerTemplate
         Creature target,
         CardModel? cardSource)
     {
-        if (result.TotalDamage <= 0) return;
+        if (result.UnblockedDamage <= 0) return;
         if (target.Side == Owner.Side) return;
         if (dealer == null) return;
         if (dealer.Side != Owner.Side) return;
 
         await PowerCmd.Apply<EmaWitchFactorPower>(
-            choiceContext, target, result.TotalDamage, Owner, null, false);
+            choiceContext, target, result.UnblockedDamage, Owner, null, false);
     }
 }

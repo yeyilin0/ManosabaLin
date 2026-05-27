@@ -65,9 +65,16 @@ public class Agreement : ModEnchantmentTemplate
         // ×5：下一张免费 + 全体1能量
         if (count % 5 == 0)
         {
-            var nextCard = PileType.Hand.GetPile(owner)
-                .Cards.FirstOrDefault(c => c != card && c.CanPlay());
-            nextCard?.SetToFreeThisTurn();
+            var otherCards = PileType.Hand.GetPile(owner)
+                .Cards.Where(c => c != card && c.CanPlay())
+                .ToList();
+
+            if (otherCards.Count > 0)
+            {
+                var rng = owner.RunState.Rng.CombatCardSelection;
+                var randomCard = rng.NextItem(otherCards);
+                randomCard.SetToFreeThisTurn();
+            }
 
             foreach (var p in combatState.Players)
                 await PlayerCmd.GainEnergy(1m, p);

@@ -16,6 +16,7 @@ using System.Linq;
 using ManosabaLin.Characters.Emalin.Components;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models;
+using MinionLib.Component.Interfaces;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -23,15 +24,9 @@ namespace ManosabaLin.Characters.Ema.Cards;
 public sealed class FinalJudgment : ManosabaCardTemplate
 {
     public FinalJudgment() : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips
-    {
-        get
-        {
-   
-            yield return Hatedperson.HoverTip;
-        }
-    }
 
+  
+    protected override IEnumerable<ICardComponent> CanonicalComponents => [new Hatedperson()];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
@@ -76,7 +71,6 @@ public sealed class FinalJudgment : ManosabaCardTemplate
         await CreatureCmd.TriggerAnim(creature, "Cast", owner.Character.CastAnimDelay);
 
         // ===== 第一幕：羁绊 =====
-        // 羁绊伤害 + 审判联动
         var bondDamage = (bondTotal + trialCount) * 2;
         if (bondDamage > 0)
         {
@@ -103,7 +97,6 @@ public sealed class FinalJudgment : ManosabaCardTemplate
         }
 
         // ===== 第二幕：审判 =====
-        // 触发每张附魔卡的×1效果
         foreach (var (card, _) in trialCards)
         {
             if (card.Enchantment is Rebuttal)
@@ -148,7 +141,6 @@ public sealed class FinalJudgment : ManosabaCardTemplate
         var bonusEnergy = (witchAmount / 100) * 2;
         var totalEnergy = baseEnergy + bonusEnergy;
 
-        // 嫌疑联动: ×(1 + totalSuspect × 5%)
         var suspectMultiplier = 1m + totalSuspect * 0.05m;
         totalEnergy = (int)(totalEnergy * suspectMultiplier);
 
@@ -164,7 +156,6 @@ public sealed class FinalJudgment : ManosabaCardTemplate
             var suspect = enemy.GetPower<SuspectPower>();
             if (suspect == null || suspect.Amount <= 0) continue;
 
-            // 嫌疑伤害 + 羁绊联动
             var suspectDamage = (int)suspect.Amount * 3 + bondTotal;
             if (suspectDamage > 0)
                 await CreatureCmd.Damage(choiceContext, enemy, suspectDamage,

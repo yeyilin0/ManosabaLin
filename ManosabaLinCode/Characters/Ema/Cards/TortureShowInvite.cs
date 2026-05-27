@@ -15,7 +15,6 @@ using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
-/// <summary>拷问秀的邀请文 - 1费技能, 赞同附魔, 全体同伴4格挡, ≥2额外4格挡</summary>
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class TortureShowInvite : ManosabaCardTemplate
 {
@@ -36,10 +35,15 @@ public sealed class TortureShowInvite : ManosabaCardTemplate
         var agreementCount = EmalinCombatHelper.GetAgreementPlaysThisTurn(Owner.Creature, CombatState);
         if (agreementCount >= 2)
         {
-            foreach (var ally in CombatState.Allies.Where(a => a is { IsAlive: true }))
-                await CreatureCmd.GainBlock(ally, 4m, ValueProp.Move, cardPlay);
+            // 全体队友抽 1
+            foreach (var ally in CombatState.Allies.Where(a => a is { IsAlive: true, IsPlayer: true }))
+                await CardPileCmd.Draw(choiceContext, 1, ally.Player!);
+
+            // 自己回 1 费
+            await PlayerCmd.GainEnergy(1, Owner);
         }
     }
+
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Block.UpgradeValueBy(4m);

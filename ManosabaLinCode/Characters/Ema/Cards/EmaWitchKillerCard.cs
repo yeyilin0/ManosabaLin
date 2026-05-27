@@ -1,7 +1,9 @@
 using MinionLib.Component.Core;
+using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin;
+using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -28,6 +30,8 @@ public sealed class EmaWitchKillerCard : ManosabaCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
+        ManosabaAudio.TryPlayOneShot("emawitchkiller.wav".CardsAudioPath(), 0.9f);
+
         await PowerCmd.Apply<EmaWitchKillerPower>(
             choiceContext, Owner.Creature, 1m, Owner.Creature, this, false);
     }

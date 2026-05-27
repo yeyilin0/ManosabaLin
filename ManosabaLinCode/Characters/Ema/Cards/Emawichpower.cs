@@ -67,11 +67,10 @@ public sealed class Emawichpower : ManosabaCardTemplate
     {
         var source = this;
 
-        ManosabaAudio.TryPlayOneShot("ema_witch_form_theme.mp3".BgmAudioPath());
+        ManosabaAudio.TryPlayOneShot("emawichpower.wav".CardsAudioPath(), 0.9f);
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        // 获得2层魔女仪式
         await PowerCmd.Apply<RitualCeremonyPower>(
             choiceContext, source.Owner.Creature,
             source.DynamicVars["RitualCeremonyPower"].BaseValue,
@@ -80,7 +79,6 @@ public sealed class Emawichpower : ManosabaCardTemplate
             false
         );
 
-        // 获得1层无实体
         await PowerCmd.Apply<IntangiblePower>(
             choiceContext, source.Owner.Creature,
             source.DynamicVars["IntangiblePower"].BaseValue,
@@ -89,7 +87,6 @@ public sealed class Emawichpower : ManosabaCardTemplate
             false
         );
 
-        // 获得 ReaperFormPower
         await PowerCmd.Apply<ReaperFormPower>(
             choiceContext, source.Owner.Creature,
             1m,

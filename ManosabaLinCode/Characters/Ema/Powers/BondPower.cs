@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2RitsuLib.Combat.Ui.ExtraCornerAmountLabels;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Helpers;
 
 namespace ManosabaLin.Characters.Ema.Powers;
@@ -35,6 +36,8 @@ public class BondPower : ManosabaPowerTemplate, IPowerExtraIconAmountLabelsProvi
                 {
                     TaskHelper.RunSafely(yalisabond.ApplyBondDeltaAsync(delta, 0));
                 }
+
+              
             }
         }
     }

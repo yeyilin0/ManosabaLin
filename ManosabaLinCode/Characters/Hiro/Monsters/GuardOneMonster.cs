@@ -29,11 +29,11 @@ public sealed class GuardOneMonster : ModMonsterTemplate
     public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 240, 220);
     public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 240, 220);
 
-    private int AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 10, 8);
+    private int AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 14, 12);
     private int MarkDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 13, 11);
     private int PoisonAttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 14, 12);
-    private int FrenzyDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 10, 8);
-    private int PoisonAmount => 6;
+    private int FrenzyDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 16, 14);
+    private int PoisonAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 10, 8);
     private int WithAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 70, 50);
     private int FrailAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 4, 2);
     private int VulnerableAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 3, 2);
@@ -50,7 +50,6 @@ public sealed class GuardOneMonster : ModMonsterTemplate
 
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {
-        // === 第一组意图（HP > 50%）===
         var attack = new MoveState("ATTACK_MOVE", AttackMove,
             new SingleAttackIntent(AttackDamage));
 
@@ -63,7 +62,6 @@ public sealed class GuardOneMonster : ModMonsterTemplate
         var mark = new MoveState("MARK_MOVE", MarkMove,
             new AbstractIntent[] { new SingleAttackIntent(MarkDamage), new CardDebuffIntent() });
 
-        // === 第二组意图（HP <= 50%）===
         var poisonAttack = new MoveState("POISON_ATTACK_MOVE", PoisonAttackMove,
             new AbstractIntent[] { new SingleAttackIntent(PoisonAttackDamage), new DebuffIntent() });
 
@@ -73,13 +71,11 @@ public sealed class GuardOneMonster : ModMonsterTemplate
         var frenzy = new MoveState("FRENZY_MOVE", FrenzyMove,
             new AbstractIntent[] { new DebuffIntent(), new MultiAttackIntent(FrenzyDamage, 2) });
 
-        // === 第一组循环：attack → poison → debuffShield → mark → attack ===
         attack.FollowUpState = poison;
         poison.FollowUpState = debuffShield;
         debuffShield.FollowUpState = mark;
         mark.FollowUpState = attack;
 
-        // === 第二组循环：poisonAttack → witchBurn → frenzy → poisonAttack ===
         poisonAttack.FollowUpState = witchBurn;
         witchBurn.FollowUpState = frenzy;
         frenzy.FollowUpState = poisonAttack;
@@ -194,7 +190,7 @@ public sealed class GuardOneMonster : ModMonsterTemplate
             new ThrowingPlayerChoiceContext(), Creature, WithAmount, Creature, null);
 
         var withPower = Creature.GetPower<WithPower>();
-        var shieldAmount = withPower?.Amount ?? 0m;
+        var shieldAmount = (withPower?.Amount ?? 0m) * 3m / 2m;
         if (shieldAmount > 0)
             await CreatureCmd.GainBlock(Creature, shieldAmount, ValueProp.Move, null);
     }

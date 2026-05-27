@@ -17,13 +17,16 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using ManosabaLin.Characters.Emalin.Components;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MinionLib.Component.Interfaces;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
-[RegisterCard(typeof(EmalinCardPool))]
+[RegisterCard(typeof(LinCardPool))]
 public sealed class EmaForgottenOne : ManosabaCardTemplate
 {
+    protected override IEnumerable<ICardComponent> CanonicalComponents => [new EmaDeath()];
     private const int DirectDamage = 999;
     private const int WithPowerGain = 20;
     private const int SuspectGain = 3;

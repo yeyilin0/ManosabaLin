@@ -2,6 +2,7 @@ using MinionLib.Component.Core;
 using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
+using ManosabaLin.Characters.Emalin.Components;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -15,14 +16,16 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.ValueProps;
+using MinionLib.Component.Interfaces;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
-[RegisterCard(typeof(HiroCardPool))]
+[RegisterCard(typeof(LinCardPool))]
 public sealed class HiroBadEnding : ManosabaCardTemplate
 {
+    protected override IEnumerable<ICardComponent> CanonicalComponents => [new HiroDeath()];
     private const int DirectDamage = 999;
     private const int WithPowerReduction = 50;
     private const int EnergyToGive = 3;
@@ -46,8 +49,7 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
         }
     }
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { HiroKeywordRules.HiroKeywordId.GetModCardKeyword() };
+ 
 
     public int CardsInHand
     {

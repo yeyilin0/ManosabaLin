@@ -57,16 +57,15 @@ public sealed class Lamort : ManosabaCardTemplate
         var creature = owner.Creature;
         var combatState = source.CombatState;
 
-        ManosabaAudio.TryPlayOneShot("ema_witch_judgment_theme.mp3".BgmAudioPath());
+        ManosabaAudio.TryPlayOneShot("lamort.wav".CardsAudioPath(), 0.8f);
+
         await CreatureCmd.TriggerAnim(creature, "Cast", owner.Character.CastAnimDelay);
 
-        // 1. 自己获得 100 层魔女化
         await PowerCmd.Apply<WithPower>(
             choiceContext, creature,
             source.DynamicVars["WithPower"].BaseValue,
             creature, source, false);
 
-        // 2. 给予全体相当于血量四分之一的魔女因子
         var allCreatures = combatState.Allies
             .Concat(combatState.Enemies)
             .Where(c => c.IsAlive)
@@ -83,13 +82,11 @@ public sealed class Lamort : ManosabaCardTemplate
             }
         }
 
-        // 3. 自己获得一层魔女仪式
         await PowerCmd.Apply<RitualCeremonyPower>(
             choiceContext, creature,
             source.DynamicVars["RitualCeremonyPower"].BaseValue,
             creature, source, false);
 
-        // 4. 手动选择三次来打出亲近+1或疏远+1的卡
         var bond = creature.GetPower<BondPower>();
         var createCardMethod = typeof(ICombatState).GetMethod("CreateCard", new Type[] { typeof(Player) });
 
@@ -120,14 +117,12 @@ public sealed class Lamort : ManosabaCardTemplate
             await CardCmd.AutoPlay(choiceContext, picked, autoTarget);
         }
 
-        // 更新羁绊值
         bond = creature.GetPower<BondPower>();
         var affinity = bond?.Affinity ?? 0;
         var estrangement = bond?.Estrangement ?? 0;
         var higherBondValue = Math.Max(affinity, estrangement);
         var lowerBondValue = Math.Min(affinity, estrangement);
 
-        // 5. 生成等量于较高层数的羁绊卡，随机赋予赞同/反驳/疑问附魔
         var enchantTypes = new Type[] { typeof(Rebuttal), typeof(Agreement), typeof(Doubt) };
         var rng = owner.RunState.Rng.CombatCardSelection;
 
@@ -151,7 +146,6 @@ public sealed class Lamort : ManosabaCardTemplate
             judgmentCards.Add(bondCard);
         }
 
-        // 6. 随机选等于较低层数的卡，费用减1
         var toDiscount = judgmentCards
             .OrderBy(_ => rng.NextFloat())
             .Take(lowerBondValue)
@@ -162,7 +156,6 @@ public sealed class Lamort : ManosabaCardTemplate
             card.EnergyCost.UpgradeBy(-1);
         }
 
-        // 7. 玩家手动选择顺序放入抽卡堆
         if (judgmentCards.Count > 0)
         {
             var orderPrefs = new CardSelectorPrefs(SelectionScreenPrompt, judgmentCards.Count, judgmentCards.Count)
@@ -208,7 +201,6 @@ public sealed class Lamort : ManosabaCardTemplate
             typeof(AnnAffinity),
             typeof(Lyqinjin),
             typeof(BondSettlement),
-
         };
 
         var rng = owner.RunState.Rng.CombatCardSelection;

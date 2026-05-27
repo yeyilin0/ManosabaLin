@@ -62,7 +62,6 @@ public class Doubt : ModEnchantmentTemplate
         }
 
         // ×5：随机一张手牌获得重放，选择一张牌组卡获得反驳/赞同/疑问附魔
-        // ×5：随机一张手牌获得重放，随机一张手牌获得随机审判附魔
         if (count % 5 == 0)
         {
             var handCards = PileType.Hand.GetPile(owner).Cards
@@ -78,8 +77,10 @@ public class Doubt : ModEnchantmentTemplate
                 replayCard.BaseReplayCount++;
                 CardCmd.Preview(replayCard);
 
-                // 随机一张手牌获得随机审判附魔（排除刚给过重放的）
-                var enchantTargets = handCards.Where(c => c != replayCard).ToList();
+                // 随机一张手牌获得随机审判附魔（排除刚给过重放的，且必须无附魔）
+                var enchantTargets = handCards
+                    .Where(c => c != replayCard && c.Enchantment == null)
+                    .ToList();
                 if (enchantTargets.Count > 0)
                 {
                     var enchantCard = rng.NextItem(enchantTargets);

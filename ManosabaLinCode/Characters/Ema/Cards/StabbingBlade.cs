@@ -6,8 +6,11 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using STS2RitsuLib.Interop.AutoRegistration;
 using ManosabaLin.Characters.Emalin.Components;
+using System.Collections.Generic;
+using System.Linq;
 using MinionLib.Component.Interfaces;
 
 namespace ManosabaLin.Characters.Ema.Cards;
@@ -15,8 +18,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class StabbingBlade() : ManosabaCardTemplate(2, CardType.Attack, CardRarity.Rare, TargetType.Self)
 {
-    protected override IEnumerable<ICardComponent> CanonicalComponents => [new Witchification()];
-
+  
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var owner = Owner;

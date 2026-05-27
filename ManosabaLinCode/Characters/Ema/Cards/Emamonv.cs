@@ -1,8 +1,10 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Audio;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin;
 using ManosabaLin.Characters.Emalin.Enchantments;
+using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -42,6 +44,8 @@ public sealed class Emamonv : ManosabaCardTemplate
         var owner = Owner;
         var creature = owner.Creature;
 
+        ManosabaAudio.TryPlayOneShot("emamonv.wav".CardsAudioPath(), 0.8f);
+
         var cardQinjin = CombatState.CreateCard<Emamonvqinjin>(owner);
         var cardShuyuan = CombatState.CreateCard<Emamonvshuyuan>(owner);
 
@@ -76,7 +80,6 @@ public sealed class Emamonv : ManosabaCardTemplate
         {
             if (card.Enchantment != null) continue;
 
-            // 加上虚无关键词
             card.AddKeyword(CardKeyword.Ethereal);
 
             if (EmalinKeywordRules.HasAgreeKeyword(card))

@@ -16,7 +16,11 @@ public sealed class WitchBurn() : ManosabaCardTemplate(-1, CardType.Curse, CardR
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
-        get { yield return CardKeyword.Retain; }
+        get
+        {
+            yield return CardKeyword.Retain; 
+            yield return CardKeyword.Unplayable;
+        }
     }
 
     protected override bool HasTurnEndInHandEffectC => true;

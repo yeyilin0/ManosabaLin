@@ -478,5 +478,11 @@
   "ManosabaLin.EmaBadEndingRewardComponent.rightClickPrompt": "{CardCount} additional cards",
 
   "MANOSABA_LIN_CARD_EMA_FORGOTTEN_ONE.title": "\"The Forgotten One\"",
-  "MANOSABA_LIN_CARD_EMA_FORGOTTEN_ONE.description": "[color=#ff99cc][jitter]\"I forgot everyone, and everyone forgot me\"[/jitter][/color]\n[b]Returns to hand when discarded or exhausted.[/b]\nAt turn start, [color=#ff99cc]Affinity[/color] and [color=#CC6666]Estrangement[/color] both become the lower of the two.\nWhen playing an Attack, gain 20 [b]Witchification[/b].\nAt turn end, lose HP equal to the number of Trial enchantments, and remove one quarter of them.\nAt turn end, gain 3 [b]Suspect[/b]."
+  "MANOSABA_LIN_CARD_EMA_FORGOTTEN_ONE.description": "[color=#ff99cc][jitter]\"I forgot everyone, and everyone forgot me\"[/jitter][/color]\n[b]Returns to hand when discarded or exhausted.[/b]\nAt turn start, [color=#ff99cc]Affinity[/color] and [color=#CC6666]Estrangement[/color] both become the lower of the two.\nWhen playing an Attack, gain 20 [b]Witchification[/b].\nAt turn end, lose HP equal to the number of Trial enchantments, and remove one quarter of them.\nAt turn end, gain 3 [b]Suspect[/b].",
+  "ManosabaLin.AgreementTrialComponent.hovertip.title": "Agreement",
+  "ManosabaLin.AgreementTrialComponent.hovertip.description": "When played, Agreement counter in relic +1",
+  "ManosabaLin.RebuttalTrialComponent.hovertip.title": "Rebuttal",
+  "ManosabaLin.RebuttalTrialComponent.hovertip.description": "When played, Rebuttal counter in relic +1",
+  "ManosabaLin.DoubtTrialComponent.hovertip.title": "Doubt",
+  "ManosabaLin.DoubtTrialComponent.hovertip.description": "When played, Doubt counter in relic +1"
 }

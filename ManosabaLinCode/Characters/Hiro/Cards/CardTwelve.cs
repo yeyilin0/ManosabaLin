@@ -1,7 +1,9 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Audio;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.Powers;
 using ManosabaLin.Characters.Hiro.Powers;
+using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -43,9 +45,10 @@ public sealed class CardTwelve() : ManosabaCardTemplate(3, CardType.Skill, CardR
     {
         var source = this;
 
+        ManosabaAudio.TryPlayOneShot("card_twelve.wav".CardsAudioPath(), 0.8f);
+
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        // 第一步：获得 6 层临时力量
         await PowerCmd.Apply<TempStrength>(
             choiceContext, source.Owner.Creature,
             source.DynamicVars["TempStrength"].BaseValue,
@@ -54,7 +57,6 @@ public sealed class CardTwelve() : ManosabaCardTemplate(3, CardType.Skill, CardR
             false
         );
 
-        // 第二步：获得 5 层临时敏捷
         await PowerCmd.Apply<TempDexterity>(
             choiceContext, source.Owner.Creature,
             source.DynamicVars["TempDexterity"].BaseValue,
@@ -63,7 +65,6 @@ public sealed class CardTwelve() : ManosabaCardTemplate(3, CardType.Skill, CardR
             false
         );
 
-        // 第三步：获得 9 层伪证
         await PowerCmd.Apply<PerjuryPower>(
             choiceContext, source.Owner.Creature,
             source.DynamicVars["Perjury"].BaseValue,
