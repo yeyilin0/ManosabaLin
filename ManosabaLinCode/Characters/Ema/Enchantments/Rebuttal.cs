@@ -40,10 +40,27 @@ public class Rebuttal : ModEnchantmentTemplate
         var owner = card.Owner;
         var ownerCreature = owner.Creature;
 
-        // 从遗物获取计数器并递增
-        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault();
-        badge?.IncrementCount(this);
-        var count = badge?.RebuttalCount ?? 0;
+        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault()
+                    ?? (object)owner.Relics.OfType<Withema>().FirstOrDefault();
+    
+        int count;
+    
+        if (badge is EmaTrialBadge trialBadge)
+        {
+            count = trialBadge.AgreeCount;
+            trialBadge.IncrementCount(this);
+            count = trialBadge.AgreeCount;
+        }
+        else if (badge is Withema withema)
+        {
+            count = withema.AgreeCount;
+            withema.IncrementCount(this);
+            count = withema.AgreeCount;
+        }
+        else
+        {
+            count = 1;
+        }
 
         // ×1：每点计数造成1点伤害
         if (cardPlay?.Target is { IsAlive: true } target)

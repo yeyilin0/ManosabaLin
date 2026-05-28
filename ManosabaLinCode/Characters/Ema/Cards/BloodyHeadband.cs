@@ -36,7 +36,7 @@ public sealed class BloodyHeadband : ManosabaCardTemplate
         // 自己获得 5 格挡
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
-        // 选择一个队友获得 1 能量，单人默认自己
+        // 选择一个队友获得 1 能量
         var target = cardPlay.Target;
         if (target == null)
         {

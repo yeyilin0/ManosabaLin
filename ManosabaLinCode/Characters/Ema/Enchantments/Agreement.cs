@@ -33,12 +33,27 @@ public class Agreement : ModEnchantmentTemplate
         var combatState = card.CombatState;
 
         // 从遗物获取计数器
-        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault();
-        var count = badge?.AgreeCount ?? 0;
-
-        // 增加计数
-        badge?.IncrementCount(this);
-        count = badge?.AgreeCount ?? count + 1;
+        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault()
+                    ?? (object)owner.Relics.OfType<Withema>().FirstOrDefault();
+    
+        int count;
+    
+        if (badge is EmaTrialBadge trialBadge)
+        {
+            count = trialBadge.AgreeCount;
+            trialBadge.IncrementCount(this);
+            count = trialBadge.AgreeCount;
+        }
+        else if (badge is Withema withema)
+        {
+            count = withema.AgreeCount;
+            withema.IncrementCount(this);
+            count = withema.AgreeCount;
+        }
+        else
+        {
+            count = 1;
+        }
 
         // ×1：全体友方3护盾
         foreach (var ally in combatState.Allies.Where(a => a is { IsAlive: true }))

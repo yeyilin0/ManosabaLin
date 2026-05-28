@@ -100,9 +100,15 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
 
         if (suspectAmt > 0)
         {
-            await PowerCmd.Apply<WithPower>(choiceContext, owner.Creature, suspectAmt * 20, owner.Creature, source, false);
-            await PlayerCmd.GainEnergy(suspectAmt, owner);
-            await PowerCmd.Remove(suspect);
+            // 重新获取确保一致性
+            var suspectToRemove = owner.Creature.GetPower<SuspectPower>();
+            if (suspectToRemove != null)
+            {
+                var amount = suspectToRemove.Amount;
+                await PowerCmd.Apply<WithPower>(choiceContext, owner.Creature, amount * 20, owner.Creature, source, false);
+                await PlayerCmd.GainEnergy(amount, owner);
+                await PowerCmd.Remove(suspectToRemove);
+            }
         }
 
         if (justiceAmt > 0)

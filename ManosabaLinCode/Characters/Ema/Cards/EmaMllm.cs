@@ -40,12 +40,9 @@ public sealed class EmaMllm : ManosabaCardTemplate
         var target = cardPlay.Target ?? source.Owner.Creature;
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
-
-        await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-            .FromCard(source)
-            .Targeting(target)
-            .Execute(choiceContext);
-
+        await CreatureCmd.Damage(choiceContext, target,
+            source.DynamicVars.Damage.BaseValue,
+            ValueProp.Unpowered | ValueProp.Move, source);
         await PowerCmd.Apply<MllmPower>(
             choiceContext, target,
             source.DynamicVars["MllmPower"].BaseValue,

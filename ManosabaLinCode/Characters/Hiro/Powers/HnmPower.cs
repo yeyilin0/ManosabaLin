@@ -29,7 +29,10 @@ public class HnmPower : ManosabaPowerTemplate
         CardModel? cardSource)
     {
         if (target != Owner) return 1m;
-        if (!props.IsPoweredAttack()) return 1m;
+        if (props.HasFlag(ValueProp.Unpowered)) return 1m;
+    
+        // 只对敌人造成的伤害减半，卡牌伤害不生效
+        if (dealer == null || !dealer.IsEnemy) return 1m;
 
         return 0.5m;
     }

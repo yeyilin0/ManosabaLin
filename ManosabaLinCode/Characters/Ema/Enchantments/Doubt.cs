@@ -34,10 +34,27 @@ public class Doubt : ModEnchantmentTemplate
         var owner = card.Owner;
         var ownerCreature = owner.Creature;
 
-        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault();
-        badge?.IncrementCount(this);
-        var count = badge?.DoubtCount ?? 0;
-
+        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault()
+                    ?? (object)owner.Relics.OfType<Withema>().FirstOrDefault();
+    
+        int count;
+    
+        if (badge is EmaTrialBadge trialBadge)
+        {
+            count = trialBadge.AgreeCount;
+            trialBadge.IncrementCount(this);
+            count = trialBadge.AgreeCount;
+        }
+        else if (badge is Withema withema)
+        {
+            count = withema.AgreeCount;
+            withema.IncrementCount(this);
+            count = withema.AgreeCount;
+        }
+        else
+        {
+            count = 1;
+        }
         // ×1：获得1点护盾
         await CreatureCmd.GainBlock(ownerCreature, 1m, ValueProp.Move, cardPlay);
 
