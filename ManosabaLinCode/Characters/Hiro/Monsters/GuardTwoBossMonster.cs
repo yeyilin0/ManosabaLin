@@ -1,4 +1,5 @@
 using Godot;
+using ManosabaLin.Audio;
 using ManosabaLin.Characters.Emalin.Components;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Extensions;
@@ -74,6 +75,9 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
     public override async Task AfterAddedToRoom()
     {
+        ManosabaAudio.TryPlayOneShot("guard_two_boss_theme.mp3".BgmAudioPath(), 0.8f);
+        await PowerCmd.Apply<GuardTwoBossPhasePower>(
+            new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
         await PowerCmd.Apply<CheckMovesPhasePower>(
             new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
         await Task.CompletedTask;
