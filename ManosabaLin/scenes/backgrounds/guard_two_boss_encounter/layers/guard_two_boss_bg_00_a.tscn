@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://w8r7osqyhpxd"]
+
+[ext_resource type="Texture2D" uid="uid://bms15mg43itxb" path="res://ManosabaLin/scenes/backgrounds/guard_two_boss_encounter/images/guard_two_boss_bg_00_a.png" id="1_image"]
+
+[node name="A" type="TextureRect"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1383.0
+offset_top = -792.0
+offset_right = 617.0
+offset_bottom = 333.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_image")
+expand_mode = 1

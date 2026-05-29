@@ -36,6 +36,11 @@ public static class StringExtensions
             return BuildResPath("images", "cards", path);
         }
 
+        public string MonstersImagePath()
+        {
+            return BuildResPath("images", "monsters", path);
+        }
+
         public string CardsAudioPath()
         {
             return BuildRelativePath("cards", path);

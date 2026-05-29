@@ -75,12 +75,6 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         return new MonsterMoveStateMachine(states, checkMoves);
     }
 
-    public override async Task AfterAddedToRoom()
-    {
-        UpdateVisual("monsters/guard_two_boss_phase1.png");
-        await Task.CompletedTask;
-    }
-
     public override async Task AfterDamageReceived(
         PlayerChoiceContext choiceContext,
         Creature target,
@@ -92,7 +86,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         if (target != Creature) return;
         if (Creature.CurrentHp > Creature.MaxHp * 0.1m) return;
 
-        UpdateVisual("monsters/guard_two_boss_rage.png");
+        UpdateVisual("rage");
 
         var withAmount = Creature.GetPowerAmount<WithPower>();
         var shieldAmount = withAmount * 3;
@@ -108,7 +102,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
     private async Task CheckMovesMove(IReadOnlyList<Creature> targets)
     {
-        UpdateVisual("monsters/guard_two_boss_phase1.png");
+        UpdateVisual("phase1");
 
         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
 
@@ -127,7 +121,6 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
                     .FromMonster(this)
                     .WithAttackerFx(null, AttackSfx)
                     .WithHitFx("vfx/vfx_attack_blunt")
-                    .Targeting(player.Creature)
                     .Execute(null);
             }
         }
@@ -143,7 +136,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
     private async Task BlackHandMove(IReadOnlyList<Creature> targets)
     {
-        UpdateVisual("monsters/guard_two_boss_phase2.png");
+        UpdateVisual("phase2");
 
         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
 
@@ -191,7 +184,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
     private async Task Attack3Move(IReadOnlyList<Creature> targets)
     {
-        UpdateVisual("monsters/guard_two_boss_phase3.png");
+        UpdateVisual("phase3");
 
         await DamageCmd.Attack(Turn3Damage)
             .FromMonster(this)
@@ -213,7 +206,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
     private async Task Attack4Move(IReadOnlyList<Creature> targets)
     {
-        UpdateVisual("monsters/guard_two_boss_rage.png");
+        UpdateVisual("rage");
 
         var healAmount = Creature.MaxHp * 0.5m - Creature.CurrentHp;
         if (healAmount > 0)
@@ -271,7 +264,6 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
                     .FromMonster(this)
                     .WithAttackerFx(null, AttackSfx)
                     .WithHitFx("vfx/vfx_attack_blunt")
-                    .Targeting(player.Creature)
                     .Execute(null);
             }
         }
@@ -291,23 +283,35 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         if (maxCount > 3 * playerCount)
         {
             _skipBlackHandNextTurn = true;
-            UpdateVisual("monsters/guard_two_boss_phase3.png");
+            UpdateVisual("phase3");
             SetMoveImmediate(
-                new MoveState("ATTACK_3_MOVE", Attack3Move,
-                    new AbstractIntent[] { new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent() }),
+                new MoveState("ATTACK_3_MOVE", Attack3Move, new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent()),
                 true);
         }
     }
 
-    public void UpdateVisual(string path)
+    private string _lastVisual = "phase1";
+
+    private void UpdateVisual(string name)
     {
+        if (name == _lastVisual) return;
+        _lastVisual = name;
+
         var creatureNode = NCombatRoom.Instance?.GetCreatureNode(Creature);
         if (creatureNode == null)
             return;
-        ((Sprite2D)creatureNode.Visuals.GetCurrentBody()).Texture = PreloadManager.Cache.GetTexture2D(ImageHelper.GetImagePath(path));
-        var scale = creatureNode.Visuals.GetCurrentBody().Scale;
+
+        var body = (Sprite2D)creatureNode.Visuals.GetCurrentBody();
         var tween = creatureNode.CreateTween();
-        tween.TweenProperty(creatureNode.Visuals.GetCurrentBody(), (NodePath)"scale", scale, 1.2000000476837158).From(scale * 0.5f).SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Sine);
-        tween.Parallel().TweenProperty(creatureNode.Visuals.GetCurrentBody(), (NodePath)"modulate", Colors.White, 0.5).From(Colors.Black);
+
+        tween.TweenProperty(body, (NodePath)"modulate", Colors.Black, 0.2);
+
+        tween.TweenCallback(Callable.From(() =>
+        {
+            var path = $"guard_two_boss_{name}.png".MonstersImagePath();
+            body.Texture = PreloadManager.Cache.GetTexture2D(path);
+        }));
+
+        tween.TweenProperty(body, (NodePath)"modulate", Colors.White, 0.3);
     }
 }

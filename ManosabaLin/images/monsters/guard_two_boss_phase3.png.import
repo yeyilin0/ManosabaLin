@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7wik6ygf0jbm"
-path="res://.godot/imported/guard_two_boss_phase3.png-2fcd4a61a2967eadbf03c17242928eff.ctex"
+path="res://.godot/imported/guard_two_boss_phase3.png-750367b2a0897f7bf9e85758c1a271a7.ctex"
 metadata={
 "vram_texture": false
 }
@@ -11,7 +11,7 @@ metadata={
 [deps]
 
 source_file="res://ManosabaLin/images/monsters/guard_two_boss_phase3.png"
-dest_files=["res://.godot/imported/guard_two_boss_phase3.png-2fcd4a61a2967eadbf03c17242928eff.ctex"]
+dest_files=["res://.godot/imported/guard_two_boss_phase3.png-750367b2a0897f7bf9e85758c1a271a7.ctex"]
 
 [params]
 
