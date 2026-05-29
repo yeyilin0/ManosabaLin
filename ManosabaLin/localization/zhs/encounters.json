@@ -1,4 +1,4 @@
 ﻿{
-  "GUARD_ONE_ENCOUNTER.title": "守卫的试炼",
-  "GUARD_ONE_ENCOUNTER.loss": "{character} 被 [gold]{encounter}[/gold] 击败了..."
+  "MANOSABA_LIN_MONSTER_GUARD_ONE_MONSTER.title": "看守的幻象",
+  "MANOSABA_LIN_MONSTER_GUARD_ONE_MONSTER.loss": "{character} 被 [gold]{encounter}[/gold] 击败了..."
 }

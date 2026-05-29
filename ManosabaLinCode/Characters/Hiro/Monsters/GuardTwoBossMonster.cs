@@ -12,6 +12,7 @@ using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -75,6 +76,13 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         return new MonsterMoveStateMachine(states, checkMoves);
     }
 
+    public override async Task AfterAddedToRoom()
+    {
+        await PowerCmd.Apply<CheckMovesPhasePower>(
+            new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
+        await Task.CompletedTask;
+    }
+
     public override async Task AfterDamageReceived(
         PlayerChoiceContext choiceContext,
         Creature target,
@@ -94,14 +102,15 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
             await CreatureCmd.GainBlock(Creature, shieldAmount, ValueProp.Move, null);
 
         _skipBlackHandNextTurn = true;
-        SetMoveImmediate(
-            new MoveState("ATTACK_4_MOVE", Attack4Move,
-                new AbstractIntent[] { new MultiAttackIntent(Turn3Damage, 2), new BuffIntent(), new DefendIntent() }),
-            true);
+        var attack4 = new MoveState("ATTACK_4_MOVE", Attack4Move,
+            new AbstractIntent[] { new MultiAttackIntent(Turn3Damage, 2), new BuffIntent(), new DefendIntent() });
+        attack4.FollowUpState = new MoveState("CHECK_MOVES", CheckMovesMove, new DebuffIntent());
+        SetMoveImmediate(attack4, true);
     }
 
     private async Task CheckMovesMove(IReadOnlyList<Creature> targets)
     {
+        await SwitchPhasePower<CheckMovesPhasePower>();
         UpdateVisual("phase1");
 
         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
@@ -136,6 +145,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
     private async Task BlackHandMove(IReadOnlyList<Creature> targets)
     {
+        await SwitchPhasePower<BlackHandPhasePower>();
         UpdateVisual("phase2");
 
         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
@@ -184,6 +194,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
     private async Task Attack3Move(IReadOnlyList<Creature> targets)
     {
+        await SwitchPhasePower<JudgmentHammerPhasePower>();
         UpdateVisual("phase3");
 
         await DamageCmd.Attack(Turn3Damage)
@@ -284,10 +295,23 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         {
             _skipBlackHandNextTurn = true;
             UpdateVisual("phase3");
-            SetMoveImmediate(
-                new MoveState("ATTACK_3_MOVE", Attack3Move, new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent()),
-                true);
+            var attack3 = new MoveState("ATTACK_3_MOVE", Attack3Move,
+                new AbstractIntent[] { new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent() });
+            attack3.FollowUpState = new MoveState("CHECK_MOVES", CheckMovesMove, new DebuffIntent());
+            SetMoveImmediate(attack3, true);
         }
+    }
+
+    private async Task SwitchPhasePower<T>() where T : PowerModel
+    {
+        if (Creature.HasPower<CheckMovesPhasePower>())
+            await PowerCmd.Remove<CheckMovesPhasePower>(Creature);
+        if (Creature.HasPower<BlackHandPhasePower>())
+            await PowerCmd.Remove<BlackHandPhasePower>(Creature);
+        if (Creature.HasPower<JudgmentHammerPhasePower>())
+            await PowerCmd.Remove<JudgmentHammerPhasePower>(Creature);
+
+        await PowerCmd.Apply<T>(new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
     }
 
     private string _lastVisual = "phase1";
