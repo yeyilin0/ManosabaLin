@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Godot;
 using ManosabaLin.Audio;
 using ManosabaLin.Characters.Hiro.Cards;
 using ManosabaLin.Characters.Hiro.Events;
@@ -12,7 +7,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -226,6 +220,7 @@ public sealed class GuardOneMonster : ModMonsterTemplate
         if (creature == Creature)
         {
             RunManager.Instance.State?.Acts.ElementAtOrDefault(2)?._rooms.Ancient = ModelDb.AncientEvent<WitchoftheIsland>();
+            RunManager.Instance.State?.Acts.ElementAtOrDefault(1)?.SetBossEncounter(ModelDb.Get<GuardTwoBossEncounter>());
         }
         return Task.CompletedTask;
     }

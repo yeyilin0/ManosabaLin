@@ -499,7 +499,7 @@
   "ManosabaLin.DoubtTrialComponent.prefix":"[color=#cc9966]疑问[/color]",
   "ManosabaLin.DoubtTrialComponent.hovertip.title": "疑问",
   "ManosabaLin.DoubtTrialComponent.hovertip.description": "打出时，疑问+1",
-  "ManosabaLin.BlackHandComponent.hovertip.prefix": "变身的魔法",
+  "ManosabaLin.BlackHandComponent.prefix": "变身的魔法",
   "ManosabaLin.BlackHandComponent.hovertip.title": "魔法",
   "ManosabaLin.BlackHandComponent.hovertip.description": "被标记的卡牌"
 }

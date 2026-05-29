@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Godot;
 using ManosabaLin.Characters.Emalin.Components;
 using ManosabaLin.Characters.Hiro.Powers;
@@ -12,7 +8,7 @@ using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
@@ -162,7 +158,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
                 .ToList();
 
             var halfCount = Math.Max(1, allCards.Count / 2);
-            var cardsToMark = allCards.OrderBy(_ => Rng.NextDouble()).Take(halfCount);
+            var cardsToMark = allCards.StableShuffle(Rng).Take(halfCount);
 
             foreach (var card in cardsToMark)
                 card.TryAddComponent(new BlackHandComponent());
@@ -185,7 +181,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
                 .ToList();
 
             var addCount = Math.Min(maxHandCount, drawCards.Count);
-            var extraCards = drawCards.OrderBy(_ => Rng.NextDouble()).Take(addCount);
+            var extraCards = drawCards.StableShuffle(Rng).Take(addCount);
 
             foreach (var card in extraCards)
                 card.TryAddComponent(new BlackHandComponent());
