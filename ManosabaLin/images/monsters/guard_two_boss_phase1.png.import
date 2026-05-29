@@ -10,7 +10,7 @@ metadata={
 
 [deps]
 
-source_file="res://ManosabaLin/images/mosters/guard_two_boss_phase1.png"
+source_file="res://ManosabaLin/images/monsters/guard_two_boss_phase1.png"
 dest_files=["res://.godot/imported/guard_two_boss_phase1.png-662c0c8e2dae7734abdcd9783fd8f861.ctex"]
 
 [params]

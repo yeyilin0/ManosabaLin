@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cyb2vnrhtoe75"]
 
-[ext_resource type="Texture2D" uid="uid://dem61afy82ywb" path="res://ManosabaLin/images/mosters/guard_one.png" id="1_u7tvx"]
+[ext_resource type="Texture2D" uid="uid://cn3a6mqpbg4mq" path="res://ManosabaLin/images/monsters/guard_one.png" id="1_u7tvx"]
 
 [node name="GuardOne" type="Node2D"]
 

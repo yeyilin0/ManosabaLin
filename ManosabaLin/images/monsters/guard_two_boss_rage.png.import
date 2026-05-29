@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjklvds48ic7t"
-path="res://.godot/imported/manosaba_lin_encounter_guard_one_encounter.png-13b9496a84b9d0346571a9fcdc3ff5d7.ctex"
+uid="uid://b6wqqi1ldln4"
+path="res://.godot/imported/guard_two_boss_rage.png-685c021d2464acbfe1dc26c67440b5d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/ui/run_history/manosaba_lin_encounter_guard_one_encounter.png"
-dest_files=["res://.godot/imported/manosaba_lin_encounter_guard_one_encounter.png-13b9496a84b9d0346571a9fcdc3ff5d7.ctex"]
+source_file="res://ManosabaLin/images/monsters/guard_two_boss_rage.png"
+dest_files=["res://.godot/imported/guard_two_boss_rage.png-685c021d2464acbfe1dc26c67440b5d9.ctex"]
 
 [params]
 

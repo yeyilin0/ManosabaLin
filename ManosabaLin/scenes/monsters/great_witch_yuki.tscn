@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3]
 
-[ext_resource type="Texture2D" uid="uid://dem61afy82ywb" path="res://ManosabaLin/images/mosters/guard_one.png" id="1_placeholder"]
+[ext_resource type="Texture2D" uid="uid://cn3a6mqpbg4mq" path="res://ManosabaLin/images/monsters/guard_one.png" id="1_placeholder"]
 
 [node name="GreatWitchYuki" type="Node2D"]
 
