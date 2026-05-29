@@ -1,22 +1,22 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://db3dk11ppjwt5"]
 
-[ext_resource type="Texture2D" uid="uid://dem61afy82ywb" path="res://ManosabaLin/images/mosters/guard_one.png" id="1_placeholder"]
+[ext_resource type="Texture2D" uid="uid://ddft32tg63ptc" path="res://ManosabaLin/images/mosters/guard_two_boss_phase1.png" id="1_0dt5r"]
 
-[node name="GuardTwo" type="Node2D"]
+[node name="GuardTwoBoss" type="Node2D"]
 
 [node name="Visuals" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(4.9348755, -200.95233)
-scale = Vector2(0.20365584, 0.22138646)
-texture = ExtResource("1_placeholder")
+position = Vector2(61.00006, -188)
+scale = Vector2(0.2142428, 0.24103008)
+texture = ExtResource("1_0dt5r")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -182.0
-offset_top = -570.0
-offset_right = 205.0
+offset_left = -291.0
+offset_top = -603.0
+offset_right = 441.0
 offset_bottom = 170.0
 
 [node name="IntentPos" type="Marker2D" parent="."]

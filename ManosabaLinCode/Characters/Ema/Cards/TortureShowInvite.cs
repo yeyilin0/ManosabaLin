@@ -35,11 +35,9 @@ public sealed class TortureShowInvite : ManosabaCardTemplate
         var agreementCount = EmalinCombatHelper.GetAgreementPlaysThisTurn(Owner.Creature, CombatState);
         if (agreementCount >= 2)
         {
-            // 全体队友抽 1
             foreach (var ally in CombatState.Allies.Where(a => a is { IsAlive: true, IsPlayer: true }))
                 await CardPileCmd.Draw(choiceContext, 1, ally.Player!);
 
-            // 自己回 1 费
             await PlayerCmd.GainEnergy(1, Owner);
         }
     }

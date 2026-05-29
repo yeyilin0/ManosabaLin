@@ -134,5 +134,7 @@
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_REWARD_ACTION.description": "クリックで敵を1体選択し、体力を4分の1失わせ、1層失い、デッキから[color=#CC6666]「仕方ない、そばにいるよ」[/color]を1層除去する",
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.title": "「真の結末」",
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.description": "同じカードを2回目に使用した時、そのカードは「魔女の記憶」印を獲得し、リプレイ1を獲得して使用時に除去される。カード名ごとに1回のみ発動する\n13枚のカードを除去した時、デッキ内の【結末】に[color=#ff99cc]「ヒロだって泣いてたのに、私だけ責めるなんて」[/color]を1層付与する",
-  "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.selectionScreenPrompt": "除去されたカード"
+  "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.selectionScreenPrompt": "除去されたカード",
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_PHASE_POWER.title": "審判者の意志",
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_PHASE_POWER.description": "HPが10%以下になった時、現在の意図を中断し、魔女化×3のシールドを獲得し、審判の槌に切り替わる。死なない限り何度でも発動できる。"
 }

@@ -135,5 +135,7 @@
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_REWARD_ACTION.description": "Click to choose an enemy. They lose 1/4 HP, lose 1 stack, and remove 1 stack of \"Fine, I'll Stay By Your Side\" from deck.",
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.title": "\"True Ending\"",
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.description": "When you play the same card a 2nd time, it gains \"Witch's Memory\" mark, gains Replay 1 and is removed when played. Each card name only triggers once.\nIf 13 cards are removed, give the [Ending] in deck 1 [color=#ff99cc]\"Even Hiro Was Crying Too\"[/color].",
-  "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.selectionScreenPrompt": "Removed cards"
+  "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.selectionScreenPrompt": "Removed cards",
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_PHASE_POWER.title": "Adjudicator's Will",
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_PHASE_POWER.description": "When HP drops below 10%, interrupt current intent, gain Witchification×3 shield, switch to Hammer of Judgment. Can trigger repeatedly as long as not dead."
 }
