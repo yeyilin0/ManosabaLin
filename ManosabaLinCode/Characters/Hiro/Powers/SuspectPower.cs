@@ -1,16 +1,4 @@
-﻿using ManosabaLin.Characters.Common;
-using ManosabaLin.Characters.Hiro.Cards;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Saves.Runs;
-using STS2RitsuLib.Interop.AutoRegistration;
-using System.Collections.Generic;
+﻿using ManosabaLin.Characters.Hiro.Cards;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -20,26 +8,22 @@ public sealed class SuspectPower : ManosabaPowerTemplate
     private const int TokenThreshold = 12;
     private const int StrengthLossPerTwoStacks = 1;
 
-    private readonly List<(Creature owner, ModelId powerId, int amount)> _removedPowers = new();
+    private IReadOnlyList<PowerSnapShot> RemovedPowers
+    {
+        get;
+        set
+        {
+            AssertMutable();
+            field = value;
+        }
+    } = [];
 
-    private int _accumulatedStacks;
     private bool _isRestoring;
     private bool _tokenGiven;
 
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
     public override bool AllowNegative => true;
-
-    [SavedProperty]
-    public int AccumulatedStacks
-    {
-        get => _accumulatedStacks;
-        set
-        {
-            AssertMutable();
-            _accumulatedStacks = value;
-        }
-    }
 
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext,
@@ -50,9 +34,7 @@ public sealed class SuspectPower : ManosabaPowerTemplate
     {
         if (power != this) return;
 
-        var currentAmount = (int)power.Amount;
-
-        _accumulatedStacks = currentAmount;
+        var currentAmount = power.Amount;
 
         var strengthLoss = currentAmount / 2 * StrengthLossPerTwoStacks;
 
@@ -71,7 +53,7 @@ public sealed class SuspectPower : ManosabaPowerTemplate
             _tokenGiven = true;
             await RemovePowersFromOwnerAndPrepareRestore();
 
-            if (Owner?.Player != null) await GiveBadEndingCurse();
+            if (Owner.Player != null) await GiveBadEndingCurse();
         }
     }
 
@@ -79,46 +61,45 @@ public sealed class SuspectPower : ManosabaPowerTemplate
     {
         if (Owner?.CombatState == null) return;
 
-        _removedPowers.Clear();
+        var removed = new List<PowerSnapShot>();
 
         var creature = Owner;
 
-        foreach (var power in creature.Powers.ToList())
+        foreach (var power in creature.Powers.ToList().Where(p => p.Type == PowerType.Buff))
         {
-            if (power is SuspectPower) continue;
-
-            _removedPowers.Add((creature, power.Id, power.Amount));
+            removed.Add(new PowerSnapShot(creature, power.Id, power.Amount));
             await PowerCmd.Remove(power);
         }
+
+        RemovedPowers = removed;
 
         _isRestoring = true;
     }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
         if (!_isRestoring) return;
         if (side != CombatSide.Player) return;
 
-        foreach (var (creature, powerId, amount) in _removedPowers)
+        foreach (var (creature, powerId, amount) in RemovedPowers)
             if (!creature.IsDead)
             {
                 var powerModel = ModelDb.GetById<PowerModel>(powerId);
-                if (powerModel != null)
-                    await PowerCmd.Apply(
-                        new ThrowingPlayerChoiceContext(),
-                        powerModel.ToMutable(0),
-                        creature,
-                        amount,
-                        Owner,
-                        null,
-                        false
-                    );
+                await PowerCmd.Apply(
+                    new ThrowingPlayerChoiceContext(),
+                    powerModel.ToMutable(0),
+                    creature,
+                    amount,
+                    Owner,
+                    null
+                );
             }
 
-        _removedPowers.Clear();
+        RemovedPowers = [];
         _isRestoring = false;
 
-        await PowerCmd.Remove((PowerModel)this);
+        await PowerCmd.Remove(this);
     }
 
     private async Task GiveBadEndingCurse()
@@ -127,9 +108,10 @@ public sealed class SuspectPower : ManosabaPowerTemplate
         if (Owner.CombatState == null) return;
 
         var curseModel = ModelDb.GetById<CardModel>(ModelDb.GetId<HiroBadEnding>());
-        if (curseModel == null) return;
 
         var curseCard = Owner.CombatState.CreateCard(curseModel, Owner.Player);
         await CardPileCmd.AddGeneratedCardToCombat(curseCard, PileType.Hand, Owner.Player);
     }
+
+    private record PowerSnapShot(Creature Owner, ModelId PowerId, int Amount);
 }
