@@ -31,7 +31,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
     public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 380, 350);
     public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 380, 350);
 
-    private int Turn3Damage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 18, 15);
+    public int Turn3Damage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 18, 15);
     private int FailDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 10, 8);
     private int WithAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 40, 30);
     private int ShieldAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 20, 15);
@@ -46,23 +46,27 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
             AssetProfile.VisualsScenePath!);
     }
 
-    private Dictionary<Player, HashSet<CardType>> _cardPlaysThisTurn = new();
-    private bool _skipBlackHandNextTurn;
+    public bool IsDoubleAttackMode { get; set; }
 
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {
+        // 意图1：审判之眼 - 给玩家CheckMovesPhasePower
         var checkMoves = new MoveState("CHECK_MOVES", CheckMovesMove,
             new DebuffIntent());
 
+        // 意图2：黑手印记 - 给玩家BlackHandPhasePower
         var blackHand = new MoveState("BLACK_HAND_MOVE", BlackHandMove,
             new AbstractIntent[] { new DebuffIntent(), new CardDebuffIntent() });
 
+        // 意图3：审判之锤 - 给玩家JudgmentHammerPhasePower + 攻击
         var attack3 = new MoveState("ATTACK_3_MOVE", Attack3Move,
             new AbstractIntent[] { new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent() });
 
+        // 意图4：双倍审判 - 最高优先级，不被JudgmentHammerPhasePower修改
         var attack4 = new MoveState("ATTACK_4_MOVE", Attack4Move,
             new AbstractIntent[] { new MultiAttackIntent(Turn3Damage, 2), new BuffIntent(), new DefendIntent() });
 
+        // 循环：checkMoves → blackHand → attack3 → checkMoves
         checkMoves.FollowUpState = blackHand;
         blackHand.FollowUpState = attack3;
         attack3.FollowUpState = checkMoves;
@@ -76,11 +80,10 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
     public override async Task AfterAddedToRoom()
     {
         ManosabaAudio.TryPlayOneShot("guard_two_boss_theme.mp3".BgmAudioPath(), 0.8f);
+
+        // 给boss自身GuardTwoBossPhasePower（10%HP触发）
         await PowerCmd.Apply<GuardTwoBossPhasePower>(
             new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
-        await PowerCmd.Apply<CheckMovesPhasePower>(
-            new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
-        await Task.CompletedTask;
     }
 
     public override async Task AfterDamageReceived(
@@ -94,6 +97,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         if (target != Creature) return;
         if (Creature.CurrentHp > Creature.MaxHp * 0.1m) return;
 
+        IsDoubleAttackMode = true;
         UpdateVisual("rage");
 
         var withAmount = Creature.GetPowerAmount<WithPower>();
@@ -101,102 +105,63 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         if (shieldAmount > 0)
             await CreatureCmd.GainBlock(Creature, shieldAmount, ValueProp.Move, null);
 
-        _skipBlackHandNextTurn = true;
         var attack4 = new MoveState("ATTACK_4_MOVE", Attack4Move,
             new AbstractIntent[] { new MultiAttackIntent(Turn3Damage, 2), new BuffIntent(), new DefendIntent() });
         attack4.FollowUpState = new MoveState("CHECK_MOVES", CheckMovesMove, new DebuffIntent());
         SetMoveImmediate(attack4, true);
     }
 
-    private async Task CheckMovesMove(IReadOnlyList<Creature> targets)
+    // 意图1：审判之眼 - 给玩家CheckMovesPhasePower，效果在能力里
+    public async Task CheckMovesMove(IReadOnlyList<Creature> targets)
     {
-        await SwitchPhasePower<CheckMovesPhasePower>();
         UpdateVisual("phase1");
-
         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
 
-        var failedCount = 0;
+        // 给所有玩家施加CheckMovesPhasePower
         foreach (var player in CombatState.Players)
         {
-            var played = _cardPlaysThisTurn.GetValueOrDefault(player, new HashSet<CardType>());
-            var hasAll = played.Contains(CardType.Attack)
-                      && played.Contains(CardType.Skill)
-                      && played.Contains(CardType.Power);
-
-            if (!hasAll && player.Creature is { IsAlive: true })
+            if (player.Creature is { IsAlive: true })
             {
-                failedCount++;
-                await DamageCmd.Attack(FailDamage)
-                    .FromMonster(this)
-                    .WithAttackerFx(null, AttackSfx)
-                    .WithHitFx("vfx/vfx_attack_blunt")
-                    .Execute(null);
+                await PowerCmd.Apply<CheckMovesPhasePower>(
+                    new ThrowingPlayerChoiceContext(), player.Creature, 1, Creature, null);
+            }
+        }
+    }
+
+    // 意图2：黑手印记 - 给玩家BlackHandPhasePower，效果在能力里
+    private async Task BlackHandMove(IReadOnlyList<Creature> targets)
+    {
+        UpdateVisual("phase2");
+        await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
+
+        // 给所有玩家施加BlackHandPhasePower
+        foreach (var player in CombatState.Players)
+        {
+            if (player.Creature is { IsAlive: true })
+            {
+                await PowerCmd.Apply<BlackHandPhasePower>(
+                    new ThrowingPlayerChoiceContext(), player.Creature, 1, Creature, null);
+            }
+        }
+    }
+
+    // 意图3：审判之锤 - 给玩家JudgmentHammerPhasePower + 攻击
+    public async Task Attack3Move(IReadOnlyList<Creature> targets)
+    {
+        IsDoubleAttackMode = false;
+        UpdateVisual("phase3");
+
+        // 给所有玩家施加JudgmentHammerPhasePower
+        foreach (var player in CombatState.Players)
+        {
+            if (player.Creature is { IsAlive: true })
+            {
+                await PowerCmd.Apply<JudgmentHammerPhasePower>(
+                    new ThrowingPlayerChoiceContext(), player.Creature, 1, Creature, null);
             }
         }
 
-        if (failedCount > 0)
-        {
-            await PowerCmd.Apply<WithPower>(
-                new ThrowingPlayerChoiceContext(), Creature, WithAmount * failedCount, Creature, null);
-        }
-
-        _cardPlaysThisTurn.Clear();
-    }
-
-    private async Task BlackHandMove(IReadOnlyList<Creature> targets)
-    {
-        await SwitchPhasePower<BlackHandPhasePower>();
-        UpdateVisual("phase2");
-
-        await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
-
-        var players = CombatState.Players.ToList();
-
-        foreach (var player in players)
-        {
-            var allCards = PileType.Draw.GetPile(player).Cards
-                .Concat(PileType.Hand.GetPile(player).Cards)
-                .Concat(PileType.Discard.GetPile(player).Cards)
-                .Where(c => !c.HasComponent<BlackHandComponent>())
-                .Distinct()
-                .ToList();
-
-            var halfCount = Math.Max(1, allCards.Count / 2);
-            var cardsToMark = allCards.StableShuffle(Rng).Take(halfCount);
-
-            foreach (var card in cardsToMark)
-                card.TryAddComponent(new BlackHandComponent());
-        }
-
-        var maxHandCount = 0;
-        foreach (var player in players)
-        {
-            var handCount = PileType.Hand.GetPile(player).Cards.Count;
-            if (handCount > maxHandCount)
-                maxHandCount = handCount;
-        }
-
-        if (maxHandCount <= 0) return;
-
-        foreach (var player in players)
-        {
-            var drawCards = PileType.Draw.GetPile(player).Cards
-                .Where(c => !c.HasComponent<BlackHandComponent>())
-                .ToList();
-
-            var addCount = Math.Min(maxHandCount, drawCards.Count);
-            var extraCards = drawCards.StableShuffle(Rng).Take(addCount);
-
-            foreach (var card in extraCards)
-                card.TryAddComponent(new BlackHandComponent());
-        }
-    }
-
-    private async Task Attack3Move(IReadOnlyList<Creature> targets)
-    {
-        await SwitchPhasePower<JudgmentHammerPhasePower>();
-        UpdateVisual("phase3");
-
+        // 攻击
         await DamageCmd.Attack(Turn3Damage)
             .FromMonster(this)
             .WithAttackerFx(null, AttackSfx)
@@ -207,15 +172,10 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
             new ThrowingPlayerChoiceContext(), Creature, WithAmount, Creature, null);
 
         await CreatureCmd.GainBlock(Creature, ShieldAmount, ValueProp.Move, null);
-
-        if (!_skipBlackHandNextTurn)
-        {
-            await CheckBlackHandDamage();
-        }
-        _skipBlackHandNextTurn = false;
     }
 
-    private async Task Attack4Move(IReadOnlyList<Creature> targets)
+    // 意图4：双倍审判 - 最高优先级
+    public async Task Attack4Move(IReadOnlyList<Creature> targets)
     {
         UpdateVisual("rage");
 
@@ -235,83 +195,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
         await CreatureCmd.GainBlock(Creature, ShieldAmount, ValueProp.Move, null);
 
-        _skipBlackHandNextTurn = false;
-    }
-
-    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        var player = cardPlay.Card.Owner;
-        if (player == null) return;
-
-        if (!_cardPlaysThisTurn.ContainsKey(player))
-            _cardPlaysThisTurn[player] = new HashSet<CardType>();
-
-        _cardPlaysThisTurn[player].Add(cardPlay.Card.Type);
-    }
-
-    private async Task CheckBlackHandDamage()
-    {
-        var players = CombatState.Players.ToList();
-        var playerCount = players.Count;
-        var playerCounts = new List<(Player player, int count)>();
-
-        foreach (var player in players)
-        {
-            var count = PileType.Hand.GetPile(player).Cards
-                .Count(c => c.HasComponent<BlackHandComponent>());
-            playerCounts.Add((player, count));
-        }
-
-        if (playerCounts.Count == 0) return;
-
-        var maxCount = playerCounts.Max(p => p.count);
-        if (maxCount <= 0) return;
-
-        foreach (var (player, count) in playerCounts.Where(p => p.count == maxCount))
-        {
-            if (player.Creature is { IsAlive: true })
-            {
-                await DamageCmd.Attack(count)
-                    .FromMonster(this)
-                    .WithAttackerFx(null, AttackSfx)
-                    .WithHitFx("vfx/vfx_attack_blunt")
-                    .Execute(null);
-            }
-        }
-
-        foreach (var player in players)
-        {
-            var allCards = PileType.Draw.GetPile(player).Cards
-                .Concat(PileType.Hand.GetPile(player).Cards)
-                .Concat(PileType.Discard.GetPile(player).Cards)
-                .Where(c => c.HasComponent<BlackHandComponent>())
-                .ToList();
-
-            foreach (var card in allCards)
-                (card as IComponentsCardModel)?.RemoveComponent<BlackHandComponent>();
-        }
-
-        if (maxCount > 3 * playerCount)
-        {
-            _skipBlackHandNextTurn = true;
-            UpdateVisual("phase3");
-            var attack3 = new MoveState("ATTACK_3_MOVE", Attack3Move,
-                new AbstractIntent[] { new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent() });
-            attack3.FollowUpState = new MoveState("CHECK_MOVES", CheckMovesMove, new DebuffIntent());
-            SetMoveImmediate(attack3, true);
-        }
-    }
-
-    private async Task SwitchPhasePower<T>() where T : PowerModel
-    {
-        if (Creature.HasPower<CheckMovesPhasePower>())
-            await PowerCmd.Remove<CheckMovesPhasePower>(Creature);
-        if (Creature.HasPower<BlackHandPhasePower>())
-            await PowerCmd.Remove<BlackHandPhasePower>(Creature);
-        if (Creature.HasPower<JudgmentHammerPhasePower>())
-            await PowerCmd.Remove<JudgmentHammerPhasePower>(Creature);
-
-        await PowerCmd.Apply<T>(new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
+        IsDoubleAttackMode = false;
     }
 
     private string _lastVisual = "phase1";
