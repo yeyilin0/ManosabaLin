@@ -51,30 +51,32 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {
         // 意图1：审判之眼 - 给玩家CheckMovesPhasePower
-        var checkMoves = new MoveState("CHECK_MOVES", CheckMovesMove,
-            new DebuffIntent());
+        var checkMoves = new MoveState("CHECK_MOVES", CheckMovesMove, new DebuffIntent());
 
         // 意图2：黑手印记 - 给玩家BlackHandPhasePower
-        var blackHand = new MoveState("BLACK_HAND_MOVE", BlackHandMove,
-            new AbstractIntent[] { new DebuffIntent(), new CardDebuffIntent() });
+        var blackHand = new MoveState("BLACK_HAND_MOVE", BlackHandMove, new DebuffIntent(), new CardDebuffIntent());
 
         // 意图3：审判之锤 - 给玩家JudgmentHammerPhasePower + 攻击
-        var attack3 = new MoveState("ATTACK_3_MOVE", Attack3Move,
-            new AbstractIntent[] { new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent() });
+        var attack3 = new MoveState("ATTACK_3_MOVE", Attack3Move, new SingleAttackIntent(Turn3Damage), new BuffIntent(),
+            new DefendIntent());
 
         // 意图4：双倍审判 - 最高优先级，不被JudgmentHammerPhasePower修改
-        var attack4 = new MoveState("ATTACK_4_MOVE", Attack4Move,
-            new AbstractIntent[] { new MultiAttackIntent(Turn3Damage, 2), new BuffIntent(), new DefendIntent() });
+        var attack4 = new MoveState("ATTACK_4_MOVE", Attack4Move, new MultiAttackIntent(Turn3Damage, 2),
+            new BuffIntent(), new DefendIntent());
 
-        // 循环：checkMoves → blackHand → attack3 → checkMoves
+        var condititionalBranch = new ConditionalBranchState("MANY_BLACK_HANDS");
+
+        condititionalBranch.AddState(attack4,
+            () => CombatState.GetOpponentsOf(Creature).Where(c => c.IsPlayer).Sum(p =>
+                PileType.Hand.GetPile(p.Player!).Cards.Count(c => c.HasComponent<BlackHandComponent>()) - 2) >= 0);
+        condititionalBranch.AddState(checkMoves, () => true);
+
         checkMoves.FollowUpState = blackHand;
         blackHand.FollowUpState = attack3;
-        attack3.FollowUpState = checkMoves;
+        attack3.FollowUpState = condititionalBranch;
         attack4.FollowUpState = checkMoves;
 
-        var states = new MonsterState[] { checkMoves, blackHand, attack3, attack4 };
-
-        return new MonsterMoveStateMachine(states, checkMoves);
+        return new MonsterMoveStateMachine([checkMoves, blackHand, attack3, attack4, condititionalBranch], checkMoves);
     }
 
     public override async Task AfterAddedToRoom()
@@ -105,10 +107,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         if (shieldAmount > 0)
             await CreatureCmd.GainBlock(Creature, shieldAmount, ValueProp.Move, null);
 
-        var attack4 = new MoveState("ATTACK_4_MOVE", Attack4Move,
-            new AbstractIntent[] { new MultiAttackIntent(Turn3Damage, 2), new BuffIntent(), new DefendIntent() });
-        attack4.FollowUpState = new MoveState("CHECK_MOVES", CheckMovesMove, new DebuffIntent());
-        SetMoveImmediate(attack4, true);
+        SetMoveImmediate((MoveState)MoveStateMachine!.States["ATTACK_4_MOVE"]);
     }
 
     // 意图1：审判之眼 - 给玩家CheckMovesPhasePower，效果在能力里

@@ -56,19 +56,7 @@ public class JudgmentHammerPhasePower : ManosabaPowerTemplate
         if (bossMonster.IsDoubleAttackMode) return;
 
         if (conditionMet)
-        {
-            var bonusAttack3 = new MoveState("ATTACK_3_MOVE", bossMonster.Attack3Move,
-                new AbstractIntent[]
-                {
-                    new SingleAttackIntent(bossMonster.Turn3Damage),
-                    new BuffIntent(),
-                    new DefendIntent()
-                });
-
-            bonusAttack3.FollowUpState = new MoveState("CHECK_MOVES", bossMonster.CheckMovesMove, new DebuffIntent());
-
-            bossMonster.SetMoveImmediate(bonusAttack3, true);
-        }
+            bossMonster.SetMoveImmediate((MoveState)bossMonster.MoveStateMachine!.States["ATTACK_3_MOVE"]);
     }
 
     public override async Task BeforeFlushLate(PlayerChoiceContext choiceContext, Player player)
