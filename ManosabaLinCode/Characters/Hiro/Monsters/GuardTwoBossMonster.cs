@@ -1,26 +1,10 @@
-using Godot;
-using ManosabaLin.Audio;
-using ManosabaLin.Characters.Emalin.Components;
-using ManosabaLin.Characters.Hiro.Powers;
-using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Assets;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ascension;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Extensions;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.ValueProps;
-using MinionLib.Component.Interfaces;
-using STS2RitsuLib.Interop.AutoRegistration;
-using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Scaffolding.Godot;
 
 namespace ManosabaLin.Characters.Hiro.Monsters;
@@ -85,6 +69,10 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
         // 给boss自身GuardTwoBossPhasePower（10%HP触发）
         await PowerCmd.Apply<GuardTwoBossPhasePower>(
+            new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
+
+        // 进入战斗即获得“免死一次”能力
+        await PowerCmd.Apply<GuardTwoBossLastStandPower>(
             new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
     }
 
