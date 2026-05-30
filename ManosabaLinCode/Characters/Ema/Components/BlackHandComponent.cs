@@ -4,5 +4,10 @@ namespace ManosabaLin.Characters.Emalin.Components;
 
 public sealed partial class BlackHandComponent : KeywordLikeComponent
 {
-    // This component is purely a marker - the boss checks for it at turn end
+    public override Task BeforeFlushLatePostfix(PlayerChoiceContext choiceContext, Player player,
+        ComponentContext componentContext)
+    {
+        Card!.GiveSingleTurnRetain();
+        return Task.CompletedTask;
+    }
 }
