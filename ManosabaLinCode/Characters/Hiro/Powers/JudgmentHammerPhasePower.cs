@@ -1,22 +1,6 @@
-using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Monsters;
-using MegaCrit.Sts2.Core.Combat;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
-using STS2RitsuLib.Interop.AutoRegistration;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ManosabaLin.Characters.Emalin.Components;
-using ManosabaLin.Extensions;
-using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Hooks;
-using MegaCrit.Sts2.Core.Entities.Players;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -48,8 +32,7 @@ public class JudgmentHammerPhasePower : ManosabaPowerTemplate
         var conditionMet = maxCount > 3 * playerCount;
 
         var boss = combatState.Enemies
-            .OfType<Creature>()
-            .FirstOrDefault(c => c.GetPower<GuardTwoBossPhasePower>() != null);
+            .FirstOrDefault(c => c.GetPower<GuardTwoBossLastStandPower>() != null);
 
         if (boss?.Monster is not GuardTwoBossMonster bossMonster) return;
 
@@ -62,7 +45,7 @@ public class JudgmentHammerPhasePower : ManosabaPowerTemplate
     public override async Task BeforeFlushLate(PlayerChoiceContext choiceContext, Player player)
     {
         if (player != Owner.Player) return;
-        if (!Hook.ShouldFlush(player.Creature.CombatState, player)) return;
+        if (!Hook.ShouldFlush(player.Creature.CombatState!, player)) return;
         await PowerCmd.Remove<JudgmentHammerPhasePower>(Owner);
     }
 }

@@ -15,7 +15,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
     public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 380, 350);
     public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 380, 350);
 
-    public int Turn3Damage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 18, 15);
+    private int Turn3Damage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 18, 15);
     private int FailDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 10, 8);
     private int WithAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 40, 30);
     private int ShieldAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 20, 15);
@@ -66,12 +66,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
     public override async Task AfterAddedToRoom()
     {
         ManosabaAudio.TryPlayOneShot("guard_two_boss_theme.mp3".BgmAudioPath(), 0.8f);
-
-        // 给boss自身GuardTwoBossPhasePower（10%HP触发）
-        await PowerCmd.Apply<GuardTwoBossPhasePower>(
-            new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
-
-        // 进入战斗即获得“免死一次”能力
+        // 进入战斗即获得 “免死亿次” 能力
         await PowerCmd.Apply<GuardTwoBossLastStandPower>(
             new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
     }

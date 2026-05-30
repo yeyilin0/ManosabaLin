@@ -5,7 +5,7 @@ namespace ManosabaLin.Characters.Hiro.Powers;
 [RegisterPower]
 public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
 {
-    private const int BlockOnPrevent = 20;
+    private const int BlockMultiplier = 3;
     private const decimal ReviveHp = 1m;
     private const decimal HealRatio = 0.5m;
 
@@ -45,8 +45,10 @@ public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
         State.TriggeredThisTurn = true;
         State.PendingHeal = true;
 
+        var block = (Owner.GetPower<WithPower>()?.Amount ?? 0) *  BlockMultiplier;
+
         await CreatureCmd.SetCurrentHp(creature, ReviveHp);
-        await CreatureCmd.GainBlock(creature, BlockOnPrevent, ValueProp.Move, null);
+        await CreatureCmd.GainBlock(creature, block, ValueProp.Move, null);
 
         if (creature.Monster?.MoveStateMachine?.States.TryGetValue("ATTACK_4_MOVE", out var move) == true &&
             move is MoveState moveState)
