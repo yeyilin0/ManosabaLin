@@ -1,51 +1,32 @@
-using ManosabaLin.Characters.Hiro.Monsters;
-using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
-using MegaCrit.Sts2.Core.Hooks;
-
 namespace ManosabaLin.Characters.Hiro.Powers;
 
 [RegisterPower]
 public class JudgmentHammerPhasePower : ManosabaPowerTemplate
 {
-    public override PowerType Type => PowerType.Buff;
+    public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Single;
 
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    public override async Task BeforeSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
-        if (player.Creature != Owner) return;
+        if (Owner.Player is not { } player) return;
 
-        var combatState = Owner.CombatState;
-        if (combatState == null) return;
-
-        var players = combatState.Players.ToList();
-        var playerCount = players.Count;
-        var maxCount = 0;
-
-        foreach (var p in players)
+        var playerCounts = Owner.CombatState!.Players.Select(p =>
+            PileType.Hand.GetPile(p).Cards.Count(c => c.HasComponent<BlackHandComponent>())).ToArray();
+        var thisCount = PileType.Hand.GetPile(player).Cards.Count(c => c.HasComponent<BlackHandComponent>());
+        if (thisCount == 0) return;
+        if (thisCount == playerCounts.Max())
         {
-            var count = PileType.Hand.GetPile(p).Cards
-                .Count(c => c.HasComponent<BlackHandComponent>());
-            if (count > maxCount)
-                maxCount = count;
+            Flash();
+            await CreatureCmd.Damage(choiceContext, Owner, playerCounts.Sum(),
+                ValueProp.Unblockable | ValueProp.Unpowered, Owner);
         }
-
-        var conditionMet = maxCount > 3 * playerCount;
-
-        var boss = combatState.Enemies
-            .FirstOrDefault(c => c.GetPower<GuardTwoBossLastStandPower>() != null);
-
-        if (boss?.Monster is not GuardTwoBossMonster bossMonster) return;
-
-        if (bossMonster.IsDoubleAttackMode) return;
-
-        if (conditionMet)
-            bossMonster.SetMoveImmediate((MoveState)bossMonster.MoveStateMachine!.States["ATTACK_3_MOVE"]);
     }
 
-    public override async Task BeforeFlushLate(PlayerChoiceContext choiceContext, Player player)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side,
+        IEnumerable<Creature> participants)
     {
-        if (player != Owner.Player) return;
-        if (!Hook.ShouldFlush(player.Creature.CombatState!, player)) return;
-        await PowerCmd.Remove<JudgmentHammerPhasePower>(Owner);
+        if (side != Owner.Side) return;
+        await PowerCmd.Remove(this);
     }
 }

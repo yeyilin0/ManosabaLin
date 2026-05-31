@@ -1,6 +1,3 @@
-using MegaCrit.Sts2.Core.Models;
-using MinionLib.Component.Interfaces;
-
 namespace ManosabaLin.Extensions;
 
 public static class ComponentsCardExtensions
@@ -24,6 +21,12 @@ public static class ComponentsCardExtensions
         {
             if (card is not IComponentsCardModel componentsCardModel) return null;
             return componentsCardModel.AddComponent(component);
+        }
+
+        public ICardComponent? TryRemoveComponent<T>() where T : class, ICardComponent
+        {
+            if (card is not IComponentsCardModel componentsCardModel) return null;
+            return componentsCardModel.RemoveComponent<T>();
         }
     }
 }

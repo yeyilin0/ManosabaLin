@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Entities.Ascension;
+using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
@@ -30,19 +31,17 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
             AssetProfile.VisualsScenePath!);
     }
 
-    public bool IsDoubleAttackMode { get; set; }
-
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {
         // 意图1：审判之眼 - 给玩家CheckMovesPhasePower
         var checkMoves = new MoveState("CHECK_MOVES", CheckMovesMove, new DebuffIntent());
 
-        // 意图2：黑手印记 - 给玩家BlackHandPhasePower
-        var blackHand = new MoveState("BLACK_HAND_MOVE", BlackHandMove, new DebuffIntent(), new CardDebuffIntent());
+        // 意图2：黑手印记 - 给玩家上黑手
+        var blackHand = new MoveState("BLACK_HAND_MOVE", BlackHandMove, new CardDebuffIntent());
 
         // 意图3：审判之锤 - 给玩家JudgmentHammerPhasePower + 攻击
-        var attack3 = new MoveState("ATTACK_3_MOVE", Attack3Move, new SingleAttackIntent(Turn3Damage), new BuffIntent(),
-            new DefendIntent());
+        var attack3 = new MoveState("ATTACK_3_MOVE", Attack3Move, new DebuffIntent(),
+            new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent());
 
         // 意图4：双倍审判 - 最高优先级，不被JudgmentHammerPhasePower修改
         var attack4 = new MoveState("ATTACK_4_MOVE", Attack4Move, new MultiAttackIntent(Turn3Damage, 2),
@@ -52,7 +51,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
         condititionalBranch.AddState(attack4,
             () => CombatState.GetOpponentsOf(Creature).Where(c => c.IsPlayer).Sum(p =>
-                PileType.Hand.GetPile(p.Player!).Cards.Count(c => c.HasComponent<BlackHandComponent>()) - 2) >= 0);
+                PileType.Hand.GetPile(p.Player!).Cards.Count(c => c.HasComponent<BlackHandComponent>()) - 3) >= 0);
         condititionalBranch.AddState(checkMoves, () => true);
 
         checkMoves.FollowUpState = blackHand;
@@ -71,28 +70,6 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
             new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
     }
 
-    public override async Task AfterDamageReceived(
-        PlayerChoiceContext choiceContext,
-        Creature target,
-        DamageResult result,
-        ValueProp props,
-        Creature? dealer,
-        CardModel? cardSource)
-    {
-        if (target != Creature) return;
-        if (Creature.CurrentHp > Creature.MaxHp * 0.1m) return;
-
-        IsDoubleAttackMode = true;
-        UpdateVisual("rage");
-
-        var withAmount = Creature.GetPowerAmount<WithPower>();
-        var shieldAmount = withAmount * 3;
-        if (shieldAmount > 0)
-            await CreatureCmd.GainBlock(Creature, shieldAmount, ValueProp.Move, null);
-
-        SetMoveImmediate((MoveState)MoveStateMachine!.States["ATTACK_4_MOVE"]);
-    }
-
     // 意图1：审判之眼 - 给玩家CheckMovesPhasePower，效果在能力里
     public async Task CheckMovesMove(IReadOnlyList<Creature> targets)
     {
@@ -102,38 +79,38 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         // 给所有玩家施加CheckMovesPhasePower
         foreach (var player in CombatState.Players)
         {
-            if (player.Creature is { IsAlive: true })
+            if (player.Creature is { IsAlive: true } creature)
             {
                 await PowerCmd.Apply<CheckMovesPhasePower>(
-                    new ThrowingPlayerChoiceContext(), player.Creature, 1, Creature, null);
+                    new ThrowingPlayerChoiceContext(), creature, 1, Creature, null);
             }
         }
     }
 
-    // 意图2：黑手印记 - 给玩家BlackHandPhasePower，效果在能力里
+    // 意图2：黑手印记 - 给玩家卡牌施加黑手组件
     private async Task BlackHandMove(IReadOnlyList<Creature> targets)
     {
         UpdateVisual("phase2");
         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
-
-        // 给所有玩家施加BlackHandPhasePower
         foreach (var player in CombatState.Players)
         {
-            if (player.Creature is { IsAlive: true })
-            {
-                await PowerCmd.Apply<BlackHandPhasePower>(
-                    new ThrowingPlayerChoiceContext(), player.Creature, 1, Creature, null);
-            }
+            var cards = player.PlayerCombatState!.AllCards
+                .Where(c => !c.HasComponent<BlackHandComponent>() && c.Pile!.Type != PileType.Exhaust)
+                .ToList();
+            var halfCount = cards.Count / 2;
+            var targetCards = cards.StableShuffle(Rng).Take(halfCount);
+
+            foreach (var targetCard in targetCards)
+                targetCard.TryAddComponent(new BlackHandComponent());
         }
     }
 
-    // 意图3：审判之锤 - 给玩家JudgmentHammerPhasePower + 攻击
+    // 意图3：审判之锤 - 给玩家 JudgmentHammerPhasePower + 攻击
     public async Task Attack3Move(IReadOnlyList<Creature> targets)
     {
-        IsDoubleAttackMode = false;
         UpdateVisual("phase3");
 
-        // 给所有玩家施加JudgmentHammerPhasePower
+        // 给所有玩家施加 JudgmentHammerPhasePower
         foreach (var player in CombatState.Players)
         {
             if (player.Creature is { IsAlive: true })
@@ -161,10 +138,6 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
     {
         UpdateVisual("rage");
 
-        var healAmount = Creature.MaxHp * 0.5m - Creature.CurrentHp;
-        if (healAmount > 0)
-            await CreatureCmd.Heal(Creature, healAmount);
-
         await DamageCmd.Attack(Turn3Damage)
             .FromMonster(this)
             .WithAttackerFx(null, AttackSfx)
@@ -177,7 +150,10 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
         await CreatureCmd.GainBlock(Creature, ShieldAmount, ValueProp.Move, null);
 
-        IsDoubleAttackMode = false;
+        // 清除所有黑手组件
+        foreach (var card in CombatState.Players
+                     .SelectMany(p => p.PlayerCombatState!.AllCards.Where(c => c.Pile!.Type != PileType.Exhaust)))
+            card.TryRemoveComponent<BlackHandComponent>();
     }
 
     private string _lastVisual = "phase1";

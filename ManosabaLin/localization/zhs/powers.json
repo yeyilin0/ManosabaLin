@@ -143,10 +143,8 @@
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.selectionScreenPrompt": "已移除的卡牌",
   "MANOSABA_LIN_POWER_CHECK_MOVES_PHASE_POWER.title": "幻觉",
   "MANOSABA_LIN_POWER_CHECK_MOVES_PHASE_POWER.description":"如果玩家在本回合内没打出1张攻击牌1张技能牌1张能力牌则给予伤害，自身获得魔女化",
-  "MANOSABA_LIN_POWER_BLACK_HAND_PHASE_POWER.title": "变身",
-  "MANOSABA_LIN_POWER_BLACK_HAND_PHASE_POWER.description":"每个玩家所有卡的一半牌加[变身的魔法]\n再按手牌最多数额外给随机抽牌堆加[变身的魔法]，回合结束获得魔女化",
   "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.title": "残响",
-  "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.description":"回合结束时手牌[变身的魔法]最多者失去等于全部玩家手牌里[变身的魔法]的血量\n清除全场[变身的魔法]\n若失去血量等于玩家数乘3，下回合再打出一次攻击",
+  "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.description":"回合结束时若手牌中[变身的魔法]数量为所有玩家中最多，失去等于全部玩家手牌里[变身的魔法]的血量。",
   "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.title": "魔女之力",
   "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "即将死亡时恢复至1点生命，获得等于魔女化三倍的[gold]格挡[/gold]，切换意图。触发后本回合内不再触发。下回合开始时恢复一半的生命值。"
 }
