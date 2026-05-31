@@ -18,7 +18,7 @@ public class GuardOnePhasePower : ManosabaPowerTemplate
 {
     public const string SecondPhaseMoveId = "POISON_ATTACK_MOVE";
 
-    public override PowerType Type => PowerType.Buff;
+    public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Single;
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
     public override bool ShouldReceiveCombatHooks => true;

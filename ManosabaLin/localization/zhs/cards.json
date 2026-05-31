@@ -482,6 +482,11 @@
   "MANOSABA_LIN_CARD_EMA_BAD_ENDING.description":"[color=#ff99cc][b]「疏[/b][/color][color=#CC6666][b]远」[/b][/color]\n使全体敌人获得1层[color=#CC6666]【多周目的重演】[/color]，自己获得1层[color=#CC6666]【三周目的决定】[/color]",
   "ManosabaLin.EmaBadEndingRewardComponent.postfix": "[color=#CC6666]打出{CardCount}张附加的牌[/color]",
   "ManosabaLin.EmaBadEndingRewardComponent.rightClickPrompt": "{CardCount}张附加的牌",
+  "MANOSABA_LIN_CARD_TRANSFORMATION_MAGIC.title": "变身的魔法",
+  "MANOSABA_LIN_CARD_TRANSFORMATION_MAGIC.description": "回合开始时，可以选择1张手牌，本卡变身为该卡牌的复制",
+  "MANOSABA_LIN_CARD_TRANSFORMATION_MAGIC.selectionScreenPrompt": "选择1张手牌变身为该卡",
+  "MANOSABA_LIN_CARD_MAGIC_ABSORPTION.title": "幻视的魔法",
+  "MANOSABA_LIN_CARD_MAGIC_ABSORPTION.description": "使敌人降低30层[b]【魔女化】[/b]，获得20点护盾，自己获得1层[color=#999999]【黑部奈叶香的魔法】[/color]",
   "MANOSABA_LIN_CARD_EMA_FORGOTTEN_ONE.title": "【坏结局】",
   "MANOSABA_LIN_CARD_EMA_FORGOTTEN_ONE.description": "[color=#ff99cc][jitter]「汝将收梢于花开中，亦如终结诞下起始」[/jitter][/color]\n[b]此牌被丢弃时会返回手卡，被消耗时会返回手卡[/b]\n回合开始时，[color=#ff99cc]【亲近】[/color]和[color=#CC6666]【疏远】[/color]同时降至两者中较低值,打出攻击牌时获得20层[b]【魔女化】[/b]\n回合结束时失去等于[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔数量的HP，并移除四分之一的[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔,获得3层[b]【嫌疑】[/b]",
   "ManosabaLin.EmaDeath.prefix": "[color=#cccccc][b]樱羽艾玛的结局[/b][/color]",
@@ -501,5 +506,5 @@
   "ManosabaLin.DoubtTrialComponent.hovertip.description": "打出时，疑问+1",
   "ManosabaLin.BlackHandComponent.prefix": "[color=gray]变身的魔法[/color]",
   "ManosabaLin.BlackHandComponent.hovertip.title": "魔法",
-  "ManosabaLin.BlackHandComponent.hovertip.description": "被标记的卡牌"
+  "ManosabaLin.BlackHandComponent.hovertip.description": "被标记的卡牌，保留"
 }

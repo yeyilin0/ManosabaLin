@@ -464,5 +464,10 @@
   "ManosabaLin.EmaBadEndingRewardComponent.rightClickPrompt": "{CardCount}枚の追加カード",
 
   "MANOSABA_LIN_CARD_EMA_FORGOTTEN_ONE.title": "「忘れ去られた者」",
-  "MANOSABA_LIN_CARD_EMA_FORGOTTEN_ONE.description": "[color=#ff99cc][jitter]「私は皆を忘れ、皆も私を忘れた」[/jitter][/color]\n[b]このカードは捨てられた時手札に戻り、消費された時も手札に戻る[/b]\nターン開始時、[color=#ff99cc]【親近】[/color]と[color=#CC6666]【疎遠】[/color]が両方とも低い方の値になる\n攻撃カード使用時に20層の[b]【魔女化】[/b]を獲得する\nターン終了時に審判付魔の数に等しいHPを失い、審判付魔の4分の1を除去する\nターン終了時に3層の[b]【容疑】[/b]を獲得する"
+  "MANOSABA_LIN_CARD_EMA_FORGOTTEN_ONE.description": "[color=#ff99cc][jitter]「私は皆を忘れ、皆も私を忘れた」[/jitter][/color]\n[b]このカードは捨てられた時手札に戻り、消費された時も手札に戻る[/b]\nターン開始時、[color=#ff99cc]【親近】[/color]と[color=#CC6666]【疎遠】[/color]が両方とも低い方の値になる\n攻撃カード使用時に20層の[b]【魔女化】[/b]を獲得する\nターン終了時に審判付魔の数に等しいHPを失い、審判付魔の4分の1を除去する\nターン終了時に3層の[b]【容疑】[/b]を獲得する",
+  "MANOSABA_LIN_CARD_TRANSFORMATION_MAGIC.title": "変身の魔法",
+  "MANOSABA_LIN_CARD_TRANSFORMATION_MAGIC.description": "[b]保持[/b]\nターン開始時、手札から1枚選択し、このカードを選んだカードのコピーに変身させる",
+  "MANOSABA_LIN_CARD_TRANSFORMATION_MAGIC.selectionScreenPrompt": "変身先のカードを1枚選択",
+  "MANOSABA_LIN_CARD_MAGIC_ABSORPTION.title": "魔力吸収",
+  "MANOSABA_LIN_CARD_MAGIC_ABSORPTION.description": "敵の[b]【魔女化】[/b]を{WithReduction:diff()}層減少させ、{Shield:diff()}のシールドを獲得し、自身に{YlsmStacks:diff()}層の[color=#ff0000]【紫藤アリサの魔法】[/color]を獲得する"
 }

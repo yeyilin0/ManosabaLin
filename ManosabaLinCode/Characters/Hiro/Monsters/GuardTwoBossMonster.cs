@@ -6,6 +6,8 @@ using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Rewards;
+using MegaCrit.Sts2.Core.Runs;
 using STS2RitsuLib.Scaffolding.Godot;
 
 namespace ManosabaLin.Characters.Hiro.Monsters;
@@ -18,8 +20,8 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
     private int Turn3Damage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 18, 15);
     private int FailDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 10, 8);
-    private int WithAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 40, 30);
-    private int ShieldAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 20, 15);
+    private int WithAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 60, 50);
+    private int ShieldAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 50, 40);
 
     public override MonsterAssetProfile AssetProfile => new(
         VisualsScenePath: "res://ManosabaLin/scenes/monsters/guard_two_boss.tscn"
@@ -185,5 +187,31 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         }));
 
         tween.TweenProperty(body, (NodePath)"modulate", Colors.White, 0.3);
+    }
+
+    public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
+    {
+        if (creature != Creature) return;
+
+        var player = Creature.CombatState?.Players.FirstOrDefault();
+        if (player == null) return;
+
+        // 给予"变身的魔法"奖励卡
+        var rewardCardId = new ModelId("CARD", "MANOSABA_LIN_CARD_TRANSFORMATION_MAGIC");
+        var rewardCard = ModelDb.GetById<CardModel>(rewardCardId);
+        if (rewardCard != null)
+        {
+            var options = new CardCreationOptions(
+                new List<CardModel> { rewardCard },
+                CardCreationSource.Other,
+                CardRarityOddsType.Uniform
+            );
+
+            var rewards = new List<Reward>
+            {
+                new CardReward(options, 1, player, null)
+            };
+            await RewardsCmd.OfferCustom(player, rewards);
+        }
     }
 }

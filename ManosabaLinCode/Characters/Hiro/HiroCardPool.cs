@@ -19,7 +19,8 @@ public class HiroCardPool : TypeListCardPoolModel
 
 	// 指定文本行内使用的小号能量图标资源路径。
 	public override string TextEnergyIconPath => "images/characters/Hiro/nikaido_hiro_energy.png".ImagePath();
-	  private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateRgbShaderMaterial(0.8f, 0.4f, 0.4f);
+	private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateHsvShaderMaterial(0f, 0.5f, 0.8f);
+
 	public override Material? PoolFrameMaterial => _poolFrameMaterial;
 	
 

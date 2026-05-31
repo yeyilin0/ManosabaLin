@@ -43,6 +43,7 @@ public partial class MainFile : Node
                     {
                         HiroCardPool => new Color(204f / 255f, 102f / 255f, 102f / 255f),
                         EmalinCardPool => new Color(1f, 0.6f, 0.8f),
+                        LinCardPool => new Color(0.8f, 0.8f, 0.8f),
                         _ => null
                     })
             .Apply();

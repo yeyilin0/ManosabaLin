@@ -15,7 +15,7 @@ public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
         public bool PendingHeal;
     }
 
-    public override PowerType Type => PowerType.Buff;
+    public override PowerType Type => PowerType.Debuff;
 
     public override PowerStackType StackType => PowerStackType.Single;
 
@@ -49,6 +49,17 @@ public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
 
         await CreatureCmd.SetCurrentHp(creature, ReviveHp);
         await CreatureCmd.GainBlock(creature, block, ValueProp.Move, null);
+
+        // 给每个玩家一张 MagicAbsorption
+        var magicAbsorption = ModelDb.GetById<CardModel>(new ModelId("CARD", "MANOSABA_LIN_CARD_MAGIC_ABSORPTION"));
+        if (magicAbsorption != null)
+        {
+            foreach (var player in Owner.CombatState.Players)
+            {
+                var card = Owner.CombatState.CreateCard(magicAbsorption, player);
+                await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
+            }
+        }
 
         if (creature.Monster?.MoveStateMachine?.States.TryGetValue("ATTACK_4_MOVE", out var move) == true &&
             move is MoveState moveState)

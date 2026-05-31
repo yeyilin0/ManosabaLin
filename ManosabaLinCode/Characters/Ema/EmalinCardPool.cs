@@ -19,8 +19,10 @@ public class EmalinCardPool : TypeListCardPoolModel
 
     // 指定文本行内使用的小号能量图标资源路径。
     public override string TextEnergyIconPath => "charui/text_energy.png".ImagePath();
-    private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateRgbShaderMaterial(1f, 0.6f, 0.8f);
+    private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateHsvShaderMaterial(0.953f, 0.47f, 1.38f);
+
     public override Material? PoolFrameMaterial => _poolFrameMaterial;
+
     
 
     // 如果不想通过 HSV 染色，也可以保持这些值为 1，并自行提供一张自定义卡框。
