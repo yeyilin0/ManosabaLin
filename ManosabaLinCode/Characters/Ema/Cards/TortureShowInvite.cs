@@ -44,6 +44,6 @@ public sealed class TortureShowInvite : ManosabaCardTemplate
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars.Block.UpgradeValueBy(4m);
+        DynamicVars["Block"].UpgradeValueBy(4m);
     }
 }

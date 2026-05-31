@@ -297,7 +297,7 @@
   "MANOSABA_LIN_CARD_HAPPY_ENDING.title": "No Rest Ceremony",
   "MANOSABA_LIN_CARD_HAPPY_ENDING.description": "[red][sine]\"As expected, I can't hold a ceremony.\"[/sine][/red]\nGain 1 [red]ERROR[/red].",
   "MANOSABA_LIN_CARD_ERROR.title": "I'll End This With My Own Hands",
-  "MANOSABA_LIN_CARD_ERROR.description": "[red][jitter]\"I'll save everyone, don't get in my way.\"[/jitter][/color]\nDeal damage equal to enemy's [b]Max HP[/b]. Each Attack played increases by 1%. When count reaches 12, gain 1 [red]The End[/red].",
+  "MANOSABA_LIN_CARD_ERROR.description": "[red][jitter]\"I'll save everyone, don't get in my way.\"[/jitter][/color]\nDeal damage equal to enemy's [b]Max HP[/b]. Each Attack played increases by 1%. When count reaches 12, gain 1 [red]The End[/red].\nPlayed {ErrorHandAttackCount} Attack cards this turn.",
   "MANOSABA_LIN_CARD_HIRO_BAD_ENDING.title": "Bad Ending",
   "MANOSABA_LIN_CARD_HIRO_BAD_ENDING.description": "[red]\"Everyone will part with one person, and only that person shall witness the miracle.\"[/red]\n[b]Returns to hand when discarded or exhausted.[/b]\nAt turn start, choose 1 [red]Cycle[/red] card from draw/hand/discard to exhaust. When gaining [red]Perjury[/red], lose 1 stack. When playing Attacks, gain 20 [b]Witchification[/b]. At turn end, lose HP equal to [red]Justice[/red]. Gain 3 [b]Suspect[/b].",
   "MANOSABA_LIN_CARD_HIRO_BAD_ENDING.selectionScreenPrompt": "Choose a card",

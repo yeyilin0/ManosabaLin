@@ -41,15 +41,13 @@ public class Doubt : ModEnchantmentTemplate
     
         if (badge is EmaTrialBadge trialBadge)
         {
-            count = trialBadge.AgreeCount;
             trialBadge.IncrementCount(this);
-            count = trialBadge.AgreeCount;
+            count = trialBadge.DoubtCount;
         }
         else if (badge is Withema withema)
         {
-            count = withema.AgreeCount;
             withema.IncrementCount(this);
-            count = withema.AgreeCount;
+            count = withema.DoubtCount;
         }
         else
         {

@@ -34,6 +34,7 @@ public class Rebuttal : ModEnchantmentTemplate
         return (count + 1) % 5 == 0 ? originalPlayCount + 1 : originalPlayCount;
     }
 
+    // Rebuttal.cs
     public override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
     {
         var card = Card;
@@ -42,20 +43,20 @@ public class Rebuttal : ModEnchantmentTemplate
 
         var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault()
                     ?? (object)owner.Relics.OfType<Withema>().FirstOrDefault();
-    
+
         int count;
-    
+
         if (badge is EmaTrialBadge trialBadge)
         {
-            count = trialBadge.AgreeCount;
+            count = trialBadge.RebuttalCount;
             trialBadge.IncrementCount(this);
-            count = trialBadge.AgreeCount;
+            count = trialBadge.RebuttalCount;
         }
         else if (badge is Withema withema)
         {
-            count = withema.AgreeCount;
+            count = withema.RebuttalCount;
             withema.IncrementCount(this);
-            count = withema.AgreeCount;
+            count = withema.RebuttalCount;
         }
         else
         {

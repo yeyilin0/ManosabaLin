@@ -129,7 +129,7 @@
   "MANOSABA_LIN_CARD_HAPPY_ENDING.title": "安息儀式を行わない",
   "MANOSABA_LIN_CARD_HAPPY_ENDING.description": "[color=#CC6666][sine]「やっぱり、儀式はできない」[/sine][/color]\n[color=#CC6666]【ERROR】[/color]を1枚獲得する",
   "MANOSABA_LIN_CARD_ERROR.title": "この手で、全てを終わらせる",
-  "MANOSABA_LIN_CARD_ERROR.description": "[color=#CC6666][jitter]「みんなを救う、邪魔するな」[/jitter][/color]\n敵の[b]最大HPダメージ[/b]を与え、攻撃カードを使用するたびに1%増加し、カウントが12の時に[color=#CC6666]【結末】[/color]を1枚獲得する",
+  "MANOSABA_LIN_CARD_ERROR.description": "[color=#CC6666][jitter]「みんなを救う、邪魔するな」[/jitter][/color]\n敵の[b]最大HPダメージ[/b]を与え、攻撃カードを使用するたびに1%増加し、カウントが12の時に[color=#CC6666]【結末】[/color]を1枚獲得する\nこのターンに{ErrorHandAttackCount}枚の攻撃カードを使用済み",
   "MANOSABA_LIN_CARD_HIRO_BAD_ENDING.title": "【バッドエンド】",
   "MANOSABA_LIN_CARD_HIRO_BAD_ENDING.description": "[color=#CC6666]「皆は一人と別れ、その人だけが奇跡を拝する」[/color]\n[b]このカードは捨てられた時手札に戻り、消費された時も手札に戻る[/b]\nターン開始時にドロー、手札、捨て札の中から[color=#CC6666]【轮回】[/color]カードを1枚選んで消費し、[color=#CC6666]【偽証】[/color]を得た時に1層減少し、攻撃カード使用時に追加で20[b]【魔女化】[/b]を獲得し、ターン終了時に[color=#CC6666]【正義】[/color]に等しいHPを失い、3層の[b]【容疑】[/b]を獲得する",
   "MANOSABA_LIN_CARD_HIRO_BAD_ENDING.selectionScreenPrompt": "カードを選択",
