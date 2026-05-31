@@ -45,7 +45,7 @@ public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
         State.TriggeredThisTurn = true;
         State.PendingHeal = true;
 
-        var block = (Owner.GetPower<WithPower>()?.Amount ?? 0) *  BlockMultiplier;
+        var block = (Owner.GetPower<WithPower>()?.Amount ?? 0) * BlockMultiplier;
 
         await CreatureCmd.SetCurrentHp(creature, ReviveHp);
         await CreatureCmd.GainBlock(creature, block, ValueProp.Move, null);
@@ -57,8 +57,8 @@ public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
         }
     }
 
-    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants,
-        ICombatState combatState)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side || !State.PendingHeal) return;
 

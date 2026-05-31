@@ -43,23 +43,29 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         var attack3 = new MoveState("ATTACK_3_MOVE", Attack3Move, new DebuffIntent(),
             new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent());
 
+        // 额外意图：审判之锤
+        var attack3Extra = new MoveState("ATTACK_3_EXTRA_MOVE", Attack3Move, new DebuffIntent(),
+            new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent());
+
         // 意图4：双倍审判 - 最高优先级，不被JudgmentHammerPhasePower修改
         var attack4 = new MoveState("ATTACK_4_MOVE", Attack4Move, new MultiAttackIntent(Turn3Damage, 2),
             new BuffIntent(), new DefendIntent());
 
         var condititionalBranch = new ConditionalBranchState("MANY_BLACK_HANDS");
 
-        condititionalBranch.AddState(attack4,
-            () => CombatState.GetOpponentsOf(Creature).Where(c => c.IsPlayer).Sum(p =>
+        condititionalBranch.AddState(attack3Extra,
+            () => CombatState.GetOpponentsOf(Creature).Where(c => c.IsPlayer && c.IsAlive).Sum(p =>
                 PileType.Hand.GetPile(p.Player!).Cards.Count(c => c.HasComponent<BlackHandComponent>()) - 3) >= 0);
         condititionalBranch.AddState(checkMoves, () => true);
 
         checkMoves.FollowUpState = blackHand;
         blackHand.FollowUpState = attack3;
         attack3.FollowUpState = condititionalBranch;
+        attack3Extra.FollowUpState = checkMoves;
         attack4.FollowUpState = checkMoves;
 
-        return new MonsterMoveStateMachine([checkMoves, blackHand, attack3, attack4, condititionalBranch], checkMoves);
+        return new MonsterMoveStateMachine([checkMoves, blackHand, attack3, attack3Extra, attack4, condititionalBranch],
+            checkMoves);
     }
 
     public override async Task AfterAddedToRoom()
