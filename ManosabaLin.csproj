@@ -22,6 +22,14 @@
         <ModsPath>$(Sts2Path)/mods</ModsPath> <!-- 自动拷贝 MinionLib 到 mods 目录 -->
         <RitsuLibDeployDir>$(Sts2Path)/mods/RitsuLib</RitsuLibDeployDir> <!-- 自动拷贝 RitsuLib 到 mods 目录 -->
     </PropertyGroup>
+    
+    <!-- FMod 自动化相关配置 -->
+    <PropertyGroup>
+        <FmodStudioPath Condition="'$(FmodStudioPath)' == ''">C:\Program Files\FMOD SoundSystem\FMOD Studio 2.03.13\fmodstudiocl.exe</FmodStudioPath>
+        <FmodProjectFile>$(MSBuildProjectDirectory)/FMod/manosabalin.fspro</FmodProjectFile>
+        <FmodBuildDir>$(MSBuildProjectDirectory)/FMod/Build</FmodBuildDir>
+        <AudioDestDir>$(MSBuildProjectDirectory)/ManosabaLin/audio</AudioDestDir>
+    </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
@@ -92,13 +100,30 @@
         <ItemGroup>
             <ModLooseAudio
                     Include="$(MSBuildProjectDirectory)\ManosabaLin\audio\**\*.*"
-                    Exclude="$(MSBuildProjectDirectory)\ManosabaLin\audio\**\*.import"/>
+                    Exclude="$(MSBuildProjectDirectory)\ManosabaLin\audio\**\*.import;$(MSBuildProjectDirectory)\ManosabaLin\audio\**\*.bank"/>
         </ItemGroup>
         <MakeDir Directories="$(ModOutputDir)"/>
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModOutputDir)"/>
         <Copy SourceFiles="$(MSBuildProjectDirectory)\ManosabaLin.json" DestinationFolder="$(ModOutputDir)"/>
         <MakeDir Directories="@(ModLooseAudio->'$(ModOutputDir)audio\%(RecursiveDir)')"/>
         <Copy SourceFiles="@(ModLooseAudio)" DestinationFiles="@(ModLooseAudio->'$(ModOutputDir)audio\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true"/>
+    </Target>
+
+    <Target Name="BuildAndCopyFmod" BeforeTargets="ExportPCK">
+        <Message Text="[FMOD] Starting Headless Build..." Importance="high"/>
+        
+        <Exec Command="&quot;$(FmodStudioPath)&quot; -build -export-guids &quot;$(FmodProjectFile)&quot;" />
+
+        <ItemGroup>
+            <FmodAssetsToCopy Include="$(FmodBuildDir)/GUIDs.txt" />
+            <FmodAssetsToCopy Include="$(FmodBuildDir)/desktop/manosabalin.bank" />
+        </ItemGroup>
+
+        <Message Text="[FMOD] Copying files to $(AudioDestDir)..." Importance="high"/>
+        <Copy
+                SourceFiles="@(FmodAssetsToCopy)"
+                DestinationFolder="$(AudioDestDir)"
+                SkipUnchangedFiles="true" />
     </Target>
 
     <Target Name="ExportPCK" AfterTargets="Publish" Condition="'$(STS2_SKIP_PCK_EXPORT)' != '1' and Exists('$(GodotPath)')">
