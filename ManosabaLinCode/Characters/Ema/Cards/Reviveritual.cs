@@ -6,13 +6,13 @@ using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Models.Powers;
 
 namespace ManosabaLin.Characters.Ema.Cards;
@@ -43,7 +43,7 @@ public sealed class Reviveritual : ManosabaCardTemplate
         var source = this;
         var target = cardPlay.Target;
 
-        // 单人模式没有目标时默认选自己
+        // 有目标选目标，没有默认选自己
         if (target == null)
         {
             target = source.Owner.Creature;

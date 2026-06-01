@@ -53,7 +53,8 @@ public sealed class BondSettlement : ManosabaCardTemplate
     ];
 
     private static readonly Type[] AffinityTypes =
-    [ typeof(SwapBodySuccess),
+    [
+        typeof(SwapBodySuccess),
         typeof(GuardianOath),
         typeof(SharedFate),
         typeof(DollGift),
@@ -124,20 +125,22 @@ public sealed class BondSettlement : ManosabaCardTemplate
             await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, owner, CardPilePosition.Bottom);
         }
 
-        // ===== 选择疏远层数张手牌减1费 =====
+        // ===== 选择疏远层数张手牌减1费（循环 FromHand） =====
         if (estrangement > 0)
         {
-            var handCards = handPile.Cards;
-            if (handCards.Count > 0)
-            {
-                var maxSelect = Math.Min(estrangement, handCards.Count);
-                var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, maxSelect);
-                var selected = await CardSelectCmd.FromHand(choiceContext, owner, prefs, null, this);
+            var handCards = handPile.Cards.Where(c => c != this).ToList();
+            var maxSelect = Math.Min(estrangement, handCards.Count);
 
-                foreach (var card in selected)
-                {
-                    card.EnergyCost.UpgradeBy(-1);
-                }
+            for (int i = 0; i < maxSelect; i++)
+            {
+                if (handCards.Count == 0) break;
+                var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
+                var selected = await CardSelectCmd.FromHand(choiceContext, owner, prefs, null, this);
+                var card = selected.FirstOrDefault();
+                if (card == null) break;
+
+                card.EnergyCost.UpgradeBy(-1);
+                handCards.Remove(card);
             }
         }
     }

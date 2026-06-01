@@ -29,6 +29,8 @@ public sealed class GuardTwoBossEncounter : ModEncounterTemplate
 
     public override RoomType RoomType => RoomType.Boss;
 
+    public override string CustomBgm => "event:/ManosabaLin/audio/MC.bank";
+
     protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
     [
         (ModelDb.Monster<GuardTwoBossMonster>().ToMutable(), null)

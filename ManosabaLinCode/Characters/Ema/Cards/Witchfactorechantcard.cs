@@ -9,6 +9,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Enchantments;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
@@ -28,6 +29,11 @@ public sealed class Witchfactorechantcard : ManosabaCardTemplate
         ModelDb.Enchantment<Doubt>()
     ];
 
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new IntVar("Divisor", IsUpgraded ? 25 : 50)
+    ];
+
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
         get
@@ -43,18 +49,16 @@ public sealed class Witchfactorechantcard : ManosabaCardTemplate
         var owner = Owner;
         var creature = owner.Creature;
 
-        // 计算层数 = 当前魔女化 / 50
         var withPower = creature.GetPower<WithPower>();
         var currentWith = withPower?.Amount ?? 0;
-        var stacks = (int)(currentWith / 50m);
+        var divisor = DynamicVars["Divisor"].IntValue;
+        var stacks = (int)(currentWith / divisor);
 
         if (stacks <= 0) return;
 
-        // 施加能力
         await PowerCmd.Apply<Witchfactorechantpower>(
             choiceContext, creature, stacks, creature, this, false);
 
-        // 给卡组里无附魔卡附魔并减费
         var rng = owner.RunState.Rng.CombatCardSelection;
         var deckPile = PileType.Deck.GetPile(owner);
         var unenchanted = deckPile.Cards.Where(c => c.Enchantment == null).ToList();
@@ -74,6 +78,6 @@ public sealed class Witchfactorechantcard : ManosabaCardTemplate
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        EnergyCost.UpgradeBy(-1);
+        
     }
 }

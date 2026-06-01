@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
+using MegaCrit.Sts2.Core.Nodes.Audio;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rewards;
@@ -72,7 +73,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
     public override async Task AfterAddedToRoom()
     {
-        ManosabaAudio.TryPlayOneShot("guard_two_boss_theme.mp3".BgmAudioPath(), 0.8f);
+       
         // 进入战斗即获得 “免死亿次” 能力
         await PowerCmd.Apply<GuardTwoBossLastStandPower>(
             new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
@@ -192,6 +193,8 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
     public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
     {
         if (creature != Creature) return;
+
+        NRunMusicController.Instance?.StopCustomMusic();
 
         var player = Creature.CombatState?.Players.FirstOrDefault();
         if (player == null) return;

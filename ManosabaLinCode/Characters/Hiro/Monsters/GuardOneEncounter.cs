@@ -1,3 +1,4 @@
+// GuardOneEncounter.cs
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Rooms;
@@ -28,6 +29,8 @@ public sealed class GuardOneEncounter : ModEncounterTemplate
     public override MegaSkeletonDataResource? BossNodeSpineResource => null;
 
     public override RoomType RoomType => RoomType.Boss;
+
+  
 
     protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
     [

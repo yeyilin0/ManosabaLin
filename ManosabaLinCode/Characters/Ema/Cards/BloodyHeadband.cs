@@ -4,6 +4,7 @@ using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -36,17 +37,15 @@ public sealed class BloodyHeadband : ManosabaCardTemplate
         // 自己获得 5 格挡
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
 
-        // 选择一个队友获得 1 能量
-        var target = cardPlay.Target;
-        if (target == null)
+        // 选择目标玩家：有队友选队友，没有默认自己
+        Player targetPlayer = Owner;
+        var otherPlayers = CombatState.Players.Where(p => p != Owner).ToList();
+        if (otherPlayers.Count > 0)
         {
-            target = Owner.Creature;
+            targetPlayer = cardPlay.Target?.Player ?? Owner;
         }
 
-        if (target.Player != null)
-        {
-            await PlayerCmd.GainEnergy(DynamicVars["EnergyGain"].BaseValue, target.Player);
-        }
+        await PlayerCmd.GainEnergy(DynamicVars["EnergyGain"].BaseValue, targetPlayer);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

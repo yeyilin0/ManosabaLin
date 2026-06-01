@@ -1,9 +1,10 @@
-using ManosabaLin.Audio;
+// GuardOneMonster.cs
 using ManosabaLin.Characters.Hiro.Cards;
 using ManosabaLin.Characters.Hiro.Events;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Nodes.Audio;
 using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -16,6 +17,7 @@ using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Audio;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Scaffolding.Godot;
@@ -90,8 +92,7 @@ public sealed class GuardOneMonster : ModMonsterTemplate
 
     public override async Task AfterAddedToRoom()
     {
-        ManosabaAudio.TryPlayOneShot("guard_one_boss_theme.mp3".BgmAudioPath(), 0.8f);
-        await Task.CompletedTask;
+        NRunMusicController.Instance?.PlayCustomMusic("event:/Mocaiboss1/sfx/Mocaiboss1");
 
         await PowerCmd.Apply<GuardOnePhasePower>(
             new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
@@ -219,6 +220,7 @@ public sealed class GuardOneMonster : ModMonsterTemplate
     {
         if (creature == Creature)
         {
+            NRunMusicController.Instance?.StopCustomMusic();
             RunManager.Instance.State?.Acts.ElementAtOrDefault(2)?._rooms.Ancient = ModelDb.AncientEvent<WitchoftheIsland>();
             RunManager.Instance.State?.Acts.ElementAtOrDefault(1)?.SetBossEncounter(ModelDb.Get<GuardTwoBossEncounter>());
         }

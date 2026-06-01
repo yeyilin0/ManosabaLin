@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using STS2RitsuLib;
+using STS2RitsuLib.Audio;
 using STS2RitsuLib.Interop;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
@@ -33,6 +34,11 @@ public partial class MainFile : Node
     // 这是模组被框架调用的初始化入口。
     public static void Initialize()
     {
+        // 加载 FMOD 音频库
+        ModTypeDiscoveryHub.RegisterModAssembly("ManosabaLin", Assembly.GetExecutingAssembly());
+        FmodStudioServer.TryLoadBank($"res://Manosabalin/audio/banks/Master.bank");
+        FmodStudioServer.TryLoadStudioGuidMappings($"res://Manosabalin/audio/banks/GUIDs.txt");
+
         using (RitsuLibFramework.BeginModDataRegistration("MyMod")) ;
 
         var ctx = RitsuLibFramework.CreateContentPack(ModId)
