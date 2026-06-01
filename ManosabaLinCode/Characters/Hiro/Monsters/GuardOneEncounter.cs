@@ -1,10 +1,5 @@
-// GuardOneEncounter.cs
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Acts;
 using MegaCrit.Sts2.Core.Rooms;
-using STS2RitsuLib.Interop.AutoRegistration;
-using STS2RitsuLib.Scaffolding.Content;
-using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 
 namespace ManosabaLin.Characters.Hiro.Monsters;
@@ -30,7 +25,7 @@ public sealed class GuardOneEncounter : ModEncounterTemplate
 
     public override RoomType RoomType => RoomType.Boss;
 
-  
+    public override string CustomBgm => "event:/manosabalin/music/guard_one";
 
     protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
     [

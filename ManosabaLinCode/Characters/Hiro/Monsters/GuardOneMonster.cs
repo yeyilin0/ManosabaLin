@@ -92,8 +92,6 @@ public sealed class GuardOneMonster : ModMonsterTemplate
 
     public override async Task AfterAddedToRoom()
     {
-        NRunMusicController.Instance?.PlayCustomMusic("event:/Mocaiboss1/sfx/Mocaiboss1");
-
         await PowerCmd.Apply<GuardOnePhasePower>(
             new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
     }
@@ -220,7 +218,6 @@ public sealed class GuardOneMonster : ModMonsterTemplate
     {
         if (creature == Creature)
         {
-            NRunMusicController.Instance?.StopCustomMusic();
             RunManager.Instance.State?.Acts.ElementAtOrDefault(2)?._rooms.Ancient = ModelDb.AncientEvent<WitchoftheIsland>();
             RunManager.Instance.State?.Acts.ElementAtOrDefault(1)?.SetBossEncounter(ModelDb.Get<GuardTwoBossEncounter>());
         }

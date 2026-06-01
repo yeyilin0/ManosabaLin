@@ -34,12 +34,15 @@ public partial class MainFile : Node
     // 这是模组被框架调用的初始化入口。
     public static void Initialize()
     {
-        // 加载 FMOD 音频库
-        ModTypeDiscoveryHub.RegisterModAssembly("ManosabaLin", Assembly.GetExecutingAssembly());
-        FmodStudioServer.TryLoadBank($"res://Manosabalin/audio/banks/Master.bank");
-        FmodStudioServer.TryLoadStudioGuidMappings($"res://Manosabalin/audio/banks/GUIDs.txt");
+        var assembly = Assembly.GetExecutingAssembly();
 
-        using (RitsuLibFramework.BeginModDataRegistration("MyMod")) ;
+        using (RitsuLibFramework.BeginModDataRegistration(ModId));
+
+        ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
+        // 加载 FMOD 音频库
+        FmodStudioServer.TryLoadBank($"res://{ModId}/audio/manosabalin.bank");
+        FmodStudioServer.TryLoadStudioGuidMappings($"res://{ModId}/audio/GUIDs.txt");
+
 
         var ctx = RitsuLibFramework.CreateContentPack(ModId)
             .CardHandOutline<ManosabaCardTemplate>(card =>
@@ -54,9 +57,7 @@ public partial class MainFile : Node
                     })
             .Apply();
 
-        var assembly = Assembly.GetExecutingAssembly();
         RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
-        ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
 
         Harmony harmony = new(ModId);
         harmony.PatchAll();
