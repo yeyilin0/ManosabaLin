@@ -26,9 +26,9 @@
     <!-- FMod 自动化相关配置 -->
     <PropertyGroup>
         <FmodStudioPath Condition="'$(FmodStudioPath)' == ''">C:\Program Files\FMOD SoundSystem\FMOD Studio 2.03.13\fmodstudiocl.exe</FmodStudioPath>
-        <FmodProjectFile>$(MSBuildProjectDirectory)/FMod/manosabalin.fspro</FmodProjectFile>
+        <FmodProjectFile>$(MSBuildProjectDirectory)/FMod/$(MSBuildProjectName).fspro</FmodProjectFile>
         <FmodBuildDir>$(MSBuildProjectDirectory)/FMod/Build</FmodBuildDir>
-        <AudioDestDir>$(MSBuildProjectDirectory)/ManosabaLin/audio</AudioDestDir>
+        <AudioDestDir>$(MSBuildProjectDirectory)/$(MSBuildProjectName)/audio</AudioDestDir>
     </PropertyGroup>
 
     <ItemGroup>
@@ -116,7 +116,7 @@
 
         <ItemGroup>
             <FmodAssetsToCopy Include="$(FmodBuildDir)/GUIDs.txt" />
-            <FmodAssetsToCopy Include="$(FmodBuildDir)/desktop/manosabalin.bank" />
+            <FmodAssetsToCopy Include="$(FmodBuildDir)/desktop/ManosabaLin.bank" />
         </ItemGroup>
 
         <Message Text="[FMOD] Copying files to $(AudioDestDir)..." Importance="high"/>

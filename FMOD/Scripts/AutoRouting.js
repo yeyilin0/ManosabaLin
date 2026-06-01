@@ -1,8 +1,14 @@
+/* ---------------------------------------------------------
+    自动按照事件路径进行路由事件
+   --------------------------------------------------------- */
+
+const ModId = "ManosabaLin"
+
 function autoRouteEvents() {
     var mappings = [
-        { folderPath: "event:/manosabalin/music", busPath: "bus:/master/music" },
-        { folderPath: "event:/manosabalin/sfx",   busPath: "bus:/master/sfx" },
-        { folderPath: "event:/manosabalin/ambience",   busPath: "bus:/master/ambience" }
+        { folderPath: "event:/" + ModId + "/music", busPath: "bus:/master/music" },
+        { folderPath: "event:/" + ModId + "/sfx",   busPath: "bus:/master/sfx" },
+        { folderPath: "event:/" + ModId + "/ambience",   busPath: "bus:/master/ambience" }
     ];
 
     var successCount = 0;

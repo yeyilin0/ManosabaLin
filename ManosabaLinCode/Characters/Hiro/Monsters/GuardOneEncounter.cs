@@ -25,7 +25,7 @@ public sealed class GuardOneEncounter : ModEncounterTemplate
 
     public override RoomType RoomType => RoomType.Boss;
 
-    public override string CustomBgm => "event:/manosabalin/music/guard_one";
+    public override string CustomBgm => "event:/ManosabaLin/music/GuardOne";
 
     protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
     [

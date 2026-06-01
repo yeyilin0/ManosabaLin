@@ -1,7 +1,8 @@
 /* ---------------------------------------------------------
    从选中的 Assets 自动创建对应的 Event
-   支持参数化复用：One-Shot (SFX) / Loop (Music)
    --------------------------------------------------------- */
+
+const ModId = "ManosabaLin"
 
 // 核心函数：接受 route 参数 ("sfx" 或 "music")
 function createEventsFromAssets(route) {
@@ -21,9 +22,9 @@ function createEventsFromAssets(route) {
     }
 
     // 2. 根据传入的 route 动态拼装路径
-    var baseFolderPath = "event:/manosabalin/" + route;
+    var baseFolderPath = "event:/" + ModId + "/" + route;
     var targetBusPath  = "bus:/master/" + route;
-    var targetBankPath = "bank:/manosabalin";
+    var targetBankPath = "bank:/" + ModId;
 
     var baseFolder = studio.project.lookup(baseFolderPath);
     var targetBus  = studio.project.lookup(targetBusPath);

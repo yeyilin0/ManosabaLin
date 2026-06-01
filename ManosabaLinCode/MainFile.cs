@@ -40,7 +40,7 @@ public partial class MainFile : Node
 
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
         // 加载 FMOD 音频库
-        FmodStudioServer.TryLoadBank($"res://{ModId}/audio/manosabalin.bank");
+        FmodStudioServer.TryLoadBank($"res://{ModId}/audio/{ModId}.bank");
         FmodStudioServer.TryLoadStudioGuidMappings($"res://{ModId}/audio/GUIDs.txt");
 
 
