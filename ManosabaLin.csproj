@@ -76,7 +76,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="ManosabaLinCode\Audio\"/>
         <Folder Include="ManosabaLinCode\Characters\Anan\"/>
         <Folder Include="ManosabaLinCode\Characters\Hanna\"/>
         <Folder Include="ManosabaLinCode\Characters\Hiro\Ancients\"/>
@@ -88,6 +87,10 @@
         <Folder Include="ManosabaLin\images\powers\big\"/>
         <Folder Include="ManosabaLin\images\relics\big\"/>
         <Folder Include="ManosabaLin\images\ui\run_history\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="local.props" />
     </ItemGroup>
 
     <Target Name="ValidateSts2GameInstall" BeforeTargets="ResolveAssemblyReferences">

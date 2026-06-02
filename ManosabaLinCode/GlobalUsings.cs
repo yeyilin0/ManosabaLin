@@ -1,3 +1,4 @@
+global using static ManosabaLin.GlobalUsings;
 global using Color = Godot.Color;
 global using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 global using MegaCrit.Sts2.Core.Commands;
@@ -30,3 +31,12 @@ global using ManosabaLin.Characters.Emalin.Components;
 global using MegaCrit.Sts2.Core.Localization;
 global using System.Reflection;
 global using MinionLib.Component.Interfaces;
+using Logger = MegaCrit.Sts2.Core.Logging.Logger;
+
+namespace ManosabaLin;
+
+public static class GlobalUsings
+{
+    public static readonly Logger Log = MainFile.Logger;
+    public const string ModId = MainFile.ModId;
+}
