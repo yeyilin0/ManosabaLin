@@ -10,9 +10,9 @@ using System.Collections.Generic;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(LinCardPool))]
-public sealed class Emamonvqinjin : ManosabaCardTemplate
+public sealed class Emamqinjin : ManosabaCardTemplate
 {
-    public Emamonvqinjin() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self) { }
+    public Emamqinjin() : base(0, CardType.Skill, CardRarity.Token, TargetType.Self) { }
 
     protected override HashSet<CardTag> CanonicalTags => new() { CardTag.Minion };
 

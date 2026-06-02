@@ -31,7 +31,7 @@ public sealed class Witchfactorechantcard : ManosabaCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Divisor", IsUpgraded ? 25 : 50)
+        new IntVar("Divisor", 50)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
@@ -78,6 +78,6 @@ public sealed class Witchfactorechantcard : ManosabaCardTemplate
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        
+        DynamicVars["Divisor"].UpgradeValueBy(-20);
     }
 }

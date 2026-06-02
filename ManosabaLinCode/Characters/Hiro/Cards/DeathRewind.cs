@@ -1,5 +1,4 @@
 using MinionLib.Component.Core;
-using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Extensions;
@@ -32,8 +31,6 @@ public class DeathRewind() : ManosabaCardTemplate(3, CardType.Power, CardRarity.
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
-        ManosabaAudio.TryPlayOneShot("death_rewind_theme.mp3".BgmAudioPath());
-
         await PowerCmd.Apply<DeathRewindPower>(choiceContext, Owner.Creature, 1m, Owner.Creature,
             (CardModel)this, false);
         await PowerCmd.Apply<WithPower>(choiceContext, Owner.Creature, DynamicVars["WithPower"].BaseValue,

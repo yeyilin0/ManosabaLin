@@ -1,5 +1,4 @@
 ﻿using MinionLib.Component.Core;
-using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin;
@@ -57,8 +56,6 @@ public sealed class Lamort : ManosabaCardTemplate
         var creature = owner.Creature;
         var combatState = source.CombatState;
 
-        ManosabaAudio.TryPlayOneShot("lamort.wav".CardsAudioPath(), 0.8f);
-
         await CreatureCmd.TriggerAnim(creature, "Cast", owner.Character.CastAnimDelay);
 
         await PowerCmd.Apply<WithPower>(
@@ -92,8 +89,8 @@ public sealed class Lamort : ManosabaCardTemplate
 
         for (int i = 0; i < 3; i++)
         {
-            var affinityCard = (CardModel)createCardMethod.MakeGenericMethod(typeof(Emamonvqinjin)).Invoke(combatState, new object[] { owner });
-            var estrangementCard = (CardModel)createCardMethod.MakeGenericMethod(typeof(Emamonvshuyuan)).Invoke(combatState, new object[] { owner });
+            var affinityCard = (CardModel)createCardMethod.MakeGenericMethod(typeof(Emamqinjin)).Invoke(combatState, new object[] { owner });
+            var estrangementCard = (CardModel)createCardMethod.MakeGenericMethod(typeof(Emamshuyuan)).Invoke(combatState, new object[] { owner });
             affinityCard.SetToFreeThisTurn();
             estrangementCard.SetToFreeThisTurn();
 

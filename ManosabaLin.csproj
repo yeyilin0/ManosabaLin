@@ -25,7 +25,7 @@
     
     <!-- FMod 自动化相关配置 -->
     <PropertyGroup>
-        <FmodStudioPath Condition="'$(FmodStudioPath)' == ''">C:\Program Files\FMOD SoundSystem\FMOD Studio 2.03.13\fmodstudiocl.exe</FmodStudioPath>
+        <FmodStudioPath Condition="'$(FmodStudioPath)' == ''">D:\FMOD Studio 2.03.13\fmodstudiocl.exe</FmodStudioPath>
         <FmodProjectFile>$(MSBuildProjectDirectory)/FMod/$(MSBuildProjectName).fspro</FmodProjectFile>
         <FmodBuildDir>$(MSBuildProjectDirectory)/FMod/Build</FmodBuildDir>
         <AudioDestDir>$(MSBuildProjectDirectory)/$(MSBuildProjectName)/audio</AudioDestDir>
@@ -34,8 +34,8 @@
     <ItemGroup>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <!--        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />-->
-        <PackageReference Include="STS2.RitsuLib" Version="0.3.9" PrivateAssets="All" />
-        <PackageReference Include="FuYnAloft.Sts2.MinionLib.RitsuAdapters" Version="0.4.4" PrivateAssets="All"/>
+        <PackageReference Include="STS2.RitsuLib" Version="0.4.3" PrivateAssets="All" />
+        <PackageReference Include="FuYnAloft.Sts2.MinionLib.RitsuAdapters" Version="0.4.5" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>

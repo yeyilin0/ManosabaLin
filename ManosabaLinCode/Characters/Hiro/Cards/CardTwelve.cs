@@ -1,5 +1,4 @@
 using MinionLib.Component.Core;
-using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.Powers;
 using ManosabaLin.Characters.Hiro.Powers;
@@ -44,8 +43,6 @@ public sealed class CardTwelve() : ManosabaCardTemplate(3, CardType.Skill, CardR
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
-
-        ManosabaAudio.TryPlayOneShot("card_twelve.wav".CardsAudioPath(), 0.8f);
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 

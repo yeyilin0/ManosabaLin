@@ -1,5 +1,4 @@
 using MinionLib.Component.Core;
-using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Commands;
@@ -25,8 +24,6 @@ public class HiroAttack() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
 	{
 		ArgumentNullException.ThrowIfNull(cardPlay.Target);
-
-		ManosabaAudio.TryPlayOneShot("hiro_attack.wav".CardsAudioPath(), 0.8f);
 
 		await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
 			.FromCard(this)

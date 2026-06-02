@@ -1,5 +1,4 @@
 using MinionLib.Component.Core;
-using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin;
@@ -34,8 +33,8 @@ public sealed class Emamonv : ManosabaCardTemplate
         get
         {
             yield return HoverTipFactory.FromPower<BondPower>();
-            yield return HoverTipFactory.FromCard<Emamonvqinjin>();
-            yield return HoverTipFactory.FromCard<Emamonvshuyuan>();
+            yield return HoverTipFactory.FromCard<Emamqinjin>();
+            yield return HoverTipFactory.FromCard<Emamshuyuan>();
         }
     }
 
@@ -44,10 +43,10 @@ public sealed class Emamonv : ManosabaCardTemplate
         var owner = Owner;
         var creature = owner.Creature;
 
-        ManosabaAudio.TryPlayOneShot("emamonv.wav".CardsAudioPath(), 0.8f);
+      
 
-        var cardQinjin = CombatState.CreateCard<Emamonvqinjin>(owner);
-        var cardShuyuan = CombatState.CreateCard<Emamonvshuyuan>(owner);
+        var cardQinjin = CombatState.CreateCard<Emamqinjin>(owner);
+        var cardShuyuan = CombatState.CreateCard<Emamshuyuan>(owner);
 
         var options = new List<CardModel> { cardQinjin, cardShuyuan };
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);

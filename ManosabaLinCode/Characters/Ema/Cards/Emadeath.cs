@@ -1,5 +1,4 @@
 using MinionLib.Component.Core;
-using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin.Enchantments;
@@ -70,7 +69,6 @@ public sealed class Emadeath : ManosabaCardTemplate
         var createCardMethod = typeof(ICombatState).GetMethod("CreateCard", [typeof(Player)]);
         var rng = owner.RunState.Rng.CombatCardSelection;
 
-        ManosabaAudio.TryPlayOneShot("ema_death_theme.mp3".BgmAudioPath());
         await CreatureCmd.TriggerAnim(creature, "Cast", owner.Character.CastAnimDelay);
 
         // 读取羁绊值

@@ -1,5 +1,4 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Extensions;
@@ -33,8 +32,6 @@ public sealed class Powerthreethreecard() : ManosabaCardTemplate(1, CardType.Pow
     {
         var source = this;
         var target = cardPlay.Target ?? source.Owner.Creature;
-
-        ManosabaAudio.TryPlayOneShot("power_three_three.wav".CardsAudioPath(), 0.8f);
 
         var token = CombatState.CreateCard<LyXl>(target.Player);
         await CardPileCmd.AddGeneratedCardToCombat(token, PileType.Hand, target.Player);

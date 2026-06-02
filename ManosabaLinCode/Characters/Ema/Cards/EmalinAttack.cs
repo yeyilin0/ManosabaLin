@@ -1,5 +1,4 @@
 using MinionLib.Component.Core;
-using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using ManosabaLin.Extensions;
@@ -27,7 +26,7 @@ public class EmalinAttack() : ManosabaCardTemplate(1, CardType.Attack, CardRarit
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        ManosabaAudio.TryPlayOneShot("emalin_attack.wav".CardsAudioPath(), 0.8f);
+
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this)

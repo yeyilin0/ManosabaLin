@@ -29,7 +29,7 @@ public sealed class GuardTwoBossEncounter : ModEncounterTemplate
 
     public override RoomType RoomType => RoomType.Boss;
 
-    public override string CustomBgm => "event:/ManosabaLin/audio/MC.bank";
+    public override string CustomBgm => "event:/ManosabaLin/music/GuardTwo";
 
     protected override IReadOnlyList<(MonsterModel, string?)> GenerateMonsters() =>
     [

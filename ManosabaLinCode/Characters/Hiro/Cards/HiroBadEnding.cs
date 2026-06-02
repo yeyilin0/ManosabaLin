@@ -1,5 +1,4 @@
 using MinionLib.Component.Core;
-using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
 using ManosabaLin.Characters.Emalin.Components;
@@ -190,8 +189,6 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
     {
         var source = this;
         if (source.CombatState == null) return;
-
-        ManosabaAudio.TryPlayOneShot("hiro_bad_ending_theme.mp3".BgmAudioPath());
 
         var hiroDeath = source.CombatState.CreateCard<Hirodeath>(source.Owner);
         hiroDeath.SetToFreeThisTurn();

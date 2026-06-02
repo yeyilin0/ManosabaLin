@@ -1,5 +1,4 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Audio;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Commands;
@@ -36,8 +35,6 @@ public sealed class TheEnd : ManosabaCardTemplate
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
-
-        ManosabaAudio.TryPlayOneShot("the_end_theme.mp3".BgmAudioPath());
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
