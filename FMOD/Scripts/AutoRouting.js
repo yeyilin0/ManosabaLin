@@ -3,19 +3,18 @@
    --------------------------------------------------------- */
 
 const ModId = "ManosabaLin"
+const mappings = [
+    {folderPath: "event:/" + ModId + "/music", busPath: "bus:/master/music"},
+    {folderPath: "event:/" + ModId + "/sfx", busPath: "bus:/master/sfx"},
+    {folderPath: "event:/" + ModId + "/ambience", busPath: "bus:/master/ambience"}
+];
 
 function autoRouteEvents() {
-    var mappings = [
-        { folderPath: "event:/" + ModId + "/music", busPath: "bus:/master/music" },
-        { folderPath: "event:/" + ModId + "/sfx",   busPath: "bus:/master/sfx" },
-        { folderPath: "event:/" + ModId + "/ambience",   busPath: "bus:/master/ambience" }
-    ];
-
-    var successCount = 0;
+    let successCount = 0;
 
     mappings.forEach(function(map) {
-        var sourceFolder = studio.project.lookup(map.folderPath);
-        var targetBus = studio.project.lookup(map.busPath);
+        const sourceFolder = studio.project.lookup(map.folderPath);
+        const targetBus = studio.project.lookup(map.busPath);
 
         if (!sourceFolder) {
             console.error("找不到文件夹: " + map.folderPath);
@@ -48,12 +47,13 @@ function autoRouteEvents() {
         processItems(sourceFolder);
     });
 
-    alert("自动路由完成！共成功路由了 " + successCount + " 个事件\n详细日志请查看 Console (Ctrl+0)。");
+    // alert("自动路由完成！共成功路由了 " + successCount + " 个事件\n详细日志请查看 Console (Ctrl+0)。");
 
 }
 
 // 注册菜单
 studio.menu.addMenuItem({
     name: "自动路由事件",
+    keySequence: "Ctrl+Alt+R",
     execute: autoRouteEvents
 });

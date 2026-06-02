@@ -6,8 +6,8 @@ const ModId = "ManosabaLin"
 
 // 核心函数：接受 route 参数 ("sfx" 或 "music")
 function createEventsFromAssets(route) {
-    var selectedItems = studio.window.browserSelection();
-    var audioFiles = [];
+    const selectedItems = studio.window.browserSelection();
+    const audioFiles = [];
 
     // 1. 过滤出真正的音频文件
     selectedItems.forEach(function(item) {
@@ -22,13 +22,13 @@ function createEventsFromAssets(route) {
     }
 
     // 2. 根据传入的 route 动态拼装路径
-    var baseFolderPath = "event:/" + ModId + "/" + route;
-    var targetBusPath  = "bus:/master/" + route;
-    var targetBankPath = "bank:/" + ModId;
+    const baseFolderPath = "event:/" + ModId + "/" + route;
+    const targetBusPath = "bus:/master/" + route;
+    const targetBankPath = "bank:/" + ModId;
 
-    var baseFolder = studio.project.lookup(baseFolderPath);
-    var targetBus  = studio.project.lookup(targetBusPath);
-    var targetBank = studio.project.lookup(targetBankPath);
+    const baseFolder = studio.project.lookup(baseFolderPath);
+    const targetBus = studio.project.lookup(targetBusPath);
+    const targetBank = studio.project.lookup(targetBankPath);
 
     // 路径合法性检查
     if (!baseFolder) {
@@ -40,19 +40,19 @@ function createEventsFromAssets(route) {
         return;
     }
 
-    var createdCount = 0;
+    let createdCount = 0;
 
     // 3. 遍历并创建
     audioFiles.forEach(function(audioFile) {
-        var assetPath = audioFile.assetPath;
+        let assetPath = audioFile.assetPath;
         if (!assetPath) return;
 
         assetPath = assetPath.replace(/\\/g, "/");
 
-        var pathParts = assetPath.split("/");
-        var fileNameExt = pathParts.pop();
-        var fileName = fileNameExt;
-        var dotIndex = fileNameExt.lastIndexOf('.');
+        const pathParts = assetPath.split("/");
+        const fileNameExt = pathParts.pop();
+        let fileName = fileNameExt;
+        const dotIndex = fileNameExt.lastIndexOf('.');
         if (dotIndex > 0) {
             fileName = fileNameExt.substring(0, dotIndex);
         }
@@ -65,10 +65,10 @@ function createEventsFromAssets(route) {
         }
 
         // 4. 镜像生成多级文件夹
-        var currentFolder = baseFolder;
+        let currentFolder = baseFolder;
         pathParts.forEach(function(part) {
             if (!part) return;
-            var found = false;
+            let found = false;
             currentFolder.items.forEach(function(item) {
                 if (item.isOfExactType("EventFolder") && item.name === part) {
                     currentFolder = item;
@@ -76,7 +76,7 @@ function createEventsFromAssets(route) {
                 }
             });
             if (!found) {
-                var newFolder = studio.project.create("EventFolder");
+                const newFolder = studio.project.create("EventFolder");
                 newFolder.name = part;
                 newFolder.folder = currentFolder;
                 currentFolder = newFolder;
@@ -84,7 +84,7 @@ function createEventsFromAssets(route) {
         });
 
         // 5. 查重
-        var eventExists = false;
+        let eventExists = false;
         currentFolder.items.forEach(function(item) {
             if (item.isOfExactType("Event") && item.name === fileName) {
                 eventExists = true;
@@ -92,12 +92,12 @@ function createEventsFromAssets(route) {
         });
 
         if (eventExists) {
-            console.warn("事件已存在，跳过: " + currentFolder.getPath() + "/" + fileName);
+            console.warn("事件已存在，跳过: " + currentFolder.name + "/" + fileName);
             return;
         }
 
         // 6. 创建 Event 并关联 Bus 和 Bank
-        var newEvent = studio.project.create("Event");
+        const newEvent = studio.project.create("Event");
         newEvent.name = fileName;
         newEvent.folder = currentFolder;
 
@@ -109,19 +109,19 @@ function createEventsFromAssets(route) {
         }
 
         // 7. 配置音频轨道和乐器 (Instrument)
-        var track = newEvent.addGroupTrack();
+        const track = newEvent.addGroupTrack();
         // 直接将 instrument 长度设为底层音频的总长
-        var singleSound = track.addSound(newEvent.timeline, "SingleSound", 0, audioFile.length);
+        const singleSound = track.addSound(newEvent.timeline, "SingleSound", 0, audioFile.length);
         singleSound.audioFile = audioFile;
 
         // 8. 【核心新增】如果当前路线是 Music，则为其添加等长的 Loop Region
         if (route === "music") {
             // FMOD 默认会为新事件生成至少一个 MarkerTrack
-            var markerTrack = newEvent.markerTracks[0];
+            const markerTrack = newEvent.markerTracks[0];
 
             if (markerTrack) {
                 // 根据 FMOD 官方 API 规范实例化 LoopRegion 对象
-                var loopRegion = studio.project.create("LoopRegion");
+                const loopRegion = studio.project.create("LoopRegion");
                 loopRegion.position = 0;                        // 放在 0 秒开始
                 loopRegion.length = audioFile.length;           // 长度对齐音频文件长度
                 loopRegion.timeline = newEvent.timeline;        // 绑定到事件的时间轴
@@ -135,7 +135,7 @@ function createEventsFromAssets(route) {
         createdCount++;
     });
 
-    alert("批量创建完毕！\n共成功创建了 " + createdCount + " 个 " + route.toUpperCase() + " 事件。");
+    // alert("批量创建完毕！\n共成功创建了 " + createdCount + " 个 " + route.toUpperCase() + " 事件。");
 }
 
 /* ---------------------------------------------------------
@@ -145,11 +145,13 @@ function createEventsFromAssets(route) {
 // 注册 SFX 菜单项
 studio.menu.addMenuItem({
     name: "选中 Assets 创建 SFX (单次播放)",
+    keySequence: "Ctrl+Alt+A",
     execute: function() { createEventsFromAssets("sfx"); }
 });
 
 // 注册 Music 菜单项
 studio.menu.addMenuItem({
     name: "选中 Assets 创建 BGM (无限循环)",
+    keySequence: "Ctrl+Alt+S",
     execute: function() { createEventsFromAssets("music"); }
 });
