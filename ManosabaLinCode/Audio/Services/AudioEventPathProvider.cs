@@ -11,7 +11,7 @@ public static class AudioEventPathProvider
 
     public static string CardOwnerName(CardModel card)
     {
-        return card.Owner.Character.Id.Entry.ToLowerInvariant();
+        return card.Owner.Character.GetType().Name.ToLowerInvariant();
     }
 
     public static string CardNameSlug(CardModel card)

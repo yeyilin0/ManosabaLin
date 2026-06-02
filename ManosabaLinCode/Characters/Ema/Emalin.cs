@@ -11,7 +11,7 @@ namespace ManosabaLin.Characters.Emalin;
 
 // 定义当前模板角色。
 [RegisterCharacter]
-public class Emalin : ModCharacterTemplate<EmalinCardPool, EmalinRelicPool, EmalinPotionPool>
+public class Emalin : ManosabaCharacterTemplate<EmalinCardPool, EmalinRelicPool, EmalinPotionPool>
 {
     // 定义角色 Id，供标题、资源和其他注册逻辑复用。
     public const string CharacterId = "Emalin";

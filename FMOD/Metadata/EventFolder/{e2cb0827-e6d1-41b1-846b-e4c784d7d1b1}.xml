@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EventFolder" id="{e2cb0827-e6d1-41b1-846b-e4c784d7d1b1}">
+		<property name="name">
+			<value>emalin</value>
+		</property>
+		<relationship name="folder">
+			<destination>{d340460d-eb2d-494d-9271-f8cf76c656ae}</destination>
+		</relationship>
+	</object>
+</objects>

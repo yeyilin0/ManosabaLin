@@ -9,7 +9,7 @@ public static class CardPlaySfxPatch
     [HarmonyPrefix]
     public static bool Prefix(CardModel __instance)
     {
-        CardAudioService.PlayCardSfx(__instance);
+        CardAudioService.PlayCardPlaySfx(__instance);
         return true;
     }
 }

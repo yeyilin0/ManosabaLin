@@ -39,11 +39,11 @@ public static class CardAudioService
         return null;
     }
 
-    public static void PlayCardSfx(CardModel card)
+    public static void PlayCardPlaySfx(CardModel card)
     {
         if (card is ICustomCardPlaySfx customSfxCard)
         {
-            customSfxCard.PlayCustomCardSfx();
+            customSfxCard.PlayCustomCardPlaySfx();
             return;
         }
         if (card is not ManosabaCardTemplate) return;
@@ -55,7 +55,7 @@ public static class CardAudioService
 
     public interface ICustomCardPlaySfx
     {
-        void PlayCustomCardSfx();
+        void PlayCustomCardPlaySfx();
     }
 
 }

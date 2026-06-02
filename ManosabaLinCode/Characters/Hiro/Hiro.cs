@@ -10,7 +10,7 @@ namespace ManosabaLin.Characters.Hiro;
 
 // 定义当前模板角色。
 [RegisterCharacter]
-public class Hiro : ModCharacterTemplate<HiroCardPool, HiroRelicPool, HiroPotionPool>
+public class Hiro : ManosabaCharacterTemplate<HiroCardPool, HiroRelicPool, HiroPotionPool>
 {
 	// 定义角色 Id，供标题、资源和其他注册逻辑复用。
 	public const string CharacterId = "Hiro";

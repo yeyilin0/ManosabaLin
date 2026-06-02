@@ -91,6 +91,7 @@
 
     <ItemGroup>
       <Content Include="local.props" />
+      <Content Include="ManosabaLinCode\Characters\Common\ManosabaCharacterTemplate.cs.uid" />
     </ItemGroup>
 
     <Target Name="ValidateSts2GameInstall" BeforeTargets="ResolveAssemblyReferences">
