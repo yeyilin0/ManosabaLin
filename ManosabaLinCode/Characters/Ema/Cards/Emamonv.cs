@@ -43,8 +43,6 @@ public sealed class Emamonv : ManosabaCardTemplate
         var owner = Owner;
         var creature = owner.Creature;
 
-      
-
         var cardQinjin = CombatState.CreateCard<Emamqinjin>(owner);
         var cardShuyuan = CombatState.CreateCard<Emamshuyuan>(owner);
 

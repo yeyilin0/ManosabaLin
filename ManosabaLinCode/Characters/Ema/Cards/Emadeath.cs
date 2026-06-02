@@ -66,6 +66,7 @@ public sealed class Emadeath : ManosabaCardTemplate
         var owner = source.Owner;
         var creature = owner.Creature;
         var combatState = source.CombatState;
+
         var createCardMethod = typeof(ICombatState).GetMethod("CreateCard", [typeof(Player)]);
         var rng = owner.RunState.Rng.CombatCardSelection;
 
