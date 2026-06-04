@@ -1,11 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://chx0g5vgmt51o"]
 
-[ext_resource type="Texture2D" uid="uid://bimnl0dbgyi18" path="res://ManosabaLin/images/characters/Hiro/NikaidoHiroThink.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bep1h586w2oqo" path="res://ManosabaLin/images/characters/Hiro/NikaidoHiroThink.png" id="2"]
 
 [node name="NikaidoHiroMerchant" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-3.7025144, -276.29605)
-scale = Vector2(0.41796878, 0.4123749)
+position = Vector2(-11, -256)
+scale = Vector2(0.3925856, 0.38733146)
 texture = ExtResource("2")
