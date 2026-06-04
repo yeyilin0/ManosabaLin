@@ -147,4 +147,5 @@
   "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.description":"回合结束时若手牌中[变身的魔法]数量为所有玩家中最多，失去等于全部玩家手牌里[变身的魔法]的血量。",
   "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.title": "魔女之力",
   "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "[jitter][color=#cccccc]「丑恶化身——变成长生不死的怪物【魔女】，陷入无尽的绝望」[/color][/jitter]\n当第三意图的攻击后如果所有玩家手里有等于玩家总数3倍的[color=gray]【变身的魔法】[/color]牌，下回合额外再攻击1次\n死亡时恢复至1点生命，获得等于魔女化3倍的[gold]格挡[/gold]，切换意图(1回合1次)，下回合开始时恢复一半的生命值。"
+
 }

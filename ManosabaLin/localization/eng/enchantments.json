@@ -1,7 +1,7 @@
 {
   "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.title": "Witchification",
-  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.extraCardText": "When drawn, costs 0 and auto-plays at a random enemy.",
-  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.description": "When drawn, costs 0 and auto-plays at a random enemy.",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.extraCardText": "Auto-play this card once more when played.",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.description": "Auto-play this card once more when played.",
 
   "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.title": "Emma's Apple",
   "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.extraCardText": "When played, gain 1 Max HP.",

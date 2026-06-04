@@ -136,5 +136,17 @@
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.description": "同じカードを2回目に使用した時、そのカードは「魔女の記憶」印を獲得し、リプレイ1を獲得して使用時に除去される。カード名ごとに1回のみ発動する\n13枚のカードを除去した時、デッキ内の【結末】に[color=#ff99cc]「ヒロだって泣いてたのに、私だけ責めるなんて」[/color]を1層付与する",
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.selectionScreenPrompt": "除去されたカード",
   "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_PHASE_POWER.title": "審判者の意志",
-  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_PHASE_POWER.description": "HPが10%以下になった時、現在の意図を中断し、魔女化×3のシールドを獲得し、審判の槌に切り替わる。死なない限り何度でも発動できる。"
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_PHASE_POWER.description": "HPが10%以下になった時、現在の意図を中断し、魔女化×3のシールドを獲得し、審判の槌に切り替わる。死なない限り何度でも発動できる。",
+  "MANOSABA_LIN_POWER_CARD_TWENTY_FIVE_POWER.title": "CardTwentyFivePower",
+  "MANOSABA_LIN_POWER_CARD_TWENTY_FIVE_POWER.description": "手札を全て捨て、等量の26を獲得する",
+  "MANOSABA_LIN_POWER_CARD_TWENTY_FIVE_POWER.smartDescription": "手札を全て捨て、等量の26を獲得する",
+  "MANOSABA_LIN_POWER_CARD_TWENTY_POWER.title": "偽証が正義に帰する時、新生が始まる",
+  "MANOSABA_LIN_POWER_CARD_TWENTY_POWER.description": "偽証を4層獲得した時、カードを1枚引きエネルギーを1得る",
+  "MANOSABA_LIN_POWER_CARD_TWENTY_POWER.smartDescription": "偽証を5層獲得した時、カードを1枚引きエネルギーを1得る",
+  "MANOSABA_LIN_POWER_CHECK_MOVES_PHASE_POWER.title": "幻覚",
+  "MANOSABA_LIN_POWER_CHECK_MOVES_PHASE_POWER.description": "プレイヤーがこのターン内に攻撃カード1枚、スキルカード1枚、能力カード1枚を出さなかった場合、ダメージを受け、魔女化を獲得する",
+  "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.title": "残響",
+  "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.description": "ターン終了時に、手札中の[変身の魔法]の数が全プレイヤー中最も多い場合、全プレイヤーの手札にある[変身の魔法]の合計に等しいHPを失う",
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.title": "魔女の力",
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "[jitter][color=#cccccc]「醜悪なる化身——不死なる怪物【魔女】と化し、果てなき絶望に沈む」[/color][/jitter]\n第3意図の攻撃後、全プレイヤーの手札に[変身の魔法]がプレイヤー総数×3枚あれば、次ターン追加で1回攻撃する。\n死亡時にHPを1に回復し、魔女化×3の[gold]シールド[/gold]を獲得し、意図を切り替える（1ターン1回）。次ターン開始時にHPの半分を回復する。"
 }

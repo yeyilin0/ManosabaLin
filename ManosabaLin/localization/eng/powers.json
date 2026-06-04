@@ -137,5 +137,17 @@
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.description": "When you play the same card a 2nd time, it gains \"Witch's Memory\" mark, gains Replay 1 and is removed when played. Each card name only triggers once.\nIf 13 cards are removed, give the [Ending] in deck 1 [color=#ff99cc]\"Even Hiro Was Crying Too\"[/color].",
   "MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.selectionScreenPrompt": "Removed cards",
   "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_PHASE_POWER.title": "Adjudicator's Will",
-  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_PHASE_POWER.description": "When HP drops below 10%, interrupt current intent, gain Witchification×3 shield, switch to Hammer of Judgment. Can trigger repeatedly as long as not dead."
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_PHASE_POWER.description": "When HP drops below 10%, interrupt current intent, gain Witchification×3 shield, switch to Hammer of Judgment. Can trigger repeatedly as long as not dead.",
+  "MANOSABA_LIN_POWER_CARD_TWENTY_FIVE_POWER.title": "CardTwentyFivePower",
+  "MANOSABA_LIN_POWER_CARD_TWENTY_FIVE_POWER.description": "Discard all hand cards, gain equal amount of 26.",
+  "MANOSABA_LIN_POWER_CARD_TWENTY_FIVE_POWER.smartDescription": "Discard all hand cards, gain equal amount of 26.",
+  "MANOSABA_LIN_POWER_CARD_TWENTY_POWER.title": "When Perjury Returns to Justice, Rebirth Awaits",
+  "MANOSABA_LIN_POWER_CARD_TWENTY_POWER.description": "Upon gaining 4 stacks of Perjury, draw 1 card and gain 1 Energy.",
+  "MANOSABA_LIN_POWER_CARD_TWENTY_POWER.smartDescription": "Upon gaining 5 stacks of Perjury, draw 1 card and gain 1 Energy.",
+  "MANOSABA_LIN_POWER_CHECK_MOVES_PHASE_POWER.title": "Illusion",
+  "MANOSABA_LIN_POWER_CHECK_MOVES_PHASE_POWER.description": "If the player fails to play 1 Attack, 1 Skill, and 1 Power this turn, take damage. Gains Witchification.",
+  "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.title": "Residual Echo",
+  "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.description": "At end of turn, if hand contains the most [Transformation Magic] among all players, lose HP equal to the total [Transformation Magic] in all players' hands.",
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.title": "Witch Power",
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "[jitter][color=#cccccc]\"The embodiment of ugliness — transformed into an immortal monster 【Witch】,陷入无尽的绝望\"[/color][/jitter]\nAfter the 3rd intent attack, if all players hold [Transformation Magic] cards equal to 3×player count, attack 1 extra time next turn.\nOn death, restore to 1 HP, gain Block equal to 3×Witchification, switch intent (once per turn). At the start of next turn, restore half HP."
 }

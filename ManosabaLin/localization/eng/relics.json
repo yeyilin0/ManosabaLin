@@ -65,5 +65,10 @@
   "MANOSABA_LIN_RELIC_EMA_TRIAL_BADGE.flavor": "[red]Hiro's[/red] pen left behind after death, holding special meaning for [color=#ff99cc]Ema[/color].",
   "MANOSABA_LIN_RELIC_WITHEMA.title": "Vessel of the Great Witch",
   "MANOSABA_LIN_RELIC_WITHEMA.description": "Has all effects of [color=#ff99cc]Friend's Relic[/color].\nAt the start of each turn, add a random Trial component to 1 card in hand and 1 card in discard pile.\nWhen [color=#ff99cc]Affinity[/color] first reaches 7, generate a 0-cost [color=#ff99cc]Affinity[/color] card.\nWhen [color=#CC6666]Estrangement[/color] first reaches 7, choose a hand card to become a 0-cost [color=#CC6666]Estrangement[/color] card.\nAt turn end, reduce 30 [b]Witchification[/b].",
-  "MANOSABA_LIN_RELIC_WITHEMA.flavor": "[color=#ff99cc]\"She forgot everyone, and everyone forgot her\"[/color]"
+  "MANOSABA_LIN_RELIC_WITHEMA.flavor": "[color=#ff99cc]\"She forgot everyone, and everyone forgot her\"[/color]",
+  "MANOSABA_LIN_RELIC_WITHEMA.selectionScreenPrompt": "Choose a card",
+  "SEA_GLASS.MANOSABA_LIN_CHARACTER_EMALIN.title": "Sea Glass",
+  "SEA_GLASS.MANOSABA_LIN_CHARACTER_EMALIN.description": "Choose 5 cards from Emalin's card pool to add to your deck.",
+  "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.title": "Sea Glass",
+  "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.description": "Choose 5 cards from Hiro's card pool to add to your deck."
 }

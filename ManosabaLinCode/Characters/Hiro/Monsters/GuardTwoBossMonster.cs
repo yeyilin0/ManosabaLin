@@ -190,11 +190,17 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         tween.TweenProperty(body, (NodePath)"modulate", Colors.White, 0.3);
     }
 
+    private bool _isPhaseTwoMusicPlayed = false;
+
     public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
     {
         if (creature != Creature) return;
 
-        NRunMusicController.Instance?.StopCustomMusic();
+        if (!_isPhaseTwoMusicPlayed)
+        {
+            NRunMusicController.Instance?.PlayCustomMusic("event:/ManosabaLin/music/GuardTwotwo");
+            _isPhaseTwoMusicPlayed = true;
+        }
 
         var player = Creature.CombatState?.Players.FirstOrDefault();
         if (player == null) return;
