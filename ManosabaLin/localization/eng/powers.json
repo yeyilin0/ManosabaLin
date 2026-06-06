@@ -40,7 +40,7 @@
   "MANOSABA_LIN_POWER_WITH_POWER.description": "Gain Magic at 100 stacks.",
   "MANOSABA_LIN_POWER_WITH_POWER.smartDescription": "Damage increases with stacks. At [b]100[/b], gain [b]Magic[/b]. At [b]200[/b], lose 1 HP when playing Skills/Powers, lose 13 HP at turn end. At [b]300[/b], Skills Exhaust and you lose Witchification/100 HP when played, Attacks heal 3 HP.",
   "MANOSABA_LIN_POWER_CARD_SIXTY_FIVE_POWER.title": "Ten Revisitations",
-  "MANOSABA_LIN_POWER_CARD_SIXTY_FIVE_POWER.description": "Every 10 [red]Cycle[/red] cards played grants 1 Energy.",
+  "MANOSABA_LIN_POWER_CARD_SIXTY_FIVE_POWER.description": "Every 10 [red]Cycle[/red] cards played (including auto-played) grants 1 Energy.",
   "MANOSABA_LIN_POWER_CARD_EIGHTY_FIVE_POWER.title": "Frenzied Attack and Defense",
   "MANOSABA_LIN_POWER_CARD_EIGHTY_FIVE_POWER.description": "Each card played grants 1 Block. Every 2 cards played deals 1 random damage.",
   "MANOSABA_LIN_POWER_CARD_SIXTY_FOUR_POWER.title": "Stacking Sin",

@@ -26,5 +26,19 @@
   "MANOSABA_LIN_CHARACTER_EMALIN.pronounPossessive": "彼女の",
   "MANOSABA_LIN_CHARACTER_EMALIN.pronounSubject": "彼女",
   "MANOSABA_LIN_CHARACTER_EMALIN.title": "エマ",
-  "MANOSABA_LIN_CHARACTER_EMALIN.titleObject": "エマ"
+  "MANOSABA_LIN_CHARACTER_EMALIN.titleObject": "エマ",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.title": "シャーリーリン",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.titleObject": "シャーリーリン",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.description": "自称探偵の少女。探偵のペルソナで事件に近づき、感情反応を得ようとしている。",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.aromaPrinciple": "......何もない。",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.banter.alive.endTurnPing": "事件はまだ終わってないよね？",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.banter.dead.endTurnPing": "......これが「後悔」なんだ。",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.cardsModifierDescription": "シャーリーリンのカードが報酬とショップに出現する",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.cardsModifierTitle": "シャーリーリンのカード",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.eventDeathPrevention": "まだ......調べ終わってない。",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.goldMonologue": "これで何か感じられるかな？",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.possessiveAdjective": "彼女の",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounObject": "彼女",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounPossessive": "彼女の",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounSubject": "彼女"
 }

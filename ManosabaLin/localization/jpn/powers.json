@@ -24,7 +24,7 @@
   "MANOSABA_LIN_POWER_WITH_POWER.description": "100層で魔法を獲得する",
   "MANOSABA_LIN_POWER_WITH_POWER.smartDescription": "層数に応じてダメージが増加し、[b]100[/b]層で[b]【魔法】[/b]を獲得し、[b]200層[/b]でスキルカードと能力カードを出す際に体力を1失いターン終了時に13の体力を失い、[b]300層[/b]でスキルカードが消費を得て使用時に魔女化÷100の体力を失い、攻撃カード使用時に体力を3回復する",
   "MANOSABA_LIN_POWER_CARD_SIXTY_FIVE_POWER.title": "十回の回光",
-  "MANOSABA_LIN_POWER_CARD_SIXTY_FIVE_POWER.description": "[color=#CC6666]【轮回】[/color]を10回使用するたびにエネルギーを1得る",
+  "MANOSABA_LIN_POWER_CARD_SIXTY_FIVE_POWER.description": "[color=#CC6666]【轮回】[/color]カードを10回使用するたびに（自動使用含む）エネルギーを1得る",
   "MANOSABA_LIN_POWER_CARD_EIGHTY_FIVE_POWER.title": "狂乱の攻防",
   "MANOSABA_LIN_POWER_CARD_EIGHTY_FIVE_POWER.description": "カードを1枚使用するたびにシールドを1得て、2枚使用するたびにランダムに1ダメージを与える",
   "MANOSABA_LIN_POWER_CARD_SIXTY_FOUR_POWER.title": "罪の重積",

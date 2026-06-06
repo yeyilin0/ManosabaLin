@@ -1,3 +1,5 @@
+using ManosabaLin.Characters.Ema.Afflictions;
+
 namespace ManosabaLin.Characters.Hiro.Powers;
 
 [RegisterPower]
@@ -12,8 +14,8 @@ public class JudgmentHammerPhasePower : ManosabaPowerTemplate
         if (Owner.Player is not { } player) return;
 
         var playerCounts = Owner.CombatState!.Players.Select(p =>
-            PileType.Hand.GetPile(p).Cards.Count(c => c.HasComponent<BlackHandComponent>())).ToArray();
-        var thisCount = PileType.Hand.GetPile(player).Cards.Count(c => c.HasComponent<BlackHandComponent>());
+            PileType.Hand.GetPile(p).Cards.Count(c => c.Affliction is BlackHandAffliction)).ToArray();
+        var thisCount = PileType.Hand.GetPile(player).Cards.Count(c => c.Affliction is BlackHandAffliction);
         if (thisCount == 0) return;
         if (thisCount == playerCounts.Max())
         {

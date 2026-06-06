@@ -1,9 +1,9 @@
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common.HiroKeywords;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
@@ -26,15 +26,14 @@ public sealed class CardSixtyFivePower : ManosabaPowerTemplate
         get { yield return new DynamicVar(BaseCardsKey, BaseCardsLeft); }
     }
 
-    public override async Task AfterCardDrawn(
-        PlayerChoiceContext choiceContext,
-        CardModel card,
-        bool fromHandDraw)
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         var source = this;
 
-        // 只处理持有者抽到的牌
-        if (card.Owner != source.Owner.Player)
+        if (cardPlay.Card.Owner != source.Owner.Player)
+            return;
+
+        if (!TransmigrationRules.HasTransmigration(cardPlay.Card))
             return;
 
         _cardsLeft--;

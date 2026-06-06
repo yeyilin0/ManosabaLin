@@ -18,12 +18,12 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(LinCardPool))]
 public sealed class MagicAbsorption : ManosabaCardTemplate
 {
-    private const int EnergyCost = 3;
+    private const int EnergyCost = 2;
     private const CardType Type = CardType.Skill;
     private const CardRarity Rarity = CardRarity.Rare;
     private const TargetType CardTarget = TargetType.AnyEnemy;
 
-    private const int WithReduction = 70;
+    private const int WithReduction = 60;
     private const int ShieldAmount = 20;
     private const int NyxmStacks = 1;
 

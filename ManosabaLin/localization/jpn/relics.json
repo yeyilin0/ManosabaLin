@@ -57,5 +57,8 @@
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_EMALIN.title": "海のガラス",
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_EMALIN.description": "桜羽エマのカードプールから5枚選んでデッキに追加する。",
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.title": "海のガラス",
-  "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.description": "二階堂ヒロのカードプールから5枚選んでデッキに追加する。"
+  "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.description": "二階堂ヒロのカードプールから5枚選んでデッキに追加する。",
+  "MANOSABA_LIN_RELIC_MAGNIFYINGGLASS.title": "拡大鏡",
+  "MANOSABA_LIN_RELIC_MAGNIFYINGGLASS.description": "ドローパイルが空の時、消費パイルと捨て札のカードを入れ替える。カード1枚ごとに[color=#33ccff]【橘シャーリーの魔法】[/color]を1層獲得する。",
+  "MANOSABA_LIN_RELIC_MAGNIFYINGGLASS.flavor": "彼女は拡大鏡で捨てられた証拠を一つ一つ調べる。彼女にとって、本当に「消費」されるものなど存在しない。"
 }

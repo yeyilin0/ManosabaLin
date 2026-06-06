@@ -6,9 +6,11 @@ using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Nodes.Audio;
 using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
+using ManosabaLin.Characters.Ema.Afflictions;
 using STS2RitsuLib.Scaffolding.Godot;
 
 namespace ManosabaLin.Characters.Hiro.Monsters;
@@ -46,8 +48,8 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         var attack3 = new MoveState("ATTACK_3_MOVE", Attack3Move, new DebuffIntent(),
             new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent());
 
-        // 额外意图：审判之锤
-        var attack3Extra = new MoveState("ATTACK_3_EXTRA_MOVE", Attack3Move, new DebuffIntent(),
+        // 额外意图：审判之锤（附带清除黑手）
+        var attack3Extra = new MoveState("ATTACK_3_EXTRA_MOVE", Attack3ExtraMove, new DebuffIntent(),
             new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent());
 
         // 意图4：双倍审判 - 最高优先级，不被JudgmentHammerPhasePower修改
@@ -58,7 +60,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
         condititionalBranch.AddState(attack3Extra,
             () => CombatState.GetOpponentsOf(Creature).Where(c => c.IsPlayer && c.IsAlive).Sum(p =>
-                PileType.Hand.GetPile(p.Player!).Cards.Count(c => c.HasComponent<BlackHandComponent>()) - 3) >= 0);
+                PileType.Hand.GetPile(p.Player!).Cards.Count(c => c.Affliction is BlackHandAffliction) - 3) >= 0);
         condititionalBranch.AddState(checkMoves, () => true);
 
         checkMoves.FollowUpState = blackHand;
@@ -96,7 +98,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         }
     }
 
-    // 意图2：黑手印记 - 给玩家卡牌施加黑手组件
+    // 意图2：黑手印记 - 给玩家卡牌施加黑手附魔
     private async Task BlackHandMove(IReadOnlyList<Creature> targets)
     {
         UpdateVisual("phase2");
@@ -104,13 +106,14 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         foreach (var player in CombatState.Players)
         {
             var cards = player.PlayerCombatState!.AllCards
-                .Where(c => !c.HasComponent<BlackHandComponent>() && c.Pile!.Type != PileType.Exhaust)
+                .Where(c => c.Affliction is not BlackHandAffliction && c.Pile!.Type != PileType.Exhaust)
                 .ToList();
             var halfCount = cards.Count / 2;
             var targetCards = cards.StableShuffle(Rng).Take(halfCount);
 
             foreach (var targetCard in targetCards)
-                targetCard.TryAddComponent(new BlackHandComponent());
+                await CardCmd.AfflictAndPreview<BlackHandAffliction>(
+                    [targetCard], 1, CardPreviewStyle.None);
         }
     }
 
@@ -142,6 +145,17 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         await CreatureCmd.GainBlock(Creature, ShieldAmount, ValueProp.Move, null);
     }
 
+    // 额外意图：审判之锤 + 清除黑手
+    public async Task Attack3ExtraMove(IReadOnlyList<Creature> targets)
+    {
+        await Attack3Move(targets);
+
+        // 清除所有黑手附魔
+        foreach (var card in CombatState.Players
+                     .SelectMany(p => p.PlayerCombatState!.AllCards.Where(c => c.Pile!.Type != PileType.Exhaust)))
+            CardCmd.ClearAffliction(card);
+    }
+
     // 意图4：双倍审判 - 最高优先级
     public async Task Attack4Move(IReadOnlyList<Creature> targets)
     {
@@ -158,11 +172,6 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
             new ThrowingPlayerChoiceContext(), Creature, WithAmount, Creature, null);
 
         await CreatureCmd.GainBlock(Creature, ShieldAmount, ValueProp.Move, null);
-
-        // 清除所有黑手组件
-        foreach (var card in CombatState.Players
-                     .SelectMany(p => p.PlayerCombatState!.AllCards.Where(c => c.Pile!.Type != PileType.Exhaust)))
-            card.TryRemoveComponent<BlackHandComponent>();
     }
 
     private string _lastVisual = "phase1";

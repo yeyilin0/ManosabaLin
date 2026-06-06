@@ -1,2 +1,5 @@
 {
+  "MANOSABA_LIN_CARDPILE_CASE_FILE_PILE.title": "Case File",
+  "MANOSABA_LIN_CARDPILE_CASE_FILE_PILE.description": "Sherrylin's exclusive pile. Stores evidence and clues from investigations. During your turn, you may take cards from here into your hand.",
+  "MANOSABA_LIN_CARDPILE_CASE_FILE_PILE.empty": "The case file is empty."
 }

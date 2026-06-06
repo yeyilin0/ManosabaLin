@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dltar6c1j36c6"]
+
+[ext_resource type="Texture2D" uid="uid://u5cmc4oxjuol" path="res://ManosabaLin/images/characters/Emalin/EmalinThink.png" id="1_nmfpw"]
+
+[node name="SherrylinMerchant" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-7, -264)
+scale = Vector2(0.39105225, 0.39390057)
+texture = ExtResource("1_nmfpw")

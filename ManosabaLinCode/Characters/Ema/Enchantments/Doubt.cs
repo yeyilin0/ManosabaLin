@@ -92,9 +92,13 @@ public class Doubt : ModEnchantmentTemplate
                 replayCard.BaseReplayCount++;
                 CardCmd.Preview(replayCard);
 
-                // 随机一张手牌获得随机审判附魔（排除刚给过重放的，且必须无附魔）
+                // 随机一张手牌获得随机审判附魔（排除刚给过重放的，且必须无附魔，且能被附魔）
                 var enchantTargets = handCards
-                    .Where(c => c != replayCard && c.Enchantment == null)
+                    .Where(c => c != replayCard
+                        && c.Enchantment == null
+                        && c.Rarity != CardRarity.Status
+                        && c.Rarity != CardRarity.Curse
+                        && c.Rarity != CardRarity.Quest)
                     .ToList();
                 if (enchantTargets.Count > 0)
                 {

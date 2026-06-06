@@ -22,7 +22,7 @@ public sealed class EmaSeven() : ManosabaCardTemplate(1, CardType.Skill, CardRar
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
-        get { yield return HoverTipFactory.FromCard<Two>(IsUpgraded); }
+        get { yield return HoverTipFactory.FromCard<EmaTen>(IsUpgraded); }
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new[]
@@ -39,9 +39,9 @@ public sealed class EmaSeven() : ManosabaCardTemplate(1, CardType.Skill, CardRar
 
         for (var i = 0; i < source.DynamicVars.Cards.IntValue; i++)
         {
-            var twoCard = source.CombatState.CreateCard<Two>(target.Player);
-            if (IsUpgraded) twoCard.UpgradeInternal();
-            await CardPileCmd.AddGeneratedCardToCombat(twoCard, PileType.Draw, target.Player);
+            var emaTenCard = source.CombatState.CreateCard<EmaTen>(target.Player);
+            if (IsUpgraded) emaTenCard.UpgradeInternal();
+            await CardPileCmd.AddGeneratedCardToCombat(emaTenCard, PileType.Draw, target.Player);
             await Cmd.Wait(0.05f);
         }
     }

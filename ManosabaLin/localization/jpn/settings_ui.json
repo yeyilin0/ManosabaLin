@@ -1,0 +1,6 @@
+{
+  "MANOSABALIN_UPDATE_POPUP.title": "新しいバージョンがあります",
+  "MANOSABALIN_UPDATE_POPUP.body": "現在のバージョン：{0}\n最新バージョン：{1}\n\nダウンロードしますか？",
+  "MANOSABALIN_UPDATE_POPUP.download": "ダウンロード",
+  "MANOSABALIN_UPDATE_POPUP.close": "閉じる"
+}

@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmnfgg05obcep"]
+
+[ext_resource type="Texture2D" uid="uid://crrdiblbka77n" path="res://ManosabaLin/images/characters/Emalin/emalin_char_visual.png" id="1_1fh51"]
+
+[node name="Sherrylin" type="Node2D"]
+
+[node name="Visuals" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-4.999999, -202.00002)
+scale = Vector2(0.2795677, 0.27956766)
+texture = ExtResource("1_1fh51")
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -103.569
+offset_top = -407.0
+offset_right = 106.0
+mouse_filter = 2
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -467)
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -245)

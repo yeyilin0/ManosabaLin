@@ -1,5 +1,5 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -28,15 +28,6 @@ public sealed class Error : ManosabaCardTemplate
     {
         get
         {
-            yield return new CalculationBaseVar(0m);
-            yield return new ExtraDamageVar(1m);
-            yield return new CalculatedDamageVar(DamageProps.cardHpLoss).WithMultiplier(static (card, target) =>
-            {
-                if (card.CombatState == null || target == null || card is not Error err)
-                    return 0m;
-
-                return target.MaxHp * 0.01m * err._handAttackCount;
-            });
             yield return new DynamicVar("ErrorHandAttackCount", 0m);
             yield return new DynamicVar("TokenThreshold", 12m);
         }
@@ -60,8 +51,6 @@ public sealed class Error : ManosabaCardTemplate
             return Task.CompletedTask;
         if (cardPlay.Card.Type != CardType.Attack)
             return Task.CompletedTask;
-        if (Pile?.Type != PileType.Hand)
-            return Task.CompletedTask;
 
         _handAttackCount++;
         SyncHandAttackCountVar();
@@ -78,17 +67,16 @@ public sealed class Error : ManosabaCardTemplate
     {
         var source = this;
         var target = cardPlay.Target;
-
         if (target == null) return;
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        var hpLoss = DynamicVars.CalculatedDamage.Calculate(target);
+        var handAttackCount = (int)DynamicVars["ErrorHandAttackCount"].BaseValue;
+        var hpLoss = (int)(target.MaxHp * 0.01m * handAttackCount);
         if (hpLoss > 0)
-            await CreatureCmd.Damage(choiceContext, target, hpLoss, DamageProps.cardHpLoss, source.Owner.Creature,
-                source);
+            await CreatureCmd.Damage(choiceContext, target, hpLoss, DamageProps.cardHpLoss, source.Owner.Creature, source);
 
-        if (_handAttackCount >= 12)
+        if (handAttackCount >= 12)
         {
             var token = source.CombatState.CreateCard<TheEnd>(source.Owner);
             await CardPileCmd.AddGeneratedCardToCombat(token, PileType.Hand, source.Owner);

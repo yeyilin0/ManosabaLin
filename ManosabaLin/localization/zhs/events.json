@@ -6,7 +6,23 @@
   "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.title": "惊醒退离",
   "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.description": "你退后了。裂隙中传来一声[jitter][color=#cccccc]【轻叹】[/color][/jitter]。伤口的疼痛减轻了，但那个[jitter][color=#cccccc]【声音】[/color][/jitter]在你脑海中挥之不去\n回复13血量，升级一张卡",
   "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.OPTION_POWER.description": "裂隙在你身后合拢。你感觉身体变轻了，但心脏却更沉重了。前方的塔顶，等待你的不再是普通的怪物。那个[jitter][color=#cccccc]【声音】[/color][/jitter]在你耳边低语：\n[jitter][color=#cccccc]「来吧，[/color][/jitter][b][color=#ff99cc]魔女[/color][/b][jitter][color=#cccccc]。我在终点等你」[/color][/jitter]",
-  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.OPTION_HEAL.description": "伤口奇迹般地愈合了，但你的手指在颤抖。你低头看着自己的手，发现自己握着一支[b][color=#CC6666]笔[/color][/b]。那是谁给你的？你不知道。火堆恢复了原样。但你知道，这绝不是最后一次见到那幕[b]幻象[/b]"
+  "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.OPTION_HEAL.description": "伤口奇迹般地愈合了，但你的手指在颤抖。你低头看着自己的手，发现自己握着一支[b][color=#CC6666]笔[/color][/b]。那是谁给你的？你不知道。火堆恢复了原样。但你知道，这绝不是最后一次见到那幕[b]幻象[/b]",
 
- 
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.title": "「魔法少女の魔女裁判」×「カラオケまねきねこ」",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.description": "欢迎来到live现场，你可以选择一支队伍进行应援",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.TRANSFORM.title": "「温暖的谎言」",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.TRANSFORM.description": "支付100金币，选择4张卡牌变形",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.UPGRADE.title": "「她们的物语」",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.UPGRADE.description": "交出一个随机药水，升级6张卡牌",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.REMOVE.title": "「真相追寻者」",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.REMOVE.description": "失去20点生命，移除4张卡牌",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.TRANSFORM_LOCKED.title": "「温暖的谎言」（金币不足）",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.TRANSFORM_LOCKED.description": "需要100金币",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.UPGRADE_LOCKED.title": "「她们的物语」（没有药水）",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.UPGRADE_LOCKED.description": "需要至少1瓶药水",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.REMOVE_LOCKED.title": "「真相追寻者」（生命不足）",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.REMOVE_LOCKED.description": "需要超过20点生命",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.OPTION_TRANSFORM_DONE.description": "你选择了「温暖的谎言」，但新的卡牌是真实的。",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.OPTION_UPGRADE_DONE.description": "你选择了「她们的物语」，故事还在继续。",
+  "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.OPTION_REMOVE_DONE.description": "你选择了「真相追寻者」，舍弃了不需要的东西。"
 }

@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://p51jfjaefpek"]
+
+[ext_resource type="Texture2D" uid="uid://bqxmo4uirn1c5" path="res://ManosabaLin/images/characters/Sherrylin/SherrylinBg.png" id="1_4mdpw"]
+
+[node name="SherrylinBg" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = 25.0
+offset_right = 2530.0
+offset_bottom = 1225.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1280, 600)
+
+[node name="SherrylinBg" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(208.00002, 37.999977)
+scale = Vector2(0.64257807, 0.5986328)
+texture = ExtResource("1_4mdpw")

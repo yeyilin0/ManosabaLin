@@ -26,5 +26,19 @@
   "MANOSABA_LIN_CHARACTER_EMALIN.pronounPossessive": "hers",
   "MANOSABA_LIN_CHARACTER_EMALIN.pronounSubject": "she",
   "MANOSABA_LIN_CHARACTER_EMALIN.title": "Emalin",
-  "MANOSABA_LIN_CHARACTER_EMALIN.titleObject": "Emalin"
+  "MANOSABA_LIN_CHARACTER_EMALIN.titleObject": "Emalin",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.title": "Sherrylin",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.titleObject": "Sherrylin",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.description": "A girl who calls herself a detective. Uses the detective persona to get close to events, trying to feel emotions.",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.aromaPrinciple": "...Nothing at all.",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.banter.alive.endTurnPing": "The case isn't over yet, right?",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.banter.dead.endTurnPing": "...So this is what 'regret' feels like.",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.cardsModifierDescription": "Sherrylin cards will now appear in rewards and shops.",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.cardsModifierTitle": "Sherrylin Cards",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.eventDeathPrevention": "I haven't... finished investigating.",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.goldMonologue": "Can these make me feel something?",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.possessiveAdjective": "her",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounObject": "her",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounPossessive": "hers",
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounSubject": "she"
 }

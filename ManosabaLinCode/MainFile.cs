@@ -4,11 +4,14 @@ using HarmonyLib;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using ManosabaLin.Characters.Hiro;
+using ManosabaLin.Characters.Sherrylin;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using STS2RitsuLib;
 using STS2RitsuLib.Audio;
+using STS2RitsuLib.CardPiles;
 using STS2RitsuLib.Interop;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
@@ -31,6 +34,9 @@ public partial class MainFile : Node
     // 创建全局日志器，方便在模组运行时输出统一前缀的日志。
     public static Logger Logger { get; } = new(ModId, LogType.Generic);
 
+    // 雪莉琳专属额外牌堆
+    public static PileType CaseFilePile;
+
     // 这是模组被框架调用的初始化入口。
     public static void Initialize()
     {
@@ -52,10 +58,23 @@ public partial class MainFile : Node
                     {
                         HiroCardPool => new Color(204f / 255f, 102f / 255f, 102f / 255f),
                         EmalinCardPool => new Color(1f, 0.6f, 0.8f),
+                        SherrylinCardPool => new Color(0.2f, 0.8f, 1f),
                         LinCardPool => new Color(0.8f, 0.8f, 0.8f),
                         _ => null
                     })
             .Apply();
+// 注册雪莉琳专属「案卷」牌堆
+        CaseFilePile = ModCardPileRegistry.For(ModId)
+            .RegisterOwned("case_file_pile", new ModCardPileSpec
+            {
+                Scope = ModCardPileScope.RunPersistent,
+                Style = ModCardPileUiStyle.TopBarDeck,
+                Anchor = new ModCardPileAnchor(
+                    ModCardPileAnchorKind.TopBarAfterDeck),
+                IconPath = $"res://{ModId}/images/ui/case_file_pile.png",
+                OnOpen = ctx => ctx.ShowDefaultPileScreen(),
+                VisibleWhen = ctx => ctx.Player != null,
+            }).PileType;
 
         RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
 

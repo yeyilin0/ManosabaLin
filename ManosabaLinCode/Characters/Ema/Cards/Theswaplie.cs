@@ -1,5 +1,5 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -10,6 +10,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -19,7 +20,7 @@ public sealed class Theswaplie : ManosabaCardTemplate
 {
     public Theswaplie() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => 
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CardsVar(1),
         new IntVar("TransformCount", 1)
@@ -35,16 +36,26 @@ public sealed class Theswaplie : ManosabaCardTemplate
         if (doubtCount < 2) return;
 
         var transformCount = DynamicVars["TransformCount"].IntValue;
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, transformCount);
-        var selected = await CardSelectCmd.FromHand(choiceContext, Owner, prefs, null, source);
-
         var rng = Owner.RunState.Rng.CombatCardSelection;
 
-        foreach (var original in selected)
-        {
-            if (original.CombatState == null) continue;
+        var handCards = PileType.Hand.GetPile(Owner).Cards
+            .Where(c => c != source)
+            .ToList();
 
-            // 从本角色卡池随机选模板，用 CombatState.CreateCard 正确注册
+        var maxSelect = Math.Min(transformCount, handCards.Count);
+        if (maxSelect == 0) return;
+
+        for (int i = 0; i < maxSelect; i++)
+        {
+            if (handCards.Count == 0) break;
+
+            var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, 1);
+            var selected = await CardSelectCmd.FromHand(choiceContext, Owner, prefs, null, source);
+            var original = selected.FirstOrDefault();
+            if (original == null) break;
+
+            handCards.Remove(original);
+
             var poolCards = Owner.Character.CardPool.AllCards
                 .Where(c => c.Rarity != CardRarity.Basic)
                 .ToList();

@@ -44,6 +44,19 @@ public sealed class Emamlym : ManosabaCardTemplate
         }
     }
 
+    private static bool CanBeExchanged(CardModel card)
+    {
+        // 跳过已有附魔的牌
+        if (card.Enchantment != null) return false;
+        
+        // 跳过特殊类型的牌
+        if (card.Rarity == CardRarity.Status) return false;
+        if (card.Rarity == CardRarity.Curse) return false;
+        if (card.Rarity == CardRarity.Quest) return false;
+        
+        return true;
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         if (cardPlay.Target == null) return;
@@ -55,21 +68,22 @@ public sealed class Emamlym : ManosabaCardTemplate
 
         await PowerCmd.Apply<MlyPower>(choiceContext, cardPlay.Target, 1, Owner.Creature, this, false);
 
+        // 只选取可以交换的牌（排除已有附魔和特殊稀有度）
         var myHand = PileType.Hand.GetPile(owner).Cards
-            .Where(c => c != this)
+            .Where(c => c != this && CanBeExchanged(c))
             .ToList();
-        var theirHand = PileType.Hand.GetPile(targetPlayer).Cards.ToList();
+        var theirHand = PileType.Hand.GetPile(targetPlayer).Cards
+            .Where(c => CanBeExchanged(c))
+            .ToList();
 
         foreach (var card in myHand)
             await CardPileCmd.RemoveFromCombat(card);
         foreach (var card in theirHand)
             await CardPileCmd.RemoveFromCombat(card);
 
-        // 我的牌复制给队友，附魔（已有附魔则跳过）
+        // 我的牌复制给队友，附魔
         foreach (var card in myHand)
         {
-            if (card.Enchantment != null) continue;
-
             var newCard = CombatState.CreateCard(card.CanonicalInstance, targetPlayer);
             if (card.CurrentUpgradeLevel > 0)
             {
@@ -80,11 +94,9 @@ public sealed class Emamlym : ManosabaCardTemplate
             await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, targetPlayer);
         }
 
-        // 队友的牌复制给我，附魔（已有附魔则跳过）
+        // 队友的牌复制给我，附魔
         foreach (var card in theirHand)
         {
-            if (card.Enchantment != null) continue;
-
             var newCard = CombatState.CreateCard(card.CanonicalInstance, owner);
             if (card.CurrentUpgradeLevel > 0)
             {

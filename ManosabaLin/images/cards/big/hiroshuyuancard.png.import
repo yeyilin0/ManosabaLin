@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://st2y0pufnshd"
-path="res://.godot/imported/emamonvshuyuan.png-25ca5d4a8a1d46d2888f7e9b71a0c388.ctex"
+uid="uid://dh3nmrogewb2w"
+path="res://.godot/imported/hiroshuyuancard.png-c871a53de8353bd783ad6ea7a0ae7cb7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/cards/big/emamonvshuyuan.png"
-dest_files=["res://.godot/imported/emamonvshuyuan.png-25ca5d4a8a1d46d2888f7e9b71a0c388.ctex"]
+source_file="res://ManosabaLin/images/cards/big/hiroshuyuancard.png"
+dest_files=["res://.godot/imported/hiroshuyuancard.png-c871a53de8353bd783ad6ea7a0ae7cb7.ctex"]
 
 [params]
 

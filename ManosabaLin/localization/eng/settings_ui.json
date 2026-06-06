@@ -1,0 +1,6 @@
+{
+  "MANOSABALIN_UPDATE_POPUP.title": "New Version Available",
+  "MANOSABALIN_UPDATE_POPUP.body": "Current version: {0}\nLatest version: {1}\n\nWould you like to download the update?",
+  "MANOSABALIN_UPDATE_POPUP.download": "Download",
+  "MANOSABALIN_UPDATE_POPUP.close": "Close"
+}

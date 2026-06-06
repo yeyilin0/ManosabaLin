@@ -70,5 +70,8 @@
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_EMALIN.title": "Sea Glass",
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_EMALIN.description": "Choose 5 cards from Emalin's card pool to add to your deck.",
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.title": "Sea Glass",
-  "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.description": "Choose 5 cards from Hiro's card pool to add to your deck."
+  "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.description": "Choose 5 cards from Hiro's card pool to add to your deck.",
+  "MANOSABA_LIN_RELIC_MAGNIFYINGGLASS.title": "Magnifying Glass",
+  "MANOSABA_LIN_RELIC_MAGNIFYINGGLASS.description": "When your draw pile is empty, swap cards between your exhaust pile and discard pile. For each card swapped, gain 1 stack of [color=#33ccff]Shirley's Magic[/color].",
+  "MANOSABA_LIN_RELIC_MAGNIFYINGGLASS.flavor": "She examines every discarded piece of evidence with her magnifying glass. To her, nothing is ever truly 'consumed.'"
 }

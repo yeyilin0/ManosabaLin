@@ -3,8 +3,10 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Models.Enchantments;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,6 +20,15 @@ public sealed class Bloodiedclothing : ManosabaRelicTemplate
     public override RelicRarity Rarity => RelicRarity.Ancient;
 
     public override bool HasUponPickupEffect => true;
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips
+    {
+        get
+        {
+            foreach (var tip in HoverTipFactory.FromEnchantment<Adroit>())
+                yield return tip;
+        }
+    }
 
     public override async Task AfterObtained()
     {

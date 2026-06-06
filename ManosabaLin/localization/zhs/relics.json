@@ -57,5 +57,8 @@
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_EMALIN.title": "海玻璃",
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_EMALIN.description": "从 樱羽艾玛 的卡牌池中选择 5 张牌加入牌组。",
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.title": "海玻璃",
-  "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.description": "从 二阶堂希罗 的卡牌池中选择 5 张牌加入牌组。"
+  "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.description": "从 二阶堂希罗 的卡牌池中选择 5 张牌加入牌组。",
+  "MANOSABA_LIN_RELIC_MAGNIFYINGGLASS.title": "放大镜",
+  "MANOSABA_LIN_RELIC_MAGNIFYINGGLASS.description": "当抽牌堆为空时，将消耗堆中的卡与弃牌堆中的卡互换。每成功交换1张，获得1层[color=#33ccff]【橘雪莉的魔法】[/color]。",
+  "MANOSABA_LIN_RELIC_MAGNIFYINGGLASS.flavor": "她拿着放大镜审视每一张被丢弃的证据。对她来说，没有什么是真正'消耗'掉的。"
 }

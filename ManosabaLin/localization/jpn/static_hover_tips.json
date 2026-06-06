@@ -1,2 +1,5 @@
 {
+  "MANOSABA_LIN_CARDPILE_CASE_FILE_PILE.title": "事件簿",
+  "MANOSABA_LIN_CARDPILE_CASE_FILE_PILE.description": "シャーリーリン専用のカード置き場。調査中の証拠と手がかりを保管する。自分のターンにここからカードを手札に加えられる。",
+  "MANOSABA_LIN_CARDPILE_CASE_FILE_PILE.empty": "事件簿は空です。"
 }
