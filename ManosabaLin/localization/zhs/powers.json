@@ -101,8 +101,8 @@
   "MANOSABA_LIN_POWER_EMA_WITCH_KILLER_POWER.description": "回合开始时，所有敌方获得10层[color=#ff99cc]【魔女因子】[/color]，所有友方获得1层。敌方受伤时增加等量层数，友方受伤时增加四分之一层数",
   "MANOSABA_LIN_POWER_EMA_WITCH_KILLER_POWER.smartDescription": "回合开始时，敌方+10层，友方+1层[b]【魔女因子】[/b]。敌方受伤+等量，友方受伤+四分之一",
   "MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.title": "二阶堂希罗的魔法",
-  "MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.description": "死亡时复活并回复{ReviveHeal}点生命，然后失去1层",
-  "MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.smartDescription": "死亡时复活并回复{ReviveHeal}点生命，然后失去1层",
+  "MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.description": "死亡时复活并回复40点生命，然后失去1层",
+  "MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.smartDescription": "死亡时复活并回复40点生命，然后失去1层",
   "MANOSABA_LIN_POWER_LOSE_ENERGY_POWER.title": "能量消耗",
   "MANOSABA_LIN_POWER_LOSE_ENERGY_POWER.description": "下回合开始时失去1点能量",
   "MANOSABA_LIN_POWER_GAIN_ENERGY_POWER.title": "能量恢复",
@@ -146,6 +146,11 @@
   "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.title": "残响",
   "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.description":"回合结束时若手牌中[变身的魔法]数量为所有玩家中最多，失去等于全部玩家手牌里[变身的魔法]的血量。",
   "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.title": "魔女之力",
-  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "[jitter][color=#cccccc]「丑恶化身——变成长生不死的怪物【魔女】，陷入无尽的绝望」[/color][/jitter]\n当第三意图的攻击后如果所有玩家手里有等于玩家总数3倍的[color=gray]【变身的魔法】[/color]牌，下回合额外再攻击1次\n死亡时恢复至1点生命，获得等于魔女化3倍的[gold]格挡[/gold]，切换意图(1回合1次)，下回合开始时恢复一半的生命值。"
-
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "[jitter][color=#cccccc]「丑恶化身——变成长生不死的怪物【魔女】，陷入无尽的绝望」[/color][/jitter]\n当第三意图的攻击后如果所有玩家手里有等于玩家总数3倍的[color=gray]【变身的魔法】[/color]牌，下回合额外再攻击1次\n死亡时恢复至1点生命，获得等于魔女化3倍的[gold]格挡[/gold]，切换意图(1回合1次)，下回合开始时恢复一半的生命值。",
+  "MANOSABA_LIN_POWER_THE_NORWOOD_BUILDER_POWER.title": "诺伍德的建筑师",
+  "MANOSABA_LIN_POWER_THE_NORWOOD_BUILDER_POWER.description": "每当消耗卡牌时，获得{Amount}格挡。",
+  "MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.title": "跳舞的小人",
+  "MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.description": "回合开始时选择抽牌堆1张卡消耗，获得等于其费用的临时力量，获得1点能量。",
+  "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.title": "狮鬃水母",
+  "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.description": "回合开始时，若消耗堆中有「狮鬃水母」，将其移入手牌并自动打出。"
 }

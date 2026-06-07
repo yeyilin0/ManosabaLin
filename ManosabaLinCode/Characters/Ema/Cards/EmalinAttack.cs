@@ -37,6 +37,6 @@ public class EmalinAttack() : ManosabaCardTemplate(1, CardType.Attack, CardRarit
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars.Damage.UpgradeValueBy(2m);
+        DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

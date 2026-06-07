@@ -15,10 +15,10 @@ public class HiroCardPool : TypeListCardPoolModel
 	public override string EnergyColorName => CharacterIdLower;
 
 	// 指定大号能量图标的资源路径。
-	public override string BigEnergyIconPath => "images/characters/Hiro/nikaido_hiro_energy.png".ImagePath();
+	public override string BigEnergyIconPath => "characters/Hiro/nikaido_hiro_energy.png".ImagePath();
 
 	// 指定文本行内使用的小号能量图标资源路径。
-	public override string TextEnergyIconPath => "images/characters/Hiro/nikaido_hiro_energy.png".ImagePath();
+	public override string TextEnergyIconPath => "characters/Hiro/nikaido_hiro_energy.png".ImagePath();
 	private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateHsvShaderMaterial(0f, 0.5f, 0.8f);
 
 	public override Material? PoolFrameMaterial => _poolFrameMaterial;

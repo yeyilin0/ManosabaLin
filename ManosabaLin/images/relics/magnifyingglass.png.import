@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://frj54tapli80"
-path="res://.godot/imported/sherrylincardten.png-a7a778cdb351c0a0479c572b58c10cea.ctex"
+uid="uid://6fu1lwtjj2kc"
+path="res://.godot/imported/magnifyingglass.png-520ed4bb9b22f95ccb483594a19caf6e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/cards/big/sherrylincardten.png"
-dest_files=["res://.godot/imported/sherrylincardten.png-a7a778cdb351c0a0479c572b58c10cea.ctex"]
+source_file="res://ManosabaLin/images/relics/magnifyingglass.png"
+dest_files=["res://.godot/imported/magnifyingglass.png-520ed4bb9b22f95ccb483594a19caf6e.ctex"]
 
 [params]
 

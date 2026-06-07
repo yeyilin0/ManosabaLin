@@ -7,7 +7,8 @@ using System.Text.RegularExpressions;
 namespace ManosabaLin.Patches;
 
 /// <summary>
-/// 将卡牌描述中的 [gold]关键词[/gold] 替换为对应颜色的 [color=#xxx]关键词[/color]
+/// 将卡牌描述中的关键词文本替换为对应颜色
+/// Priority=999 确保在 RitsuLib 的 Postfix 之后运行
 /// </summary>
 [HarmonyPatch]
 internal static class KeywordColorPatch
@@ -20,7 +21,6 @@ internal static class KeywordColorPatch
         { "轮轮轮回回回", "#CC6666" },
         { "Cycle Cycle Cycle", "#CC6666" },
 
-
         // 审判系 — 各自颜色
         { "赞同", "#6699cc" },
         { "Agreement", "#6699cc" },
@@ -28,8 +28,11 @@ internal static class KeywordColorPatch
         { "Doubt", "#cc9966" },
         { "反驳", "#339966" },
         { "Rebuttal", "#339966" },
-        
     };
+
+    // 按长度降序排列，优先匹配更长的关键词
+    private static readonly KeyValuePair<string, string>[] SortedKeywords =
+        KeywordColors.OrderByDescending(kv => kv.Key.Length).ToArray();
 
     private static MethodBase TargetMethod()
     {
@@ -37,29 +40,16 @@ internal static class KeywordColorPatch
             [typeof(PileType), AccessTools.Inner(typeof(CardModel), "DescriptionPreviewType"), typeof(Creature)]);
     }
 
+    [HarmonyPriority(999)]
     private static void Postfix(CardModel __instance, ref string __result)
     {
         if (string.IsNullOrEmpty(__result)) return;
 
-        // 匹配 [gold]内容[/gold]
-        var matches = Regex.Matches(__result, @"\[gold\](.+?)\[/gold\]")
-            .Cast<Match>()
-            .ToList();
-
-        if (matches.Count == 0) return;
-
-        // 从后往前替换，避免索引偏移
-        for (int i = matches.Count - 1; i >= 0; i--)
+        foreach (var (keyword, color) in SortedKeywords)
         {
-            var m = matches[i];
-            string keyword = m.Groups[1].Value;
-
-            if (!KeywordColors.TryGetValue(keyword, out string color))
-                continue;
-
-            string replacement = $"[color={color}]{keyword}[/color]";
-            __result = __result.Remove(m.Index, m.Length)
-                               .Insert(m.Index, replacement);
+            // 简单直接替换，不依赖 [gold] 标签
+            // 如果关键词已在 [color] 标签内，替换后结果不变（同色）
+            __result = __result.Replace(keyword, $"[color={color}]{keyword}[/color]");
         }
     }
 }

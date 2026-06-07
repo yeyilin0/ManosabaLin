@@ -34,6 +34,6 @@ public class HiroAttack() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.
 
 	protected override void OnUpgrade(ComponentContext componentContext)
 	{
-		DynamicVars.Damage.UpgradeValueBy(2m);
+		DynamicVars.Damage.UpgradeValueBy(3m);
 	}
 }

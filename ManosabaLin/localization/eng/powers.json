@@ -149,5 +149,11 @@
   "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.title": "Residual Echo",
   "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.description": "At end of turn, if hand contains the most [Transformation Magic] among all players, lose HP equal to the total [Transformation Magic] in all players' hands.",
   "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.title": "Witch Power",
-  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "[jitter][color=#cccccc]\"The embodiment of ugliness — transformed into an immortal monster 【Witch】,陷入无尽的绝望\"[/color][/jitter]\nAfter the 3rd intent attack, if all players hold [Transformation Magic] cards equal to 3×player count, attack 1 extra time next turn.\nOn death, restore to 1 HP, gain Block equal to 3×Witchification, switch intent (once per turn). At the start of next turn, restore half HP."
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "[jitter][color=#cccccc]\"The embodiment of ugliness — transformed into an immortal monster 【Witch】,陷入无尽的绝望\"[/color][/jitter]\nAfter the 3rd intent attack, if all players hold [Transformation Magic] cards equal to 3×player count, attack 1 extra time next turn.\nOn death, restore to 1 HP, gain Block equal to 3×Witchification, switch intent (once per turn). At the start of next turn, restore half HP.",
+  "MANOSABA_LIN_POWER_THE_NORWOOD_BUILDER_POWER.title": "The Norwood Builder",
+  "MANOSABA_LIN_POWER_THE_NORWOOD_BUILDER_POWER.description": "Whenever you exhaust a card, gain {Amount} Block.",
+  "MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.title": "The Dancing Men",
+  "MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.description": "At turn start, choose 1 card from draw pile to exhaust. Gain temporary Strength equal to its cost. Gain 1 energy.",
+  "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.title": "The Lion's Mane",
+  "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.description": "At turn start, if The Lion's Mane is in your exhaust pile, move it to hand and auto-play it."
 }

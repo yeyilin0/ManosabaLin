@@ -6,41 +6,69 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Rooms;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public class SherrylinCardTen() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class SherrylinCardTen : ManosabaCardTemplate
 {
-    public override bool GainsBlock => true;
+    public SherrylinCardTen() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.RandomEnemy)
+    {
+    }
 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips
+    {
+        get
+        {
+            yield return HoverTipFactory.FromPower<SuspectPower>();
+            yield return HoverTipFactory.FromPower<HiroMagicRevivePower>();
+        }
+    }
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new BlockVar(7m, ValueProp.Move),
-        new PowerVar<PerjuryPower>(2m)
+        new DamageVar(5m, ValueProp.Move),
+        new PowerVar<SuspectPower>(1m)
     ];
+
+    [SavedProperty] public bool HasBeenPlayed { get; set; }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
-        // 第一步：获得格挡
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+        var source = this;
 
-        // 第二步：获得 2 层 PerjuryPower
-        await PowerCmd.Apply<PerjuryPower>(
-            choiceContext, Owner.Creature,
-            DynamicVars["PerjuryPower"].BaseValue,
-            Owner.Creature,
-            this,
-            false
-        );
+        await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
+
+        await PowerCmd.Apply<SuspectPower>(
+            choiceContext, source.Owner.Creature,
+            1m, source.Owner.Creature, source, false);
+
+        await PowerCmd.Apply<HiroMagicRevivePower>(
+            choiceContext, source.Owner.Creature,
+            1m, source.Owner.Creature, source, false);
+
+        HasBeenPlayed = true;
+    }
+
+    protected override async Task AfterCombatEnd(CombatRoom _, ComponentContext componentContext)
+    {
+        var source = this;
+
+        if (!HasBeenPlayed)
+            return;
+
+        var deckCards = PileType.Deck.GetPile(source.Owner).Cards.ToList();
+        foreach (var card in deckCards)
+            if (card is SherrylinCardTen)
+                await CardPileCmd.RemoveFromDeck(card);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars.Block.UpgradeValueBy(3m);
-        DynamicVars["PerjuryPower"].UpgradeValueBy(1m);
+        EnergyCost.UpgradeBy(-1);
     }
 }

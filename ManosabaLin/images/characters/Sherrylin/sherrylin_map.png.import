@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://frj54tapli80"
-path="res://.godot/imported/sherrylincardten.png-a7a778cdb351c0a0479c572b58c10cea.ctex"
+uid="uid://cpsw5jbaqd41g"
+path="res://.godot/imported/sherrylin_map.png-48a07ad8920c1c3a5f780b91fccc7872.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/cards/big/sherrylincardten.png"
-dest_files=["res://.godot/imported/sherrylincardten.png-a7a778cdb351c0a0479c572b58c10cea.ctex"]
+source_file="res://ManosabaLin/images/characters/Sherrylin/sherrylin_map.png"
+dest_files=["res://.godot/imported/sherrylin_map.png-48a07ad8920c1c3a5f780b91fccc7872.ctex"]
 
 [params]
 
