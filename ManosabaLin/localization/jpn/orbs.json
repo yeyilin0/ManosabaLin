@@ -1,4 +1,16 @@
 {
-  "ANGER_ORB.title": "怒り",
-  "ANGER_ORB.description": "ターン開始時に[color=#33ccff]【橘シャーリーの魔法】[/color]を2層獲得。1ターン後に自動消滅。"
+  "MANOSABA_LIN_ORB_ANGER_ORB.title": "怒り",
+  "MANOSABA_LIN_ORB_ANGER_ORB.description": "ターン開始時に[color=#33ccff]【橘シャーリーの魔法】[/color]を2層獲得。1ターン後に自動消滅。",
+  "MANOSABA_LIN_ORB_EMOTION_ANGER_ORB.title": "怒り",
+  "MANOSABA_LIN_ORB_EMOTION_ANGER_ORB.description": "このターンダメージ2倍。20ダメージごとにランダムな味方（自分含む）に1ダメージ。ターン開始で除去。",
+  "MANOSABA_LIN_ORB_EMOTION_DISGUST_ORB.title": "嫌悪",
+  "MANOSABA_LIN_ORB_EMOTION_DISGUST_ORB.description": "敵の攻撃で等量ダメージを反射。HPが削られた時除去。ターン開始で自動除去。",
+  "MANOSABA_LIN_ORB_EMOTION_SADNESS_ORB.title": "悲しみ",
+  "MANOSABA_LIN_ORB_EMOTION_SADNESS_ORB.description": "カード1枚ごとにシールド1獲得。ランダムな味方のHP1回復。ターン開始で除去。",
+  "MANOSABA_LIN_ORB_EMOTION_FEAR_ORB.title": "恐怖",
+  "MANOSABA_LIN_ORB_EMOTION_FEAR_ORB.description": "攻撃カード不可。ターン終了時にシールドの半分を獲得し味方に分配。ターン開始で除去。",
+  "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.title": "喜び",
+  "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.description": "攻撃ごとに一時的力減少1層。攻撃/スキル/能力ごとにエネルギー1。ターン開始で除去。",
+  "MANOSABA_LIN_ORB_EMOTION_SURPRISE_ORB.title": "驚き",
+  "MANOSABA_LIN_ORB_EMOTION_SURPRISE_ORB.description": "ターン終了時に手札数記録。次ターン開始時に等量ドローして除去。"
 }

@@ -1,11 +1,14 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +31,28 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
         if (player != Owner) return Task.CompletedTask;
         HasTriggeredThisTurn = false;
         return Task.CompletedTask;
+    }
+
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    {
+        if (side != Owner.Creature.Side) return;
+        if (combatState.RoundNumber != 1) return;
+
+        // 进入战斗时设置2个充能球位置
+        var queue = Owner.PlayerCombatState?.OrbQueue;
+        if (queue != null)
+        {
+            int addAmount = 2 - queue.Capacity;
+            if (addAmount > 0)
+            {
+                queue.AddCapacity(addAmount);
+                await Task.Yield();
+                NCombatRoom.Instance?
+                    .GetCreatureNode(Owner.Creature)?
+                    .OrbManager?
+                    .AddSlotAnim(addAmount);
+            }
+        }
     }
 
     public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? clonedBy)

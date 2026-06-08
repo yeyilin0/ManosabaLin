@@ -42,6 +42,5 @@ public sealed class CardSixtyNine() : ManosabaCardTemplate(0, CardType.Skill, Ca
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Cards.UpgradeValueBy(1m);
-        DynamicVars.Energy.UpgradeValueBy(1m);
     }
 }

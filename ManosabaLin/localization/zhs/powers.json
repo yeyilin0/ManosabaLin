@@ -154,5 +154,19 @@
   "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.title": "狮鬃水母",
   "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.description": "回合开始时，若消耗堆中有「狮鬃水母」，将其移入手牌并自动打出。",
   "MANOSABA_LIN_POWER_ANGER_POWER.title": "愤怒",
-  "MANOSABA_LIN_POWER_ANGER_POWER.description": "达到{Amount}层时，将1张「愤怒」加入案卷牌堆。"
+  "MANOSABA_LIN_POWER_ANGER_POWER.description": "达到{Amount}层时，将1张「愤怒」加入案卷牌堆。",
+  "MANOSABA_LIN_POWER_EMOTION_POWER.title": "情绪",
+  "MANOSABA_LIN_POWER_EMOTION_POWER.description": "每打出13张卡，随机获得1张情绪卡加入案卷牌堆。",
+  "MANOSABA_LIN_POWER_EMOTION_ANGER_POWER.title": "愤怒",
+  "MANOSABA_LIN_POWER_EMOTION_ANGER_POWER.description": "本回合造成双倍伤害，每造成20伤害对随机队友包括自己造成1点伤害。",
+  "MANOSABA_LIN_POWER_EMOTION_DISGUST_POWER.title": "厌恶",
+  "MANOSABA_LIN_POWER_EMOTION_DISGUST_POWER.description": "受到敌人攻击时反弹等量伤害，血条被打到时移除。",
+  "MANOSABA_LIN_POWER_EMOTION_SADNESS_POWER.title": "悲伤",
+  "MANOSABA_LIN_POWER_EMOTION_SADNESS_POWER.description": "每打出一张卡获得1点护盾，回复随机队友1点生命。",
+  "MANOSABA_LIN_POWER_EMOTION_FEAR_POWER.title": "恐惧",
+  "MANOSABA_LIN_POWER_EMOTION_FEAR_POWER.description": "无法打出攻击牌，回合结束获得当前一半格挡并分给随机队友。",
+  "MANOSABA_LIN_POWER_EMOTION_JOY_POWER.title": "快乐",
+  "MANOSABA_LIN_POWER_EMOTION_JOY_POWER.description": "每打出攻击卡获得1层临时减力量，每打出攻击/技能/能力获得1点能量。",
+  "MANOSABA_LIN_POWER_EMOTION_SURPRISE_POWER.title": "惊讶",
+  "MANOSABA_LIN_POWER_EMOTION_SURPRISE_POWER.description": "回合结束记录手卡数量，下回合开始抽取等量卡牌。"
 }

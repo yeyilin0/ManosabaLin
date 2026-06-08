@@ -156,5 +156,19 @@
   "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.title": "獅子の鬣",
   "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.description": "ターン開始時、消費パイルに「獅子の鬣」があれば手札に移動し自動使用する。",
   "MANOSABA_LIN_POWER_ANGER_POWER.title": "怒り",
-  "MANOSABA_LIN_POWER_ANGER_POWER.description": "{Amount}層に達した時、「怒り」を1枚事件ファイルパイルに追加する。"
+  "MANOSABA_LIN_POWER_ANGER_POWER.description": "{Amount}層に達した時、「怒り」を1枚事件ファイルパイルに追加する。",
+  "MANOSABA_LIN_POWER_EMOTION_POWER.title": "感情",
+  "MANOSABA_LIN_POWER_EMOTION_POWER.description": "カードを13枚出すたびに、ランダムな感情カードを1枚事件ファイルパイルに追加する。",
+  "MANOSABA_LIN_POWER_EMOTION_ANGER_POWER.title": "怒り",
+  "MANOSABA_LIN_POWER_EMOTION_ANGER_POWER.description": "このターンダメージが2倍になる。20ダメージ与えるたびに、ランダムな味方（自分含む）に1ダメージ与える。",
+  "MANOSABA_LIN_POWER_EMOTION_DISGUST_POWER.title": "嫌悪",
+  "MANOSABA_LIN_POWER_EMOTION_DISGUST_POWER.description": "敵の攻撃を受けた時、等量のダメージを跳ね返す。HPが削られた時除去。",
+  "MANOSABA_LIN_POWER_EMOTION_SADNESS_POWER.title": "悲しみ",
+  "MANOSABA_LIN_POWER_EMOTION_SADNESS_POWER.description": "カードを1枚出すたびにシールドを1得る。ランダムな味方のHPを1回復。",
+  "MANOSABA_LIN_POWER_EMOTION_FEAR_POWER.title": "恐怖",
+  "MANOSABA_LIN_POWER_EMOTION_FEAR_POWER.description": "攻撃カードが出せない。ターン終了時に現在のシールドの半分を獲得し、ランダムな味方に等量のシールドを与える。",
+  "MANOSABA_LIN_POWER_EMOTION_JOY_POWER.title": "喜び",
+  "MANOSABA_LIN_POWER_EMOTION_JOY_POWER.description": "攻撃カードを出すたびに一時的力減少を1層獲得。攻撃/スキル/能力を出すたびにエネルギーを1得る。",
+  "MANOSABA_LIN_POWER_EMOTION_SURPRISE_POWER.title": "驚き",
+  "MANOSABA_LIN_POWER_EMOTION_SURPRISE_POWER.description": "ターン終了時に手札の数を記録。次ターン開始時に等量のカードを引く。"
 }

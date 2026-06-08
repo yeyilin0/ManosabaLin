@@ -1,4 +1,16 @@
 {
-  "ANGER_ORB.title": "Anger",
-  "ANGER_ORB.description": "At the start of each turn, gain 2 [color=#33ccff]Shirley's Magic[/color]. Automatically dissipates after 1 turn."
+  "MANOSABA_LIN_ORB_ANGER_ORB.title": "Anger",
+  "MANOSABA_LIN_ORB_ANGER_ORB.description": "At the start of each turn, gain 2 [color=#33ccff]Shirley's Magic[/color]. Automatically dissipates after 1 turn.",
+  "MANOSABA_LIN_ORB_EMOTION_ANGER_ORB.title": "Anger",
+  "MANOSABA_LIN_ORB_EMOTION_ANGER_ORB.description": "Deal double damage this turn. Every 20 damage dealt, deal 1 damage to random ally including self. Removed at turn start.",
+  "MANOSABA_LIN_ORB_EMOTION_DISGUST_ORB.title": "Disgust",
+  "MANOSABA_LIN_ORB_EMOTION_DISGUST_ORB.description": "Reflect equal damage when hit by enemy attack. Removed when HP is hit. Auto-removed at turn start.",
+  "MANOSABA_LIN_ORB_EMOTION_SADNESS_ORB.title": "Sadness",
+  "MANOSABA_LIN_ORB_EMOTION_SADNESS_ORB.description": "Gain 1 block per card played. Heal 1 HP to random ally. Removed at turn start.",
+  "MANOSABA_LIN_ORB_EMOTION_FEAR_ORB.title": "Fear",
+  "MANOSABA_LIN_ORB_EMOTION_FEAR_ORB.description": "Cannot play attack cards. At turn end, gain half current block and give equal block to random ally. Removed at turn start.",
+  "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.title": "Joy",
+  "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.description": "Gain 1 temporary strength down per attack played. Gain 1 energy per attack/skill/power played. Removed at turn start.",
+  "MANOSABA_LIN_ORB_EMOTION_SURPRISE_ORB.title": "Surprise",
+  "MANOSABA_LIN_ORB_EMOTION_SURPRISE_ORB.description": "At turn end, record hand size. Next turn start, draw equal cards. Then removed."
 }

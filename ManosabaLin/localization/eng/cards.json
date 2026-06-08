@@ -562,6 +562,7 @@
   "MANOSABA_LIN_CARD_THE_GREEK_INTERPRETER.description": "Move 1 random card from exhaust pile to hand. It can be played for free this turn.",
   "MANOSABA_LIN_CARD_THE_SECOND_STAIN.title": "The Second Stain",
   "MANOSABA_LIN_CARD_THE_SECOND_STAIN.description": "Choose 1 card from discard pile, exhaust it and play it once.",
+  "MANOSABA_LIN_CARD_THE_SECOND_STAIN.selectionScreenPrompt": "Choose 1 card from discard pile",
   "MANOSABA_LIN_CARD_THE_DANCING_MEN.title": "The Dancing Men",
   "MANOSABA_LIN_CARD_THE_DANCING_MEN.description": "At turn start, choose 1 card from draw pile to exhaust. Gain temporary Strength equal to its cost. Gain 1 energy.",
   "MANOSABA_LIN_CARD_THE_LIONS_MANE.title": "The Lion's Mane",
@@ -573,5 +574,19 @@
   "MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.title": "The Grange Puzzle",
   "MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.description": "Upgrade X random cards in exhaust pile, where X = Shirley's Magic stacks.",
   "MANOSABA_LIN_CARD_ANGER.title": "Anger",
-  "MANOSABA_LIN_CARD_ANGER.description": "Channel to orb slot. Lasts 1 turn. While active, gain [color=#33ccff]Shirley's Magic[/color], attacks deal +2 damage."
+  "MANOSABA_LIN_CARD_ANGER.description": "Channel to orb slot. Lasts 1 turn. While active, gain [color=#33ccff]Shirley's Magic[/color], attacks deal +2 damage.",
+  "MANOSABA_LIN_CARD_EMOTION_ANGER.title": "Anger",
+  "MANOSABA_LIN_CARD_EMOTION_ANGER.description": "Deal double damage this turn. Every 20 damage dealt, deal 1 blockable damage (no power bonus) to a random ally including self. Removed at turn start.",
+  "MANOSABA_LIN_CARD_EMOTION_DISGUST.title": "Disgust",
+  "MANOSABA_LIN_CARD_EMOTION_DISGUST.description": "When hit by enemy attack, deal equal damage back (can be buffed). Removed when HP is hit. Auto-removed at turn start.",
+  "MANOSABA_LIN_CARD_EMOTION_SADNESS.title": "Sadness",
+  "MANOSABA_LIN_CARD_EMOTION_SADNESS.description": "Gain 1 block per card played. Heal 1 HP to random ally including self. Removed at turn start.",
+  "MANOSABA_LIN_CARD_EMOTION_FEAR.title": "Fear",
+  "MANOSABA_LIN_CARD_EMOTION_FEAR.description": "Cannot play attack cards. At turn end, gain half current block. Give random ally equal block. Removed at turn start.",
+  "MANOSABA_LIN_CARD_EMOTION_JOY.title": "Joy",
+  "MANOSABA_LIN_CARD_EMOTION_JOY.description": "Gain 1 temporary strength down per attack card played. Gain 1 energy per attack/skill/power card played. Removed at turn start.",
+  "MANOSABA_LIN_CARD_EMOTION_SURPRISE.title": "Surprise",
+  "MANOSABA_LIN_CARD_EMOTION_SURPRISE.description": "At turn end, record current hand size. Next turn start, draw equal cards. Then removed.",
+  "MANOSABA_LIN_CARD_SHERRYLIN_MENTAL_TRAUMA.title": "Mental Trauma",
+  "MANOSABA_LIN_CARD_SHERRYLIN_MENTAL_TRAUMA.description": "Gain 1 [b]Emotion[/b] stack."
 }

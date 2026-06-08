@@ -1,13 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://bu5t0o2bqav4u"]
+[gd_scene load_steps=2 format=3 uid="uid://ble11ojygrc7q"]
 
-[ext_resource type="SpineSkeletonDataResource" uid="uid://bjl1ywh0twqxb" path="res://animations/ui/combat/orbs/glass_orb_skel_data.tres" id="1_4pg7w"]
+[sub_resource type="Resource" id="Resource_tprke"]
+metadata/__load_path__ = "res://animations/ui/combat/orbs/glass_orb_skel_data.tres"
 
 [node name="ScrapOrb" type="Node2D"]
 
 [node name="SpineSkeleton" type="SpineSprite" parent="."]
-skeleton_data_res = ExtResource("1_4pg7w")
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
+skeleton_data_res = SubResource("Resource_tprke")
 preview_skin = "Default"
 preview_animation = "idle_loop"
 preview_frame = false
 preview_time = 0.0
 scale = Vector2(0.1, 0.1)
+script = null

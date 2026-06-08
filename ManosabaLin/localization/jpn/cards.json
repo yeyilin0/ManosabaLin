@@ -542,6 +542,7 @@
   "MANOSABA_LIN_CARD_THE_GREEK_INTERPRETER.description": "消費パイルからランダムに1枚手札に加える。このターン無料で使用可能。",
   "MANOSABA_LIN_CARD_THE_SECOND_STAIN.title": "第二のしみ",
   "MANOSABA_LIN_CARD_THE_SECOND_STAIN.description": "捨て札から1枚選んで消費し、1回使用する。",
+  "MANOSABA_LIN_CARD_THE_SECOND_STAIN.selectionScreenPrompt": "捨て札からカードを1枚選択",
   "MANOSABA_LIN_CARD_THE_DANCING_MEN.title": "踊る人形",
   "MANOSABA_LIN_CARD_THE_DANCING_MEN.description": "ターン開始時、ドローパイルから1枚選んで消費。コストに等しい一時的力を獲得し、エネルギーを1得る。",
   "MANOSABA_LIN_CARD_THE_LIONS_MANE.title": "獅子の鬣",
@@ -553,5 +554,19 @@
   "MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.title": "グレンジ・パズル",
   "MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.description": "シャーリーの魔法の層数分、消費パイルのカードをランダムにアップグレード。",
   "MANOSABA_LIN_CARD_ANGER.title": "怒り",
-  "MANOSABA_LIN_CARD_ANGER.description": "オーブスロットにチャネル。1ターン持続。発動中[color=#33ccff]【橘シャーリーの魔法】[/color]を獲得し、攻撃+2ダメージ。"
+  "MANOSABA_LIN_CARD_ANGER.description": "オーブスロットにチャネル。1ターン持続。発動中[color=#33ccff]【橘シャーリーの魔法】[/color]を獲得し、攻撃+2ダメージ。",
+  "MANOSABA_LIN_CARD_EMOTION_ANGER.title": "怒り",
+  "MANOSABA_LIN_CARD_EMOTION_ANGER.description": "このターンダメージが2倍。20ダメージ与えるたびに、ランダムな味方（自分含む）にブロック可能なダメージ1。ターン開始で除去。",
+  "MANOSABA_LIN_CARD_EMOTION_DISGUST.title": "嫌悪",
+  "MANOSABA_LIN_CARD_EMOTION_DISGUST.description": "敵の攻撃を受けた時、等量のダメージを返す。HPが削られた時即除去。ターン開始で自動除去。",
+  "MANOSABA_LIN_CARD_EMOTION_SADNESS.title": "悲しみ",
+  "MANOSABA_LIN_CARD_EMOTION_SADNESS.description": "カードを1枚出すたびにシールド1獲得。ランダムな味方（自分含む）のHP1回復。ターン開始で除去。",
+  "MANOSABA_LIN_CARD_EMOTION_FEAR.title": "恐怖",
+  "MANOSABA_LIN_CARD_EMOTION_FEAR.description": "攻撃カードが出せない。ターン終了時に現在のシールドの半分を獲得し、ランダムな味方に等量のシールド。ターン開始で除去。",
+  "MANOSABA_LIN_CARD_EMOTION_JOY.title": "喜び",
+  "MANOSABA_LIN_CARD_EMOTION_JOY.description": "攻撃カードを出すたびに一時的力減少1層。攻撃/スキル/能力を出すたびにエネルギー1。ターン開始で除去。",
+  "MANOSABA_LIN_CARD_EMOTION_SURPRISE.title": "驚き",
+  "MANOSABA_LIN_CARD_EMOTION_SURPRISE.description": "ターン終了時に手札の数を記録。次ターン開始時に等量のカードを引いて除去。",
+  "MANOSABA_LIN_CARD_SHERRYLIN_MENTAL_TRAUMA.title": "精神的外傷",
+  "MANOSABA_LIN_CARD_SHERRYLIN_MENTAL_TRAUMA.description": "[b]【感情】[/b]を1層獲得"
 }

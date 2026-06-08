@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1emotionfearorb"]
+
+[ext_resource type="Texture2D" path="res://ManosabaLin/images/cards/big/emotionfear.png" id="1_tex"]
+[ext_resource type="Texture2D" path="res://ManosabaLin/images/cards/big/emotionfear.png" id="2_tex"]
+
+[node name="EmotionFearOrb" type="Node2D"]
+
+[node name="SpineSkeleton" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_tex")

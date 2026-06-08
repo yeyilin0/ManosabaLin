@@ -157,5 +157,19 @@
   "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.title": "The Lion's Mane",
   "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.description": "At turn start, if The Lion's Mane is in your exhaust pile, move it to hand and auto-play it.",
   "MANOSABA_LIN_POWER_ANGER_POWER.title": "Anger",
-  "MANOSABA_LIN_POWER_ANGER_POWER.description": "At {Amount} stacks, add 1 Anger card to Case File pile."
+  "MANOSABA_LIN_POWER_ANGER_POWER.description": "At {Amount} stacks, add 1 Anger card to Case File pile.",
+  "MANOSABA_LIN_POWER_EMOTION_POWER.title": "Emotion",
+  "MANOSABA_LIN_POWER_EMOTION_POWER.description": "Every 13 cards played, randomly add 1 emotion card to Case File pile.",
+  "MANOSABA_LIN_POWER_EMOTION_ANGER_POWER.title": "Anger",
+  "MANOSABA_LIN_POWER_EMOTION_ANGER_POWER.description": "Deal double damage this turn. Every 20 damage dealt, deal 1 damage to a random ally including self.",
+  "MANOSABA_LIN_POWER_EMOTION_DISGUST_POWER.title": "Disgust",
+  "MANOSABA_LIN_POWER_EMOTION_DISGUST_POWER.description": "Reflect equal damage when hit by enemy attack. Removed when HP is hit.",
+  "MANOSABA_LIN_POWER_EMOTION_SADNESS_POWER.title": "Sadness",
+  "MANOSABA_LIN_POWER_EMOTION_SADNESS_POWER.description": "Gain 1 block per card played. Heal 1 HP to random ally.",
+  "MANOSABA_LIN_POWER_EMOTION_FEAR_POWER.title": "Fear",
+  "MANOSABA_LIN_POWER_EMOTION_FEAR_POWER.description": "Cannot play attack cards. At turn end, gain half current block and give equal block to random ally.",
+  "MANOSABA_LIN_POWER_EMOTION_JOY_POWER.title": "Joy",
+  "MANOSABA_LIN_POWER_EMOTION_JOY_POWER.description": "Gain 1 temporary strength down per attack played. Gain 1 energy per attack/skill/power played.",
+  "MANOSABA_LIN_POWER_EMOTION_SURPRISE_POWER.title": "Surprise",
+  "MANOSABA_LIN_POWER_EMOTION_SURPRISE_POWER.description": "At turn end, record hand size. Next turn start, draw equal cards. Then removed."
 }
