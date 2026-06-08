@@ -155,5 +155,7 @@
   "MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.title": "The Dancing Men",
   "MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.description": "At turn start, choose 1 card from draw pile to exhaust. Gain temporary Strength equal to its cost. Gain 1 energy.",
   "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.title": "The Lion's Mane",
-  "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.description": "At turn start, if The Lion's Mane is in your exhaust pile, move it to hand and auto-play it."
+  "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.description": "At turn start, if The Lion's Mane is in your exhaust pile, move it to hand and auto-play it.",
+  "MANOSABA_LIN_POWER_ANGER_POWER.title": "Anger",
+  "MANOSABA_LIN_POWER_ANGER_POWER.description": "At {Amount} stacks, add 1 Anger card to Case File pile."
 }

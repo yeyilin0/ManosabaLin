@@ -154,5 +154,7 @@
   "MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.title": "踊る人形",
   "MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.description": "ターン開始時、ドローパイルから1枚選んで消費。コストに等しい一時的力を獲得し、エネルギーを1得る。",
   "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.title": "獅子の鬣",
-  "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.description": "ターン開始時、消費パイルに「獅子の鬣」があれば手札に移動し自動使用する。"
+  "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.description": "ターン開始時、消費パイルに「獅子の鬣」があれば手札に移動し自動使用する。",
+  "MANOSABA_LIN_POWER_ANGER_POWER.title": "怒り",
+  "MANOSABA_LIN_POWER_ANGER_POWER.description": "{Amount}層に達した時、「怒り」を1枚事件ファイルパイルに追加する。"
 }

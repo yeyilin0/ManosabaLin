@@ -551,5 +551,7 @@
   "MANOSABA_LIN_CARD_THE_DEVILS_FEAR.title": "悪魔の足",
   "MANOSABA_LIN_CARD_THE_DEVILS_FEAR.description": "消費パイルの枚数×{Multiplier}のダメージを全敵に与え、同量のシールドを得、全エネルギー回復。",
   "MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.title": "グレンジ・パズル",
-  "MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.description": "シャーリーの魔法の層数分、消費パイルのカードをランダムにアップグレード。"
+  "MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.description": "シャーリーの魔法の層数分、消費パイルのカードをランダムにアップグレード。",
+  "MANOSABA_LIN_CARD_ANGER.title": "怒り",
+  "MANOSABA_LIN_CARD_ANGER.description": "オーブスロットにチャネル。1ターン持続。発動中[color=#33ccff]【橘シャーリーの魔法】[/color]を獲得し、攻撃+2ダメージ。"
 }

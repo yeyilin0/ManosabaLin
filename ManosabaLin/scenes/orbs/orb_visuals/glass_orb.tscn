@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu5t0o2bqav4u"]
+
+[ext_resource type="SpineSkeletonDataResource" uid="uid://bjl1ywh0twqxb" path="res://animations/ui/combat/orbs/glass_orb_skel_data.tres" id="1_4pg7w"]
+
+[node name="ScrapOrb" type="Node2D"]
+
+[node name="SpineSkeleton" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("1_4pg7w")
+preview_skin = "Default"
+preview_animation = "idle_loop"
+preview_frame = false
+preview_time = 0.0
+scale = Vector2(0.1, 0.1)

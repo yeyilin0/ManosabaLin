@@ -571,5 +571,7 @@
   "MANOSABA_LIN_CARD_THE_DEVILS_FOOT.title": "The Devil's Foot",
   "MANOSABA_LIN_CARD_THE_DEVILS_FOOT.description": "Deal exhaust pile count ×{Multiplier} damage to all enemies. Gain equal Block. Restore all energy.",
   "MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.title": "The Grange Puzzle",
-  "MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.description": "Upgrade X random cards in exhaust pile, where X = Shirley's Magic stacks."
+  "MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.description": "Upgrade X random cards in exhaust pile, where X = Shirley's Magic stacks.",
+  "MANOSABA_LIN_CARD_ANGER.title": "Anger",
+  "MANOSABA_LIN_CARD_ANGER.description": "Channel to orb slot. Lasts 1 turn. While active, gain [color=#33ccff]Shirley's Magic[/color], attacks deal +2 damage."
 }

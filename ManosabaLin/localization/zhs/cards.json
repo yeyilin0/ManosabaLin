@@ -588,5 +588,7 @@
   "MANOSABA_LIN_CARD_THE_DEVILS_FOOT.title": "魔鬼之足根",
   "MANOSABA_LIN_CARD_THE_DEVILS_FOOT.description": "对全部敌人造成等于消耗堆牌数{Multiplier:diff()}倍的伤害，自己获得等量格挡，恢复等于上限的全部能量",
   "MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.title": "格兰其庄园",
-  "MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.description": "按照橘雪莉的魔法层数{IfUpgraded:show:+2}随机升级消耗堆中的卡牌"
+  "MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.description": "按照橘雪莉的魔法层数{IfUpgraded:show:+2}随机升级消耗堆中的卡牌",
+  "MANOSABA_LIN_CARD_ANGER.title": "愤怒",
+  "MANOSABA_LIN_CARD_ANGER.description": "挂载到充能球槽位，生效1回合。期间获得[color=#33ccff]【橘雪莉的魔法】[/color]，攻击+2伤害。"
 }

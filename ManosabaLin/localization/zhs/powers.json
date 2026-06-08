@@ -152,5 +152,7 @@
   "MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.title": "跳舞的小人",
   "MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.description": "回合开始时选择抽牌堆1张卡消耗，获得等于其费用的临时力量，获得1点能量。",
   "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.title": "狮鬃水母",
-  "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.description": "回合开始时，若消耗堆中有「狮鬃水母」，将其移入手牌并自动打出。"
+  "MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.description": "回合开始时，若消耗堆中有「狮鬃水母」，将其移入手牌并自动打出。",
+  "MANOSABA_LIN_POWER_ANGER_POWER.title": "愤怒",
+  "MANOSABA_LIN_POWER_ANGER_POWER.description": "达到{Amount}层时，将1张「愤怒」加入案卷牌堆。"
 }

@@ -5,6 +5,7 @@ using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using ManosabaLin.Characters.Hiro;
 using ManosabaLin.Characters.Sherrylin;
+using ManosabaLin.Utils;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
@@ -73,12 +74,38 @@ public partial class MainFile : Node
                     ModCardPileAnchorKind.TopBarAfterDeck),
                 IconPath = $"res://{ModId}/images/ui/case_file_pile.png",
                 OnOpen = ctx => ctx.ShowDefaultPileScreen(),
-                VisibleWhen = ctx => ctx.Player != null,
+                VisibleWhen = ctx => ctx.Player?.Character is Sherrylin,
             }).PileType;
 
         RitsuLibFramework.EnsureGodotScriptsRegistered(assembly, Logger);
 
         Harmony harmony = new(ModId);
         harmony.PatchAll();
+
+        _ = CheckUpdateAsync();
+    }
+
+    private static async Task CheckUpdateAsync()
+    {
+        try
+        {
+            var result = await UpdateChecker.CheckForUpdateAsync();
+            if (result is { Success: true, HasUpdate: true })
+            {
+                Logger.Info($"New version available: {result.LatestVersion} (current: {result.CurrentVersion})");
+                await Task.Delay(2000);
+                var tree = (SceneTree?)Engine.GetMainLoop();
+                if (tree?.Root != null)
+                {
+                    var popup = UpdatePopup.Create(result.CurrentVersion, result.LatestVersion, result.ReleaseUrl);
+                    if (popup != null)
+                        tree.Root.CallDeferred(Node.MethodName.AddChild, popup);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Debug($"Update check failed: {ex.Message}");
+        }
     }
 }
