@@ -6,7 +6,4 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 
 [RegisterCard(typeof(LinCardPool))]
-public sealed class EmotionDisgust() : CaseFileCard(0, CardRarity.Ancient, TargetType.Self)
-{
-    protected override OrbModel CreateEmotionOrb() => new EmotionDisgustOrb();
-}
+public sealed class EmotionDisgust() : CaseFileCard<EmotionDisgustOrb>(0, CardRarity.Ancient, TargetType.Self);

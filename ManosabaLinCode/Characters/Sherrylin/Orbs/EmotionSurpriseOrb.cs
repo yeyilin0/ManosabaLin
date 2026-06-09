@@ -6,6 +6,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Threading.Tasks;
+using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 
 namespace ManosabaLin.Characters.Sherrylin.Orbs;
 
@@ -13,12 +14,11 @@ namespace ManosabaLin.Characters.Sherrylin.Orbs;
 /// 惊讶球体：回合结束记录手卡数量，下回合开始抽取等量卡牌。
 /// </summary>
 [RegisterOrb]
-public sealed class EmotionSurpriseOrb : EmotionOrb
+public sealed class EmotionSurpriseOrb : EmotionOrb<EmotionSurprise>
 {
     private int _recordedHandSize;
 
-    protected override Color GetOrbColor() => new(0.2f, 0.9f, 0.9f);
-    protected override string GetOrbName() => "emotion_surprise_orb";
+    protected override Color OrbColor => new(0.2f, 0.9f, 0.9f);
 
     public override async Task BeforeTurnEndOrbTrigger(PlayerChoiceContext ctx)
     {

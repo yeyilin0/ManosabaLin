@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Threading.Tasks;
+using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 
 namespace ManosabaLin.Characters.Sherrylin.Orbs;
 
@@ -14,10 +15,9 @@ namespace ManosabaLin.Characters.Sherrylin.Orbs;
 /// 快乐球体：每打出攻击卡获得1层临时减力量，每打出攻击/技能/能力获得1点能量。
 /// </summary>
 [RegisterOrb]
-public sealed class EmotionJoyOrb : EmotionOrb
+public sealed class EmotionJoyOrb : EmotionOrb<EmotionJoy>
 {
-    protected override Color GetOrbColor() => new(1f, 0.8f, 0.2f);
-    protected override string GetOrbName() => "emotion_joy_orb";
+    protected override Color OrbColor => new(1f, 0.8f, 0.2f);
 
     public override async Task AfterCardPlayed(
         PlayerChoiceContext choiceContext, CardPlay cardPlay)

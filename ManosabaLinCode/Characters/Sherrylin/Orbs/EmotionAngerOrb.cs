@@ -1,4 +1,5 @@
 using Godot;
+using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
@@ -11,10 +12,9 @@ namespace ManosabaLin.Characters.Sherrylin.Orbs;
 /// 愤怒球体：本回合造成双倍伤害。
 /// </summary>
 [RegisterOrb]
-public sealed class EmotionAngerOrb : EmotionOrb
+public sealed class EmotionAngerOrb : EmotionOrb<EmotionAnger>
 {
-    protected override Color GetOrbColor() => new(1f, 0.2f, 0.2f);
-    protected override string GetOrbName() => "emotion_anger_orb";
+    protected override Color OrbColor => new(1f, 0.2f, 0.2f);
 
     public override decimal ModifyDamageMultiplicative(
         Creature? target, decimal amount, ValueProp props,
