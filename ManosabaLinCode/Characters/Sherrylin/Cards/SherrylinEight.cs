@@ -68,7 +68,6 @@ public sealed class SherrylinEight() : ManosabaCardTemplate(1, CardType.Skill, C
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        // 升级：格挡 +3（5 → 8）
-        DynamicVars.Block.BaseValue += 3;
+        DynamicVars.Block.UpgradeValueBy(3m);
     }
 }

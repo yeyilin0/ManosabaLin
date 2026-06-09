@@ -10,17 +10,17 @@ namespace ManosabaLin.Characters.Common;
 // 定义希罗角色卡牌池的标题、能量图标和卡背配色参数。
 public class LinCardPool : TypeListCardPoolModel
 {
-    private const string CharacterIdLower = "hiro";
+    private const string CharacterIdLower = "linenergy";
 
     // 卡池标题使用角色 Id，这里不是玩家看到的本地化显示名。
     public override string Title => Hiro.Hiro.CharacterId;
     public override string EnergyColorName => CharacterIdLower;
 
     // 指定大号能量图标的资源路径。
-    public override string BigEnergyIconPath => "charui/big_energy.png".ImagePath();
+    public override string BigEnergyIconPath => "characters/Hiro/linenergy.png".ImagePath();
 
     // 指定文本行内使用的小号能量图标资源路径。
-    public override string TextEnergyIconPath => "charui/text_energy.png".ImagePath();
+    public override string TextEnergyIconPath => "characters/Hiro/linenergy_small.png".ImagePath();
     private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateHsvShaderMaterial(1f, 0f, 1.44f);
 
     public override Material? PoolFrameMaterial => _poolFrameMaterial;

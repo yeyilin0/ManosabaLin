@@ -1,29 +1,28 @@
 using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
-using ManosabaLin.ManosabaLinCode.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Sherrylin;
+using ManosabaLin.ManosabaLinCode.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Linq;
-using MegaCrit.Sts2.Core.Helpers;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public class SherrylinAam : ManosabaCardTemplate
+public class SherrylinAam() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
-    private const int BaseEnergyCost = 2;
-    private const CardType CardKind = CardType.Power;
-    private const CardRarity CardRarityValue = CardRarity.Uncommon;
-    private const TargetType CardTarget = TargetType.AnyEnemy;
-
-    public SherrylinAam() : base(BaseEnergyCost, CardKind, CardRarityValue, CardTarget)
-    {
-    }
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new PowerVar<SuspectPower>(3m),
+        new PowerVar<AamPower>(1m)
+    ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -41,11 +40,11 @@ public class SherrylinAam : ManosabaCardTemplate
         ArgumentNullException.ThrowIfNull(markedEnemy);
 
         await PowerCmd.Apply<SuspectPower>(
-            choiceContext, source.Owner.Creature, 3,
+            choiceContext, source.Owner.Creature, source.DynamicVars["SuspectPower"].BaseValue,
             source.Owner.Creature, source, false);
 
         await PowerCmd.Apply<AamPower>(
-            choiceContext, markedEnemy, 1,
+            choiceContext, markedEnemy, source.DynamicVars["AamPower"].BaseValue,
             source.Owner.Creature, source, false);
 
         var redirectPower = markedEnemy.Powers.OfType<AamPower>().FirstOrDefault();

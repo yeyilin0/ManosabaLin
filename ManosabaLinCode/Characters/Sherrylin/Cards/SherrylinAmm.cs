@@ -18,7 +18,10 @@ public sealed class SherrylinAmm() : ManosabaCardTemplate(3, CardType.Attack, Ca
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
-        new DamageVar(8m, ValueProp.Move)
+        new DamageVar(8m, ValueProp.Move),
+        new PowerVar<AmmPower>(1m),
+        new PowerVar<SuspectPower>(1m),
+        new PowerVar<WithPower>(10m)
     };
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
@@ -54,19 +57,16 @@ public sealed class SherrylinAmm() : ManosabaCardTemplate(3, CardType.Attack, Ca
             .Execute(choiceContext);
 
         await PowerCmd.Apply<AmmPower>(
-            choiceContext, source.Owner.Creature, 1,
-            source.Owner.Creature, source, false
-        );
+            choiceContext, source.Owner.Creature, source.DynamicVars["AmmPower"].BaseValue,
+            source.Owner.Creature, source, false);
 
         await PowerCmd.Apply<SuspectPower>(
-            choiceContext, source.Owner.Creature, 1,
-            source.Owner.Creature, source, false
-        );
+            choiceContext, source.Owner.Creature, source.DynamicVars["SuspectPower"].BaseValue,
+            source.Owner.Creature, source, false);
 
         await PowerCmd.Apply<WithPower>(
-            choiceContext, source.Owner.Creature, 10,
-            source.Owner.Creature, source, false
-        );
+            choiceContext, source.Owner.Creature, source.DynamicVars["WithPower"].BaseValue,
+            source.Owner.Creature, source, false);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

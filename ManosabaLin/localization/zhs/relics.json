@@ -14,7 +14,7 @@
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.flavor": "写有岛外与宅邸的物资交易，以及在押少女们的情报的大量资料。上面也有艾玛她们所有人的人物资料和人脸照片。解读似乎需要耗费大量时间",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.selectionScreenPrompt": "选择要加入牌组的卡牌",
   "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.title": "拆解零件",
-  "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.description": "每回合获得1点能量。第一回合自动对随机敌方目标打出所有攻击牌。",
+  "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.description": "每回合获得{energyPrefix:energyIcons(1)}。第一回合自动对随机敌方目标打出所有攻击牌。",
   "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.flavor": "装在走廊的桶里的弩枪的零件。被拆解得十分零碎，难以修复",
   "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.title": "魔法步枪",
   "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.description": "每进入一个节点获得1点弹药（最多6点）。右键点击消耗1点弹药，将一张[b]【子弹】[/b]加入手牌。",

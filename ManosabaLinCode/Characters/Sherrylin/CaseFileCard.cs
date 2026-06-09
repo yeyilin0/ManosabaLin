@@ -3,7 +3,7 @@ using ManosabaLin.Characters.Sherrylin.Components;
 using ManosabaLin.Characters.Sherrylin.Orbs;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MinionLib.Component.Core;
@@ -14,11 +14,15 @@ using System.Collections.Generic;
 namespace ManosabaLin.Characters.Sherrylin;
 
 /// <summary>
-/// 案卷牌基类：从案卷牌堆打出时挂载到充能球槽位，最多同时生效两个。
+/// 案卷牌基类：打出时获得能力并挂载球体。
+/// 球体消散或被顶掉时，能力一起移除。
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public abstract class CaseFileCard(int energyCost, CardRarity rarity, TargetType targetType)
+public abstract class CaseFileCard<TOrb, TPower>(
+    int energyCost, CardRarity rarity, TargetType targetType)
     : ManosabaCardTemplate(energyCost, CardType.Power, rarity, targetType, false)
+    where TOrb : ModOrbTemplate
+    where TPower : PowerModel
 {
     protected override IEnumerable<ICardComponent> CanonicalComponents =>
         [new SherrylinOrbInitializerComponent()];
@@ -26,8 +30,15 @@ public abstract class CaseFileCard(int energyCost, CardRarity rarity, TargetType
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
-        await OrbCmd.Channel(choiceContext, CreateEmotionOrb(), Owner);
-    }
+        // 获得能力
+        var power = await PowerCmd.Apply<TPower>(
+            choiceContext, Owner.Creature, 1,
+            Owner.Creature, null, false);
 
-    protected abstract OrbModel CreateEmotionOrb();
+        // 挂载球体，绑定能力
+        var orb = (TOrb)ModelDb.Orb<TOrb>().MutableClone();
+        if (orb is EmotionOrb emotionOrb)
+            emotionOrb.BoundPower = power;
+        await OrbCmd.Channel(choiceContext, orb, Owner);
+    }
 }

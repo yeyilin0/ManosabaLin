@@ -59,8 +59,8 @@ public sealed class SherrylinMgm() : ManosabaCardTemplate(1, CardType.Skill, Car
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars["SuspectPower"].BaseValue = 2m;
-        DynamicVars["MgmPower"].BaseValue = 2m;
-        DynamicVars.Block.BaseValue = 10m;
+        DynamicVars["SuspectPower"].UpgradeValueBy(1m);
+        DynamicVars["MgmPower"].UpgradeValueBy(1m);
+        DynamicVars.Block.UpgradeValueBy(5m);
     }
 }

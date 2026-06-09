@@ -1,13 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b1emotionsadnessorb"]
+[gd_scene load_steps=2 format=3 uid="uid://d1drsyys8h5v8"]
 
-[ext_resource type="Texture2D" path="res://ManosabaLin/images/cards/big/emotionsadness.png" id="1_tex"]
-[ext_resource type="Texture2D" path="res://ManosabaLin/images/cards/big/emotionsadness.png" id="2_tex"]
+[ext_resource type="Texture2D" uid="uid://debtv7it5utxj" path="res://ManosabaLin/images/cards/big/emotionsadness.png" id="2_tex"]
 
 [node name="EmotionSadnessOrb" type="Node2D"]
 
-[node name="SpineSkeleton" type="Sprite2D" parent="."]
-texture = ExtResource("2_tex")
-
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_tex")
+texture = ExtResource("2_tex")

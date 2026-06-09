@@ -13,7 +13,7 @@ public class SherrylinCardPool : TypeListCardPoolModel
     public override string EnergyColorName => CharacterIdLower;
 
     public override string BigEnergyIconPath => "characters/Sherrylin/sherrylin_energy.png".ImagePath();
-    public override string TextEnergyIconPath => "characters/Sherrylin/sherrylin_energy.png".ImagePath();
+    public override string TextEnergyIconPath => "characters/Sherrylin/sherrylin_energy_small.png".ImagePath();
 
     private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateHsvShaderMaterial(0.55f, 0.6f, 1.2f);
     public override Material? PoolFrameMaterial => _poolFrameMaterial;

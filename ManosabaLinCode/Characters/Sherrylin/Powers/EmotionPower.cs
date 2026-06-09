@@ -30,7 +30,7 @@ public sealed class EmotionPower : ManosabaPowerTemplate
             Amount = 0;
 
             var rng = Owner.Player.RunState.Rng.CombatCardSelection;
-            var roll = rng.NextInt(6);
+            var roll = rng.NextInt(11);
 
             var combatState = Owner.CombatState;
             if (combatState != null)
@@ -43,6 +43,11 @@ public sealed class EmotionPower : ManosabaPowerTemplate
                     3 => combatState.CreateCard<EmotionFear>(Owner.Player),
                     4 => combatState.CreateCard<EmotionJoy>(Owner.Player),
                     5 => combatState.CreateCard<EmotionSurprise>(Owner.Player),
+                    6 => combatState.CreateCard<EmotionMelancholy>(Owner.Player),
+                    7 => combatState.CreateCard<EmotionIrritatedFear>(Owner.Player),
+                    8 => combatState.CreateCard<EmotionDesolate>(Owner.Player),
+                    9 => combatState.CreateCard<EmotionHorrorDisgust>(Owner.Player),
+                    10 => combatState.CreateCard<EmotionElation>(Owner.Player),
                     _ => null
                 };
 

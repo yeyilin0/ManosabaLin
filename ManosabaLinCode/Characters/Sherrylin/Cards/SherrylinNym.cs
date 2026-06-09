@@ -42,30 +42,23 @@ public sealed class SherrylinNym() : ManosabaCardTemplate(2, CardType.Attack, Ca
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        // 造成 6 点伤害
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
             .FromCard(source)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        // 获得 1 层嫌疑
         await PowerCmd.Apply<SuspectPower>(
-            choiceContext, source.Owner.Creature, 1,
-            source.Owner.Creature, source, false
-        );
+            choiceContext, source.Owner.Creature, source.DynamicVars["SuspectPower"].BaseValue,
+            source.Owner.Creature, source, false);
 
-        // 获得 10 层魔女化
         await PowerCmd.Apply<WithPower>(
-            choiceContext, source.Owner.Creature, 10,
-            source.Owner.Creature, source, false
-        );
+            choiceContext, source.Owner.Creature, source.DynamicVars["WithPower"].BaseValue,
+            source.Owner.Creature, source, false);
 
-        // 给目标 1 层 NymPower
         await PowerCmd.Apply<NymPower>(
-            choiceContext, target, 2,
-            source.Owner.Creature, source, false
-        );
+            choiceContext, target, source.DynamicVars["NymPower"].BaseValue,
+            source.Owner.Creature, source, false);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

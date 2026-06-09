@@ -10,7 +10,17 @@
   "MANOSABA_LIN_ORB_EMOTION_FEAR_ORB.title": "Fear",
   "MANOSABA_LIN_ORB_EMOTION_FEAR_ORB.description": "Cannot play attack cards. At turn end, gain half current block and give equal block to random ally. Removed at turn start.",
   "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.title": "Joy",
-  "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.description": "Gain 1 temporary strength down per attack played. Gain 1 energy per attack/skill/power played. Removed at turn start.",
+  "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.description": "Gain 1 temporary strength down per attack played. Gain {energyPrefix:energyIcons(1)} per attack/skill/power played. Removed at turn start.",
   "MANOSABA_LIN_ORB_EMOTION_SURPRISE_ORB.title": "Surprise",
-  "MANOSABA_LIN_ORB_EMOTION_SURPRISE_ORB.description": "At turn end, record hand size. Next turn start, draw equal cards. Then removed."
+  "MANOSABA_LIN_ORB_EMOTION_SURPRISE_ORB.description": "At turn end, record hand size. Next turn start, draw equal cards. Then removed.",
+  "MANOSABA_LIN_ORB_EMOTION_MELANCHOLY_ORB.title": "Melancholy",
+  "MANOSABA_LIN_ORB_EMOTION_MELANCHOLY_ORB.description": "Attack: +1 temp str down + ally heals 2. Skill: +2 block, 3 skills = +{energyPrefix:energyIcons(1)}. Power: all +{energyPrefix:energyIcons(1)}.",
+  "MANOSABA_LIN_ORB_EMOTION_IRRITATED_FEAR_ORB.title": "Irritated Fear",
+  "MANOSABA_LIN_ORB_EMOTION_IRRITATED_FEAR_ORB.description": "Cannot play attacks. Turn end: take 13 damage, gain equal block.",
+  "MANOSABA_LIN_ORB_EMOTION_DESOLATE_ORB.title": "Desolate",
+  "MANOSABA_LIN_ORB_EMOTION_DESOLATE_ORB.description": "Cannot play attacks or powers. Turn end: heal 1/4 of block.",
+  "MANOSABA_LIN_ORB_EMOTION_HORROR_DISGUST_ORB.title": "Horror Disgust",
+  "MANOSABA_LIN_ORB_EMOTION_HORROR_DISGUST_ORB.description": "When damaged: equal damage to all enemies, draw 1. Next turn: 1 dmg to random enemy X times.",
+  "MANOSABA_LIN_ORB_EMOTION_ELATION_ORB.title": "Elation",
+  "MANOSABA_LIN_ORB_EMOTION_ELATION_ORB.description": "Gain max energy, lose equal energy next turn."
 }

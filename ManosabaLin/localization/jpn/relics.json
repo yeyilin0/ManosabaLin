@@ -14,7 +14,7 @@
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.flavor": "島外との取引や、拘留された少女たちの情報が大量に書かれている。エマたち全員の人物資料と写真もある。解読には相当な時間がかかりそうだ",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.selectionScreenPrompt": "デッキに追加するカードを選択",
   "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.title": "分解パーツ",
-  "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.description": "毎ターンエネルギーを1得る。最初のターンにランダムな敵を対象に全ての攻撃カードを自動使用する。",
+  "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.description": "毎ターン{energyPrefix:energyIcons(1)}を得る。最初のターンにランダムな敵を対象に全ての攻撃カードを自動使用する。",
   "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.flavor": "廊下の桶に入っていたクロスボウのパーツ。かなり細かく分解されており、修復は困難",
   "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.title": "魔法のライフル",
   "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.description": "ノードに入るたびに弾薬を1得る（最大6）。右クリックで弾薬を1消費し、[b]【弾丸】[/b]を手札に加える。",

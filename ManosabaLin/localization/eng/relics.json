@@ -10,7 +10,7 @@
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.flavor": "A grimoire filled with everything, written all about Hiro's story.",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.selectionScreenPrompt": "Choose cards to add to your deck",
   "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.title": "Dismantled Parts",
-  "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.description": "Gain 1 Energy at the start of each turn. On the first turn, automatically play all Attack cards targeting random enemies.",
+  "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.description": "Gain {energyPrefix:energyIcons(1)} at the start of each turn. On the first turn, automatically play all Attack cards targeting random enemies.",
   "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.flavor": "Parts dismantled from some ancient device, still seemingly functional.",
   "MANOSABA_LIN_RELIC_MAGICSNIPIRRIFLE.title": "Magic Sniper Rifle",
   "MANOSABA_LIN_RELIC_MAGICSNIPIRRIFLE.description": "Gain 1 ammo when entering a node (max 6). At the start of each turn, consume 1 ammo to add a [b]Bullet[/b] to your hand.",

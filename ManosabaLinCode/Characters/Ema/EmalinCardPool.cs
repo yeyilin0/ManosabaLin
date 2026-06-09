@@ -18,7 +18,7 @@ public class EmalinCardPool : TypeListCardPoolModel
     public override string BigEnergyIconPath => "characters/Emalin/emalin_energy.png".ImagePath();
 
     // 指定文本行内使用的小号能量图标资源路径。
-    public override string TextEnergyIconPath => "characters/Emalin/emalin_energy.png".ImagePath();
+    public override string TextEnergyIconPath => "characters/Emalin/emalin_energy_small.png".ImagePath();
     private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateHsvShaderMaterial(0.953f, 0.47f, 1.38f);
 
     public override Material? PoolFrameMaterial => _poolFrameMaterial;

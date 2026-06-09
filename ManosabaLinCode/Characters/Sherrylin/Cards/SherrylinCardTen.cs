@@ -32,7 +32,8 @@ public sealed class SherrylinCardTen : ManosabaCardTemplate
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(5m, ValueProp.Move),
-        new PowerVar<SuspectPower>(1m)
+        new PowerVar<SuspectPower>(1m),
+        new PowerVar<HiroMagicRevivePower>(1m)
     ];
 
     [SavedProperty] public bool HasBeenPlayed { get; set; }
@@ -45,11 +46,11 @@ public sealed class SherrylinCardTen : ManosabaCardTemplate
 
         await PowerCmd.Apply<SuspectPower>(
             choiceContext, source.Owner.Creature,
-            1m, source.Owner.Creature, source, false);
+            source.DynamicVars["SuspectPower"].BaseValue, source.Owner.Creature, source, false);
 
         await PowerCmd.Apply<HiroMagicRevivePower>(
             choiceContext, source.Owner.Creature,
-            1m, source.Owner.Creature, source, false);
+            source.DynamicVars["HiroMagicRevivePower"].BaseValue, source.Owner.Creature, source, false);
 
         HasBeenPlayed = true;
     }

@@ -17,10 +17,7 @@ public sealed class SilverBlazeToken() : ManosabaCardTemplate(0, CardType.Attack
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips
-    {
-        get { yield return HoverTipFactory.FromKeyword(CardKeyword.Exhaust); }
-    }
+
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

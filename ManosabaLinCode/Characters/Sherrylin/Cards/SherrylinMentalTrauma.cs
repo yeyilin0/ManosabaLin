@@ -13,7 +13,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCharacterStarterCard(typeof(Sherrylin))]
 public class SherrylinMentalTrauma : ManosabaCardTemplate
 {
-    public SherrylinMentalTrauma() : base(1, CardType.Skill, CardRarity.Basic, TargetType.Self)
+    public SherrylinMentalTrauma() : base(1, CardType.Power, CardRarity.Basic, TargetType.Self)
     {
     }
 

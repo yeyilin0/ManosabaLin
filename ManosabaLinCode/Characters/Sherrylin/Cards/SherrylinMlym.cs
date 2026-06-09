@@ -26,6 +26,11 @@ public sealed class SherrylinMlym : ManosabaCardTemplate
 
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new PowerVar<MlyPower>(1m)
+    ];
+
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
         get
@@ -67,7 +72,7 @@ public sealed class SherrylinMlym : ManosabaCardTemplate
 
         var owner = Owner;
 
-        await PowerCmd.Apply<MlyPower>(choiceContext, cardPlay.Target, 1, Owner.Creature, this, false);
+        await PowerCmd.Apply<MlyPower>(choiceContext, cardPlay.Target, DynamicVars["MlyPower"].BaseValue, Owner.Creature, this, false);
 
         // 只选取可以交换的牌（排除已有附魔和特殊稀有度）
         var myHand = PileType.Hand.GetPile(owner).Cards

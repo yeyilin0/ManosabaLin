@@ -1,5 +1,5 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -63,7 +63,7 @@ public sealed class CardEleven() : ManosabaCardTemplate(1, CardType.Skill, CardR
         // 第四步：根据消耗的牌数获得 JusticePower 层数
         if (exhaustCount > 0)
             await PowerCmd.Apply<PerjuryPower>(
-                choiceContext, // ★ 第一个参数
+                choiceContext,
                 cardSource.Owner.Creature,
                 exhaustCount,
                 cardSource.Owner.Creature,

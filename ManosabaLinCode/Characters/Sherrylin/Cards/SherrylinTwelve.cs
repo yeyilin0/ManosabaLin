@@ -21,7 +21,8 @@ public sealed class SherrylinTwelve() : ManosabaCardTemplate(0, CardType.Skill, 
     [
         new DynamicVar("ConsumeAmount", 2m),
         new PowerVar<SuspectPower>(3m),
-        new EnergyVar(2)
+        new EnergyVar(2),
+        new PowerVar<YlsmPower>(1m)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
@@ -69,9 +70,9 @@ public sealed class SherrylinTwelve() : ManosabaCardTemplate(0, CardType.Skill, 
             target.Player
         );
 
-        // 给自己 1 层 YlsmPower
+        // 给自己 YlsmPower
         await PowerCmd.Apply<YlsmPower>(
-            choiceContext, source.Owner.Creature, 1,
+            choiceContext, source.Owner.Creature, source.DynamicVars["YlsmPower"].BaseValue,
             source.Owner.Creature, source, false
         );
     }

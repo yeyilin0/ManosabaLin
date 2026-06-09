@@ -1,4 +1,5 @@
-﻿using ManosabaLin.Characters.Hiro.Cards;
+﻿using ManosabaLin.Characters.Ema.Cards;
+using ManosabaLin.Characters.Hiro.Cards;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -35,44 +36,51 @@ public sealed class SuspectPower : ManosabaPowerTemplate
         if (power != this) return;
 
         var currentAmount = power.Amount;
+        var previousAmount = currentAmount - amount;
 
-        var strengthLoss = currentAmount / 2 * StrengthLossPerTwoStacks;
+        // 只在增加时扣力量，每2层扣1
+        if (amount > 0)
+        {
+            var oldThreshold = (int)(previousAmount / 2);
+            var newThreshold = (int)(currentAmount / 2);
+            var strengthLoss = (newThreshold - oldThreshold) * StrengthLossPerTwoStacks;
 
-        if (strengthLoss > 0)
-            await PowerCmd.Apply<StrengthPower>(
-                new ThrowingPlayerChoiceContext(),
-                Owner,
-                -strengthLoss,
-                Owner,
-                null,
-                false
-            );
+            if (strengthLoss > 0)
+                await PowerCmd.Apply<StrengthPower>(
+                    choiceContext,
+                    Owner,
+                    -strengthLoss,
+                    Owner,
+                    null,
+                    false
+                );
+        }
 
+        // 达到阈值时触发
         if (currentAmount >= TokenThreshold && !_tokenGiven && !_isRestoring)
         {
             _tokenGiven = true;
-            await RemovePowersFromOwnerAndPrepareRestore();
 
-            if (Owner.Player != null) await GiveBadEndingCurse();
+            if (Owner.IsPlayer)
+                await GiveBadEndingCurse();
+            else
+                await RemoveBuffsAndPrepareRestore();
         }
     }
 
-    private async Task RemovePowersFromOwnerAndPrepareRestore()
+    private async Task RemoveBuffsAndPrepareRestore()
     {
         if (Owner?.CombatState == null) return;
 
         var removed = new List<PowerSnapShot>();
 
-        var creature = Owner;
-
-        foreach (var power in creature.Powers.ToList().Where(p => p.Type == PowerType.Buff))
+        foreach (var p in Owner.Powers.ToList().Where(p => p.Type == PowerType.Buff))
         {
-            removed.Add(new PowerSnapShot(creature, power.Id, power.Amount));
-            await PowerCmd.Remove(power);
+            removed.Add(new PowerSnapShot(Owner, p.Id, p.Amount));
+            await PowerCmd.Remove(p);
         }
 
         RemovedPowers = removed;
-
         _isRestoring = true;
     }
 
@@ -87,7 +95,7 @@ public sealed class SuspectPower : ManosabaPowerTemplate
             {
                 var powerModel = ModelDb.GetById<PowerModel>(powerId);
                 await PowerCmd.Apply(
-                    new ThrowingPlayerChoiceContext(),
+                    choiceContext,
                     powerModel.ToMutable(0),
                     creature,
                     amount,
@@ -107,8 +115,16 @@ public sealed class SuspectPower : ManosabaPowerTemplate
         if (Owner?.Player == null) return;
         if (Owner.CombatState == null) return;
 
-        var curseModel = ModelDb.GetById<CardModel>(ModelDb.GetId<HiroBadEnding>());
+        // 根据当前玩家角色给予对应的坏结局卡
+        var characterType = Owner.Player.Character?.GetType();
+        ModelId curseModelId;
 
+        if (characterType == typeof(Emalin.Emalin))
+            curseModelId = ModelDb.GetId<EmaBadEnding>();
+        else
+            curseModelId = ModelDb.GetId<HiroBadEnding>();
+
+        var curseModel = ModelDb.GetById<CardModel>(curseModelId);
         var curseCard = Owner.CombatState.CreateCard(curseModel, Owner.Player);
         await CardPileCmd.AddGeneratedCardToCombat(curseCard, PileType.Hand, Owner.Player);
     }

@@ -1,0 +1,25 @@
+using ManosabaLin.Characters.Common.Components.Abstracts;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MinionLib.Component.Core;
+
+namespace ManosabaLin.Characters.Sherrylin.Components;
+
+/// <summary>
+/// 浮空组件：当打出2费及以上的卡时，带有此组件的卡自动打出。
+/// </summary>
+public sealed partial class LevitationComponent : KeywordLikeComponent
+{
+    public override async Task AfterCardPlayedPostfix(PlayerChoiceContext choiceContext, CardPlay cardPlay,
+        ComponentContext componentContext)
+    {
+        var card = Card;
+        if (card == null) return;
+        if (card.Pile?.Type != PileType.Hand) return;
+        if (cardPlay.Card == card) return;
+        if (cardPlay.Card.EnergyCost.Canonical < 2) return;
+
+        await CardCmd.AutoPlay(choiceContext, card, null);
+    }
+}

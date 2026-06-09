@@ -10,7 +10,17 @@
   "MANOSABA_LIN_ORB_EMOTION_FEAR_ORB.title": "恐惧",
   "MANOSABA_LIN_ORB_EMOTION_FEAR_ORB.description": "无法打出攻击牌，回合结束获得当前一半格挡并分给随机队友。回合开始移除。",
   "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.title": "快乐",
-  "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.description": "每打出攻击卡获得1层临时减力量，每打出攻击/技能/能力获得1点能量。回合开始移除。",
+  "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.description": "每打出攻击卡获得1层临时减力量，每打出攻击/技能/能力获得{energyPrefix:energyIcons(1)}。回合开始移除。",
   "MANOSABA_LIN_ORB_EMOTION_SURPRISE_ORB.title": "惊讶",
-  "MANOSABA_LIN_ORB_EMOTION_SURPRISE_ORB.description": "回合结束记录手卡数量，下回合开始抽取等量卡牌，然后移除。"
+  "MANOSABA_LIN_ORB_EMOTION_SURPRISE_ORB.description": "回合结束记录手卡数量，下回合开始抽取等量卡牌，然后移除。",
+  "MANOSABA_LIN_ORB_EMOTION_MELANCHOLY_ORB.title": "怅然",
+  "MANOSABA_LIN_ORB_EMOTION_MELANCHOLY_ORB.description": "攻击+1临时减力量+回复队友2血，技能+2盾，3张技能回{energyPrefix:energyIcons(1)}，能力牌全体+{energyPrefix:energyIcons(1)}。",
+  "MANOSABA_LIN_ORB_EMOTION_IRRITATED_FEAR_ORB.title": "恼惧",
+  "MANOSABA_LIN_ORB_EMOTION_IRRITATED_FEAR_ORB.description": "无法打出攻击牌，回合结束给予自身13伤害并获得等量护盾。",
+  "MANOSABA_LIN_ORB_EMOTION_DESOLATE_ORB.title": "凄惶",
+  "MANOSABA_LIN_ORB_EMOTION_DESOLATE_ORB.description": "无法打出攻击牌和能力牌，回合结束回复护盾量四分之一的血量。",
+  "MANOSABA_LIN_ORB_EMOTION_HORROR_DISGUST_ORB.title": "骇厌",
+  "MANOSABA_LIN_ORB_EMOTION_HORROR_DISGUST_ORB.description": "受到伤害时对敌方全体造成等量伤害并抽1，下回合开始随机对敌人造成1点伤害次数等于手牌数。",
+  "MANOSABA_LIN_ORB_EMOTION_ELATION_ORB.title": "雀跃",
+  "MANOSABA_LIN_ORB_EMOTION_ELATION_ORB.description": "获得等于能量上限的能量但减少下回合能量。"
 }
