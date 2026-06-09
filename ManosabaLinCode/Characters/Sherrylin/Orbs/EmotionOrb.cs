@@ -1,70 +1,88 @@
-using Godot;
-using ManosabaLin.Extensions;
-using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Creatures;
-using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
-using STS2RitsuLib.Scaffolding.Content;
+using HarmonyLib;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.Nodes.Orbs;
 using STS2RitsuLib.Scaffolding.Godot;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ManosabaLin.Characters.Sherrylin.Orbs;
 
 /// <summary>
-/// 情绪球体基类：球体只负责能力的获得与移除。
-/// 获得球体 → 获得能力；球体被顶掉或消散 → 能力一起移除。
+/// 情绪球体基类：效果直接写在球体里，球体消散效果消失。
 /// </summary>
-public abstract class EmotionOrb : ModOrbTemplate
+/// <typeparam name="T">与之关联的牌的类型，将显示为情绪球体的视觉效果</typeparam>
+public abstract class EmotionOrb<T> : ModOrbTemplate, IEmotionOrb where T : CardModel
 {
     public override decimal PassiveVal => 0;
     public override decimal EvokeVal => 0;
-    public override Color DarkenedColor => GetOrbColor();
+    public override Color DarkenedColor => OrbColor;
 
-    /// <summary>
-    /// 绑定的能力引用，球体消散时一起移除。
-    /// </summary>
-    public PowerModel? BoundPower { get; set; }
-
-    protected abstract Color GetOrbColor();
-    protected abstract string GetOrbName();
+    protected abstract Color OrbColor { get; }
 
     public override OrbAssetProfile AssetProfile => new(
-        IconPath: $"res://ManosabaLin/images/orbs/{GetOrbName()}.png",
-        VisualsScenePath: $"res://ManosabaLin/scenes/orbs/orb_visuals/{GetOrbName()}.tscn"
+        IconPath: "res://images/events/crystal_sphere/crystal_sphere_rare_card_reward.png",
+        VisualsScenePath: "res://ManosabaLin/scenes/orbs/orb_visuals/orb_blank.tscn"
     );
 
     protected override Node2D? TryCreateOrbSprite()
         => RitsuGodotNodeFactories.CreateFromScenePath<Node2D>(AssetProfile.VisualsScenePath!);
 
+    public CardModel GetEmotionCard()
+    {
+        return ModelDb.Card<T>();
+    }
+
     /// <summary>
-    /// 下回合开始自动消散，连带能力一起移除。
+    /// 下回合开始自动消散
     /// </summary>
     public override async Task AfterTurnStartOrbTrigger(PlayerChoiceContext ctx)
     {
-        await RemoveBoundPower();
         await OrbCmd.EvokeNext(ctx, Owner);
     }
 
-    /// <summary>
-    /// 消散时移除绑定的能力。
-    /// </summary>
-    public override async Task<IEnumerable<Creature>> Evoke(PlayerChoiceContext ctx)
-    {
-        await RemoveBoundPower();
-        return new[] { Owner.Creature };
-    }
-
-    private async Task RemoveBoundPower()
-    {
-        if (BoundPower != null)
-        {
-            await PowerCmd.Remove(BoundPower);
-            BoundPower = null;
-        }
-    }
-
     public override Task Passive(PlayerChoiceContext ctx, Creature? target) => Task.CompletedTask;
+
+    public override Task<IEnumerable<Creature>> Evoke(PlayerChoiceContext ctx)
+    {
+        return Task.FromResult<IEnumerable<Creature>>([Owner.Creature]);
+    }
+}
+
+public interface IEmotionOrb
+{
+    CardModel GetEmotionCard();
+}
+
+[HarmonyPatch(typeof(NOrb), nameof(NOrb._Ready))]
+internal static class EmotionOrbVisualPatch
+{
+    [HarmonyPostfix]
+    public static void Postfix(NOrb __instance)
+    {
+        var orb = __instance.Model;
+        if (orb is not IEmotionOrb emotionOrb) return;
+        var card = emotionOrb.GetEmotionCard();
+        var nCard = NCard.Create(card);
+        if (nCard == null) return;
+
+        nCard.Modulate = nCard.Modulate with { A = 0 };
+        __instance.AddChildSafely(nCard);
+        nCard.UpdateVisuals(PileType.None, CardPreviewMode.Normal);
+
+        nCard.Scale = new Vector2(0.5f, 0.5f);
+
+        nCard._descriptionLabel.QueueFree();
+        nCard._ancientTextBg.QueueFree();
+        nCard._typePlaque.QueueFree();
+        nCard._typeLabel.QueueFree();
+        nCard._titleLabel.QueueFree();
+        nCard._ancientBanner.QueueFree();
+        nCard._energyIcon.QueueFree();
+        nCard._energyLabel.QueueFree();
+
+        var tween = __instance.CreateTween();
+
+        tween.TweenProperty(nCard, "modulate:a", 1.0f, 0.4f)
+            .SetTrans(Tween.TransitionType.Cubic)
+            .SetEase(Tween.EaseType.Out);
+    }
 }

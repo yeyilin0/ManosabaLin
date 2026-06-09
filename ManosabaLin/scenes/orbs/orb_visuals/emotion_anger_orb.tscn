@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqpf08atlf1xv"]
-
-[ext_resource type="Texture2D" uid="uid://8ca7kgpjwphm" path="res://ManosabaLin/images/cards/big/emotionanger.png" id="2_tex"]
-
-[node name="EmotionAngerOrb" type="Node2D"]
-
-[node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_tex")

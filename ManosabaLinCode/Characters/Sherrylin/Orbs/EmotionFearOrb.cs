@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System;
 using System.Threading.Tasks;
+using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 
 namespace ManosabaLin.Characters.Sherrylin.Orbs;
 
@@ -14,10 +15,9 @@ namespace ManosabaLin.Characters.Sherrylin.Orbs;
 /// 恐惧球体：回合结束获得当前一半格挡。
 /// </summary>
 [RegisterOrb]
-public sealed class EmotionFearOrb : EmotionOrb
+public sealed class EmotionFearOrb : EmotionOrb<EmotionFear>
 {
-    protected override Color GetOrbColor() => new(0.5f, 0.2f, 0.7f);
-    protected override string GetOrbName() => "emotion_fear_orb";
+    protected override Color OrbColor => new(0.5f, 0.2f, 0.7f);
 
     public override async Task BeforeTurnEndOrbTrigger(PlayerChoiceContext ctx)
     {

@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Threading.Tasks;
+using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 
 namespace ManosabaLin.Characters.Sherrylin.Orbs;
 
@@ -14,10 +15,9 @@ namespace ManosabaLin.Characters.Sherrylin.Orbs;
 /// 厌恶球体：受到敌人攻击时反弹等量伤害。
 /// </summary>
 [RegisterOrb]
-public sealed class EmotionDisgustOrb : EmotionOrb
+public sealed class EmotionDisgustOrb : EmotionOrb<EmotionDisgust>
 {
-    protected override Color GetOrbColor() => new(0.6f, 0.8f, 0.2f);
-    protected override string GetOrbName() => "emotion_disgust_orb";
+    protected override Color OrbColor => new(0.6f, 0.8f, 0.2f);
 
     public override async Task AfterDamageReceived(
         PlayerChoiceContext choiceContext, Creature target,

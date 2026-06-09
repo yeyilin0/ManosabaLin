@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Threading.Tasks;
+using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 
 namespace ManosabaLin.Characters.Sherrylin.Orbs;
 
@@ -14,10 +15,9 @@ namespace ManosabaLin.Characters.Sherrylin.Orbs;
 /// 悲伤球体：每打出一张卡获得1点护盾，回复1点生命。
 /// </summary>
 [RegisterOrb]
-public sealed class EmotionSadnessOrb : EmotionOrb
+public sealed class EmotionSadnessOrb : EmotionOrb<EmotionSadness>
 {
-    protected override Color GetOrbColor() => new(0.4f, 0.4f, 0.9f);
-    protected override string GetOrbName() => "emotion_sadness_orb";
+    protected override Color OrbColor => new(0.4f, 0.4f, 0.9f);
 
     public override async Task AfterCardPlayed(
         PlayerChoiceContext choiceContext, CardPlay cardPlay)
