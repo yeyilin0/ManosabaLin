@@ -3,7 +3,7 @@
   "name": "ManosabaLin",
   "author": "Lin",
   "description": "艾玛和希罗",
-  "version": "v0.2.71",
+  "version": "v__THIS_VERSION__",
   "has_pck": true,
   "has_dll": true,
   "affects_gameplay": true,
@@ -11,16 +11,11 @@
   "dependencies": [
     {
       "id": "STS2-RitsuLib",
-      "min_version": "0.3.2"
+      "min_version": "__STS2-RitsuLib_VERSION__"
     },
     {
       "id": "MinionLib",
-      "min_version": "0.4.4"
-    },
-    {
-      "id": "MinionLib.RitsuAdapters",
-      "min_version": "0.4.4"
+      "min_version": "__MinionLib_VERSION__"
     }
   ]
-
 }

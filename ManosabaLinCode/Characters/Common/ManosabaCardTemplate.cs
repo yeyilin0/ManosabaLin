@@ -1,7 +1,7 @@
 ﻿using Godot;
 using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MinionLib.RitsuAdapters;
+using ManosabaLin.RitsuAdapters;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace ManosabaLin.Characters.Common;

@@ -11,6 +11,7 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
         <RootNamespace>ManosabaLin</RootNamespace>
+        <Version>0.2.71</Version>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -34,8 +35,8 @@
     <ItemGroup>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <!--        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />-->
-        <PackageReference Include="STS2.RitsuLib" Version="0.4.15" PrivateAssets="All" />
-        <PackageReference Include="FuYnAloft.Sts2.MinionLib.RitsuAdapters" Version="0.4.5" PrivateAssets="All" />
+        <PackageReference Include="STS2.RitsuLib" Version="0.4.15" PrivateAssets="All" GeneratePathProperty="true"/>
+        <PackageReference Include="FuYnAloft.Sts2.MinionLib" Version="0.5.2" PrivateAssets="All" GeneratePathProperty="true"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -68,7 +69,7 @@
     <ItemGroup>
         <None Condition="Exists('Directory.Build.props')" Include="Directory.Build.props"/>
         <None Include=".gitignore"/>
-        <None Include="ManosabaLin.json"/>
+        <None Include="ManosabaLin.template.json" />
         <None Include="project.godot"/>
         <None Include="ManosabaLin/**"/>
         <!--        <None Remove="ManosabaLin\audio\**"/>-->
@@ -98,18 +99,35 @@
                 Text="Could not find sts2.dll under '$(Sts2DataDir)'. Set Sts2Path in local.props following the WineFox pattern."/>
     </Target>
 
+    <!-- 自动更新 json 中的版本号 -->
+    <Target Name="UpdateManifestVersion" BeforeTargets="BeforeBuild">
+        <PropertyGroup>
+            <RitsuVersion>$([System.IO.Path]::GetFileName($(PkgSTS2_RitsuLib)))</RitsuVersion>
+            <MinionLibVersion>$([System.IO.Path]::GetFileName($(PkgFuYnAloft_Sts2_MinionLib)))</MinionLibVersion>
+
+            <ManifestTemplateFile>$(MSBuildProjectDirectory)/$(MSBuildProjectName).template.json</ManifestTemplateFile>
+
+            <ManifestOutputFile>$(IntermediateOutputPath)$(MSBuildProjectName).json</ManifestOutputFile>
+        </PropertyGroup>
+
+        <Message Text="Updating version in $(ManifestOutputFile) to $(Version)" Importance="high"/>
+
+        <ItemGroup>
+            <FileLines Include="$([System.IO.File]::ReadAllText($(ManifestTemplateFile))
+                .Replace('__THIS_VERSION__', '$(Version)')
+                .Replace('__GAME_VERSION__', '$(Sts2Version)')
+                .Replace('__STS2-RitsuLib_VERSION__', '$(RitsuVersion)')
+                .Replace('__MinionLib_VERSION__', '$(MinionLibVersion)'))"/>
+        </ItemGroup>
+
+        <WriteLinesToFile File="$(ManifestOutputFile)" Lines="@(FileLines)" Overwrite="true" WriteOnlyWhenDifferent="true"/>
+    </Target>
+
     <Target Name="CopyMod" AfterTargets="PostBuildEvent">
         <Message Text="Copying mod to Slay the Spire 2 mods folder..." Importance="high"/>
-        <ItemGroup>
-            <ModLooseAudio
-                    Include="$(MSBuildProjectDirectory)\ManosabaLin\audio\**\*.*"
-                    Exclude="$(MSBuildProjectDirectory)\ManosabaLin\audio\**\*.import;$(MSBuildProjectDirectory)\ManosabaLin\audio\**\*.bank"/>
-        </ItemGroup>
         <MakeDir Directories="$(ModOutputDir)"/>
         <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ModOutputDir)"/>
-        <Copy SourceFiles="$(MSBuildProjectDirectory)\ManosabaLin.json" DestinationFolder="$(ModOutputDir)"/>
-        <MakeDir Directories="@(ModLooseAudio->'$(ModOutputDir)audio\%(RecursiveDir)')"/>
-        <Copy SourceFiles="@(ModLooseAudio)" DestinationFiles="@(ModLooseAudio->'$(ModOutputDir)audio\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true"/>
+        <Copy SourceFiles="$(ManifestOutputFile)" DestinationFolder="$(ModOutputDir)"/>
     </Target>
 
     <Target Name="BuildAndCopyFmod" BeforeTargets="ExportPCK">
