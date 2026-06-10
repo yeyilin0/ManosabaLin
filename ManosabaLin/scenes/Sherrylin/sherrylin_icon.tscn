@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnnf6t4s0txkg"]
+[gd_scene load_steps=2 format=3 ]
 
-[ext_resource type="Texture2D" uid="uid://rmdu2db3ungd" path="res://ManosabaLin/images/characters/Emalin/emalin_map.png" id="1"]
+[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Sherrylin/sherrylin_map.png" id="1"]
 
 [node name="SherrylinIcon" type="TextureRect"]
 anchors_preset = -1

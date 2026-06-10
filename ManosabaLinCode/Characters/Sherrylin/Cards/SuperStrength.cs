@@ -12,23 +12,16 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 怪力：雪莉的专属魔法卡，回合开始获得20魔女化，获得一张被称为冲击波的拳风，升级获得固有并且获得称为冲击波的拳风的升级版
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class SuperStrength() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+public sealed class SuperStrength() : ManosabaCardTemplate(3, CardType.Power, CardRarity.Ancient, TargetType.Self)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get
-        {
-            if (IsUpgraded)
-                yield return CardKeyword.Innate;
-        }
-    }
+   
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
         get
         {
             yield return HoverTipFactory.FromPower<SuperStrengthPower>();
-            yield return HoverTipFactory.FromCard<ShockwaveFist>();
+            yield return HoverTipFactory.FromCard<ShockwaveFist>(IsUpgraded);
         }
     }
 
@@ -45,5 +38,6 @@ public sealed class SuperStrength() : ManosabaCardTemplate(2, CardType.Power, Ca
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
+        AddKeyword(CardKeyword.Innate);
     }
 }

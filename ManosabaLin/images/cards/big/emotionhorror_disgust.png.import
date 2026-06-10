@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csx0y82llrylx"
-path="res://.godot/imported/emotion_desolate_orb.png-0a0e33ec126e037ed0c0b0ff388c1f58.ctex"
+uid="uid://dwf7apbx6co5o"
+path="res://.godot/imported/emotionhorror_disgust.png-f9d3b8c70f0251b46c021859e5a5a73c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/orbs/emotion_desolate_orb.png"
-dest_files=["res://.godot/imported/emotion_desolate_orb.png-0a0e33ec126e037ed0c0b0ff388c1f58.ctex"]
+source_file="res://ManosabaLin/images/cards/big/emotionhorror_disgust.png"
+dest_files=["res://.godot/imported/emotionhorror_disgust.png-f9d3b8c70f0251b46c021859e5a5a73c.ctex"]
 
 [params]
 

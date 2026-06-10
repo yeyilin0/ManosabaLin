@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2buon3ycaaj7"
-path="res://.godot/imported/emotion_irritated_fear_orb.png-abb8994c5ce58f0b843c83ae6cc34d90.ctex"
+uid="uid://b50tqsy5crw7j"
+path="res://.godot/imported/emotionirritated_fear.png-91feb00e541d95f15804c69558a010b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/orbs/emotion_irritated_fear_orb.png"
-dest_files=["res://.godot/imported/emotion_irritated_fear_orb.png-abb8994c5ce58f0b843c83ae6cc34d90.ctex"]
+source_file="res://ManosabaLin/images/cards/big/emotionirritated_fear.png"
+dest_files=["res://.godot/imported/emotionirritated_fear.png-91feb00e541d95f15804c69558a010b5.ctex"]
 
 [params]
 

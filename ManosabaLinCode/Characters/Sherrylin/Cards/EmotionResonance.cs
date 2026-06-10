@@ -44,7 +44,7 @@ public sealed class EmotionResonance() : ManosabaCardTemplate(1, CardType.Skill,
         {
             foreach (var orb in orbQueue.Orbs)
             {
-                if (orb is EmotionOrb)
+                if (orb is IEmotionOrb)
                 {
                     await PowerCmd.Apply<EmotionPower>(
                         choiceContext, Owner.Creature, bonusAmount,

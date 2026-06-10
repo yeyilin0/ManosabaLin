@@ -34,7 +34,7 @@ public sealed class AbandonReshape() : ManosabaCardTemplate(1, CardType.Skill, C
                 .Where(c => c != source).ToList();
             if (hand.Count == 0) break;
 
-            var prefs = new CardSelectorPrefs(new LocString("AbandonReshape", "选择要移除的卡"), 1);
+            var prefs = new CardSelectorPrefs(new LocString("selectionScreenPrompt", "选择要移除的卡"), 1);
             var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, hand, source.Owner, prefs);
             var selectedList = selected.ToList();
             if (selectedList.Count > 0)

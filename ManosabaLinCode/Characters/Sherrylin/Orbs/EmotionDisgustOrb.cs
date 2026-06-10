@@ -30,6 +30,6 @@ public sealed class EmotionDisgustOrb : EmotionOrb<EmotionDisgust>
 
         await CreatureCmd.Damage(
             choiceContext, dealer, result.TotalDamage,
-            ValueProp.Unpowered, Owner.Creature, null);
+            ValueProp.Move, Owner.Creature, null);
     }
 }

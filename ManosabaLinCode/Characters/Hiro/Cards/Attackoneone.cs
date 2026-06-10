@@ -74,7 +74,7 @@ public sealed class Attackoneone : ManosabaCardTemplate
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new DamageVar(CurrentDamage, ValueProp.Move),
-        new IntVar("Increase", 3),
+        new IntVar("Increase", 1),
         new IntVar("PerjuryIncrease", CurrentPerjury)
     };
 
@@ -106,25 +106,22 @@ public sealed class Attackoneone : ManosabaCardTemplate
             source.Owner.Creature, source, false
         );
 
-        var damageIncrease = source.DynamicVars["Increase"].IntValue;
-        var perjuryIncrease = 1;
-        source.BuffFromPlay(damageIncrease, perjuryIncrease);
+        var increase = source.DynamicVars["Increase"].IntValue;
+        source.BuffFromPlay(increase);
 
         if (source.DeckVersion is Attackoneone deckVersion)
-            deckVersion.BuffFromPlay(damageIncrease, perjuryIncrease);
+            deckVersion.BuffFromPlay(increase);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars["Increase"].UpgradeValueBy(1);
-        DynamicVars["PerjuryIncrease"].UpgradeValueBy(1);
-        IncreasedPerjury += 1;
     }
 
-    public void BuffFromPlay(int extraDamage, int extraPerjury)
+    public void BuffFromPlay(int increase)
     {
-        IncreasedDamage += extraDamage;
-        IncreasedPerjury += extraPerjury;
+        IncreasedDamage += increase;
+        IncreasedPerjury += increase;
         UpdateDamage();
     }
 

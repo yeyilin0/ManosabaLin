@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ct3a262cw4yhr"
-path="res://.godot/imported/emotion_elation_orb.png-8067555edc8321bd1aef09f3bf1390cd.ctex"
+uid="uid://ctiepc3w385pe"
+path="res://.godot/imported/emotionmelancholy.png-31e7e1d6a28fc515ccc734a91d7978c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/orbs/emotion_elation_orb.png"
-dest_files=["res://.godot/imported/emotion_elation_orb.png-8067555edc8321bd1aef09f3bf1390cd.ctex"]
+source_file="res://ManosabaLin/images/cards/big/emotionmelancholy.png"
+dest_files=["res://.godot/imported/emotionmelancholy.png-31e7e1d6a28fc515ccc734a91d7978c3.ctex"]
 
 [params]
 

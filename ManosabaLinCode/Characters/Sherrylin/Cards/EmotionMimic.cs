@@ -27,7 +27,7 @@ public sealed class EmotionMimic() : ManosabaCardTemplate(1, CardType.Skill, Car
 
         if (caseFileCards.Count == 0) return;
 
-        var prefs = new CardSelectorPrefs(new LocString("EmotionMimic", "选择一张基础情绪卡"), 1);
+        var prefs = new CardSelectorPrefs(new LocString("selectionScreenPrompt", "选择一张基础情绪卡"), 1);
         var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, caseFileCards, source.Owner, prefs);
         var selectedList = selected.ToList();
         if (selectedList.Count > 0)

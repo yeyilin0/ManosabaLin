@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://dmnfgg05obcep"]
 
-[ext_resource type="Texture2D" uid="uid://crrdiblbka77n" path="res://ManosabaLin/images/characters/Emalin/emalin_char_visual.png" id="1_1fh51"]
+[ext_resource type="Texture2D" uid="uid://gvrypvv3iro1" path="res://ManosabaLin/images/characters/Sherrylin/sherrylin.png" id="1_1fh51"]
 
 [node name="Sherrylin" type="Node2D"]
 
 [node name="Visuals" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-4.999999, -202.00002)
-scale = Vector2(0.2795677, 0.27956766)
+position = Vector2(8.999994, -199.18748)
+scale = Vector2(0.26009566, 0.2629336)
 texture = ExtResource("1_1fh51")
 
 [node name="Bounds" type="Control" parent="."]

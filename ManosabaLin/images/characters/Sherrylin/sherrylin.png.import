@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvn645rkyetcv"
-path="res://.godot/imported/emotion_melancholy_orb.png-6c2dac1f59b8887bd4a78d21971242c5.ctex"
+uid="uid://gvrypvv3iro1"
+path="res://.godot/imported/sherrylin.png-09a613b4466f2118d5b2b839777b6f86.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/orbs/emotion_melancholy_orb.png"
-dest_files=["res://.godot/imported/emotion_melancholy_orb.png-6c2dac1f59b8887bd4a78d21971242c5.ctex"]
+source_file="res://ManosabaLin/images/characters/Sherrylin/sherrylin.png"
+dest_files=["res://.godot/imported/sherrylin.png-09a613b4466f2118d5b2b839777b6f86.ctex"]
 
 [params]
 

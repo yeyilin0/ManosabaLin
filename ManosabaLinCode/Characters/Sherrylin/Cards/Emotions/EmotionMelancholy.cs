@@ -1,9 +1,8 @@
 using ManosabaLin.Characters.Sherrylin.Orbs;
-using ManosabaLin.Characters.Sherrylin.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 
 [RegisterCard(typeof(LinCardPool))]
-public sealed class EmotionMelancholy() : CaseFileCard<EmotionMelancholyOrb, EmotionMelancholyPower>(0, CardRarity.Ancient, TargetType.Self);
+public sealed class EmotionMelancholy() : CaseFileCard<EmotionMelancholyOrb>(0, CardRarity.Ancient, TargetType.Self);

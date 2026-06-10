@@ -46,7 +46,7 @@ public sealed class IHaveAFriend() : ManosabaCardTemplate(1, CardType.Skill, Car
             if (caseFileCards.Count == 0) return;
 
             // 选择要给的卡
-            var cardPrefs = new CardSelectorPrefs(new LocString("IHaveAFriend", "选择一张卡给予队友"), 1);
+            var cardPrefs = new CardSelectorPrefs(new LocString("selectionScreenPrompt", "选择一张卡给予队友"), 1);
             var cardSelection = await CardSelectCmd.FromSimpleGrid(
                 choiceContext, caseFileCards, source.Owner, cardPrefs);
             var selectedCard = cardSelection.FirstOrDefault();
