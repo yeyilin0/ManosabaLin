@@ -11,6 +11,7 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
         <RootNamespace>ManosabaLin</RootNamespace>
+        <Version>0.2.7</Version>
     </PropertyGroup>
 
     <PropertyGroup>
