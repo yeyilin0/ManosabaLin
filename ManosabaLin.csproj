@@ -11,7 +11,7 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
         <RootNamespace>ManosabaLin</RootNamespace>
-        <Version>0.2.7</Version>
+        <Version>0.2.71</Version>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -36,7 +36,7 @@
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <!--        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />-->
         <PackageReference Include="STS2.RitsuLib" Version="0.4.15" PrivateAssets="All" />
-        <PackageReference Include="FuYnAloft.Sts2.MinionLib.RitsuAdapters" Version="0.4.5" PrivateAssets="All" />
+        <PackageReference Include="FuYnAloft.Sts2.MinionLib" Version="0.5.2" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>

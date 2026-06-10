@@ -15,12 +15,8 @@
     },
     {
       "id": "MinionLib",
-      "min_version": "0.4.4"
+      "min_version": "0.5.2"
     },
-    {
-      "id": "MinionLib.RitsuAdapters",
-      "min_version": "0.4.4"
-    }
   ]
 
 }

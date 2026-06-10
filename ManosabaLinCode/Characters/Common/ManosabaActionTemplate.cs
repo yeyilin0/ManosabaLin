@@ -3,7 +3,7 @@ using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MinionLib.RitsuAdapters;
+using ManosabaLin.RitsuAdapters;
 using STS2RitsuLib.Scaffolding.Content;
 
 namespace ManosabaLin.Characters.Common;
