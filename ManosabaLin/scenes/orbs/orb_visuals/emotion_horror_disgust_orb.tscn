@@ -1,9 +1,10 @@
 [gd_scene load_steps=2 format=3]
 
-[ext_resource type="Texture2D" path="res://ManosabaLin/images/cards/big/emotionhorror_disgust.png" id="1_tex"]
+[ext_resource type="Texture2D" path="res://ManosabaLin/images/cards/big/emotionhorrordisgust.png" id="1_tex"]
 
 [node name="EmotionHorrorDisgustOrb" type="Node2D"]
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("1_tex")
+

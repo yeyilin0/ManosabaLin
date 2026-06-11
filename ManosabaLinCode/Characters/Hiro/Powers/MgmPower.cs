@@ -35,7 +35,14 @@ public class MgmPower : ManosabaPowerTemplate
         if (playableCards.Count > 0)
         {
             var card = Owner.Player.RunState.Rng.Shuffle.NextItem(playableCards);
-            await CardCmd.AutoPlay(choiceContext, card, null);
+            try
+            {
+                await CardCmd.AutoPlay(choiceContext, card, null);
+            }
+            catch (System.Exception ex)
+            {
+                MainFile.Logger.Info($"[MgmPower] AutoPlay failed: {ex.Message}");
+            }
         }
 
         await PowerCmd.Decrement(this);

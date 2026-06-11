@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Linq;
@@ -14,10 +15,31 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class TheDevilsFoot() : ManosabaCardTemplate(13, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 {
+    private const int BaseCost = 13;
+    private int _costReduction;
+
+    [SavedProperty]
+    public int CostReduction
+    {
+        get => _costReduction;
+        set
+        {
+            AssertMutable();
+            _costReduction = value;
+            var newCost = System.Math.Max(0, BaseCost - _costReduction);
+            EnergyCost.SetThisCombat(newCost);
+        }
+    }
+
     protected override IEnumerable<DynamicVar> CanonicalVars => new[]
     {
         new DynamicVar("Multiplier", 2)
     };
+
+    public void ReduceCost(int amount)
+    {
+        CostReduction += amount;
+    }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {

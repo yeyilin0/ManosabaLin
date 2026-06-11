@@ -61,7 +61,7 @@ public sealed class Witchfactorechantcard : ManosabaCardTemplate
 
         var rng = owner.RunState.Rng.CombatCardSelection;
         var deckPile = PileType.Deck.GetPile(owner);
-        var unenchanted = deckPile.Cards.Where(c => c.Enchantment == null).ToList();
+        var unenchanted = deckPile.Cards.Where(c => c.Enchantment == null && c.Rarity != CardRarity.Token && c.Type != CardType.Status && c.Type != CardType.Curse).ToList();
 
         var toEnchant = unenchanted
             .OrderBy(_ => rng.NextFloat())

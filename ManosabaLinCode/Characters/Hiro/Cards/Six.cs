@@ -1,5 +1,5 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -14,6 +14,11 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCard(typeof(HiroCardPool))]
 public sealed class Six() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
+    public override IEnumerable<CardKeyword> CanonicalKeywords
+    {
+        get { yield return CardKeyword.Retain; }
+    }
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<SuspectPower>(10),
@@ -35,7 +40,6 @@ public sealed class Six() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.R
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        // 获得 11 层嫌疑
         await PowerCmd.Apply<SuspectPower>(
             choiceContext, source.Owner.Creature,
             source.DynamicVars["SuspectPower"].BaseValue,
@@ -44,7 +48,6 @@ public sealed class Six() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.R
             false
         );
 
-        // 获得 1 层无实体
         await PowerCmd.Apply<IntangiblePower>(
             choiceContext, source.Owner.Creature,
             source.DynamicVars["IntangiblePower"].BaseValue,
@@ -56,7 +59,6 @@ public sealed class Six() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.R
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        // 升级：无实体 +1 层（2 层）
         DynamicVars["IntangiblePower"].UpgradeValueBy(1m);
     }
 }

@@ -170,13 +170,22 @@ public sealed class EmaForgottenOne : ManosabaCardTemplate
     {
         var source = this;
         if (source.CombatState == null) return;
+        var creature = source.Owner.Creature;
 
         var emaDeath = source.CombatState.CreateCard<Emadeath>(source.Owner);
         emaDeath.SetToFreeThisTurn();
         await CardPileCmd.AddGeneratedCardToCombat(emaDeath, PileType.Hand, source.Owner);
         await CardCmd.AutoPlay(choiceContext, emaDeath, null, skipCardPileVisuals: true);
 
-        await CreatureCmd.Damage(choiceContext, source.Owner.Creature, source.DynamicVars["Damage"].BaseValue,
+        var buffsToRemove = creature.Powers
+            .Where(p => p.Type == PowerType.Buff)
+            .ToList();
+        foreach (var buff in buffsToRemove)
+        {
+            await PowerCmd.Remove(buff);
+        }
+
+        await CreatureCmd.Damage(choiceContext, creature, source.DynamicVars["Damage"].BaseValue,
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, source);
     }
 

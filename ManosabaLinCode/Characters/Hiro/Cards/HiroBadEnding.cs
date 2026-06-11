@@ -189,13 +189,25 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
     {
         var source = this;
         if (source.CombatState == null) return;
+        var creature = source.Owner.Creature; // ← 这一行
 
+        // 1. 生成免费 Hirodeath 并自动打出
         var hiroDeath = source.CombatState.CreateCard<Hirodeath>(source.Owner);
         hiroDeath.SetToFreeThisTurn();
         await CardPileCmd.AddGeneratedCardToCombat(hiroDeath, PileType.Hand, source.Owner);
         await CardCmd.AutoPlay(choiceContext, hiroDeath, null, skipCardPileVisuals: true);
 
-        await CreatureCmd.Damage(choiceContext, source.Owner.Creature, source.DynamicVars["Damage"].BaseValue,
+        // 2. 清除自身全部buff
+        var buffsToRemove = creature.Powers
+            .Where(p => p.Type == PowerType.Buff)
+            .ToList();
+        foreach (var buff in buffsToRemove)
+        {
+            await PowerCmd.Remove(buff);
+        }
+
+        // 3. 对自己造成999不可减免伤害
+        await CreatureCmd.Damage(choiceContext, creature, source.DynamicVars["Damage"].BaseValue,
             ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, source);
     }
 

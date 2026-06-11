@@ -35,7 +35,6 @@ public sealed class TheSecondStain() : ManosabaCardTemplate(1, CardType.Skill, C
         var cardCost = selectedCard.EnergyCost.Canonical;
 
         // 从弃牌堆移到手牌
-        await CardPileCmd.RemoveFromCombat(selectedCard);
         await CardPileCmd.Add(selectedCard, PileType.Hand);
 
         // 免费打出
@@ -43,7 +42,7 @@ public sealed class TheSecondStain() : ManosabaCardTemplate(1, CardType.Skill, C
         await CardCmd.AutoPlay(choiceContext, selectedCard, null);
 
         // 打出后消耗
-        await CardCmd.Exhaust(choiceContext, selectedCard);
+        await CardPileCmd.RemoveFromCombat(selectedCard);
 
         if (IsUpgraded && cardCost > 0)
         {

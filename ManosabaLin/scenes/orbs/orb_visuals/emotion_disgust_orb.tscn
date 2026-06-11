@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7j4uuofnn2dn"]
+
+[ext_resource type="Texture2D" uid="uid://yl2ylu6kj3tk" path="res://ManosabaLin/images/cards/big/emotiondisgust.png" id="1_okswf"]
+
+[node name="EmotionDisgustOrb" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_tex")
+

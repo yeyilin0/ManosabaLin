@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Common;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 
@@ -12,4 +13,11 @@ public sealed class CannotPlayCardsPower : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.None;
+
+    public override bool ShouldPlay(CardModel card, AutoPlayType autoPlayType)
+    {
+        if (card.Owner?.Creature != Owner) return true;
+        if (autoPlayType != AutoPlayType.None) return true;
+        return false;
+    }
 }

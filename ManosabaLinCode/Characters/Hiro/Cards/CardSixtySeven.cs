@@ -16,10 +16,10 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 public sealed class CardSixtySeven : ManosabaCardTemplate
 {
     private const string SuspectAmountKey = "SuspectAmount";
-    private const int RequiredCardsPlayed = 20;
+    private const int RequiredCardsPlayed = 13;
 
     public CardSixtySeven()
-        : base(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+        : base(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
     }
 

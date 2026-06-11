@@ -31,7 +31,7 @@ public class Randomtrialenchantpower : ManosabaPowerTemplate
         if (Owner.IsDead) return;
 
         var drawPile = PileType.Draw.GetPile(Owner.Player);
-        var drawCards = drawPile.Cards.Where(c => c.Enchantment == null).ToList();
+        var drawCards = drawPile.Cards.Where(c => c.Enchantment == null && c.Rarity != CardRarity.Token && c.Type != CardType.Status && c.Type != CardType.Curse).ToList();
         if (drawCards.Count == 0) return;
 
         var rng = Owner.Player.RunState.Rng.CombatCardSelection;

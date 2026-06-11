@@ -247,7 +247,7 @@ public sealed class Withema : ManosabaRelicTemplate
         var componentPiles = new[] { PileType.Draw, PileType.Hand, PileType.Discard };
         var availableCards = componentPiles
             .SelectMany(p => p.GetPile(Owner).Cards)
-            .Where(c => c.Enchantment == null)
+            .Where(c => c.Enchantment == null && c.Rarity != CardRarity.Token && c.Type != CardType.Status && c.Type != CardType.Curse)
             .Distinct()
             .ToList();
 
@@ -278,7 +278,10 @@ public sealed class Withema : ManosabaRelicTemplate
         var handCards = PileType.Hand.GetPile(Owner).Cards
             .Where(c => !c.HasComponent<AgreementTrialComponent>()
                      && !c.HasComponent<RebuttalTrialComponent>()
-                     && !c.HasComponent<DoubtTrialComponent>())
+                     && !c.HasComponent<DoubtTrialComponent>()
+                     && c.Rarity != CardRarity.Token
+                     && c.Type != CardType.Status
+                     && c.Type != CardType.Curse)
             .ToList();
 
         if (handCards.Count > 0)

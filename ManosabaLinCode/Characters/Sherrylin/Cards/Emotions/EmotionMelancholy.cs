@@ -5,4 +5,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 
 [RegisterCard(typeof(LinCardPool))]
-public sealed class EmotionMelancholy() : CaseFileCard<EmotionMelancholyOrb>(0, CardRarity.Ancient, TargetType.Self);
+public sealed class EmotionMelancholy() : CaseFileCard<EmotionMelancholyOrb>(-1, CardRarity.Ancient, TargetType.Self)
+{
+    public override int MaxUpgradeLevel => 0;
+}
