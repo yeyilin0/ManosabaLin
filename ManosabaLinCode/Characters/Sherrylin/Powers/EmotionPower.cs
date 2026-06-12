@@ -1,21 +1,25 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Localization;
 using STS2RitsuLib.Interop.AutoRegistration;
-using System;
 
 namespace ManosabaLin.Characters.Sherrylin.Powers;
 
 [RegisterPower]
-public sealed class EmotionPower : ManosabaPowerTemplate
+public sealed class EmotionPower : ManosabaActionTemplate
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    public override TargetType TargetType => TargetType.Self;
+    public override bool DecrementAfterAct => false;
+
+    private int _reachThirteenCount;
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -28,9 +32,10 @@ public sealed class EmotionPower : ManosabaPowerTemplate
         if (Amount >= 13)
         {
             Amount = 0;
+            _reachThirteenCount++;
 
             var rng = Owner.Player.RunState.Rng.CombatCardSelection;
-            var roll = rng.NextInt(11);
+            var roll = rng.NextInt(6);
 
             var combatState = Owner.CombatState;
             if (combatState != null)
@@ -43,17 +48,36 @@ public sealed class EmotionPower : ManosabaPowerTemplate
                     3 => combatState.CreateCard<EmotionFear>(Owner.Player),
                     4 => combatState.CreateCard<EmotionJoy>(Owner.Player),
                     5 => combatState.CreateCard<EmotionSurprise>(Owner.Player),
-                    6 => combatState.CreateCard<EmotionMelancholy>(Owner.Player),
-                    7 => combatState.CreateCard<EmotionIrritatedFear>(Owner.Player),
-                    8 => combatState.CreateCard<EmotionDesolate>(Owner.Player),
-                    9 => combatState.CreateCard<EmotionHorrorDisgust>(Owner.Player),
-                    10 => combatState.CreateCard<EmotionElation>(Owner.Player),
                     _ => null
                 };
 
                 if (emotionCard != null)
                     await CardPileCmd.Add(emotionCard, MainFile.CaseFilePile, CardPilePosition.Top);
+
+                if (_reachThirteenCount >= 3)
+                {
+                    _reachThirteenCount = 0;
+                    await PowerCmd.Apply<EmotionFusionPower>(
+                        choiceContext, Owner, 1, Owner, null, false);
+                }
             }
+        }
+    }
+
+    protected override async Task OnAct(PlayerChoiceContext choiceContext, Creature? target)
+    {
+        var player = Owner.Player;
+        if (player == null) return;
+
+        var caseFilePile = MainFile.CaseFilePile.GetPile(player);
+        if (caseFilePile.Cards.Count == 0) return;
+
+        var prefs = new CardSelectorPrefs(new LocString("cards", "MANOSABA_LIN_POWER_EMOTION_POWER.selectionScreenPrompt"), 1);
+        var selected = await CardSelectCmd.FromCombatPile(choiceContext, caseFilePile, player, prefs);
+        var selectedList = selected.ToList();
+        if (selectedList.Count > 0)
+        {
+            await CardPileCmd.Add(selectedList[0], PileType.Hand, CardPilePosition.Top);
         }
     }
 }

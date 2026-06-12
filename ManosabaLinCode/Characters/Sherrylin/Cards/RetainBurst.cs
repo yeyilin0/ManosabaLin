@@ -14,15 +14,6 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class RetainBurst() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get
-        {
-            if (IsUpgraded)
-                yield return CardKeyword.Retain;
-            yield return CardKeyword.Exhaust;
-        }
-    }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {

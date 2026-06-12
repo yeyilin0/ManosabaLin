@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MinionLib.Component.Core;
 using System.Collections.Generic;
 
@@ -11,6 +12,8 @@ namespace ManosabaLin.Characters.Sherrylin.Components;
 
 public sealed partial class RetainCounterComponent : KeywordLikeComponent
 {
+    public override IEnumerable<IHoverTip> HoverTips => GetHoverTip<RetainCounterComponent>();
+
     private int _counter = 1;
     private readonly Dictionary<string, decimal> _originalValues = new();
 
@@ -19,7 +22,7 @@ public sealed partial class RetainCounterComponent : KeywordLikeComponent
     protected override void OnAttach()
     {
         base.OnAttach();
-        if (Card != null)
+        if (Card != null && Card.Pile != null)
         {
             Card.GiveSingleTurnRetain();
             StoreOriginalValues();

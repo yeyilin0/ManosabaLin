@@ -15,6 +15,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class RetainTransfer() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
+    private LocString SelectionScreenPrompt2 => new("cards", Id.Entry + ".selectionScreenPrompt2");
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
@@ -26,7 +27,7 @@ public sealed class RetainTransfer() : ManosabaCardTemplate(0, CardType.Skill, C
         if (retainCards.Count < 2) return;
 
         // 选择源卡
-        var prefs1 = new CardSelectorPrefs(new LocString("RetainTransfer", "选择要转移计数的卡"), 1);
+        var prefs1 = new CardSelectorPrefs(SelectionScreenPrompt, 1);
         var selected1 = await CardSelectCmd.FromSimpleGrid(choiceContext, retainCards, source.Owner, prefs1);
         var sourceList = selected1.ToList();
         if (sourceList.Count == 0) return;
@@ -46,7 +47,7 @@ public sealed class RetainTransfer() : ManosabaCardTemplate(0, CardType.Skill, C
         var targets = retainCards.Where(c => c != sourceCard).ToList();
         if (targets.Count == 0) return;
 
-        var prefs2 = new CardSelectorPrefs(new LocString("RetainTransfer", "选择接收计数的卡"), 1);
+        var prefs2 = new CardSelectorPrefs(SelectionScreenPrompt2, 1);
         var selected2 = await CardSelectCmd.FromSimpleGrid(choiceContext, targets, source.Owner, prefs2);
         var targetList = selected2.ToList();
         if (targetList.Count == 0) return;

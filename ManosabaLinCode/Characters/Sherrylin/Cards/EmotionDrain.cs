@@ -1,10 +1,11 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
+using ManosabaLin.Characters.Sherrylin.Components;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
+using MinionLib.Component.Interfaces;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
@@ -15,6 +16,9 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class EmotionDrain() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
+    protected override IEnumerable<ICardComponent> CanonicalComponents =>
+        [new RemoveOnPlayComponent()];
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
@@ -27,7 +31,7 @@ public sealed class EmotionDrain() : ManosabaCardTemplate(0, CardType.Skill, Car
         CardModel? toRemove = null;
         if (IsUpgraded)
         {
-            var prefs = new CardSelectorPrefs(new LocString("EmotionDrain", "选择要消耗的情绪卡"), 1);
+            var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
             var selection = await CardSelectCmd.FromSimpleGrid(choiceContext, caseFileCards, source.Owner, prefs);
             var selectionList = selection.ToList();
             if (selectionList.Count > 0) toRemove = selectionList[0];

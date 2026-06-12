@@ -1,5 +1,6 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Sherrylin.Components;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -23,8 +24,7 @@ public sealed class RetainGrant() : ManosabaCardTemplate(1, CardType.Skill, Card
 
         if (hand.Count > 0)
         {
-            var prefs = new MegaCrit.Sts2.Core.CardSelection.CardSelectorPrefs(
-                new MegaCrit.Sts2.Core.Localization.LocString("RetainGrant", "选择一张卡获得保留计数"), 1);
+            var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
             var selected = await CardSelectCmd.FromSimpleGrid(
                 choiceContext, hand, source.Owner, prefs);
             var selectedList = selected.ToList();

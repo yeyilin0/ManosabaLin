@@ -17,7 +17,7 @@ namespace ManosabaLin.Characters.Sherrylin.Powers;
 public sealed class EmotionSurgePower : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Single;
 
     public override async Task AfterCardPlayed(
         PlayerChoiceContext choiceContext, CardPlay cardPlay)

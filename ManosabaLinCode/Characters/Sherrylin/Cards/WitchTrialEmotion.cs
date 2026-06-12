@@ -1,5 +1,6 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
+using ManosabaLin.Characters.Sherrylin.Components;
 using ManosabaLin.Characters.Sherrylin.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -53,7 +54,7 @@ public sealed class WitchTrialEmotion() : ManosabaCardTemplate(1, CardType.Skill
         if (withPower != null && withPower.Amount >= 100)
         {
             await PowerCmd.Remove(withPower);
-            await CardPileCmd.RemoveFromCombat(source);
+            source.TryAddComponent(new RemoveOnPlayComponent());
         }
     }
 

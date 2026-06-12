@@ -24,14 +24,7 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
 
     public override RelicRarity Rarity => RelicRarity.Rare;
 
-    public bool HasTriggeredThisTurn { get; set; }
-
-    public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
-    {
-        if (player != Owner) return Task.CompletedTask;
-        HasTriggeredThisTurn = false;
-        return Task.CompletedTask;
-    }
+    public bool HasTriggeredThisCombat { get; set; }
 
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
@@ -58,10 +51,20 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
     public override async Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? clonedBy)
     {
         if (card.Owner != Owner) return;
-
-        // 战斗外不触发（比如事件中获得诅咒牌）
         if (Owner.Creature?.CombatState == null) return;
 
+        // 状态牌或诅咒牌进入消耗堆后，直接移除
+        if (card.Type == CardType.Status || card.Type == CardType.Curse)
+        {
+            var exhaustPile = PileType.Exhaust.GetPile(Owner);
+            if (exhaustPile.Cards.Contains(card))
+            {
+                Flash();
+                await CardPileCmd.RemoveFromCombat(card);
+            }
+        }
+
+        // 翻案：抽牌堆为空时，抽牌堆和弃牌堆互换
         var drawPile = PileType.Draw.GetPile(Owner);
         if (drawPile.Cards.Any())
         {
@@ -69,48 +72,29 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
             return;
         }
 
-        // 防重入：正在翻案时不再触发
         if (!Swapping.Add(Owner)) return;
-
-        var exhaustPile = PileType.Exhaust.GetPile(Owner);
-        if (!exhaustPile.Cards.Any()) return;
 
         var discardPile = PileType.Discard.GetPile(Owner);
         if (!discardPile.Cards.Any()) return;
 
-        Flash();
-        HasTriggeredThisTurn = true;
+        HasTriggeredThisCombat = true;
 
-        var exhaustCards = exhaustPile.Cards.ToList();
-        var rng = Owner.RunState.Rng.CombatCardSelection;
-        int swapCount = 0;
+        // 消耗堆和弃牌堆互换：消耗→弃牌（每张获得1层魔法），弃牌→消耗
+        var exhaustPileSwap = PileType.Exhaust.GetPile(Owner);
+        var exhaustCards = exhaustPileSwap.Cards.ToList();
+        var discardCards = discardPile.Cards.ToList();
 
         foreach (var exhaustCard in exhaustCards)
         {
-            if (!discardPile.Cards.Any()) break;
-
-            var randomDiscard = rng.NextItem(discardPile.Cards.ToList());
-
-            await CardPileCmd.Add(randomDiscard, PileType.Exhaust, skipVisuals: true);
             await CardPileCmd.Add(exhaustCard, PileType.Discard, CardPilePosition.Random, skipVisuals: true);
-
-            swapCount++;
-        }
-
-        // 消耗堆剩余的牌（弃牌堆不够换的）也移入弃牌堆
-        var remainingExhaust = exhaustPile.Cards.ToList();
-        foreach (var leftover in remainingExhaust)
-        {
-            await CardPileCmd.Add(leftover, PileType.Discard, CardPilePosition.Random, skipVisuals: true);
-            swapCount++;
-        }
-
-        // 每交换1张获得1层橘雪莉的魔法
-        for (int i = 0; i < swapCount; i++)
-        {
             await PowerCmd.Apply<XlmPower>(
                 new ThrowingPlayerChoiceContext(), Owner.Creature, 1,
                 Owner.Creature, null, false);
+        }
+
+        foreach (var discardCard in discardCards)
+        {
+            await CardPileCmd.Add(discardCard, PileType.Exhaust, CardPilePosition.Random, skipVisuals: true);
         }
     }
 }

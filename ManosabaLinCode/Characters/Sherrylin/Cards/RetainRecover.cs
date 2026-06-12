@@ -4,7 +4,6 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
@@ -25,7 +24,7 @@ public sealed class RetainRecover() : ManosabaCardTemplate(1, CardType.Skill, Ca
 
         if (discardPile.Count == 0) return;
 
-        var prefs = new CardSelectorPrefs(new LocString("RetainRecover", "选择1张保留计数卡"), 1);
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
         var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, discardPile, source.Owner, prefs);
         var selectedList = selected.ToList();
         if (selectedList.Count > 0)
@@ -33,7 +32,7 @@ public sealed class RetainRecover() : ManosabaCardTemplate(1, CardType.Skill, Ca
             var card = selectedList[0];
             await CardPileCmd.Add(card, PileType.Hand, CardPilePosition.Top, source);
 
-            var component = card is MinionLib.Component.Interfaces.IComponentsCardModel ccm ? ccm.Components.OfType<RetainCounterComponent>().FirstOrDefault() : null;
+            var component = (card as MinionLib.Component.Interfaces.IComponentsCardModel)?.Components.OfType<RetainCounterComponent>().FirstOrDefault();
             if (component != null)
             {
                 var counterField = typeof(RetainCounterComponent).GetField("_counter",
@@ -42,6 +41,9 @@ public sealed class RetainRecover() : ManosabaCardTemplate(1, CardType.Skill, Ca
                 {
                     var current = (int)counterField.GetValue(component);
                     counterField.SetValue(component, current + (IsUpgraded ? 2 : 1));
+                    typeof(RetainCounterComponent).GetMethod("UpdateCardValues",
+                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+                        ?.Invoke(component, null);
                 }
             }
         }

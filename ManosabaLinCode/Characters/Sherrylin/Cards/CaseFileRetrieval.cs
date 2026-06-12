@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
@@ -23,7 +22,7 @@ public sealed class CaseFileRetrieval() : ManosabaCardTemplate(1, CardType.Skill
         var caseFilePile = MainFile.CaseFilePile.GetPile(source.Owner);
         if (caseFilePile.Cards.Count == 0) return;
 
-        var prefs = new CardSelectorPrefs(new LocString("selectionScreenPrompt", "选择一张案卷卡加入手牌"), 1);
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
         var selected = await CardSelectCmd.FromCombatPile(choiceContext, caseFilePile, source.Owner, prefs);
         var selectedList = selected.ToList();
         if (selectedList.Count > 0)

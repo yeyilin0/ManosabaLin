@@ -21,10 +21,7 @@ public sealed class RetainSweep() : ManosabaCardTemplate(2, CardType.Attack, Car
     protected override IEnumerable<ICardComponent> CanonicalComponents =>
         [new RetainCounterComponent()];
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get { yield return CardKeyword.Retain; }
-    }
+
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

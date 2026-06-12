@@ -3,7 +3,6 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 
@@ -34,7 +33,7 @@ public sealed class AbandonReshape() : ManosabaCardTemplate(1, CardType.Skill, C
                 .Where(c => c != source).ToList();
             if (hand.Count == 0) break;
 
-            var prefs = new CardSelectorPrefs(new LocString("selectionScreenPrompt", "选择要移除的卡"), 1);
+            var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
             var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, hand, source.Owner, prefs);
             var selectedList = selected.ToList();
             if (selectedList.Count > 0)

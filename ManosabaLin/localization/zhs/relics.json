@@ -3,7 +3,7 @@
   "MANOSABA_LIN_RELIC_PEN.description": "每场战斗开始时，获得3层 [color=#CC6666]【正义】[/color]",
   "MANOSABA_LIN_RELIC_PEN.flavor": "[color=#CC6666]希罗[/color]初中时常用的钢笔，本来应该已经送给雪了",
   "MANOSABA_LIN_RELIC_WITCH_FACTOR.title": "魔女因子",
-  "MANOSABA_LIN_RELIC_WITCH_FACTOR.description": "当你打出攻击牌时获得15层[b]【魔女化】[/b]，当你打出技能或者能力牌时减少10层[b]【魔女化】[/b]",
+  "MANOSABA_LIN_RELIC_WITCH_FACTOR.description": "当你打出攻击牌时获得15层[b]【魔女化】[/b]，当你打出技能或者能力牌时减少10层[b]【魔女化】[/b](某些时候牌可能自动打出)",
   "MANOSABA_LIN_RELIC_WITCH_FACTOR.flavor": "魔女因子过度活跃时人会失去理智，变成怪物一样的存在，被视为必须消灭的危险个体",
   "MANOSABA_LIN_RELIC_WITHHIRO.title": "大魔女曾附身之物",
   "MANOSABA_LIN_RELIC_WITHHIRO.description": "[color=#CC6666]「雪......你是错误的」[/color]\n每场战斗开始时获得6层[color=#CC6666]【正义】[/color]\n回合开始时可选择一张手卡返回抽牌堆\n当你本场战斗第一次获得[b]【嫌疑】[/b]时减少两层",
@@ -58,6 +58,9 @@
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_SHERRYLIN.title": "海玻璃",
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_SHERRYLIN.description": "从 橘雪莉 的卡牌池中选择 5 张牌加入牌组",
   "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.title": "放大镜",
-  "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.description": "[color=#33ccff]【翻案】[/color]:当抽牌堆为空时，将消耗堆中的卡与弃牌堆中的卡互换。每成功交换1张，获得1层[color=#33ccff]【橘雪莉的魔法】[/color]",
-  "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.flavor": "橘雪莉侦探身份的[color=#33ccff]【象征】[/color]，可谁都猜不到，她用【放大镜】看到了什么"
+  "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.description": "[color=#33ccff]【翻案】[/color]:当抽牌堆为空时，将消耗堆中的卡与弃牌堆中的卡互换。每成功交换1张，获得1层[color=#33ccff]【橘雪莉的魔法】[/color](当卡牌被移除时本场战斗无法再次获得，当诅咒和状态牌被消耗时自动移除)",
+  "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.flavor": "橘雪莉侦探身份的[color=#33ccff]【象征】[/color]，可谁都猜不到，她用【放大镜】看到了什么",
+  "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.title": "魔女之心",
+  "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.description": "当[b]【魔女化】[/b]达到100层时，获得1张[rainbow][b]【魔女化】[/b][/rainbow]情绪卡加入手牌。\n\n[color=#ff99cc]情绪融合配方[/color]：\n快乐+悲伤 → 怅然\n愤怒+恐惧 → 恼惧\n悲伤+恐惧 → 凄惶\n厌恶+惊讶 → 骇厌\n快乐+惊讶 → 雀跃\n好奇+无助 → ???\n全部8种情绪 → 友谊",
+  "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.flavor": "魔女的力量源自内心的[color=#ff99cc]【情感】[/color]"
 }

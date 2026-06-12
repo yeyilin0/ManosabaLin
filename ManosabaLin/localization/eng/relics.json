@@ -73,5 +73,8 @@
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_HIRO.description": "Choose 5 cards from Hiro's card pool to add to your deck.",
   "MANOSABA_LIN_RELIC_MAGNIFYINGGLASS.title": "Magnifying Glass",
   "MANOSABA_LIN_RELIC_MAGNIFYINGGLASS.description": "When your draw pile is empty, swap cards between your exhaust pile and discard pile. For each card swapped, gain 1 stack of [color=#33ccff]Shirley's Magic[/color].",
-  "MANOSABA_LIN_RELIC_MAGNIFYINGGLASS.flavor": "She examines every discarded piece of evidence with her magnifying glass. To her, nothing is ever truly 'consumed.'"
+  "MANOSABA_LIN_RELIC_MAGNIFYINGGLASS.flavor": "She examines every discarded piece of evidence with her magnifying glass. To her, nothing is ever truly 'consumed.'",
+  "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.title": "Witch's Heart",
+  "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.description": "When [b]Witchification[/b] reaches 100 stacks, add 1 [rainbow][b]Witchification[/b][/rainbow] emotion card to hand.\n\n[color=#ff99cc]Emotion Fusion Recipes[/color]:\nJoy + Sadness → Melancholy\nAnger + Fear → Irritated Fear\nSadness + Fear → Desolate\nDisgust + Surprise → Horror Disgust\nJoy + Surprise → Elation\nCuriosity + Helplessness → ???\nAll 8 emotions → Friendship",
+  "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.flavor": "The witch's power comes from deep within her [color=#ff99cc]emotions[/color]."
 }

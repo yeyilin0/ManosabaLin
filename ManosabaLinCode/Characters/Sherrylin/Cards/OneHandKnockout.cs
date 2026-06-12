@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Sherrylin.Components;
 using ManosabaLin.Characters.Sherrylin.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -8,6 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MinionLib.Component.Interfaces;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +22,9 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class OneHandKnockout() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
+    protected override IEnumerable<ICardComponent> CanonicalComponents =>
+        [new RemoveOnPlayComponent()];
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<BufferPower>(1m),
@@ -77,9 +82,6 @@ public sealed class OneHandKnockout() : ManosabaCardTemplate(0, CardType.Skill, 
         await PlayerCmd.GainEnergy(
             source.DynamicVars.Energy.IntValue,
             source.Owner);
-
-        // 打出移除
-        await CardPileCmd.RemoveFromCombat(source);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

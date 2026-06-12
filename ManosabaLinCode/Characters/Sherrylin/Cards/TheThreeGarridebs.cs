@@ -38,8 +38,8 @@ public sealed class TheThreeGarridebs() : ManosabaCardTemplate(0, CardType.Skill
         var magnifyingGlass = Owner.Relics.OfType<MagnifyingGlass>().FirstOrDefault();
         if (magnifyingGlass == null) return;
 
-        // 检查本回合是否已触发过翻案
-        if (!magnifyingGlass.HasTriggeredThisTurn) return;
+        // 检查本场战斗是否已触发过翻案
+        if (!magnifyingGlass.HasTriggeredThisCombat) return;
 
         // 翻案已触发：回费
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);

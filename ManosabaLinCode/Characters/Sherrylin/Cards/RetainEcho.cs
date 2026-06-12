@@ -23,11 +23,7 @@ public sealed class RetainEcho() : ManosabaCardTemplate(1, CardType.Power, CardR
     protected override IEnumerable<ICardComponent> CanonicalComponents =>
         [new RetainCounterComponent()];
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get { yield return CardKeyword.Retain; }
-    }
-
+  
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<RetainCounterPower>(1m)

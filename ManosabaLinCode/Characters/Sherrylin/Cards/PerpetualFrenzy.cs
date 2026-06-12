@@ -1,5 +1,6 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
+using ManosabaLin.Characters.Sherrylin.Components;
 using ManosabaLin.Characters.Sherrylin.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -85,7 +86,7 @@ public sealed class PerpetualFrenzy() : ManosabaCardTemplate(1, CardType.Skill, 
 
         // 未升级时打出移除
         if (!IsUpgraded)
-            await CardPileCmd.RemoveFromCombat(source);
+            source.TryAddComponent(new RemoveOnPlayComponent());
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

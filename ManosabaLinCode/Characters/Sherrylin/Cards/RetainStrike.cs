@@ -20,10 +20,7 @@ public sealed class RetainStrike() : ManosabaCardTemplate(1, CardType.Attack, Ca
     protected override IEnumerable<ICardComponent> CanonicalComponents =>
         [new RetainCounterComponent()];
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get { yield return CardKeyword.Retain; }
-    }
+  
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

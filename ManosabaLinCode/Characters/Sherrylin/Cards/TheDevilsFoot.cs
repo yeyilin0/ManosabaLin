@@ -1,11 +1,9 @@
-using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.Saves.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Linq;
@@ -15,20 +13,9 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class TheDevilsFoot() : ManosabaCardTemplate(13, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 {
-    private const int BaseCost = 13;
-    private int _costReduction;
-
-    [SavedProperty]
-    public int CostReduction
+    public override IEnumerable<CardKeyword> CanonicalKeywords
     {
-        get => _costReduction;
-        set
-        {
-            AssertMutable();
-            _costReduction = value;
-            var newCost = System.Math.Max(0, BaseCost - _costReduction);
-            EnergyCost.SetThisCombat(newCost);
-        }
+        get { yield return CardKeyword.Exhaust; }
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new[]
@@ -36,9 +23,15 @@ public sealed class TheDevilsFoot() : ManosabaCardTemplate(13, CardType.Attack, 
         new DynamicVar("Multiplier", 2)
     };
 
-    public void ReduceCost(int amount)
+    protected override Task AfterCardExhausted(
+        PlayerChoiceContext choiceContext,
+        CardModel card,
+        bool causedByEthereal, ComponentContext componentContext)
     {
-        CostReduction += amount;
+        if (card == this) return Task.CompletedTask;
+        if (Pile?.Type != PileType.Hand) return Task.CompletedTask;
+        EnergyCost.AddThisCombat(-1);
+        return Task.CompletedTask;
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
@@ -77,10 +70,14 @@ public sealed class TheDevilsFoot() : ManosabaCardTemplate(13, CardType.Attack, 
         var energyToGain = maxEnergy - currentEnergy;
         if (energyToGain > 0)
             await PlayerCmd.GainEnergy(energyToGain, Owner);
+
+        // 打出后重置费用
+        EnergyCost.SetThisCombat(13);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
+        AddKeyword(CardKeyword.Retain);
         DynamicVars["Multiplier"].UpgradeValueBy(1m);
     }
 }

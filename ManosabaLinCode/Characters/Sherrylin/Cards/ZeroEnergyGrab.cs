@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Sherrylin.Components;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -46,7 +47,7 @@ public sealed class ZeroEnergyGrab() : ManosabaCardTemplate(1, CardType.Skill, C
             var idx = rng.NextInt(zeroCostCards.Count);
             var cardModel = zeroCostCards[idx];
             var newCard = source.CombatState.CreateCard(cardModel, source.Owner);
-            newCard.AddKeyword(CardKeyword.Exhaust);
+            newCard.TryAddComponent(new RemoveOnPlayComponent());
             await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, source.Owner);
         }
     }
