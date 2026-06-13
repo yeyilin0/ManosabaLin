@@ -11,7 +11,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 案卷调取：选择额外牌堆1张卡加入手牌，升级减一费
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class CaseFileRetrieval() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class CaseFileRetrieval() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
@@ -23,7 +23,7 @@ public sealed class CaseFileRetrieval() : ManosabaCardTemplate(1, CardType.Skill
         if (caseFilePile.Cards.Count == 0) return;
 
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-        var selected = await CardSelectCmd.FromCombatPile(choiceContext, caseFilePile, source.Owner, prefs);
+        var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, caseFilePile.Cards.ToList(), source.Owner, prefs);
         var selectedList = selected.ToList();
         if (selectedList.Count > 0)
         {

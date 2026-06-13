@@ -13,7 +13,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class TheValleyOfFear() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public sealed class TheValleyOfFear() : ManosabaCardTemplate(2, CardType.Attack, CardRarity.Rare, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {

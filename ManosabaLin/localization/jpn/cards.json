@@ -579,9 +579,9 @@
   "MANOSABA_LIN_CARD_EMOTION_ELATION.title": "雀躍",
   "MANOSABA_LIN_CARD_EMOTION_ELATION.description": "最大エネルギー分獲得、次ターン同量減少。",
   "MANOSABA_LIN_CARD_EMOTION_CURIOSITY.title": "好奇心",
-  "MANOSABA_LIN_CARD_EMOTION_CURIOSITY.description": "効果未定。",
+  "MANOSABA_LIN_CARD_EMOTION_CURIOSITY.description": "好奇心オーブをチャネル。翻案発動時、捨て札から消耗札への移動数分の魔法を獲得し、魔法÷4枚ドロー、消耗札÷4エネルギー獲得。",
   "MANOSABA_LIN_CARD_EMOTION_HELPLESSNESS.title": "無力",
-  "MANOSABA_LIN_CARD_EMOTION_HELPLESSNESS.description": "効果未定。",
+  "MANOSABA_LIN_CARD_EMOTION_HELPLESSNESS.description": "[b]【保持カウント】[/b]付き。ターン開始：コスト+1、コスト≥4で浮空獲得。使用：カウント×2の力獲得、カウント×2の敏捷減少、カウント×5ダメージ、カウント×5ブロック。無力オーブをチャネル。",
   "MANOSABA_LIN_CARD_EMOTION_FRIENDSHIP.title": "友情",
   "MANOSABA_LIN_CARD_EMOTION_FRIENDSHIP.description": "効果未定。",
   "MANOSABA_LIN_CARD_EMOTION_SURGE.title": "感情湧動",
@@ -686,5 +686,12 @@
   "ManosabaLin.RetainCounterComponent.hovertip.description": "保持。毎ターン開始カウント+1、カードの数値×カウント",
   "ManosabaLin.RemoveOnPlayComponent.hovertip.title": "打出時除去",
   "ManosabaLin.RemoveOnPlayComponent.hovertip.description": "使用後、このカードを戦闘から永久に除去する",
-  "ManosabaLin.RemoveOnPlayComponent.postfix": "\n[gold]除去[/gold]"
+  "ManosabaLin.RemoveOnPlayComponent.postfix": "\n[gold]除去[/gold]",
+  "MANOSABA_LIN_CARD_SHERRYLIN_WITCH_POWER.title": "魔女の力",
+  "MANOSABA_LIN_CARD_SHERRYLIN_WITCH_POWER.description": "事件ファイルパイルのカードをランダムに半分消費。[b]【魔女儀式】[/b]3層、無実体1層、追憶1層を獲得。消費",
+  "MANOSABA_LIN_CARD_THE_FOOL.title": "愚者",
+  "MANOSABA_LIN_CARD_THE_FOOL.description": "[b]【魔女化】[/b]100層、[b]【魔女儀式】[/b]1層を獲得。即座に翻案を発動し、山札の数だけ[color=#ffcc99]魔法[/color]を獲得。[rainbow][b]【感情】[/b][/rainbow]13層を獲得。感情カードをランダムに2枚事件ファイルパイルに追加。消耗札の数だけシールドを獲得し、山札の数だけエネルギーとドロー。消費",
+  "MANOSABA_LIN_CARD_WITCHS_FIST.title": "魔女の拳",
+  "MANOSABA_LIN_CARD_WITCHS_FIST.description": "{Damage:diff()}ダメージ。デッキから怪力カード1枚を除去（戦闘内の対応カードも同時に除去）するか、怪力能力を除去し、保持付き[gold]愚者[/gold]1枚を獲得。",
+  "MANOSABA_LIN_CARD_WITCHS_FIST.selectionScreenPrompt": "除去する怪力カードを選択（任意）"
 }

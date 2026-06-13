@@ -168,6 +168,7 @@
   "MANOSABA_LIN_POWER_EMOTION_FUSION_POWER.title": "Emotion Fusion",
   "MANOSABA_LIN_POWER_EMOTION_FUSION_POWER.description": "Click to select 2 emotion cards to fuse into an advanced emotion card.",
   "MANOSABA_LIN_POWER_EMOTION_FUSION_POWER.selectionScreenPrompt": "Select 2 emotion cards to fuse",
+  "MANOSABA_LIN_POWER_EMOTION_FUSION_POWER.selectionScreenPrompt": "Select 2 emotion cards to fuse",
   "MANOSABA_LIN_POWER_EMOTION_ANGER_POWER.title": "Anger",
   "MANOSABA_LIN_POWER_EMOTION_ANGER_POWER.description": "Deal double damage this turn. Every 20 damage dealt, deal 1 damage to a random ally including self.",
   "MANOSABA_LIN_POWER_EMOTION_DISGUST_POWER.title": "Disgust",

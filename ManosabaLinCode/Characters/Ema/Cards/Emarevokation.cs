@@ -58,40 +58,44 @@ public sealed class Emarevokation() : ManosabaCardTemplate(1, CardType.Attack, C
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        // 收集所有区域的死亡回溯卡牌
-        var allCards = new List<CardModel>();
+        // 从牌组中搜索魔女杀手卡牌
+        var deckCards = PileType.Deck.GetPile(source.Owner).Cards.Where(c => c is EmaWitchKillerCard).ToList();
 
-        var drawCards = PileType.Draw.GetPile(source.Owner).Cards.Where(c => c is EmaWitchKillerCard).ToList();
-        var handCards = PileType.Hand.GetPile(source.Owner).Cards.Where(c => c is EmaWitchKillerCard).ToList();
-        var discardCards = PileType.Discard.GetPile(source.Owner).Cards.Where(c => c is EmaWitchKillerCard).ToList();
-
-        allCards.AddRange(drawCards);
-        allCards.AddRange(handCards);
-        allCards.AddRange(discardCards);
-
-        // 选择 0~1 张死亡回溯消耗（可不选）
-        var cardExhausted = false;
-        if (allCards.Count > 0)
+        // 选择 0~1 张魔女杀手移除（可不选）
+        var cardRemoved = false;
+        if (deckCards.Count > 0)
         {
             var prefs = new CardSelectorPrefs(source.SelectionScreenPrompt, 0, 1);
             var selected = await CardSelectCmd.FromSimpleGrid(
-                choiceContext, allCards, source.Owner, prefs
+                choiceContext, deckCards, source.Owner, prefs
             );
 
             var card = selected.FirstOrDefault();
             if (card != null)
             {
-                await CardCmd.Exhaust(choiceContext, card);
-                cardExhausted = true;
+                // 从牌组永久移除
+                await CardPileCmd.RemoveFromDeck(card);
+
+                // 同时移除局内对应卡牌
+                var combatPiles = new[] { PileType.Draw, PileType.Hand, PileType.Discard, PileType.Exhaust };
+                foreach (var pileType in combatPiles)
+                {
+                    var pileCards = pileType.GetPile(source.Owner).Cards.Where(c => c is EmaWitchKillerCard).ToList();
+                    foreach (var pileCard in pileCards)
+                        await CardPileCmd.RemoveFromCombat(pileCard);
+                }
+
+                cardRemoved = true;
             }
         }
-        // 移除自身死亡回溯能力
-        var hasDeathRewindPower = source.Owner.Creature.GetPower<EmaWitchKillerPower>() != null;
-        if (hasDeathRewindPower)
+
+        // 移除魔女杀手能力
+        var hasWitchKillerPower = source.Owner.Creature.GetPower<EmaWitchKillerPower>() != null;
+        if (hasWitchKillerPower)
             await PowerCmd.Remove<EmaWitchKillerPower>(source.Owner.Creature);
 
-        // 如果消耗了卡牌或移除了能力，加入一张保留的正义
-        if (cardExhausted || hasDeathRewindPower)
+        // 如果移除了卡牌或移除了能力，加入一张死神
+        if (cardRemoved || hasWitchKillerPower)
         {
             var justice = source.CombatState.CreateCard<Lamort>(source.Owner);
             justice.SetToFreeThisTurn();

@@ -12,7 +12,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Sherrylin.Powers;
 
 /// <summary>
-/// 蓄力反噬能力：当保留计数组件增加时对随机目标造成伤害
+/// 蓄力反噬能力：回合开始时对随机目标造成伤害
 /// </summary>
 [RegisterPower]
 public sealed class RetainCounterPower : ManosabaPowerTemplate
@@ -20,12 +20,9 @@ public sealed class RetainCounterPower : ManosabaPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (cardPlay.Card.Owner?.Creature != Owner) return;
-
-        // 检查打出的卡是否有保留计数组件
-        if (!cardPlay.Card.HasComponent<RetainCounterComponent>()) return;
+        if (player != Owner.Player) return;
 
         var combatState = Owner.CombatState;
         if (combatState == null) return;
@@ -39,6 +36,7 @@ public sealed class RetainCounterPower : ManosabaPowerTemplate
         var rng = Owner.Player.RunState.Rng.CombatCardSelection;
         var target = targets[rng.NextInt(targets.Count)];
 
+        Flash();
         await CreatureCmd.Damage(choiceContext, target, Amount, ValueProp.Unpowered, Owner, null);
     }
 }

@@ -1,6 +1,6 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
-using ManosabaLin.Characters.Sherrylin.Cards;
+using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -10,7 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Sherrylin.Relics;
-
+[RegisterCharacterStarterRelic(typeof(Sherrylin))]
 [RegisterRelic(typeof(SherrylinRelicPool))]
 public sealed class WitchificationEmotionRelic : ManosabaRelicTemplate
 {

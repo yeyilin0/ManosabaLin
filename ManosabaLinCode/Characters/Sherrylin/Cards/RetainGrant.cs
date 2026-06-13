@@ -4,6 +4,8 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MinionLib.Component.Interfaces;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
@@ -12,8 +14,13 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 蓄力赋予：使一张手卡获得保留计数组件，升级减一费
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class RetainGrant() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class RetainGrant() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [..RetainCounterComponent.Tip, RemoveOnPlayComponent.Tip];
+
+    protected override IEnumerable<ICardComponent> CanonicalComponents =>
+        [new RemoveOnPlayComponent()];
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;

@@ -21,6 +21,7 @@ public sealed class WitchTrialEmotion() : ManosabaCardTemplate(1, CardType.Skill
         {
             yield return HoverTipFactory.FromPower<EmotionPower>();
             yield return HoverTipFactory.FromPower<WithPower>();
+            yield return RemoveOnPlayComponent.Tip;
         }
     }
 

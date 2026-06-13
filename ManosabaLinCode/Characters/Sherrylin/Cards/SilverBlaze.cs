@@ -16,7 +16,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class SilverBlaze() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class SilverBlaze() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Uncommon, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
@@ -27,7 +27,7 @@ public sealed class SilverBlaze() : ManosabaCardTemplate(1, CardType.Skill, Card
     {
         get
         {
-            yield return HoverTipFactory.FromCard<SilverBlazeToken>();
+            yield return HoverTipFactory.FromCard<SilverBlazeToken>(IsUpgraded);
         }
     }
 

@@ -13,6 +13,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
 [RegisterCharacterStarterCard(typeof(Sherrylin))]
+[RegisterArchaicToothTranscendence(typeof(TheFool))]
 public class SherrylinMentalTrauma : ManosabaCardTemplate
 {
     public SherrylinMentalTrauma() : base(0, CardType.Skill, CardRarity.Basic, TargetType.Self)
@@ -48,6 +49,5 @@ public class SherrylinMentalTrauma : ManosabaCardTemplate
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-       
     }
 }

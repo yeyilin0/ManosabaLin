@@ -601,9 +601,9 @@
   "MANOSABA_LIN_CARD_EMOTION_ELATION.title": "Elation",
   "MANOSABA_LIN_CARD_EMOTION_ELATION.description": "Gain energy equal to max energy, but lose equal energy next turn.",
   "MANOSABA_LIN_CARD_EMOTION_CURIOSITY.title": "Curiosity",
-  "MANOSABA_LIN_CARD_EMOTION_CURIOSITY.description": "Effect TBD.",
+  "MANOSABA_LIN_CARD_EMOTION_CURIOSITY.description": "Channel Curiosity orb. When case reversal triggers, gain magic equal to cards moved from discard to exhaust, draw magic÷4 cards, gain exhaust÷4 energy.",
   "MANOSABA_LIN_CARD_EMOTION_HELPLESSNESS.title": "Helplessness",
-  "MANOSABA_LIN_CARD_EMOTION_HELPLESSNESS.description": "Effect TBD.",
+  "MANOSABA_LIN_CARD_EMOTION_HELPLESSNESS.description": "Has [b]Retain Counter[/b]. Turn start: cost+1, cost≥4 gains Levitation. Play: gain counter×2 strength, lose counter×2 dexterity, deal counter×5 damage, gain counter×5 block. Channel Helplessness orb.",
   "MANOSABA_LIN_CARD_EMOTION_FRIENDSHIP.title": "Friendship",
   "MANOSABA_LIN_CARD_EMOTION_FRIENDSHIP.description": "Effect TBD.",
   "MANOSABA_LIN_CARD_EMOTION_SURGE.title": "Emotion Surge",
@@ -714,5 +714,12 @@
   "ManosabaLin.RetainCounterComponent.hovertip.description": "Retain. Counter +1 each turn, card values multiplied by counter.",
   "ManosabaLin.RemoveOnPlayComponent.hovertip.title": "Remove on Play",
   "ManosabaLin.RemoveOnPlayComponent.hovertip.description": "When played, permanently remove this card from combat.",
-  "ManosabaLin.RemoveOnPlayComponent.postfix": "\n[gold]Remove[/gold]"
+  "ManosabaLin.RemoveOnPlayComponent.postfix": "\n[gold]Remove[/gold]",
+  "MANOSABA_LIN_CARD_SHERRYLIN_WITCH_POWER.title": "Witch's Power",
+  "MANOSABA_LIN_CARD_SHERRYLIN_WITCH_POWER.description": "Randomly consume half of Case File pile. Gain 3 [b]Ritual Ceremony[/b], 1 Intangible, 1 Nostalgia. Exhaust.",
+  "MANOSABA_LIN_CARD_THE_FOOL.title": "The Fool",
+  "MANOSABA_LIN_CARD_THE_FOOL.description": "Gain 100 [b]Witchification[/b], 1 [b]Ritual Ceremony[/b]. Trigger case reversal, gain magic equal to draw pile. Gain 13 [rainbow][b]Emotion[/b][/rainbow]. Randomly get 2 emotion cards into Case File. Gain shield equal to exhaust pile, gain energy and draw equal to draw pile. Exhaust.",
+  "MANOSABA_LIN_CARD_WITCHS_FIST.title": "Witch's Fist",
+  "MANOSABA_LIN_CARD_WITCHS_FIST.description": "Deal {Damage:diff()} damage. Choose to remove 1 Super Strength card from deck (also removes from combat), or remove Super Strength power, gain 1 [gold]The Fool[/gold] with Retain.",
+  "MANOSABA_LIN_CARD_WITCHS_FIST.selectionScreenPrompt": "Choose 1 Super Strength card to remove (optional)"
 }

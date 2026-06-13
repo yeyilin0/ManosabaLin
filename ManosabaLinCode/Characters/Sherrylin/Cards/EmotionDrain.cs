@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MinionLib.Component.Interfaces;
 using STS2RitsuLib.Interop.AutoRegistration;
 
@@ -16,6 +17,8 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class EmotionDrain() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [RemoveOnPlayComponent.Tip];
+
     protected override IEnumerable<ICardComponent> CanonicalComponents =>
         [new RemoveOnPlayComponent()];
 
@@ -25,26 +28,26 @@ public sealed class EmotionDrain() : ManosabaCardTemplate(0, CardType.Skill, Car
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        var caseFileCards = MainFile.CaseFilePile.GetPile(source.Owner).Cards.ToList();
-        if (caseFileCards.Count == 0) return;
+        var caseFilePile = MainFile.CaseFilePile.GetPile(source.Owner);
+        if (caseFilePile.Cards.Count == 0) return;
 
         CardModel? toRemove = null;
         if (IsUpgraded)
         {
             var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-            var selection = await CardSelectCmd.FromSimpleGrid(choiceContext, caseFileCards, source.Owner, prefs);
+            var selection = await CardSelectCmd.FromSimpleGrid(choiceContext, caseFilePile.Cards.ToList(), source.Owner, prefs);
             var selectionList = selection.ToList();
             if (selectionList.Count > 0) toRemove = selectionList[0];
         }
         else
         {
             var rng = source.Owner.RunState.Rng.CombatCardSelection;
-            toRemove = caseFileCards[rng.NextInt(caseFileCards.Count)];
+            toRemove = caseFilePile.Cards[rng.NextInt(caseFilePile.Cards.Count)];
         }
 
         if (toRemove == null) return;
 
-        await CardPileCmd.RemoveFromCombat(toRemove);
+        await CardCmd.Exhaust(choiceContext, toRemove);
 
         var rng2 = source.Owner.RunState.Rng.CombatCardSelection;
         var roll = rng2.NextInt(6);

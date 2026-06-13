@@ -19,7 +19,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 若获得3层则令队友和自己都获得一层汉娜的魔法。
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class NoFootprintsCulprit() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public sealed class NoFootprintsCulprit() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

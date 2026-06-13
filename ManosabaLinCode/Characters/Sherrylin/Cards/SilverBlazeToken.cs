@@ -15,7 +15,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCard(typeof(LinCardPool))]
 public sealed class SilverBlazeToken() : ManosabaCardTemplate(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
+
 
 
 

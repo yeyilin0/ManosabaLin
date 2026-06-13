@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using STS2RitsuLib.Interop.AutoRegistration;
 
@@ -13,8 +14,10 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 蓄力转移：选择手牌中1张带保留计数组件的卡，将其计数转移给另1张带件的卡，升级原卡获得消耗
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class RetainTransfer() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public sealed class RetainTransfer() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => RetainCounterComponent.Tip;
+
     private LocString SelectionScreenPrompt2 => new("cards", Id.Entry + ".selectionScreenPrompt2");
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
@@ -72,5 +75,6 @@ public sealed class RetainTransfer() : ManosabaCardTemplate(0, CardType.Skill, C
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
+        AddKeyword(CardKeyword.Exhaust);
     }
 }

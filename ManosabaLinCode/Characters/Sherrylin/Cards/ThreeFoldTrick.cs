@@ -12,7 +12,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 三筹巧变：抽2张，下1张攻击卡费用-1，升级抽三张
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class ThreeFoldTrick() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class ThreeFoldTrick() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

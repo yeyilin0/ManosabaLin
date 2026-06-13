@@ -3,6 +3,7 @@ using ManosabaLin.Characters.Sherrylin.Components;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Runs;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -13,8 +14,10 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 零能撷取：将2张随机零费卡（全卡池随机）加入手卡，消耗，升级获得三张
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class ZeroEnergyGrab() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class ZeroEnergyGrab() : ManosabaCardTemplate(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => [RemoveOnPlayComponent.Tip];
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DynamicVar("CardCount", 2m)

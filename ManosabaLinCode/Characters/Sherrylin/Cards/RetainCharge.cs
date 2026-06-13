@@ -3,6 +3,7 @@ using ManosabaLin.Characters.Sherrylin.Components;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MinionLib.Component.Core;
 using MinionLib.Component.Interfaces;
@@ -11,8 +12,10 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class RetainCharge() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class RetainCharge() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => RetainCounterComponent.Tip;
+
     protected override IEnumerable<ICardComponent> CanonicalComponents =>
         [new RetainCounterComponent()];
 

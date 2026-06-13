@@ -12,7 +12,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class PerpetualFrenzy() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class PerpetualFrenzy() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
@@ -25,7 +25,11 @@ public sealed class PerpetualFrenzy() : ManosabaCardTemplate(1, CardType.Skill, 
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
-        get { yield return HoverTipFactory.FromPower<EmotionPower>(); }
+        get
+        {
+            yield return HoverTipFactory.FromPower<EmotionPower>();
+            yield return RemoveOnPlayComponent.Tip;
+        }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)

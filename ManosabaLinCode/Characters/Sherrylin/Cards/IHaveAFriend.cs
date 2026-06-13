@@ -19,7 +19,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 吾有一友：选择一张额外牌组的卡给一个队友手牌，如果没有队友则获得吾即吾友能力，升级减一费。
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class IHaveAFriend() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly)
+public sealed class IHaveAFriend() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -30,7 +30,6 @@ public sealed class IHaveAFriend() : ManosabaCardTemplate(1, CardType.Skill, Car
         PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
-        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
@@ -42,35 +41,34 @@ public sealed class IHaveAFriend() : ManosabaCardTemplate(1, CardType.Skill, Car
             .Where(c => c is { IsAlive: true, IsPlayer: true })
             .ToList();
 
+        Creature target;
         if (teammates.Count > 0)
         {
-            // 有队友：选择一张额外牌组的卡给队友手牌
-            var caseFileCards = MainFile.CaseFilePile.GetPile(source.Owner).Cards.ToList();
-            if (caseFileCards.Count == 0) return;
-
-            var cardPrefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-            var cardSelection = await CardSelectCmd.FromSimpleGrid(
-                choiceContext, caseFileCards, source.Owner, cardPrefs);
-            var selectedCard = cardSelection.FirstOrDefault();
-            if (selectedCard == null) return;
-
-            // 直接给队友手牌
-            var target = cardPlay.Target;
-            var newCard = source.CombatState.CreateCard(selectedCard.CanonicalInstance, target.Player);
-            if (source.IsUpgraded)
-                CardCmd.Upgrade(newCard);
-            await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, target.Player);
-
-            // 从额外牌堆移除原卡
-            await CardPileCmd.RemoveFromCombat(selectedCard);
+            // 有队友：选择一个队友
+            target = teammates[0];
         }
         else
         {
-            // 没有队友：获得吾即吾友能力
-            await PowerCmd.Apply<IAmMyOwnFriendPower>(
-                choiceContext, source.Owner.Creature, 1,
-                source.Owner.Creature, source, false);
+            // 没队友：选自己
+            target = source.Owner.Creature;
         }
+
+        // 选择一张额外牌组的卡
+        var caseFilePile = MainFile.CaseFilePile.GetPile(source.Owner);
+        if (caseFilePile.Cards.Count == 0) return;
+
+        var cardPrefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
+        var cardSelection = await CardSelectCmd.FromSimpleGrid(
+            choiceContext, caseFilePile.Cards.ToList(), source.Owner, cardPrefs);
+        var selectedCard = cardSelection.FirstOrDefault();
+        if (selectedCard == null) return;
+
+        // 复制给目标手牌，移除原卡
+        var newCard = source.CombatState.CreateCard(selectedCard.CanonicalInstance, target.Player);
+        if (source.IsUpgraded)
+            CardCmd.Upgrade(newCard);
+        await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, target.Player);
+        await CardPileCmd.RemoveFromCombat(selectedCard);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

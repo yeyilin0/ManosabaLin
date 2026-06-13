@@ -31,7 +31,11 @@ public sealed class RetainEcho() : ManosabaCardTemplate(1, CardType.Power, CardR
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
-        get { yield return HoverTipFactory.FromPower<RetainCounterPower>(); }
+        get
+        {
+            yield return HoverTipFactory.FromPower<RetainCounterPower>();
+            foreach (var tip in RetainCounterComponent.Tip) yield return tip;
+        }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)

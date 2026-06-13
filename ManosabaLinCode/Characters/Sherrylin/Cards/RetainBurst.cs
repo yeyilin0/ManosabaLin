@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
@@ -14,6 +15,12 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class RetainBurst() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips => RetainCounterComponent.Tip;
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords
+    {
+        get { yield return CardKeyword.Exhaust; }
+    }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
@@ -45,5 +52,6 @@ public sealed class RetainBurst() : ManosabaCardTemplate(0, CardType.Skill, Card
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
+        AddKeyword(CardKeyword.Retain);
     }
 }

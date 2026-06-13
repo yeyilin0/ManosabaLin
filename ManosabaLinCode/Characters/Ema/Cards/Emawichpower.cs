@@ -20,14 +20,11 @@ public sealed class Emawichpower : ManosabaCardTemplate
 {
     private const int RequiredWitchFactorAmount = 100;
 
-    public Emawichpower() : base(3, CardType.Skill, CardRarity.Ancient, TargetType.Self)
+    public Emawichpower() : base(4, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
     }
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get { yield return CardKeyword.Exhaust; }
-    }
+ 
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

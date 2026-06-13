@@ -20,7 +20,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 我一只手就可以把你扣晕：选择一个队友使其获得无法出牌，给予队友缓冲，自己获得能量，打出移除，没队友自动选自己，升级给队友两层缓冲。
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class OneHandKnockout() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class OneHandKnockout() : ManosabaCardTemplate(0, CardType.Attack, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<ICardComponent> CanonicalComponents =>
         [new RemoveOnPlayComponent()];
@@ -37,6 +37,7 @@ public sealed class OneHandKnockout() : ManosabaCardTemplate(0, CardType.Skill, 
         {
             yield return HoverTipFactory.FromPower<BufferPower>();
             yield return HoverTipFactory.FromPower<CannotPlayCardsPower>();
+            yield return RemoveOnPlayComponent.Tip;
         }
     }
 

@@ -13,7 +13,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 循环心绪：当你情绪额外牌堆有牌的时候打出可以使你抽牌堆一张卡获得重放，升级重放2
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class CycleMind() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class CycleMind() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

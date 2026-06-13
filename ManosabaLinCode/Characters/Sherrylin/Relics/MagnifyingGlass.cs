@@ -25,11 +25,14 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
     public override RelicRarity Rarity => RelicRarity.Rare;
 
     public bool HasTriggeredThisCombat { get; set; }
+    public int CaseReversalDiscardToExhaustCount { get; set; }
 
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Creature.Side) return;
         if (combatState.RoundNumber != 1) return;
+
+        HasTriggeredThisCombat = false;
 
         // 进入战斗时设置2个充能球位置
         var queue = Owner.PlayerCombatState?.OrbQueue;
@@ -83,6 +86,8 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
         var exhaustPileSwap = PileType.Exhaust.GetPile(Owner);
         var exhaustCards = exhaustPileSwap.Cards.ToList();
         var discardCards = discardPile.Cards.ToList();
+
+        CaseReversalDiscardToExhaustCount = discardCards.Count;
 
         foreach (var exhaustCard in exhaustCards)
         {

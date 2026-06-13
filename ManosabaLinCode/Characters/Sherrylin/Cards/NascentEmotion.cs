@@ -13,7 +13,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 初生情绪：回合开始获得一层情绪，升级改成获得两层
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class NascentEmotion() : ManosabaCardTemplate(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class NascentEmotion() : ManosabaCardTemplate(1, CardType.Power, CardRarity.Common, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

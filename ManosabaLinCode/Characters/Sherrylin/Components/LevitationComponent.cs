@@ -2,6 +2,8 @@ using ManosabaLin.Characters.Common.Components.Abstracts;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
+using MegaCrit.Sts2.Core.Localization;
 using MinionLib.Component.Core;
 
 namespace ManosabaLin.Characters.Sherrylin.Components;
@@ -11,6 +13,9 @@ namespace ManosabaLin.Characters.Sherrylin.Components;
 /// </summary>
 public sealed partial class LevitationComponent : KeywordLikeComponent
 {
+    public static readonly IHoverTip Tip = new HoverTip(
+        new LocString("cards", "ManosabaLin.LevitationComponent.hovertip.title"),
+        new LocString("cards", "ManosabaLin.LevitationComponent.hovertip.description"));
     public override async Task AfterCardPlayedPostfix(PlayerChoiceContext choiceContext, CardPlay cardPlay,
         ComponentContext componentContext)
     {

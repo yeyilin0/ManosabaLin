@@ -15,7 +15,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 汉娜的协力：浮空组件，抽卡然后造成伤害获得情绪，升级增加伤害。
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class HannaAssist() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public sealed class HannaAssist() : ManosabaCardTemplate(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
@@ -34,7 +34,11 @@ public sealed class HannaAssist() : ManosabaCardTemplate(1, CardType.Attack, Car
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
-        get { yield return HoverTipFactory.FromPower<EmotionPower>(); }
+        get
+        {
+            yield return HoverTipFactory.FromPower<EmotionPower>();
+            yield return LevitationComponent.Tip;
+        }
     }
 
     protected override async Task OnPlay(

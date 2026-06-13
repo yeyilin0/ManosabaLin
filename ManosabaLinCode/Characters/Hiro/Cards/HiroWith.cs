@@ -17,21 +17,18 @@ public sealed class HiroWith : ManosabaCardTemplate
 {
     private const int RequiredWithAmount = 100;
 
-    public HiroWith() : base(3, CardType.Skill, CardRarity.Ancient, TargetType.Self)
+    public HiroWith() : base(4, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
     }
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get { yield return CardKeyword.Exhaust; }
-    }
+
 
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<RitualCeremonyPower>(1m),
         new PowerVar<IntangiblePower>(2m),
-        new PowerVar<ShadowStepPower>(1m),
+        new PowerVar<MayhemPower>(1m),
         new PowerVar<WithPower>(100m)
     ];
 
@@ -42,7 +39,7 @@ public sealed class HiroWith : ManosabaCardTemplate
             yield return HoverTipFactory.FromPower<WithPower>();
             yield return HoverTipFactory.FromPower<RitualCeremonyPower>();
             yield return HoverTipFactory.FromPower<IntangiblePower>();
-            yield return HoverTipFactory.FromPower<ShadowStepPower>();
+            yield return HoverTipFactory.FromPower<MayhemPower>();
             yield return HoverTipFactory.FromKeyword(CardKeyword.Exhaust);
         }
     }
@@ -83,7 +80,7 @@ public sealed class HiroWith : ManosabaCardTemplate
             false
         );
 
-        await PowerCmd.Apply<ShadowStepPower>(
+        await PowerCmd.Apply<MayhemPower>(
             choiceContext, source.Owner.Creature,
             source.DynamicVars["ShadowStepPower"].BaseValue,
             source.Owner.Creature,

@@ -16,7 +16,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 嫌疑之力：使随机队友获得一点力量，次数等于友方全体嫌疑层数
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class SuspectStrength() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class SuspectStrength() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -53,5 +53,6 @@ public sealed class SuspectStrength() : ManosabaCardTemplate(1, CardType.Skill, 
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
+        EnergyCost.UpgradeBy(-1);
     }
 }

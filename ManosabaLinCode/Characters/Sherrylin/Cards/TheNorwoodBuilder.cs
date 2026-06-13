@@ -12,7 +12,7 @@ using System.Collections.Generic;
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class TheNorwoodBuilder() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class TheNorwoodBuilder() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Common, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -43,6 +43,6 @@ public sealed class TheNorwoodBuilder() : ManosabaCardTemplate(2, CardType.Power
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars["Block"].UpgradeValueBy(2m);
-        EnergyCost.UpgradeBy(-1);
+       
     }
 }

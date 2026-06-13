@@ -19,14 +19,11 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCard(typeof(HiroCardPool))]
 public sealed class Justice : ManosabaCardTemplate
 {
-    public Justice() : base(4, CardType.Skill, CardRarity.Ancient, TargetType.Self)
+    public Justice() : base(4, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
     }
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get { yield return CardKeyword.Exhaust; }
-    }
+ 
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

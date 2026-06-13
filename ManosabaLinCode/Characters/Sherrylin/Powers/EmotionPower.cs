@@ -69,11 +69,11 @@ public sealed class EmotionPower : ManosabaActionTemplate
         var player = Owner.Player;
         if (player == null) return;
 
-        var caseFilePile = MainFile.CaseFilePile.GetPile(player);
-        if (caseFilePile.Cards.Count == 0) return;
+        var caseFileCards = MainFile.CaseFilePile.GetPile(player).Cards.ToList();
+        if (caseFileCards.Count == 0) return;
 
-        var prefs = new CardSelectorPrefs(new LocString("cards", "MANOSABA_LIN_POWER_EMOTION_POWER.selectionScreenPrompt"), 1);
-        var selected = await CardSelectCmd.FromCombatPile(choiceContext, caseFilePile, player, prefs);
+        var prefs = new CardSelectorPrefs(new LocString("powers", Id.Entry + ".selectionScreenPrompt"), 1);
+        var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, caseFileCards, player, prefs);
         var selectedList = selected.ToList();
         if (selectedList.Count > 0)
         {

@@ -12,62 +12,74 @@ namespace ManosabaLin.Characters.Sherrylin.Components;
 
 public sealed partial class RetainCounterComponent : KeywordLikeComponent
 {
-    public override IEnumerable<IHoverTip> HoverTips => GetHoverTip<RetainCounterComponent>();
+    public static IHoverTip[] Tip => GetHoverTip<RetainCounterComponent>();
+
+    public override IEnumerable<IHoverTip> HoverTips => Tip;
 
     private int _counter = 1;
     private readonly Dictionary<string, decimal> _originalValues = new();
+    private bool _stored;
 
     public int Counter => _counter;
 
     protected override void OnAttach()
     {
         base.OnAttach();
-        if (Card != null && Card.Pile != null)
+        if (Card?.Pile != null)
         {
             Card.GiveSingleTurnRetain();
             StoreOriginalValues();
         }
     }
 
-    public override async Task AfterPlayerTurnStartEarlyPostfix(
-        PlayerChoiceContext choiceContext, Player player, ComponentContext componentContext)
+    // 打出时计数清零
+    public override Task OnPlayPostfix(PlayerChoiceContext choiceContext, CardPlay cardPlay,
+        ComponentContext componentContext)
     {
-        if (Card?.Owner != player) return;
-
-        _counter++;
-        UpdateCardValues();
+        _counter = 0;
+        return Task.CompletedTask;
     }
 
+    // 回合结束：保持临时保留，确保原始值已存
     public override Task BeforeSideTurnEndPostfix(
         PlayerChoiceContext choiceContext, CombatSide side,
         IEnumerable<Creature> participants, ComponentContext componentContext)
     {
         if (Card?.Owner?.Creature is { } creature && side == creature.Side)
+        {
             Card.GiveSingleTurnRetain();
+            StoreOriginalValues();
+        }
         return Task.CompletedTask;
+    }
+
+    // 回合开始：加计数，变更数值
+    public override async Task AfterPlayerTurnStartEarlyPostfix(
+        PlayerChoiceContext choiceContext, Player player, ComponentContext componentContext)
+    {
+        if (Card?.Owner != player) return;
+        if (Card == null) return;
+
+        _counter++;
+
+        if (!_stored) return;
+        foreach (var entry in Card.DynamicVars)
+        {
+            if (_originalValues.TryGetValue(entry.Key, out var original) && original > 0)
+            {
+                entry.Value.BaseValue = original * _counter;
+            }
+        }
     }
 
     private void StoreOriginalValues()
     {
-        if (Card == null) return;
+        if (_stored || Card == null) return;
+        _stored = true;
         _originalValues.Clear();
-
-        foreach (var varEntry in Card.DynamicVars)
+        foreach (var entry in Card.DynamicVars)
         {
-            _originalValues[varEntry.Key] = varEntry.Value.BaseValue;
-        }
-    }
-
-    private void UpdateCardValues()
-    {
-        if (Card == null) return;
-
-        foreach (var varEntry in Card.DynamicVars)
-        {
-            if (_originalValues.TryGetValue(varEntry.Key, out var original))
-            {
-                varEntry.Value.BaseValue = original * _counter;
-            }
+            _originalValues[entry.Key] = entry.Value.BaseValue;
         }
     }
 }

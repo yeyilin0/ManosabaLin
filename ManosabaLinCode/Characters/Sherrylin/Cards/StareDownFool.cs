@@ -15,7 +15,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 和笨蛋对视：选择一个敌人，如果意图是攻击则给予虚弱，否则给予易伤，升级增加层数。
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class StareDownFool() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+public sealed class StareDownFool() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

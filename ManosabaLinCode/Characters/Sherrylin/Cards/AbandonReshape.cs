@@ -12,7 +12,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 弃念换形：选择一张手卡本场战斗移除，随机生成一张无色消耗卡，升级改为移除两张但还是生成一张
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class AbandonReshape() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class AbandonReshape() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

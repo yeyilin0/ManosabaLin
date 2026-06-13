@@ -15,7 +15,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 嫌疑转移：令友方全体失去一层嫌疑，将等量嫌疑转移至任意敌方
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class SuspectTransfer() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class SuspectTransfer() : ManosabaCardTemplate(2, CardType.Attack, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

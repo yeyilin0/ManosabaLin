@@ -53,31 +53,34 @@ public sealed class Revokation() : ManosabaCardTemplate(1, CardType.Attack, Card
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        // 收集所有区域的死亡回溯卡牌
-        var allCards = new List<CardModel>();
+        // 从牌组中搜索死亡回溯卡牌
+        var deckCards = PileType.Deck.GetPile(source.Owner).Cards.Where(c => c is DeathRewind).ToList();
 
-        var drawCards = PileType.Draw.GetPile(source.Owner).Cards.Where(c => c is DeathRewind).ToList();
-        var handCards = PileType.Hand.GetPile(source.Owner).Cards.Where(c => c is DeathRewind).ToList();
-        var discardCards = PileType.Discard.GetPile(source.Owner).Cards.Where(c => c is DeathRewind).ToList();
-
-        allCards.AddRange(drawCards);
-        allCards.AddRange(handCards);
-        allCards.AddRange(discardCards);
-
-        // 选择 0~1 张死亡回溯消耗（可不选）
-        var cardExhausted = false;
-        if (allCards.Count > 0)
+        // 选择 0~1 张死亡回溯移除（可不选）
+        var cardRemoved = false;
+        if (deckCards.Count > 0)
         {
             var prefs = new CardSelectorPrefs(source.SelectionScreenPrompt, 0, 1);
             var selected = await CardSelectCmd.FromSimpleGrid(
-                choiceContext, allCards, source.Owner, prefs
+                choiceContext, deckCards, source.Owner, prefs
             );
 
             var card = selected.FirstOrDefault();
             if (card != null)
             {
-                await CardCmd.Exhaust(choiceContext, card);
-                cardExhausted = true;
+                // 从牌组永久移除
+                await CardPileCmd.RemoveFromDeck(card);
+
+                // 同时移除局内对应卡牌
+                var combatPiles = new[] { PileType.Draw, PileType.Hand, PileType.Discard, PileType.Exhaust };
+                foreach (var pileType in combatPiles)
+                {
+                    var pileCards = pileType.GetPile(source.Owner).Cards.Where(c => c is DeathRewind).ToList();
+                    foreach (var pileCard in pileCards)
+                        await CardPileCmd.RemoveFromCombat(pileCard);
+                }
+
+                cardRemoved = true;
             }
         }
         // 移除自身死亡回溯能力
@@ -85,8 +88,8 @@ public sealed class Revokation() : ManosabaCardTemplate(1, CardType.Attack, Card
         if (hasDeathRewindPower)
             await PowerCmd.Remove<DeathRewindPower>(source.Owner.Creature);
 
-        // 如果消耗了卡牌或移除了能力，加入一张保留的正义
-        if (cardExhausted || hasDeathRewindPower)
+        // 如果移除了卡牌或移除了能力，加入一张保留的正义
+        if (cardRemoved || hasDeathRewindPower)
         {
             var justice = source.CombatState.CreateCard<Justice>(source.Owner);
             justice.SetToFreeThisTurn();

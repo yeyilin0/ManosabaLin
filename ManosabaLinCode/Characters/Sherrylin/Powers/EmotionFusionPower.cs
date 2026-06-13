@@ -5,14 +5,9 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
-using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ManosabaLin.Characters.Sherrylin.Powers;
 
@@ -22,7 +17,7 @@ public sealed class EmotionFusionPower : ManosabaActionTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
     public override TargetType TargetType => TargetType.Self;
-    public override bool DecrementAfterAct => true;
+    public override bool DecrementAfterAct => false;
 
     private static readonly Dictionary<string, Func<ICombatState, Player, CardModel?>> FusionRecipes2 = new()
     {
@@ -44,12 +39,11 @@ public sealed class EmotionFusionPower : ManosabaActionTemplate
         var player = Owner.Player;
         if (player == null) return;
 
-        var caseFilePile = MainFile.CaseFilePile.GetPile(player);
-        if (caseFilePile.Cards.Count < 2) return;
+        var caseFileCards = MainFile.CaseFilePile.GetPile(player).Cards.ToList();
+        if (caseFileCards.Count < 2) return;
 
-        var prefs = new CardSelectorPrefs(
-            new LocString("cards", "MANOSABA_LIN_POWER_EMOTION_FUSION_POWER.selectionScreenPrompt"), 2);
-        var selected = await CardSelectCmd.FromCombatPile(choiceContext, caseFilePile, player, prefs);
+        var prefs = new CardSelectorPrefs(new LocString("cards", "MANOSABA_LIN_POWER_EMOTION_FUSION_POWER.selectionScreenPrompt"), 2);
+        var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, caseFileCards, player, prefs);
         var selectedList = selected.ToList();
         if (selectedList.Count < 2) return;
 
