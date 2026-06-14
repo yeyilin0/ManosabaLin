@@ -721,5 +721,7 @@
   "MANOSABA_LIN_CARD_THE_FOOL.description": "Gain 100 [b]Witchification[/b], 1 [b]Ritual Ceremony[/b]. Trigger case reversal, gain magic equal to draw pile. Gain 13 [rainbow][b]Emotion[/b][/rainbow]. Randomly get 2 emotion cards into Case File. Gain shield equal to exhaust pile, gain energy and draw equal to draw pile. Exhaust.",
   "MANOSABA_LIN_CARD_WITCHS_FIST.title": "Witch's Fist",
   "MANOSABA_LIN_CARD_WITCHS_FIST.description": "Deal {Damage:diff()} damage. Choose to remove 1 Super Strength card from deck (also removes from combat), or remove Super Strength power, gain 1 [gold]The Fool[/gold] with Retain.",
-  "MANOSABA_LIN_CARD_WITCHS_FIST.selectionScreenPrompt": "Choose 1 Super Strength card to remove (optional)"
+  "MANOSABA_LIN_CARD_WITCHS_FIST.selectionScreenPrompt": "Choose 1 Super Strength card to remove (optional)",
+  "ManosabaLin.RemoveOnPlayCapability.hovertip.title": "Remove on Play",
+  "ManosabaLin.RemoveOnPlayCapability.hovertip.description": "When played, permanently remove this card from combat."
 }

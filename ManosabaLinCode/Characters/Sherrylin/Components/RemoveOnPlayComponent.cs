@@ -25,6 +25,6 @@ public sealed partial class RemoveOnPlayComponent : CardComponent
     {
         var card = Card;
         if (card == null) return;
-        await CardPileCmd.RemoveFromCombat(card);
+        await CardPileCmd.RemoveFromCombat(card, skipVisuals: true);
     }
 }

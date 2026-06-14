@@ -723,6 +723,8 @@
   "ManosabaLin.RetainCounterComponent.prefix": "[color=33ccff]魔女化[/color]",
   "ManosabaLin.RemoveOnPlayComponent.hovertip.title": "移除",
   "ManosabaLin.RemoveOnPlayComponent.hovertip.description": "打出后将此卡从战斗中永久移除",
-  "ManosabaLin.RemoveOnPlayComponent.postfix": "\n[color=33ccff]移除[/color]"
+  "ManosabaLin.RemoveOnPlayComponent.postfix": "\n[color=33ccff]移除[/color]",
+  "ManosabaLin.RemoveOnPlayCapability.hovertip.title": "打出移除",
+  "ManosabaLin.RemoveOnPlayCapability.hovertip.description": "打出后将此卡从战斗中永久移除"
 
 }
