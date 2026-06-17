@@ -608,7 +608,7 @@
   "MANOSABA_LIN_CARD_MAD_CARD_CHASE.title": "妄牌逐空",
   "MANOSABA_LIN_CARD_MAD_CARD_CHASE.description": "ドローパイルのトップ3枚を手札に加える。このターン手札上限+3。ターン終了時に手札の1/3をランダムに使用",
   "MANOSABA_LIN_CARD_ZERO_ENERGY_GRAB.title": "零能擷取",
-  "MANOSABA_LIN_CARD_ZERO_ENERGY_GRAB.description": "ランダムなゼロコストカード{CardCount:diff()}枚を手札に加える。消費",
+  "MANOSABA_LIN_CARD_ZERO_ENERGY_GRAB.description": "使用後除去されるランダムなゼロコストカード{CardCount:diff()}枚を手札に加える。消費",
   "MANOSABA_LIN_CARD_DUAL_ASCENSION.title": "双相昇華",
   "MANOSABA_LIN_CARD_DUAL_ASCENSION.description": "手札を5枚出すたび、ランダムに手札1枚をアップグレード{IfUpgraded:show:しドローパイル1枚も|}",
   "MANOSABA_LIN_CARD_NASCENT_EMOTION.title": "初生情緒",
@@ -694,6 +694,7 @@
   "MANOSABA_LIN_CARD_WITCHS_FIST.title": "魔女の拳",
   "MANOSABA_LIN_CARD_WITCHS_FIST.description": "{Damage:diff()}ダメージ。デッキから怪力カード1枚を除去（戦闘内の対応カードも同時に除去）するか、怪力能力を除去し、保持付き[gold]愚者[/gold]1枚を獲得。",
   "MANOSABA_LIN_CARD_WITCHS_FIST.selectionScreenPrompt": "除去する怪力カードを選択（任意）",
-  "ManosabaLin.RemoveOnPlayCapability.hovertip.title": "打出時除去",
-  "ManosabaLin.RemoveOnPlayCapability.hovertip.description": "使用後、このカードを戦闘から永久に除去する"
+  "MANOSABA_LIN_MODEL_CAPABILITY_REMOVE_ON_PLAY_CAPABILITY.hovertip.title": "除去",
+  "MANOSABA_LIN_MODEL_CAPABILITY_REMOVE_ON_PLAY_CAPABILITY.hovertip.description": "使用後、このカードを戦闘から永久に除去する",
+  "MANOSABA_LIN_MODEL_CAPABILITY_REMOVE_ON_PLAY_CAPABILITY.afterBase": "[color=33ccff]除去[/color]"
 }

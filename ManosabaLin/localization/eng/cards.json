@@ -638,7 +638,7 @@
   "MANOSABA_LIN_CARD_MAD_CARD_CHASE.title": "Mad Card Chase",
   "MANOSABA_LIN_CARD_MAD_CARD_CHASE.description": "Add top 3 cards from draw pile to hand. Hand size +3 this turn. At turn end, randomly play 1/3 of your hand.",
   "MANOSABA_LIN_CARD_ZERO_ENERGY_GRAB.title": "Zero Energy Grab",
-  "MANOSABA_LIN_CARD_ZERO_ENERGY_GRAB.description": "Add {CardCount:diff()} random 0-cost cards to hand. Exhaust.",
+  "MANOSABA_LIN_CARD_ZERO_ENERGY_GRAB.description": "Add {CardCount:diff()} random 0-cost cards with Remove on Play to hand. Exhaust.",
   "MANOSABA_LIN_CARD_DUAL_ASCENSION.title": "Dual Ascension",
   "MANOSABA_LIN_CARD_DUAL_ASCENSION.description": "Every 5 hand cards played, randomly upgrade 1 hand card{IfUpgraded:show: and 1 draw pile card|}.",
   "MANOSABA_LIN_CARD_NASCENT_EMOTION.title": "Nascent Emotion",
@@ -722,6 +722,7 @@
   "MANOSABA_LIN_CARD_WITCHS_FIST.title": "Witch's Fist",
   "MANOSABA_LIN_CARD_WITCHS_FIST.description": "Deal {Damage:diff()} damage. Choose to remove 1 Super Strength card from deck (also removes from combat), or remove Super Strength power, gain 1 [gold]The Fool[/gold] with Retain.",
   "MANOSABA_LIN_CARD_WITCHS_FIST.selectionScreenPrompt": "Choose 1 Super Strength card to remove (optional)",
-  "ManosabaLin.RemoveOnPlayCapability.hovertip.title": "Remove on Play",
-  "ManosabaLin.RemoveOnPlayCapability.hovertip.description": "When played, permanently remove this card from combat."
+  "MANOSABA_LIN_MODEL_CAPABILITY_REMOVE_ON_PLAY_CAPABILITY.hovertip.title": "Remove",
+  "MANOSABA_LIN_MODEL_CAPABILITY_REMOVE_ON_PLAY_CAPABILITY.hovertip.description": "When played, permanently remove this card from combat.",
+  "MANOSABA_LIN_MODEL_CAPABILITY_REMOVE_ON_PLAY_CAPABILITY.afterBase": "[color=33ccff]Remove[/color]"
 }

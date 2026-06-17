@@ -1,0 +1,4 @@
+interface:
+  display_name: "ManosabaLin Local Context"
+  short_description: "Create or repair ManosabaLin local paths."
+  default_prompt: "Use $manosabalin-local-context to create or update AGENTS.local.md for this ManosabaLin checkout."

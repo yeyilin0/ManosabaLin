@@ -23,7 +23,7 @@
         <ModsPath>$(Sts2Path)/mods</ModsPath> <!-- 自动拷贝 MinionLib 到 mods 目录 -->
         <RitsuLibDeployDir>$(Sts2Path)/mods/RitsuLib</RitsuLibDeployDir> <!-- 自动拷贝 RitsuLib 到 mods 目录 -->
     </PropertyGroup>
-    
+
     <!-- FMod 自动化相关配置 -->
     <PropertyGroup>
         <FmodStudioPath Condition="'$(FmodStudioPath)' == ''">D:\FMOD Studio 2.03.13\fmodstudiocl.exe</FmodStudioPath>
@@ -74,6 +74,8 @@
         <None Include="ManosabaLin/**"/>
         <!--        <None Remove="ManosabaLin\audio\**"/>-->
         <None Include="FMOD/Scripts/**"/>
+        <None Include=".codex/**"/>
+        <None Include="AGENTS.md"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -132,7 +134,7 @@
 
     <Target Name="BuildAndCopyFmod" BeforeTargets="ExportPCK">
         <Message Text="[FMOD] Starting Headless Build..." Importance="high"/>
-        
+
         <Exec Command="&quot;$(FmodStudioPath)&quot; -build -export-guids &quot;$(FmodProjectFile)&quot;" />
 
         <ItemGroup>
