@@ -14,16 +14,13 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCard(typeof(LinCardPool))]
 public sealed class TheEnd : ManosabaCardTemplate
 {
-    public TheEnd() : base(0, CardType.Skill, CardRarity.Ancient, TargetType.None)
+    public TheEnd() : base(-1, CardType.Skill, CardRarity.Ancient, TargetType.None)
     {
     }
 
     protected override HashSet<CardTag> CanonicalTags => new();
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get { yield return CardKeyword.Exhaust; }
-    }
+  
 
     protected override IEnumerable<DynamicVar> CanonicalVars
     {

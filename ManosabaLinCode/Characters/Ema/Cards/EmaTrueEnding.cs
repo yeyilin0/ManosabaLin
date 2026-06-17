@@ -1,5 +1,6 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
+using ManosabaLin.Characters.Emalin.Actions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -17,7 +18,7 @@ public sealed class EmaTrueEnding() : ManosabaCardTemplate(2, CardType.Power, Ca
     {
         get
         {
-            yield return HoverTipFactory.FromPower<EmaTrueEndingPower>();
+            yield return HoverTipFactory.FromPower<EmaTrueEndingRewardAction>();
         }
     }
 

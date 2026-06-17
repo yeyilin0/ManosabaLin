@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,24 +28,23 @@ public sealed class TheThreeGarridebs() : ManosabaCardTemplate(0, CardType.Skill
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new EnergyVar(3),
-        new CardsVar(0)
+        new CardsVar(0),
+        new BlockVar(5, DamageProps.cardUnpowered)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
-        // 检查是否拥有放大镜遗物
         var magnifyingGlass = Owner.Relics.OfType<MagnifyingGlass>().FirstOrDefault();
         if (magnifyingGlass == null) return;
 
-        // 检查本场战斗是否已触发过翻案
         if (!magnifyingGlass.HasTriggeredThisCombat) return;
 
-        // 翻案已触发：回费
         await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
 
-        // 升级后额外抽牌
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.BaseValue, ValueProp.Unpowered, null);
+
         if (IsUpgraded)
         {
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);

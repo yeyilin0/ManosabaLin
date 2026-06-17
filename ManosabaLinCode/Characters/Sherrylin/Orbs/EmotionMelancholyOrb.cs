@@ -24,7 +24,7 @@ public sealed class EmotionMelancholyOrb : EmotionOrb<EmotionMelancholy>
     public override async Task AfterCardPlayed(
         PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner?.Creature != Owner.Creature) return;
+        if (cardPlay.Card.Owner != Owner) return;
 
         if (cardPlay.Card.Type == CardType.Attack)
         {
@@ -36,8 +36,11 @@ public sealed class EmotionMelancholyOrb : EmotionOrb<EmotionMelancholy>
         {
             await CreatureCmd.GainBlock(Owner.Creature, 2m, ValueProp.Unpowered, null);
             _skillCount++;
-            if (_skillCount % 3 == 0)
+            if (_skillCount >= 3)
+            {
+                _skillCount = 0;
                 await PlayerCmd.GainEnergy(1m, Owner);
+            }
         }
         else if (cardPlay.Card.Type == CardType.Power)
         {

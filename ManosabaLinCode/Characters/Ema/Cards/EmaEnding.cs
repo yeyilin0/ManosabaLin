@@ -30,7 +30,7 @@ public class EmaEnding() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Ra
             yield return HoverTipFactory.FromCard<EmaBadEnding>();
             yield return HoverTipFactory.FromPower<EmaBadEndingPower>();
             yield return HoverTipFactory.FromPower<EmaBadEndingRewardPower>();
-            yield return HoverTipFactory.FromPower<EmaTrueEndingRewardAction>();
+            yield return HoverTipFactory.FromPower<EmaTrueEndingPower>();
         }
     }
 

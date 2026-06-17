@@ -11,9 +11,6 @@ using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 
 namespace ManosabaLin.Characters.Sherrylin.Orbs;
 
-/// <summary>
-/// 厌恶球体：受到敌人攻击时反弹等量伤害。
-/// </summary>
 [RegisterOrb]
 public sealed class EmotionDisgustOrb : EmotionOrb<EmotionDisgust>
 {
@@ -31,5 +28,10 @@ public sealed class EmotionDisgustOrb : EmotionOrb<EmotionDisgust>
         await CreatureCmd.Damage(
             choiceContext, dealer, result.TotalDamage,
             ValueProp.Move, Owner.Creature, null);
+
+        if (result.UnblockedDamage > 0)
+        {
+            await OrbCmd.Evoke(choiceContext, Owner, this, true);
+        }
     }
 }

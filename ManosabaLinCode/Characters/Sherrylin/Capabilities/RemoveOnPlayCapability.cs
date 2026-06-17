@@ -9,23 +9,16 @@ using STS2RitsuLib.Models.Capabilities;
 namespace ManosabaLin.Characters.Sherrylin.Capabilities;
 
 [RegisterModelCapability]
-public class RemoveOnPlayCapability : OneShotCardPlayCapability
+public class RemoveOnPlayCapability : OneShotCardPlayCapability, ICardPlayResultContributor
 {
     public static readonly IHoverTip Tip = new HoverTip(
         new LocString("cards", "ManosabaLin.RemoveOnPlayCapability.hovertip.title"),
         new LocString("cards", "ManosabaLin.RemoveOnPlayCapability.hovertip.description"));
 
-    protected override Task OnOwnerCardPlayedOnce(PlayerChoiceContext choiceContext, CardPlay cardPlay)
-    {
-        if (Owner == null) return Task.CompletedTask;
-        var card = Owner;
-        MegaCrit.Sts2.Core.Helpers.TaskHelper.RunSafely(RemoveNextFrame(card));
-        return Task.CompletedTask;
-    }
+    public PileType? GetResultPileTypeForCardPlay(CardModel card) => PileType.None;
 
-    private async Task RemoveNextFrame(CardModel card)
+    protected override async Task OnOwnerCardPlayedOnce(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await Task.Yield();
-        await CardPileCmd.RemoveFromCombat(card, skipVisuals: true);
+        // 不需要 RemoveFromCombat，GetResultPileTypeForCardPlay 已经处理了
     }
 }

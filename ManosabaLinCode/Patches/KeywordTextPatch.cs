@@ -24,10 +24,11 @@ public static class KeywordTextPatch
     {
         var keywordColors = new Dictionary<string, string>
         {
-            { "轮回。",     "#CC6666" },
+            { "轮回",     "#CC6666" },
+            { "轮轮轮回回回",     "#CC6666" },
             { "赞同",     "#6699cc" },
             { "质疑",     "#339966" },
-            { "反驳",     "#CC6666" },
+            { "反驳",     "#339966" },
            
         };
 

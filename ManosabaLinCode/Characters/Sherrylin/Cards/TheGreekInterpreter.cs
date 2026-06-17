@@ -3,6 +3,7 @@ using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,8 @@ public sealed class TheGreekInterpreter() : ManosabaCardTemplate(2, CardType.Ski
         await CardPileCmd.RemoveFromCombat(selectedCard);
         await CardPileCmd.Add(selectedCard, PileType.Hand);
         selectedCard.SetToFreeThisTurn();
+
+        await CreatureCmd.GainBlock(Owner.Creature, 8m, ValueProp.Unpowered, null);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

@@ -12,7 +12,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Hiro.Cards;
 
 [RegisterCard(typeof(LinCardPool))]
-public sealed class LyXl() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Ancient, TargetType.AnyPlayer)
+public sealed class LyXl() : ManosabaCardTemplate(-1, CardType.Skill, CardRarity.Ancient, TargetType.AnyPlayer)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {

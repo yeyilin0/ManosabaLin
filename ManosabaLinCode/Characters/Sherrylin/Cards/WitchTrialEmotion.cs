@@ -21,7 +21,7 @@ public sealed class WitchTrialEmotion() : ManosabaCardTemplate(1, CardType.Skill
         {
             yield return HoverTipFactory.FromPower<EmotionPower>();
             yield return HoverTipFactory.FromPower<WithPower>();
-            yield return RemoveOnPlayComponent.Tip;
+          
         }
     }
 
@@ -42,20 +42,22 @@ public sealed class WitchTrialEmotion() : ManosabaCardTemplate(1, CardType.Skill
         if (IsUpgraded)
             await CardPileCmd.Draw(choiceContext, 1, source.Owner);
 
-        var hand = PileType.Hand.GetPile(source.Owner).Cards
-            .Where(c => c != source).ToList();
-        if (hand.Count > 0)
-        {
-            var rng = source.Owner.RunState.Rng.CombatCardSelection;
-            var toRemove = hand[rng.NextInt(hand.Count)];
-            await CardPileCmd.RemoveFromCombat(toRemove);
-        }
-
         var withPower = source.Owner.Creature.GetPower<WithPower>();
         if (withPower != null && withPower.Amount >= 100)
         {
             await PowerCmd.Remove(withPower);
-            source.TryAddComponent(new RemoveOnPlayComponent());
+            await CardPileCmd.RemoveFromCombat(source);
+        }
+        else
+        {
+            var hand = PileType.Hand.GetPile(source.Owner).Cards
+                .Where(c => c != source).ToList();
+            if (hand.Count > 0)
+            {
+                var rng = source.Owner.RunState.Rng.CombatCardSelection;
+                var toRemove = hand[rng.NextInt(hand.Count)];
+                await CardPileCmd.RemoveFromCombat(toRemove);
+            }
         }
     }
 

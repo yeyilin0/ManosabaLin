@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdxsx2cwkgllw"
-path="res://.godot/imported/trialenchantcyclecard.jpg-95338442697ac6aedbaa59a6c71b2145.ctex"
+uid="uid://v1qb8wqg1l0n"
+path="res://.godot/imported/destroyeverything.png-60394f9445099c18aedc341936e87cc4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/cards/big/trialenchantcyclecard.jpg"
-dest_files=["res://.godot/imported/trialenchantcyclecard.jpg-95338442697ac6aedbaa59a6c71b2145.ctex"]
+source_file="res://ManosabaLin/images/cards/big/destroyeverything.png"
+dest_files=["res://.godot/imported/destroyeverything.png-60394f9445099c18aedc341936e87cc4.ctex"]
 
 [params]
 

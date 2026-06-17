@@ -4,9 +4,9 @@
   "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "轮轮轮回回回",
   "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "当你打出带有[color=#CC6666]【轮轮轮回回回】[/color]的卡牌，从任意地方打出带有[color=#CC6666]【轮轮轮回回回】[/color]的卡",
   "MANOSABA_LIN_KEYWORD_AGREE.title": "赞同",
-  "MANOSABA_LIN_KEYWORD_AGREE.description":"打出若为1到5的倍数则触发效果\n×1：全体友方获得3点护盾\n×2：自身获得3点护盾\n×3：全体友方获得1层临时迅捷\n×4：全体友方获得2层临时力量\n×5：随机1张手卡可以免费打出1次，全体友方获得{energyPrefix:energyIcons(1)}",
+  "MANOSABA_LIN_KEYWORD_AGREE.description":"打出若为1到5的倍数则触发效果\n×1：全体友方获得3点护盾\n×2：自身获得3点护盾\n×3：全体友方获得1层临时迅捷\n×4：全体友方获得2层临时力量\n×5：随机1张手卡可以免费打出1次，全体友方获得1点能量",
   "MANOSABA_LIN_KEYWORD_DOUBT.title": "疑问",
-  "MANOSABA_LIN_KEYWORD_DOUBT.description":"打出若为1到5的倍数则触发效果\n×1:自身获得1护盾\n×2:自身抽1牌\n×3:自身获得{energyPrefix:energyIcons(1)}\n×4:回收弃牌堆1张卡\n×5:1张手卡添加重放1,1张手卡获得1个[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔",
+  "MANOSABA_LIN_KEYWORD_DOUBT.description":"打出若为1到5的倍数则触发效果\n×1:自身获得1护盾\n×2:自身抽1牌\n×3:自身获得1点能量\n×4:回收弃牌堆1张卡\n×5:1张手卡添加重放1,1张手卡获得1个[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔",
   "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "反驳",
   "MANOSABA_LIN_KEYWORD_REBUTTAL.description":"打出若为1到5的倍数则触发效果\n×1：随机造成1点伤害\n×2：自身获得1点力量\n×3：敌方全体获得1层易伤\n×4：随机造成等次数的1点伤害\n×5：本牌额外多打出1次"
 }

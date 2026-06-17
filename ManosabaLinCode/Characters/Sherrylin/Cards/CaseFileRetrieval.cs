@@ -1,18 +1,21 @@
 using ManosabaLin.Characters.Common;
-using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
-/// <summary>
-/// 案卷调取：选择额外牌堆1张卡加入手牌，升级减一费
-/// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class CaseFileRetrieval() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new BlockVar(5m, ValueProp.Unpowered)
+    ];
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
@@ -20,20 +23,14 @@ public sealed class CaseFileRetrieval() : ManosabaCardTemplate(2, CardType.Skill
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
         var caseFilePile = MainFile.CaseFilePile.GetPile(source.Owner);
-        if (caseFilePile.Cards.Count == 0) return;
+        var blockAmount = caseFilePile.Cards.Count * source.DynamicVars.Block.BaseValue;
 
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
-        var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, caseFilePile.Cards.ToList(), source.Owner, prefs);
-        var selectedList = selected.ToList();
-        if (selectedList.Count > 0)
-        {
-            var card = selectedList[0];
-            await CardPileCmd.Add(card, PileType.Hand, CardPilePosition.Top, source);
-        }
+        if (blockAmount > 0)
+            await CreatureCmd.GainBlock(source.Owner.Creature, blockAmount, ValueProp.Unpowered, null);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars.Block.UpgradeValueBy(5m);
     }
 }

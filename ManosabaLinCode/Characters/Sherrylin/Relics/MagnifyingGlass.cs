@@ -34,7 +34,6 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
 
         HasTriggeredThisCombat = false;
 
-        // 进入战斗时设置2个充能球位置
         var queue = Owner.PlayerCombatState?.OrbQueue;
         if (queue != null)
         {
@@ -56,7 +55,6 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
         if (card.Owner != Owner) return;
         if (Owner.Creature?.CombatState == null) return;
 
-        // 状态牌或诅咒牌进入消耗堆后，直接移除
         if (card.Type == CardType.Status || card.Type == CardType.Curse)
         {
             var exhaustPile = PileType.Exhaust.GetPile(Owner);
@@ -67,7 +65,6 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
             }
         }
 
-        // 翻案：抽牌堆为空时，抽牌堆和弃牌堆互换
         var drawPile = PileType.Draw.GetPile(Owner);
         if (drawPile.Cards.Any())
         {
@@ -78,12 +75,16 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
         if (!Swapping.Add(Owner)) return;
 
         var discardPile = PileType.Discard.GetPile(Owner);
-        if (!discardPile.Cards.Any()) return;
+        var exhaustPileSwap = PileType.Exhaust.GetPile(Owner);
+
+        if (!exhaustPileSwap.Cards.Any())
+        {
+            Swapping.Remove(Owner);
+            return;
+        }
 
         HasTriggeredThisCombat = true;
 
-        // 消耗堆和弃牌堆互换：消耗→弃牌（每张获得1层魔法），弃牌→消耗
-        var exhaustPileSwap = PileType.Exhaust.GetPile(Owner);
         var exhaustCards = exhaustPileSwap.Cards.ToList();
         var discardCards = discardPile.Cards.ToList();
 

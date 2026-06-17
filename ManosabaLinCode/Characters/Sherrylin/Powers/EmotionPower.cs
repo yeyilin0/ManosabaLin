@@ -72,7 +72,7 @@ public sealed class EmotionPower : ManosabaActionTemplate
         var caseFileCards = MainFile.CaseFilePile.GetPile(player).Cards.ToList();
         if (caseFileCards.Count == 0) return;
 
-        var prefs = new CardSelectorPrefs(new LocString("powers", Id.Entry + ".selectionScreenPrompt"), 1);
+        var prefs = new CardSelectorPrefs(new LocString("powers", Id.Entry + ".selectionScreenPrompt"), 0,1);
         var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, caseFileCards, player, prefs);
         var selectedList = selected.ToList();
         if (selectedList.Count > 0)
