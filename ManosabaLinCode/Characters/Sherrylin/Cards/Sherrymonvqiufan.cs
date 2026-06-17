@@ -1,6 +1,7 @@
 ﻿using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.Powers;
+using ManosabaLin.Characters.Sherrylin;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -11,8 +12,8 @@ using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
-[RegisterCard(typeof(HiroCardPool))]
-public sealed class Sherrymonvqiufan() : ManosabaCardTemplate(3, CardType.Attack, CardRarity.Uncommon, TargetType.Self)
+[RegisterCard(typeof(SherrylinCardPool))]
+public sealed class Sherrymonvqiufan() : ManosabaCardTemplate(3, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

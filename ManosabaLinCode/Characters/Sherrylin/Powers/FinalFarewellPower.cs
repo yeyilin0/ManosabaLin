@@ -32,11 +32,12 @@ public sealed class FinalFarewellPower : ManosabaPowerTemplate
         if (amount <= 0) return;
 
         power.Amount -= (int)amount;
+        _storm += amount;
     }
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (player != Owner.Player || _storm <= 0) return;
+        if (player != Owner.Player) return;
 
         var triggers = (int)(_storm / 40);
         if (triggers <= 0) return;

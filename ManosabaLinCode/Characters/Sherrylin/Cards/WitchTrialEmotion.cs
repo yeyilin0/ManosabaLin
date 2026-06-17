@@ -1,6 +1,5 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
-using ManosabaLin.Characters.Sherrylin.Components;
 using ManosabaLin.Characters.Sherrylin.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,7 +20,6 @@ public sealed class WitchTrialEmotion() : ManosabaCardTemplate(1, CardType.Skill
         {
             yield return HoverTipFactory.FromPower<EmotionPower>();
             yield return HoverTipFactory.FromPower<WithPower>();
-          
         }
     }
 
@@ -55,8 +53,8 @@ public sealed class WitchTrialEmotion() : ManosabaCardTemplate(1, CardType.Skill
             if (hand.Count > 0)
             {
                 var rng = source.Owner.RunState.Rng.CombatCardSelection;
-                var toRemove = hand[rng.NextInt(hand.Count)];
-                await CardPileCmd.RemoveFromCombat(toRemove);
+                var toExhaust = hand[rng.NextInt(hand.Count)];
+                await CardCmd.Exhaust(choiceContext, toExhaust);
             }
         }
     }

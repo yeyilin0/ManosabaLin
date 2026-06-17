@@ -1,15 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://nfxptj0bnrms"]
 
-[ext_resource type="Texture2D" uid="uid://rdvmaotng22j" path="res://ManosabaLin/images/characters/Emalin/EmalinRest.png" id="1_34lhe"]
+[ext_resource type="Texture2D" uid="uid://bkadbyrq8gmb8" path="res://ManosabaLin/images/characters/Sherrylin/sherrylin_rest_site.png" id="1_qh84q"]
 [ext_resource type="PackedScene" uid="uid://mtrlxduupxi0" path="res://ManosabaLin/scenes/selection_reticle.tscn" id="2_wcbx6"]
 
 [node name="SherrylinRestSite" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-33.71527, 10.812681)
-scale = Vector2(0.4536133, 0.45548528)
-texture = ExtResource("1_34lhe")
+position = Vector2(-39, -18)
+scale = Vector2(0.40915558, 0.43733245)
+texture = ExtResource("1_qh84q")
 
 [node name="ControlRoot" type="Control" parent="."]
 unique_name_in_owner = true

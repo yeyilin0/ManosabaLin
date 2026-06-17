@@ -27,10 +27,7 @@ public sealed class SuperStrengthPower : ManosabaPowerTemplate
 
         Flash();
 
-        await PowerCmd.Apply<WithPower>(
-            choiceContext, Owner, 20,
-            Owner, null, false);
-
+       
         var newCard = Owner.CombatState.CreateCard<ShockwaveFist>(Owner.Player);
         if (CardUpgraded)
             newCard.UpgradeInternal();

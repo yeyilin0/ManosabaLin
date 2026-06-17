@@ -5,7 +5,9 @@ using ManosabaLin.Characters.Sherrylin.Orbs;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using MinionLib.Component.Core;
@@ -13,21 +15,36 @@ using MinionLib.Component.Interfaces;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
+using ManosabaLin.Characters.Common.Components;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 
-/// <summary>
-/// 无助（情绪卡）：带蓄力组件和无助费用组件，打出时获得力量、减少敏捷、造成伤害、获得格挡（受蓄力计数加成），然后获得无助充能球。
-/// </summary>
 [RegisterCard(typeof(LinCardPool))]
-public sealed class EmotionHelplessness() : CaseFileCard<EmotionHelplessnessOrb>(-1, CardRarity.Ancient, TargetType.Self)
+public sealed class EmotionHelplessness() : CaseFileCard<EmotionHelplessnessOrb>(-1, CardRarity.Ancient, TargetType.AnyEnemy)
 {
     public override int MaxUpgradeLevel => 0;
 
     protected override IEnumerable<ICardComponent> CanonicalComponents =>
-        [new RetainCounterComponent()];
+        [new RetainCounterComponent(), new UniqueComponent()];
 
-    // 回合开始费用+1，费用≥4时获得升空组件
+    protected override bool HasTurnEndInHandEffectC => true;
+
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new PowerVar<StrengthPower>("Strength", 2m),
+        new PowerVar<DexterityPower>("Dexterity", 2m),
+        new DamageVar("Damage", 5, ValueProp.Move),
+        new BlockVar("Block", 5m, ValueProp.Move)
+    ];
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips
+    {
+        get
+        {
+            yield return HoverTipFactory.FromOrb<EmotionHelplessnessOrb>();
+        }
+    }
+
     protected override async Task AfterPlayerTurnStart(
         PlayerChoiceContext choiceContext, Player player, ComponentContext componentContext)
     {
@@ -41,12 +58,38 @@ public sealed class EmotionHelplessness() : CaseFileCard<EmotionHelplessnessOrb>
         }
     }
 
+    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext, ComponentContext componentContext)
+    {
+        var retainCards = PileType.Hand.GetPile(Owner).Cards
+            .Where(c => c.HasComponent<RetainCounterComponent>())
+            .ToList();
+
+        if (retainCards.Count == 0) return;
+
+        var rng = Owner.RunState.Rng.CombatCardSelection;
+        var target = retainCards[rng.NextInt(retainCards.Count)];
+
+        if (target is IComponentsCardModel ccm)
+        {
+            var comp = ccm.Components.OfType<RetainCounterComponent>().FirstOrDefault();
+            if (comp != null)
+            {
+                var flags = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
+                var counterField = typeof(RetainCounterComponent).GetField("_counter", flags);
+                if (counterField != null)
+                {
+                    var current = (int)counterField.GetValue(comp);
+                    counterField.SetValue(comp, current + 1);
+                }
+            }
+        }
+    }
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
 
-        // 读取蓄力计数
         int counter = 1;
         if (source is IComponentsCardModel ccm)
         {
@@ -60,17 +103,16 @@ public sealed class EmotionHelplessness() : CaseFileCard<EmotionHelplessnessOrb>
             }
         }
 
-        // 获得力量
-        await PowerCmd.Apply<TempStrength>(
-            choiceContext, source.Owner.Creature, counter * 2,
+        await PowerCmd.Apply<StrengthPower>(
+            choiceContext, source.Owner.Creature,
+            counter * source.DynamicVars["StrengthPower"].BaseValue,
             source.Owner.Creature, source, false);
 
-        // 减少敏捷
-        await PowerCmd.Apply<TempStrengthDown>(
-            choiceContext, source.Owner.Creature, counter * 2,
+        await PowerCmd.Apply<DexterityPower>(
+            choiceContext, source.Owner.Creature,
+            -(counter * (int)source.DynamicVars["Dexterity"].BaseValue),
             source.Owner.Creature, source, false);
 
-        // 造成伤害（受计数加成）
         var combatState = source.CombatState;
         if (combatState != null)
         {
@@ -79,14 +121,16 @@ public sealed class EmotionHelplessness() : CaseFileCard<EmotionHelplessnessOrb>
             {
                 var rng = source.Owner.RunState.Rng.CombatCardSelection;
                 var target = enemies[rng.NextInt(enemies.Count)];
-                await CreatureCmd.Damage(choiceContext, target, counter * 5, ValueProp.Move, source.Owner.Creature, source);
+                await CreatureCmd.Damage(choiceContext, target,
+                    counter * source.DynamicVars.Damage.BaseValue,
+                    ValueProp.Move, source.Owner.Creature, source);
             }
         }
 
-        // 获得格挡（受计数加成）
-        await CreatureCmd.GainBlock(source.Owner.Creature, counter * 5, ValueProp.Move, cardPlay);
+        await CreatureCmd.GainBlock(source.Owner.Creature,
+            counter * source.DynamicVars.Block.BaseValue,
+            ValueProp.Move, cardPlay);
 
-        // 获得充能球
         await base.OnPlay(choiceContext, cardPlay, componentContext);
     }
 }

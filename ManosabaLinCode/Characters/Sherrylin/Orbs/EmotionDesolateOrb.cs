@@ -41,5 +41,7 @@ public sealed class EmotionDesolateOrb : EmotionOrb<EmotionDesolate>
             await CreatureCmd.GainBlock(Owner.Creature, _savedBlock, ValueProp.Unpowered, null);
             _savedBlock = 0;
         }
+
+        await OrbCmd.EvokeNext(ctx, Owner);
     }
 }

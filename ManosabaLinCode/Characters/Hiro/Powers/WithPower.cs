@@ -1,6 +1,7 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Hiro.Cards;
+using ManosabaLin.Characters.Sherrylin.Cards;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -109,6 +110,8 @@ public sealed class WithPower : ManosabaPowerTemplate
             await GiveDeathRewind();
         else if (characterType == typeof(Emalin.Emalin))
             await GiveWitchKillerCard();
+        else if (characterType == typeof(Sherrylin.Sherrylin))
+            await GiveSuperStrength();
     }
 
     private async Task GiveDeathRewind()
@@ -136,6 +139,25 @@ public sealed class WithPower : ManosabaPowerTemplate
         if (deck.Cards.Any(c => c is EmaWitchKillerCard)) return;
 
         var cardModel = ModelDb.GetById<CardModel>(ModelDb.GetId<EmaWitchKillerCard>());
+        if (cardModel == null) return;
+
+        var permanentCard = Owner.Player.RunState.CreateCard(cardModel, Owner.Player);
+        await CardPileCmd.Add(permanentCard, PileType.Deck);
+        CardCmd.PreviewCardPileAdd(new CardPileAddResult { success = true, cardAdded = permanentCard });
+
+        if (Owner.CombatState != null)
+        {
+            var tempCard = Owner.CombatState.CreateCard(cardModel, Owner.Player);
+            await CardPileCmd.AddGeneratedCardToCombat(tempCard, PileType.Hand, Owner.Player);
+        }
+    }
+
+    private async Task GiveSuperStrength()
+    {
+        var deck = Owner.Player.Deck;
+        if (deck.Cards.Any(c => c is SuperStrength)) return;
+
+        var cardModel = ModelDb.GetById<CardModel>(ModelDb.GetId<SuperStrength>());
         if (cardModel == null) return;
 
         var permanentCard = Owner.Player.RunState.CreateCard(cardModel, Owner.Player);
