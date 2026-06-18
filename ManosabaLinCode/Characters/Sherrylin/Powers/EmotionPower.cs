@@ -77,7 +77,7 @@ public sealed class EmotionPower : ManosabaActionTemplate
         var selectedList = selected.ToList();
         if (selectedList.Count > 0)
         {
-            await CardPileCmd.Add(selectedList[0], PileType.Hand, CardPilePosition.Top);
+            await CaseFilePileHelper.MoveToCombatHand(selectedList[0], player);
         }
     }
 }

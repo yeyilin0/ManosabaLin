@@ -55,7 +55,7 @@ public sealed class SherrylinWitchPower() : ManosabaCardTemplate(4, CardType.Pow
 
         for (int i = 0; i < removeCount; i++)
         {
-            await CardPileCmd.RemoveFromCombat(shuffled[i]);
+            CaseFilePileHelper.Remove(shuffled[i]);
         }
 
         // 获得3层魔女仪式

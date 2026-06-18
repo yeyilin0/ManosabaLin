@@ -68,7 +68,7 @@ public sealed class IHaveAFriend() : ManosabaCardTemplate(1, CardType.Skill, Car
         if (source.IsUpgraded)
             CardCmd.Upgrade(newCard);
         await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, target.Player);
-        await CardPileCmd.RemoveFromCombat(selectedCard);
+        CaseFilePileHelper.Remove(selectedCard);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
