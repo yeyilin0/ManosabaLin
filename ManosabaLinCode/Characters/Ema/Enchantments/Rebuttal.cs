@@ -89,7 +89,7 @@ public class Rebuttal : ModEnchantmentTemplate
                     .Where(e => e is { IsAlive: true })
                     .ToList();
                 if (randomTarget.Count == 0) break;
-                var t = randomTarget[Random.Shared.Next(randomTarget.Count)];
+                var t = randomTarget[owner.RunState.Rng.CombatCardSelection.NextInt(randomTarget.Count)];
                 await CreatureCmd.Damage(choiceContext, t, 1m,
                     ValueProp.Unpowered, ownerCreature, null);
             }

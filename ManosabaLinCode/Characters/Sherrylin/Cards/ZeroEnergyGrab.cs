@@ -1,5 +1,14 @@
 using ManosabaLin.Characters.Sherrylin.Capabilities;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Factories;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Models.Capabilities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
@@ -8,7 +17,7 @@ public sealed class ZeroEnergyGrab() : ManosabaCardTemplate(3, CardType.Skill, C
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DynamicVar("CardCount", 2m)
+        new CardsVar(2)
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords
@@ -22,25 +31,15 @@ public sealed class ZeroEnergyGrab() : ManosabaCardTemplate(3, CardType.Skill, C
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        var cardCount = source.DynamicVars["CardCount"].IntValue;
-        var combatState = source.CombatState;
-        if (combatState == null)
-            return;
-
-        var rng = source.Owner.RunState.Rng.CombatCardSelection;
-
-        var allPools = source.Owner.UnlockState.CharacterCardPools;
-        var zeroCostCards = allPools
-            .SelectMany(p => p.AllCards)
-            .Where(c => c.EnergyCost.Canonical == 0 && c.Type != CardType.Curse && c.Type != CardType.Status)
-            .Distinct()
-            .ToList();
-
-        for (int i = 0; i < cardCount && zeroCostCards.Count > 0; i++)
+        foreach (var newCard in CardFactory.GetForCombat(
+                     source.Owner,
+                     source.Owner.Character.CardPool.GetUnlockedCards(
+                             source.Owner.UnlockState,
+                             source.Owner.RunState.CardMultiplayerConstraint)
+                         .Where(c => c.EnergyCost.Canonical == 0 && !c.EnergyCost.CostsX),
+                     source.DynamicVars.Cards.IntValue,
+                     source.Owner.RunState.Rng.CombatCardGeneration))
         {
-            var idx = rng.NextInt(zeroCostCards.Count);
-            var cardModel = zeroCostCards[idx];
-            var newCard = combatState.CreateCard(cardModel, source.Owner);
             newCard.GetOrCreateCapability<RemoveOnPlayCapability>();
             await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, source.Owner);
         }
@@ -48,6 +47,6 @@ public sealed class ZeroEnergyGrab() : ManosabaCardTemplate(3, CardType.Skill, C
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars["CardCount"].UpgradeValueBy(1m);
+        DynamicVars["Cards"].UpgradeValueBy(1m);
     }
 }

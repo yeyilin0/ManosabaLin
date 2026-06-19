@@ -31,7 +31,12 @@ public class Randomtrialenchantpower : ManosabaPowerTemplate
         if (Owner.IsDead) return;
 
         var drawPile = PileType.Draw.GetPile(Owner.Player);
-        var drawCards = drawPile.Cards.Where(c => c.Enchantment == null && c.Rarity != CardRarity.Token && c.Type != CardType.Status && c.Type != CardType.Curse).ToList();
+        var drawCards = drawPile.Cards
+            .Where(c => c.Enchantment == null 
+                        && c.Rarity != CardRarity.Token 
+                        && c.Type != CardType.Status 
+                        && c.Type != CardType.Curse)
+            .ToList();
         if (drawCards.Count == 0) return;
 
         var rng = Owner.Player.RunState.Rng.CombatCardSelection;
@@ -40,17 +45,22 @@ public class Randomtrialenchantpower : ManosabaPowerTemplate
         var enchantTypes = new[] { typeof(Rebuttal), typeof(Agreement), typeof(Doubt) };
         var chosenEnchant = rng.NextItem(enchantTypes);
 
-        var rebuttalCanonical = ModelDb.Enchantment<Rebuttal>();
-        var agreementCanonical = ModelDb.Enchantment<Agreement>();
-        var doubtCanonical = ModelDb.Enchantment<Doubt>();
-
+        EnchantmentModel enchantment;
         if (chosenEnchant == typeof(Rebuttal))
-            CardCmd.Enchant(rebuttalCanonical.ToMutable(), targetCard, 1m);
+            enchantment = ModelDb.Enchantment<Rebuttal>().ToMutable();
         else if (chosenEnchant == typeof(Agreement))
-            CardCmd.Enchant(agreementCanonical.ToMutable(), targetCard, 1m);
+            enchantment = ModelDb.Enchantment<Agreement>().ToMutable();
         else
-            CardCmd.Enchant(doubtCanonical.ToMutable(), targetCard, 1m);
+            enchantment = ModelDb.Enchantment<Doubt>().ToMutable();
 
-        Flash();
+        try
+        {
+             CardCmd.Enchant(enchantment, targetCard, 1m);
+            Flash();
+        }
+        catch (InvalidOperationException)
+        {
+            // 卡不能接受此附魔，跳过
+        }
     }
 }

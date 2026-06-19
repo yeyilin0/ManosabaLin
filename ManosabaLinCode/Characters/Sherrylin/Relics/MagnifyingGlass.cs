@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -55,6 +56,7 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
         if (card.Owner != Owner) return;
         if (Owner.Creature?.CombatState == null) return;
 
+        // 状态/诅咒牌进入消耗堆时直接移除
         if (card.Type == CardType.Status || card.Type == CardType.Curse)
         {
             var exhaustPile = PileType.Exhaust.GetPile(Owner);
@@ -85,22 +87,45 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
 
         HasTriggeredThisCombat = true;
 
-        var exhaustCards = exhaustPileSwap.Cards.ToList();
-        var discardCards = discardPile.Cards.ToList();
+        var exhaustCards = exhaustPileSwap.Cards
+            .Where(c => c is not ICaseFileCard)
+            .ToList();
+        var discardCards = discardPile.Cards
+            .Where(c => c is not ICaseFileCard)
+            .ToList();
+        int swapCount = 0;
 
-        CaseReversalDiscardToExhaustCount = discardCards.Count;
-
-        foreach (var exhaustCard in exhaustCards)
+        // 一一交换，任意一方空就停止
+        while (exhaustCards.Count > 0 && discardCards.Count > 0)
         {
+            var exhaustCard = exhaustCards[0];
+            var discardCard = discardCards[0];
+
+            exhaustCards.RemoveAt(0);
+            discardCards.RemoveAt(0);
+
             await CardPileCmd.Add(exhaustCard, PileType.Discard, CardPilePosition.Random, skipVisuals: true);
             await PowerCmd.Apply<XlmPower>(
                 new ThrowingPlayerChoiceContext(), Owner.Creature, 1,
                 Owner.Creature, null, false);
+
+            await CardPileCmd.Add(discardCard, PileType.Exhaust, CardPilePosition.Random, skipVisuals: true);
+
+            swapCount++;
         }
 
-        foreach (var discardCard in discardCards)
+        // 弃牌堆先空 → 剩余消耗牌全部移入弃牌堆
+        if (discardCards.Count == 0)
         {
-            await CardPileCmd.Add(discardCard, PileType.Exhaust, CardPilePosition.Random, skipVisuals: true);
+            foreach (var c in exhaustCards)
+            {
+                await CardPileCmd.Add(c, PileType.Discard, CardPilePosition.Random, skipVisuals: true);
+                await PowerCmd.Apply<XlmPower>(
+                    new ThrowingPlayerChoiceContext(), Owner.Creature, 1,
+                    Owner.Creature, null, false);
+            }
         }
+
+        CaseReversalDiscardToExhaustCount = swapCount;
     }
 }

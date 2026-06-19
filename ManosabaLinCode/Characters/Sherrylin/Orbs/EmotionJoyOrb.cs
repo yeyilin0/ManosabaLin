@@ -1,4 +1,3 @@
-using Godot;
 using ManosabaLin.Characters.Common.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -15,14 +14,14 @@ namespace ManosabaLin.Characters.Sherrylin.Orbs;
 [RegisterOrb]
 public sealed class EmotionJoyOrb : EmotionOrb<EmotionJoy>
 {
-    protected override Color OrbColor => new(1f, 0.8f, 0.2f);
+    protected override Godot.Color OrbColor => new(1f, 0.8f, 0.2f);
 
     private readonly HashSet<CardType> _typesPlayedThisTurn = [];
 
     public override async Task AfterCardPlayed(
         PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (cardPlay.Card.Owner?.Creature != Owner.Creature) return;
+        if (cardPlay.Card.Owner != Owner) return;
 
         if (cardPlay.Card.Type == CardType.Attack)
         {

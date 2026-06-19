@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MinionLib.Component.Interfaces;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Linq;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
@@ -33,10 +34,10 @@ public sealed class EmotionMimic() : ManosabaCardTemplate(1, CardType.Skill, Car
 
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
         var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, caseFileCards, source.Owner, prefs);
-        var selectedList = selected.ToList();
-        if (selectedList.Count > 0)
+        var card = selected.FirstOrDefault();
+        if (card != null)
         {
-            var newCard = source.CombatState.CreateCard(selectedList[0].CanonicalInstance, source.Owner);
+            var newCard = source.CombatState.CreateCard(card.CanonicalInstance, source.Owner);
             await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, source.Owner);
         }
     }

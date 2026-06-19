@@ -38,7 +38,7 @@ public class TrueCriminalPower : ManosabaPowerTemplate
                 if (lowestHpEnemy != null)
                 {
                     await CreatureCmd.Damage(choiceContext, lowestHpEnemy, 15m,
-                        ValueProp.Unblockable | ValueProp.Unpowered, Owner, null);
+                        ValueProp.Unpowered, Owner, null);
                 }
             }
         }

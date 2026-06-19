@@ -20,7 +20,7 @@ using ManosabaLin.Characters.Common.Components;
 namespace ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 
 [RegisterCard(typeof(LinCardPool))]
-public sealed class EmotionHelplessness() : CaseFileCard<EmotionHelplessnessOrb>(-1, CardRarity.Ancient, TargetType.AnyEnemy)
+public sealed class EmotionHelplessness() : CaseFileCard<EmotionHelplessnessOrb>(0, CardRarity.Ancient, TargetType.AnyEnemy)
 {
     public override int MaxUpgradeLevel => 0;
 

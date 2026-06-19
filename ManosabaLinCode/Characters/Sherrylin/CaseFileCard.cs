@@ -13,12 +13,11 @@ using System.Collections.Generic;
 
 namespace ManosabaLin.Characters.Sherrylin;
 
-/// <summary>
-/// 案卷牌基类：从案卷牌堆打出时挂载到充能球槽位，最多同时生效两个。
-/// </summary>
+public interface ICaseFileCard { }
+
 [RegisterCard(typeof(SherrylinCardPool))]
 public abstract class CaseFileCard<T>(int energyCost, CardRarity rarity, TargetType targetType)
-    : ManosabaCardTemplate(energyCost, CardType.Power, rarity, targetType, false) where T : OrbModel
+    : ManosabaCardTemplate(energyCost, CardType.Power, rarity, targetType, false), ICaseFileCard where T : OrbModel
 {
     protected override IEnumerable<ICardComponent> CanonicalComponents =>
         [new SherrylinOrbInitializerComponent()];

@@ -12,7 +12,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class Banyanfa() : ManosabaCardTemplate(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class Banyanfa() : ManosabaCardTemplate(1, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

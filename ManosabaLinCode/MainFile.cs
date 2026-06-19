@@ -1,7 +1,7 @@
 using HarmonyLib;
 using ManosabaLin.Characters.Hiro;
 using ManosabaLin.Characters.Sherrylin;
-using ManosabaLin.Telemetry;
+using ManosabaLin.Utils;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
@@ -77,6 +77,30 @@ public partial class MainFile : Node
         Harmony harmony = new(ModId);
         harmony.PatchAll();
 
-        TelemetryBootstrap.Initialize();
+        _ = CheckUpdateAsync();
+    }
+
+    private static async Task CheckUpdateAsync()
+    {
+        try
+        {
+            var result = await UpdateChecker.CheckForUpdateAsync();
+            if (result is { Success: true, HasUpdate: true })
+            {
+                Logger.Info($"New version available: {result.LatestVersion} (current: {result.CurrentVersion})");
+                await Task.Delay(2000);
+                var tree = (SceneTree?)Engine.GetMainLoop();
+                if (tree?.Root != null)
+                {
+                    var popup = UpdatePopup.Create(result.CurrentVersion, result.LatestVersion, result.ReleaseUrl);
+                    if (popup != null)
+                        tree.Root.CallDeferred(Node.MethodName.AddChild, popup);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.Debug($"Update check failed: {ex.Message}");
+        }
     }
 }

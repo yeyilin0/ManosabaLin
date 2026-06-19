@@ -37,8 +37,7 @@ public sealed class WitchTrialEmotion() : ManosabaCardTemplate(1, CardType.Skill
             choiceContext, source.Owner.Creature, 20,
             source.Owner.Creature, source, false);
 
-        if (IsUpgraded)
-            await CardPileCmd.Draw(choiceContext, 1, source.Owner);
+        await CardPileCmd.Draw(choiceContext, 1, source.Owner);
 
         var withPower = source.Owner.Creature.GetPower<WithPower>();
         if (withPower != null && withPower.Amount >= 100)

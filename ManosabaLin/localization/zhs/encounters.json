@@ -1,4 +1,6 @@
 ﻿{
-  "MANOSABA_LIN_MONSTER_GUARD_ONE_MONSTER.title": "看守的幻象",
-  "MANOSABA_LIN_MONSTER_GUARD_ONE_MONSTER.loss": "{character} 被 [gold]{encounter}[/gold] 击败了..."
+  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.title": "残骸",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.loss": "{character} 被 [gold]{encounter}[/gold] 击败了...",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_ENCOUNTER.title": "奈叶香的姐姐",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_ENCOUNTER.loss": "{character} 被 [gold]{encounter}[/gold] 击败了..."
 }

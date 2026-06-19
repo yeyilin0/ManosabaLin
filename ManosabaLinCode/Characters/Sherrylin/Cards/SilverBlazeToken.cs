@@ -1,5 +1,6 @@
 using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common.Components;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -9,15 +10,18 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System;
 using System.Collections.Generic;
+using ManosabaLin.Characters.Sherrylin.Components;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(LinCardPool))]
 public sealed class SilverBlazeToken() : ManosabaCardTemplate(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
 {
+    protected override IEnumerable<ICardComponent> CanonicalComponents =>
+        [new RemoveOnPlayComponent()];
 
-
-
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+        [RemoveOnPlayComponent.Tip];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -33,7 +37,6 @@ public sealed class SilverBlazeToken() : ManosabaCardTemplate(0, CardType.Attack
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
-        // Exhaust 关键词会自动将牌送入消耗堆
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

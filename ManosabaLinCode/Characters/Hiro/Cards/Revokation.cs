@@ -3,14 +3,19 @@ using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -53,43 +58,52 @@ public sealed class Revokation() : ManosabaCardTemplate(1, CardType.Attack, Card
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        // 从牌组中搜索死亡回溯卡牌
-        var deckCards = PileType.Deck.GetPile(source.Owner).Cards.Where(c => c is DeathRewind).ToList();
-
-        // 选择 0~1 张死亡回溯移除（可不选）
+        var player = source.Owner;
         var cardRemoved = false;
-        if (deckCards.Count > 0)
+        var powerRemoved = false;
+
+        // 从手牌、弃牌堆、抽牌堆中选 DeathRewind 移除
+        var combatDeathRewinds = new[] { PileType.Hand, PileType.Discard, PileType.Draw }
+            .SelectMany(p => p.GetPile(player).Cards)
+            .Where(c => c is DeathRewind)
+            .ToList();
+
+        if (combatDeathRewinds.Count > 0)
         {
             var prefs = new CardSelectorPrefs(source.SelectionScreenPrompt, 0, 1);
             var selected = await CardSelectCmd.FromSimpleGrid(
-                choiceContext, deckCards, source.Owner, prefs
+                choiceContext, combatDeathRewinds, player, prefs
             );
 
             var card = selected.FirstOrDefault();
             if (card != null)
             {
-                // 从牌组永久移除
-                await CardPileCmd.RemoveFromDeck(card);
-
-                // 同时移除局内对应卡牌
-                var combatPiles = new[] { PileType.Draw, PileType.Hand, PileType.Discard, PileType.Exhaust };
-                foreach (var pileType in combatPiles)
-                {
-                    var pileCards = pileType.GetPile(source.Owner).Cards.Where(c => c is DeathRewind).ToList();
-                    foreach (var pileCard in pileCards)
-                        await CardPileCmd.RemoveFromCombat(pileCard);
-                }
-
+                await CardPileCmd.RemoveFromCombat(card);
                 cardRemoved = true;
             }
         }
-        // 移除自身死亡回溯能力
-        var hasDeathRewindPower = source.Owner.Creature.GetPower<DeathRewindPower>() != null;
-        if (hasDeathRewindPower)
-            await PowerCmd.Remove<DeathRewindPower>(source.Owner.Creature);
 
-        // 如果移除了卡牌或移除了能力，加入一张保留的正义
-        if (cardRemoved || hasDeathRewindPower)
+        // 移除自身 DeathRewindPower
+        if (source.Owner.Creature.GetPower<DeathRewindPower>() != null)
+        {
+            await PowerCmd.Remove<DeathRewindPower>(source.Owner.Creature);
+            powerRemoved = true;
+        }
+
+        // 战斗结束后移除牌组中所有 DeathRewind
+        CombatManager.Instance.CombatEnded += OnCombatEnded;
+        async void OnCombatEnded(CombatRoom room)
+        {
+            CombatManager.Instance.CombatEnded -= OnCombatEnded;
+
+            var deckCards = PileType.Deck.GetPile(player).Cards
+                .Where(c => c is DeathRewind).ToList();
+            foreach (var c in deckCards)
+                await CardPileCmd.RemoveFromDeck(c, showPreview: false);
+        }
+
+        // 如果移除了卡或能力，获得 Justice
+        if (cardRemoved || powerRemoved)
         {
             var justice = source.CombatState.CreateCard<Justice>(source.Owner);
             justice.SetToFreeThisTurn();

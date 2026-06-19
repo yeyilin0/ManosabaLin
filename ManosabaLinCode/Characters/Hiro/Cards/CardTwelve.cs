@@ -15,13 +15,7 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCard(typeof(HiroCardPool))]
 public sealed class CardTwelve() : ManosabaCardTemplate(3, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get
-        {
-            if (IsUpgraded) yield return CardKeyword.Innate;
-        }
-    }
+
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

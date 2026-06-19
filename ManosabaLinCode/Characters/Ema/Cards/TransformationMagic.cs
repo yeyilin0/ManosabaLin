@@ -39,7 +39,7 @@ public sealed class TransformationMagic : ManosabaCardTemplate
         if (source.Pile?.Type != PileType.Hand) return;
 
         var handCards = PileType.Hand.GetPile(source.Owner).Cards
-            .Where(c => c != this && c.CanPlay())
+            .Where(c => c != this)
             .ToList();
 
         if (handCards.Count == 0) return;

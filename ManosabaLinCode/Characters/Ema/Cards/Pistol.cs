@@ -13,6 +13,7 @@ using System.Linq;
 using ManosabaLin.Characters.Emalin;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ManosabaLin.Characters.Common.Powers;
 using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Ema.Cards;
@@ -29,7 +30,7 @@ public sealed class Pistol : ManosabaCardTemplate
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<StrengthPower>(3m),
+        new PowerVar<TempStrength>(3m),
         new BlockVar(4m, ValueProp.Move)
     ];
 
@@ -43,13 +44,13 @@ public sealed class Pistol : ManosabaCardTemplate
             ? Owner.RunState.Rng.CombatTargets.NextItem(allies)
             : creature;
 
-        await PowerCmd.Apply<StrengthPower>(choiceContext, target, DynamicVars["StrengthPower"].BaseValue, creature, this);
+        await PowerCmd.Apply<StrengthPower>(choiceContext, target, DynamicVars["TempStrength"].BaseValue, creature, this);
         await CreatureCmd.GainBlock(creature, DynamicVars.Block, cardPlay);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars["StrengthPower"].UpgradeValueBy(2m);
+        DynamicVars["TempStrength"].UpgradeValueBy(2m);
         DynamicVars.Block.UpgradeValueBy(2m);
     }
 }
