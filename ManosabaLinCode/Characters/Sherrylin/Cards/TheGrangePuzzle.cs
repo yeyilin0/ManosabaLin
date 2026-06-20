@@ -2,7 +2,6 @@ using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Sherrylin.Powers;
-using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
@@ -40,18 +39,36 @@ public sealed class TheGrangePuzzle() : ManosabaCardTemplate(2, CardType.Skill, 
 
         var xlmStacks = (int)Owner.Creature.GetPowerAmount<XlmPower>();
         var bonus = (int)DynamicVars["Bonus"].BaseValue;
-        var count = xlmStacks + bonus;
-        if (count <= 0) return;
-
-        var exhaustCards = PileType.Exhaust.GetPile(Owner).Cards.ToList();
-        if (exhaustCards.Count == 0) return;
-
+        var upgradeCount = xlmStacks + bonus;
         var rng = Owner.RunState.Rng.CombatCardSelection;
-        var cardsToUpgrade = exhaustCards.OrderBy(_ => rng.NextFloat()).Take(count).ToList();
 
-        foreach (var card in cardsToUpgrade)
+        // 随机升级消耗堆中的卡
+        if (upgradeCount > 0)
         {
-            CardCmd.Upgrade(card, CardPreviewStyle.None);
+            var exhaustCards = PileType.Exhaust.GetPile(Owner).Cards.ToList();
+            if (exhaustCards.Count > 0)
+            {
+                var cardsToUpgrade = exhaustCards.OrderBy(_ => rng.NextFloat()).Take(upgradeCount).ToList();
+                foreach (var card in cardsToUpgrade)
+                {
+                    CardCmd.Upgrade(card, CardPreviewStyle.None);
+                }
+            }
+        }
+
+        // 将魔法层数一半的消耗卡拿到手牌
+        var retrieveCount = xlmStacks / 3;
+        if (retrieveCount > 0)
+        {
+            var exhaustCards = PileType.Exhaust.GetPile(Owner).Cards.ToList();
+            if (exhaustCards.Count > 0)
+            {
+                var cardsToRetrieve = exhaustCards.OrderBy(_ => rng.NextFloat()).Take(retrieveCount).ToList();
+                foreach (var card in cardsToRetrieve)
+                {
+                    await CardPileCmd.Add(card, PileType.Hand);
+                }
+            }
         }
     }
 

@@ -32,11 +32,18 @@ public sealed class SilverBlazeToken() : ManosabaCardTemplate(0, CardType.Attack
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target);
 
-        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+        var damage = DynamicVars.Damage.BaseValue;
+
+        await DamageCmd.Attack(damage)
             .FromCard(this)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
+
+        if (damage >= 10)
+        {
+            await CardPileCmd.Draw(choiceContext, 1, Owner);
+        }
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

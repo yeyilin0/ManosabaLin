@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Linq;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
@@ -27,6 +28,18 @@ public sealed class CaseFileRetrieval() : ManosabaCardTemplate(2, CardType.Skill
 
         if (blockAmount > 0)
             await CreatureCmd.GainBlock(source.Owner.Creature, blockAmount, ValueProp.Unpowered, null);
+
+        // 随机给手牌中一张攻击卡添加保留
+        var handAttacks = PileType.Hand.GetPile(source.Owner).Cards
+            .Where(c => c.Type == CardType.Attack && c != source)
+            .ToList();
+
+        if (handAttacks.Count > 0)
+        {
+            var rng = source.Owner.RunState.Rng.CombatCardSelection;
+            var target = handAttacks[rng.NextInt(handAttacks.Count)];
+            target.AddKeyword(CardKeyword.Retain);
+        }
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

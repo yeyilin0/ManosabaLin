@@ -1,6 +1,6 @@
 {
-  "MANOSABALIN_UPDATE_POPUP.title": "新しいバージョンがあります",
-  "MANOSABALIN_UPDATE_POPUP.body": "現在のバージョン：{0}\n最新バージョン：{1}\n\nダウンロードしますか？",
-  "MANOSABALIN_UPDATE_POPUP.download": "ダウンロード",
-  "MANOSABALIN_UPDATE_POPUP.close": "閉じる"
+  "MANOSABALIN_UPDATE_POPUP.title": "ManosabaLin、新たな【魔女裁判】",
+  "MANOSABALIN_UPDATE_POPUP.body": "[color=#cccccc]現在の案件：[/color][color=#ff99cc]{0}[/color]\n[color=#cccccc]最新の案件：[/color][color=#CC6666]{1}[/color]\n\n共に[color=#ff99cc][b]「共[/b][/color][color=#CC6666][b]犯」[/b][/color]になろう！",
+  "MANOSABALIN_UPDATE_POPUP.download": "共犯になる",
+  "MANOSABALIN_UPDATE_POPUP.close": "また今度"
 }

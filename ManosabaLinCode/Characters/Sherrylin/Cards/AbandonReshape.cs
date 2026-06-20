@@ -5,12 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Linq;
+using MegaCrit.Sts2.Core.Models.CardPools;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
-/// <summary>
-/// 弃念换形：选择一张手卡本场战斗移除，随机生成一张无色消耗卡，升级改为移除两张但还是生成一张
-/// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class AbandonReshape() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
@@ -40,16 +39,27 @@ public sealed class AbandonReshape() : ManosabaCardTemplate(2, CardType.Skill, C
                 await CardPileCmd.RemoveFromCombat(selectedList[0]);
         }
 
-        // 生成1张无色消耗卡
+        // 从无色卡池随机生成1张带消耗的卡
+        // 从无色卡池随机生成1张带消耗的卡
         var rng = source.Owner.RunState.Rng.CombatCardSelection;
-        var allCards = ModelDb.CardPool<LinCardPool>().AllCards
-            .Where(c => c.Type != CardType.Curse && c.Type != CardType.Status)
+        var colorlessExhaustCards = ModelDb.CardPool<ColorlessCardPool>().AllCards
+            .Where(c => c.Rarity != CardRarity.Token
+                        && c.Type != CardType.Curse
+                        && c.Type != CardType.Status
+                        && c.Keywords.Contains(CardKeyword.Exhaust))
             .ToList();
-        if (allCards.Count > 0)
+
+        if (colorlessExhaustCards.Count > 0)
         {
-            var randomCard = allCards[rng.NextInt(allCards.Count)];
+            var randomCard = colorlessExhaustCards[rng.NextInt(colorlessExhaustCards.Count)];
             var newCard = source.CombatState.CreateCard(randomCard, source.Owner);
-            newCard.AddKeyword(CardKeyword.Exhaust);
+            await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, source.Owner);
+        }
+
+        if (colorlessExhaustCards.Count > 0)
+        {
+            var randomCard = colorlessExhaustCards[rng.NextInt(colorlessExhaustCards.Count)];
+            var newCard = source.CombatState.CreateCard(randomCard, source.Owner);
             await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, source.Owner);
         }
     }

@@ -2,15 +2,12 @@ using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
-using System;
 using System.Linq;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
-/// <summary>
-/// 狂想漫延：X卡，消耗X费获得等量计数，从抽牌堆顶持续打出卡牌并消耗等量计数，计数不足时停止。
-/// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class MadnessSpread() : ManosabaCardTemplate(-1, CardType.Attack, CardRarity.Common, TargetType.Self)
 {
@@ -23,6 +20,7 @@ public sealed class MadnessSpread() : ManosabaCardTemplate(-1, CardType.Attack, 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
         var count = source.ResolveEnergyXValue();
+        var rng = source.Owner.RunState.Rng.CombatCardSelection;
 
         var drawPile = PileType.Draw.GetPile(source.Owner);
         while (count > 0 && drawPile.Cards.Any())
@@ -30,17 +28,24 @@ public sealed class MadnessSpread() : ManosabaCardTemplate(-1, CardType.Attack, 
             var topCard = drawPile.Cards.First();
             var cost = topCard.EnergyCost.Canonical;
 
-            // 计数不足支付这张牌的费用，立刻停止
             if (count < cost)
                 break;
 
             count -= (int)cost;
             await CardPileCmd.AutoPlayFromDrawPile(choiceContext, source.Owner, 1, CardPilePosition.Top, false);
+
+            // 每打出一张卡牌对随机敌人造成1点伤害
+            var enemies = source.CombatState.HittableEnemies.Where(e => e.IsAlive).ToList();
+            if (enemies.Count > 0)
+            {
+                var target = enemies[rng.NextInt(enemies.Count)];
+                await CreatureCmd.Damage(choiceContext, target, 1, ValueProp.Unpowered, source.Owner.Creature, source);
+            }
         }
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        // 升级：X+2
+        // X+2
     }
 }

@@ -1,6 +1,6 @@
 {
-  "MANOSABALIN_UPDATE_POPUP.title": "New Version Available",
-  "MANOSABALIN_UPDATE_POPUP.body": "Current version: {0}\nLatest version: {1}\n\nWould you like to download the update?",
-  "MANOSABALIN_UPDATE_POPUP.download": "Download",
-  "MANOSABALIN_UPDATE_POPUP.close": "Close"
+  "MANOSABALIN_UPDATE_POPUP.title": "ManosabaLin, A New 【Witch Trial】",
+  "MANOSABALIN_UPDATE_POPUP.body": "[color=#cccccc]Current Case:[/color] [color=#ff99cc]{0}[/color]\n[color=#cccccc]Latest Case:[/color] [color=#CC6666]{1}[/color]\n\nLet's become [color=#ff99cc][b]「Accom[/b][/color][color=#CC6666][b]plices」[/b][/color] together!",
+  "MANOSABALIN_UPDATE_POPUP.download": "Become an Accomplice",
+  "MANOSABALIN_UPDATE_POPUP.close": "Maybe Next Time"
 }

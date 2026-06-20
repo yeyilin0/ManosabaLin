@@ -61,5 +61,6 @@ public sealed class SuspectTransfer() : ManosabaCardTemplate(2, CardType.Attack,
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
+        EnergyCost.UpgradeBy(-1);
     }
 }

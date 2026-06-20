@@ -17,7 +17,7 @@ public sealed class AStudyInScarlet() : ManosabaCardTemplate(0, CardType.Attack,
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6, ValueProp.Move),
+        new DamageVar(8, ValueProp.Move),
         new CardsVar(1)
     ];
 

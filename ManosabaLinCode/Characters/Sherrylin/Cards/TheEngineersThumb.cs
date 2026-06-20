@@ -17,7 +17,9 @@ public sealed class TheEngineersThumb() : ManosabaCardTemplate(1, CardType.Skill
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new[]
     {
-        new DynamicVar("BlockMultiplier", 4)
+        new DynamicVar("BlockMultiplier", 4),
+        new DynamicVar("DrawThreshold", 2),
+        new DynamicVar("DrawCount", 1)
     };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
@@ -39,6 +41,11 @@ public sealed class TheEngineersThumb() : ManosabaCardTemplate(1, CardType.Skill
         if (blockAmount > 0)
         {
             await CreatureCmd.GainBlock(Owner.Creature, blockAmount, ValueProp.Move, cardPlay);
+        }
+
+        if (cardCost >= source.DynamicVars["DrawThreshold"].IntValue)
+        {
+            await CardPileCmd.Draw(choiceContext, source.DynamicVars["DrawCount"].IntValue, Owner);
         }
     }
 

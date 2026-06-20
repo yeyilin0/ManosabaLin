@@ -1,5 +1,5 @@
 {
-  "MANOSABA_LIN_CARDPILE_CASE_FILE_PILE.title": "事件簿",
-  "MANOSABA_LIN_CARDPILE_CASE_FILE_PILE.description": "シャーリーリン専用のカード置き場。調査中の証拠と手がかりを保管する。自分のターンにここからカードを手札に加えられる。",
-  "MANOSABA_LIN_CARDPILE_CASE_FILE_PILE.empty": "事件簿は空です。"
+  "MANOSABA_LIN_CARDPILE_CASE_FILE_PILE.title": "他人の感情",
+  "MANOSABA_LIN_CARDPILE_CASE_FILE_PILE.description": "橘シェリーの専用カード置き場\n橘シェリーが学んだ[rainbow][b]【感情】[/b][/rainbow]を保存する。\n各[rainbow][b]【感情】[/b][/rainbow]は1ターン持続する。",
+  "MANOSABA_LIN_CARDPILE_CASE_FILE_PILE.empty": "空白の感情"
 }

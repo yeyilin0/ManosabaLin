@@ -18,7 +18,7 @@ public class SherrylinTwo() : ManosabaCardTemplate(1, CardType.Skill, CardRarity
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<SuspectPower>(1m),
-        new CardsVar(2)
+        new CardsVar(3)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips

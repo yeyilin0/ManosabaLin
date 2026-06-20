@@ -97,7 +97,7 @@ public sealed class Attackoneone : ManosabaCardTemplate
 
         if (handCards.Count > 0)
         {
-            var chosen = handCards[new System.Random().Next(handCards.Count)];
+            var chosen = handCards[Owner.RunState.Rng.CombatCardSelection.NextInt(handCards.Count)];
             chosen.AddModKeyword(TransmigrationRules.TransmigrationKeywordId);
         }
 

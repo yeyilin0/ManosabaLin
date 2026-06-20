@@ -20,7 +20,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class Reviveritual : ManosabaCardTemplate
 {
-    public Reviveritual() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyAlly) { }
+    public Reviveritual() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {

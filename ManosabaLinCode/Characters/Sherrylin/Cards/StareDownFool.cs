@@ -11,9 +11,6 @@ using System.Collections.Generic;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
-/// <summary>
-/// 和笨蛋对视：选择一个敌人，如果意图是攻击则给予虚弱，否则给予易伤，升级增加层数。
-/// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class StareDownFool() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
@@ -40,7 +37,6 @@ public sealed class StareDownFool() : ManosabaCardTemplate(1, CardType.Attack, C
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        // 检查敌人意图
         var intents = target.Monster?.NextMove?.Intents;
         bool isAttackIntent = false;
 
@@ -58,7 +54,6 @@ public sealed class StareDownFool() : ManosabaCardTemplate(1, CardType.Attack, C
 
         if (isAttackIntent)
         {
-            // 意图是攻击：给予虚弱
             await PowerCmd.Apply<WeakPower>(
                 choiceContext, target,
                 source.DynamicVars.Weak.BaseValue,
@@ -66,11 +61,11 @@ public sealed class StareDownFool() : ManosabaCardTemplate(1, CardType.Attack, C
         }
         else
         {
-            // 意图不是攻击：给予易伤
             await PowerCmd.Apply<VulnerablePower>(
                 choiceContext, target,
                 source.DynamicVars.Vulnerable.BaseValue,
                 source.Owner.Creature, source, false);
+            await CardPileCmd.Draw(choiceContext, 1, source.Owner);
         }
     }
 

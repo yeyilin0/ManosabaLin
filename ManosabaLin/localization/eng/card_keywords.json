@@ -1,17 +1,12 @@
 {
-  "MANOSABA_LIN_KEYWORD_EXECUTOR_OF_JUSTICE.title": "Executor of Justice",
-  "MANOSABA_LIN_KEYWORD_EXECUTOR_OF_JUSTICE.description": "[color=#CC6666][jitter]The path she has walked至今 is without a single stain.\nIn that utopia of self-righteousness, there is no room for something like a gallows.[/jitter][/color]",
-
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "Cycle",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[red]Death Rewind's[/red] gift, [red]Death Rewind's[/red] curse.\nWhen you play a card with [red]Cycle[/red], automatically play copies from your draw pile that also have [red]Cycle[/red] (max 2).",
-  "MANOSABA_LIN_KEYWORD_HIRO.title": "Hiro's Ending",
-  "MANOSABA_LIN_KEYWORD_HIRO.description": "[b]Returns to hand at the start of each turn.[/b]\nWhen played, [red]die[/red]. Reduce ally's Witchification by 50. Exhaust ally's Status and Curse cards. Give ally {energyPrefix:energyIcons(3)}, draw 3.",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "Cycle Cycle Cycle",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "When playing a card with [red]Cycle Cycle Cycle[/red], play cards with [red]Cycle Cycle Cycle[/red] from anywhere.",
-  "MANOSABA_LIN_KEYWORD_AGREE.title": "Agreement",
-  "MANOSABA_LIN_KEYWORD_AGREE.description": "Triggers effect when played count is a multiple of 1-5.\n×1: All allies gain 3 Block.\n×2: Self gain 3 Block.\n×3: All allies gain 1 Temporary Dexterity.\n×4: All allies gain 2 Temporary Strength.\n×5: Next card is free. All allies gain {energyPrefix:energyIcons(1)}.",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "Transmigration",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "A gift from [color=#CC6666]【Death Rewind】[/color], a curse from [color=#CC6666]【Death Rewind】[/color]\nWhen you play a card with [color=#CC6666]【Transmigration】[/color], automatically play cards of the same name with [color=#CC6666]【Transmigration】[/color] from your draw pile (up to 2).",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "Transmigration III",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "When you play a card with [color=#CC6666]【Transmigration III】[/color], play cards with [color=#CC6666]【Transmigration III】[/color] from anywhere.",
+  "MANOSABA_LIN_KEYWORD_AGREE.title": "Agree",
+  "MANOSABA_LIN_KEYWORD_AGREE.description": "When played, triggers effects at multiples of 1 through 5:\n×1: Grant 3 Block to all allies.\n×2: Gain 3 Block.\n×3: Grant 1 temporary Haste to all allies.\n×4: Grant 2 temporary Strength to all allies.\n×5: A random card in hand can be played for free once. All allies gain 1 Energy.",
   "MANOSABA_LIN_KEYWORD_DOUBT.title": "Doubt",
-  "MANOSABA_LIN_KEYWORD_DOUBT.description": "Triggers effect when played count is a multiple of 1-5.\n×1: Self gain 1 Block.\n×2: Self draw 1 card.\n×3: Self gain {energyPrefix:energyIcons(1)}.\n×4: Retrieve 1 card from discard pile.\n×5: Choose 1 hand card to add Replay 1, choose 1 hand card to add an enchantment.",
+  "MANOSABA_LIN_KEYWORD_DOUBT.description": "When played, triggers effects at multiples of 1 through 5:\n×1: Gain 1 Block.\n×2: Draw 1 card.\n×3: Gain 1 Energy.\n×4: Retrieve 1 card from the discard pile.\n×5: Add Replay 1 to a card in hand. Apply 1 [color=#339966]【[/color][color=#cc9966]Trial[/color][color=#6699cc] Enchantment[/color][color=#339966]】[/color] to a card in hand.",
   "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "Rebuttal",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "Triggers effect when played count is a multiple of 1-5.\n×1: Deal 1 random damage.\n×2: Self gain 1 Strength.\n×3: All enemies gain 1 Vulnerable.\n×4: Deal 1 damage equal to play count to random targets.\n×5: Next Attack plays an additional time."
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "When played, triggers effects at multiples of 1 through 5:\n×1: Deal 1 damage randomly.\n×2: Gain 1 Strength.\n×3: Apply 1 Vulnerable to all enemies.\n×4: Deal 1 damage randomly an equal number of times.\n×5: This card is played 1 extra time."
 }

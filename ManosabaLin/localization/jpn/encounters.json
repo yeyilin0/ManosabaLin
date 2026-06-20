@@ -1,4 +1,6 @@
 {
-  "GUARD_ONE_ENCOUNTER.title": "ガードの試練",
-  "GUARD_ONE_ENCOUNTER.loss": "{character}は[gold]{encounter}[/gold]に敗北した..."
+  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.title": "残骸",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.loss": "{character} は [gold]{encounter}[/gold] に敗れた...",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_ENCOUNTER.title": "ナエハの姉",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_ENCOUNTER.loss": "{character} は [gold]{encounter}[/gold] に敗れた..."
 }

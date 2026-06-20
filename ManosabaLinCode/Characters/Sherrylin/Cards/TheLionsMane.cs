@@ -20,7 +20,7 @@ public sealed class TheLionsMane() : ManosabaCardTemplate(1, CardType.Attack, Ca
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => new[]
     {
-        new DamageVar(8, ValueProp.Move)
+        new DamageVar(12, ValueProp.Move)
     };
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips

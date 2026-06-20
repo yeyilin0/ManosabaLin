@@ -1,4 +1,6 @@
 {
-  "GUARD_ONE_ENCOUNTER.title": "Guard's Trial",
-  "GUARD_ONE_ENCOUNTER.loss": "{character} was defeated by [gold]{encounter}[/gold]..."
+  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.title": "Remains",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.loss": "{character} was defeated by [gold]{encounter}[/gold]...",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_ENCOUNTER.title": "Naeha's Older Sister",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_ENCOUNTER.loss": "{character} was defeated by [gold]{encounter}[/gold]..."
 }

@@ -1,16 +1,12 @@
 {
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "轮回",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[color=#CC6666]【死亡リワインド】[/color]の贈り物、[color=#CC6666]【死亡リワインド】[/color]の呪い\n[color=#CC6666]【轮回】[/color]付きのカードを使用した時、ドローパイル内の同じ名前で[color=#CC6666]【轮回】[/color]付きのカードを自動使用する（最大2枚）",
-  "MANOSABA_LIN_KEYWORD_HIRO.title": "ヒロの結末",
-  "MANOSABA_LIN_KEYWORD_HIRO.description": "[b]このカードはターン開始時に手札に戻る[/b]\n使用時に[color=#CC6666]死亡[/color]し、仲間の魔女化を50層減少させ、仲間のデッキから状態と呪いを消費し、仲間に{energyPrefix:energyIcons(3)}を与え、3枚引く",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "轮轮轮回回回",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "[color=#CC6666]【轮轮轮回回回】[/color]付きのカードを使用した時、どこからでも[color=#CC6666]【轮轮轮回回回】[/color]付きのカードを使用する",
-  "MANOSABA_LIN_KEYWORD_EXECUTOR_OF_JUSTICE.title": "正義の執行者",
-  "MANOSABA_LIN_KEYWORD_EXECUTOR_OF_JUSTICE.description": "[color=#CC6666][jitter]彼女がこれまで歩んできた道に、一点の汚れもない。\n独善という名の理想郷には、絞首台のような異物は存在できない[/jitter][/color]",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "輪廻",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[color=#CC6666]【死亡遡行】[/color]の贈り物、[color=#CC6666]【死亡遡行】[/color]の呪い\n[color=#CC6666]【輪廻】[/color]を持つカードをプレイした時、山札にある同名の[color=#CC6666]【輪廻】[/color]カードを自動的にプレイする（最大2枚）",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "輪輪廻廻廻",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "[color=#CC6666]【輪輪廻廻廻】[/color]を持つカードをプレイした時、あらゆる場所から[color=#CC6666]【輪輪廻廻廻】[/color]を持つカードをプレイする",
   "MANOSABA_LIN_KEYWORD_AGREE.title": "賛同",
-  "MANOSABA_LIN_KEYWORD_AGREE.description": "使用回数が1～5の倍数の時に効果発動\n×1：味方全体にシールドを3付与\n×2：自身にシールドを3付与\n×3：味方全体に一時的敏捷を1層付与\n×4：味方全体に一時的力を2層付与\n×5：次のカードが無料で使用でき、味方全員に{energyPrefix:energyIcons(1)}を付与",
+  "MANOSABA_LIN_KEYWORD_AGREE.description": "プレイ時、1～5の倍数で効果発動\n×1：味方全体に3ブロック付与\n×2：自身に3ブロック付与\n×3：味方全体に1層の一時的な迅速付与\n×4：味方全体に2層の一時的な筋力付与\n×5：ランダムな手札1枚を無料で1回プレイ、味方全体に1エナジー付与",
   "MANOSABA_LIN_KEYWORD_DOUBT.title": "疑問",
-  "MANOSABA_LIN_KEYWORD_DOUBT.description": "使用回数が1～5の倍数の時に効果発動\n×1：自身にシールドを1付与\n×2：カードを1枚引く\n×3：{energyPrefix:energyIcons(1)}を得る\n×4：捨て札からカードを1枚回収\n×5：手札カード1枚にリプレイ1を付与、手札カード1枚を選んで付魔を付与",
+  "MANOSABA_LIN_KEYWORD_DOUBT.description": "プレイ時、1～5の倍数で効果発動\n×1：自身に1ブロック付与\n×2：自身が1枚ドロー\n×3：自身が1エナジー獲得\n×4：捨て札から1枚回収\n×5：手札1枚にリプレイ1付与、手札1枚に[color=#339966]【[/color][color=#cc9966]審[/color][color=#6699cc]判[/color][color=#339966]】[/color]エンチャント1付与",
   "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "反駁",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "使用回数が1～5の倍数の時に効果発動\n×1：ランダムに1ダメージ\n×2：自身に力を1付与\n×3：敵全体に脆弱を1層付与\n×4：回数分の1ダメージをランダムに与える\n×5：次の攻撃カードが追加で1回使用される"
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "プレイ時、1～5の倍数で効果発動\n×1：ランダムに1ダメージ\n×2：自身に1筋力付与\n×3：敵全体に1層の脆弱付与\n×4：ランダムに同回数の1ダメージ\n×5：このカードを追加で1回プレイ"
 }

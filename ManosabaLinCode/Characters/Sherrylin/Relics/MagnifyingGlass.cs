@@ -106,7 +106,7 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
 
             await CardPileCmd.Add(exhaustCard, PileType.Discard, CardPilePosition.Random, skipVisuals: true);
             await PowerCmd.Apply<XlmPower>(
-                new ThrowingPlayerChoiceContext(), Owner.Creature, 1,
+                new ThrowingPlayerChoiceContext(), Owner.Creature, 2,
                 Owner.Creature, null, false);
 
             await CardPileCmd.Add(discardCard, PileType.Exhaust, CardPilePosition.Random, skipVisuals: true);
@@ -121,7 +121,7 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
             {
                 await CardPileCmd.Add(c, PileType.Discard, CardPilePosition.Random, skipVisuals: true);
                 await PowerCmd.Apply<XlmPower>(
-                    new ThrowingPlayerChoiceContext(), Owner.Creature, 1,
+                    new ThrowingPlayerChoiceContext(), Owner.Creature, 2,
                     Owner.Creature, null, false);
             }
         }

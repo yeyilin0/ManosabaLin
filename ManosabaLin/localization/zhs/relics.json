@@ -58,7 +58,7 @@
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_SHERRYLIN.title": "海玻璃",
   "SEA_GLASS.MANOSABA_LIN_CHARACTER_SHERRYLIN.description": "从 橘雪莉 的卡牌池中选择 5 张牌加入牌组",
   "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.title": "放大镜",
-  "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.description": "[color=#33ccff]【翻案】[/color]:当抽牌堆为空时，将消耗堆中的卡与弃牌堆中的卡互换。每成功交换1张，获得1层[color=#33ccff]【橘雪莉的魔法】[/color](当卡牌被移除时本场战斗无法再次获得，当诅咒和状态牌被消耗时自动移除)",
+  "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.description": "[color=#33ccff]【翻案】[/color]:当抽牌堆为空时，将消耗堆中的卡与弃牌堆中的卡互换。每成功交换1张，获得2层[color=#33ccff]【橘雪莉的魔法】[/color](当卡牌被移除时本场战斗无法再次获得，当诅咒和状态牌被消耗时自动移除)",
   "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.flavor": "橘雪莉侦探身份的[color=#33ccff]【象征】[/color]，可谁都猜不到，她用【放大镜】看到了什么",
   "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.title": "魔女因子",
   "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.description": "当[b]【魔女化】[/b]达到100层时，获得1张[b]【魔女化】[/b][rainbow][b]【情绪】[/b][/rainbow]卡加入手牌\n[b][rainbow][b]【基础情绪】[/b][/rainbow]:[purple]【快乐】[/purple]，[color=#ffcc99]【悲伤】[/color]，[color=#CC6666]【愤怒】[/color]，[color=#ff99cc]【恐惧】[/color]，[color=#6666cc]【厌恶】[/color]，[color=#cc9966]【惊讶】[/color]\n[color=#33ccff]情绪融合配方[/color]：\n[purple]【快乐】[/purple]+[color=#ffcc99]【悲伤】[/color] → [color=#999999]【怅然】[/color]\n[color=#CC6666]【愤怒】[/color]+[color=#ff99cc]【恐惧】[/color] → [color=#ff9966]【恼惧】[/color]\n[color=#ffcc99]【悲伤】[/color]+[color=#ff99cc]【恐惧】[/color] → [color=#ff0000]【凄惶】[/color]\n[color=#6666cc]【厌恶】[/color]+[color=#cc9966]【惊讶】[/color] → [gold]【骇厌】[/gold]\n[purple]【快乐】[/purple]+[color=#cc9966]【惊讶】[/color] → [blue]【雀跃】[/blue][/b]\n6种[rainbow][b]【基础情绪】[/b][/rainbow]+[b][color=33ccff]【好奇】[/color][/b]+[green][b]【无助】[/b][/green]→[b][color=#33ccff]「友[/color][green]谊」[/green][/b]",
