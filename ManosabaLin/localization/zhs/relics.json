@@ -39,7 +39,7 @@
   "MANOSABA_LIN_RELIC_RITUALSWORD.description": "获得时，将一张[b]【魔女安息仪式】[/b]加入卡组。",
   "MANOSABA_LIN_RELIC_RITUALSWORD.flavor": "一把装饰精美的剑。此前放在了保险箱中。没有使用过的迹象",
   "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.title": "外部情报",
-  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.description": "结束战斗后在下一场战斗回合开始选择至多3张卡升级。每升级1张卡牌，失去2点[b]最大生命上限[/b]。",
+  "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.description": "结束战斗后在下一场战斗回合开始选择3张卡升级，也可以不选择升级。每升级1张卡牌，失去2点[b]最大生命上限[/b]。",
   "MANOSABA_LIN_RELIC_EXTERNALINFORMATION.flavor": "情报的代价，总是比想象中更沉重",
   "MANOSABA_LIN_RELIC_EMA_WITCH_FACTOR.title": "魔女因子",
   "MANOSABA_LIN_RELIC_EMA_WITCH_FACTOR.description": "当你打出攻击牌时获得15层[b]【魔女化】[/b]，当你打出技能或者能力牌时减少10层[b]【魔女化】[/b]",

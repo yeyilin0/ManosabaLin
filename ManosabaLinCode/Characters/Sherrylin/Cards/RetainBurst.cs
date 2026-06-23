@@ -34,16 +34,16 @@ public sealed class RetainBurst() : ManosabaCardTemplate(0, CardType.Skill, Card
 
         foreach (var card in retainCards)
         {
-            var comp = card is MinionLib.Component.Interfaces.IComponentsCardModel ccm ? ccm.Components.OfType<RetainCounterComponent>().FirstOrDefault() : null;
+            if (card is not IComponentsCardModel ccm) continue;
+            var comp = ccm.Components.OfType<RetainCounterComponent>().FirstOrDefault();
             if (comp == null) continue;
 
+            totalEnergy += comp.Counter;
+
+            // 重置计数器为 1
             var counterField = typeof(RetainCounterComponent).GetField("_counter",
                 System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            if (counterField == null) continue;
-
-            var counter = (int)counterField.GetValue(comp);
-            totalEnergy += counter;
-            counterField.SetValue(comp, 1);
+            counterField?.SetValue(comp, 1);
         }
 
         if (totalEnergy > 0)

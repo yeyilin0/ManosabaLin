@@ -748,5 +748,12 @@
   "MANOSABA_LIN_CARD_PERIODIC_FUSION.title": "大捜査",
   "MANOSABA_LIN_CARD_PERIODIC_FUSION.description": "{Interval:diff()}ターン毎に1層の【複雑な感情】を獲得し、ランダムな基礎[rainbow][b]【感情】[/b][/rainbow]を1枚獲得する",
   "MANOSABA_LIN_CARD_EXHAUST_FIST.title": "[ブラックホール]の魔法",
-  "MANOSABA_LIN_CARD_EXHAUST_FIST.description": "{CalculatedDamage:diff()}のダメージを与える\nこの戦闘でカードを1枚消費する毎に、このカードは3のダメージを与える"
+  "MANOSABA_LIN_CARD_EXHAUST_FIST.description": "{CalculatedDamage:diff()}のダメージを与える\nこの戦闘でカードを1枚消費する毎に、このカードは3のダメージを与える",
+  "MANOSABA_LIN_CARD_SHERRYBADENDING.title": "【バッドエンド】",
+  "MANOSABA_LIN_CARD_SHERRYBADENDING.description": "[color=#33ccff][jitter]「花の海の果て、生者の魂が汝の指先を温める。抱擁の後は、永遠の別れ」[/jitter][/color]\n[b]このカードは[b]破棄[/b]された時、手札に戻る。[b]消滅[/b]された時も手札に戻る。[/b]\nターン開始時に3層の[b]【容疑】[/b]を得る。[color=#33ccff]【再審】[/color]時に[color=#33ccff]【橘雪莉の魔法】[/color]を獲得できず、全てのカードの半分を削除する。\nターン終了時、手札の[color=#33ccff]【魔女化】[/color]カウントを1減らし、[rainbow][b]【感情】[/b][/rainbow]カードを2枚削除する。",
+  "MANOSABA_LIN_CARD_SHERRYDEATH.title": "「花の海の果て、生者の魂が汝の指先を温める。抱擁の後は、永遠の別れ」",
+  "MANOSABA_LIN_CARD_SHERRYDEATH.description": "[color=#33ccff]【橘雪莉】[/color]という個体の結末",
+  "ManosabaLin.SherryDeath.prefix": "[color=#cccccc][b]橘雪莉の結末[/b][/color]",
+  "ManosabaLin.SherryDeath.hovertip.title": "魔女処刑",
+  "ManosabaLin.SherryDeath.hovertip.description": "[b]このカードは毎[color=#33ccff]ターン[/color]開始時に手札に戻る。[/b]\n使用時、[color=#cccccc]死亡[/color]を与え、全ての味方のカードの半分に[color=#33ccff]【橘雪莉の魔法】[/color]を付与する。\n[b]【他者の感情】[/b]カードが2枚以上の場合、ランダムな[rainbow][b]【基本感情】[/b][/rainbow]1枚を味方の山札に加える。4枚以上の場合は[rainbow][b]【複合感情】[/b][/rainbow]、20枚以上の場合は[color=#33ccff][b]「友[/b][/color][green][b]情」[/b][/green]を加える。\n全ての味方の[b]【魔女化】[/b]50層と[b]【容疑】[/b]3層を[b]消滅[/b]させる。"
 }

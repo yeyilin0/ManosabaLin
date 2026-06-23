@@ -21,7 +21,7 @@ namespace ManosabaLin.Characters.Ema.Powers;
 public class Trialenchantcyclepower : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Single;
 
     private static readonly Type[] EnchantTypes = [typeof(Rebuttal), typeof(Agreement), typeof(Doubt)];
 

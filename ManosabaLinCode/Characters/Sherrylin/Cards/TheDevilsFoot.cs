@@ -11,7 +11,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class TheDevilsFoot() : ManosabaCardTemplate(13, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+public sealed class TheDevilsFoot() : ManosabaCardTemplate(13, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {

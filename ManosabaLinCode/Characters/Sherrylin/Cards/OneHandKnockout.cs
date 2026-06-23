@@ -10,12 +10,11 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class OneHandKnockout() : ManosabaCardTemplate(0, CardType.Attack, CardRarity.Uncommon, TargetType.Self)
+public sealed class OneHandKnockout() : ManosabaCardTemplate(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyPlayer)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -32,25 +31,9 @@ public sealed class OneHandKnockout() : ManosabaCardTemplate(0, CardType.Attack,
         PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
+        var target = cardPlay.Target ?? source.Owner.Creature;
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
-
-        var combatState = source.CombatState;
-        if (combatState == null) return;
-
-        var teammates = combatState.GetTeammatesOf(source.Owner.Creature)
-            .Where(c => c is { IsAlive: true, IsPlayer: true })
-            .ToList();
-
-        Creature target;
-        if (teammates.Count > 0)
-        {
-            target = teammates[0];
-        }
-        else
-        {
-            target = source.Owner.Creature;
-        }
 
         await PowerCmd.Apply<BufferPower>(
             choiceContext, target,
@@ -63,7 +46,6 @@ public sealed class OneHandKnockout() : ManosabaCardTemplate(0, CardType.Attack,
 
         PlayerCmd.EndTurn(target.Player, false);
 
-        // 打出后从战斗中移除自己
         await CardPileCmd.RemoveFromCombat(source);
     }
 

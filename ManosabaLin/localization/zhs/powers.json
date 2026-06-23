@@ -17,7 +17,7 @@
   "MANOSABA_LIN_POWER_CARD_TWO_POWER.description": "回合结束时额外触发一次[color=#CC6666]【正义】[/color]的回血效果",
   "MANOSABA_LIN_POWER_CARD_TWO_POWER.smartDescription": "回合结束时额外触发一次[color=#CC6666]【正义】[/color]的回血效果",
   "MANOSABA_LIN_POWER_CARD_TWO_POWER.title": "执裁余温",
-  "MANOSABA_LIN_POWER_DEATH_REWIND_POWER.description": "死亡时复活，获得等于[b]魔女化[/b]层数的血量",
+  "MANOSABA_LIN_POWER_DEATH_REWIND_POWER.description": "死亡时复活，获得等于[b]魔女化[/b]层数的血量\n魔女化>=200时，战斗后移除牌组中[color=#CC6666]死亡回溯[/color]\n 魔女化>=300时，此能力[color=#CC6666]失效[/color]",
   "MANOSABA_LIN_POWER_DEATH_REWIND_POWER.smartDescription": "死亡时复活，获得等于[b]魔女化[/b]层数的血量",
   "MANOSABA_LIN_POWER_DEATH_REWIND_POWER.title": "死亡回溯",
   "MANOSABA_LIN_POWER_JUSTICE_NEXT_TURN_POWER.description": "下回合获得1层[color=#CC6666]【正义】[/color]",
@@ -110,7 +110,7 @@
   "MANOSABA_LIN_POWER_SHIELD_INTERCEPT_POWER.title": "替身之盾",
   "MANOSABA_LIN_POWER_SHIELD_INTERCEPT_POWER.description": "[purple]本回合[/purple]承受队友受到的伤害。\n[purple]下回合[/purple]给予被保护的队友等于受到伤害的护盾。若亲近>疏远，你也获得等于受到伤害的护盾",
   "MANOSABA_LIN_POWER_MLY_POWER.title": "佐伯米莉亚的魔法",
-  "MANOSABA_LIN_POWER_MLY_POWER.description": "[color=#cc9966]禁止出牌[/ncolor]直到互换手牌结束",
+  "MANOSABA_LIN_POWER_MLY_POWER.description": "[color=#cc9966]禁止出牌[/color]直到互换手牌结束",
   "MANOSABA_LIN_POWER_XUESHUYUANPOWER.title": "错乱的记忆",
   "MANOSABA_LIN_POWER_XUESHUYUANPOWER.description": "[color=#cccccc]回合开始[/ncolor]时交换[color=#ff99cc][b]【亲近】[/b][/color]与[color=#CC6666][b]【疏远】[/b][/color]的数值",
   "MANOSABA_LIN_POWER_HIROSHUYUANPOWER.title": "我讨厌你的事实永远都不会改变",
@@ -159,7 +159,7 @@
   "MANOSABA_LIN_POWER_EMOTION_SURGE_POWER.title": "情绪涌动",
   "MANOSABA_LIN_POWER_EMOTION_SURGE_POWER.description": "本回合每打出1张牌，情绪计数额外+1。",
   "MANOSABA_LIN_POWER_COSMIC_APATHY_DEBUFF_POWER.title": "受到冷漠",
-  "MANOSABA_LIN_POWER_COSMIC_APATHY_DEBUFF_POWER.description": "被拥有者攻击时，拥有者获得1层情绪，本能力减少1层。",
+  "MANOSABA_LIN_POWER_COSMIC_APATHY_DEBUFF_POWER.description": "拥有者被攻击时，攻击者获得1层情绪，本能力减少1层",
   "MANOSABA_LIN_POWER_I_AM_MY_OWN_FRIEND_POWER.title": "吾即吾友",
   "MANOSABA_LIN_POWER_I_AM_MY_OWN_FRIEND_POWER.description": "下回合开始时随机复制1张基础情绪卡加入手牌。",
   "MANOSABA_LIN_POWER_DUAL_ASCENSION_POWER.title": "双相升华",
@@ -196,5 +196,7 @@
   "MANOSABA_LIN_POWER_SACRIFICE_TANK_POWER.title": "苦命鸳鸯",
   "MANOSABA_LIN_POWER_SACRIFICE_TANK_POWER.description": "承受双倍来自敌人的伤害。敌人的伤害对盟友减半\n每累计受到20点攻击伤害自己获得1层下回合能量，其他队友各获得1层下回合抽牌和10层魔女化",
   "MANOSABA_LIN_POWER_PERIODIC_FUSION_POWER.title": "大调查",
-  "MANOSABA_LIN_POWER_PERIODIC_FUSION_POWER.description": "每{Amount}回合获得1层【复杂的情绪】并获得1张随机基础[rainbow][b]【情绪】[/b][/rainbow]"
+  "MANOSABA_LIN_POWER_PERIODIC_FUSION_POWER.description": "每{Amount}回合获得1层【复杂的情绪】并获得1张随机基础[rainbow][b]【情绪】[/b][/rainbow]",
+  "MANOSABA_LIN_POWER_LOSEENGRY.title": "下回合减少能量",
+  "MANOSABA_LIN_POWER_LOSEENGRY.description":"回合开始减少等于本能力层数的能量"
 }

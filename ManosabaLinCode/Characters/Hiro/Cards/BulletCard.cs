@@ -12,11 +12,6 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCard(typeof(LinCardPool))]
 public sealed class BulletCard() : ManosabaCardTemplate(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get { yield return CardKeyword.Exhaust; }
-    }
-
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new DamageVar(13m, ValueProp.Move),
@@ -38,10 +33,7 @@ public sealed class BulletCard() : ManosabaCardTemplate(0, CardType.Attack, Card
         await CardPileCmd.Draw(choiceContext, source.DynamicVars.Cards.BaseValue, source.Owner);
 
         await PlayerCmd.GainEnergy(1m, source.Owner);
-    }
 
-    protected override void OnUpgrade(ComponentContext componentContext)
-    {
-        DynamicVars.Damage.UpgradeValueBy(3m);
+        await CardPileCmd.RemoveFromCombat(source);
     }
 }

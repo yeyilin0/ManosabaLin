@@ -8,14 +8,12 @@ using MinionLib.Component.Core;
 
 namespace ManosabaLin.Characters.Sherrylin.Components;
 
-/// <summary>
-/// 浮空组件：当打出2费及以上的卡时，带有此组件的卡自动打出。
-/// </summary>
 public sealed partial class LevitationComponent : KeywordLikeComponent
 {
     public static readonly IHoverTip Tip = new HoverTip(
         new LocString("cards", "ManosabaLin.LevitationComponent.hovertip.title"),
         new LocString("cards", "ManosabaLin.LevitationComponent.hovertip.description"));
+        
     public override async Task AfterCardPlayedPostfix(PlayerChoiceContext choiceContext, CardPlay cardPlay,
         ComponentContext componentContext)
     {
@@ -25,6 +23,6 @@ public sealed partial class LevitationComponent : KeywordLikeComponent
         if (cardPlay.Card == card) return;
         if (cardPlay.Card.EnergyCost.Canonical < 2) return;
 
-        await CardCmd.AutoPlay(choiceContext, card, null);
+        await CardCmd.AutoPlay(choiceContext, card, cardPlay.Target);
     }
 }

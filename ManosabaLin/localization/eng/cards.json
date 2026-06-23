@@ -748,5 +748,12 @@
   "MANOSABA_LIN_CARD_PERIODIC_FUSION.title": "Grand Investigation",
   "MANOSABA_LIN_CARD_PERIODIC_FUSION.description": "Every {Interval:diff()} turn(s), gain 1 stack of 【Complex Emotion】 and 1 random basic [rainbow][b]【Emotion】[/b][/rainbow]",
   "MANOSABA_LIN_CARD_EXHAUST_FIST.title": "[Black Hole] Magic",
-  "MANOSABA_LIN_CARD_EXHAUST_FIST.description": "Deal {CalculatedDamage:diff()} damage.\nFor each card Exhausted this combat, this card deals 3 damage"
+  "MANOSABA_LIN_CARD_EXHAUST_FIST.description": "Deal {CalculatedDamage:diff()} damage.\nFor each card Exhausted this combat, this card deals 3 damage",
+  "MANOSABA_LIN_CARD_SHERRYBADENDING.title": "[Bad Ending]",
+  "MANOSABA_LIN_CARD_SHERRYBADENDING.description": "[color=#33ccff][jitter]\"At the end of the flower sea, the souls of the living shall warm thy fingertips. After the embrace, an eternal farewell.\"[/jitter][/color]\n[b]When discarded, returns to hand. When [b]Exhausted[/b], returns to hand.[/b]\nAt the start of your turn, gain 3 [b][Suspect][/b]. Cannot gain [color=#33ccff][Orange Sherry's Magic][/color] when [color=#33ccff][Retrial][/color] triggers, and remove half of all cards.\nAt the end of your turn, reduce [color=#33ccff][Witchification][/color] count on cards in hand by 1 and remove 2 [rainbow][b][Emotion][/b][/rainbow] cards.",
+  "MANOSABA_LIN_CARD_SHERRYDEATH.title": "\"At the end of the flower sea, the souls of the living shall warm thy fingertips. After the embrace, an eternal farewell.\"",
+  "MANOSABA_LIN_CARD_SHERRYDEATH.description": "The ending of the individual known as [color=#33ccff][Orange Sherry][/color]",
+  "ManosabaLin.SherryDeath.prefix": "[color=#cccccc][b]Orange Sherry's Ending[/b][/color]",
+  "ManosabaLin.SherryDeath.hovertip.title": "Witch Execution",
+  "ManosabaLin.SherryDeath.hovertip.description": "[b]This card returns to your hand at the start of each [color=#33ccff]turn[/color].[/b]\nOn play, inflict [color=#cccccc]Death[/color] and give half of all allies' cards [color=#33ccff][Orange Sherry's Magic][/color].\nIf the number of [b][Others' Emotions][/b] cards is greater than 2, add 1 random [rainbow][b][Basic Emotion][/b][/rainbow] to an ally's draw pile. Greater than 4, add a [rainbow][b][Complex Emotion][/b][/rainbow]. Greater than 20, add [color=#33ccff][b]\"Friend[/b][/color][green][b]ship\"[/b][/green].\n[b]Exhaust[/b] 50 stacks of [b][Witchification][/b] and 3 stacks of [b][Suspect][/b] from all allies."
 }

@@ -49,26 +49,12 @@ public sealed class RetainAmplify() : ManosabaCardTemplate(1, CardType.Skill, Ca
                 {
                     var flags = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
                     var counterField = typeof(RetainCounterComponent).GetField("_counter", flags);
-                    var storedField = typeof(RetainCounterComponent).GetField("_stored", flags);
-                    var origField = typeof(RetainCounterComponent).GetField("_originalValues", flags);
 
-                    if (counterField != null && storedField != null && origField != null)
+                    if (counterField != null)
                     {
                         var current = (int)counterField.GetValue(component);
                         var newCounter = current + (IsUpgraded ? 2 : 1);
                         counterField.SetValue(component, newCounter);
-
-                        // 直接用原始值更新数值
-                        var stored = (bool)storedField.GetValue(component);
-                        if (stored)
-                        {
-                            var origValues = (Dictionary<string, decimal>)origField.GetValue(component);
-                            foreach (var entry in target.DynamicVars)
-                            {
-                                if (origValues.TryGetValue(entry.Key, out var original) && original > 0)
-                                    entry.Value.BaseValue = original * newCounter;
-                            }
-                        }
                     }
                 }
             }

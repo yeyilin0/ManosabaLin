@@ -39,7 +39,7 @@ public sealed class TheSecondStain() : ManosabaCardTemplate(2, CardType.Skill, C
 
         // 免费打出
         selectedCard.SetToFreeThisTurn();
-        await CardCmd.AutoPlay(choiceContext, selectedCard, null);
+        await CardCmd.Exhaust(choiceContext, selectedCard);
 
         // 打出后消耗
         await CardPileCmd.RemoveFromCombat(selectedCard);

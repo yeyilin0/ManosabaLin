@@ -1,5 +1,6 @@
 ﻿using ManosabaLin.Characters.Ema.Cards;
 using ManosabaLin.Characters.Hiro.Cards;
+using ManosabaLin.Characters.Sherrylin.Cards;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -115,12 +116,13 @@ public sealed class SuspectPower : ManosabaPowerTemplate
         if (Owner?.Player == null) return;
         if (Owner.CombatState == null) return;
 
-        // 根据当前玩家角色给予对应的坏结局卡
         var characterType = Owner.Player.Character?.GetType();
         ModelId curseModelId;
 
         if (characterType == typeof(Emalin.Emalin))
             curseModelId = ModelDb.GetId<EmaBadEnding>();
+        else if (characterType == typeof(Sherrylin.Sherrylin))
+            curseModelId = ModelDb.GetId<Sherrybadending>();
         else
             curseModelId = ModelDb.GetId<HiroBadEnding>();
 

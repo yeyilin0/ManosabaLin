@@ -16,7 +16,7 @@ namespace ManosabaLin.Characters.Sherrylin.Relics;
 [RegisterRelic(typeof(SherrylinRelicPool))]
 public sealed class WitchificationEmotionRelic : ManosabaRelicTemplate
 {
-    public override RelicRarity Rarity => RelicRarity.Rare;
+    public override RelicRarity Rarity => RelicRarity.Starter;
 
     private bool _givenThisCombat;
 

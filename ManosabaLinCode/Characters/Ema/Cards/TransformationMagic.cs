@@ -38,6 +38,9 @@ public sealed class TransformationMagic : ManosabaCardTemplate
 
         if (source.Pile?.Type != PileType.Hand) return;
 
+        // 确保在战斗中
+        if (!CombatManager.Instance.IsInProgress) return;
+
         var handCards = PileType.Hand.GetPile(source.Owner).Cards
             .Where(c => c != this)
             .ToList();

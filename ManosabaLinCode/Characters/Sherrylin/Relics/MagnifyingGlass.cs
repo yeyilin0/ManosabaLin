@@ -23,7 +23,7 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
 {
     private static readonly HashSet<Player> Swapping = [];
 
-    public override RelicRarity Rarity => RelicRarity.Rare;
+    public override RelicRarity Rarity => RelicRarity.Starter;
 
     public bool HasTriggeredThisCombat { get; set; }
     public int CaseReversalDiscardToExhaustCount { get; set; }
@@ -31,7 +31,6 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Creature.Side) return;
-        if (combatState.RoundNumber != 1) return;
 
         HasTriggeredThisCombat = false;
 
@@ -68,7 +67,17 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
         }
 
         var drawPile = PileType.Draw.GetPile(Owner);
-        if (drawPile.Cards.Any())
+        var discardPile = PileType.Discard.GetPile(Owner);
+
+        bool drawEmpty = !drawPile.Cards.Any();
+        bool discardEmpty = !discardPile.Cards.Any();
+
+        // 两种情况触发翻案：
+        // 1. 抽牌堆为空
+        // 2. 抽牌堆和弃牌堆都为空
+        bool shouldTrigger = drawEmpty || (drawEmpty && discardEmpty);
+
+        if (!shouldTrigger)
         {
             Swapping.Remove(Owner);
             return;
@@ -76,9 +85,7 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
 
         if (!Swapping.Add(Owner)) return;
 
-        var discardPile = PileType.Discard.GetPile(Owner);
         var exhaustPileSwap = PileType.Exhaust.GetPile(Owner);
-
         if (!exhaustPileSwap.Cards.Any())
         {
             Swapping.Remove(Owner);

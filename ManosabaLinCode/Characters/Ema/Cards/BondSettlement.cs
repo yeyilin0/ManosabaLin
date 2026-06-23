@@ -8,14 +8,12 @@ using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.ValueProps;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -89,12 +87,15 @@ public sealed class BondSettlement : ManosabaCardTemplate
         var handPile = PileType.Hand.GetPile(owner);
         var discardPile = PileType.Discard.GetPile(owner);
 
-        var allBondCards = drawPile.Cards
-            .Concat(handPile.Cards)
-            .Concat(discardPile.Cards)
-            .Where(c => BondCardTypes.Contains(c.GetType()))
-            .Distinct()
-            .ToList();
+        // 使用 HashSet 按实例去重
+        var seen = new HashSet<CardModel>();
+        var allBondCards = new List<CardModel>();
+
+        foreach (var card in drawPile.Cards.Concat(handPile.Cards).Concat(discardPile.Cards))
+        {
+            if (BondCardTypes.Contains(card.GetType()) && seen.Add(card))
+                allBondCards.Add(card);
+        }
 
         var exhaustedCount = 0;
         foreach (var card in allBondCards)
@@ -116,13 +117,29 @@ public sealed class BondSettlement : ManosabaCardTemplate
         affinity = bond?.Affinity ?? 0;
 
         // ===== 按亲近层数生成等量随机亲近卡 =====
-        var createCardMethod = typeof(ICombatState).GetMethod("CreateCard", [typeof(Player)]);
         for (int i = 0; i < affinity; i++)
         {
             var chosenType = rng.NextItem(AffinityTypes);
-            var genericMethod = createCardMethod.MakeGenericMethod(chosenType);
-            var newCard = (CardModel)genericMethod.Invoke(CombatState, [owner]);
-            await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, owner, CardPilePosition.Bottom);
+
+            CardModel? newCard = chosenType switch
+            {
+                Type t when t == typeof(SwapBodySuccess) => CombatState.CreateCard<SwapBodySuccess>(owner),
+                Type t when t == typeof(GuardianOath) => CombatState.CreateCard<GuardianOath>(owner),
+                Type t when t == typeof(SharedFate) => CombatState.CreateCard<SharedFate>(owner),
+                Type t when t == typeof(DollGift) => CombatState.CreateCard<DollGift>(owner),
+                Type t when t == typeof(TheOnlyClue) => CombatState.CreateCard<TheOnlyClue>(owner),
+                Type t when t == typeof(SubstituteCost) => CombatState.CreateCard<SubstituteCost>(owner),
+                Type t when t == typeof(NoahAffinity) => CombatState.CreateCard<NoahAffinity>(owner),
+                Type t when t == typeof(MargaretAffinity) => CombatState.CreateCard<MargaretAffinity>(owner),
+                Type t when t == typeof(CocoAffinity) => CombatState.CreateCard<CocoAffinity>(owner),
+                Type t when t == typeof(AnnAffinity) => CombatState.CreateCard<AnnAffinity>(owner),
+                Type t when t == typeof(Lyqinjin) => CombatState.CreateCard<Lyqinjin>(owner),
+                Type t when t == typeof(BondSettlement) => CombatState.CreateCard<BondSettlement>(owner),
+                _ => null
+            };
+
+            if (newCard != null)
+                await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, owner, CardPilePosition.Bottom);
         }
 
         // ===== 选择疏远层数张手牌减1费（循环 FromHand） =====

@@ -27,7 +27,7 @@ public sealed class DestroyEverything() : ManosabaCardTemplate(3, CardType.Attac
     ];
 
     protected override IEnumerable<ICardComponent> CanonicalComponents =>
-        [new Sherryyuanzui()];
+        [new Common.Components.Abstracts.Sherryyuanzui()];
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(13, DamageProps.cardUnpowered),

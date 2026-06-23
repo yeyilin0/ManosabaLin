@@ -12,7 +12,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 妄牌逐空：将卡组顶3张牌加入手卡，本回合手卡上限加三，回合结束随机打出你当前手卡三分之一的卡，升级减一费
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class MadCardChase() : ManosabaCardTemplate(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class MadCardChase() : ManosabaCardTemplate(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

@@ -44,22 +44,8 @@ public sealed class WitchMark() : ManosabaCardTemplate(2, CardType.Status, CardR
         );
     }
 
-    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
-    {
-        var source = this;
-
-        await PowerCmd.Apply<WithPower>(
-            choiceContext,
-            source.Owner.Creature,
-            source.DynamicVars["WithPower"].BaseValue,
-            source.Owner.Creature,
-            source,
-            false
-        );
-    }
-
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars["WithPower"].UpgradeValueBy(4m);
+        
     }
 }

@@ -2,7 +2,7 @@
   "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "轮回",
   "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[color=#CC6666]【死亡回溯】[/color]的馈赠，[color=#CC6666]【死亡回溯】[/color]的诅咒\n当你打出一张带[color=#CC6666]【轮回】[/color]的牌时，自动打出你抽牌堆中也带有[color=#CC6666]【轮回】[/color]的同名牌（最多 2 张）",
   "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "轮轮轮回回回",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "当你打出带有[color=#CC6666]【轮轮轮回回回】[/color]的卡牌，从任意地方打出带有[color=#CC6666]【轮轮轮回回回】[/color]的卡",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "当你打出带有[color=#CC6666]【轮轮轮回回回】[/color]的卡牌，从任意地方打出带有[color=#CC6666]【轮轮轮回回回】[/color]的卡，每次至多三张",
   "MANOSABA_LIN_KEYWORD_AGREE.title": "赞同",
   "MANOSABA_LIN_KEYWORD_AGREE.description":"打出若为1到5的倍数则触发效果\n×1：全体友方获得3点护盾\n×2：自身获得3点护盾\n×3：全体友方获得1层临时迅捷\n×4：全体友方获得2层临时力量\n×5：随机1张手卡可以免费打出1次，全体友方获得1点能量",
   "MANOSABA_LIN_KEYWORD_DOUBT.title": "疑问",

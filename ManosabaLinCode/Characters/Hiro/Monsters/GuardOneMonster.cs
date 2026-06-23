@@ -38,6 +38,7 @@ public sealed class GuardOneMonster : ModMonsterTemplate
     private int WithAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 50, 30);
     private int FrailAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 2, 2);
     private int VulnerableAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 2, 2);
+    private int PoisonAttackPoisonAmount => 3;
 
     public override MonsterAssetProfile AssetProfile => new(
         VisualsScenePath: "res://ManosabaLin/scenes/monsters/guard_one.tscn"
@@ -51,6 +52,7 @@ public sealed class GuardOneMonster : ModMonsterTemplate
 
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {
+        // 阶段1
         var attack = new MoveState("ATTACK_MOVE", AttackMove,
             new SingleAttackIntent(AttackDamage));
 
@@ -58,11 +60,17 @@ public sealed class GuardOneMonster : ModMonsterTemplate
             new DebuffIntent());
 
         var debuffShield = new MoveState("DEBUFF_SHIELD_MOVE", DebuffShieldMove,
-            new AbstractIntent[] { new DebuffIntent(), new DefendIntent() });
+            new DebuffIntent());
 
         var mark = new MoveState("MARK_MOVE", MarkMove,
             new AbstractIntent[] { new SingleAttackIntent(MarkDamage), new CardDebuffIntent() });
 
+        attack.FollowUpState = poison;
+        poison.FollowUpState = debuffShield;
+        debuffShield.FollowUpState = mark;
+        mark.FollowUpState = attack;
+
+        // 阶段2
         var poisonAttack = new MoveState("POISON_ATTACK_MOVE", PoisonAttackMove,
             new AbstractIntent[] { new SingleAttackIntent(PoisonAttackDamage), new DebuffIntent() });
 
@@ -71,11 +79,6 @@ public sealed class GuardOneMonster : ModMonsterTemplate
 
         var frenzy = new MoveState("FRENZY_MOVE", FrenzyMove,
             new AbstractIntent[] { new DebuffIntent(), new MultiAttackIntent(FrenzyDamage, 2) });
-
-        attack.FollowUpState = poison;
-        poison.FollowUpState = debuffShield;
-        debuffShield.FollowUpState = mark;
-        mark.FollowUpState = attack;
 
         poisonAttack.FollowUpState = witchBurn;
         witchBurn.FollowUpState = frenzy;
@@ -130,11 +133,6 @@ public sealed class GuardOneMonster : ModMonsterTemplate
             await PowerCmd.Apply<VulnerablePower>(
                 new ThrowingPlayerChoiceContext(), target, VulnerableAmount, Creature, null);
         }
-
-        var withPower = Creature.GetPower<WithPower>();
-        var shieldAmount = withPower?.Amount ?? 0m;
-        if (shieldAmount > 0)
-            await CreatureCmd.GainBlock(Creature, shieldAmount, ValueProp.Move, null);
     }
 
     private async Task MarkMove(IReadOnlyList<Creature> targets)
@@ -167,7 +165,7 @@ public sealed class GuardOneMonster : ModMonsterTemplate
         foreach (var target in targets)
         {
             await PowerCmd.Apply<PoisonPower>(
-                new ThrowingPlayerChoiceContext(), target, PoisonAmount, Creature, null);
+                new ThrowingPlayerChoiceContext(), target, PoisonAttackPoisonAmount, Creature, null);
         }
     }
 

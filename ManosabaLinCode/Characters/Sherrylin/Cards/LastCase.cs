@@ -51,12 +51,12 @@ public sealed class LastCase() : ManosabaCardTemplate(2, CardType.Attack, CardRa
         var keepCard = selected.FirstOrDefault();
         if (keepCard == null) return;
 
-        // 消耗其他牌
-        var toExhaust = caseFileCards.Where(c => c != keepCard).ToList();
-        var exhaustCount = toExhaust.Count;
+        // 移除其他牌
+        var toRemove = caseFileCards.Where(c => c != keepCard).ToList();
+        var removeCount = toRemove.Count;
 
-        foreach (var card in toExhaust)
-            await CardCmd.Exhaust(choiceContext, card);
+        foreach (var card in toRemove)
+            await CardPileCmd.RemoveFromCombat(card);
 
         // 造成13点伤害
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
@@ -77,7 +77,7 @@ public sealed class LastCase() : ManosabaCardTemplate(2, CardType.Attack, CardRa
             repeatDamage = source.DynamicVars["RepeatDamage"].BaseValue;
 
         // 重复伤害
-        for (int i = 0; i < exhaustCount; i++)
+        for (int i = 0; i < removeCount; i++)
         {
             await DamageCmd.Attack(repeatDamage)
                 .FromCard(source)
@@ -85,7 +85,7 @@ public sealed class LastCase() : ManosabaCardTemplate(2, CardType.Attack, CardRa
                 .Execute(choiceContext);
         }
 
-        // 翻案额外效果：每消耗1张给基础情绪
+        // 翻案额外效果：生成移除数一半的基础情绪
         if (hasFlipped)
         {
             var rng = source.Owner.RunState.Rng.CombatCardSelection;
@@ -95,7 +95,8 @@ public sealed class LastCase() : ManosabaCardTemplate(2, CardType.Attack, CardRa
                 typeof(EmotionFear), typeof(EmotionJoy), typeof(EmotionSurprise)
             };
 
-            for (int i = 0; i < exhaustCount; i++)
+            int generateCount = removeCount / 2;
+            for (int i = 0; i < generateCount; i++)
             {
                 var roll = rng.NextInt(emotionTypes.Length);
                 var emotionCard = source.CombatState.CreateCard(
@@ -105,8 +106,8 @@ public sealed class LastCase() : ManosabaCardTemplate(2, CardType.Attack, CardRa
             }
         }
 
-        // 消耗≥8张：触发翻案，给好奇或无助，给情绪融合
-        if (exhaustCount >= 8)
+        // 移除 ≥8 张：触发翻案，给好奇或无助，给情绪融合
+        if (removeCount >= 8)
         {
             // 触发翻案
             if (magnifyingGlass != null && !magnifyingGlass.HasTriggeredThisCombat)

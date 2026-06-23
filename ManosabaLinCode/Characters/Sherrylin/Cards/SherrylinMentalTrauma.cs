@@ -42,7 +42,7 @@ public class SherrylinMentalTrauma : ManosabaCardTemplate
                 var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, drawPile.Cards, Owner, prefs);
                 var card = selected.FirstOrDefault();
                 if (card != null)
-                    await CardPileCmd.Add(card, PileType.Exhaust);
+                    await CardCmd.Exhaust(choiceContext, card);  // 替换原来的 CardPileCmd.Add(card, PileType.Exhaust)
             }
         }
     }

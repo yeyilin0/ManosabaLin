@@ -1,0 +1,20 @@
+{
+  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.title": "에마의 사과",
+  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.extraCardText": "이 카드를 사용하면, 최대 체력 1을 획득합니다.",
+  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.description": "이 카드를 사용하면, [b]최대 체력[/b] 1을 획득합니다.",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.title": "반박",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.extraCardText": "이미 [color=#339966]【반박】[/color] 카드 {Amount}장을 사용했습니다",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.description": "이번 턴에 사용한 [b][color=#339966]【반박】[/color][/b] 마법부여가 있는 카드의 수를 기록합니다.\n매 턴 초기화됩니다",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.title": "찬성",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.extraCardText": "이미 [color=#6699cc]【찬성】[/color] 카드 {Amount}장을 사용했습니다",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.description": "이번 턴에 사용한 [b][color=#6699cc]【찬성】[/color][/b] 마법부여가 있는 카드의 수를 기록합니다.\n매 턴 초기화됩니다",
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT.title": "의문",
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT.extraCardText": "이미 [color=#cc9966]【의문】[/color] 카드 {Amount}장을 사용했습니다",
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT.description": "이번 턴에 사용한 [b][color=#cc9966]【의문】[/color][/b] 마법부여가 있는 카드의 수를 기록합니다.\n매 턴 초기화됩니다",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.title": "마녀화",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.extraCardText": "이 카드를 사용하면 자동으로 한 번 더 사용합니다",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.description": "이 카드를 사용하면 자동으로 한 번 더 사용합니다",
+  "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.title": "마법의 후유증",
+  "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.extraCardText": "사용 시 피해를 1 받습니다",
+  "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.description": "사용 시 피해를 1 받습니다"
+}

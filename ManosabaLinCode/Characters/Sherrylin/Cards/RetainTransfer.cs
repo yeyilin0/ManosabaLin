@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
@@ -18,7 +17,6 @@ public sealed class RetainTransfer() : ManosabaCardTemplate(1, CardType.Skill, C
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => RetainCounterComponent.Tip;
 
-    private LocString SelectionScreenPrompt2 => new("cards", Id.Entry + ".selectionScreenPrompt2");
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
@@ -36,41 +34,37 @@ public sealed class RetainTransfer() : ManosabaCardTemplate(1, CardType.Skill, C
         if (sourceList.Count == 0) return;
 
         var sourceCard = sourceList[0];
-        var sourceComp = sourceCard is MinionLib.Component.Interfaces.IComponentsCardModel ccm ? ccm.Components.OfType<RetainCounterComponent>().FirstOrDefault() : null;
+        var sourceComp = (sourceCard as IComponentsCardModel)?.Components.OfType<RetainCounterComponent>().FirstOrDefault();
         if (sourceComp == null) return;
 
-        var sourceCounterField = typeof(RetainCounterComponent).GetField("_counter",
+        var counterField = typeof(RetainCounterComponent).GetField("_counter",
             System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-        if (sourceCounterField == null) return;
+        if (counterField == null) return;
 
-        var counter = (int)sourceCounterField.GetValue(sourceComp);
+        var counter = (int)counterField.GetValue(sourceComp);
         if (counter <= 1) return;
 
         // 选择目标卡
         var targets = retainCards.Where(c => c != sourceCard).ToList();
         if (targets.Count == 0) return;
 
-        var prefs2 = new CardSelectorPrefs(SelectionScreenPrompt2, 1);
+        var prefs2 = new CardSelectorPrefs(SelectionScreenPrompt, 1);
         var selected2 = await CardSelectCmd.FromSimpleGrid(choiceContext, targets, source.Owner, prefs2);
         var targetList = selected2.ToList();
         if (targetList.Count == 0) return;
 
         var targetCard = targetList[0];
-        var targetComp = targetCard is MinionLib.Component.Interfaces.IComponentsCardModel ccm2 ? ccm2.Components.OfType<RetainCounterComponent>().FirstOrDefault() : null;
+        var targetComp = (targetCard as IComponentsCardModel)?.Components.OfType<RetainCounterComponent>().FirstOrDefault();
         if (targetComp == null) return;
 
-        var targetCounterField = typeof(RetainCounterComponent).GetField("_counter",
-            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-        if (targetCounterField == null) return;
-
-        // 转移计数
-        var targetCounter = (int)targetCounterField.GetValue(targetComp);
-        targetCounterField.SetValue(targetComp, targetCounter + counter - 1);
-        sourceCounterField.SetValue(sourceComp, 1);
+        // 转移计数（只操作 _counter，不更新数值）
+        var targetCounter = (int)counterField.GetValue(targetComp);
+        counterField.SetValue(targetComp, targetCounter + counter - 1);
+        counterField.SetValue(sourceComp, 1);
 
         // 升级时原卡获得消耗
         if (IsUpgraded)
-            sourceCard.AddKeyword(MegaCrit.Sts2.Core.Entities.Cards.CardKeyword.Exhaust);
+            sourceCard.AddKeyword(CardKeyword.Exhaust);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

@@ -16,7 +16,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 全域怒意：对敌方全体造成伤害，每打到一个加一层情绪，升级加伤害
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class GlobalRage() : ManosabaCardTemplate(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+public sealed class GlobalRage() : ManosabaCardTemplate(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

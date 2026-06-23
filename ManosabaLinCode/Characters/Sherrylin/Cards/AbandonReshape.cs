@@ -40,7 +40,6 @@ public sealed class AbandonReshape() : ManosabaCardTemplate(2, CardType.Skill, C
         }
 
         // 从无色卡池随机生成1张带消耗的卡
-        // 从无色卡池随机生成1张带消耗的卡
         var rng = source.Owner.RunState.Rng.CombatCardSelection;
         var colorlessExhaustCards = ModelDb.CardPool<ColorlessCardPool>().AllCards
             .Where(c => c.Rarity != CardRarity.Token
@@ -55,15 +54,7 @@ public sealed class AbandonReshape() : ManosabaCardTemplate(2, CardType.Skill, C
             var newCard = source.CombatState.CreateCard(randomCard, source.Owner);
             await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, source.Owner);
         }
-
-        if (colorlessExhaustCards.Count > 0)
-        {
-            var randomCard = colorlessExhaustCards[rng.NextInt(colorlessExhaustCards.Count)];
-            var newCard = source.CombatState.CreateCard(randomCard, source.Owner);
-            await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, source.Owner);
-        }
     }
-
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars["RemoveCount"].UpgradeValueBy(1m);

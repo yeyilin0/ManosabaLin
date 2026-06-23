@@ -27,7 +27,7 @@ public sealed class RetainRecover() : ManosabaCardTemplate(1, CardType.Skill, Ca
 
         if (discardPile.Count == 0) return;
 
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
+        var prefs = new CardSelectorPrefs(source.SelectionScreenPrompt, 1);
         var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, discardPile, source.Owner, prefs);
         var selectedList = selected.ToList();
         if (selectedList.Count > 0)
@@ -35,7 +35,7 @@ public sealed class RetainRecover() : ManosabaCardTemplate(1, CardType.Skill, Ca
             var card = selectedList[0];
             await CardPileCmd.Add(card, PileType.Hand, CardPilePosition.Top, source);
 
-            var component = (card as MinionLib.Component.Interfaces.IComponentsCardModel)?.Components.OfType<RetainCounterComponent>().FirstOrDefault();
+            var component = (card as IComponentsCardModel)?.Components.OfType<RetainCounterComponent>().FirstOrDefault();
             if (component != null)
             {
                 var counterField = typeof(RetainCounterComponent).GetField("_counter",
@@ -44,9 +44,6 @@ public sealed class RetainRecover() : ManosabaCardTemplate(1, CardType.Skill, Ca
                 {
                     var current = (int)counterField.GetValue(component);
                     counterField.SetValue(component, current + (IsUpgraded ? 2 : 1));
-                    typeof(RetainCounterComponent).GetMethod("UpdateCardValues",
-                            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-                        ?.Invoke(component, null);
                 }
             }
         }

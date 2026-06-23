@@ -17,7 +17,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 /// 升级有两个效果的同时额外获得等于友方数量的情绪层数
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class EmotionDiverge() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+public sealed class EmotionDiverge() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

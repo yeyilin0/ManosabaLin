@@ -21,7 +21,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class GuardianOath : ManosabaCardTemplate
 {
-    public GuardianOath() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.Self) { }
+    public GuardianOath() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.Self) { }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -61,12 +61,13 @@ public sealed class GuardianOath : ManosabaCardTemplate
                     choiceContext, target, 1, creature, this, false);
             }
 
-            if (target.Side == creature.Side && target != creature)
+            if (target.Side == creature.Side)
             {
+                // 友方目标（包括自己）：获得能量
                 if (target.Player != null)
                     await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, target.Player);
 
-                if (bond != null && bond.Affinity > bond.Estrangement)
+                if (bond != null && bond.Affinity > bond.Estrangement && target != creature)
                     await CreatureCmd.Heal(target, 1m);
             }
             else if (bond != null && bond.Affinity > bond.Estrangement)
@@ -79,6 +80,6 @@ public sealed class GuardianOath : ManosabaCardTemplate
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars.Energy.UpgradeValueBy(1);
+        EnergyCost.UpgradeBy(-1);
     }
 }

@@ -24,6 +24,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
     private int Turn3Damage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 18, 15);
     private int FailDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 10, 8);
     private int WithAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 60, 50);
+    private int WithAmount4 => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 20, 10);
     private int ShieldAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 50, 40);
 
     public override MonsterAssetProfile AssetProfile => new(
@@ -38,21 +39,16 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
     {
-        // 意图1：审判之眼 - 给玩家CheckMovesPhasePower
         var checkMoves = new MoveState("CHECK_MOVES", CheckMovesMove, new DebuffIntent());
 
-        // 意图2：黑手印记 - 给玩家上黑手
         var blackHand = new MoveState("BLACK_HAND_MOVE", BlackHandMove, new CardDebuffIntent());
 
-        // 意图3：审判之锤 - 给玩家JudgmentHammerPhasePower + 攻击
         var attack3 = new MoveState("ATTACK_3_MOVE", Attack3Move, new DebuffIntent(),
             new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent());
 
-        // 额外意图：审判之锤（附带清除黑手）
         var attack3Extra = new MoveState("ATTACK_3_EXTRA_MOVE", Attack3ExtraMove, new DebuffIntent(),
             new SingleAttackIntent(Turn3Damage), new BuffIntent(), new DefendIntent());
 
-        // 意图4：双倍审判 - 最高优先级，不被JudgmentHammerPhasePower修改
         var attack4 = new MoveState("ATTACK_4_MOVE", Attack4Move, new MultiAttackIntent(Turn3Damage, 2),
             new BuffIntent(), new DefendIntent());
 
@@ -75,19 +71,15 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
     public override async Task AfterAddedToRoom()
     {
-       
-        // 进入战斗即获得 “免死亿次” 能力
         await PowerCmd.Apply<GuardTwoBossLastStandPower>(
             new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
     }
 
-    // 意图1：审判之眼 - 给玩家CheckMovesPhasePower，效果在能力里
     public async Task CheckMovesMove(IReadOnlyList<Creature> targets)
     {
         UpdateVisual("phase1");
         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
 
-        // 给所有玩家施加CheckMovesPhasePower
         foreach (var player in CombatState.Players)
         {
             if (player.Creature is { IsAlive: true } creature)
@@ -98,7 +90,6 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         }
     }
 
-    // 意图2：黑手印记 - 给玩家卡牌施加黑手附魔
     private async Task BlackHandMove(IReadOnlyList<Creature> targets)
     {
         UpdateVisual("phase2");
@@ -117,12 +108,10 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         }
     }
 
-    // 意图3：审判之锤 - 给玩家 JudgmentHammerPhasePower + 攻击
     public async Task Attack3Move(IReadOnlyList<Creature> targets)
     {
         UpdateVisual("phase3");
 
-        // 给所有玩家施加 JudgmentHammerPhasePower
         foreach (var player in CombatState.Players)
         {
             if (player.Creature is { IsAlive: true })
@@ -132,7 +121,6 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
             }
         }
 
-        // 攻击
         await DamageCmd.Attack(Turn3Damage)
             .FromMonster(this)
             .WithAttackerFx(null, AttackSfx)
@@ -145,18 +133,15 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
         await CreatureCmd.GainBlock(Creature, ShieldAmount, ValueProp.Move, null);
     }
 
-    // 额外意图：审判之锤 + 清除黑手
     public async Task Attack3ExtraMove(IReadOnlyList<Creature> targets)
     {
         await Attack3Move(targets);
 
-        // 清除所有黑手附魔
         foreach (var card in CombatState.Players
                      .SelectMany(p => p.PlayerCombatState!.AllCards.Where(c => c.Pile!.Type != PileType.Exhaust)))
             CardCmd.ClearAffliction(card);
     }
 
-    // 意图4：双倍审判 - 最高优先级
     public async Task Attack4Move(IReadOnlyList<Creature> targets)
     {
         UpdateVisual("rage");
@@ -169,7 +154,7 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
             .Execute(null);
 
         await PowerCmd.Apply<WithPower>(
-            new ThrowingPlayerChoiceContext(), Creature, WithAmount, Creature, null);
+            new ThrowingPlayerChoiceContext(), Creature, WithAmount4, Creature, null);
 
         await CreatureCmd.GainBlock(Creature, ShieldAmount, ValueProp.Move, null);
     }
@@ -211,25 +196,24 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
             _isPhaseTwoMusicPlayed = true;
         }
 
-        var player = Creature.CombatState?.Players.FirstOrDefault();
-        if (player == null) return;
-
-        // 给予"变身的魔法"奖励卡
         var rewardCardId = new ModelId("CARD", "MANOSABA_LIN_CARD_TRANSFORMATION_MAGIC");
         var rewardCard = ModelDb.GetById<CardModel>(rewardCardId);
         if (rewardCard != null)
         {
-            var options = new CardCreationOptions(
-                new List<CardModel> { rewardCard },
-                CardCreationSource.Other,
-                CardRarityOddsType.Uniform
-            );
-
-            var rewards = new List<Reward>
+            foreach (var player in CombatState.Players)
             {
-                new CardReward(options, 1, player, null)
-            };
-            await RewardsCmd.OfferCustom(player, rewards);
+                var options = new CardCreationOptions(
+                    new List<CardModel> { rewardCard },
+                    CardCreationSource.Other,
+                    CardRarityOddsType.Uniform
+                );
+
+                var rewards = new List<Reward>
+                {
+                    new CardReward(options, 1, player, null)
+                };
+                await RewardsCmd.OfferCustom(player, rewards);
+            }
         }
     }
 }

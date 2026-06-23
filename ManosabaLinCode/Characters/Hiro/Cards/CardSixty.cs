@@ -22,15 +22,20 @@ public sealed class CardSixty : ManosabaCardTemplate
     {
     }
 
-    // 固定基础值
     protected override IEnumerable<DynamicVar> CanonicalVars => new[]
     {
         new DynamicVar(SelectCountKey, 1m),
         new DynamicVar(CopyCountKey, 1m)
     };
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword() };
+    public override IEnumerable<CardKeyword> CanonicalKeywords
+    {
+        get
+        {
+            yield return TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword();
+            yield return CardKeyword.Exhaust;
+        }
+    }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
@@ -42,7 +47,6 @@ public sealed class CardSixty : ManosabaCardTemplate
         var selectCount = source.DynamicVars[SelectCountKey].IntValue;
         var copyCount = source.DynamicVars[CopyCountKey].IntValue;
 
-        // 选择手牌中的卡牌
         var prefs = new CardSelectorPrefs(source.SelectionScreenPrompt, selectCount);
         var selectedCards = await CardSelectCmd.FromHand(
             choiceContext,

@@ -58,6 +58,7 @@ public sealed class CosmicApathy() : ManosabaCardTemplate(2, CardType.Attack, Ca
         if (allTargets.Count == 0) return;
 
         var rng = source.Owner.RunState.Rng.CombatTargets;
+        var hitAlly = false;
 
         // 每消耗1层，随机攻击一个目标1点伤害
         for (int i = 0; i < consumeCount; i++)
@@ -71,30 +72,17 @@ public sealed class CosmicApathy() : ManosabaCardTemplate(2, CardType.Attack, Ca
             if (target.Side != source.Owner.Creature.Side)
             {
                 // 攻击到敌人：施加受到冷漠能力
-                var existingDebuff = target.GetPower<CosmicApathyDebuffPower>();
-                if (existingDebuff != null)
-                {
-                    existingDebuff.Amount++;
-                    existingDebuff.Applier = source.Owner.Creature;
-                    existingDebuff.Flash();
-                }
-                else
-                {
-                    await PowerCmd.Apply<CosmicApathyDebuffPower>(
-                        choiceContext, target, 1,
-                        source.Owner.Creature, source, false);
-
-                    var debuff = target.GetPower<CosmicApathyDebuffPower>();
-                    if (debuff != null)
-                        debuff.Applier = source.Owner.Creature;
-                }
+                await PowerCmd.Apply<CosmicApathyDebuffPower>(
+                    choiceContext, target, 1,
+                    source.Owner.Creature, source, false);
             }
-            else
+            else if (!hitAlly)
             {
-                // 攻击到友方：获得10层情绪
+                // 攻击到友方：只触发一次，获得10层情绪
                 await PowerCmd.Apply<EmotionPower>(
                     choiceContext, source.Owner.Creature, 10,
                     source.Owner.Creature, source, false);
+                hitAlly = true;
             }
         }
     }

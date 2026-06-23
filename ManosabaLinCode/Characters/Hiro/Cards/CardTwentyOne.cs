@@ -1,5 +1,6 @@
 using MinionLib.Component.Core;
 ﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common.Powers;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -76,7 +77,7 @@ public sealed class CardTwentyOne() : ManosabaCardTemplate(1, CardType.Attack, C
             .Execute(choiceContext);
 
         // 降低敌人力量 — 用 CrushUnderPower
-        await PowerCmd.Apply<CrushUnderPower>(
+        await PowerCmd.Apply<TempStrengthDown>(
             choiceContext, cardPlay.Target, 3, source.Owner.Creature, source);
     }
 

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class TheDancingMen() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class TheDancingMen() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => new[]
     {

@@ -27,8 +27,6 @@ public sealed class EmotionHelplessness() : CaseFileCard<EmotionHelplessnessOrb>
     protected override IEnumerable<ICardComponent> CanonicalComponents =>
         [new RetainCounterComponent(), new UniqueComponent()];
 
-    protected override bool HasTurnEndInHandEffectC => true;
-
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<StrengthPower>("Strength", 2m),
@@ -50,36 +48,41 @@ public sealed class EmotionHelplessness() : CaseFileCard<EmotionHelplessnessOrb>
     {
         if (Owner != player) return;
 
+        // 回合开始时如果不在手牌，返回手牌
+        if (Pile?.Type != PileType.Hand)
+            await CardPileCmd.Add(this, PileType.Hand);
+
         EnergyCost.AddThisCombat(1);
 
-        if (EnergyCost.Canonical >= 4 && this is IComponentsCardModel ccm && !ccm.HasComponent<LevitationComponent>())
+        if (EnergyCost.GetWithModifiers(CostModifiers.All) >= 4
+            && this is IComponentsCardModel ccm
+            && !ccm.HasComponent<LevitationComponent>())
         {
             ccm.AddComponent(new LevitationComponent());
         }
-    }
 
-    protected override async Task OnTurnEndInHand(PlayerChoiceContext choiceContext, ComponentContext componentContext)
-    {
+        // 随机给一张有 RetainCounterComponent 的手牌 +1 计数
         var retainCards = PileType.Hand.GetPile(Owner).Cards
             .Where(c => c.HasComponent<RetainCounterComponent>())
             .ToList();
 
-        if (retainCards.Count == 0) return;
-
-        var rng = Owner.RunState.Rng.CombatCardSelection;
-        var target = retainCards[rng.NextInt(retainCards.Count)];
-
-        if (target is IComponentsCardModel ccm)
+        if (retainCards.Count > 0)
         {
-            var comp = ccm.Components.OfType<RetainCounterComponent>().FirstOrDefault();
-            if (comp != null)
+            var rng = Owner.RunState.Rng.CombatCardSelection;
+            var target = retainCards[rng.NextInt(retainCards.Count)];
+
+            if (target is IComponentsCardModel ccm2)
             {
-                var flags = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
-                var counterField = typeof(RetainCounterComponent).GetField("_counter", flags);
-                if (counterField != null)
+                var comp = ccm2.Components.OfType<RetainCounterComponent>().FirstOrDefault();
+                if (comp != null)
                 {
-                    var current = (int)counterField.GetValue(comp);
-                    counterField.SetValue(comp, current + 1);
+                    var flags = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
+                    var counterField = typeof(RetainCounterComponent).GetField("_counter", flags);
+                    if (counterField != null)
+                    {
+                        var current = (int)counterField.GetValue(comp);
+                        counterField.SetValue(comp, current + 1);
+                    }
                 }
             }
         }
@@ -90,46 +93,44 @@ public sealed class EmotionHelplessness() : CaseFileCard<EmotionHelplessnessOrb>
     {
         var source = this;
 
-        int counter = 1;
-        if (source is IComponentsCardModel ccm)
+        var strength = (int)source.DynamicVars["Strength"].BaseValue;
+        var dexterity = (int)source.DynamicVars["Dexterity"].BaseValue;
+        var damage = (int)source.DynamicVars.Damage.BaseValue;
+        var block = (int)source.DynamicVars.Block.BaseValue;
+
+        if (strength > 0)
+            await PowerCmd.Apply<StrengthPower>(
+                choiceContext, source.Owner.Creature,
+                strength,
+                source.Owner.Creature, source, false);
+
+        if (dexterity > 0)
+            await PowerCmd.Apply<DexterityPower>(
+                choiceContext, source.Owner.Creature,
+                -dexterity,
+                source.Owner.Creature, source, false);
+
+        if (damage > 0)
         {
-            var comp = ccm.Components.OfType<RetainCounterComponent>().FirstOrDefault();
-            if (comp != null)
+            var combatState = source.CombatState;
+            if (combatState != null)
             {
-                var flags = System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance;
-                var counterField = typeof(RetainCounterComponent).GetField("_counter", flags);
-                if (counterField != null)
-                    counter = (int)counterField.GetValue(comp);
+                var enemies = combatState.HittableEnemies.Where(e => e.IsAlive).ToList();
+                if (enemies.Count > 0)
+                {
+                    var rng = source.Owner.RunState.Rng.CombatCardSelection;
+                    var target = enemies[rng.NextInt(enemies.Count)];
+                    await CreatureCmd.Damage(choiceContext, target,
+                        damage,
+                        ValueProp.Move, source.Owner.Creature, source);
+                }
             }
         }
 
-        await PowerCmd.Apply<StrengthPower>(
-            choiceContext, source.Owner.Creature,
-            counter * source.DynamicVars["StrengthPower"].BaseValue,
-            source.Owner.Creature, source, false);
-
-        await PowerCmd.Apply<DexterityPower>(
-            choiceContext, source.Owner.Creature,
-            -(counter * (int)source.DynamicVars["Dexterity"].BaseValue),
-            source.Owner.Creature, source, false);
-
-        var combatState = source.CombatState;
-        if (combatState != null)
-        {
-            var enemies = combatState.HittableEnemies.Where(e => e.IsAlive).ToList();
-            if (enemies.Count > 0)
-            {
-                var rng = source.Owner.RunState.Rng.CombatCardSelection;
-                var target = enemies[rng.NextInt(enemies.Count)];
-                await CreatureCmd.Damage(choiceContext, target,
-                    counter * source.DynamicVars.Damage.BaseValue,
-                    ValueProp.Move, source.Owner.Creature, source);
-            }
-        }
-
-        await CreatureCmd.GainBlock(source.Owner.Creature,
-            counter * source.DynamicVars.Block.BaseValue,
-            ValueProp.Move, cardPlay);
+        if (block > 0)
+            await CreatureCmd.GainBlock(source.Owner.Creature,
+                block,
+                ValueProp.Move, cardPlay);
 
         await base.OnPlay(choiceContext, cardPlay, componentContext);
     }
