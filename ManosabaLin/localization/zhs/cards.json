@@ -825,7 +825,7 @@
   "MANOSABA_LIN_CARD_PRISM_CHAIN.description": "连接。抽{Cards}张牌；任选至多{LinkCards:diff()}张没有连接的手牌赋予连接；升级：可选择数量提高",
   "MANOSABA_LIN_CARD_PRISM_CHAIN.selectionScreenPrompt": "选择至多{MaxCount}张没有连接的手牌",
   "MANOSABA_LIN_CARD_SLUMBER_BRAND.title": "沉眠预烙",
-  "MANOSABA_LIN_CARD_SLUMBER_BRAND.description": "本回合打出的下一张攻击自动附加安息；升级：附加安息后再次移入手牌",
+  "MANOSABA_LIN_CARD_SLUMBER_BRAND.description": "安息。本回合打出的下一张攻击牌在结算前获得安息；升级：该攻击牌结算后加入手牌",
   "MANOSABA_LIN_CARD_EMBER_RECALL.title": "溯烬",
   "MANOSABA_LIN_CARD_EMBER_RECALL.description": "从弃牌堆选择至多1张牌移回手牌；若选择了牌，生成1(2)张极光剑；升级：生成数量提高",
   "MANOSABA_LIN_CARD_EMBER_RECALL.selectionScreenPrompt": "从弃牌堆选择至多1张牌",
