@@ -793,7 +793,7 @@
   "MANOSABA_LIN_CARD_GLIMMER_HARVEST.title": "Glimmer Harvest",
   "MANOSABA_LIN_CARD_GLIMMER_HARVEST.description": "Link. Draw 1(2) card(s). Cards drawn this turn gain Link. Upgrade: gains Rest.",
   "MANOSABA_LIN_CARD_EMBER_TETHER_DRAW.title": "Ember Tether Draw",
-  "MANOSABA_LIN_CARD_EMBER_TETHER_DRAW.description": "Exhaust. Rest cards in hand gain Link this turn. Upgrade: cost reduced.",
+  "MANOSABA_LIN_CARD_EMBER_TETHER_DRAW.description": "Exhaust. This turn, Rest cards in your hand and Rest cards that enter your hand gain Link. Upgrade: cost reduced.",
   "MANOSABA_LIN_CARD_HERO_OF_THE_MANY.title": "Hero of the Many",
   "MANOSABA_LIN_CARD_HERO_OF_THE_MANY.description": "Exhaust and Link. Choose card names, link matching cards, then move them to the draw pile.",
   "MANOSABA_LIN_CARD_HERO_OF_THE_MANY.selectionScreenPrompt": "Choose cards to read their names",
