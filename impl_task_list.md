@@ -52,7 +52,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 011 | Ember Tether Draw | card | todo |  |  |  |  | pending |  |
 | 012 | Hero of the Many | card | todo |  |  |  |  | pending |  |
 | 013 | Lingering Aurora Link | card | todo |  |  |  |  | pending |  |
-| 014 | Old Blade Binding | card | ready | mag/heidemarie-card-014-old-blade-binding | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-014-old-blade-binding | Schrodinger 019efaa5-a966-74d3-986c-c47912163fe7 | branch HeidemarieOldBladeBindingTests 6/6 pass; commit 923d80f | pending |  |
+| 014 | Old Blade Binding | card | ready | mag/heidemarie-card-014-old-blade-binding | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-014-old-blade-binding | Schrodinger 019efaa5-a966-74d3-986c-c47912163fe7 | branch HeidemarieOldBladeBindingTests 6/6 pass; commit 923d80f | pass |  |
 | 015 | Thousand Aurora Shatterstrike | card | ready | mag/heidemarie-card-015-thousand-aurora-shatterstrike | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-015-thousand-aurora-shatterstrike | Avicenna 019efaa5-b1db-7f53-a2c5-4b4b4c0636b3 | branch HeidemarieThousandAuroraShatterstrikeTests 7/7 pass; commit 6994105 | pending |  |
 | 016 | Twin Edge Slumber | card | done | mag/heidemarie-card-016-twin-edge-slumber | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-016-twin-edge-slumber | Gauss 019efa6b-7b6d-75f3-b544-3a6a1dfb766a | integration HeidemarieTwinEdgeSlumberTests 4/4 pass; commit d3412c9 | pass |  |
 | 017 | Ray of Light | card | todo |  |  |  |  | pending |  |
@@ -73,7 +73,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 032 | Formless Emberlight | card | todo |  |  |  |  | pending |  |
 | 033 | Unnamed Card 33 | card | done | mag/heidemarie-card-033-unnamed-card-33 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-033-unnamed-card-33 | Descartes 019efa6b-c265-76c0-9f21-bd8ec95dacd9 | integration HeidemarieUnnamedCard33Tests 6/6 pass; commit b1aed17 | pass |  |
 | 034 | Unnamed Card 34 | card | done | mag/heidemarie-card-034-unnamed-card-34 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-034-unnamed-card-34 | Carson 019efa51-3a30-7a50-9342-3323ae89dc1a | integration HeidemarieUnnamedCard34Tests 3/3 pass; commit 74657d0 | pass |  |
-| 035 | Unnamed Card 35 | card | ready | mag/heidemarie-card-035-unnamed-card-35 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-035-unnamed-card-35 | Cicero 019efaa5-c4fa-7060-b5f2-67b568ee0057 | branch HeidemarieUnnamedCard35Tests 4/4 pass; commit 1f59bf4 | pending |  |
+| 035 | Unnamed Card 35 | card | ready | mag/heidemarie-card-035-unnamed-card-35 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-035-unnamed-card-35 | Cicero 019efaa5-c4fa-7060-b5f2-67b568ee0057 | branch HeidemarieUnnamedCard35Tests 4/4 pass; commit 1f59bf4 | pass |  |
 | 036 | Unnamed Card 36 | card | todo |  |  |  |  | pending |  |
 | 037 | Unnamed Card 37 | card | todo |  |  |  |  | pending |  |
 | 038 | Unnamed Card 38 | card | ready | mag/heidemarie-card-038-unnamed-card-38 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-038-unnamed-card-38 | Jason 019efaa5-cbd9-7be2-8c36-67542f98352b | branch HeidemarieUnnamedCard38Tests 6/6 pass; commit 478a1ff | pending |  |
