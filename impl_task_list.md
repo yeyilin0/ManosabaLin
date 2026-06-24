@@ -45,7 +45,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 005 | Sword Rain | card | blocked |  |  |  |  | n/a | Clarification still asks review for non-draw hand entry trigger. |
 | 006 | Swordlight | card | todo |  |  |  |  | pending |  |
 | 007 | Chain Sigil Ignition | card | todo |  |  |  |  | pending |  |
-| 008 | Linked Edge | card | ready | mag/heidemarie-card-008-linked-edge | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-008-linked-edge | Bohr 019efa51-306b-73c1-be7f-1db5116914d3 | build pass; HeidemarieLinkedEdgeTests 4/4 pass; commit 29904c0 | pending |  |
+| 008 | Linked Edge | card | ready | mag/heidemarie-card-008-linked-edge | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-008-linked-edge | Bohr 019efa51-306b-73c1-be7f-1db5116914d3 | build pass; HeidemarieLinkedEdgeTests 4/4 pass; commit 29904c0 | pass |  |
 | 009 | Crimson Edge Return Pact | card | todo |  |  |  |  | pending |  |
 | 010 | Glimmer Harvest | card | todo |  |  |  |  | pending |  |
 | 011 | Ember Tether Draw | card | todo |  |  |  |  | pending |  |
