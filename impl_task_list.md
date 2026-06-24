@@ -62,7 +62,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 018 | Condensed Aurora | card | todo |  |  |  |  | pending |  |
 | 019 | Liberated Aurora | card | todo |  |  |  |  | pending |  |
 | 020 | World Purging Aurora | card | todo |  |  |  |  | pending |  |
-| 021 | Shattered Aurora | card | ready | mag/heidemarie-card-021-shattered-aurora | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-021-shattered-aurora | Russell 019efae2-e6e3-72c3-acfa-8191c31a7b5f | branch HeidemarieShatteredAuroraTests 7/7 pass; commit 46cca12 | pass | Reviewer rarity note accepted as non-blocking placeholder. |
+| 021 | Shattered Aurora | card | done | mag/heidemarie-card-021-shattered-aurora | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-021-shattered-aurora | Russell 019efae2-e6e3-72c3-acfa-8191c31a7b5f | integration HeidemarieShatteredAuroraTests 7/7 pass; commit 46cca12 | pass | Reviewer rarity note accepted as non-blocking placeholder. |
 | 022 | Sword Curtain | card | done | mag/heidemarie-card-022-sword-curtain | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-022-sword-curtain | Faraday 019efacb-da47-7271-a6b6-9e74bf1c1f18 | integration HeidemarieSwordCurtainTests 8/8 pass; commit 677954d | pass |  |
 | 023 | Prism Chain | card | ready | mag/heidemarie-card-023-prism-chain | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-023-prism-chain | Hegel 019efae2-eb57-7ea0-a900-d2d7fdbdb0a8 | branch HeidemariePrismChainTests 5/5 pass; commit 39d1cf9 | pass |  |
 | 024 | Slumber Brand | card | todo |  |  |  |  | pending |  |

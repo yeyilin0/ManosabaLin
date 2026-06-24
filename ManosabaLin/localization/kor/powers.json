@@ -214,7 +214,7 @@
   "MANOSABA_LIN_POWER_SWORDLIGHT_POWER.title": "Swordlight",
   "MANOSABA_LIN_POWER_SWORDLIGHT_POWER.description": "While Swordlight is in the discard pile, Aurora Sword damage is doubled.",
   "MANOSABA_LIN_POWER_SHATTERED_AURORA_POWER.title": "Shattered Aurora",
-  "MANOSABA_LIN_POWER_SHATTERED_AURORA_POWER.description": "After discarding enough Aurora Sword cards, gain Energy.",
+  "MANOSABA_LIN_POWER_SHATTERED_AURORA_POWER.description": "Whenever you discard {DiscardThreshold:inverseDiff()} Aurora Sword cards, gain {EnergyGain:diff()} Energy.",
   "MANOSABA_LIN_POWER_SWORD_CURTAIN_POWER.title": "Sword Curtain",
   "MANOSABA_LIN_POWER_SWORD_CURTAIN_POWER.description": "Whenever you create Aurora Sword, gain Block.",
   "MANOSABA_LIN_POWER_CITADEL_AURORA_RELEASE_POWER.title": "Citadel Aurora Release",

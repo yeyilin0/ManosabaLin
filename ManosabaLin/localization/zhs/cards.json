@@ -818,7 +818,7 @@
   "MANOSABA_LIN_CARD_WORLD_PURGING_AURORA.title": "万曦肃世",
   "MANOSABA_LIN_CARD_WORLD_PURGING_AURORA.description": "攻击敌方全体；若手牌里有解放极光则消耗它并消耗所有极光剑增加伤害；升级：费用降低",
   "MANOSABA_LIN_CARD_SHATTERED_AURORA.title": "碎曦",
-  "MANOSABA_LIN_CARD_SHATTERED_AURORA.description": "获得能力：每丢弃1(2)张极光剑获得1(2)点能量；升级：触发所需数量降低",
+  "MANOSABA_LIN_CARD_SHATTERED_AURORA.description": "获得能力：每丢弃{DiscardThreshold:inverseDiff()}张极光剑，获得{EnergyGain:diff()}点能量；升级：触发所需数量降低",
   "MANOSABA_LIN_CARD_SWORD_CURTAIN.title": "剑幕",
   "MANOSABA_LIN_CARD_SWORD_CURTAIN.description": "获得能力。每当你生成极光剑，获得1(2)点格挡。",
   "MANOSABA_LIN_CARD_PRISM_CHAIN.title": "分光结链",
