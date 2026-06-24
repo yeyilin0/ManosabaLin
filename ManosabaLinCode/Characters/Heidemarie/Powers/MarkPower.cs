@@ -22,12 +22,13 @@ public sealed class MarkPower : ManosabaPowerTemplate
         if (target == null)
             return;
 
+        var damage = Damage + (Owner.GetPower<UnnamedCard36Power>()?.Amount ?? 0m);
         Flash();
         await PowerCmd.ModifyAmount(choiceContext, this, -LayerCost, Owner, null);
         await CreatureCmd.Damage(
             choiceContext,
             target,
-            Damage,
+            damage,
             ValueProp.Move | ValueProp.Unpowered,
             Owner,
             null);
