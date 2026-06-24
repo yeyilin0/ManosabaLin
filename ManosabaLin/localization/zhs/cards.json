@@ -835,7 +835,7 @@
   "MANOSABA_LIN_CARD_REFORGE.description": "移除所有手牌的连接标记；重新自由给1(2)张手牌赋予连接；升级：费用降低",
   "MANOSABA_LIN_CARD_REFORGE.selectionScreenPrompt": "选择手牌获得连接",
   "MANOSABA_LIN_CARD_LINK_PATTERN_REWEAVER.title": "络纹重织仪",
-  "MANOSABA_LIN_CARD_LINK_PATTERN_REWEAVER.description": "从弃牌堆取出1(2)张极光剑或赤光剑移入手牌并全部附加弹回1(2)；升级：取出数量提高",
+  "MANOSABA_LIN_CARD_LINK_PATTERN_REWEAVER.description": "从弃牌堆选择{Cards:diff()}张极光剑或赤光剑移入手牌，并为其附加弹回1；升级：选择数量提高",
   "MANOSABA_LIN_CARD_LINK_PATTERN_REWEAVER.selectionScreenPrompt": "从弃牌堆选择极光剑或赤光剑",
   "MANOSABA_LIN_CARD_CITADEL_AURORA_RELEASE.title": "城曦解放",
   "MANOSABA_LIN_CARD_CITADEL_AURORA_RELEASE.description": "获得能力：每回合结束时弃牌堆内每1(2)把剑叠加1(2)层极光连锁；升级：触发所需数量降低",
