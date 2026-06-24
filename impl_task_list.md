@@ -73,7 +73,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 032 | Formless Emberlight | card | todo |  |  |  |  | pending |  |
 | 033 | Unnamed Card 33 | card | done | mag/heidemarie-card-033-unnamed-card-33 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-033-unnamed-card-33 | Descartes 019efa6b-c265-76c0-9f21-bd8ec95dacd9 | integration HeidemarieUnnamedCard33Tests 6/6 pass; commit b1aed17 | pass |  |
 | 034 | Unnamed Card 34 | card | done | mag/heidemarie-card-034-unnamed-card-34 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-034-unnamed-card-34 | Carson 019efa51-3a30-7a50-9342-3323ae89dc1a | integration HeidemarieUnnamedCard34Tests 3/3 pass; commit 74657d0 | pass |  |
-| 035 | Unnamed Card 35 | card | ready | mag/heidemarie-card-035-unnamed-card-35 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-035-unnamed-card-35 | Cicero 019efaa5-c4fa-7060-b5f2-67b568ee0057 | branch HeidemarieUnnamedCard35Tests 4/4 pass; commit 1f59bf4 | pass |  |
+| 035 | Unnamed Card 35 | card | done | mag/heidemarie-card-035-unnamed-card-35 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-035-unnamed-card-35 | Cicero 019efaa5-c4fa-7060-b5f2-67b568ee0057 | integration HeidemarieUnnamedCard35Tests 4/4 pass; commit 1f59bf4 | pass |  |
 | 036 | Unnamed Card 36 | card | todo |  |  |  |  | pending |  |
 | 037 | Unnamed Card 37 | card | todo |  |  |  |  | pending |  |
 | 038 | Unnamed Card 38 | card | ready | mag/heidemarie-card-038-unnamed-card-38 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-038-unnamed-card-38 | Jason 019efaa5-cbd9-7be2-8c36-67542f98352b | branch HeidemarieUnnamedCard38Tests 6/6 pass; commit 478a1ff | pass |  |
