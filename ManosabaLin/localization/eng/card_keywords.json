@@ -8,5 +8,18 @@
   "MANOSABA_LIN_KEYWORD_DOUBT.title": "Doubt",
   "MANOSABA_LIN_KEYWORD_DOUBT.description": "When played, triggers effects at multiples of 1 through 5:\n×1: Gain 1 Block.\n×2: Draw 1 card.\n×3: Gain 1 Energy.\n×4: Retrieve 1 card from the discard pile.\n×5: Add Replay 1 to a card in hand. Apply 1 [color=#339966]【[/color][color=#cc9966]Trial[/color][color=#6699cc] Enchantment[/color][color=#339966]】[/color] to a card in hand.",
   "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "Rebuttal",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "When played, triggers effects at multiples of 1 through 5:\n×1: Deal 1 damage randomly.\n×2: Gain 1 Strength.\n×3: Apply 1 Vulnerable to all enemies.\n×4: Deal 1 damage randomly an equal number of times.\n×5: This card is played 1 extra time."
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "When played, triggers effects at multiples of 1 through 5:\n×1: Deal 1 damage randomly.\n×2: Gain 1 Strength.\n×3: Apply 1 Vulnerable to all enemies.\n×4: Deal 1 damage randomly an equal number of times.\n×5: This card is played 1 extra time.",
+  "MANOSABA_LIN_KEYWORD_REST.title": "Rest",
+  "MANOSABA_LIN_KEYWORD_REST.description": "When discarded from hand, automatically play this card effect.",
+  "MANOSABA_LIN_KEYWORD_LINK.title": "Link",
+  "MANOSABA_LIN_KEYWORD_LINK.description": "When manually played, discard other linked cards in hand after this card resolves.",
+  "MANOSABA_LIN_KEYWORD_BOUNCE.title": "Bounce",
+  "MANOSABA_LIN_KEYWORD_BOUNCE.description": "At the start of your turn, move this card from draw or discard pile to hand and reduce Bounce count.",
+  "MANOSABA_LIN_KEYWORD_SWORD_GRAVE.title": "Sword Grave",
+  "MANOSABA_LIN_KEYWORD_SWORD_GRAVE.description": "This card stays in the discard pile instead of shuffling into the draw pile.",
+  "MANOSABA_LIN_KEYWORD_AURORA_CHAIN.title": "Aurora Chain",
+  "MANOSABA_LIN_KEYWORD_AURORA_CHAIN.description": "Each stack increases damage dealt by Sword Grave cards.",
+  "MANOSABA_LIN_KEYWORD_MARK.title": "Mark",
+  "MANOSABA_LIN_KEYWORD_MARK.description": "When an ally attacks, spend Mark to deal additional attack damage."
+
 }

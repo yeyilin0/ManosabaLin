@@ -8,5 +8,18 @@
   "MANOSABA_LIN_KEYWORD_DOUBT.title": "의문",
   "MANOSABA_LIN_KEYWORD_DOUBT.description": "사용 시 1~5의 배수이면 효과 발동\n×1: 자신이 보호막 1 획득\n×2: 자신이 카드 1장 드로우\n×3: 자신이 에너지 1 획득\n×4: 버린 카드 더미에서 카드 1장 회수\n×5: 손패 1장에 재생 1 추가, 손패 1장이 [color=#339966]【[/color][color=#cc9966]심[/color][color=#6699cc]판[/color][color=#339966]】[/color] 마법부여 1개 획득",
   "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "반박",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "사용 시 1~5의 배수이면 효과 발동\n×1: 무작위로 피해 1\n×2: 자신이 힘 1 획득\n×3: 적 전체가 취약 1 중첩 획득\n×4: 무작위로 동일 횟수만큼 피해 1\n×5: 이 카드를 1회 추가로 사용"
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "사용 시 1~5의 배수이면 효과 발동\n×1: 무작위로 피해 1\n×2: 자신이 힘 1 획득\n×3: 적 전체가 취약 1 중첩 획득\n×4: 무작위로 동일 횟수만큼 피해 1\n×5: 이 카드를 1회 추가로 사용",
+  "MANOSABA_LIN_KEYWORD_REST.title": "Rest",
+  "MANOSABA_LIN_KEYWORD_REST.description": "When discarded from hand, automatically play this card effect.",
+  "MANOSABA_LIN_KEYWORD_LINK.title": "Link",
+  "MANOSABA_LIN_KEYWORD_LINK.description": "When manually played, discard other linked cards in hand after this card resolves.",
+  "MANOSABA_LIN_KEYWORD_BOUNCE.title": "Bounce",
+  "MANOSABA_LIN_KEYWORD_BOUNCE.description": "At the start of your turn, move this card from draw or discard pile to hand and reduce Bounce count.",
+  "MANOSABA_LIN_KEYWORD_SWORD_GRAVE.title": "Sword Grave",
+  "MANOSABA_LIN_KEYWORD_SWORD_GRAVE.description": "This card stays in the discard pile instead of shuffling into the draw pile.",
+  "MANOSABA_LIN_KEYWORD_AURORA_CHAIN.title": "Aurora Chain",
+  "MANOSABA_LIN_KEYWORD_AURORA_CHAIN.description": "Each stack increases damage dealt by Sword Grave cards.",
+  "MANOSABA_LIN_KEYWORD_MARK.title": "Mark",
+  "MANOSABA_LIN_KEYWORD_MARK.description": "When an ally attacks, spend Mark to deal additional attack damage."
+
 }

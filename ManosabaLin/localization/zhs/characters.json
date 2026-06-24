@@ -40,5 +40,20 @@
   "MANOSABA_LIN_CHARACTER_SHERRYLIN.possessiveAdjective": "她的",
   "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounObject": "她",
   "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounPossessive": "她的",
-  "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounSubject": "她"
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounSubject": "她",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.title": "海德玛丽",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.titleObject": "海德玛丽",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.description": "未完成。安息、连接、弹回、剑冢、极光连锁与标记机制的占位角色。",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.aromaPrinciple": "极光仍在组装。",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.banter.alive.endTurnPing": "连接还维持着。",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.banter.dead.endTurnPing": "机构还没完成就停下了。",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.cardsModifierDescription": "海德玛丽卡牌将出现在奖励与商店中",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.cardsModifierTitle": "海德玛丽卡牌",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.eventDeathPrevention": "还不行，连锁尚未完成。",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.goldMonologue": "有用的材料。",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.possessiveAdjective": "她的",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.pronounObject": "她",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.pronounPossessive": "她的",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.pronounSubject": "她"
+
 }

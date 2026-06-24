@@ -1,4 +1,5 @@
 using HarmonyLib;
+using ManosabaLin.Characters.Heidemarie;
 using ManosabaLin.Characters.Hiro;
 using ManosabaLin.Characters.Sherrylin;
 using ManosabaLin.Utils;
@@ -54,6 +55,7 @@ public partial class MainFile : Node
                     {
                         HiroCardPool => new Color(204f / 255f, 102f / 255f, 102f / 255f),
                         EmalinCardPool => new Color(1f, 0.6f, 0.8f),
+                        HeidemarieCardPool => Heidemarie.Color,
                         SherrylinCardPool => new Color(0.2f, 0.8f, 1f),
                         LinCardPool => new Color(0.8f, 0.8f, 0.8f),
                         _ => null

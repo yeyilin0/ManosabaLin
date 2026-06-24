@@ -8,5 +8,18 @@
   "MANOSABA_LIN_KEYWORD_DOUBT.title": "疑问",
   "MANOSABA_LIN_KEYWORD_DOUBT.description":"打出若为1到5的倍数则触发效果\n×1:自身获得1护盾\n×2:自身抽1牌\n×3:自身获得1点能量\n×4:回收弃牌堆1张卡\n×5:1张手卡添加重放1,1张手卡获得1个[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔",
   "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "反驳",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.description":"打出若为1到5的倍数则触发效果\n×1：随机造成1点伤害\n×2：自身获得1点力量\n×3：敌方全体获得1层易伤\n×4：随机造成等次数的1点伤害\n×5：本牌额外多打出1次"
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.description":"打出若为1到5的倍数则触发效果\n×1：随机造成1点伤害\n×2：自身获得1点力量\n×3：敌方全体获得1层易伤\n×4：随机造成等次数的1点伤害\n×5：本牌额外多打出1次",
+  "MANOSABA_LIN_KEYWORD_REST.title": "安息",
+  "MANOSABA_LIN_KEYWORD_REST.description": "从手牌被弃置时，自动发动此卡效果。",
+  "MANOSABA_LIN_KEYWORD_LINK.title": "连接",
+  "MANOSABA_LIN_KEYWORD_LINK.description": "手动打出后，弃置手牌中其他仍带连接的牌。",
+  "MANOSABA_LIN_KEYWORD_BOUNCE.title": "弹回",
+  "MANOSABA_LIN_KEYWORD_BOUNCE.description": "你的回合开始时，从抽牌堆或弃牌堆移回手牌并消耗1次弹回计数。",
+  "MANOSABA_LIN_KEYWORD_SWORD_GRAVE.title": "剑冢",
+  "MANOSABA_LIN_KEYWORD_SWORD_GRAVE.description": "洗牌时不会从弃牌堆洗入抽牌堆。",
+  "MANOSABA_LIN_KEYWORD_AURORA_CHAIN.title": "极光连锁",
+  "MANOSABA_LIN_KEYWORD_AURORA_CHAIN.description": "每层提高剑冢牌造成的伤害。",
+  "MANOSABA_LIN_KEYWORD_MARK.title": "标记",
+  "MANOSABA_LIN_KEYWORD_MARK.description": "队友攻击时消耗标记并追加攻击伤害。"
+
 }
