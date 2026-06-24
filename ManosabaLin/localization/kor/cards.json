@@ -808,7 +808,7 @@
   "MANOSABA_LIN_CARD_TWIN_EDGE_SLUMBER.title": "Twin Edge Slumber",
   "MANOSABA_LIN_CARD_TWIN_EDGE_SLUMBER.description": "Create Aurora Sword with Bounce. Upgrade: gains Rest.",
   "MANOSABA_LIN_CARD_RAY_OF_LIGHT.title": "Ray of Light",
-  "MANOSABA_LIN_CARD_RAY_OF_LIGHT.description": "Rest. Gain Energy. Upgrade: gain extra Energy if discarded by Link.",
+  "MANOSABA_LIN_CARD_RAY_OF_LIGHT.description": "Rest. Gain {Energy:diff()} Energy. If upgraded and discarded by Link cleanup while this has Link, gain {Energy:diff()} additional Energy.",
   "MANOSABA_LIN_CARD_CONDENSED_AURORA.title": "Condensed Aurora",
   "MANOSABA_LIN_CARD_CONDENSED_AURORA.description": "When discarded, returns to hand. After enough returns, transforms into Liberated Aurora.",
   "MANOSABA_LIN_CARD_LIBERATED_AURORA.title": "Liberated Aurora",
