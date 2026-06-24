@@ -40,7 +40,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | TOK-002 | Crimson Sword | token | ready | mag/heidemarie-token-crimson-sword | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/token-crimson-sword | Huygens 019efa4e-bb58-7841-93aa-565d41940885 | build pass; HeidemarieCrimsonSwordTests 5/5 pass; commit 496f4f7 | pending |  |
 | 001 | Eternal Rest Forging | card | todo |  |  |  |  | pending |  |
 | 002 | Unfold Aurora | card | todo |  |  |  |  | pending |  |
-| 003 | Battlemark Bond | card | ready | mag/heidemarie-card-003-battlemark-bond | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-003-battlemark-bond | Feynman 019efa51-2733-7bb1-9916-bc4d73407a9b | build pass; HeidemarieBattlemarkBondTests 3/3 pass; commit fa4f655 | pending |  |
+| 003 | Battlemark Bond | card | in_progress | mag/heidemarie-card-003-battlemark-bond | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-003-battlemark-bond | Feynman 019efa51-2733-7bb1-9916-bc4d73407a9b | review fix requested after commit fa4f655 | fail | Upgrade must only add Innate; effect amount changed to 2. |
 | 004 | Aurora Crimson Twinbirth | card | todo |  |  |  |  | pending |  |
 | 005 | Sword Rain | card | blocked |  |  |  |  | n/a | Clarification still asks review for non-draw hand entry trigger. |
 | 006 | Swordlight | card | todo |  |  |  |  | pending |  |
