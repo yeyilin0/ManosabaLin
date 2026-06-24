@@ -50,7 +50,6 @@ public sealed class FormlessEmberlight()
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars[SwordCountKey].UpgradeValueBy(1m);
         AddKeyword(CardKeyword.Innate);
     }
 }

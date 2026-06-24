@@ -43,7 +43,7 @@ public sealed class HeidemarieFormlessEmberlightTests : CombatTestSuite
     }
 
     [Fact]
-    public async Task Upgraded_card_is_innate_and_uses_two_replacement_swords()
+    public async Task Upgraded_card_is_innate_and_keeps_base_replacement_effect()
     {
         await ClearCombatPiles();
 
@@ -56,7 +56,7 @@ public sealed class HeidemarieFormlessEmberlightTests : CombatTestSuite
 
         var power = Player.Creature.GetPower<FormlessEmberlightPower>();
         Assert.NotNull(power);
-        Assert.Equal(2, power.SwordCount);
+        Assert.Equal(FormlessEmberlightPower.BaseSwordCount, power.SwordCount);
 
         var rng = Player.RunState.Rng.CombatCardGeneration;
         var beforeCounter = rng.Counter;
@@ -66,8 +66,8 @@ public sealed class HeidemarieFormlessEmberlightTests : CombatTestSuite
             1);
         await WaitForIdle();
 
-        Assert.Equal(beforeCounter + 2, rng.Counter);
-        Assert.Equal(2, result.SuccessCount);
+        Assert.Equal(beforeCounter + FormlessEmberlightPower.BaseSwordCount, rng.Counter);
+        Assert.Equal(FormlessEmberlightPower.BaseSwordCount, result.SuccessCount);
         Assert.All(result.Cards, AssertGeneratedSword);
 
         await ExecuteRunnerAction();
