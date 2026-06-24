@@ -38,6 +38,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | MECH-002 | Rest, Link, Bounce, Sword Grave components | shared | done | mag/heidemarie-mech-components | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/mech-components | Hypatia 019efa2f-6137-7f72-89ca-0fffcc87e48e | integration HeidemarieMechanicComponentTests 5/5 pass; commit 38a4172 | pass |  |
 | MECH-003 | Aurora Chain and Mark powers/hooks | shared | done | mag/heidemarie-mech-powers-generation | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/mech-powers-generation | Singer 019efa2f-c0ec-74c0-a7c8-6db98b58d101 | integration HeidemarieMechanicTests 3/3 pass; commit 0fe7b66 | pass |  |
 | MECH-004 | Sword generation helpers and generation replacement events | shared | done | mag/heidemarie-mech-powers-generation | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/mech-powers-generation | Singer 019efa2f-c0ec-74c0-a7c8-6db98b58d101 | integration HeidemarieMechanicTests 3/3 pass; commit 0fe7b66 | pass |  |
+| MECH-005 | Link discard source context | shared | in_progress | mag/heidemarie-mech-link-discard-context | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/mech-link-discard-context | Hume 019efaca-8593-7920-bb91-fd4ded326ba0 |  | pending |  |
 | TOK-001 | Aurora Sword | token | done | mag/heidemarie-token-aurora-sword | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/token-aurora-sword | Kierkegaard 019efa4e-b0a5-7b21-803e-7789a8ba291d | integration HeidemarieAuroraSwordTests 7/7 pass; commit 521c209 | pass |  |
 | TOK-002 | Crimson Sword | token | done | mag/heidemarie-token-crimson-sword | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/token-crimson-sword | Huygens 019efa4e-bb58-7841-93aa-565d41940885 | integration HeidemarieCrimsonSwordTests 5/5 pass; commit 496f4f7 | pass |  |
 | 001 | Eternal Rest Forging | card | done | mag/heidemarie-card-001-eternal-rest-forging | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-001-eternal-rest-forging | Dirac 019efa6a-3c8b-70b2-8545-391c9d721fef | integration HeidemarieEternalRestForgingTests 6/6 pass; commit 4e1b6d9 | pass |  |
@@ -49,10 +50,10 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 007 | Chain Sigil Ignition | card | done | mag/heidemarie-card-007-chain-sigil-ignition | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-007-chain-sigil-ignition | Maxwell 019efaa5-a422-7af1-adcb-5547c790970d | integration HeidemarieChainSigilIgnitionTests 5/5 pass; commit c681773 | pass |  |
 | 008 | Linked Edge | card | done | mag/heidemarie-card-008-linked-edge | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-008-linked-edge | Bohr 019efa51-306b-73c1-be7f-1db5116914d3 | integration HeidemarieLinkedEdgeTests 4/4 pass; commit 29904c0 | pass |  |
 | 009 | Crimson Edge Return Pact | card | done | mag/heidemarie-card-009-crimson-edge-return-pact | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-009-crimson-edge-return-pact | Darwin 019efa6b-2eb0-7eb0-8fdb-f93bdc85be21 | integration HeidemarieCrimsonEdgeReturnPactTests 5/5 pass; commit 05e4002 | pass |  |
-| 010 | Glimmer Harvest | card | todo |  |  |  |  | pending |  |
-| 011 | Ember Tether Draw | card | todo |  |  |  |  | pending |  |
+| 010 | Glimmer Harvest | card | in_progress | mag/heidemarie-card-010-glimmer-harvest | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-010-glimmer-harvest | Pasteur 019efaca-dc29-7ce0-9708-78ba76c0888f |  | pending |  |
+| 011 | Ember Tether Draw | card | in_progress | mag/heidemarie-card-011-ember-tether-draw | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-011-ember-tether-draw | Mencius 019efacb-2bb1-79f3-bb1b-18cf13a2b153 |  | pending |  |
 | 012 | Hero of the Many | card | todo |  |  |  |  | pending |  |
-| 013 | Lingering Aurora Link | card | todo |  |  |  |  | pending |  |
+| 013 | Lingering Aurora Link | card | in_progress | mag/heidemarie-card-013-lingering-aurora-link | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-013-lingering-aurora-link | Mill 019efacb-8dec-75b0-b9d5-b93437a15d0e |  | pending |  |
 | 014 | Old Blade Binding | card | done | mag/heidemarie-card-014-old-blade-binding | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-014-old-blade-binding | Schrodinger 019efaa5-a966-74d3-986c-c47912163fe7 | integration HeidemarieOldBladeBindingTests 6/6 pass; commit 923d80f | pass |  |
 | 015 | Thousand Aurora Shatterstrike | card | done | mag/heidemarie-card-015-thousand-aurora-shatterstrike | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-015-thousand-aurora-shatterstrike | Avicenna 019efaa5-b1db-7f53-a2c5-4b4b4c0636b3 | integration HeidemarieThousandAuroraShatterstrikeTests 7/7 pass; commit 6994105 | pass |  |
 | 016 | Twin Edge Slumber | card | done | mag/heidemarie-card-016-twin-edge-slumber | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-016-twin-edge-slumber | Gauss 019efa6b-7b6d-75f3-b544-3a6a1dfb766a | integration HeidemarieTwinEdgeSlumberTests 4/4 pass; commit d3412c9 | pass |  |
@@ -61,13 +62,13 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 019 | Liberated Aurora | card | todo |  |  |  |  | pending |  |
 | 020 | World Purging Aurora | card | todo |  |  |  |  | pending |  |
 | 021 | Shattered Aurora | card | todo |  |  |  |  | pending |  |
-| 022 | Sword Curtain | card | todo |  |  |  |  | pending |  |
+| 022 | Sword Curtain | card | in_progress | mag/heidemarie-card-022-sword-curtain | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-022-sword-curtain | Faraday 019efacb-da47-7271-a6b6-9e74bf1c1f18 |  | pending |  |
 | 023 | Prism Chain | card | todo |  |  |  |  | pending |  |
 | 024 | Slumber Brand | card | todo |  |  |  |  | pending |  |
 | 025 | Ember Recall | card | done | mag/heidemarie-card-025-ember-recall | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-025-ember-recall | Erdos 019efaa5-ba82-7670-8908-04063775fbd7 | integration HeidemarieEmberRecallTests 6/6 pass; commits c94ab86, 6334f79, 9ba819d | pass |  |
 | 026 | Restlight Bulwark | card | todo |  |  |  |  | pending |  |
 | 027 | Reforge | card | todo |  |  |  |  | pending |  |
-| 028 | Link Pattern Reweaver | card | todo |  |  |  |  | pending |  |
+| 028 | Link Pattern Reweaver | card | in_progress | mag/heidemarie-card-028-link-pattern-reweaver | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-028-link-pattern-reweaver | Linnaeus 019efacc-269d-7df2-88ca-d0fa7184aab3 |  | pending |  |
 | 029 | Citadel Aurora Release | card | todo |  |  |  |  | pending |  |
 | 030 | Crimson Edge Sleep Pact | card | blocked |  |  |  |  | n/a | Clarification still conflicts on whether normal play generates Crimson Sword. |
 | 031 | Returning Edge Aurora | card | blocked |  |  |  |  | n/a | Clarification still conflicts on non-bounce return trigger. |
