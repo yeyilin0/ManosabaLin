@@ -29,7 +29,10 @@ public sealed class HeidemarieEmberRecallTests : CombatTestSuite
 
         var card = await AddToHand<EmberRecall>();
         var recalled = await CreateCardInPile<HiroAttack>(PileType.Discard);
+        var selector = new TestCardSelector();
+        selector.PrepareToSelect([recalled]);
 
+        using var selection = CardSelectCmd.UseSelector(selector);
         await PlayerCmd.SetEnergy(10, Player);
         await Play(card);
         await WaitForIdle();
@@ -61,7 +64,10 @@ public sealed class HeidemarieEmberRecallTests : CombatTestSuite
 
         var card = await AddToHand<EmberRecall>();
         var swordGrave = await CreateCardInPile<AuroraSword>(PileType.Discard);
+        var selector = new TestCardSelector();
+        selector.PrepareToSelect([swordGrave]);
 
+        using var selection = CardSelectCmd.UseSelector(selector);
         await PlayerCmd.SetEnergy(10, Player);
         await Play(card);
         await WaitForIdle();
@@ -79,7 +85,10 @@ public sealed class HeidemarieEmberRecallTests : CombatTestSuite
         var card = await AddToHand<EmberRecall>();
         CardCmd.Upgrade(card, CardPreviewStyle.None);
         var recalled = await CreateCardInPile<HiroDefend>(PileType.Discard);
+        var selector = new TestCardSelector();
+        selector.PrepareToSelect([recalled]);
 
+        using var selection = CardSelectCmd.UseSelector(selector);
         await PlayerCmd.SetEnergy(10, Player);
         await Play(card);
         await WaitForIdle();
@@ -89,13 +98,12 @@ public sealed class HeidemarieEmberRecallTests : CombatTestSuite
     }
 
     [Fact]
-    public async Task No_selection_means_no_recall_and_no_generated_aurora_sword()
+    public async Task Optional_selection_can_skip_a_single_discard_candidate()
     {
         await ClearCombatPiles();
 
         var card = await AddToHand<EmberRecall>();
-        var firstCandidate = await CreateCardInPile<HiroAttack>(PileType.Discard);
-        var secondCandidate = await CreateCardInPile<HiroDefend>(PileType.Discard);
+        var candidate = await CreateCardInPile<HiroAttack>(PileType.Discard);
         var selector = new TestCardSelector();
         selector.PrepareToSelect(Array.Empty<CardModel>());
 
@@ -104,8 +112,7 @@ public sealed class HeidemarieEmberRecallTests : CombatTestSuite
         await Play(card);
         await WaitForIdle();
 
-        Assert.Same(PileType.Discard.GetPile(Player), firstCandidate.Pile);
-        Assert.Same(PileType.Discard.GetPile(Player), secondCandidate.Pile);
+        Assert.Same(PileType.Discard.GetPile(Player), candidate.Pile);
         Assert.Empty(AuroraSwordsInCombatPiles());
     }
 
@@ -117,7 +124,10 @@ public sealed class HeidemarieEmberRecallTests : CombatTestSuite
         var card = await AddToHand<EmberRecall>();
         await FillHandToMax();
         var recalled = await CreateCardInPile<HiroAttack>(PileType.Discard);
+        var selector = new TestCardSelector();
+        selector.PrepareToSelect([recalled]);
 
+        using var selection = CardSelectCmd.UseSelector(selector);
         await PlayerCmd.SetEnergy(10, Player);
         await Play(card);
         await WaitForIdle();

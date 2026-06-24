@@ -27,7 +27,7 @@ public sealed class EmberRecall() : ManosabaCardTemplate(1, CardType.Skill, Card
             choiceContext,
             discardCards,
             Owner,
-            new CardSelectorPrefs(new LocString("cards", Id.Entry + ".selectionScreenPrompt"), RecallCount))).ToArray();
+            new CardSelectorPrefs(new LocString("cards", Id.Entry + ".selectionScreenPrompt"), 0, RecallCount))).ToArray();
 
         var selectedCard = selectedCards.FirstOrDefault();
         if (selectedCard == null)
