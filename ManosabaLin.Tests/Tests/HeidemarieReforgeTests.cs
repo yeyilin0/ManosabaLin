@@ -107,6 +107,10 @@ public sealed class HeidemarieReforgeTests : CombatTestSuite
 
         Assert.Equal(0, card.EnergyCost.GetWithModifiers(CostModifiers.None));
         Assert.Equal(1, card.DynamicVars.Cards.IntValue);
+
+        await PlayWithEnergy(card);
+
+        Assert.Same(PileType.Discard.GetPile(Player), card.Pile);
     }
 
     private async Task PlayWithEnergy(CardModel card)
