@@ -45,7 +45,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 005 | Sword Rain | card | blocked |  |  |  |  | n/a | Clarification still asks review for non-draw hand entry trigger. |
 | 006 | Swordlight | card | todo |  |  |  |  | pending |  |
 | 007 | Chain Sigil Ignition | card | todo |  |  |  |  | pending |  |
-| 008 | Linked Edge | card | in_progress | mag/heidemarie-card-008-linked-edge | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-008-linked-edge | Bohr 019efa51-306b-73c1-be7f-1db5116914d3 |  | pending |  |
+| 008 | Linked Edge | card | ready | mag/heidemarie-card-008-linked-edge | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-008-linked-edge | Bohr 019efa51-306b-73c1-be7f-1db5116914d3 | build pass; HeidemarieLinkedEdgeTests 4/4 pass; commit 29904c0 | pending |  |
 | 009 | Crimson Edge Return Pact | card | todo |  |  |  |  | pending |  |
 | 010 | Glimmer Harvest | card | todo |  |  |  |  | pending |  |
 | 011 | Ember Tether Draw | card | todo |  |  |  |  | pending |  |
@@ -71,7 +71,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 031 | Returning Edge Aurora | card | blocked |  |  |  |  | n/a | Clarification still conflicts on non-bounce return trigger. |
 | 032 | Formless Emberlight | card | todo |  |  |  |  | pending |  |
 | 033 | Unnamed Card 33 | card | todo |  |  |  |  | pending |  |
-| 034 | Unnamed Card 34 | card | in_progress | mag/heidemarie-card-034-unnamed-card-34 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-034-unnamed-card-34 | Carson 019efa51-3a30-7a50-9342-3323ae89dc1a |  | pending |  |
+| 034 | Unnamed Card 34 | card | ready | mag/heidemarie-card-034-unnamed-card-34 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-034-unnamed-card-34 | Carson 019efa51-3a30-7a50-9342-3323ae89dc1a | build pass; HeidemarieUnnamedCard34Tests 3/3 pass; commit 74657d0 | pending |  |
 | 035 | Unnamed Card 35 | card | todo |  |  |  |  | pending |  |
 | 036 | Unnamed Card 36 | card | todo |  |  |  |  | pending |  |
 | 037 | Unnamed Card 37 | card | todo |  |  |  |  | pending |  |
