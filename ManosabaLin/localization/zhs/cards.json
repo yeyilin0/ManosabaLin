@@ -823,7 +823,7 @@
   "MANOSABA_LIN_CARD_SWORD_CURTAIN.description": "获得能力。每当你生成极光剑，获得1(2)点格挡。",
   "MANOSABA_LIN_CARD_PRISM_CHAIN.title": "分光结链",
   "MANOSABA_LIN_CARD_PRISM_CHAIN.description": "连接。抽{Cards}张牌；任选至多{LinkCards:diff()}张没有连接的手牌赋予连接；升级：可选择数量提高",
-  "MANOSABA_LIN_CARD_PRISM_CHAIN.selectionScreenPrompt": "选择至多{LinkCards:diff()}张没有连接的手牌",
+  "MANOSABA_LIN_CARD_PRISM_CHAIN.selectionScreenPrompt": "选择至多{MaxCount}张没有连接的手牌",
   "MANOSABA_LIN_CARD_SLUMBER_BRAND.title": "沉眠预烙",
   "MANOSABA_LIN_CARD_SLUMBER_BRAND.description": "本回合打出的下一张攻击自动附加安息；升级：附加安息后再次移入手牌",
   "MANOSABA_LIN_CARD_EMBER_RECALL.title": "溯烬",

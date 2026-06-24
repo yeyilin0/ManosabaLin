@@ -39,7 +39,10 @@ public sealed class PrismChain() : ManosabaCardTemplate(1, CardType.Skill, CardR
             choiceContext,
             candidates,
             Owner,
-            new CardSelectorPrefs(SelectionScreenPrompt, 0, selectCount))).ToArray();
+            new CardSelectorPrefs(
+                new LocString("cards", Id.Entry + ".selectionScreenPrompt"),
+                0,
+                selectCount))).ToArray();
 
         foreach (var card in selected)
             card.TryAddComponent(new LinkComponent());
