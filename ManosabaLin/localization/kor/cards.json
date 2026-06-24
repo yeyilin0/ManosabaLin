@@ -833,7 +833,7 @@
   "MANOSABA_LIN_CARD_REFORGE.description": "Link. Remove Link from cards in hand, then give Link to chosen cards.",
   "MANOSABA_LIN_CARD_REFORGE.selectionScreenPrompt": "Choose cards in hand to gain Link",
   "MANOSABA_LIN_CARD_LINK_PATTERN_REWEAVER.title": "Link Pattern Reweaver",
-  "MANOSABA_LIN_CARD_LINK_PATTERN_REWEAVER.description": "Return Aurora Sword or Crimson Sword from the discard pile and give them Bounce.",
+  "MANOSABA_LIN_CARD_LINK_PATTERN_REWEAVER.description": "Choose {Cards:diff()} Aurora Sword or Crimson Sword from the discard pile, return them to hand, and give them Bounce 1. Upgrade: choose more.",
   "MANOSABA_LIN_CARD_LINK_PATTERN_REWEAVER.selectionScreenPrompt": "Choose Aurora Sword or Crimson Sword from the discard pile",
   "MANOSABA_LIN_CARD_CITADEL_AURORA_RELEASE.title": "Citadel Aurora Release",
   "MANOSABA_LIN_CARD_CITADEL_AURORA_RELEASE.description": "Gain a power. At end of turn, gain Aurora Chain for swords in the discard pile.",
