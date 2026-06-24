@@ -796,7 +796,7 @@
   "MANOSABA_LIN_CARD_GLIMMER_HARVEST.title": "流光撷取",
   "MANOSABA_LIN_CARD_GLIMMER_HARVEST.description": "抽1(2)张牌；本回合连接抽到的牌；升级：获得安息",
   "MANOSABA_LIN_CARD_EMBER_TETHER_DRAW.title": "牵烬撷牌",
-  "MANOSABA_LIN_CARD_EMBER_TETHER_DRAW.description": "本回合连接手里的安息牌；升级：费用降低",
+  "MANOSABA_LIN_CARD_EMBER_TETHER_DRAW.description": "[b]消耗[/b]。本回合，手牌中的安息牌和后续进入手牌的安息牌获得连接；升级：费用降低",
   "MANOSABA_LIN_CARD_HERO_OF_THE_MANY.title": "万众英雄",
   "MANOSABA_LIN_CARD_HERO_OF_THE_MANY.description": "选择1(2)张牌读取卡名；连接所有牌中同卡名的牌并将全部移动至抽牌堆；升级：可以选择1(2)张",
   "MANOSABA_LIN_CARD_HERO_OF_THE_MANY.selectionScreenPrompt": "选择要读取卡名的卡牌",
