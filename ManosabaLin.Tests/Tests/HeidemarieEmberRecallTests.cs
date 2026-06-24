@@ -2,6 +2,7 @@ using ManosabaLin.Characters.Heidemarie;
 using ManosabaLin.Characters.Heidemarie.Cards;
 using ManosabaLin.Characters.Hiro.Cards;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.CardRewardAlternatives;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Monsters;
@@ -104,14 +105,17 @@ public sealed class HeidemarieEmberRecallTests : CombatTestSuite
 
         var card = await AddToHand<EmberRecall>();
         var candidate = await CreateCardInPile<HiroAttack>(PileType.Discard);
-        var selector = new TestCardSelector();
-        selector.PrepareToSelect(Array.Empty<CardModel>());
+        var selector = new CapturingCardSelector(Array.Empty<CardModel>());
 
         using var selection = CardSelectCmd.UseSelector(selector);
         await PlayerCmd.SetEnergy(10, Player);
         await Play(card);
         await WaitForIdle();
 
+        Assert.True(selector.WasCalled);
+        Assert.Equal(0, selector.MinSelect);
+        Assert.Equal(1, selector.MaxSelect);
+        Assert.Contains(candidate, selector.Options);
         Assert.Same(PileType.Discard.GetPile(Player), candidate.Pile);
         Assert.Empty(AuroraSwordsInCombatPiles());
     }
@@ -195,5 +199,39 @@ public sealed class HeidemarieEmberRecallTests : CombatTestSuite
         await PlayerCmd.SetEnergy(10, Player);
         await WaitForIdle();
         await Play(actionCard, EnemyAt(0));
+    }
+
+    private sealed class CapturingCardSelector : ICardSelector
+    {
+        private readonly CardModel[] _selectedCards;
+
+        public CapturingCardSelector(IEnumerable<CardModel> selectedCards)
+        {
+            _selectedCards = selectedCards.ToArray();
+        }
+
+        public bool WasCalled { get; private set; }
+
+        public IReadOnlyList<CardModel> Options { get; private set; } = [];
+
+        public int MinSelect { get; private set; } = -1;
+
+        public int MaxSelect { get; private set; } = -1;
+
+        public Task<IEnumerable<CardModel>> GetSelectedCards(IEnumerable<CardModel> options, int minSelect, int maxSelect)
+        {
+            WasCalled = true;
+            Options = options.ToList();
+            MinSelect = minSelect;
+            MaxSelect = maxSelect;
+            return Task.FromResult<IEnumerable<CardModel>>(_selectedCards);
+        }
+
+        public CardRewardSelection GetSelectedCardReward(
+            IReadOnlyList<CardCreationResult> options,
+            IReadOnlyList<CardRewardAlternative> alternatives)
+        {
+            throw new NotSupportedException();
+        }
     }
 }
