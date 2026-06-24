@@ -28,13 +28,6 @@ public sealed class HeidemarieMechanicTests : CombatTestSuite
             .WithSeed("manosabalin-heidemarie-mechanics");
     }
 
-    protected override Task InitializeAsync()
-    {
-        SwordTokenGeneration.RegisterTokenCard<TestAuroraSwordCard>(SwordTokenKind.Aurora);
-        SwordTokenGeneration.RegisterTokenCard<TestCrimsonSwordCard>(SwordTokenKind.Crimson);
-        return Task.CompletedTask;
-    }
-
     [Fact]
     public async Task AuroraChain_only_increases_sword_grave_attack_damage()
     {
