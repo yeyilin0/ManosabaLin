@@ -45,8 +45,7 @@ public sealed class HeidemarieShatteredAuroraTests : CombatTestSuite
     public async Task Aurora_sword_discards_accumulate_and_gain_energy_at_threshold()
     {
         await ClearCombatPiles();
-        var power = await ApplyPower<ShatteredAuroraPower>(Player.Creature, 1, Player.Creature);
-        Assert.NotNull(power);
+        var power = await PlayShatteredAuroraPower();
 
         await PlayerCmd.SetEnergy(0, Player);
         await WaitForIdle();
@@ -70,8 +69,7 @@ public sealed class HeidemarieShatteredAuroraTests : CombatTestSuite
     public async Task Extra_discards_preserve_remainder()
     {
         await ClearCombatPiles();
-        var power = await ApplyPower<ShatteredAuroraPower>(Player.Creature, 1, Player.Creature);
-        Assert.NotNull(power);
+        var power = await PlayShatteredAuroraPower();
 
         await PlayerCmd.SetEnergy(0, Player);
         await WaitForIdle();
@@ -94,8 +92,7 @@ public sealed class HeidemarieShatteredAuroraTests : CombatTestSuite
     public async Task Non_aurora_discards_do_not_count()
     {
         await ClearCombatPiles();
-        var power = await ApplyPower<ShatteredAuroraPower>(Player.Creature, 1, Player.Creature);
-        Assert.NotNull(power);
+        var power = await PlayShatteredAuroraPower();
 
         await PlayerCmd.SetEnergy(0, Player);
         await WaitForIdle();
@@ -163,8 +160,7 @@ public sealed class HeidemarieShatteredAuroraTests : CombatTestSuite
     public async Task Link_discards_multiple_aurora_swords_one_by_one()
     {
         await ClearCombatPiles();
-        var power = await ApplyPower<ShatteredAuroraPower>(Player.Creature, 1, Player.Creature);
-        Assert.NotNull(power);
+        var power = await PlayShatteredAuroraPower();
 
         var played = await AddToHand<LinkedEdge>();
         var firstLinkedSword = await AddToHand<AuroraSword>();
@@ -187,6 +183,15 @@ public sealed class HeidemarieShatteredAuroraTests : CombatTestSuite
         await PlayerCmd.SetEnergy(10, Player);
         await WaitForIdle();
         await Play(card, target);
+    }
+
+    private async Task<ShatteredAuroraPower> PlayShatteredAuroraPower()
+    {
+        var card = await AddToHand<ShatteredAurora>();
+        await PlayWithEnergy(card);
+
+        return Player.Creature.GetPower<ShatteredAuroraPower>()
+            ?? throw new InvalidOperationException("Shattered Aurora did not install its power.");
     }
 
     private int CurrentEnergy => Player.PlayerCombatState!.Energy;
