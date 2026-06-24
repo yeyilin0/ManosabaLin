@@ -786,7 +786,7 @@
   "MANOSABA_LIN_CARD_SWORD_RAIN.title": "剑雨",
   "MANOSABA_LIN_CARD_SWORD_RAIN.description": "获得1(2)点护盾；抽到时生成1(2)张极光剑；升级：打出时也生成1(2)张极光剑",
   "MANOSABA_LIN_CARD_SWORDLIGHT.title": "剑光",
-  "MANOSABA_LIN_CARD_SWORDLIGHT.description": "获得能力：当此卡在弃牌堆时你的极光剑伤害翻倍；回合开始时移动至抽牌堆；升级：获得弹回1(2)",
+  "MANOSABA_LIN_CARD_SWORDLIGHT.description": "当此卡在弃牌堆时，你的极光剑伤害翻倍。回合开始时，将此卡移动至抽牌堆。升级：获得弹回1。",
   "MANOSABA_LIN_CARD_CHAIN_SIGIL_IGNITION.title": "链纹焚启",
   "MANOSABA_LIN_CARD_CHAIN_SIGIL_IGNITION.description": "发动手牌中所有连接牌；升级：费用降低",
   "MANOSABA_LIN_CARD_LINKED_EDGE.title": "连锋",
