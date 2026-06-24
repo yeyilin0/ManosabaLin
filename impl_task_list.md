@@ -68,7 +68,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 025 | Ember Recall | card | done | mag/heidemarie-card-025-ember-recall | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-025-ember-recall | Erdos 019efaa5-ba82-7670-8908-04063775fbd7 | integration HeidemarieEmberRecallTests 6/6 pass; commits c94ab86, 6334f79, 9ba819d | pass |  |
 | 026 | Restlight Bulwark | card | todo |  |  |  |  | pending |  |
 | 027 | Reforge | card | todo |  |  |  |  | pending |  |
-| 028 | Link Pattern Reweaver | card | in_progress | mag/heidemarie-card-028-link-pattern-reweaver | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-028-link-pattern-reweaver | Linnaeus 019efacc-269d-7df2-88ca-d0fa7184aab3 |  | pending |  |
+| 028 | Link Pattern Reweaver | card | in_progress | mag/heidemarie-card-028-link-pattern-reweaver | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-028-link-pattern-reweaver | Linnaeus 019efacc-269d-7df2-88ca-d0fa7184aab3 | branch build pass; focused test pending after shared test-dir contention; commit 54c3f46 | pending |  |
 | 029 | Citadel Aurora Release | card | todo |  |  |  |  | pending |  |
 | 030 | Crimson Edge Sleep Pact | card | blocked |  |  |  |  | n/a | Clarification still conflicts on whether normal play generates Crimson Sword. |
 | 031 | Returning Edge Aurora | card | blocked |  |  |  |  | n/a | Clarification still conflicts on non-bounce return trigger. |
