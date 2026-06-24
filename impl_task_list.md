@@ -63,7 +63,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 022 | Sword Curtain | card | todo |  |  |  |  | pending |  |
 | 023 | Prism Chain | card | todo |  |  |  |  | pending |  |
 | 024 | Slumber Brand | card | todo |  |  |  |  | pending |  |
-| 025 | Ember Recall | card | in_progress | mag/heidemarie-card-025-ember-recall | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-025-ember-recall | Erdos 019efaa5-ba82-7670-8908-04063775fbd7 | assigned | pending |  |
+| 025 | Ember Recall | card | ready | mag/heidemarie-card-025-ember-recall | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-025-ember-recall | Erdos 019efaa5-ba82-7670-8908-04063775fbd7 | branch HeidemarieEmberRecallTests 6/6 pass; commit c94ab86 | pending |  |
 | 026 | Restlight Bulwark | card | todo |  |  |  |  | pending |  |
 | 027 | Reforge | card | todo |  |  |  |  | pending |  |
 | 028 | Link Pattern Reweaver | card | todo |  |  |  |  | pending |  |
