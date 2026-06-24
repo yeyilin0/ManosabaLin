@@ -795,7 +795,7 @@
   "MANOSABA_LIN_CARD_EMBER_TETHER_DRAW.title": "Ember Tether Draw",
   "MANOSABA_LIN_CARD_EMBER_TETHER_DRAW.description": "Exhaust. This turn, Rest cards in your hand and Rest cards that enter your hand gain Link. Upgrade: cost reduced.",
   "MANOSABA_LIN_CARD_HERO_OF_THE_MANY.title": "Hero of the Many",
-  "MANOSABA_LIN_CARD_HERO_OF_THE_MANY.description": "Exhaust and Link. Choose card names, link matching cards, then move them to the draw pile.",
+  "MANOSABA_LIN_CARD_HERO_OF_THE_MANY.description": "Exhaust. Link. Choose up to 1(2) card(s) and read their names; give Link to all cards with those names and move them to the draw pile. Upgrade: choose 1(2).",
   "MANOSABA_LIN_CARD_HERO_OF_THE_MANY.selectionScreenPrompt": "Choose cards to read their names",
   "MANOSABA_LIN_CARD_LINGERING_AURORA_LINK.title": "Lingering Aurora Link",
   "MANOSABA_LIN_CARD_LINGERING_AURORA_LINK.description": "Exhaust. Choose 1 card from the draw or discard pile, give it Link, and add it to hand. Upgrade: no Exhaust.",
