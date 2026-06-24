@@ -820,7 +820,7 @@
   "MANOSABA_LIN_CARD_SHATTERED_AURORA.title": "碎曦",
   "MANOSABA_LIN_CARD_SHATTERED_AURORA.description": "获得能力：每丢弃1(2)张极光剑获得1(2)点能量；升级：触发所需数量降低",
   "MANOSABA_LIN_CARD_SWORD_CURTAIN.title": "剑幕",
-  "MANOSABA_LIN_CARD_SWORD_CURTAIN.description": "获得能力：每当你生成极光剑获得1(2)点格挡；升级：格挡提高",
+  "MANOSABA_LIN_CARD_SWORD_CURTAIN.description": "获得能力。每当你生成极光剑，获得1(2)点格挡。",
   "MANOSABA_LIN_CARD_PRISM_CHAIN.title": "分光结链",
   "MANOSABA_LIN_CARD_PRISM_CHAIN.description": "抽1(2)张牌；任选1(2)张手牌赋予连接；升级：可选择数量提高",
   "MANOSABA_LIN_CARD_PRISM_CHAIN.selectionScreenPrompt": "选择手牌获得连接",
