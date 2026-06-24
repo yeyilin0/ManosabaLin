@@ -8,6 +8,22 @@ public sealed class SwordlightPower : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
+    protected override bool IsVisibleInternal => false;
+    public override bool ShouldPlayVfx => false;
+
+    public static Task EnsureInstalled(Player owner, CardModel cardSource)
+    {
+        if (owner.Creature.GetPower<SwordlightPower>() != null)
+            return Task.CompletedTask;
+
+        return PowerCmd.Apply<SwordlightPower>(
+            new BlockingPlayerChoiceContext(),
+            owner.Creature,
+            1m,
+            owner.Creature,
+            cardSource,
+            true);
+    }
 
     public override decimal ModifyDamageMultiplicative(
         Creature? target,

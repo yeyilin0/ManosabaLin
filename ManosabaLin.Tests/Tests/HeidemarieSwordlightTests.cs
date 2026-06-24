@@ -41,6 +41,38 @@ public sealed class HeidemarieSwordlightTests : CombatTestSuite
     }
 
     [Fact]
+    public async Task Unplayed_swordlight_discarded_from_hand_doubles_aurora_sword_damage()
+    {
+        await ClearCombatPiles();
+
+        var swordlight = await AddToHand<Swordlight>();
+        await CardCmd.Discard(new BlockingPlayerChoiceContext(), swordlight);
+        await WaitForIdle();
+        await ApplyPower<AuroraChainPower>(Player.Creature, 3, Player.Creature);
+
+        var damage = await PlayAuroraSwordAndMeasureDamage();
+
+        Assert.Equal(8, damage);
+    }
+
+    [Fact]
+    public async Task Unplayed_swordlight_directly_in_discard_doubles_only_until_it_leaves_discard()
+    {
+        await ClearCombatPiles();
+
+        var swordlight = await CreateCardInPile<Swordlight>(PileType.Discard);
+        await ApplyPower<AuroraChainPower>(Player.Creature, 3, Player.Creature);
+
+        var doubledDamage = await PlayAuroraSwordAndMeasureDamage();
+        await CardPileCmd.Add(swordlight, PileType.Draw);
+        await WaitForIdle();
+        var normalDamage = await PlayAuroraSwordAndMeasureDamage();
+
+        Assert.Equal(8, doubledDamage);
+        Assert.Equal(4, normalDamage);
+    }
+
+    [Fact]
     public async Task Swordlight_outside_discard_pile_does_not_double_aurora_sword_damage()
     {
         await ClearCombatPiles();
@@ -120,6 +152,15 @@ public sealed class HeidemarieSwordlightTests : CombatTestSuite
         await Play(sword, enemy);
 
         return hpBefore - enemy.CurrentHp;
+    }
+
+    private async Task<TCard> CreateCardInPile<TCard>(PileType pileType) where TCard : CardModel
+    {
+        var card = Combat.CreateCard<TCard>(Player);
+        await CardPileCmd.AddGeneratedCardToCombat(card, pileType, Player);
+        await WaitFor(() => pileType.GetPile(Player).Cards.Contains(card), $"Expected {typeof(TCard).Name} in {pileType}");
+
+        return card;
     }
 
     private async Task PlayWithEnergy(CardModel card)

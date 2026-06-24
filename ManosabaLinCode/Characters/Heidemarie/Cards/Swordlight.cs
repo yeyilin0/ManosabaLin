@@ -1,6 +1,5 @@
 using ManosabaLin.Characters.Common.Components;
 using ManosabaLin.Characters.Heidemarie.Components;
-using ManosabaLin.Characters.Heidemarie.Powers;
 
 namespace ManosabaLin.Characters.Heidemarie.Cards;
 
@@ -19,15 +18,6 @@ public sealed class Swordlight() : ManosabaCardTemplate(1, CardType.Skill, CardR
         CardPlay cardPlay,
         ComponentContext componentContext)
     {
-        if (Owner.Creature.GetPower<SwordlightPower>() == null)
-            return PowerCmd.Apply<SwordlightPower>(
-                choiceContext,
-                Owner.Creature,
-                1m,
-                Owner.Creature,
-                this,
-                false);
-
         return Task.CompletedTask;
     }
 
