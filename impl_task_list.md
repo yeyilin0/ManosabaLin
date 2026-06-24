@@ -62,7 +62,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 019 | Liberated Aurora | card | todo |  |  |  |  | pending |  |
 | 020 | World Purging Aurora | card | todo |  |  |  |  | pending |  |
 | 021 | Shattered Aurora | card | todo |  |  |  |  | pending |  |
-| 022 | Sword Curtain | card | ready | mag/heidemarie-card-022-sword-curtain | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-022-sword-curtain | Faraday 019efacb-da47-7271-a6b6-9e74bf1c1f18 | branch HeidemarieSwordCurtainTests 8/8 pass; commit 677954d | pass |  |
+| 022 | Sword Curtain | card | done | mag/heidemarie-card-022-sword-curtain | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-022-sword-curtain | Faraday 019efacb-da47-7271-a6b6-9e74bf1c1f18 | integration HeidemarieSwordCurtainTests 8/8 pass; commit 677954d | pass |  |
 | 023 | Prism Chain | card | todo |  |  |  |  | pending |  |
 | 024 | Slumber Brand | card | todo |  |  |  |  | pending |  |
 | 025 | Ember Recall | card | done | mag/heidemarie-card-025-ember-recall | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-025-ember-recall | Erdos 019efaa5-ba82-7670-8908-04063775fbd7 | integration HeidemarieEmberRecallTests 6/6 pass; commits c94ab86, 6334f79, 9ba819d | pass |  |
