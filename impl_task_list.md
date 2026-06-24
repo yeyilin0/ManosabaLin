@@ -53,7 +53,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 013 | Lingering Aurora Link | card | todo |  |  |  |  | pending |  |
 | 014 | Old Blade Binding | card | todo |  |  |  |  | pending |  |
 | 015 | Thousand Aurora Shatterstrike | card | todo |  |  |  |  | pending |  |
-| 016 | Twin Edge Slumber | card | in_progress | mag/heidemarie-card-016-twin-edge-slumber | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-016-twin-edge-slumber | Gauss 019efa6b-7b6d-75f3-b544-3a6a1dfb766a |  | pending |  |
+| 016 | Twin Edge Slumber | card | done | mag/heidemarie-card-016-twin-edge-slumber | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-016-twin-edge-slumber | Gauss 019efa6b-7b6d-75f3-b544-3a6a1dfb766a | integration HeidemarieTwinEdgeSlumberTests 4/4 pass; commit d3412c9 | pass |  |
 | 017 | Ray of Light | card | todo |  |  |  |  | pending |  |
 | 018 | Condensed Aurora | card | todo |  |  |  |  | pending |  |
 | 019 | Liberated Aurora | card | todo |  |  |  |  | pending |  |
