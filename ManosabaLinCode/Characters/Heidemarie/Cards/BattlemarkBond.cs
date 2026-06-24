@@ -51,7 +51,6 @@ public sealed class BattlemarkBond() : ManosabaCardTemplate(1, CardType.Power, C
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars["BattlemarkBondPower"].UpgradeValueBy(1m);
         AddKeyword(CardKeyword.Innate);
     }
 }

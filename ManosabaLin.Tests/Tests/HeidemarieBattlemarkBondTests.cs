@@ -43,13 +43,25 @@ public sealed class HeidemarieBattlemarkBondTests : CombatTestSuite
     }
 
     [Fact]
-    public async Task Upgraded_card_has_innate_keyword()
+    public async Task Upgraded_card_installs_same_amount_as_base_and_grants_that_mark()
     {
-        var card = await AddToHand<BattlemarkBond>();
+        var baseCard = await AddToHand<BattlemarkBond>();
+        await Play(baseCard);
+        var baseAmount = Player.Creature.GetPower<BattlemarkBondPower>()?.Amount ?? 0;
+        Assert.True(baseAmount > 0);
 
-        CardCmd.Upgrade(card, CardPreviewStyle.None);
+        var upgradedCard = await AddToHand<BattlemarkBond>();
+        CardCmd.Upgrade(upgradedCard, CardPreviewStyle.None);
 
-        Assert.Contains(CardKeyword.Innate, card.Keywords);
-        await Play(card);
+        Assert.Contains(CardKeyword.Innate, upgradedCard.Keywords);
+        await Play(upgradedCard);
+
+        var stackedAmount = Player.Creature.GetPower<BattlemarkBondPower>()?.Amount ?? 0;
+        Assert.Equal(baseAmount * 2, stackedAmount);
+
+        var attack = await AddToHand<StrikeIronclad>();
+        await Play(attack, EnemyAt(0));
+
+        Assert.Equal(stackedAmount, Player.Creature.GetPower<MarkPower>()?.Amount);
     }
 }
