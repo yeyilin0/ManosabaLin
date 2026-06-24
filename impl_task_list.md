@@ -46,7 +46,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 006 | Swordlight | card | todo |  |  |  |  | pending |  |
 | 007 | Chain Sigil Ignition | card | todo |  |  |  |  | pending |  |
 | 008 | Linked Edge | card | done | mag/heidemarie-card-008-linked-edge | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-008-linked-edge | Bohr 019efa51-306b-73c1-be7f-1db5116914d3 | integration HeidemarieLinkedEdgeTests 4/4 pass; commit 29904c0 | pass |  |
-| 009 | Crimson Edge Return Pact | card | in_progress | mag/heidemarie-card-009-crimson-edge-return-pact | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-009-crimson-edge-return-pact | Darwin 019efa6b-2eb0-7eb0-8fdb-f93bdc85be21 |  | pending |  |
+| 009 | Crimson Edge Return Pact | card | done | mag/heidemarie-card-009-crimson-edge-return-pact | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-009-crimson-edge-return-pact | Darwin 019efa6b-2eb0-7eb0-8fdb-f93bdc85be21 | integration HeidemarieCrimsonEdgeReturnPactTests 5/5 pass; commit 05e4002 | pass |  |
 | 010 | Glimmer Harvest | card | todo |  |  |  |  | pending |  |
 | 011 | Ember Tether Draw | card | todo |  |  |  |  | pending |  |
 | 012 | Hero of the Many | card | todo |  |  |  |  | pending |  |
