@@ -32,10 +32,10 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 
 | ID | Name | Type | Status | Branch | Worktree | Agent | Test result | Review | Blocked reason |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| MECH-001 | Heidemarie character, pool, localization placeholders | shared | todo |  |  |  |  | pending |  |
-| MECH-002 | Rest, Link, Bounce, Sword Grave components | shared | todo |  |  |  |  | pending |  |
-| MECH-003 | Aurora Chain and Mark powers/hooks | shared | todo |  |  |  |  | pending |  |
-| MECH-004 | Sword generation helpers and generation replacement events | shared | todo |  |  |  |  | pending |  |
+| MECH-001 | Heidemarie character, pool, localization placeholders | shared | in_progress | mag/heidemarie-mech-character | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/mech-character | worker-character pending |  | pending |  |
+| MECH-002 | Rest, Link, Bounce, Sword Grave components | shared | in_progress | mag/heidemarie-mech-components | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/mech-components | worker-components pending |  | pending |  |
+| MECH-003 | Aurora Chain and Mark powers/hooks | shared | in_progress | mag/heidemarie-mech-powers-generation | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/mech-powers-generation | worker-powers-generation pending |  | pending |  |
+| MECH-004 | Sword generation helpers and generation replacement events | shared | in_progress | mag/heidemarie-mech-powers-generation | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/mech-powers-generation | worker-powers-generation pending |  | pending |  |
 | TOK-001 | Aurora Sword | token | todo |  |  |  |  | pending |  |
 | TOK-002 | Crimson Sword | token | todo |  |  |  |  | pending |  |
 | 001 | Eternal Rest Forging | card | todo |  |  |  |  | pending |  |
