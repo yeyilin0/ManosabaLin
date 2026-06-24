@@ -816,7 +816,7 @@
   "MANOSABA_LIN_CARD_WORLD_PURGING_AURORA.title": "World Purging Aurora",
   "MANOSABA_LIN_CARD_WORLD_PURGING_AURORA.description": "Deal damage to all enemies. If Liberated Aurora is in hand, exhaust it and Aurora Sword to increase damage.",
   "MANOSABA_LIN_CARD_SHATTERED_AURORA.title": "Shattered Aurora",
-  "MANOSABA_LIN_CARD_SHATTERED_AURORA.description": "Gain a power. After discarding enough Aurora Sword cards, gain Energy.",
+  "MANOSABA_LIN_CARD_SHATTERED_AURORA.description": "Gain a power. Whenever you discard {DiscardThreshold:inverseDiff()} Aurora Sword cards, gain {EnergyGain:diff()} Energy.",
   "MANOSABA_LIN_CARD_SWORD_CURTAIN.title": "Sword Curtain",
   "MANOSABA_LIN_CARD_SWORD_CURTAIN.description": "Gain a power. Whenever you create Aurora Sword, gain 1(2) Block.",
   "MANOSABA_LIN_CARD_PRISM_CHAIN.title": "Prism Chain",

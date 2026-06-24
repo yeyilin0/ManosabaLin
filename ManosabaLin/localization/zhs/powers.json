@@ -216,7 +216,7 @@
   "MANOSABA_LIN_POWER_SWORDLIGHT_POWER.title": "剑光",
   "MANOSABA_LIN_POWER_SWORDLIGHT_POWER.description": "当剑光位于弃牌堆时，极光剑伤害翻倍。",
   "MANOSABA_LIN_POWER_SHATTERED_AURORA_POWER.title": "碎曦",
-  "MANOSABA_LIN_POWER_SHATTERED_AURORA_POWER.description": "每丢弃足够数量的极光剑，获得能量。",
+  "MANOSABA_LIN_POWER_SHATTERED_AURORA_POWER.description": "每丢弃{DiscardThreshold:inverseDiff()}张极光剑，获得{EnergyGain:diff()}点能量。",
   "MANOSABA_LIN_POWER_SWORD_CURTAIN_POWER.title": "剑幕",
   "MANOSABA_LIN_POWER_SWORD_CURTAIN_POWER.description": "每当你生成极光剑时，获得格挡。",
   "MANOSABA_LIN_POWER_CITADEL_AURORA_RELEASE_POWER.title": "城曦解放",
