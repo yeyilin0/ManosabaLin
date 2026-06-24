@@ -21,6 +21,7 @@ Validation:
 - Heidemarie batch after 007/014/015/025/035/038 integrations: `SUMMARY total=97 passed=97 failed=0 skipped=0`.
 - Heidemarie batch after MECH-005/010/011/013/022/028 integrations: `SUMMARY total=136 passed=136 failed=0 skipped=0`.
 - Heidemarie batch after 017/021/023/026/027/029 integrations: `SUMMARY total=168 passed=168 failed=0 skipped=0`.
+- Heidemarie batch after 006/012/024/036/037/039/040 integrations: `SUMMARY total=210 passed=210 failed=0 skipped=0`.
 
 Coordination rules:
 - Only Main edits this tracker.
