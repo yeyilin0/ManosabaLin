@@ -830,7 +830,7 @@
   "MANOSABA_LIN_CARD_EMBER_RECALL.description": "从弃牌堆选择至多1张牌移回手牌；若选择了牌，生成1(2)张极光剑；升级：生成数量提高",
   "MANOSABA_LIN_CARD_EMBER_RECALL.selectionScreenPrompt": "从弃牌堆选择至多1张牌",
   "MANOSABA_LIN_CARD_RESTLIGHT_BULWARK.title": "安光壁垒",
-  "MANOSABA_LIN_CARD_RESTLIGHT_BULWARK.description": "获得1(2)点格挡；手牌每有1(2)张连接牌额外获得1(2)点格挡；升级：费用降低",
+  "MANOSABA_LIN_CARD_RESTLIGHT_BULWARK.description": "安息。获得{Block:diff()}点[color=#CC6666]格挡[/color]；手牌每有{LinkedCardsPerBlock:diff()}张[color=#CC6666]连接[/color]牌，额外获得{BlockPerLinkedBatch:diff()}点[color=#CC6666]格挡[/color]；升级：费用降低",
   "MANOSABA_LIN_CARD_REFORGE.title": "重锻",
   "MANOSABA_LIN_CARD_REFORGE.description": "移除所有手牌的连接标记；重新自由给1(2)张手牌赋予连接；升级：费用降低",
   "MANOSABA_LIN_CARD_REFORGE.selectionScreenPrompt": "选择手牌获得连接",
