@@ -15,6 +15,7 @@ public sealed class SlumberBrandPower : ManosabaPowerTemplate
 {
     private CardModel? _triggeredCard;
     private bool _triggeredLayerReturnsToHand;
+    private bool _temporaryRestAddedToTriggeredCard;
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -53,15 +54,25 @@ public sealed class SlumberBrandPower : ManosabaPowerTemplate
         return (pileType, position);
     }
 
-    public override async Task BeforeCardPlayed(CardPlay cardPlay)
+    public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (!ReferenceEquals(cardPlay.Card, _triggeredCard))
+        if (!ReferenceEquals(cardPlay.Card, _triggeredCard) || !cardPlay.IsFirstInSeries)
+            return Task.CompletedTask;
+
+        if (!cardPlay.Card.HasComponent<RestComponent>())
+            _temporaryRestAddedToTriggeredCard = cardPlay.Card.TryAddComponent(new RestComponent()) != null;
+
+        return Task.CompletedTask;
+    }
+
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (!ReferenceEquals(cardPlay.Card, _triggeredCard) || !cardPlay.IsLastInSeries)
             return;
 
-        cardPlay.Card.TryAddComponent(new RestComponent());
+        ClearTemporaryRest();
         RemoveConsumedLayer();
-        _triggeredCard = null;
-        _triggeredLayerReturnsToHand = false;
+        ClearTriggeredState();
 
         if (Amount <= 1)
             await PowerCmd.Remove(this);
@@ -75,7 +86,11 @@ public sealed class SlumberBrandPower : ManosabaPowerTemplate
         IEnumerable<Creature> participants)
     {
         if (side == Owner.Side && participants.Contains(Owner))
+        {
+            ClearTemporaryRest();
+            ClearTriggeredState();
             await PowerCmd.Remove(this);
+        }
     }
 
     private bool CanTriggerFor(CardModel card)
@@ -98,5 +113,20 @@ public sealed class SlumberBrandPower : ManosabaPowerTemplate
             return;
 
         ReturnToHandLayers = ReturnToHandLayers.Skip(1).ToArray();
+    }
+
+    private void ClearTemporaryRest()
+    {
+        if (!_temporaryRestAddedToTriggeredCard)
+            return;
+
+        _triggeredCard.TryRemoveComponent<RestComponent>();
+    }
+
+    private void ClearTriggeredState()
+    {
+        _triggeredCard = null;
+        _triggeredLayerReturnsToHand = false;
+        _temporaryRestAddedToTriggeredCard = false;
     }
 }

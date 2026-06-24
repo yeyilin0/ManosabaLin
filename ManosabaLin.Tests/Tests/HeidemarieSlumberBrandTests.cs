@@ -60,7 +60,7 @@ public sealed class HeidemarieSlumberBrandTests : CombatTestSuite
         await AutoPlayAttack(attack);
 
         Assert.True(attack.HadRestDuringOnPlay);
-        Assert.True(HasComponent<RestComponent>(attack));
+        Assert.False(HasComponent<RestComponent>(attack));
         Assert.False(Player.Creature.HasPower<SlumberBrandPower>());
     }
 
@@ -82,7 +82,7 @@ public sealed class HeidemarieSlumberBrandTests : CombatTestSuite
         await PlayWithEnergy(attack, EnemyAt(0));
 
         Assert.True(attack.HadRestDuringOnPlay);
-        Assert.True(HasComponent<RestComponent>(attack));
+        Assert.False(HasComponent<RestComponent>(attack));
         Assert.False(Player.Creature.HasPower<SlumberBrandPower>());
     }
 
@@ -100,7 +100,7 @@ public sealed class HeidemarieSlumberBrandTests : CombatTestSuite
         await PlayWithEnergy(secondAttack, EnemyAt(0));
 
         Assert.True(firstAttack.HadRestDuringOnPlay);
-        Assert.True(HasComponent<RestComponent>(firstAttack));
+        Assert.False(HasComponent<RestComponent>(firstAttack));
         Assert.False(secondAttack.HadRestDuringOnPlay);
         Assert.False(HasComponent<RestComponent>(secondAttack));
     }
@@ -135,9 +135,15 @@ public sealed class HeidemarieSlumberBrandTests : CombatTestSuite
         await AutoPlayAttack(attack);
 
         Assert.True(attack.HadRestDuringOnPlay);
-        Assert.True(HasComponent<RestComponent>(attack));
+        Assert.False(HasComponent<RestComponent>(attack));
         Assert.Same(PileType.Hand.GetPile(Player), attack.Pile);
         Assert.False(Player.Creature.HasPower<SlumberBrandPower>());
+
+        var autoPlayCountBeforeDiscard = CountAutoPlays(attack);
+        await CardCmd.Discard(new BlockingPlayerChoiceContext(), attack);
+        await WaitForIdle();
+
+        Assert.Equal(autoPlayCountBeforeDiscard, CountAutoPlays(attack));
     }
 
     [Fact]
@@ -153,7 +159,7 @@ public sealed class HeidemarieSlumberBrandTests : CombatTestSuite
         await AutoPlayAttack(attack);
 
         Assert.True(attack.HadRestDuringOnPlay);
-        Assert.True(HasComponent<RestComponent>(attack));
+        Assert.False(HasComponent<RestComponent>(attack));
         Assert.Same(PileType.Hand.GetPile(Player), attack.Pile);
         Assert.DoesNotContain(attack, PileType.Exhaust.GetPile(Player).Cards);
     }
@@ -171,7 +177,7 @@ public sealed class HeidemarieSlumberBrandTests : CombatTestSuite
         await PlayWithEnergy(attack, EnemyAt(0));
 
         Assert.True(attack.HadRestDuringOnPlay);
-        Assert.True(HasComponent<RestComponent>(attack));
+        Assert.False(HasComponent<RestComponent>(attack));
         Assert.Null(attack.Pile);
         Assert.DoesNotContain(attack, PileType.Hand.GetPile(Player).Cards);
     }
@@ -192,7 +198,31 @@ public sealed class HeidemarieSlumberBrandTests : CombatTestSuite
             CombatManager.Instance.History.CardPlaysFinished,
             entry => ReferenceEquals(entry.CardPlay.Card, brand) && entry.CardPlay.IsAutoPlay);
         Assert.True(attack.HadRestDuringOnPlay);
+        Assert.False(HasComponent<RestComponent>(attack));
+    }
+
+    [Fact]
+    public async Task Existing_rest_on_returned_attack_is_not_removed()
+    {
+        await ClearCombatPiles();
+
+        var brand = await AddToHand<SlumberBrand>();
+        CardCmd.Upgrade(brand, CardPreviewStyle.None);
+        var attack = await AddToHand<SlumberBrandProbeAttack>();
+        attack.TryAddComponent(new RestComponent());
+
+        await PlayWithEnergy(brand);
+        await AutoPlayAttack(attack);
+
+        Assert.True(attack.HadRestDuringOnPlay);
         Assert.True(HasComponent<RestComponent>(attack));
+        Assert.Same(PileType.Hand.GetPile(Player), attack.Pile);
+
+        var autoPlayCountBeforeDiscard = CountAutoPlays(attack);
+        await CardCmd.Discard(new BlockingPlayerChoiceContext(), attack);
+        await WaitForIdle();
+
+        Assert.True(CountAutoPlays(attack) > autoPlayCountBeforeDiscard);
     }
 
     private async Task PlayWithEnergy(CardModel card, Creature? target = null)
@@ -222,6 +252,12 @@ public sealed class HeidemarieSlumberBrandTests : CombatTestSuite
         where T : class, ICardComponent
     {
         return ((IComponentsCardModel)card).GetComponent<T>() != null;
+    }
+
+    private static int CountAutoPlays(CardModel card)
+    {
+        return CombatManager.Instance.History.CardPlaysFinished.Count(
+            entry => ReferenceEquals(entry.CardPlay.Card, card) && entry.CardPlay.IsAutoPlay);
     }
 
     private async Task ClearCombatPiles()
