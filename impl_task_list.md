@@ -18,6 +18,7 @@ Validation:
 - Test guidance: 测试优先测试机制，不绑定具体数值；占位数值 `1(2)` 可用 1/2 实现，但测试应关注状态转换、组件、牌堆移动、触发源和不软锁。
 - Baseline smoke: `CharacterSmokeTests.Hiro_loads_and_can_play_starter_attack` passed with `SUMMARY total=1 passed=1 failed=0 skipped=0`.
 - Heidemarie batch after 001/002/004/009/016/033 integrations: `SUMMARY total=63 passed=63 failed=0 skipped=0`.
+- Heidemarie batch after 007/014/015/025/035/038 integrations: `SUMMARY total=97 passed=97 failed=0 skipped=0`.
 
 Coordination rules:
 - Only Main edits this tracker.
