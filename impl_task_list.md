@@ -71,7 +71,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 031 | Returning Edge Aurora | card | blocked |  |  |  |  | n/a | Clarification still conflicts on non-bounce return trigger. |
 | 032 | Formless Emberlight | card | todo |  |  |  |  | pending |  |
 | 033 | Unnamed Card 33 | card | todo |  |  |  |  | pending |  |
-| 034 | Unnamed Card 34 | card | ready | mag/heidemarie-card-034-unnamed-card-34 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-034-unnamed-card-34 | Carson 019efa51-3a30-7a50-9342-3323ae89dc1a | build pass; HeidemarieUnnamedCard34Tests 3/3 pass; commit 74657d0 | pending |  |
+| 034 | Unnamed Card 34 | card | ready | mag/heidemarie-card-034-unnamed-card-34 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-034-unnamed-card-34 | Carson 019efa51-3a30-7a50-9342-3323ae89dc1a | build pass; HeidemarieUnnamedCard34Tests 3/3 pass; commit 74657d0 | pass |  |
 | 035 | Unnamed Card 35 | card | todo |  |  |  |  | pending |  |
 | 036 | Unnamed Card 36 | card | todo |  |  |  |  | pending |  |
 | 037 | Unnamed Card 37 | card | todo |  |  |  |  | pending |  |
