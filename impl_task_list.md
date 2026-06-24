@@ -45,7 +45,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 004 | Aurora Crimson Twinbirth | card | done | mag/heidemarie-card-004-aurora-crimson-twinbirth | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-004-aurora-crimson-twinbirth | Nietzsche 019efa6a-e680-7580-8335-3c0a6b119a3e | integration HeidemarieAuroraCrimsonTwinbirthTests 7/7 pass; commit 5972b15 | pass |  |
 | 005 | Sword Rain | card | blocked |  |  |  |  | n/a | Clarification still asks review for non-draw hand entry trigger. |
 | 006 | Swordlight | card | todo |  |  |  |  | pending |  |
-| 007 | Chain Sigil Ignition | card | in_progress | mag/heidemarie-card-007-chain-sigil-ignition | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-007-chain-sigil-ignition | Maxwell 019efaa5-a422-7af1-adcb-5547c790970d | branch build pass; focused test pending after test-dir contention; commit c681773 | pending |  |
+| 007 | Chain Sigil Ignition | card | ready | mag/heidemarie-card-007-chain-sigil-ignition | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-007-chain-sigil-ignition | Maxwell 019efaa5-a422-7af1-adcb-5547c790970d | branch HeidemarieChainSigilIgnitionTests 5/5 pass; commit c681773 | pending |  |
 | 008 | Linked Edge | card | done | mag/heidemarie-card-008-linked-edge | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-008-linked-edge | Bohr 019efa51-306b-73c1-be7f-1db5116914d3 | integration HeidemarieLinkedEdgeTests 4/4 pass; commit 29904c0 | pass |  |
 | 009 | Crimson Edge Return Pact | card | done | mag/heidemarie-card-009-crimson-edge-return-pact | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-009-crimson-edge-return-pact | Darwin 019efa6b-2eb0-7eb0-8fdb-f93bdc85be21 | integration HeidemarieCrimsonEdgeReturnPactTests 5/5 pass; commit 05e4002 | pass |  |
 | 010 | Glimmer Harvest | card | todo |  |  |  |  | pending |  |
@@ -63,7 +63,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 022 | Sword Curtain | card | todo |  |  |  |  | pending |  |
 | 023 | Prism Chain | card | todo |  |  |  |  | pending |  |
 | 024 | Slumber Brand | card | todo |  |  |  |  | pending |  |
-| 025 | Ember Recall | card | ready | mag/heidemarie-card-025-ember-recall | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-025-ember-recall | Erdos 019efaa5-ba82-7670-8908-04063775fbd7 | branch HeidemarieEmberRecallTests 6/6 pass; commit c94ab86 | pending |  |
+| 025 | Ember Recall | card | ready | mag/heidemarie-card-025-ember-recall | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-025-ember-recall | Erdos 019efaa5-ba82-7670-8908-04063775fbd7 | branch HeidemarieEmberRecallTests 6/6 pass after review fix; commits c94ab86, 6334f79 | pending |  |
 | 026 | Restlight Bulwark | card | todo |  |  |  |  | pending |  |
 | 027 | Reforge | card | todo |  |  |  |  | pending |  |
 | 028 | Link Pattern Reweaver | card | todo |  |  |  |  | pending |  |
