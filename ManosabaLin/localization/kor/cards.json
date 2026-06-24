@@ -467,6 +467,18 @@
   "ManosabaLin.UniqueComponent.prefix": "[b]고유[/b]",
   "ManosabaLin.UniqueComponent.hovertip.title": "고유",
   "ManosabaLin.UniqueComponent.hovertip.description": "덱 안에 동명의 카드는 최대 한 장만 존재할 수 있습니다.",
+  "ManosabaLin.RestComponent.prefix": "[b]안식[/b]",
+  "ManosabaLin.RestComponent.hovertip.title": "안식",
+  "ManosabaLin.RestComponent.hovertip.description": "버리기 효과로 손에서 버려지면 이 카드를 한 번 자동 사용합니다.",
+  "ManosabaLin.LinkComponent.prefix": "[b]연결[/b]",
+  "ManosabaLin.LinkComponent.hovertip.title": "연결",
+  "ManosabaLin.LinkComponent.hovertip.description": "수동으로 사용하면 사용 시작 시 손에 있던 다른 연결 카드를 버립니다.",
+  "ManosabaLin.BounceComponent.prefix": "[b]되돌림 {Amount}[/b]",
+  "ManosabaLin.BounceComponent.hovertip.title": "되돌림",
+  "ManosabaLin.BounceComponent.hovertip.description": "내 턴 시작 시 뽑기 더미나 버린 더미에 있으면 손으로 돌아오고 되돌림이 1 감소합니다.",
+  "ManosabaLin.SwordGraveComponent.prefix": "[b]검무덤[/b]",
+  "ManosabaLin.SwordGraveComponent.hovertip.title": "검무덤",
+  "ManosabaLin.SwordGraveComponent.hovertip.description": "버린 더미를 뽑기 더미로 섞을 때 이 카드는 버린 더미에 남습니다.",
   "ManosabaLin.EmaTrueEndingRewardComponent.postfix": "[color=#ff99cc]「히로 자신도 울고 있으면서, 나보고 운다니」 {Amount} 획득[/color]",
   "ManosabaLin.EmaTrueEndingRewardComponent.hovertip.title": "「어쩔 수 없지, 네 곁에 있어 줄게」",
   "ManosabaLin.EmaTrueEndingTagComponent.postfix": "[gold]제거[/gold]{CanIncreaseAchieveCount:\n[color=#4a0000]「진 엔딩」 카운트를 1 감소시킵니다.[/color]|}",
@@ -759,4 +771,3 @@
   "ManosabaLin.SherryDeath.hovertip.description": "[b]이 카드는 매 [color=#33ccff]턴[/color] 시작 시 패로 돌아온다.[/b]\n사용 시 [color=#cccccc]죽음[/color]을 부여하고 모든 아군 카드의 절반에 [color=#33ccff]【오렌지 셰리의 마법】[/color]을 부여한다.\n[b]【타인의 감정】[/b] 카드가 2장 이상일 경우, 무작위 [rainbow][b]【기본 감정】[/b][/rainbow] 1장을 아군의 드로우 파일에 추가한다. 4장 이상일 경우 [rainbow][b]【복합 감정】[/b][/rainbow], 20장 이상일 경우 [color=#33ccff][b]「우[/b][/color][green][b]정」[/b][/green]을 추가한다.\n모든 아군의 [b]【마녀화】[/b] 50중첩과 [b]【용의】[/b] 3중첩을 [b]소멸[/b]시킨다."
 }
   
-
