@@ -792,7 +792,7 @@
   "MANOSABA_LIN_CARD_CRIMSON_EDGE_RETURN_PACT.title": "Crimson Edge Return Pact",
   "MANOSABA_LIN_CARD_CRIMSON_EDGE_RETURN_PACT.description": "Create Crimson Sword with Bounce. Upgrade: create more.",
   "MANOSABA_LIN_CARD_GLIMMER_HARVEST.title": "Glimmer Harvest",
-  "MANOSABA_LIN_CARD_GLIMMER_HARVEST.description": "Link. Draw cards; cards drawn this turn gain Link. Upgrade: gains Rest.",
+  "MANOSABA_LIN_CARD_GLIMMER_HARVEST.description": "Link. Draw 1(2) card(s). Cards drawn this turn gain Link. Upgrade: gains Rest.",
   "MANOSABA_LIN_CARD_EMBER_TETHER_DRAW.title": "Ember Tether Draw",
   "MANOSABA_LIN_CARD_EMBER_TETHER_DRAW.description": "Exhaust. Rest cards in hand gain Link this turn. Upgrade: cost reduced.",
   "MANOSABA_LIN_CARD_HERO_OF_THE_MANY.title": "Hero of the Many",
