@@ -41,6 +41,9 @@ public sealed partial class LinkComponent : KeywordLikeComponent
             .ToArray();
 
         if (cardsToDiscard.Length > 0)
+        {
+            using var linkDiscardContext = LinkDiscardContext.Begin(cardsToDiscard);
             await CardCmd.Discard(choiceContext, cardsToDiscard);
+        }
     }
 }
