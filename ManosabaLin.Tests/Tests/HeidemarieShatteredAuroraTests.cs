@@ -167,15 +167,18 @@ public sealed class HeidemarieShatteredAuroraTests : CombatTestSuite
         var secondLinkedSword = await AddToHand<AuroraSword>();
         var nonLinked = await AddToHand<HiroDefend>();
 
-        await PlayerCmd.SetEnergy(0, Player);
+        await PlayerCmd.SetEnergy(10, Player);
         await WaitForIdle();
-        await PlayWithEnergy(played, EnemyAt(0));
+        var energyBeforePlay = CurrentEnergy;
+        var linkedEdgeCost = played.EnergyCost.GetWithModifiers(CostModifiers.None);
+
+        await Play(played, EnemyAt(0));
 
         Assert.Same(PileType.Discard.GetPile(Player), firstLinkedSword.Pile);
         Assert.Same(PileType.Discard.GetPile(Player), secondLinkedSword.Pile);
         Assert.Same(PileType.Hand.GetPile(Player), nonLinked.Pile);
         Assert.Equal(0, power.DiscardedAuroraSwordRemainder);
-        Assert.Equal(ShatteredAuroraPower.BaseEnergyGain, CurrentEnergy);
+        Assert.Equal(energyBeforePlay - linkedEdgeCost + ShatteredAuroraPower.BaseEnergyGain, CurrentEnergy);
     }
 
     private async Task PlayWithEnergy(CardModel card, Creature? target = null)
