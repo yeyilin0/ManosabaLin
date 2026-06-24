@@ -100,6 +100,8 @@ public sealed class HeidemarieRestlightBulwarkTests : CombatTestSuite
     [Fact]
     public async Task Upgrade_only_lowers_cost()
     {
+        await ClearCombatPiles();
+
         var card = await AddToHand<RestlightBulwark>();
         var block = card.DynamicVars.Block.BaseValue;
         var linkedCardsPerBlock = card.DynamicVars[RestlightBulwark.LinkedCardsPerBlockKey].BaseValue;
@@ -113,6 +115,12 @@ public sealed class HeidemarieRestlightBulwarkTests : CombatTestSuite
         Assert.Equal(block, card.DynamicVars.Block.BaseValue);
         Assert.Equal(linkedCardsPerBlock, card.DynamicVars[RestlightBulwark.LinkedCardsPerBlockKey].BaseValue);
         Assert.Equal(blockPerLinkedBatch, card.DynamicVars[RestlightBulwark.BlockPerLinkedBatchKey].BaseValue);
+
+        var blockBefore = Player.Creature.Block;
+        await PlayerCmd.SetEnergy(10, Player);
+        await Play(card);
+
+        Assert.Equal(blockBefore + ExpectedBlock(card, 0), Player.Creature.Block);
     }
 
     private static decimal ExpectedBlock(RestlightBulwark card, int linkedCards)
