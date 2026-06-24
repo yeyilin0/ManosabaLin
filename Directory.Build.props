@@ -1,16 +1,10 @@
 <Project>
+    <Import Project="local.props" Condition="Exists('local.props')"/>
+    <Import Project="LocalSettings.props" Condition="Exists('LocalSettings.props')"/>
+    <Import Project="Sts2PathDiscovery.props" Condition="Exists('Sts2PathDiscovery.props')"/>
+
     <PropertyGroup>
-        <AutoSteamPath>$(registry:HKEY_CURRENT_USER\Software\Valve\Steam@SteamPath)\steamapps</AutoSteamPath>
-        <AutoSteamPathHklm>$(registry:HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Valve\Steam@InstallPath)\steamapps</AutoSteamPathHklm>
-        <SteamLibraryPath Condition="'$(SteamLibraryPath)' == '' and Exists('$(AutoSteamPath)/common/Slay the Spire 2')">$(AutoSteamPath)</SteamLibraryPath>
-        <SteamLibraryPath Condition="'$(SteamLibraryPath)' == '' and Exists('$(AutoSteamPathHklm)/common/Slay the Spire 2')">$(AutoSteamPathHklm)</SteamLibraryPath>
-
         <GodotPath Condition="'$(GodotPath)' == ''">D:\222\dark\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64\Godot_v4.5.1-stable_mono_win64.exe</GodotPath>
-        <SteamLibraryPath Condition="'$(SteamLibraryPath)' == ''">C:/Program Files (x86)/Steam/steamapps</SteamLibraryPath>
-
-        <Sts2Path Condition="'$(Sts2Path)' == ''">$(SteamLibraryPath)/common/Slay the Spire 2</Sts2Path>
-        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath>
-        <Sts2DataDir Condition="'$(Sts2DataDir)' == ''">$(Sts2Path)/data_sts2_windows_x86_64</Sts2DataDir>
-        <RitsuLibDeployDir>$(ModsPath)RitsuLib/</RitsuLibDeployDir>
+        <RitsuLibDeployDir Condition="'$(RitsuLibDeployDir)' == ''">$(ModsPath)STS2-RitsuLib/</RitsuLibDeployDir>
     </PropertyGroup>
 </Project>
