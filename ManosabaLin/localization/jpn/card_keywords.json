@@ -8,5 +8,18 @@
   "MANOSABA_LIN_KEYWORD_DOUBT.title": "疑問",
   "MANOSABA_LIN_KEYWORD_DOUBT.description": "プレイ時、1～5の倍数で効果発動\n×1：自身に1ブロック付与\n×2：自身が1枚ドロー\n×3：自身が1エナジー獲得\n×4：捨て札から1枚回収\n×5：手札1枚にリプレイ1付与、手札1枚に[color=#339966]【[/color][color=#cc9966]審[/color][color=#6699cc]判[/color][color=#339966]】[/color]エンチャント1付与",
   "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "反駁",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "プレイ時、1～5の倍数で効果発動\n×1：ランダムに1ダメージ\n×2：自身に1筋力付与\n×3：敵全体に1層の脆弱付与\n×4：ランダムに同回数の1ダメージ\n×5：このカードを追加で1回プレイ"
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "プレイ時、1～5の倍数で効果発動\n×1：ランダムに1ダメージ\n×2：自身に1筋力付与\n×3：敵全体に1層の脆弱付与\n×4：ランダムに同回数の1ダメージ\n×5：このカードを追加で1回プレイ",
+  "MANOSABA_LIN_KEYWORD_REST.title": "Rest",
+  "MANOSABA_LIN_KEYWORD_REST.description": "When discarded from hand, automatically play this card effect.",
+  "MANOSABA_LIN_KEYWORD_LINK.title": "Link",
+  "MANOSABA_LIN_KEYWORD_LINK.description": "When manually played, discard other linked cards in hand after this card resolves.",
+  "MANOSABA_LIN_KEYWORD_BOUNCE.title": "Bounce",
+  "MANOSABA_LIN_KEYWORD_BOUNCE.description": "At the start of your turn, move this card from draw or discard pile to hand and reduce Bounce count.",
+  "MANOSABA_LIN_KEYWORD_SWORD_GRAVE.title": "Sword Grave",
+  "MANOSABA_LIN_KEYWORD_SWORD_GRAVE.description": "This card stays in the discard pile instead of shuffling into the draw pile.",
+  "MANOSABA_LIN_KEYWORD_AURORA_CHAIN.title": "Aurora Chain",
+  "MANOSABA_LIN_KEYWORD_AURORA_CHAIN.description": "Each stack increases damage dealt by Sword Grave cards.",
+  "MANOSABA_LIN_KEYWORD_MARK.title": "Mark",
+  "MANOSABA_LIN_KEYWORD_MARK.description": "When an ally attacks, spend Mark to deal additional attack damage."
+
 }
