@@ -810,7 +810,7 @@
   "MANOSABA_LIN_CARD_TWIN_EDGE_SLUMBER.title": "双锋归眠",
   "MANOSABA_LIN_CARD_TWIN_EDGE_SLUMBER.description": "生成1(2)张带有弹回1(2)的极光剑；升级：获得安息",
   "MANOSABA_LIN_CARD_RAY_OF_LIGHT.title": "一缕光芒",
-  "MANOSABA_LIN_CARD_RAY_OF_LIGHT.description": "获得1(2)点能量；升级：如果因连接而被丢弃则额外获得1(2)点能量",
+  "MANOSABA_LIN_CARD_RAY_OF_LIGHT.description": "安息。获得{Energy:diff()}点能量；升级后，如果本卡带有连接且因连接清理被丢弃，额外获得{Energy:diff()}点能量",
   "MANOSABA_LIN_CARD_CONDENSED_AURORA.title": "凝聚极光",
   "MANOSABA_LIN_CARD_CONDENSED_AURORA.description": "被丢弃时返回手牌；返回1(2)次后变身为解放极光；升级：返回手牌时在弃牌堆生成1(2)张极光剑",
   "MANOSABA_LIN_CARD_LIBERATED_AURORA.title": "解放极光",
