@@ -4,6 +4,7 @@ using ManosabaLin.Characters.Heidemarie.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Monsters;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
@@ -73,9 +74,10 @@ public sealed class HeidemarieUnnamedCard39Tests : CombatTestSuite
     }
 
     [Fact]
-    public async Task Mark_rewards_are_applied_after_all_targets_resolve()
+    public async Task Existing_mark_triggers_once_for_the_aoe_attack_before_rewards()
     {
-        await ApplyPower<MarkPower>(Player.Creature, 1, Player.Creature);
+        const int initialMark = 3;
+        await ApplyPower<MarkPower>(Player.Creature, initialMark, Player.Creature);
         var card = await AddToHand<UnnamedCard39>();
 
         var enemies = Enemies();
@@ -84,7 +86,38 @@ public sealed class HeidemarieUnnamedCard39Tests : CombatTestSuite
         await PlayWithEnergy(card);
 
         Assert.Equal(2m * card.DynamicVars.Damage.BaseValue + MarkPower.Damage, TotalDamageTaken(enemies, hpBefore));
-        Assert.Equal(2 * card.DynamicVars[UnnamedCard39.MarkVar].IntValue, Player.Creature.GetPower<MarkPower>()?.Amount);
+        Assert.Equal(
+            initialMark - 1 + 2 * card.DynamicVars[UnnamedCard39.MarkVar].IntValue,
+            Player.Creature.GetPower<MarkPower>()?.Amount);
+    }
+
+    [Fact]
+    public async Task No_alive_enemies_is_safe_noop()
+    {
+        const int initialMark = 2;
+        await PlayWithEnergy(await AddToHand<UnnamedCard34>());
+        var setupMark = Player.Creature.GetPower<MarkPower>();
+        if (setupMark != null)
+            await PowerCmd.Remove(setupMark);
+        await WaitForIdle();
+
+        await ApplyPower<MarkPower>(Player.Creature, initialMark, Player.Creature);
+
+        var card = await AddToHand<UnnamedCard39>();
+        var enemies = Enemies();
+        foreach (var enemy in enemies)
+            await CreatureCmd.SetCurrentHp(enemy, 0m);
+        await WaitForIdle();
+
+        await CardCmd.AutoPlay(
+            new BlockingPlayerChoiceContext(),
+            card,
+            null,
+            skipCardPileVisuals: true);
+        await WaitForIdle();
+
+        Assert.All(enemies, enemy => Assert.False(enemy.IsAlive));
+        Assert.Equal(initialMark, Player.Creature.GetPower<MarkPower>()?.Amount);
     }
 
     private async Task PlayWithEnergy(CardModel card)

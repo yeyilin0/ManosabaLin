@@ -25,20 +25,22 @@ public sealed class UnnamedCard39()
         ComponentContext componentContext)
     {
         var combatState = CombatState ?? Owner.Creature.CombatState;
-        var enemies = combatState?.HittableEnemies.Where(enemy => enemy.IsAlive).ToArray() ?? [];
-        var markGain = 0m;
+        if (combatState == null)
+            return;
 
-        foreach (var enemy in enemies)
-        {
-            var attack = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this)
-                .Targeting(enemy)
-                .WithHitFx("vfx/vfx_attack_slash")
-                .Execute(choiceContext);
+        var attack = await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this)
+            .TargetingAllOpponents(combatState)
+            .WithHitFx("vfx/vfx_attack_slash")
+            .Execute(choiceContext);
 
-            if (attack.Results.SelectMany(static results => results).Any(static result => result.UnblockedDamage > 0m))
-                markGain += DynamicVars[MarkVar].BaseValue;
-        }
+        var unblockedHitTargets = attack.Results
+            .SelectMany(static results => results)
+            .Where(static result => result.UnblockedDamage > 0)
+            .Select(static result => result.Receiver)
+            .Distinct()
+            .Count();
+        var markGain = unblockedHitTargets * DynamicVars[MarkVar].BaseValue;
 
         if (markGain <= 0m)
             return;
