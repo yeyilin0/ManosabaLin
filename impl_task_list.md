@@ -23,6 +23,7 @@ Validation:
 - Heidemarie batch after 017/021/023/026/027/029 integrations: `SUMMARY total=168 passed=168 failed=0 skipped=0`.
 - Heidemarie batch after 006/012/024/036/037/039/040 integrations: `SUMMARY total=210 passed=210 failed=0 skipped=0`.
 - Heidemarie batch after 018/019/020/032 integrations: `SUMMARY total=230 passed=230 failed=0 skipped=0`.
+- Heidemarie batch after 005/031 integrations and UnnamedCard36 expectation sync: `SUMMARY total=243 passed=243 failed=0 skipped=0`.
 
 Coordination rules:
 - Only Main edits this tracker.
@@ -80,7 +81,7 @@ Review values: `pending`, `pass`, `fail`, `n/a`.
 | 033 | Unnamed Card 33 | card | done | mag/heidemarie-card-033-unnamed-card-33 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-033-unnamed-card-33 | Descartes 019efa6b-c265-76c0-9f21-bd8ec95dacd9 | integration HeidemarieUnnamedCard33Tests 6/6 pass; commit b1aed17 | pass |  |
 | 034 | Unnamed Card 34 | card | done | mag/heidemarie-card-034-unnamed-card-34 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-034-unnamed-card-34 | Carson 019efa51-3a30-7a50-9342-3323ae89dc1a | integration HeidemarieUnnamedCard34Tests 3/3 pass; commit 74657d0 | pass |  |
 | 035 | Unnamed Card 35 | card | done | mag/heidemarie-card-035-unnamed-card-35 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-035-unnamed-card-35 | Cicero 019efaa5-c4fa-7060-b5f2-67b568ee0057 | integration HeidemarieUnnamedCard35Tests 4/4 pass; commit 1f59bf4 | pass |  |
-| 036 | Unnamed Card 36 | card | done | mag/heidemarie-card-036-039-mark-suite | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-036-039-mark-suite | Euler 019efb05-62dd-7c63-87fc-44941203dd24 | branch HeidemarieUnnamedCard36/39Tests 27/27 pass; integration HeidemarieUnnamedCard3 32/32 pass; commit e49b2e4 | pass |  |
+| 036 | Unnamed Card 36 | card | done | mag/heidemarie-card-036-039-mark-suite | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-036-039-mark-suite | Euler 019efb05-62dd-7c63-87fc-44941203dd24 | branch HeidemarieUnnamedCard36/39Tests 27/27 pass; integration HeidemarieUnnamedCard3 32/32 pass; expectation sync HeidemarieUnnamedCard36Tests 3/3 pass; commit e49b2e4 | pass | test expectation updated to include AuroraSword normal play discard-damage trigger |
 | 037 | Unnamed Card 37 | card | done | mag/heidemarie-card-037-unnamed-card-37 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-037-unnamed-card-37 | Gibbs 019efb04-c7df-7632-9536-b7185e88a69b | integration HeidemarieUnnamedCard37Tests 5/5 pass; commit 79faf98 | pass |  |
 | 038 | Unnamed Card 38 | card | done | mag/heidemarie-card-038-unnamed-card-38 | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-038-unnamed-card-38 | Jason 019efaa5-cbd9-7be2-8c36-67542f98352b | integration HeidemarieUnnamedCard38Tests 6/6 pass; commit 478a1ff | pass |  |
 | 039 | Unnamed Card 39 | card | done | mag/heidemarie-card-036-039-mark-suite | /home/magicalastrogy/workspace/manosabalin-heidemarie-worktrees/card-036-039-mark-suite | Euler 019efb05-62dd-7c63-87fc-44941203dd24 | branch HeidemarieUnnamedCard36/39Tests 27/27 pass; integration HeidemarieUnnamedCard3 32/32 pass; commit e49b2e4 | pass |  |

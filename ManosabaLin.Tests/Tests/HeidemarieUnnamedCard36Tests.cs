@@ -52,7 +52,7 @@ public sealed class HeidemarieUnnamedCard36Tests : CombatTestSuite
         await PlayWithEnergy(attack, enemy);
 
         Assert.Equal(
-            attack.DynamicVars.Damage.BaseValue + MarkPower.Damage + 2m,
+            2m * attack.DynamicVars.Damage.BaseValue + MarkPower.Damage + 2m,
             DamageTaken(enemy, hpBefore));
         Assert.Null(Player.Creature.GetPower<MarkPower>());
     }
@@ -70,7 +70,7 @@ public sealed class HeidemarieUnnamedCard36Tests : CombatTestSuite
         await PlayWithEnergy(attack, enemy);
 
         Assert.Equal(
-            attack.DynamicVars.Damage.BaseValue + MarkPower.Damage,
+            2m * attack.DynamicVars.Damage.BaseValue + MarkPower.Damage,
             DamageTaken(enemy, hpBefore));
     }
 
