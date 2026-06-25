@@ -17,11 +17,16 @@
     <PropertyGroup>
         <GodotExportPreset>Windows Desktop</GodotExportPreset>
 
-        <ModOutputDir>$(Sts2Path)/mods/$(MSBuildProjectName)/</ModOutputDir>
-        <ModPckPath>$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
+        <ModsPath Condition="'$(ModsPath)' == ''">$(Sts2Path)/mods/</ModsPath> <!-- 自动拷贝 MinionLib 到 mods 目录 -->
+        <ModOutputDir Condition="'$(ModOutputDir)' == ''">$(ModsPath)$(MSBuildProjectName)/</ModOutputDir>
+        <ModPckPath Condition="'$(ModPckPath)' == ''">$(ModOutputDir)$(MSBuildProjectName).pck</ModPckPath>
+        <RitsuLibDeployDir Condition="'$(RitsuLibDeployDir)' == ''">$(ModsPath)STS2-RitsuLib/</RitsuLibDeployDir> <!-- 自动拷贝 RitsuLib 到 mods 目录 -->
+    </PropertyGroup>
 
-        <ModsPath>$(Sts2Path)/mods</ModsPath> <!-- 自动拷贝 MinionLib 到 mods 目录 -->
-        <RitsuLibDeployDir>$(Sts2Path)/mods/RitsuLib</RitsuLibDeployDir> <!-- 自动拷贝 RitsuLib 到 mods 目录 -->
+    <PropertyGroup>
+        <LocalSourcesDir Condition="'$(LocalSourcesDir)' == ''">$(MSBuildProjectDirectory)/local</LocalSourcesDir>
+        <Sts2DecompiledDir Condition="'$(Sts2DecompiledDir)' == ''">$(LocalSourcesDir)/sts2-decompiled</Sts2DecompiledDir>
+        <IlspyReferencePath Condition="'$(IlspyReferencePath)' == ''">$(Sts2DataDir)</IlspyReferencePath>
     </PropertyGroup>
 
     <!-- FMod 自动化相关配置 -->
@@ -44,9 +49,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="0Harmony" HintPath="$(Sts2DataDir)\0Harmony.dll" Private="True"/>
-        <Reference Include="sts2" HintPath="$(Sts2DataDir)\sts2.dll" Private="True"/>
-        <Reference Include="Steamworks.NET" HintPath="$(Sts2DataDir)\Steamworks.NET.dll" Private="True"/>
+        <Reference Include="0Harmony" HintPath="$(Sts2DataDir)/0Harmony.dll" Private="True"/>
+        <Reference Include="sts2" HintPath="$(Sts2DataDir)/sts2.dll" Private="True"/>
+        <Reference Include="Steamworks.NET" HintPath="$(Sts2DataDir)/Steamworks.NET.dll" Private="True"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -55,13 +60,17 @@
 
     <ItemGroup>
         <Compile Remove="ManosabaLin/**"/>
+        <Compile Remove="ManosabaLin.Tests/**"/>
         <Compile Remove="materials/**"/>
         <Compile Remove="shaders/**"/>
         <Compile Remove="images/**"/>
         <EmbeddedResource Remove="ManosabaLin/**"/>
+        <EmbeddedResource Remove="ManosabaLin.Tests/**"/>
         <EmbeddedResource Remove="materials/**"/>
         <EmbeddedResource Remove="shaders/**"/>
         <EmbeddedResource Remove="images/**"/>
+        <Content Remove="ManosabaLin.Tests/**"/>
+        <None Remove="ManosabaLin.Tests/**"/>
         <Compile Remove="ManosabaLin\audio\**"/>
         <EmbeddedResource Remove="ManosabaLin\audio\**"/>
     </ItemGroup>
@@ -92,13 +101,24 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="local.props" />
+      <Content Condition="Exists('local.props')" Include="local.props" />
     </ItemGroup>
 
     <Target Name="ValidateSts2GameInstall" BeforeTargets="ResolveAssemblyReferences">
         <Error
-                Condition="!Exists('$(Sts2DataDir)\sts2.dll')"
+                Condition="!Exists('$(Sts2DataDir)/sts2.dll')"
                 Text="Could not find sts2.dll under '$(Sts2DataDir)'. Set Sts2Path in local.props following the WineFox pattern."/>
+    </Target>
+
+    <Target Name="RestoreDecompilerTool">
+        <Exec Command="dotnet tool restore" />
+    </Target>
+
+    <Target Name="DecompileSts2" DependsOnTargets="ValidateSts2GameInstall;RestoreDecompilerTool">
+        <Message Text="Decompiling sts2.dll to '$(Sts2DecompiledDir)'." Importance="high" />
+        <RemoveDir Directories="$(Sts2DecompiledDir)" Condition="Exists('$(Sts2DecompiledDir)')" />
+        <MakeDir Directories="$(Sts2DecompiledDir)" />
+        <Exec Command="dotnet tool run ilspycmd -- --disable-updatecheck --nested-directories -p -o &quot;$(Sts2DecompiledDir)&quot; -r &quot;$(IlspyReferencePath)&quot; &quot;$(Sts2DataDir)/sts2.dll&quot;" />
     </Target>
 
     <!-- 自动更新 json 中的版本号 -->
@@ -132,7 +152,7 @@
         <Copy SourceFiles="$(ManifestOutputFile)" DestinationFolder="$(ModOutputDir)"/>
     </Target>
 
-    <Target Name="BuildAndCopyFmod" BeforeTargets="ExportPCK">
+    <Target Name="BuildAndCopyFmod" BeforeTargets="ExportPCK" Condition="'$(STS2_SKIP_FMOD_BUILD)' != '1' and Exists('$(FmodStudioPath)')">
         <Message Text="[FMOD] Starting Headless Build..." Importance="high"/>
 
         <Exec Command="&quot;$(FmodStudioPath)&quot; -build -export-guids &quot;$(FmodProjectFile)&quot;" />

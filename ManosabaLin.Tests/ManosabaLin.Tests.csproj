@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>true</ImplicitUsings>
+        <LangVersion>13.0</LangVersion>
+        <Nullable>enable</Nullable>
+        <AssemblyName>ManosabaLin_tests</AssemblyName>
+        <RootNamespace>ManosabaLin.Tests</RootNamespace>
+        <RestoreSources>$(MSBuildProjectDirectory)/../../TestTheSpire/artifacts/packages;https://api.nuget.org/v3/index.json;$(RestoreSources)</RestoreSources>
+        <Sts2MainModId>ManosabaLin</Sts2MainModId>
+        <Sts2RequiredModIds>STS2-RitsuLib;MinionLib</Sts2RequiredModIds>
+        <Sts2DisableOtherMods>true</Sts2DisableOtherMods>
+        <Sts2TestModAuthor>Lin</Sts2TestModAuthor>
+        <Sts2TestModDescription>Headless combat smoke tests for ManosabaLin.</Sts2TestModDescription>
+        <GodotProjectDir Condition="'$(GodotProjectDir)' == ''">$(MSBuildProjectDirectory)/..</GodotProjectDir>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="../ManosabaLin.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="STS2.RitsuLib" Version="0.4.34" />
+        <PackageReference Include="FuYnAloft.Sts2.MinionLib" Version="0.5.2" />
+        <PackageReference Include="TestTheSpire" Version="0.1.3" />
+        <AdditionalFiles Include="../ManosabaLin/localization/**/*.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <CompilerVisibleProperty Include="GodotProjectDir" />
+    </ItemGroup>
+
+    <Target Name="ExportMainPckForSts2Tests"
+            BeforeTargets="InstallSts2TestMod"
+            Condition="'$(GodotPath)' != '' and Exists('$(GodotPath)')">
+        <MSBuild Projects="../ManosabaLin.csproj"
+                 Targets="ExportPCK"
+                 Properties="Sts2Path=$(Sts2Path);Sts2DataDir=$(Sts2DataDir);GodotPath=$(GodotPath);STS2_SKIP_FMOD_BUILD=1" />
+    </Target>
+</Project>

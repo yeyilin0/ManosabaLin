@@ -40,5 +40,20 @@
   "MANOSABA_LIN_CHARACTER_SHERRYLIN.possessiveAdjective": "그녀의",
   "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounObject": "그녀를",
   "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounPossessive": "그녀의",
-  "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounSubject": "그녀는"
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounSubject": "그녀는",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.title": "Heidemarie",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.titleObject": "Heidemarie",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.description": "Unfinished. Placeholder character for Rest, Link, Bounce, Sword Grave, Aurora Chain, and Mark mechanics.",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.aromaPrinciple": "The aurora is still being assembled.",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.banter.alive.endTurnPing": "The links are holding.",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.banter.dead.endTurnPing": "The mechanism stopped before it was complete.",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.cardsModifierDescription": "Heidemarie cards will appear in rewards and shops",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.cardsModifierTitle": "Heidemarie Cards",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.eventDeathPrevention": "Not yet. The chain is not complete.",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.goldMonologue": "Useful material.",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.possessiveAdjective": "her",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.pronounObject": "her",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.pronounPossessive": "hers",
+  "MANOSABA_LIN_CHARACTER_HEIDEMARIE.pronounSubject": "she"
+
 }
