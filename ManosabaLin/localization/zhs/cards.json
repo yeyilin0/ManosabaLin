@@ -840,7 +840,7 @@
   "MANOSABA_LIN_CARD_CITADEL_AURORA_RELEASE.title": "城曦解放",
   "MANOSABA_LIN_CARD_CITADEL_AURORA_RELEASE.description": "获得能力：回合结束时，弃牌堆内每有{SwordThreshold:diff()}张极光剑或赤光剑，获得{AuroraChainPower:diff()}层极光连锁。升级：降低触发所需剑牌数量。",
   "MANOSABA_LIN_CARD_CRIMSON_EDGE_SLEEP_PACT.title": "朱锋眠弃契",
-  "MANOSABA_LIN_CARD_CRIMSON_EDGE_SLEEP_PACT.description": "弃置1(2)张手牌并为其附加弹回1(2)；被丢弃时生成1(2)张赤光剑；升级：弹回数提高",
+  "MANOSABA_LIN_CARD_CRIMSON_EDGE_SLEEP_PACT.description": "安息，弹回1。弃置{Cards:diff()}张手牌并为其附加弹回{Bounce:diff()}；当本卡从手牌被丢弃时，生成{CrimsonSwords:diff()}张赤光剑。升级：弹回数提高",
   "MANOSABA_LIN_CARD_CRIMSON_EDGE_SLEEP_PACT.selectionScreenPrompt": "选择要弃置的手牌",
   "MANOSABA_LIN_CARD_RETURNING_EDGE_AURORA.title": "归锋吐曦",
   "MANOSABA_LIN_CARD_RETURNING_EDGE_AURORA.description": "获得能力：每有1(2)张弹回卡牌回到手牌时生成1(2)张极光剑；升级：费用降低",

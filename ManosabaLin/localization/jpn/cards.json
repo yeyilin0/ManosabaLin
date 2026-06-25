@@ -837,7 +837,7 @@
   "MANOSABA_LIN_CARD_CITADEL_AURORA_RELEASE.title": "Citadel Aurora Release",
   "MANOSABA_LIN_CARD_CITADEL_AURORA_RELEASE.description": "Gain a power. At end of turn, for every {SwordThreshold:diff()} Aurora Sword or Crimson Sword in your discard pile, gain {AuroraChainPower:diff()} Aurora Chain. Upgrade: lower the sword threshold.",
   "MANOSABA_LIN_CARD_CRIMSON_EDGE_SLEEP_PACT.title": "Crimson Edge Sleep Pact",
-  "MANOSABA_LIN_CARD_CRIMSON_EDGE_SLEEP_PACT.description": "Rest and Bounce. Discard cards with Bounce. When discarded, create Crimson Sword.",
+  "MANOSABA_LIN_CARD_CRIMSON_EDGE_SLEEP_PACT.description": "Rest and Bounce 1. Discard {Cards:diff()} card and give it Bounce {Bounce:diff()}. When this card is discarded from hand, create {CrimsonSwords:diff()} Crimson Sword. Upgrade: more Bounce.",
   "MANOSABA_LIN_CARD_CRIMSON_EDGE_SLEEP_PACT.selectionScreenPrompt": "Choose cards in hand to discard",
   "MANOSABA_LIN_CARD_RETURNING_EDGE_AURORA.title": "Returning Edge Aurora",
   "MANOSABA_LIN_CARD_RETURNING_EDGE_AURORA.description": "Gain a power. Whenever Bounce returns a card to hand, create Aurora Sword.",
