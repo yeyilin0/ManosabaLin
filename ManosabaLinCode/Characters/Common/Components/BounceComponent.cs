@@ -47,6 +47,11 @@ public sealed partial class BounceComponent : KeywordLikeComponent
         Amount -= 1;
         if (Amount <= 0)
             ComponentsCard?.RefRemoveComponent(this);
+
+        await BounceReturnEvents.DispatchReturnedToHand(
+            choiceContext,
+            combatState,
+            new BounceReturnEvent(card.Owner, card, pileType.Value, this));
     }
 
     public override bool TryMergeWith(ICardComponent incoming, ApplyComponentOptions options, out ICardComponent? merged)
