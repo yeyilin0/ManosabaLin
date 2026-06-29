@@ -1,0 +1,119 @@
+﻿// ThirteenWaterIntelPower.cs
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using ManosabaLin.Characters.Common.Powers;
+
+namespace ManosabaLin.Characters.Hiro.Powers;
+
+[RegisterPower]
+public sealed class ThirteenWaterIntelPower : ManosabaPowerTemplate
+{
+    private const int IntelMaxPerTurn = 5;
+    private const int MaxHpIncrease = 50;
+
+    private sealed class Data
+    {
+        public int DeathCount;
+        public int LastTaskFailedCount;
+        public Dictionary<ulong, int> PlayerIntelThisTurn = new();
+    }
+
+    public override PowerType Type => PowerType.Debuff;
+    public override PowerStackType StackType => PowerStackType.Single;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
+
+    protected override object InitInternalData() => new Data();
+    private Data State => GetInternalData<Data>();
+
+    public int LastTaskFailedCount
+    {
+        get => State.LastTaskFailedCount;
+        set => State.LastTaskFailedCount = value;
+    }
+
+    public override bool ShouldDie(Creature creature)
+    {
+        if (creature != Owner) return true;
+        return false;
+    }
+
+    public override async Task AfterPreventingDeath(Creature creature)
+    {
+        if (creature != Owner) return;
+
+        State.DeathCount++;
+
+        if (State.DeathCount == 1)
+        {
+            await PowerCmd.Apply<FusionStandPower>(
+                new ThrowingPlayerChoiceContext(), Owner, 1, Owner, null);
+        }
+
+        foreach (var player in Owner.CombatState.Players)
+        {
+            await CreatureCmd.SetCurrentHp(player.Creature, player.Creature.MaxHp);
+            await RemoveDebuffs(player.Creature);
+        }
+
+        foreach (var power in Owner.Powers.ToList())
+        {
+            if (power.Type == PowerType.Debuff && power != this)
+                await PowerCmd.Remove(power);
+        }
+
+        Owner.SetMaxHpInternal(Owner.MaxHp + MaxHpIncrease);
+        await CreatureCmd.SetCurrentHp(Owner, Owner.MaxHp);
+        await CreatureCmd.GainBlock(Owner, 50, ValueProp.Move, null);
+    }
+
+    private async Task RemoveDebuffs(Creature creature)
+    {
+        foreach (var power in creature.Powers.ToList())
+        {
+            if (power.Type == PowerType.Debuff)
+                await PowerCmd.Remove(power);
+        }
+    }
+
+    public override Decimal ModifyHpLostBeforeOsty(
+        Creature target,
+        Decimal amount,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource)
+    {
+        if (target != Owner) return amount;
+
+        float baseChance = 0.2f + State.DeathCount * 0.1f;
+        var rng = Owner.CombatState.RunState.Rng.CombatTargets;
+        if (rng.NextFloat() >= baseChance) return amount;
+
+        if (dealer?.Player == null) return amount;
+        var player = dealer.Player;
+
+        if (!State.PlayerIntelThisTurn.ContainsKey(player.NetId))
+            State.PlayerIntelThisTurn[player.NetId] = 0;
+        if (State.PlayerIntelThisTurn[player.NetId] >= IntelMaxPerTurn) return amount;
+
+        State.PlayerIntelThisTurn[player.NetId]++;
+
+        _ = PowerCmd.Apply<ThirteenWaterPlayerIntelPower>(
+            new ThrowingPlayerChoiceContext(), dealer, 1, Owner, null);
+
+        return amount;
+    }
+
+    public override async Task BeforeSideTurnStart(
+        PlayerChoiceContext choiceContext, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
+    {
+        if (side != Owner.Side) return;
+        State.PlayerIntelThisTurn.Clear();
+    }
+}

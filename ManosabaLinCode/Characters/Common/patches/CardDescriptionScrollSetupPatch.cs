@@ -1,31 +1,17 @@
 ﻿using Godot;
+using HarmonyLib;
 using MegaCrit.Sts2.addons.mega_text;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
-using STS2RitsuLib.Patching.Models;
 
-namespace  ManosabaLin.Scripts.Patches;
+namespace ManosabaLin.Patches;
 
-
-/// <summary>
-/// 启用卡牌描述内置滚动条，并避免描述文本控件抢走卡牌 hover。
-/// </summary>
-public sealed class CardDescriptionScrollSetupPatch : IPatchMethod
+[HarmonyPatch(typeof(NCard), nameof(NCard._Ready))]
+public static class CardDescriptionScrollSetupPatch
 {
-    public static string PatchId => "your_mod_card_description_scroll_setup";
-
-    public static string Description => "Enable scrolling for overflowing card descriptions";
-
-    public static bool IsCritical => false;
-
-    private const string ScrollInstalledMeta = "YourModDescriptionScrollInstalled";
-
-    public static ModPatchTarget[] GetTargets()
-    {
-        return [new(typeof(NCard), "_Ready")];
-    }
+    private const string ScrollInstalledMeta = "ManosabaLinDescriptionScrollInstalled";
 
     public static void Postfix(NCard __instance)
     {
@@ -37,30 +23,14 @@ public sealed class CardDescriptionScrollSetupPatch : IPatchMethod
 
         descriptionLabel.ScrollActive = true;
         descriptionLabel.ScrollFollowing = false;
-
-        // 不要让描述文本控件抢卡牌命中，否则战斗中 hover/选中会闪烁。
         descriptionLabel.MouseFilter = Control.MouseFilterEnum.Ignore;
-
         descriptionLabel.SetMeta(ScrollInstalledMeta, true);
     }
 }
 
-/// <summary>
-/// 鼠标在卡牌命中框上时，用滚轮滚动该卡牌描述。
-/// </summary>
-public sealed class CardDescriptionHitboxScrollPatch : IPatchMethod
+[HarmonyPatch(typeof(NClickableControl), nameof(NClickableControl._GuiInput))]
+public static class CardDescriptionHitboxScrollPatch
 {
-    public static string PatchId => "your_mod_card_description_hitbox_scroll";
-
-    public static string Description => "Scroll card descriptions from the card hitbox";
-
-    public static bool IsCritical => false;
-
-    public static ModPatchTarget[] GetTargets()
-    {
-        return [new(typeof(NClickableControl), "_GuiInput")];
-    }
-
     public static void Postfix(NClickableControl __instance, InputEvent inputEvent)
     {
         if (!CardDescriptionScrollHelper.TryGetScrollDirection(inputEvent, out double direction))
@@ -95,22 +65,9 @@ public sealed class CardDescriptionHitboxScrollPatch : IPatchMethod
     }
 }
 
-/// <summary>
-/// 已选中卡牌、进入鼠标目标选择阶段后，无论鼠标停在哪里都可滚动中央卡牌描述。
-/// </summary>
-public sealed class SelectedCardDescriptionScrollPatch : IPatchMethod
+[HarmonyPatch(typeof(NMouseCardPlay), nameof(NMouseCardPlay._Input))]
+public static class SelectedCardDescriptionScrollPatch
 {
-    public static string PatchId => "your_mod_selected_card_description_scroll";
-
-    public static string Description => "Scroll the selected card description during mouse targeting";
-
-    public static bool IsCritical => false;
-
-    public static ModPatchTarget[] GetTargets()
-    {
-        return [new(typeof(NMouseCardPlay), "_Input")];
-    }
-
     public static bool Prefix(NMouseCardPlay __instance, InputEvent inputEvent)
     {
         if (!CardDescriptionScrollHelper.TryGetScrollDirection(inputEvent, out double direction))
@@ -156,7 +113,7 @@ internal static class CardDescriptionScrollHelper
         return descriptionLabel is not null && TryScroll(descriptionLabel, direction);
     }
 
-    public static bool TryScroll(MegaRichTextLabel descriptionLabel, double direction)
+    private static bool TryScroll(MegaRichTextLabel descriptionLabel, double direction)
     {
         VScrollBar scrollBar = descriptionLabel.GetVScrollBar();
         double maxValue = Math.Max(scrollBar.MinValue, scrollBar.MaxValue - scrollBar.Page);

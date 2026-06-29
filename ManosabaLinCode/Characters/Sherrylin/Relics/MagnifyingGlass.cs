@@ -56,7 +56,8 @@ public sealed class MagnifyingGlass : ManosabaRelicTemplate
         if (Owner.Creature?.CombatState == null) return;
 
         // 状态/诅咒牌进入消耗堆时直接移除
-        if (card.Type == CardType.Status || card.Type == CardType.Curse)
+        // 状态/诅咒/远古牌进入消耗堆时直接移除
+        if (card.Type == CardType.Status || card.Type == CardType.Curse || card.Rarity == CardRarity.Ancient)
         {
             var exhaustPile = PileType.Exhaust.GetPile(Owner);
             if (exhaustPile.Cards.Contains(card))

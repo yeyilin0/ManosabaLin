@@ -1,165 +1,265 @@
-// using System.Collections.Generic;
-// using System.Threading.Tasks;
-// using ManosabaLin.Characters.Hiro.Powers;
-// using MegaCrit.Sts2.Core.Commands;
-// using MegaCrit.Sts2.Core.Entities.Ascension;
-// using MegaCrit.Sts2.Core.Entities.Creatures;
-// using MegaCrit.Sts2.Core.Entities.Powers;
-// using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-// using MegaCrit.Sts2.Core.Helpers;
-// using MegaCrit.Sts2.Core.Models.Powers;
-// using MegaCrit.Sts2.Core.MonsterMoves.Intents;
-// using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
-// using MegaCrit.Sts2.Core.Nodes.Combat;
-// using MegaCrit.Sts2.Core.ValueProps;
-// using STS2RitsuLib.Interop.AutoRegistration;
-// using STS2RitsuLib.Scaffolding.Content;
-// using STS2RitsuLib.Scaffolding.Godot;
-//
-// namespace ManosabaLin.Characters.Hiro.Monsters;
-//
-// [RegisterMonster]
-// public sealed class GuardThreeMonster : ModMonsterTemplate
-// {
-//     public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 240, 220);
-//     public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 240, 220);
-//
-//     private int StrikeDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 14, 12);
-//     private int CleaveDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 10, 8);
-//     private int ExecuteDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 22, 18);
-//     private int FrailAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 4, 3);
-//     private int WeakAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 3, 2);
-//
-//     public override MonsterAssetProfile AssetProfile => new(
-//         VisualsScenePath: "res://ManosabaLin/scenes/monsters/guard_three.tscn"
-//     );
-//
-//     protected override NCreatureVisuals? TryCreateCreatureVisuals()
-//     {
-//         return RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(
-//             AssetProfile.VisualsScenePath!);
-//     }
-//
-//     protected override MonsterMoveStateMachine GenerateMoveStateMachine()
-//     {
-//         // === Phase 1 (HP > 50%) ===
-//         var strike = new MoveState("STRIKE_MOVE", StrikeMove,
-//             new SingleAttackIntent(StrikeDamage));
-//
-//         var guardUp = new MoveState("GUARD_UP_MOVE", GuardUpMove,
-//             new AbstractIntent[] { new DefendIntent(), new BuffIntent() });
-//
-//         var cleave = new MoveState("CLEAVE_MOVE", CleaveMove,
-//             new MultiAttackIntent(CleaveDamage, 2));
-//
-//         var intimidate = new MoveState("INTIMIDATE_MOVE", IntimidateMove,
-//             new AbstractIntent[] { new DebuffIntent(), new DebuffIntent() });
-//
-//         // === Phase 2 (HP <= 50%) ===
-//         var execute = new MoveState("EXECUTE_MOVE", ExecuteMove,
-//             new SingleAttackIntent(ExecuteDamage));
-//
-//         var warCry = new MoveState("WAR_CRY_MOVE", WarCryMove,
-//             new AbstractIntent[] { new BuffIntent(), new BuffIntent() });
-//
-//         var onslaught = new MoveState("ONSLAUGHT_MOVE", OnslaughtMove,
-//             new AbstractIntent[] { new MultiAttackIntent(StrikeDamage, 3), new DebuffIntent() });
-//
-//         // Phase 1 loop
-//         strike.FollowUpState = guardUp;
-//         guardUp.FollowUpState = cleave;
-//         cleave.FollowUpState = intimidate;
-//         intimidate.FollowUpState = strike;
-//
-//         // Phase 2 loop
-//         execute.FollowUpState = warCry;
-//         warCry.FollowUpState = onslaught;
-//         onslaught.FollowUpState = execute;
-//
-//         var states = new MonsterState[]
-//         {
-//             strike, guardUp, cleave, intimidate,
-//             execute, warCry, onslaught
-//         };
-//
-//         return new MonsterMoveStateMachine(states, strike);
-//     }
-//
-//     public override async Task AfterAddedToRoom()
-//     {
-//         await Task.CompletedTask;
-//         await PowerCmd.Apply<GuardThreePhasePower>(
-//             new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
-//     }
-//
-//     private async Task StrikeMove(IReadOnlyList<Creature> targets)
-//     {
-//         await DamageCmd.Attack(StrikeDamage)
-//             .FromMonster(this)
-//             .WithAttackerFx(null, AttackSfx)
-//             .WithHitFx("vfx/vfx_attack_slash")
-//             .Execute(null);
-//     }
-//
-//     private async Task GuardUpMove(IReadOnlyList<Creature> targets)
-//     {
-//         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
-//         await CreatureCmd.GainBlock(Creature, 15m, ValueProp.Move, null);
-//         await PowerCmd.Apply<StrengthPower>(
-//             new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
-//     }
-//
-//     private async Task CleaveMove(IReadOnlyList<Creature> targets)
-//     {
-//         await DamageCmd.Attack(CleaveDamage)
-//             .FromMonster(this)
-//             .WithAttackerFx(null, AttackSfx)
-//             .WithHitFx("vfx/vfx_attack_slash")
-//             .WithHitCount(2)
-//             .Execute(null);
-//     }
-//
-//     private async Task IntimidateMove(IReadOnlyList<Creature> targets)
-//     {
-//         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
-//         foreach (var target in targets)
-//         {
-//             await PowerCmd.Apply<FrailPower>(
-//                 new ThrowingPlayerChoiceContext(), target, FrailAmount, Creature, null);
-//             await PowerCmd.Apply<WeakPower>(
-//                 new ThrowingPlayerChoiceContext(), target, WeakAmount, Creature, null);
-//         }
-//     }
-//
-//     private async Task ExecuteMove(IReadOnlyList<Creature> targets)
-//     {
-//         await DamageCmd.Attack(ExecuteDamage)
-//             .FromMonster(this)
-//             .WithAttackerFx(null, AttackSfx)
-//             .WithHitFx("vfx/vfx_attack_blunt")
-//             .Execute(null);
-//     }
-//
-//     private async Task WarCryMove(IReadOnlyList<Creature> targets)
-//     {
-//         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
-//         await PowerCmd.Apply<StrengthPower>(
-//             new ThrowingPlayerChoiceContext(), Creature, 3, Creature, null);
-//         await CreatureCmd.GainBlock(Creature, 10m, ValueProp.Move, null);
-//     }
-//
-//     private async Task OnslaughtMove(IReadOnlyList<Creature> targets)
-//     {
-//         await DamageCmd.Attack(StrikeDamage)
-//             .FromMonster(this)
-//             .WithAttackerFx(null, AttackSfx)
-//             .WithHitFx("vfx/vfx_attack_slash")
-//             .WithHitCount(3)
-//             .Execute(null);
-//         foreach (var target in targets)
-//         {
-//             await PowerCmd.Apply<FrailPower>(
-//                 new ThrowingPlayerChoiceContext(), target, FrailAmount, Creature, null);
-//         }
-//     }
-// }
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Ascension;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Extensions;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.MonsterMoves.Intents;
+using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
+using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Scaffolding.Godot;
+using ManosabaLin.Characters.Ema.Afflictions;
+using ManosabaLin.Characters.Hiro.Cards;
+using MegaCrit.Sts2.Core.Helpers;
+using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
+
+namespace ManosabaLin.Characters.Hiro.Monsters;
+
+[RegisterMonster]
+public sealed class GuardThreeMonster : ModMonsterTemplate
+{
+    public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 300, 280);
+    public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 300, 280);
+
+    private int AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 14, 12);
+    private int ErosionDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 16, 14);
+    private int WithAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 40, 30);
+    private int ShieldAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 30, 25);
+    private int JusticeAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 2, 3);
+    private int MaxJustice => 5;
+    private int Phase2SelfDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 20, 15);
+    private int Phase2AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 16, 14);
+    private int _phase2DeathTextCount;
+
+    public override MonsterAssetProfile AssetProfile => new(
+        VisualsScenePath: "res://ManosabaLin/scenes/monsters/guard_three.tscn"
+    );
+
+    protected override NCreatureVisuals? TryCreateCreatureVisuals()
+    {
+        return RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(
+            AssetProfile.VisualsScenePath!);
+    }
+
+    protected override MonsterMoveStateMachine GenerateMoveStateMachine()
+    {
+        var erosionAttack = new MoveState("EROSION_ATTACK", ErosionAttackMove,
+            new SingleAttackIntent(AttackDamage), new CardDebuffIntent());
+
+        var withShield = new MoveState("WITH_SHIELD", WithShieldMove,
+            new BuffIntent(), new DefendIntent());
+
+        var punishErosion = new MoveState("PUNISH_EROSION", PunishErosionMove,
+            new SingleAttackIntent(ErosionDamage), new CardDebuffIntent());
+
+        var increaseJustice = new MoveState("INCREASE_JUSTICE", IncreaseJusticeMove,
+            new BuffIntent(), new DebuffIntent(), new CardDebuffIntent());
+
+        erosionAttack.FollowUpState = withShield;
+        withShield.FollowUpState = punishErosion;
+        punishErosion.FollowUpState = increaseJustice;
+        increaseJustice.FollowUpState = erosionAttack;
+
+        var phase2Attack = new MoveState("PHASE2_ATTACK", Phase2AttackMove,
+            new SingleAttackIntent(Phase2AttackDamage), new BuffIntent());
+
+        var taskMove = new MoveState("TASK_MOVE", TaskMove,
+            new DebuffIntent());
+
+        var addCards = new MoveState("ADD_CARDS", AddCardsMove,
+            new CardDebuffIntent());
+
+        phase2Attack.FollowUpState = taskMove;
+        taskMove.FollowUpState = addCards;
+        addCards.FollowUpState = phase2Attack;
+
+        var states = new MonsterState[]
+        {
+            erosionAttack, withShield, punishErosion, increaseJustice,
+            phase2Attack, taskMove, addCards
+        };
+
+        return new MonsterMoveStateMachine(states, erosionAttack);
+    }
+
+    public override async Task AfterAddedToRoom()
+    {
+        _phase2DeathTextCount = 0;
+
+        await PowerCmd.Apply<UncontrolledJusticePower>(
+            new ThrowingPlayerChoiceContext(), Creature, JusticeAmount, Creature, null);
+    }
+
+    // ========== 阶段1 ==========
+
+    private async Task ErosionAttackMove(IReadOnlyList<Creature> targets)
+    {
+        await DamageCmd.Attack(AttackDamage)
+            .FromMonster(this)
+            .WithAttackerFx(null, AttackSfx)
+            .WithHitFx("vfx/vfx_attack_blunt")
+            .Execute(null);
+
+        foreach (var player in CombatState.Players)
+        {
+            var hand = PileType.Hand.GetPile(player).Cards
+                .Where(c => c.Affliction == null)
+                .ToList();
+            if (hand.Count > 0)
+            {
+                var card = hand[Rng.NextInt(hand.Count)];
+                await CardCmd.AfflictAndPreview<ErosionAffliction>([card], 1, CardPreviewStyle.None);
+            }
+        }
+    }
+
+    private async Task WithShieldMove(IReadOnlyList<Creature> targets)
+    {
+        await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
+        await PowerCmd.Apply<WithPower>(
+            new ThrowingPlayerChoiceContext(), Creature, WithAmount, Creature, null);
+        await CreatureCmd.GainBlock(Creature, ShieldAmount, ValueProp.Move, null);
+    }
+
+    private async Task PunishErosionMove(IReadOnlyList<Creature> targets)
+    {
+        await DamageCmd.Attack(ErosionDamage)
+            .FromMonster(this)
+            .WithAttackerFx(null, AttackSfx)
+            .WithHitFx("vfx/vfx_attack_blunt")
+            .Execute(null);
+
+        foreach (var player in CombatState.Players)
+        {
+            var erodedCards = PileType.Hand.GetPile(player).Cards
+                .Where(c => c.Affliction is ErosionAffliction)
+                .ToList();
+            if (erodedCards.Count == 0) continue;
+
+            await DamageCmd.Attack(ErosionDamage)
+                .FromMonster(this)
+                .Targeting(player.Creature)
+                .WithHitFx("vfx/vfx_attack_blunt")
+                .Execute(null);
+
+            var recorder = player.Creature.GetPower<HerehiroPower>();
+            if (recorder == null)
+            {
+                await PowerCmd.Apply<HerehiroPower>(
+                    new ThrowingPlayerChoiceContext(), player.Creature, 0, Creature, null);
+                recorder = player.Creature.GetPower<HerehiroPower>();
+            }
+
+            foreach (var card in erodedCards)
+            {
+                CardCmd.ClearAffliction(card);
+                recorder!.RememberedCards.Add(card);
+                await CardPileCmd.RemoveFromCombat(card);
+            }
+        }
+    }
+
+    private async Task IncreaseJusticeMove(IReadOnlyList<Creature> targets)
+    {
+        await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
+
+        var justice = Creature.GetPower<UncontrolledJusticePower>();
+        if (justice != null && justice.Amount < MaxJustice)
+        {
+            await PowerCmd.Apply<UncontrolledJusticePower>(
+                new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
+        }
+
+        await PowerCmd.Apply<WithPower>(
+            new ThrowingPlayerChoiceContext(), Creature, WithAmount, Creature, null);
+
+        foreach (var player in CombatState.Players)
+        {
+            await PowerCmd.Apply<WithPower>(
+                new ThrowingPlayerChoiceContext(), player.Creature, WithAmount / 2, Creature, null);
+        }
+
+        int playerCount = CombatState.Players.Count();
+        var topPlayer = CombatState.Players
+            .OrderByDescending(p => p.Creature.GetPower<WithPower>()?.Amount ?? 0)
+            .First();
+
+        var hand = PileType.Hand.GetPile(topPlayer).Cards
+            .Where(c => c.Affliction == null)
+            .ToList();
+        var toErode = hand.OrderBy(_ => Rng.NextFloat()).Take(playerCount).ToList();
+        foreach (var card in toErode)
+            await CardCmd.AfflictAndPreview<ErosionAffliction>([card], 1, CardPreviewStyle.None);
+    }
+
+    // ========== 阶段2 ==========
+
+    private async Task Phase2AttackMove(IReadOnlyList<Creature> targets)
+    {
+        await CreatureCmd.Damage(
+            new ThrowingPlayerChoiceContext(), Creature,
+            Phase2SelfDamage, ValueProp.Unpowered | ValueProp.Unblockable, null, null);
+
+        await DamageCmd.Attack(Phase2AttackDamage)
+            .FromMonster(this)
+            .WithAttackerFx(null, AttackSfx)
+            .WithHitFx("vfx/vfx_attack_blunt")
+            .Execute(null);
+
+        var intelPower = Creature.GetPower<ThirteenWaterIntelPower>();
+        if (intelPower != null)
+        {
+            int failedCount = intelPower.LastTaskFailedCount;
+            for (int i = 0; i < failedCount; i++)
+            {
+                var players = CombatState.Players.Where(p => p.Creature.IsAlive).ToList();
+                if (players.Count > 0)
+                {
+                    var target = players[Rng.NextInt(players.Count)];
+                    await CreatureCmd.Damage(
+                        new ThrowingPlayerChoiceContext(), target.Creature,
+                        Phase2AttackDamage / 2, ValueProp.Move, Creature, null);
+                }
+            }
+        }
+    }
+
+    private async Task TaskMove(IReadOnlyList<Creature> targets)
+    {
+        await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
+
+        foreach (var player in CombatState.Players.Where(p => p.Creature.IsAlive))
+        {
+            await PowerCmd.Apply<ThirteenWaterTaskPower>(
+                new ThrowingPlayerChoiceContext(), player.Creature, 0, Creature, null);
+        }
+    }
+
+    private async Task AddCardsMove(IReadOnlyList<Creature> targets)
+    {
+        await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
+
+        foreach (var player in CombatState.Players)
+        {
+            var card = CombatState.CreateCard<WitchMark>(player);
+            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
+        }
+    }
+
+    public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented,
+        float deathAnimLength)
+    {
+        if (creature == Creature && !wasRemovalPrevented)
+        {
+            _phase2DeathTextCount++;
+            GuardThreeWrongTextVfx.Spawn(Creature, _phase2DeathTextCount + 1);
+        }
+
+        return Task.CompletedTask;
+    }
+}

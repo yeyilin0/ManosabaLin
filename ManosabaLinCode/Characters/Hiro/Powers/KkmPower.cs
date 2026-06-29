@@ -1,14 +1,11 @@
 ﻿using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
-using MegaCrit.Sts2.Core.ValueProps;
 using System.Linq;
 using System.Threading.Tasks;
 using ManosabaLin.Characters.Common;
@@ -21,56 +18,54 @@ public class KkmPower : ManosabaPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    public override async Task AfterSideTurnStart(
+        CombatSide side,
+        IReadOnlyList<Creature> participants,
+        ICombatState combatState)
     {
-        if (player != Owner.Player) return;
+        if (!participants.Contains(Owner)) return;
 
         Flash();
 
-        var enemies = Owner.CombatState.Creatures
+        var firstEnemy = combatState.Creatures
             .Where(e => e.IsEnemy && e.IsAlive && e.Monster != null)
-            .ToList();
+            .FirstOrDefault();
 
-        foreach (var enemy in enemies)
+        if (firstEnemy == null) return;
+
+        foreach (var intent in firstEnemy.Monster.NextMove.Intents)
         {
-            foreach (var intent in enemy.Monster.NextMove.Intents)
+            switch (intent.IntentType)
             {
-                switch (intent.IntentType)
-                {
-                    case IntentType.Attack:
-                    case IntentType.DeathBlow:
-                        Owner.GainBlockInternal(5m * Amount);
-                        break;
+                case IntentType.Attack:
+                case IntentType.DeathBlow:
+                    Owner.GainBlockInternal(5m);
+                    break;
 
-                    case IntentType.Defend:
-                    case IntentType.Buff:
-                        await PowerCmd.Apply<StrengthPower>(
-                            choiceContext, Owner, 1m * Amount,
+                case IntentType.Defend:
+                case IntentType.Buff:
+                    await PowerCmd.Apply<StrengthPower>(
+                        new ThrowingPlayerChoiceContext(), Owner, 1m,
+                        Owner, null, false);
+                    break;
+
+                case IntentType.Debuff:
+                    await PowerCmd.Apply<DexterityPower>(
+                        new ThrowingPlayerChoiceContext(), Owner, 1m,
+                        Owner, null, false);
+                    break;
+
+                default:
+                    foreach (var target in combatState.Creatures.Where(c => c.IsEnemy && c.IsAlive))
+                    {
+                        await PowerCmd.Apply<WeakPower>(
+                            new ThrowingPlayerChoiceContext(), target, 1m,
                             Owner, null, false);
-                        break;
-
-                    case IntentType.Debuff:
-                        await PowerCmd.Apply<DexterityPower>(
-                            choiceContext, Owner, 1m * Amount,
-                            Owner, null, false);
-                        break;
-
-                    default:
-                        var validTargets = Owner.CombatState.Creatures
-                            .Where(c => c.IsEnemy && c.IsAlive).ToList();
-                        if (validTargets.Any())
-                        {
-                            var target = validTargets[new System.Random().Next(validTargets.Count)];
-                            await PowerCmd.Apply<WeakPower>(
-                                choiceContext, target, 1m * Amount,
-                                Owner, null, false);
-                        }
-                        break;
-                }
+                    }
+                    break;
             }
         }
 
-        // 触发完移除一层
         await PowerCmd.Decrement(this);
     }
 }

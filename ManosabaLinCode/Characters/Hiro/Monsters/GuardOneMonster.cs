@@ -60,7 +60,7 @@ public sealed class GuardOneMonster : ModMonsterTemplate
             new DebuffIntent());
 
         var debuffShield = new MoveState("DEBUFF_SHIELD_MOVE", DebuffShieldMove,
-            new DebuffIntent());
+            new AbstractIntent[] { new DebuffIntent(), new DefendIntent() });
 
         var mark = new MoveState("MARK_MOVE", MarkMove,
             new AbstractIntent[] { new SingleAttackIntent(MarkDamage), new CardDebuffIntent() });
@@ -133,6 +133,11 @@ public sealed class GuardOneMonster : ModMonsterTemplate
             await PowerCmd.Apply<VulnerablePower>(
                 new ThrowingPlayerChoiceContext(), target, VulnerableAmount, Creature, null);
         }
+
+        var withPower = Creature.GetPower<WithPower>();
+        var shieldAmount = (withPower?.Amount ?? 0m) / 2m;
+        if (shieldAmount > 0)
+            await CreatureCmd.GainBlock(Creature, shieldAmount, ValueProp.Move, null);
     }
 
     private async Task MarkMove(IReadOnlyList<Creature> targets)
@@ -218,6 +223,7 @@ public sealed class GuardOneMonster : ModMonsterTemplate
         {
             RunManager.Instance.State?.Acts.ElementAtOrDefault(2)?._rooms.Ancient = ModelDb.AncientEvent<WitchoftheIsland>();
             RunManager.Instance.State?.Acts.ElementAtOrDefault(1)?.SetBossEncounter(ModelDb.Get<GuardTwoBossEncounter>());
+            RunManager.Instance.State?.Acts.ElementAtOrDefault(2)?.SetBossEncounter(ModelDb.Get<GuardThreeEncounter>());
         }
         return Task.CompletedTask;
     }

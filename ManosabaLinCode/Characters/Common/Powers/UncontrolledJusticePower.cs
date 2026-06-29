@@ -1,0 +1,68 @@
+﻿// UncontrolledJusticePower.cs
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
+using MegaCrit.Sts2.Core.Models;
+using STS2RitsuLib.Interop.AutoRegistration;
+using System.Threading.Tasks;
+using HarmonyLib;
+
+namespace ManosabaLin.Characters.Hiro.Powers;
+
+[RegisterPower]
+public sealed class UncontrolledJusticePower : ManosabaPowerTemplate
+{
+    public override PowerType Type => PowerType.Debuff;
+    public override PowerStackType StackType => PowerStackType.Counter;
+}
+
+[HarmonyPatch(typeof(MonsterModel), nameof(MonsterModel.PerformMove))]
+public static class UncontrolledJusticeDoubleTriggerPatch
+{
+    [ThreadStatic] private static bool _isExtraTrigger;
+
+    [HarmonyPrefix]
+    public static void Prefix(MonsterModel __instance, out MoveState? __state)
+    {
+        __state = null;
+        if (_isExtraTrigger) return;
+
+        var power = __instance.Creature.GetPower<UncontrolledJusticePower>();
+        if (power == null) return;
+
+        var rng = __instance.RunRng.CombatTargets;
+        if (rng.NextFloat() >= power.Amount / 100f) return;
+
+        __state = __instance.NextMove;
+    }
+
+    [HarmonyPostfix]
+    public static void Postfix(MonsterModel __instance, MoveState? __state, ref Task __result)
+    {
+        if (__state == null) return;
+        if (__state.Id.Contains("PHASE2")) return;
+
+        __result = PerformExtraMoveAfterOriginal(__result, __instance, __state);
+    }
+
+    private static async Task PerformExtraMoveAfterOriginal(
+        Task originalMoveTask,
+        MonsterModel monster,
+        MoveState extraMove)
+    {
+        await originalMoveTask;
+        if (monster.Creature.IsDead) return;
+        if (monster.Creature.GetPower<UncontrolledJusticePower>() == null) return;
+
+        _isExtraTrigger = true;
+        try
+        {
+            monster.SetMoveImmediate(extraMove, forceTransition: true);
+            await monster.PerformMove();
+        }
+        finally
+        {
+            _isExtraTrigger = false;
+        }
+    }
+}

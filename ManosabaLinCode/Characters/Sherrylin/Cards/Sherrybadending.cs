@@ -4,7 +4,6 @@ using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Sherrylin;
 using ManosabaLin.Characters.Sherrylin.Components;
 using ManosabaLin.Characters.Sherrylin.Powers;
-using ManosabaLin.Scripts;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
@@ -32,7 +31,7 @@ public sealed class Sherrybadending : ManosabaCardTemplate
 
     public override int MaxUpgradeLevel => 0;
 
-    protected override HashSet<CardTag> CanonicalTags => [MyTags.Eternal];
+
 
     // ===== 拦截翻案给的 XlmPower =====
     protected override async Task AfterPowerAmountChanged(
@@ -173,4 +172,3 @@ public sealed class Sherrybadending : ManosabaCardTemplate
         }
     }
     }
-

@@ -2,6 +2,7 @@ using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Sherrylin.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -9,6 +10,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System;
@@ -17,9 +19,6 @@ using System.Linq;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
-/// <summary>
-/// 魔女之拳：攻击敌人，可消耗怪力卡或移除怪力能力，获得带保留的愚者。
-/// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class WitchsFist() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
@@ -44,7 +43,6 @@ public sealed class WitchsFist() : ManosabaCardTemplate(1, CardType.Attack, Card
         var target = cardPlay.Target;
         ArgumentNullException.ThrowIfNull(target);
 
-        // 攻击目标
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
             .FromCard(source)
@@ -52,44 +50,52 @@ public sealed class WitchsFist() : ManosabaCardTemplate(1, CardType.Attack, Card
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        // 从牌组中搜索怪力卡牌
-        var deckCards = PileType.Deck.GetPile(source.Owner).Cards.Where(c => c is SuperStrength).ToList();
-
-        // 选择 0~1 张怪力移除（可不选）
+        var player = source.Owner;
         var cardRemoved = false;
-        if (deckCards.Count > 0)
+        var powerRemoved = false;
+
+        // 从手牌、弃牌堆、抽牌堆中选 SuperStrength 移除
+        var combatSuperStrengths = new[] { PileType.Hand, PileType.Discard, PileType.Draw }
+            .SelectMany(p => p.GetPile(player).Cards)
+            .Where(c => c is SuperStrength)
+            .ToList();
+
+        if (combatSuperStrengths.Count > 0)
         {
             var prefs = new CardSelectorPrefs(source.SelectionScreenPrompt, 0, 1);
             var selected = await CardSelectCmd.FromSimpleGrid(
-                choiceContext, deckCards, source.Owner, prefs
+                choiceContext, combatSuperStrengths, player, prefs
             );
 
             var card = selected.FirstOrDefault();
             if (card != null)
             {
-                // 从牌组永久移除
-                await CardPileCmd.RemoveFromDeck(card);
-
-                // 同时移除局内对应卡牌
-                var combatPiles = new[] { PileType.Draw, PileType.Hand, PileType.Discard, PileType.Exhaust };
-                foreach (var pileType in combatPiles)
-                {
-                    var pileCards = pileType.GetPile(source.Owner).Cards.Where(c => c is SuperStrength).ToList();
-                    foreach (var pileCard in pileCards)
-                        await CardPileCmd.RemoveFromCombat(pileCard);
-                }
-
+                await CardPileCmd.RemoveFromCombat(card);
                 cardRemoved = true;
             }
         }
 
-        // 移除怪力能力
-        var hasSuperStrengthPower = source.Owner.Creature.GetPower<SuperStrengthPower>() != null;
-        if (hasSuperStrengthPower)
+        // 移除自身 SuperStrengthPower
+        if (source.Owner.Creature.GetPower<SuperStrengthPower>() != null)
+        {
             await PowerCmd.Remove<SuperStrengthPower>(source.Owner.Creature);
+            powerRemoved = true;
+        }
 
-        // 如果移除了卡牌或移除了能力，加入一张带保留的愚者
-        if (cardRemoved || hasSuperStrengthPower)
+        // 战斗结束后移除牌组中所有 SuperStrength
+        CombatManager.Instance.CombatEnded += OnCombatEnded;
+        async void OnCombatEnded(CombatRoom room)
+        {
+            CombatManager.Instance.CombatEnded -= OnCombatEnded;
+
+            var deckCards = PileType.Deck.GetPile(player).Cards
+                .Where(c => c is SuperStrength).ToList();
+            foreach (var c in deckCards)
+                await CardPileCmd.RemoveFromDeck(c, showPreview: false);
+        }
+
+        // 如果移除了卡或能力，获得带保留的愚者
+        if (cardRemoved || powerRemoved)
         {
             var fool = source.CombatState.CreateCard<TheFool>(source.Owner);
             fool.AddKeyword(CardKeyword.Retain);

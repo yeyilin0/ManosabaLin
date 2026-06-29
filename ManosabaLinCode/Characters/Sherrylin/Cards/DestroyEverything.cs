@@ -203,5 +203,6 @@ public sealed class DestroyEverything() : ManosabaCardTemplate(3, CardType.Attac
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
+        EnergyCost.UpgradeBy(-1);
     }
 }

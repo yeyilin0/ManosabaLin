@@ -15,10 +15,6 @@ using System.Threading.Tasks;
 
 namespace ManosabaLin.Characters.Sherrylin.Powers;
 
-/// <summary>
-/// 冲击：回合开始时失去等于层数的血量。
-/// 拥有者被攻击时，额外受到层数一半的伤害。
-/// </summary>
 [RegisterPower]
 public sealed class ShockwavePower : ManosabaPowerTemplate, IHealthBarForecastSource
 {
@@ -44,23 +40,28 @@ public sealed class ShockwavePower : ManosabaPowerTemplate, IHealthBarForecastSo
     }
 
     // ========== 被攻击时额外受到伤害 ==========
-    public override decimal ModifyHpLostBeforeOsty(
+    public override async Task BeforeDamageReceived(
+        PlayerChoiceContext choiceContext,
         Creature target,
-        decimal amount,
+        Decimal amount,
         ValueProp props,
         Creature? dealer,
         CardModel? cardSource)
     {
-        // 只有拥有者是受伤目标时才生效
-        if (target != Owner)
-            return amount;
+        if (target != Owner) return;
+        if (!props.IsPoweredAttack()) return;
 
-        // 只对攻击伤害生效
-        if (!props.IsPoweredAttack())
-            return amount;
+        var extraDamage = (int)Math.Ceiling(Amount / 2m);
+        if (extraDamage <= 0) return;
 
-        // 额外受到层数一半的伤害（向上取整）
-        return amount + (int)Math.Ceiling(Amount / 2m);
+        Flash();
+        await CreatureCmd.Damage(
+            choiceContext,
+            Owner,
+            extraDamage,
+            ValueProp.Move,
+            dealer,
+            cardSource);
     }
 
     // ========== 血条预测 ==========

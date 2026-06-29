@@ -1,23 +1,23 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://mb8od2r7n0p3"]
 
-[ext_resource type="Texture2D" uid="uid://cn3a6mqpbg4mq" path="res://ManosabaLin/images/monsters/guard_one.png" id="1_placeholder"]
+[ext_resource type="Texture2D" uid="uid://bcmjy671yt572" path="res://ManosabaLin/images/monsters/guard_three.png" id="CompressedTexture2D_igs0y"]
 
 [node name="GuardThree" type="Node2D"]
 
 [node name="Visuals" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(4.9348755, -200.95233)
-scale = Vector2(0.20365584, 0.22138646)
-texture = ExtResource("1_placeholder")
+position = Vector2(-9.000002, -294.00003)
+scale = Vector2(0.23440138, 0.20554839)
+texture = ExtResource("CompressedTexture2D_igs0y")
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 0
-offset_left = -182.0
-offset_top = -570.0
-offset_right = 205.0
-offset_bottom = 170.0
+offset_left = -290.0
+offset_top = -587.0
+offset_right = 239.0
+offset_bottom = 140.0
 
 [node name="IntentPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
@@ -25,7 +25,7 @@ position = Vector2(-3.8497314, -583.08246)
 
 [node name="CenterPos" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -250)
+position = Vector2(-5.8015137, -192.5856)
 
 [node name="TalkPos" type="Marker2D" parent="."]
 unique_name_in_owner = true

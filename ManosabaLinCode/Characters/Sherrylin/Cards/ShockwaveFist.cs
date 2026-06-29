@@ -36,7 +36,7 @@ public sealed class ShockwaveFist() : ManosabaCardTemplate(1, CardType.Attack, C
 
         // 给予敌人10层冲击
         await PowerCmd.Apply<ShockwavePower>(
-            choiceContext, target, 5,
+            choiceContext, target, 10,
             source.Owner.Creature, source, false);
 
         // 自己失去1点生命

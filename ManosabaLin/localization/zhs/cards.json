@@ -228,6 +228,8 @@
   "MANOSABA_LIN_CARD_AAM.description": "获得3层[b]【嫌疑】[/b]，选择1个敌人获得\n[color=#6666cc]【夏目安安的魔法】[/color]",
   "MANOSABA_LIN_CARD_WITCH_MARK.title": "魔女印记",
   "MANOSABA_LIN_CARD_WITCH_MARK.description": "回合结束时若在手牌中，获得{WithPower:diff()}层[b]【魔女化】[/b]",
+  "MANOSABA_LIN_CARD_THIRTEEN_WATER.title": "13水",
+  "MANOSABA_LIN_CARD_THIRTEEN_WATER.description": "Boss不能再复活。将Boss当前生命减半。\n清除其他玩家手牌中的[b]13水[/b]。",
   "MANOSABA_LIN_CARD_WITCH_BURN.title": "魔女灼烧",
   "MANOSABA_LIN_CARD_WITCH_BURN.description": "回合开始时返回手牌\n回合结束时对自己造成{Damage}点伤害",
   "MANOSABA_LIN_CARD_NYM_SLASH.title": "诺亚的协力",
