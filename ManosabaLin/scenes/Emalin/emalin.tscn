@@ -1,14 +1,258 @@
-[gd_scene load_steps=2 format=3 uid="uid://lhijhq7rmh4y"]
+[gd_scene load_steps=61 format=3 uid="uid://lhijhq7rmh4y"]
 
-[ext_resource type="Texture2D" uid="uid://crrdiblbka77n" path="res://ManosabaLin/images/characters/Emalin/emalin_char_visual.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://b4wx0cvaunq10" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0001.png" id="1_ema"]
+[ext_resource type="Texture2D" uid="uid://c3gdvu2mcqw7l" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0002.png" id="2_ema"]
+[ext_resource type="Texture2D" uid="uid://b4o5g2k48yuh" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0003.png" id="3_ema"]
+[ext_resource type="Texture2D" uid="uid://u5btg7v4wbj1" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0004.png" id="4_ema"]
+[ext_resource type="Texture2D" uid="uid://bag6p8d6qgko1" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0005.png" id="5_ema"]
+[ext_resource type="Texture2D" uid="uid://cntr3r3m22x4w" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0006.png" id="6_ema"]
+[ext_resource type="Texture2D" uid="uid://d0h184e5iljyq" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0007.png" id="7_ema"]
+[ext_resource type="Texture2D" uid="uid://2upiorr8e0qc" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0008.png" id="8_ema"]
+[ext_resource type="Texture2D" uid="uid://bca15hwbck45u" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0009.png" id="9_ema"]
+[ext_resource type="Texture2D" uid="uid://c6y64u3mu2exu" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0010.png" id="10_ema"]
+[ext_resource type="Texture2D" uid="uid://d3ynwlnjt4amg" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0011.png" id="11_ema"]
+[ext_resource type="Texture2D" uid="uid://d2y0t66xamm6g" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0012.png" id="12_ema"]
+[ext_resource type="Texture2D" uid="uid://b32lx8ufed1v2" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0013.png" id="13_ema"]
+[ext_resource type="Texture2D" uid="uid://dbh002234lo6w" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0014.png" id="14_ema"]
+[ext_resource type="Texture2D" uid="uid://c7e6v83n5q51n" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0015.png" id="15_ema"]
+[ext_resource type="Texture2D" uid="uid://kfni1yx71equ" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0016.png" id="16_ema"]
+[ext_resource type="Texture2D" uid="uid://dy6flhdr16elu" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0017.png" id="17_ema"]
+[ext_resource type="Texture2D" uid="uid://bd8ttexs6wk3r" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0018.png" id="18_ema"]
+[ext_resource type="Texture2D" uid="uid://cyvohssgjbnkc" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0019.png" id="19_ema"]
+[ext_resource type="Texture2D" uid="uid://bttg8k7g77nou" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0020.png" id="20_ema"]
+[ext_resource type="Texture2D" uid="uid://cocdpbmxr1x1v" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0021.png" id="21_ema"]
+[ext_resource type="Texture2D" uid="uid://bj4c3regc8wtb" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0022.png" id="22_ema"]
+[ext_resource type="Texture2D" uid="uid://gcdv8pa3klep" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0023.png" id="23_ema"]
+[ext_resource type="Texture2D" uid="uid://b4gqa35rd4wre" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0024.png" id="24_ema"]
+[ext_resource type="Texture2D" uid="uid://duyffo1vesy6s" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0025.png" id="25_ema"]
+[ext_resource type="Texture2D" uid="uid://bmj7r3101kxkk" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0026.png" id="26_ema"]
+[ext_resource type="Texture2D" uid="uid://b73wiko0y6yyv" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0027.png" id="27_ema"]
+[ext_resource type="Texture2D" uid="uid://cktta5x43tycf" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0028.png" id="28_ema"]
+[ext_resource type="Texture2D" uid="uid://cgq0piewir7xl" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0029.png" id="29_ema"]
+[ext_resource type="Texture2D" uid="uid://vgept60eeahh" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0030.png" id="30_ema"]
+[ext_resource type="Texture2D" uid="uid://blie4xldpbygn" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0031.png" id="31_ema"]
+[ext_resource type="Texture2D" uid="uid://db8muxvmhv3hy" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0032.png" id="32_ema"]
+[ext_resource type="Texture2D" uid="uid://beaq4d6887x0q" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0033.png" id="33_ema"]
+[ext_resource type="Texture2D" uid="uid://ga80wes35p22" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0034.png" id="34_ema"]
+[ext_resource type="Texture2D" uid="uid://6h1kfm7ghfwj" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0035.png" id="35_ema"]
+[ext_resource type="Texture2D" uid="uid://vxylaa1hi012" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0036.png" id="36_ema"]
+[ext_resource type="Texture2D" uid="uid://r18gvrqxltny" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0037.png" id="37_ema"]
+[ext_resource type="Texture2D" uid="uid://crfpkjs06f3yq" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0038.png" id="38_ema"]
+[ext_resource type="Texture2D" uid="uid://vxv7rmvbar7d" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0039.png" id="39_ema"]
+[ext_resource type="Texture2D" uid="uid://c0loeuf67ps0b" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0040.png" id="40_ema"]
+[ext_resource type="Texture2D" uid="uid://bjtnf28hwmfvp" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0041.png" id="41_ema"]
+[ext_resource type="Texture2D" uid="uid://cwgaicwmqqom6" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0042.png" id="42_ema"]
+[ext_resource type="Texture2D" uid="uid://dv2ber655ia0n" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0043.png" id="43_ema"]
+[ext_resource type="Texture2D" uid="uid://dor7r3pwqro8r" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0044.png" id="44_ema"]
+[ext_resource type="Texture2D" uid="uid://bmrr4u50y7l0" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0045.png" id="45_ema"]
+[ext_resource type="Texture2D" uid="uid://c8xaq411484aa" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0046.png" id="46_ema"]
+[ext_resource type="Texture2D" uid="uid://bpl18lrcjdqf0" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0047.png" id="47_ema"]
+[ext_resource type="Texture2D" uid="uid://bv6uw3lu5jgns" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0048.png" id="48_ema"]
+[ext_resource type="Texture2D" uid="uid://bt5mpy3v3ii0" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0049.png" id="49_ema"]
+[ext_resource type="Texture2D" uid="uid://v72qjh6yfkfw" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0050.png" id="50_ema"]
+[ext_resource type="Texture2D" uid="uid://co5mctcp3g3hk" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0051.png" id="51_ema"]
+[ext_resource type="Texture2D" uid="uid://c3dcp4e18qcmg" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0052.png" id="52_ema"]
+[ext_resource type="Texture2D" uid="uid://db1qtrq6llynn" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0053.png" id="53_ema"]
+[ext_resource type="Texture2D" uid="uid://c06encjex1yf3" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0054.png" id="54_ema"]
+[ext_resource type="Texture2D" uid="uid://c4evq5wmrplh0" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0055.png" id="55_ema"]
+[ext_resource type="Texture2D" uid="uid://blljpdbvt7de2" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0056.png" id="56_ema"]
+[ext_resource type="Texture2D" uid="uid://cw615te2bdg72" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0057.png" id="57_ema"]
+[ext_resource type="Texture2D" uid="uid://nwt4fjeam83h" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0058.png" id="58_ema"]
+[ext_resource type="Texture2D" uid="uid://dllk6t4iavmb1" path="res://ManosabaLin/images/characters/Emalin/ema_16fps_minloop59_nodup_fullclip/ema_0059.png" id="59_ema"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ema_idle"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_ema")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_ema")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
 
 [node name="Emalin" type="Node2D"]
 
-[node name="Visuals" type="Sprite2D" parent="."]
+[node name="Visuals" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-4.999999, -202.00002)
-scale = Vector2(0.2795677, 0.27956766)
-texture = ExtResource("1")
+position = Vector2(4, -193.99998)
+scale = Vector2(0.40723512, 0.42413378)
+sprite_frames = SubResource("SpriteFrames_ema_idle")
+autoplay = "default"
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

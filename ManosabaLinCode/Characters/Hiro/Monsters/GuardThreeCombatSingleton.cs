@@ -44,7 +44,7 @@ public sealed class GuardThreeCombatSingleton : SingletonModel
         await PowerCmd.Apply<ThirteenWaterIntelPower>(
             new ThrowingPlayerChoiceContext(), creature, 1, creature, null);
 
-        GuardThreeWrongTextVfx.Spawn(creature, 1);
+        await monster.EnterPhaseTwo();
 
         if (monster.MoveStateMachine?.States.TryGetValue("PHASE2_ATTACK", out var move) == true &&
             move is MoveState moveState)

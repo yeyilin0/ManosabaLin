@@ -1,15 +1,266 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmqkxjxdccrky"]
+[gd_scene load_steps=63 format=3 uid="uid://cmqkxjxdccrky"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_adbnn"]
-load_path = "res://.godot/imported/NikaidoHiro.png-d7d841a82d7163c583fc78464f3f77e3.ctex"
+[ext_resource type="Texture2D" uid="uid://oh5adrvmpfp3" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0001.png" id="1_hiro"]
+[ext_resource type="Texture2D" uid="uid://ddwy4tslr8gvk" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0002.png" id="2_hiro"]
+[ext_resource type="Texture2D" uid="uid://cdm823c2v4k7u" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0003.png" id="3_hiro"]
+[ext_resource type="Texture2D" uid="uid://buugi3mugldtj" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0004.png" id="4_hiro"]
+[ext_resource type="Texture2D" uid="uid://bflgfcclxgrpl" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0005.png" id="5_hiro"]
+[ext_resource type="Texture2D" uid="uid://chefnm024cpso" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0006.png" id="6_hiro"]
+[ext_resource type="Texture2D" uid="uid://pwy2mni5gi1b" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0007.png" id="7_hiro"]
+[ext_resource type="Texture2D" uid="uid://di0g04vuytlop" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0008.png" id="8_hiro"]
+[ext_resource type="Texture2D" uid="uid://deeyergwo7cd2" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0009.png" id="9_hiro"]
+[ext_resource type="Texture2D" uid="uid://bcld5rnq1pks6" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0010.png" id="10_hiro"]
+[ext_resource type="Texture2D" uid="uid://daf15lod85igo" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0011.png" id="11_hiro"]
+[ext_resource type="Texture2D" uid="uid://gpryr2imfmf4" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0012.png" id="12_hiro"]
+[ext_resource type="Texture2D" uid="uid://wsw3fgfwju2o" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0013.png" id="13_hiro"]
+[ext_resource type="Texture2D" uid="uid://d026sghdxplml" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0014.png" id="14_hiro"]
+[ext_resource type="Texture2D" uid="uid://of13wx2e55hf" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0015.png" id="15_hiro"]
+[ext_resource type="Texture2D" uid="uid://q2cq3sfme7af" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0016.png" id="16_hiro"]
+[ext_resource type="Texture2D" uid="uid://copg0ghj1dvrb" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0017.png" id="17_hiro"]
+[ext_resource type="Texture2D" uid="uid://bmvjne6kt8hjr" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0018.png" id="18_hiro"]
+[ext_resource type="Texture2D" uid="uid://dwvj8sc0tss4f" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0019.png" id="19_hiro"]
+[ext_resource type="Texture2D" uid="uid://c27f7v5d4hwo" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0020.png" id="20_hiro"]
+[ext_resource type="Texture2D" uid="uid://bo0bngf6baki2" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0021.png" id="21_hiro"]
+[ext_resource type="Texture2D" uid="uid://cwe32pwkasrup" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0022.png" id="22_hiro"]
+[ext_resource type="Texture2D" uid="uid://cirfir7s1xqay" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0023.png" id="23_hiro"]
+[ext_resource type="Texture2D" uid="uid://di0xitkocf5j4" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0024.png" id="24_hiro"]
+[ext_resource type="Texture2D" uid="uid://bt4qyhky8pirr" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0025.png" id="25_hiro"]
+[ext_resource type="Texture2D" uid="uid://drcne3ctlstqi" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0026.png" id="26_hiro"]
+[ext_resource type="Texture2D" uid="uid://ckacgx7s1rafh" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0027.png" id="27_hiro"]
+[ext_resource type="Texture2D" uid="uid://b7aciey7sfg77" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0028.png" id="28_hiro"]
+[ext_resource type="Texture2D" uid="uid://ciy3ei6ifr8ve" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0029.png" id="29_hiro"]
+[ext_resource type="Texture2D" uid="uid://8k2i5p2hcs1q" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0030.png" id="30_hiro"]
+[ext_resource type="Texture2D" uid="uid://c3x7t21x7hrh5" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0031.png" id="31_hiro"]
+[ext_resource type="Texture2D" uid="uid://4vd65ar278do" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0032.png" id="32_hiro"]
+[ext_resource type="Texture2D" uid="uid://c8s3l0lrdfgvk" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0033.png" id="33_hiro"]
+[ext_resource type="Texture2D" uid="uid://flnsdfn0suvb" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0034.png" id="34_hiro"]
+[ext_resource type="Texture2D" uid="uid://svyjm2jhmbwj" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0035.png" id="35_hiro"]
+[ext_resource type="Texture2D" uid="uid://cmlo0gf6uc7ya" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0036.png" id="36_hiro"]
+[ext_resource type="Texture2D" uid="uid://c7b2hgrdqv3a2" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0037.png" id="37_hiro"]
+[ext_resource type="Texture2D" uid="uid://msjjfjl1wx1o" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0038.png" id="38_hiro"]
+[ext_resource type="Texture2D" uid="uid://duawxvr5he6bg" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0039.png" id="39_hiro"]
+[ext_resource type="Texture2D" uid="uid://cmq7ssplkdnu0" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0040.png" id="40_hiro"]
+[ext_resource type="Texture2D" uid="uid://b7b53s3aq0dcp" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0041.png" id="41_hiro"]
+[ext_resource type="Texture2D" uid="uid://de2xhucvj0kg4" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0042.png" id="42_hiro"]
+[ext_resource type="Texture2D" uid="uid://cwnw85o6hdohc" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0043.png" id="43_hiro"]
+[ext_resource type="Texture2D" uid="uid://beykpkj2dfunj" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0044.png" id="44_hiro"]
+[ext_resource type="Texture2D" uid="uid://bubbth5qihcst" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0045.png" id="45_hiro"]
+[ext_resource type="Texture2D" uid="uid://csqldu2wx6hby" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0046.png" id="46_hiro"]
+[ext_resource type="Texture2D" uid="uid://chbvrfingb8yb" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0047.png" id="47_hiro"]
+[ext_resource type="Texture2D" uid="uid://d2c4y7xp5ltka" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0048.png" id="48_hiro"]
+[ext_resource type="Texture2D" uid="uid://rr3e5uhim0qp" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0049.png" id="49_hiro"]
+[ext_resource type="Texture2D" uid="uid://b0su7ycw6lvah" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0050.png" id="50_hiro"]
+[ext_resource type="Texture2D" uid="uid://c4si0rx6iwjei" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0051.png" id="51_hiro"]
+[ext_resource type="Texture2D" uid="uid://bdlvqmfh7rtpk" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0052.png" id="52_hiro"]
+[ext_resource type="Texture2D" uid="uid://6nh4gr2h6h5t" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0053.png" id="53_hiro"]
+[ext_resource type="Texture2D" uid="uid://brep2b5vwhs0" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0054.png" id="54_hiro"]
+[ext_resource type="Texture2D" uid="uid://dck2fx0q3dba5" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0055.png" id="55_hiro"]
+[ext_resource type="Texture2D" uid="uid://dv0adcagjps1a" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0056.png" id="56_hiro"]
+[ext_resource type="Texture2D" uid="uid://dwrgrmbaeop47" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0057.png" id="57_hiro"]
+[ext_resource type="Texture2D" uid="uid://b00sqiildhjkp" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0058.png" id="58_hiro"]
+[ext_resource type="Texture2D" uid="uid://d0ri4iw04awv8" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0059.png" id="59_hiro"]
+[ext_resource type="Texture2D" uid="uid://b4waftg7h8r63" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0060.png" id="60_hiro"]
+[ext_resource type="Texture2D" uid="uid://d2tqudqnssgca" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0061.png" id="61_hiro"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hiro_idle"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_hiro")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_hiro")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
 
 [node name="NikaidoHiro" type="Node2D"]
 
-[node name="Visuals" type="Sprite2D" parent="."]
+[node name="Visuals" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-16, -206.00002)
-scale = Vector2(0.39710355, 0.39710355)
-texture = SubResource("CompressedTexture2D_adbnn")
+position = Vector2(16, -191.00002)
+scale = Vector2(0.5056294, 0.47041494)
+sprite_frames = SubResource("SpriteFrames_hiro_idle")
+autoplay = "default"
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

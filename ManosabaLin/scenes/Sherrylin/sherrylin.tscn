@@ -1,14 +1,246 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmnfgg05obcep"]
+[gd_scene load_steps=58 format=3 uid="uid://dmnfgg05obcep"]
 
-[ext_resource type="Texture2D" uid="uid://gvrypvv3iro1" path="res://ManosabaLin/images/characters/Sherrylin/sherrylin.png" id="1_1fh51"]
+[ext_resource type="Texture2D" uid="uid://cgcnvs24i4l1p" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0001.png" id="1_shieri"]
+[ext_resource type="Texture2D" uid="uid://cek46n0p0t3vx" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0002.png" id="2_shieri"]
+[ext_resource type="Texture2D" uid="uid://dbear36j4ymaj" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0003.png" id="3_shieri"]
+[ext_resource type="Texture2D" uid="uid://dce3mfurcojh3" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0004.png" id="4_shieri"]
+[ext_resource type="Texture2D" uid="uid://bdvagfhrtlu3v" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0005.png" id="5_shieri"]
+[ext_resource type="Texture2D" uid="uid://bj2qw48it3hg" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0006.png" id="6_shieri"]
+[ext_resource type="Texture2D" uid="uid://bihe5ba6awm6r" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0007.png" id="7_shieri"]
+[ext_resource type="Texture2D" uid="uid://dbc7le311jimj" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0008.png" id="8_shieri"]
+[ext_resource type="Texture2D" uid="uid://chgwiv47h8urw" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0009.png" id="9_shieri"]
+[ext_resource type="Texture2D" uid="uid://dxxtwwin6cbej" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0010.png" id="10_shieri"]
+[ext_resource type="Texture2D" uid="uid://c43fd2ul1qhs7" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0011.png" id="11_shieri"]
+[ext_resource type="Texture2D" uid="uid://cw0itqmw4swcu" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0012.png" id="12_shieri"]
+[ext_resource type="Texture2D" uid="uid://dhwa8yac4a21s" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0013.png" id="13_shieri"]
+[ext_resource type="Texture2D" uid="uid://boiyqc0ehb1oo" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0014.png" id="14_shieri"]
+[ext_resource type="Texture2D" uid="uid://dsxky5hqyke3d" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0015.png" id="15_shieri"]
+[ext_resource type="Texture2D" uid="uid://3cn8e04jbatk" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0016.png" id="16_shieri"]
+[ext_resource type="Texture2D" uid="uid://dfyigj3iukcna" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0017.png" id="17_shieri"]
+[ext_resource type="Texture2D" uid="uid://chk38k136kq4i" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0018.png" id="18_shieri"]
+[ext_resource type="Texture2D" uid="uid://g7o0ctoxaqyh" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0019.png" id="19_shieri"]
+[ext_resource type="Texture2D" uid="uid://da3cf3i1qfiqm" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0020.png" id="20_shieri"]
+[ext_resource type="Texture2D" uid="uid://beuxi4re6yawc" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0021.png" id="21_shieri"]
+[ext_resource type="Texture2D" uid="uid://bbry5g1dwdm6n" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0022.png" id="22_shieri"]
+[ext_resource type="Texture2D" uid="uid://cex16ahw7up10" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0023.png" id="23_shieri"]
+[ext_resource type="Texture2D" uid="uid://bld367kfuos2e" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0024.png" id="24_shieri"]
+[ext_resource type="Texture2D" uid="uid://240hlxmo4lj7" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0025.png" id="25_shieri"]
+[ext_resource type="Texture2D" uid="uid://bqjofclqaf7om" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0026.png" id="26_shieri"]
+[ext_resource type="Texture2D" uid="uid://hm1vtst8d6m6" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0027.png" id="27_shieri"]
+[ext_resource type="Texture2D" uid="uid://bccwmfxnfignq" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0028.png" id="28_shieri"]
+[ext_resource type="Texture2D" uid="uid://dsfvlic0up7rd" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0029.png" id="29_shieri"]
+[ext_resource type="Texture2D" uid="uid://wrluoksqd61v" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0030.png" id="30_shieri"]
+[ext_resource type="Texture2D" uid="uid://b3ri2mj78kf8h" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0031.png" id="31_shieri"]
+[ext_resource type="Texture2D" uid="uid://chmlwpwmhltie" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0032.png" id="32_shieri"]
+[ext_resource type="Texture2D" uid="uid://cseephljp76t7" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0033.png" id="33_shieri"]
+[ext_resource type="Texture2D" uid="uid://dovwj5i1isr3y" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0034.png" id="34_shieri"]
+[ext_resource type="Texture2D" uid="uid://bwr3gvjfr0mi" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0035.png" id="35_shieri"]
+[ext_resource type="Texture2D" uid="uid://cderjkhvjycl1" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0036.png" id="36_shieri"]
+[ext_resource type="Texture2D" uid="uid://cxqed8frfq12y" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0037.png" id="37_shieri"]
+[ext_resource type="Texture2D" uid="uid://bftd8f35b51x" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0038.png" id="38_shieri"]
+[ext_resource type="Texture2D" uid="uid://dowupvcjlg1nl" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0039.png" id="39_shieri"]
+[ext_resource type="Texture2D" uid="uid://y5gkvqu1dy2c" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0040.png" id="40_shieri"]
+[ext_resource type="Texture2D" uid="uid://bdwxlgrova63u" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0041.png" id="41_shieri"]
+[ext_resource type="Texture2D" uid="uid://couxnj4305dfx" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0042.png" id="42_shieri"]
+[ext_resource type="Texture2D" uid="uid://dfpknivxqdlyw" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0043.png" id="43_shieri"]
+[ext_resource type="Texture2D" uid="uid://dx4vv0wttorve" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0044.png" id="44_shieri"]
+[ext_resource type="Texture2D" uid="uid://cufrs2k57bxu4" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0045.png" id="45_shieri"]
+[ext_resource type="Texture2D" uid="uid://bxb2eko05vaaj" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0046.png" id="46_shieri"]
+[ext_resource type="Texture2D" uid="uid://d4fbyuxobkjbr" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0047.png" id="47_shieri"]
+[ext_resource type="Texture2D" uid="uid://coj2gmnunlmyu" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0048.png" id="48_shieri"]
+[ext_resource type="Texture2D" uid="uid://ch3d4tsnemt83" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0049.png" id="49_shieri"]
+[ext_resource type="Texture2D" uid="uid://pvedfjiek7h6" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0050.png" id="50_shieri"]
+[ext_resource type="Texture2D" uid="uid://cqpy031q7ucnj" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0051.png" id="51_shieri"]
+[ext_resource type="Texture2D" uid="uid://onwbbm753rwj" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0052.png" id="52_shieri"]
+[ext_resource type="Texture2D" uid="uid://big4gvpf7xur4" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0053.png" id="53_shieri"]
+[ext_resource type="Texture2D" uid="uid://ckqklpo6el255" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0054.png" id="54_shieri"]
+[ext_resource type="Texture2D" uid="uid://7pe2n1qf6j4d" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0055.png" id="55_shieri"]
+[ext_resource type="Texture2D" uid="uid://0ebl5xprswqw" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0056.png" id="56_shieri"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_shieri_idle"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_shieri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_shieri")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
 
 [node name="Sherrylin" type="Node2D"]
 
-[node name="Visuals" type="Sprite2D" parent="."]
+[node name="Visuals" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(8.999994, -199.18748)
-scale = Vector2(0.26009566, 0.2629336)
-texture = ExtResource("1_1fh51")
+position = Vector2(11, -211)
+scale = Vector2(0.39811558, 0.42270148)
+sprite_frames = SubResource("SpriteFrames_shieri_idle")
+autoplay = "default"
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true

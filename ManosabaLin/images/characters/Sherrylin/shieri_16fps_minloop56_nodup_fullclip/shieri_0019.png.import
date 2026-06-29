@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcmjy671yt572"
-path="res://.godot/imported/guard_three.png-12e44750decbd5edbc26d9a780230c95.ctex"
+uid="uid://g7o0ctoxaqyh"
+path="res://.godot/imported/shieri_0019.png-f44b23aed52b4eb936fda4ff82c6e92c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/monsters/guard_three.png"
-dest_files=["res://.godot/imported/guard_three.png-12e44750decbd5edbc26d9a780230c95.ctex"]
+source_file="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0019.png"
+dest_files=["res://.godot/imported/shieri_0019.png-f44b23aed52b4eb936fda4ff82c6e92c.ctex"]
 
 [params]
 

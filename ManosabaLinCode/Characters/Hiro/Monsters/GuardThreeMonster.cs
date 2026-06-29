@@ -5,18 +5,21 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
+using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Godot;
 using ManosabaLin.Characters.Ema.Afflictions;
 using ManosabaLin.Characters.Hiro.Cards;
-using MegaCrit.Sts2.Core.Helpers;
-using MegaCrit.Sts2.Core.Nodes.Combat;
+using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MegaCrit.Sts2.Core.Nodes.Rooms;
+using Timer = Godot.Timer;
 
 namespace ManosabaLin.Characters.Hiro.Monsters;
 
@@ -34,7 +37,11 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
     private int MaxJustice => 5;
     private int Phase2SelfDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 20, 15);
     private int Phase2AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 16, 14);
+    private int Phase2DeathMaxHpGain => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 90, 80);
     private int _phase2DeathTextCount;
+    private bool _isPhaseTwo;
+    private Timer? _phaseOneTextTimer;
+    private string _lastVisual = "phase1";
 
     public override MonsterAssetProfile AssetProfile => new(
         VisualsScenePath: "res://ManosabaLin/scenes/monsters/guard_three.tscn"
@@ -90,15 +97,30 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
     public override async Task AfterAddedToRoom()
     {
         _phase2DeathTextCount = 0;
+        _isPhaseTwo = false;
+        StartPhaseOneTextTimer();
 
         await PowerCmd.Apply<UncontrolledJusticePower>(
             new ThrowingPlayerChoiceContext(), Creature, JusticeAmount, Creature, null);
+    }
+
+    public async Task EnterPhaseTwo()
+    {
+        if (_isPhaseTwo)
+            return;
+
+        _isPhaseTwo = true;
+        StopPhaseOneTextTimer();
+
+        await GuardThreePhaseTransitionOverlay.PlayAsync();
+        GuardThreeWrongTextVfx.SpawnPersistentWrong(Creature, 4);
     }
 
     // ========== 阶段1 ==========
 
     private async Task ErosionAttackMove(IReadOnlyList<Creature> targets)
     {
+        UpdateVisual("phase1");
         await DamageCmd.Attack(AttackDamage)
             .FromMonster(this)
             .WithAttackerFx(null, AttackSfx)
@@ -120,6 +142,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
     private async Task WithShieldMove(IReadOnlyList<Creature> targets)
     {
+        UpdateVisual("phase1");
         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
         await PowerCmd.Apply<WithPower>(
             new ThrowingPlayerChoiceContext(), Creature, WithAmount, Creature, null);
@@ -128,6 +151,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
     private async Task PunishErosionMove(IReadOnlyList<Creature> targets)
     {
+        UpdateVisual("phase1");
         await DamageCmd.Attack(ErosionDamage)
             .FromMonster(this)
             .WithAttackerFx(null, AttackSfx)
@@ -166,6 +190,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
     private async Task IncreaseJusticeMove(IReadOnlyList<Creature> targets)
     {
+        UpdateVisual("phase1");
         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
 
         var justice = Creature.GetPower<UncontrolledJusticePower>();
@@ -201,6 +226,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
     private async Task Phase2AttackMove(IReadOnlyList<Creature> targets)
     {
+        UpdateVisual("phase2");
         await CreatureCmd.Damage(
             new ThrowingPlayerChoiceContext(), Creature,
             Phase2SelfDamage, ValueProp.Unpowered | ValueProp.Unblockable, null, null);
@@ -231,6 +257,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
     private async Task TaskMove(IReadOnlyList<Creature> targets)
     {
+        UpdateVisual("phase2");
         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
 
         foreach (var player in CombatState.Players.Where(p => p.Creature.IsAlive))
@@ -242,6 +269,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
     private async Task AddCardsMove(IReadOnlyList<Creature> targets)
     {
+        UpdateVisual("phase2");
         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
 
         foreach (var player in CombatState.Players)
@@ -251,15 +279,95 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
         }
     }
 
+    private void UpdateVisual(string name)
+    {
+        if (name == _lastVisual) return;
+        _lastVisual = name;
+
+        var creatureNode = NCombatRoom.Instance?.GetCreatureNode(Creature);
+        if (creatureNode == null) return;
+
+        var body = (Sprite2D)creatureNode.Visuals.GetCurrentBody();
+        var tween = creatureNode.CreateTween();
+
+        tween.TweenProperty(body, (NodePath)"modulate", Colors.Black, 0.2);
+
+        tween.TweenCallback(Callable.From(() =>
+        {
+            var path = $"guard_three_{name}.png".MonstersImagePath();
+            body.Texture = PreloadManager.Cache.GetTexture2D(path);
+        }));
+
+        tween.TweenProperty(body, (NodePath)"modulate", Colors.White, 0.3);
+    }
+
     public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented,
         float deathAnimLength)
     {
-        if (creature == Creature && !wasRemovalPrevented)
+        if (creature == Creature && !wasRemovalPrevented && _isPhaseTwo)
         {
             _phase2DeathTextCount++;
-            GuardThreeWrongTextVfx.Spawn(Creature, _phase2DeathTextCount + 1);
+            GuardThreeWrongTextVfx.SpawnFloatingWrong(Creature, _phase2DeathTextCount + 1);
         }
 
         return Task.CompletedTask;
+    }
+
+    public override bool ShouldDie(Creature creature)
+    {
+        if (creature != Creature || !_isPhaseTwo)
+            return true;
+
+        return false;
+    }
+
+    public override async Task AfterPreventingDeath(Creature creature)
+    {
+        if (creature != Creature || !_isPhaseTwo)
+            return;
+
+        await CreatureCmd.GainMaxHp(Creature, Phase2DeathMaxHpGain);
+        await CreatureCmd.SetCurrentHp(Creature, Creature.MaxHp);
+        GuardThreeWrongTextVfx.SpawnPersistentWrong(Creature, 3);
+
+        if (MoveStateMachine?.States.TryGetValue("PHASE2_ATTACK", out var move) == true &&
+            move is MoveState moveState)
+        {
+            SetMoveImmediate(moveState, forceTransition: true);
+        }
+    }
+
+    private void StartPhaseOneTextTimer()
+    {
+        StopPhaseOneTextTimer();
+
+        var room = NCombatRoom.Instance;
+        if (room == null)
+            return;
+
+        _phaseOneTextTimer = new Timer
+        {
+            WaitTime = 5f,
+            OneShot = false,
+            Autostart = true
+        };
+        room.AddChild(_phaseOneTextTimer);
+        _phaseOneTextTimer.Timeout += SpawnPhaseOneTextLine;
+    }
+
+    private void StopPhaseOneTextTimer()
+    {
+        if (_phaseOneTextTimer == null)
+            return;
+
+        _phaseOneTextTimer.Timeout -= SpawnPhaseOneTextLine;
+        _phaseOneTextTimer.QueueFree();
+        _phaseOneTextTimer = null;
+    }
+
+    private void SpawnPhaseOneTextLine()
+    {
+        if (!_isPhaseTwo && Creature.IsAlive)
+            GuardThreeWrongTextVfx.SpawnPhaseOneLine(Creature);
     }
 }
