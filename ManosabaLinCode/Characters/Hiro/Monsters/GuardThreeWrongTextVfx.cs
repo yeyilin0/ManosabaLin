@@ -7,47 +7,76 @@ namespace ManosabaLin.Characters.Hiro.Monsters;
 
 public static class GuardThreeWrongTextVfx
 {
-    private const string WrongText = "[color=#DC143C][b]你是错误的![/b][/color]";
+    private const string WrongText = "[color=#DC143C][b]你 是 错 误 的 ![/b][/color]";
 
     private static readonly string[] PhaseOneLines =
     [
-        "■是■■的",
-        "你■■误■■",
-        "你■错误■"
+        "■ 是 ■ ■ 的",
+        "你 ■ ■ 误 ■ ■",
+        "你 ■ 错 误 ■"
     ];
 
     public static void SpawnFloatingWrong(Creature creature, int count)
     {
-        SpawnFloating(creature, WrongText, count, new Color(0.86f, 0.02f, 0.07f), 54);
+        SpawnFloating(creature, WrongText, count, new Color(0.86f, 0.02f, 0.07f), 70);
     }
 
     public static void SpawnPhaseOneLine(Creature creature)
     {
+        var room = NCombatRoom.Instance;
+        if (room == null) return;
+
+        var viewportSize = room.GetViewportRect().Size;
         var index = Rng.Chaotic.NextInt(PhaseOneLines.Length);
-        SpawnFloating(
-            creature,
-            $"[color=#6E0B16][b]{PhaseOneLines[index]}[/b][/color]",
-            1,
+        var vfx = CreateLabel(
+            $"[color=#6E0B16]{PhaseOneLines[index]}[/color]",
             new Color(0.43f, 0.04f, 0.09f),
-            46);
+            90);
+        room.CombatVfxContainer.AddChild(vfx);
+
+        vfx.GlobalPosition = new Vector2(
+            Rng.Chaotic.NextFloat(100f, viewportSize.X - 100f),
+            Rng.Chaotic.NextFloat(100f, viewportSize.Y - 200f));
+
+        var floatDistance = Rng.Chaotic.NextFloat(100f, 200f);
+        var duration = Rng.Chaotic.NextFloat(2.5f, 3.5f);
+
+        var tween = vfx.CreateTween().SetParallel();
+        tween.TweenProperty(vfx, "position:y", vfx.Position.Y - floatDistance, duration)
+            .SetEase(Tween.EaseType.Out)
+            .SetTrans(Tween.TransitionType.Sine);
+        tween.TweenProperty(vfx, "modulate:a", 0f, duration)
+            .SetDelay(0.8f)
+            .SetEase(Tween.EaseType.In)
+            .SetTrans(Tween.TransitionType.Quad);
+        tween.TweenProperty(vfx, "scale", Vector2.One * 0.5f, duration)
+            .SetEase(Tween.EaseType.Out)
+            .SetTrans(Tween.TransitionType.Quad);
+        tween.TweenCallback(Callable.From(vfx.QueueFree)).SetDelay(duration);
     }
 
     public static void SpawnPersistentWrong(Creature creature, int count)
     {
         var room = NCombatRoom.Instance;
-        var creatureNode = room?.GetCreatureNode(creature);
-        if (room == null || creatureNode == null)
-            return;
+        if (room == null) return;
+
+        var viewportSize = room.GetViewportRect().Size;
+
+        var colors = new[]
+        {
+            new Color(0.86f, 0.02f, 0.07f),  // 鲜红
+            new Color(0.47f, 0.04f, 0.09f),  // 暗红
+        };
 
         for (var i = 0; i < count; i++)
         {
-            var vfx = CreateLabel(WrongText, new Color(0.86f, 0.02f, 0.07f), 48);
+            var color = colors[Rng.Chaotic.NextInt(colors.Length)];
+            var vfx = CreateLabel(WrongText, color, 20);
             room.CombatVfxContainer.AddChild(vfx);
 
-            vfx.GlobalPosition = creatureNode.VfxSpawnPosition
-                                 + new Vector2(
-                                     Rng.Chaotic.NextFloat(-260f, 260f),
-                                     Rng.Chaotic.NextFloat(-240f, 40f));
+            vfx.GlobalPosition = new Vector2(
+                Rng.Chaotic.NextFloat(80f, viewportSize.X - 80f),
+                Rng.Chaotic.NextFloat(80f, viewportSize.Y - 200f));
             StartPersistentJitter(vfx);
         }
     }

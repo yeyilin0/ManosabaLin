@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btstxs8nwcg31"
-path="res://.godot/imported/guard.png-f87f71c4a89144da1850166889babe20.ctex"
+uid="uid://ckj5tek7qu36s"
+path="res://.godot/imported/manosaba_lin_event_guard_one_event.png-30221c212075deb75309bef921c6c41a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/scenes/backgrounds/guard_three_encounter/images/guard.png"
-dest_files=["res://.godot/imported/guard.png-f87f71c4a89144da1850166889babe20.ctex"]
+source_file="res://ManosabaLin/images/events/manosaba_lin_event_guard_one_event.png"
+dest_files=["res://.godot/imported/manosaba_lin_event_guard_one_event.png-30221c212075deb75309bef921c6c41a.ctex"]
 
 [params]
 

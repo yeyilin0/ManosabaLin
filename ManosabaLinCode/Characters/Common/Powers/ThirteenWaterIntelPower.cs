@@ -1,13 +1,16 @@
-﻿// ThirteenWaterIntelPower.cs
+﻿// ThirteenWaterIntelPower.cs — 加上文字特效
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using ManosabaLin.Characters.Common.Powers;
+using ManosabaLin.Characters.Hiro.Monsters;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -15,7 +18,7 @@ namespace ManosabaLin.Characters.Hiro.Powers;
 public sealed class ThirteenWaterIntelPower : ManosabaPowerTemplate
 {
     private const int IntelMaxPerTurn = 5;
-    private const int MaxHpIncrease = 50;
+    private static int MaxHpIncrease => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 90, 80);
 
     private sealed class Data
     {
@@ -67,9 +70,10 @@ public sealed class ThirteenWaterIntelPower : ManosabaPowerTemplate
                 await PowerCmd.Remove(power);
         }
 
-        Owner.SetMaxHpInternal(Owner.MaxHp + MaxHpIncrease);
+        await CreatureCmd.GainMaxHp(Owner, MaxHpIncrease);
         await CreatureCmd.SetCurrentHp(Owner, Owner.MaxHp);
         await CreatureCmd.GainBlock(Owner, 50, ValueProp.Move, null);
+        GuardThreeWrongTextVfx.SpawnPersistentWrong(Owner, 3);
     }
 
     private async Task RemoveDebuffs(Creature creature)

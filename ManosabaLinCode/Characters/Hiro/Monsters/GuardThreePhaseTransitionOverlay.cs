@@ -1,26 +1,25 @@
 using Godot;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using Timer = Godot.Timer;
 
 namespace ManosabaLin.Characters.Hiro.Monsters;
 
 public static class GuardThreePhaseTransitionOverlay
 {
-    private const string GuardSheetPath =
+    private const string GuardImagePath =
         "res://ManosabaLin/scenes/backgrounds/guard_three_encounter/images/guard.png";
 
-    private const int Columns = 4;
-    private const int Rows = 2;
-    private const int FrameCount = Columns * Rows;
-    private const float FrameRate = 16f;
-    private const string SubtitleText = "\u6211\u8981\u9A71\u9664\u4E00\u5207\u9519\u8BEF!!";
-    private const string Subtitle = "我要驱除一切错误!!";
+    private const string GuardBgPath =
+        "res://ManosabaLin/scenes/backgrounds/guard_three_encounter/images/guard_three_bg_00_a.png";
+
+    private const string WrongText = "你是错误的!!";
+    private const string SubtitleText = "我 要 驱 除 一 切 错 误 ! ! !";
 
     public static async Task PlayAsync()
     {
         var room = NCombatRoom.Instance;
-        if (room == null)
-            return;
+        if (room == null) return;
 
         var overlay = new Control
         {
@@ -40,88 +39,71 @@ public static class GuardThreePhaseTransitionOverlay
         dim.SetAnchorsPreset(Control.LayoutPreset.FullRect);
         overlay.AddChild(dim);
 
-        var sprite = new AnimatedSprite2D
-        {
-            Centered = true,
-            Position = viewportSize / 2f,
-            SpriteFrames = CreateSpriteFrames()
-        };
+        var wrongLabels = await ShowCenteredText(overlay, viewportSize, WrongText, 60);
+        await overlay.ToSignal(overlay.GetTree().CreateTimer(2.0), Timer.SignalName.Timeout);
+        foreach (var label in wrongLabels)
+            label.QueueFree();
 
-        var frameSize = new Vector2(1024f, 1024f);
-        var coverScale = Mathf.Max(viewportSize.X / frameSize.X, viewportSize.Y / frameSize.Y);
-        sprite.Scale = Vector2.One * coverScale;
-        overlay.AddChild(sprite);
+        await ShowFullImage(overlay, viewportSize, GuardImagePath, 1f);
 
-        sprite.Play("default");
-        await sprite.ToSignal(sprite, AnimatedSprite2D.SignalName.AnimationFinished);
+        await ShowFullImage(overlay, viewportSize, GuardBgPath, 1.5f);
 
-        await ShowSubtitle(overlay, viewportSize);
+        await ShowCenteredText(overlay, viewportSize, SubtitleText, 100);
+
+        await overlay.ToSignal(overlay.GetTree().CreateTimer(2.2), Timer.SignalName.Timeout);
+
         overlay.QueueFree();
     }
 
-    private static SpriteFrames CreateSpriteFrames()
+    private static async Task<List<Label>> ShowCenteredText(Control overlay, Vector2 viewportSize, string text, int fontSize)
     {
-        var sheet = PreloadManager.Cache.GetTexture2D(GuardSheetPath);
-        var spriteFrames = new SpriteFrames();
-        spriteFrames.AddAnimation("default");
-        spriteFrames.SetAnimationLoop("default", false);
-        spriteFrames.SetAnimationSpeed("default", FrameRate);
-
-        var frameWidth = sheet.GetWidth() / Columns;
-        var frameHeight = sheet.GetHeight() / Rows;
-
-        for (var loop = 0; loop < 2; loop++)
-        {
-            for (var index = 0; index < FrameCount; index++)
-            {
-                var x = index % Columns;
-                var y = index / Columns;
-                var atlas = new AtlasTexture
-                {
-                    Atlas = sheet,
-                    Region = new Rect2(x * frameWidth, y * frameHeight, frameWidth, frameHeight)
-                };
-                spriteFrames.AddFrame("default", atlas);
-            }
-        }
-
-        return spriteFrames;
-    }
-
-    private static async Task ShowSubtitle(Control overlay, Vector2 viewportSize)
-    {
-        var chars = SubtitleText.ToCharArray();
+        var labels = new List<Label>();
+        var chars = text.ToCharArray();
         const float charStep = 62f;
         var startX = viewportSize.X / 2f - (chars.Length - 1) * charStep / 2f;
-        var y = viewportSize.Y * 0.78f;
+        var y = viewportSize.Y / 2f;
 
         for (var i = 0; i < chars.Length; i++)
         {
-            var label = CreateSubtitleLabel(chars[i].ToString());
-            label.Position = new Vector2(startX + i * charStep, y);
+            var label = new Label
+            {
+                Text = chars[i].ToString(),
+                Modulate = new Color(0.86f, 0.02f, 0.07f),
+                MouseFilter = Control.MouseFilterEnum.Ignore,
+                Position = new Vector2(startX + i * charStep, y)
+            };
+            label.AddThemeFontSizeOverride("font_size", fontSize);
+            label.AddThemeColorOverride("font_shadow_color", new Color(0f, 0f, 0f, 0.85f));
+            label.AddThemeConstantOverride("shadow_outline_size", 5);
+            label.AddThemeConstantOverride("shadow_offset_x", 3);
+            label.AddThemeConstantOverride("shadow_offset_y", 3);
+
             overlay.AddChild(label);
+            labels.Add(label);
             StartJitter(label);
-            await overlay.ToSignal(overlay.GetTree().CreateTimer(0.11), Godot.Timer.SignalName.Timeout);
+            await overlay.ToSignal(overlay.GetTree().CreateTimer(0.11), Timer.SignalName.Timeout);
         }
 
-        await overlay.ToSignal(overlay.GetTree().CreateTimer(2.2), Godot.Timer.SignalName.Timeout);
+        return labels;
     }
 
-    private static Label CreateSubtitleLabel(string text)
+    private static async Task ShowFullImage(Control overlay, Vector2 viewportSize, string path, float duration)
     {
-        var label = new Label
-        {
-            Text = text,
-            Modulate = new Color(0.86f, 0.02f, 0.07f),
-            MouseFilter = Control.MouseFilterEnum.Ignore
-        };
+        var tex = PreloadManager.Cache.GetTexture2D(path);
+        if (tex == null) return;
 
-        label.AddThemeFontSizeOverride("font_size", 74);
-        label.AddThemeColorOverride("font_shadow_color", new Color(0f, 0f, 0f, 0.85f));
-        label.AddThemeConstantOverride("shadow_outline_size", 5);
-        label.AddThemeConstantOverride("shadow_offset_x", 3);
-        label.AddThemeConstantOverride("shadow_offset_y", 3);
-        return label;
+        var rect = new TextureRect
+        {
+            Texture = tex,
+            MouseFilter = Control.MouseFilterEnum.Ignore,
+            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+            StretchMode = TextureRect.StretchModeEnum.Scale
+        };
+        rect.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+        overlay.AddChild(rect);
+
+        await overlay.ToSignal(overlay.GetTree().CreateTimer(duration), Timer.SignalName.Timeout);
+        rect.QueueFree();
     }
 
     private static void StartJitter(Control label)

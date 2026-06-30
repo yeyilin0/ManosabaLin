@@ -1,3 +1,4 @@
+// GuardThreeMonster.cs
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -37,7 +38,6 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
     private int MaxJustice => 5;
     private int Phase2SelfDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 20, 15);
     private int Phase2AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 16, 14);
-    private int Phase2DeathMaxHpGain => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 90, 80);
     private int _phase2DeathTextCount;
     private bool _isPhaseTwo;
     private Timer? _phaseOneTextTimer;
@@ -106,8 +106,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
     public async Task EnterPhaseTwo()
     {
-        if (_isPhaseTwo)
-            return;
+        if (_isPhaseTwo) return;
 
         _isPhaseTwo = true;
         StopPhaseOneTextTimer();
@@ -279,6 +278,8 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
         }
     }
 
+    // ========== 视觉 ==========
+
     private void UpdateVisual(string name)
     {
         if (name == _lastVisual) return;
@@ -301,6 +302,17 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
         tween.TweenProperty(body, (NodePath)"modulate", Colors.White, 0.3);
     }
 
+    // ========== 死亡/复活 ==========
+
+    public override bool ShouldDie(Creature creature)
+    {
+        if (creature != Creature) return true;
+        if (_isPhaseTwo) return false;  // 阶段2不让死，交给 ThirteenWaterIntelPower 处理
+        return true;  // 阶段1正常死（由 GuardThreeCombatSingleton 转阶段）
+    }
+
+   
+
     public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented,
         float deathAnimLength)
     {
@@ -313,37 +325,14 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
         return Task.CompletedTask;
     }
 
-    public override bool ShouldDie(Creature creature)
-    {
-        if (creature != Creature || !_isPhaseTwo)
-            return true;
-
-        return false;
-    }
-
-    public override async Task AfterPreventingDeath(Creature creature)
-    {
-        if (creature != Creature || !_isPhaseTwo)
-            return;
-
-        await CreatureCmd.GainMaxHp(Creature, Phase2DeathMaxHpGain);
-        await CreatureCmd.SetCurrentHp(Creature, Creature.MaxHp);
-        GuardThreeWrongTextVfx.SpawnPersistentWrong(Creature, 3);
-
-        if (MoveStateMachine?.States.TryGetValue("PHASE2_ATTACK", out var move) == true &&
-            move is MoveState moveState)
-        {
-            SetMoveImmediate(moveState, forceTransition: true);
-        }
-    }
+    // ========== 阶段1文字定时器 ==========
 
     private void StartPhaseOneTextTimer()
     {
         StopPhaseOneTextTimer();
 
         var room = NCombatRoom.Instance;
-        if (room == null)
-            return;
+        if (room == null) return;
 
         _phaseOneTextTimer = new Timer
         {
@@ -357,8 +346,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
     private void StopPhaseOneTextTimer()
     {
-        if (_phaseOneTextTimer == null)
-            return;
+        if (_phaseOneTextTimer == null) return;
 
         _phaseOneTextTimer.Timeout -= SpawnPhaseOneTextLine;
         _phaseOneTextTimer.QueueFree();
