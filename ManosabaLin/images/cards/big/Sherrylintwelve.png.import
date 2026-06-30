@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ci1xv0qn0csp"
-path="res://.godot/imported/sherrylintwelve.png-5f5795a26fea7c45dc8a78d2f4d36082.ctex"
+path="res://.godot/imported/Sherrylintwelve.png-44f0524b4538682ba17d488416c72131.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/cards/big/sherrylintwelve.png"
-dest_files=["res://.godot/imported/sherrylintwelve.png-5f5795a26fea7c45dc8a78d2f4d36082.ctex"]
+source_file="res://ManosabaLin/images/cards/big/Sherrylintwelve.png"
+dest_files=["res://.godot/imported/Sherrylintwelve.png-44f0524b4538682ba17d488416c72131.ctex"]
 
 [params]
 

@@ -196,5 +196,18 @@
   "MANOSABA_LIN_POWER_SACRIFICE_TANK_POWER.title": "苦命の鴛鴦",
   "MANOSABA_LIN_POWER_SACRIFICE_TANK_POWER.description": "敵からのダメージを倍で受ける。味方へのダメージは半減する。\n攻撃ダメージを累計20受ける毎に、自分は次のターンのエネルギーを1層獲得し、他の味方はそれぞれ次のターンのドローを1層と10層の魔女化を獲得する。",
   "MANOSABA_LIN_POWER_PERIODIC_FUSION_POWER.title": "大捜査",
-  "MANOSABA_LIN_POWER_PERIODIC_FUSION_POWER.description": "{Amount}ターン毎に1層の【複雑な感情】を獲得し、ランダムな基礎[rainbow][b]【感情】[/b][/rainbow]を1枚獲得する。"
+  "MANOSABA_LIN_POWER_PERIODIC_FUSION_POWER.description": "{Amount}ターン毎に1層の【複雑な感情】を獲得し、ランダムな基礎[rainbow][b]【感情】[/b][/rainbow]を1枚獲得する。",
+  "MANOSABA_LIN_POWER_HERE_HIRO_POWER.title": "Here's Hiro!",
+  "MANOSABA_LIN_POWER_HERE_HIRO_POWER.description": "侵蝕処罰で戦闘から取り除かれたカードを保持する。この能力が除去される時、それらのカードを手札に戻す。",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_INTEL_POWER.title": "情報",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_INTEL_POWER.description": "死亡時に復活：全プレイヤーのHPを全回復し弱体を除去する。自身の他の弱体を除去し、最大HPを80（高アセンションでは90）増やし、全回復して50ブロックを得る。\n初回復活時、[b]執念[/b]を得る。\n攻撃ダメージでHPを失った時、20%の確率で攻撃者に1層の[b]情報[/b]を付与する。死亡するたびに確率が10%増加。各ターン最大5回。",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_PLAYER_INTEL_POWER.title": "情報",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_PLAYER_INTEL_POWER.description": "13層になると、この能力を除去し、[b]13水[/b]を1枚得る。",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_TASK_POWER.title": "偏執の正義",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_TASK_POWER.description": "このターン、少なくとも{DamageTarget}ダメージを与え、少なくとも{BlockTarget}ブロックを得る。\n成功：20ブロックを得る。\n失敗：ボスは30層の[b]魔女化[/b]と30ブロックを得て、任務失敗を1回記録する。",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_TASK_POWER.smartDescription": "このターン、少なくとも{DamageTarget}ダメージを与え、少なくとも{BlockTarget}ブロックを得る。\n成功：20ブロックを得る。\n失敗：ボスは30層の[b]魔女化[/b]と30ブロックを得て、任務失敗を1回記録する。",
+  "MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.title": "制御不能の正義",
+  "MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.description": "フェーズ2以外の意図を実行した後、1層につき20%の確率で同じ意図を追加実行する。最大100%。\n死亡時、死亡を防ぎ、全回復し、この能力を除去して[b]13水の情報[/b]フェーズに入る。",
+  "MANOSABA_LIN_POWER_FUSION_STAND_POWER.title": "執念",
+  "MANOSABA_LIN_POWER_FUSION_STAND_POWER.description": "意図を実行する時、ランダムなスタンド怪物の意図効果も追加で実行する。"
 }

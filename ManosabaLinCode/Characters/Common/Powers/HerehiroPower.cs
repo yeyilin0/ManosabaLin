@@ -18,7 +18,13 @@ public sealed class HerehiroPower : ManosabaPowerTemplate, IMaxHandSizeModifier
     public override PowerStackType StackType => PowerStackType.Counter;
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
-    public List<CardModel> RememberedCards { get; } = new();
+    public List<CardModel> RememberedCards { get; private set; } = new();
+
+    protected override void DeepCloneFields()
+    {
+        base.DeepCloneFields();
+        RememberedCards = new List<CardModel>(RememberedCards);
+    }
 
     public int ModifyMaxHandSize(Player player, int currentMaxHandSize)
     {

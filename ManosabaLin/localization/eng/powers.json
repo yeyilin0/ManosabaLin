@@ -196,5 +196,18 @@
   "MANOSABA_LIN_POWER_SACRIFICE_TANK_POWER.title": "Star-Crossed Lovers",
   "MANOSABA_LIN_POWER_SACRIFICE_TANK_POWER.description": "Take double damage from enemies. Damage dealt to allies is halved.\nFor every 20 attack damage accumulated, gain 1 stack of Next Turn Energy, and each other ally gains 1 stack of Next Turn Draw and 10 stacks of Witchification.",
   "MANOSABA_LIN_POWER_PERIODIC_FUSION_POWER.title": "Grand Investigation",
-  "MANOSABA_LIN_POWER_PERIODIC_FUSION_POWER.description": "Every {Amount} turn(s), gain 1 stack of 【Complex Emotion】 and 1 random basic [rainbow][b]【Emotion】[/b][/rainbow]."
+  "MANOSABA_LIN_POWER_PERIODIC_FUSION_POWER.description": "Every {Amount} turn(s), gain 1 stack of 【Complex Emotion】 and 1 random basic [rainbow][b]【Emotion】[/b][/rainbow].",
+  "MANOSABA_LIN_POWER_HERE_HIRO_POWER.title": "Here's Hiro!",
+  "MANOSABA_LIN_POWER_HERE_HIRO_POWER.description": "Stores cards removed from combat by Punish Erosion. When this power is removed, return those cards to the hand.",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_INTEL_POWER.title": "Intel",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_INTEL_POWER.description": "On death, revive: fully heal all players and remove their debuffs; remove this boss's other debuffs, increase max HP by 80 (90 on high ascension), fully heal, and gain 50 Block.\nOn the first revive, gain [b]Fusion Stand[/b].\nWhen attack damage causes HP loss, 20% chance to give the attacker 1 [b]Intel[/b]. Each death increases this chance by 10%. Triggers up to 5 times per turn.",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_PLAYER_INTEL_POWER.title": "Intel",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_PLAYER_INTEL_POWER.description": "At 13 stacks, remove this power and gain 1 [b]Thirteen Water[/b].",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_TASK_POWER.title": "Obsessive Justice",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_TASK_POWER.description": "This turn, deal at least {DamageTarget} damage and gain at least {BlockTarget} Block.\nSuccess: gain 20 Block.\nFailure: the boss gains 30 [b]Witchification[/b] and 30 Block, and records 1 task failure.",
+  "MANOSABA_LIN_POWER_THIRTEEN_WATER_TASK_POWER.smartDescription": "This turn, deal at least {DamageTarget} damage and gain at least {BlockTarget} Block.\nSuccess: gain 20 Block.\nFailure: the boss gains 30 [b]Witchification[/b] and 30 Block, and records 1 task failure.",
+  "MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.title": "Uncontrolled Justice",
+  "MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.description": "After each non-phase-2 intent, each stack gives a 20% chance to perform that intent again, up to 100%.\nOn death, prevent death, fully heal, remove this power, and enter the [b]Thirteen Water Intel[/b] phase.",
+  "MANOSABA_LIN_POWER_FUSION_STAND_POWER.title": "Fusion Stand",
+  "MANOSABA_LIN_POWER_FUSION_STAND_POWER.description": "When performing an intent, also performs a random stand monster's intent effect."
 }

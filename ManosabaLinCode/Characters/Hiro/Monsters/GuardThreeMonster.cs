@@ -34,8 +34,8 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
     private int ErosionDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 16, 14);
     private int WithAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 40, 30);
     private int ShieldAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 30, 25);
-    private int JusticeAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 2, 3);
-    private int MaxJustice => 5;
+    private const int InitialJusticeAmount = 1;
+    private const int MaxJustice = 5;
     private int Phase2SelfDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 20, 15);
     private int Phase2AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 16, 14);
     private int _phase2DeathTextCount;
@@ -101,7 +101,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
         StartPhaseOneTextTimer();
 
         await PowerCmd.Apply<UncontrolledJusticePower>(
-            new ThrowingPlayerChoiceContext(), Creature, JusticeAmount, Creature, null);
+            new ThrowingPlayerChoiceContext(), Creature, InitialJusticeAmount, Creature, null);
     }
 
     public async Task EnterPhaseTwo()
@@ -164,24 +164,28 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
                 .ToList();
             if (erodedCards.Count == 0) continue;
 
-            await DamageCmd.Attack(ErosionDamage)
-                .FromMonster(this)
-                .Targeting(player.Creature)
-                .WithHitFx("vfx/vfx_attack_blunt")
-                .Execute(null);
-
             var recorder = player.Creature.GetPower<HerehiroPower>();
             if (recorder == null)
             {
+                recorder = await PowerCmd.Apply<HerehiroPower>(
+                    new ThrowingPlayerChoiceContext(), player.Creature, erodedCards.Count, Creature, null);
+            }
+            else
+            {
                 await PowerCmd.Apply<HerehiroPower>(
-                    new ThrowingPlayerChoiceContext(), player.Creature, 0, Creature, null);
-                recorder = player.Creature.GetPower<HerehiroPower>();
+                    new ThrowingPlayerChoiceContext(), player.Creature, erodedCards.Count, Creature, null);
             }
 
             foreach (var card in erodedCards)
             {
+                await DamageCmd.Attack(ErosionDamage)
+                    .FromMonster(this)
+                    .Targeting(player.Creature)
+                    .WithHitFx("vfx/vfx_attack_blunt")
+                    .Execute(null);
+
                 CardCmd.ClearAffliction(card);
-                recorder!.RememberedCards.Add(card);
+                recorder?.RememberedCards.Add(card);
                 await CardPileCmd.RemoveFromCombat(card);
             }
         }
@@ -251,6 +255,8 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
                         Phase2AttackDamage / 2, ValueProp.Move, Creature, null);
                 }
             }
+
+            intelPower.LastTaskFailedCount = 0;
         }
     }
 
@@ -262,7 +268,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
         foreach (var player in CombatState.Players.Where(p => p.Creature.IsAlive))
         {
             await PowerCmd.Apply<ThirteenWaterTaskPower>(
-                new ThrowingPlayerChoiceContext(), player.Creature, 0, Creature, null);
+                new ThrowingPlayerChoiceContext(), player.Creature, 1, Creature, null);
         }
     }
 
@@ -307,8 +313,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
     public override bool ShouldDie(Creature creature)
     {
         if (creature != Creature) return true;
-        if (_isPhaseTwo) return false;  // 阶段2不让死，交给 ThirteenWaterIntelPower 处理
-        return true;  // 阶段1正常死（由 GuardThreeCombatSingleton 转阶段）
+        return true;  // 由 GuardThreeCombatSingleton / ThirteenWaterIntelPower 决定阶段转换和复活
     }
 
    
@@ -316,7 +321,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
     public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented,
         float deathAnimLength)
     {
-        if (creature == Creature && !wasRemovalPrevented && _isPhaseTwo)
+        if (creature == Creature && wasRemovalPrevented && _isPhaseTwo)
         {
             _phase2DeathTextCount++;
             GuardThreeWrongTextVfx.SpawnFloatingWrong(Creature, _phase2DeathTextCount + 1);

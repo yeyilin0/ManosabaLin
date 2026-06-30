@@ -19,6 +19,8 @@ public sealed class UncontrolledJusticePower : ManosabaPowerTemplate
 [HarmonyPatch(typeof(MonsterModel), nameof(MonsterModel.PerformMove))]
 public static class UncontrolledJusticeDoubleTriggerPatch
 {
+    private const int MaxJusticeStacks = 5;
+
     [ThreadStatic] private static bool _isExtraTrigger;
 
     [HarmonyPrefix]
@@ -31,7 +33,8 @@ public static class UncontrolledJusticeDoubleTriggerPatch
         if (power == null) return;
 
         var rng = __instance.RunRng.CombatTargets;
-        if (rng.NextFloat() >= power.Amount / 100f) return;
+        var chance = Math.Clamp(power.Amount, 0, MaxJusticeStacks) / (float)MaxJusticeStacks;
+        if (rng.NextFloat() >= chance) return;
 
         __state = __instance.NextMove;
     }
