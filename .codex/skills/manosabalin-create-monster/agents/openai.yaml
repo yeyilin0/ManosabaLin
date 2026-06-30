@@ -1,0 +1,4 @@
+interface:
+  display_name: "ManosabaLin Create Monster"
+  short_description: "Create localized ManosabaLin monsters."
+  default_prompt: "Use $manosabalin-create-monster to create or modify a ManosabaLin monster with moves, scenes, localization, and validation."

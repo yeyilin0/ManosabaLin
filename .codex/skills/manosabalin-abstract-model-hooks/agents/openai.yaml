@@ -1,0 +1,4 @@
+interface:
+  display_name: "ManosabaLin Model Hooks"
+  short_description: "Choose safe AbstractModel hooks."
+  default_prompt: "Use $manosabalin-abstract-model-hooks to choose and implement the right ManosabaLin AbstractModel or capability hook."

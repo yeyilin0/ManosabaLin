@@ -1,0 +1,4 @@
+interface:
+  display_name: "ManosabaLin Create Power"
+  short_description: "Create localized ManosabaLin powers."
+  default_prompt: "Use $manosabalin-create-power to create or modify a ManosabaLin PowerModel with registration, localization, art, hooks, and validation."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "ManosabaLin Create Relic"
+  short_description: "Create localized ManosabaLin relics."
+  default_prompt: "Use $manosabalin-create-relic to create or modify a ManosabaLin relic with pool registration, hooks, art, localization, and validation."

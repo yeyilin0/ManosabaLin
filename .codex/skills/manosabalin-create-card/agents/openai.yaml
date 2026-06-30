@@ -1,0 +1,4 @@
+interface:
+  display_name: "ManosabaLin Create Card"
+  short_description: "Create localized ManosabaLin cards."
+  default_prompt: "Use $manosabalin-create-card to create or modify a ManosabaLin card with registration, art, localization, and validation."

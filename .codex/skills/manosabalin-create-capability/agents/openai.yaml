@@ -1,0 +1,4 @@
+interface:
+  display_name: "ManosabaLin Capability"
+  short_description: "Create RitsuLib model capabilities."
+  default_prompt: "Use $manosabalin-create-capability to create or modify a ManosabaLin RitsuLib model capability with registration, localization, and validation."
