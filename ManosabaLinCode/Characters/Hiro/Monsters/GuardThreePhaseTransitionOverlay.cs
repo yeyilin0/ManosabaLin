@@ -14,7 +14,8 @@ public static class GuardThreePhaseTransitionOverlay
         "res://ManosabaLin/scenes/backgrounds/guard_three_encounter/images/guard_three_bg_00_a.png";
 
     private const string WrongText = "你是错误的!!";
-    private const string SubtitleText = "我 要 驱 除 一 切 错 误 ! ! !";
+    private const string SubtitleText = "我 要 驱 除 一 切 错 误 ! !";
+    private const string FinalText = "我 要 纠 正 你，重 新 掌 控 正 确 的 世 界 ！！！";
 
     public static async Task PlayAsync()
     {
@@ -39,23 +40,35 @@ public static class GuardThreePhaseTransitionOverlay
         dim.SetAnchorsPreset(Control.LayoutPreset.FullRect);
         overlay.AddChild(dim);
 
-        var wrongLabels = await ShowCenteredText(overlay, viewportSize, WrongText, 60);
+        // 1. "你是错误的!!"
+        var wrongLabels = await ShowCenteredText(overlay, viewportSize, WrongText, 60, 0.11f);
         await overlay.ToSignal(overlay.GetTree().CreateTimer(2.0), Timer.SignalName.Timeout);
         foreach (var label in wrongLabels)
             label.QueueFree();
 
-        await ShowFullImage(overlay, viewportSize, GuardImagePath, 1f);
+        // 2. oneone.png
+        await ShowFullImage(overlay, viewportSize, "res://ManosabaLin/scenes/backgrounds/guard_three_encounter/images/oneone.png", 1f);
 
-        await ShowFullImage(overlay, viewportSize, GuardBgPath, 1.5f);
+        // 3. twotwo.png
+        await ShowFullImage(overlay, viewportSize, "res://ManosabaLin/scenes/backgrounds/guard_three_encounter/images/twotwo.png", 1f);
 
-        await ShowCenteredText(overlay, viewportSize, SubtitleText, 100);
+        // 4. "我 要 驱 除 一 切 错 误 ! !"
+        var subtitleLabels = await ShowCenteredText(overlay, viewportSize, SubtitleText, 100, 0.11f);
+        await overlay.ToSignal(overlay.GetTree().CreateTimer(1.0), Timer.SignalName.Timeout);
+        foreach (var label in subtitleLabels)
+            label.QueueFree();
 
-        await overlay.ToSignal(overlay.GetTree().CreateTimer(2.2), Timer.SignalName.Timeout);
+        // 5. threethree.png
+        var rect = await ShowFullImageReturn(overlay, viewportSize, "res://ManosabaLin/scenes/backgrounds/guard_three_encounter/images/threethree.png", 1f);
+
+        // 6. 在 threethree.png 上面叠加最终文字
+        var finalLabels = await ShowCenteredText(overlay, viewportSize, FinalText, 50, 0.1f);
+        await overlay.ToSignal(overlay.GetTree().CreateTimer(2.0), Timer.SignalName.Timeout);
 
         overlay.QueueFree();
     }
 
-    private static async Task<List<Label>> ShowCenteredText(Control overlay, Vector2 viewportSize, string text, int fontSize)
+    private static async Task<List<Label>> ShowCenteredText(Control overlay, Vector2 viewportSize, string text, int fontSize, float charDelay)
     {
         var labels = new List<Label>();
         var chars = text.ToCharArray();
@@ -81,7 +94,7 @@ public static class GuardThreePhaseTransitionOverlay
             overlay.AddChild(label);
             labels.Add(label);
             StartJitter(label);
-            await overlay.ToSignal(overlay.GetTree().CreateTimer(0.11), Timer.SignalName.Timeout);
+            await overlay.ToSignal(overlay.GetTree().CreateTimer(charDelay), Timer.SignalName.Timeout);
         }
 
         return labels;
@@ -104,6 +117,26 @@ public static class GuardThreePhaseTransitionOverlay
 
         await overlay.ToSignal(overlay.GetTree().CreateTimer(duration), Timer.SignalName.Timeout);
         rect.QueueFree();
+    }
+
+    private static async Task<TextureRect?> ShowFullImageReturn(Control overlay, Vector2 viewportSize, string path, float duration)
+    {
+        var tex = PreloadManager.Cache.GetTexture2D(path);
+        if (tex == null) return null;
+
+        var rect = new TextureRect
+        {
+            Texture = tex,
+            MouseFilter = Control.MouseFilterEnum.Ignore,
+            ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+            StretchMode = TextureRect.StretchModeEnum.Scale
+        };
+        rect.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+        overlay.AddChild(rect);
+
+        await overlay.ToSignal(overlay.GetTree().CreateTimer(duration), Timer.SignalName.Timeout);
+
+        return rect;
     }
 
     private static void StartJitter(Control label)

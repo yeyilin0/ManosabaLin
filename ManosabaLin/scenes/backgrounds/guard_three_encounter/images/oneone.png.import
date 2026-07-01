@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ci1xv0qn0csp"
-path="res://.godot/imported/sherrylintwelve.png-5f5795a26fea7c45dc8a78d2f4d36082.ctex"
+uid="uid://ocqnjn234xur"
+path="res://.godot/imported/oneone.png-c61d0be5ab3a4529b5195e43c1ff6383.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ManosabaLin/images/cards/big/sherrylintwelve.png"
-dest_files=["res://.godot/imported/sherrylintwelve.png-5f5795a26fea7c45dc8a78d2f4d36082.ctex"]
+source_file="res://ManosabaLin/scenes/backgrounds/guard_three_encounter/images/oneone.png"
+dest_files=["res://.godot/imported/oneone.png-c61d0be5ab3a4529b5195e43c1ff6383.ctex"]
 
 [params]
 
