@@ -36,7 +36,7 @@ public sealed class HerehiroPower : ManosabaPowerTemplate, IMaxHandSizeModifier
     {
         foreach (var card in RememberedCards)
         {
-            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, oldOwner.Player);
+            await CardPileCmd.Add(card, PileType.Hand);
         }
         RememberedCards.Clear();
     }

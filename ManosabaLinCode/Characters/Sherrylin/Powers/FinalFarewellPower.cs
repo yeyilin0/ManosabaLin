@@ -62,7 +62,7 @@ public sealed class FinalFarewellPower : ManosabaPowerTemplate
             var emotionCard = Owner.CombatState.CreateCard(
                 ModelDb.GetById<CardModel>(ModelDb.GetId(emotionTypes[roll])), Owner.Player);
             if (emotionCard != null)
-                await CardPileCmd.Add(emotionCard, MainFile.CaseFilePile, CardPilePosition.Top);
+                await CaseFilePileHelper.AddToCaseFilePile(emotionCard, player, CardPilePosition.Top);
         }
     }
 }

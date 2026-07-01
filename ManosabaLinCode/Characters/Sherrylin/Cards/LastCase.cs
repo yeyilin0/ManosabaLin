@@ -102,7 +102,7 @@ public sealed class LastCase() : ManosabaCardTemplate(2, CardType.Attack, CardRa
                 var emotionCard = source.CombatState.CreateCard(
                     ModelDb.GetById<CardModel>(ModelDb.GetId(emotionTypes[roll])), source.Owner);
                 if (emotionCard != null)
-                    await CardPileCmd.Add(emotionCard, MainFile.CaseFilePile, CardPilePosition.Top);
+                    await CaseFilePileHelper.AddToCaseFilePile(emotionCard, source.Owner, CardPilePosition.Top);
             }
         }
 
@@ -143,7 +143,7 @@ public sealed class LastCase() : ManosabaCardTemplate(2, CardType.Attack, CardRa
                 extraCard = source.CombatState.CreateCard<EmotionHelplessness>(source.Owner);
 
             if (extraCard != null)
-                await CardPileCmd.Add(extraCard, MainFile.CaseFilePile, CardPilePosition.Top);
+                await CaseFilePileHelper.AddToCaseFilePile(extraCard, source.Owner, CardPilePosition.Top);
 
             // 给情绪融合
             var fusionAmount = IsUpgraded ? 2 : 1;

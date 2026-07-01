@@ -75,7 +75,7 @@ public sealed class PerpetualFrenzy() : ManosabaCardTemplate(1, CardType.Skill, 
                 };
 
                 if (emotionCard != null)
-                    await CardPileCmd.Add(emotionCard, MainFile.CaseFilePile, CardPilePosition.Top);
+                    await CaseFilePileHelper.AddToCaseFilePile(emotionCard, source.Owner, CardPilePosition.Top);
             }
 
             // 随机1张手卡本回合费用变为0

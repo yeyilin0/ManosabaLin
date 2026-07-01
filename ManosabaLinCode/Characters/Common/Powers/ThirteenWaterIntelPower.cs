@@ -52,7 +52,7 @@ public sealed class ThirteenWaterIntelPower : ManosabaPowerTemplate
 
         State.DeathCount++;
 
-        if (State.DeathCount == 1)
+        if (State.DeathCount == 1 && Owner.GetPower<FusionStandPower>() == null)
         {
             await PowerCmd.Apply<FusionStandPower>(
                 new ThrowingPlayerChoiceContext(), Owner, 1, Owner, null);

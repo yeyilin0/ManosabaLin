@@ -55,7 +55,7 @@ public sealed class Banyanfa() : ManosabaCardTemplate(1, CardType.Power, CardRar
         }
 
         if (emotionCard != null)
-            await CardPileCmd.Add(emotionCard, MainFile.CaseFilePile, CardPilePosition.Top);
+            await CaseFilePileHelper.AddToCaseFilePile(emotionCard, source.Owner, CardPilePosition.Top);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
