@@ -52,7 +52,7 @@ public sealed class EmotionPower : ManosabaActionTemplate
                 };
 
                 if (emotionCard != null)
-                    await CardPileCmd.Add(emotionCard, MainFile.CaseFilePile, CardPilePosition.Top);
+                    await CaseFilePileHelper.AddToCaseFilePile(emotionCard, Owner.Player, CardPilePosition.Top);
 
                 if (_reachThirteenCount >= 3)
                 {

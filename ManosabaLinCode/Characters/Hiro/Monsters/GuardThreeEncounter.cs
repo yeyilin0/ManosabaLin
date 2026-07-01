@@ -23,6 +23,8 @@ public sealed class GuardThreeEncounter : ModEncounterTemplate
 
     public override string? CustomRunHistoryIconOutlinePath => this.RunHistoryIconOutlinePath;
 
+    public override IEnumerable<string>? CustomExtraAssetPaths => [GuardThreePhaseTransitionOverlay.PhaseTwoBgPath];
+
     public override string BossNodePath => this.BossMapNodePath;
 
     public override MegaSkeletonDataResource? BossNodeSpineResource => null;

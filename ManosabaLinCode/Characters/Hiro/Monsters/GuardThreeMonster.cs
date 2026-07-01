@@ -159,7 +159,8 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
         foreach (var player in CombatState.Players)
         {
-            var erodedCards = PileType.Hand.GetPile(player).Cards
+            var erodedCards = new[] { PileType.Hand, PileType.Draw, PileType.Discard, PileType.Exhaust }
+                .SelectMany(pile => pile.GetPile(player).Cards)
                 .Where(c => c.Affliction is ErosionAffliction)
                 .ToList();
             if (erodedCards.Count == 0) continue;
@@ -186,7 +187,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
                 CardCmd.ClearAffliction(card);
                 recorder?.RememberedCards.Add(card);
-                await CardPileCmd.RemoveFromCombat(card);
+                card.RemoveFromCurrentPile();
             }
         }
     }

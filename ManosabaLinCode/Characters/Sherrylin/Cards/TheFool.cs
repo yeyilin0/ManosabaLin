@@ -122,7 +122,7 @@ public sealed class TheFool : ManosabaCardTemplate
             if (firstCard != null)
             {
                 await CardPileCmd.AddGeneratedCardToCombat(firstCard, PileType.Discard, owner);
-                await CardPileCmd.Add(firstCard, MainFile.CaseFilePile, CardPilePosition.Top);
+                await CaseFilePileHelper.AddToCaseFilePile(firstCard, owner, CardPilePosition.Top);
             }
 
             CardModel? secondCard;
@@ -134,7 +134,7 @@ public sealed class TheFool : ManosabaCardTemplate
             if (secondCard != null)
             {
                 await CardPileCmd.AddGeneratedCardToCombat(secondCard, PileType.Discard, owner);
-                await CardPileCmd.Add(secondCard, MainFile.CaseFilePile, CardPilePosition.Top);
+                await CaseFilePileHelper.AddToCaseFilePile(secondCard, owner, CardPilePosition.Top);
             }
         }
 

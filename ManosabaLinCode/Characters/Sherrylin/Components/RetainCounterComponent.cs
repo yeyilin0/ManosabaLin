@@ -58,7 +58,7 @@ public sealed partial class RetainCounterComponent : KeywordLikeComponent
         PlayerChoiceContext choiceContext, Player player, ComponentContext componentContext)
     {
         if (Card?.Owner != player) return;
-        if (Card == null) return;
+        if (Card.Pile?.Type != PileType.Hand) return;
 
         _counter++;
 
