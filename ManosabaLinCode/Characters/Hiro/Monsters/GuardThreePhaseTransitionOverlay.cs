@@ -10,8 +10,8 @@ public static class GuardThreePhaseTransitionOverlay
     private const string GuardImagePath =
         "res://ManosabaLin/scenes/backgrounds/guard_three_encounter/images/guard.png";
 
-    private const string GuardBgPath =
-        "res://ManosabaLin/scenes/backgrounds/guard_three_encounter/images/guard_three_bg_00_a.png";
+    public const string PhaseTwoBgPath =
+        "res://ManosabaLin/scenes/backgrounds/guard_three_encounter/images/guard_three_bg_phase2.png";
 
     private const string WrongText = "你是错误的!!";
     private const string SubtitleText = "我 要 驱 除 一 切 错 误 ! !";
@@ -34,11 +34,14 @@ public static class GuardThreePhaseTransitionOverlay
 
         var dim = new ColorRect
         {
-            Color = new Color(0f, 0f, 0f, 0.96f),
+            Color = new Color(0f, 0f, 0f, 0f),
             MouseFilter = Control.MouseFilterEnum.Ignore
         };
         dim.SetAnchorsPreset(Control.LayoutPreset.FullRect);
         overlay.AddChild(dim);
+
+        // 淡入黑底
+        await FadeDim(overlay, dim, 0.96f, 0.45f);
 
         // 1. "你是错误的!!"
         var wrongLabels = await ShowCenteredText(overlay, viewportSize, WrongText, 60, 0.11f);
@@ -65,7 +68,31 @@ public static class GuardThreePhaseTransitionOverlay
         var finalLabels = await ShowCenteredText(overlay, viewportSize, FinalText, 50, 0.1f);
         await overlay.ToSignal(overlay.GetTree().CreateTimer(2.0), Timer.SignalName.Timeout);
 
+        // 切换背景
+        ApplyPhaseTwoBackground(room);
+
+        // 淡出黑底
+        await FadeDim(overlay, dim, 0f, 0.65f);
+
         overlay.QueueFree();
+    }
+
+    private static void ApplyPhaseTwoBackground(NCombatRoom room)
+    {
+        var layer = room.Background.GetNodeOrNull<Control>("Layer_00");
+        var rect = layer?.FindChild("A", true, false) as TextureRect;
+        if (rect == null) return;
+
+        var tex = PreloadManager.Cache.GetTexture2D(PhaseTwoBgPath);
+        if (tex != null)
+            rect.Texture = tex;
+    }
+
+    private static async Task FadeDim(Control overlay, ColorRect dim, float alpha, double duration)
+    {
+        var tween = overlay.CreateTween();
+        tween.TweenProperty(dim, (NodePath)"color", new Color(0f, 0f, 0f, alpha), duration);
+        await overlay.ToSignal(tween, Tween.SignalName.Finished);
     }
 
     private static async Task<List<Label>> ShowCenteredText(Control overlay, Vector2 viewportSize, string text, int fontSize, float charDelay)
