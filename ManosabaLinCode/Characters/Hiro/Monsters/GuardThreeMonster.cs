@@ -18,6 +18,7 @@ using STS2RitsuLib.Scaffolding.Godot;
 using ManosabaLin.Characters.Ema.Afflictions;
 using ManosabaLin.Characters.Hiro.Cards;
 using MegaCrit.Sts2.Core.Assets;
+using MegaCrit.Sts2.Core.Nodes.Audio;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using Timer = Godot.Timer;
@@ -27,17 +28,18 @@ namespace ManosabaLin.Characters.Hiro.Monsters;
 [RegisterMonster]
 public sealed class GuardThreeMonster : ModMonsterTemplate
 {
-    public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 300, 280);
-    public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 300, 280);
+    public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 380, 360);
+    public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 380, 360);
 
-    private int AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 14, 12);
+    private int AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 22, 20);
     private int ErosionDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 16, 14);
-    private int WithAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 40, 30);
-    private int ShieldAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 30, 25);
+    private int WithAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 30, 20);
+    private int ShieldAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 40, 30);
     private const int InitialJusticeAmount = 1;
     private const int MaxJustice = 5;
-    private int Phase2SelfDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 20, 15);
-    private int Phase2AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 16, 14);
+    private int Phase2SelfDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 50, 40);
+    private int Phase2AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 22, 20);
+    private int Phase2ExtraDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 16, 15);
     private int _phase2DeathTextCount;
     private bool _isPhaseTwo;
     private Timer? _phaseOneTextTimer;
@@ -111,6 +113,8 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
         _isPhaseTwo = true;
         StopPhaseOneTextTimer();
 
+        NRunMusicController.Instance?.PlayCustomMusic("event:/ManosabaLin/sfx/music/GuardThreePha2");
+
         await GuardThreePhaseTransitionOverlay.PlayAsync();
         GuardThreeWrongTextVfx.SpawnPersistentWrong(Creature, 4);
     }
@@ -128,12 +132,10 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
         foreach (var player in CombatState.Players)
         {
-            var hand = PileType.Hand.GetPile(player).Cards
-                .Where(c => c.Affliction == null)
-                .ToList();
-            if (hand.Count > 0)
+            var drawPile = PileType.Draw.GetPile(player);
+            if (drawPile.Cards.Count > 0)
             {
-                var card = hand[Rng.NextInt(hand.Count)];
+                var card = drawPile.Cards[0];
                 await CardCmd.AfflictAndPreview<ErosionAffliction>([card], 1, CardPreviewStyle.None);
             }
         }
@@ -179,15 +181,12 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
             foreach (var card in erodedCards)
             {
-                await DamageCmd.Attack(ErosionDamage)
-                    .FromMonster(this)
-                    .Targeting(player.Creature)
-                    .WithHitFx("vfx/vfx_attack_blunt")
-                    .Execute(null);
+                await CreatureCmd.Damage(
+                    new ThrowingPlayerChoiceContext(), player.Creature,
+                    ErosionDamage, ValueProp.Move, Creature, null);
 
-                CardCmd.ClearAffliction(card);
                 recorder?.RememberedCards.Add(card);
-                card.RemoveFromCurrentPile();
+                await CardPileCmd.RemoveFromCombat(card);
             }
         }
     }
@@ -218,10 +217,8 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
             .OrderByDescending(p => p.Creature.GetPower<WithPower>()?.Amount ?? 0)
             .First();
 
-        var hand = PileType.Hand.GetPile(topPlayer).Cards
-            .Where(c => c.Affliction == null)
-            .ToList();
-        var toErode = hand.OrderBy(_ => Rng.NextFloat()).Take(playerCount).ToList();
+        var drawPile = PileType.Draw.GetPile(topPlayer);
+        var toErode = drawPile.Cards.Take(playerCount).ToList();
         foreach (var card in toErode)
             await CardCmd.AfflictAndPreview<ErosionAffliction>([card], 1, CardPreviewStyle.None);
     }
@@ -253,7 +250,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
                     var target = players[Rng.NextInt(players.Count)];
                     await CreatureCmd.Damage(
                         new ThrowingPlayerChoiceContext(), target.Creature,
-                        Phase2AttackDamage / 2, ValueProp.Move, Creature, null);
+                        Phase2ExtraDamage, ValueProp.Move, Creature, null);
                 }
             }
 
@@ -280,7 +277,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
         foreach (var player in CombatState.Players)
         {
-            var card = CombatState.CreateCard<WitchMark>(player);
+            var card = CombatState.CreateCard<Hiroparanoid>(player);
             await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
         }
     }
@@ -314,10 +311,8 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
     public override bool ShouldDie(Creature creature)
     {
         if (creature != Creature) return true;
-        return true;  // 由 GuardThreeCombatSingleton / ThirteenWaterIntelPower 决定阶段转换和复活
+        return true;
     }
-
-   
 
     public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented,
         float deathAnimLength)

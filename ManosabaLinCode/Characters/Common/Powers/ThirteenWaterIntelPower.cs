@@ -85,33 +85,34 @@ public sealed class ThirteenWaterIntelPower : ManosabaPowerTemplate
         }
     }
 
-    public override async Task AfterDamageReceived(
-        PlayerChoiceContext choiceContext,
+    public override Decimal ModifyHpLostBeforeOsty(
         Creature target,
-        DamageResult result,
+        Decimal amount,
         ValueProp props,
         Creature? dealer,
         CardModel? cardSource)
     {
-        if (target != Owner) return;
-        if (result.UnblockedDamage <= 0) return;
-        if (!props.HasFlag(ValueProp.Move)) return;
+        if (target != Owner) return amount;
+        if (amount <= 0) return amount;
+        if (!props.HasFlag(ValueProp.Move)) return amount;
 
         float baseChance = 0.2f + State.DeathCount * 0.1f;
         var rng = Owner.CombatState.RunState.Rng.CombatTargets;
-        if (rng.NextFloat() >= baseChance) return;
+        if (rng.NextFloat() >= baseChance) return amount;
 
-        if (dealer?.Player == null) return;
+        if (dealer?.Player == null) return amount;
         var player = dealer.Player;
 
         if (!State.PlayerIntelThisTurn.ContainsKey(player.NetId))
             State.PlayerIntelThisTurn[player.NetId] = 0;
-        if (State.PlayerIntelThisTurn[player.NetId] >= IntelMaxPerTurn) return;
+        if (State.PlayerIntelThisTurn[player.NetId] >= IntelMaxPerTurn) return amount;
 
         State.PlayerIntelThisTurn[player.NetId]++;
 
-        await PowerCmd.Apply<ThirteenWaterPlayerIntelPower>(
-            choiceContext, dealer, 1, Owner, null);
+        _ = PowerCmd.Apply<ThirteenWaterPlayerIntelPower>(
+            new ThrowingPlayerChoiceContext(), dealer, 1, Owner, null);
+
+        return amount;
     }
 
     public override async Task BeforeSideTurnStart(

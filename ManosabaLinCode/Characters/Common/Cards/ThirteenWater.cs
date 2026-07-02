@@ -12,7 +12,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Hiro.Cards;
 
 [RegisterCard(typeof(LinCardPool))]
-public sealed class ThirteenWater() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Token, TargetType.Self)
+public sealed class ThirteenWater() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Ancient, TargetType.Self)
 {
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {

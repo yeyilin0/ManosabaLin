@@ -1,6 +1,12 @@
-{
-  "MANOSABALIN_UPDATE_POPUP.title": "ManosabaLin，新的【魔女审判】",
-  "MANOSABALIN_UPDATE_POPUP.body": "[color=#cccccc]当前案件：[/color][color=#ff99cc]{0}[/color]\n[color=#cccccc]最新案件：[/color][color=#CC6666]{1}[/color]\n\n一起成为[color=#ff99cc][b]「共[/b][/color][color=#CC6666][b]犯」[/b][/color]吧!",
+﻿{
+  "MANOSABALIN_UPDATE_POPUP.title": "ManosabaLin，新的魔女审判",
+  "MANOSABALIN_UPDATE_POPUP.body": "[color=#cccccc]当前案件：[/color] [color=#ff99cc]{0}[/color]\n[color=#cccccc]最新案件：[/color] [color=#CC6666]{1}[/color]\n\n一起成为[color=#ff99cc][b]共犯[/b][/color]吧！",
   "MANOSABALIN_UPDATE_POPUP.download": "成为共犯",
-  "MANOSABALIN_UPDATE_POPUP.close": "下次一定"
+  "MANOSABALIN_UPDATE_POPUP.close": "下次再说",
+  "MANOSABALIN_SETTINGS.title": "ManosabaLin",
+  "MANOSABALIN_SETTINGS.description": "调整 ManosabaLin 选项。",
+  "MANOSABALIN_SETTINGS.mainMenuBackground.section.title": "主菜单背景",
+  "MANOSABALIN_SETTINGS.mainMenuBackground.section.description": "将游戏主菜单替换为随机的 ManosabaLin 静态背景。",
+  "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.label": "启用替换",
+  "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description": "启用后，每次打开主菜单时会随机选择两张静态背景之一。"
 }

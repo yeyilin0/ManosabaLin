@@ -1,6 +1,7 @@
 using HarmonyLib;
 using ManosabaLin.Characters.Hiro;
 using ManosabaLin.Characters.Sherrylin;
+using ManosabaLin.MainMenu;
 using ManosabaLin.Utils;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
@@ -39,6 +40,7 @@ public partial class MainFile : Node
         var assembly = Assembly.GetExecutingAssembly();
 
         using (RitsuLibFramework.BeginModDataRegistration(ModId));
+        MainMenuBackgroundSettingsService.Register();
 
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
         // 加载 FMOD 音频库

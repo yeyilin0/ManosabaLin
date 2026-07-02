@@ -17,8 +17,8 @@ namespace ManosabaLin.Characters.Hiro.Powers;
 public sealed class ThirteenWaterTaskPower : ManosabaPowerTemplate
 {
     private const int TotalTarget = 100;
-    private const int BossWithAmount = 30;
-    private const int BossBlockAmount = 30;
+    private const int BossWithAmount = 10;
+    private const int BossBlockAmount = 20;
     private const int PlayerBlockReward = 20;
 
     public override PowerType Type => PowerType.Debuff;

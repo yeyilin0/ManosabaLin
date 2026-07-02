@@ -65,6 +65,8 @@
         <Compile Remove="ManosabaLin\audio\**"/>
         <Compile Remove="替身\**"/>
         <EmbeddedResource Remove="ManosabaLin\audio\**"/>
+        <Compile Remove=".godot\**" />
+        <EmbeddedResource Remove=".godot\**" />
     </ItemGroup>
 
     <ItemGroup>

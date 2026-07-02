@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{02e2897c-323e-4089-98e5-2d8a6550476a}">
+		<property name="assetPath">
+			<value>music/0202Bad01_Hiro037.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>5.3026666666666671</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{aa864338-a582-4286-9df3-132b1c18f066}</destination>
+		</relationship>
+	</object>
+</objects>
