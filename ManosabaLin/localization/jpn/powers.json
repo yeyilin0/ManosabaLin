@@ -209,5 +209,5 @@
   "MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.title": "制御不能の正義",
   "MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.description": "フェーズ2以外の意図を実行した後、1層につき20%の確率で同じ意図を追加実行する。最大100%。\n死亡時、死亡を防ぎ、全回復し、この能力を除去して[b]13水の情報[/b]フェーズに入る。",
   "MANOSABA_LIN_POWER_FUSION_STAND_POWER.title": "執念",
-  "MANOSABA_LIN_POWER_FUSION_STAND_POWER.description": "意図を実行する時、ランダムなスタンド怪物の意図効果も追加で実行する。"
+  "MANOSABA_LIN_POWER_FUSION_STAND_POWER.description": "このボスと同じ透明な幻影を生成する。ボスが意図を実行する時、幻影も元の第2段階ボス意図からランダムに1つ追加で実行する。"
 }

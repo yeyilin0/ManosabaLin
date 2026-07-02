@@ -211,5 +211,5 @@
   "MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.title": "失控的正义",
   "MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.description": "每次执行非阶段2意图后，每层有20%概率额外执行同一意图，最多100%。\n死亡时阻止死亡，回满血，移除此能力并进入[b]13水的情报[/b]阶段。",
   "MANOSABA_LIN_POWER_FUSION_STAND_POWER.title": "执念",
-  "MANOSABA_LIN_POWER_FUSION_STAND_POWER.description": "执行意图时，追加一个随机替身怪物的意图效果。"
+  "MANOSABA_LIN_POWER_FUSION_STAND_POWER.description": "生成一个与Boss相同的透明幻影。Boss执行意图时，幻影追加执行一个随机的原版二阶段Boss意图。"
 }

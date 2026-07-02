@@ -102,6 +102,7 @@ Use `dotnet nuget locals global-packages --list` and `Test-Path $env:NUGET_PACKA
 - For localization changes, update every relevant locale file and keep key names consistent with registered content IDs.
 - For Godot resources, keep `.tscn`, `.import`, image paths, and code-side `res://ManosabaLin/...` references in sync.
 - For FMOD changes, keep the FMOD project, generated GUID mappings, and runtime event paths aligned with `ManosabaLinCode/Audio/` helpers.
+- Put agent-directed temporary outputs such as copied mod DLLs, ad hoc diagnostic logs, and throwaway build/export output under `.local/` or one of its subdirectories. Tool-managed project caches and standard build folders such as `.godot/`, `bin/`, and `obj/` do not need to be redirected.
 
 ## When To Use External Repositories
 

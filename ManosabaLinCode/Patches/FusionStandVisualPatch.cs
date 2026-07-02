@@ -1,8 +1,12 @@
 using Godot;
 using HarmonyLib;
+using ManosabaLin.Characters.Hiro.Monsters;
+using ManosabaLin.Extensions;
+using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Bindings.MegaSpine;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using ManosabaLin.Characters.Common.Powers;
 
@@ -11,24 +15,19 @@ namespace ManosabaLin.Patches;
 [HarmonyPatch(typeof(NCreature), nameof(NCreature._Ready))]
 public static class FusionStandVisualPatch
 {
-    private static readonly List<NCreature> CreatureNodes = [];
-    private static bool _subscribed;
+    static FusionStandVisualPatch()
+    {
+        FusionStandManager.StandActivated += TryCreateStand;
+    }
 
     [HarmonyPostfix]
     public static void Postfix(NCreature __instance)
     {
-        if (!FusionStandManager.IsActiveForCurrentCombat()) return;
-
         try
         {
             var creature = __instance.Entity;
-            if (creature == null || creature.IsPlayer) return;
-
-            CreatureNodes.Add(__instance);
-            if (_subscribed) return;
-
-            _subscribed = true;
-            FusionStandManager.OnPairsBuilt += CreateStands;
+            if (creature?.Monster != null && creature.GetPower<FusionStandPower>() != null)
+                TryCreateStand(creature.Monster);
         }
         catch
         {
@@ -41,58 +40,60 @@ public static class FusionStandVisualPatch
         "idle_loop", "Idle_Loop", "idle", "Idle", "idle1", "stand", "animation"
     ];
 
-    private static void CreateStands()
+    internal static void TryCreateStand(MonsterModel monster)
     {
-        _subscribed = false;
-
         try
         {
-            var creatureToNode = new Dictionary<Creature, NCreature>();
-            foreach (var creatureNode in CreatureNodes)
-            {
-                if (GodotObject.IsInstanceValid(creatureNode) &&
-                    creatureNode.Entity != null &&
-                    !creatureNode.Entity.IsPlayer)
-                {
-                    creatureToNode[creatureNode.Entity] = creatureNode;
-                }
-            }
+            var creature = monster.Creature;
+            if (creature == null || creature.GetPower<FusionStandPower>() == null) return;
 
-            foreach (var (monster, path) in FusionStandManager.PartnerVisualPaths)
-            {
-                var creature = monster.Creature;
-                if (creature == null || !creatureToNode.TryGetValue(creature, out var creatureNode))
-                    continue;
-                if (creature.GetPower<FusionStandPower>() == null)
-                    continue;
-                if (creatureNode.GetNodeOrNull<NCreatureVisuals>("FusionStand") != null)
-                    continue;
+            var creatureNode = creature.GetCreatureNode();
+            if (creatureNode == null) return;
+            if (creatureNode.GetNodeOrNull<NCreatureVisuals>("FusionStand") != null) return;
 
-                var scene = ResourceLoader.Load<PackedScene>(path, "", ResourceLoader.CacheMode.Reuse);
-                if (scene == null) continue;
+            var stand = monster.CreateVisuals();
+            stand.Name = "FusionStand";
+            stand.ShowBehindParent = true;
+            stand.Modulate = new Color(0.4f, 0.5f, 1.0f, 0.45f);
+            stand.Scale = new Vector2(1.05f, 1.05f);
+            stand.Position = new Vector2(80f, -60f);
+            stand.SetProcess(true);
+            stand.SetPhysicsProcess(true);
 
-                var stand = scene.Instantiate<NCreatureVisuals>(PackedScene.GenEditState.Disabled);
-                if (stand == null) continue;
-
-                stand.Name = "FusionStand";
-                stand.ShowBehindParent = true;
-                stand.Modulate = new Color(0.4f, 0.5f, 1.0f, 0.45f);
-                stand.Scale = new Vector2(1.05f, 1.05f);
-                stand.Position = new Vector2(80f, -60f);
-                stand.SetProcess(true);
-                stand.SetPhysicsProcess(true);
-
-                creatureNode.AddChild(stand);
-                PlayFirstAnimation(stand, IdleAnimations, loop: true);
-            }
+            creatureNode.AddChild(stand);
+            stand.SetUpSkin(monster);
+            stand.UpdatePhobiaMode(monster);
+            ApplyStandPhaseVisual(monster, stand);
+            PlayFirstAnimation(stand, IdleAnimations, loop: true);
         }
         catch (Exception ex)
         {
             MainFile.Logger.Warn($"[FusionStand] visual failed: {ex.Message}");
         }
-        finally
+    }
+
+    private static void ApplyStandPhaseVisual(MonsterModel monster, NCreatureVisuals stand)
+    {
+        if (monster is not GuardThreeMonster) return;
+
+        var body = stand.GetNodeOrNull<Sprite2D>("%Visuals");
+        if (body == null)
         {
-            CreatureNodes.Clear();
+            try
+            {
+                body = stand.GetCurrentBody() as Sprite2D;
+            }
+            catch
+            {
+                return;
+            }
+        }
+        if (body == null) return;
+
+        var texture = PreloadManager.Cache.GetTexture2D("guard_three_phase2.png".MonstersImagePath());
+        if (texture != null)
+        {
+            body.Texture = texture;
         }
     }
 

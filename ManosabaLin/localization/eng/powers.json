@@ -209,5 +209,5 @@
   "MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.title": "Uncontrolled Justice",
   "MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.description": "After each non-phase-2 intent, each stack gives a 20% chance to perform that intent again, up to 100%.\nOn death, prevent death, fully heal, remove this power, and enter the [b]Thirteen Water Intel[/b] phase.",
   "MANOSABA_LIN_POWER_FUSION_STAND_POWER.title": "Fusion Stand",
-  "MANOSABA_LIN_POWER_FUSION_STAND_POWER.description": "When performing an intent, also performs a random stand monster's intent effect."
+  "MANOSABA_LIN_POWER_FUSION_STAND_POWER.description": "Creates a transparent copy of this boss. When this boss performs an intent, the stand also performs a random original phase-two boss intent."
 }

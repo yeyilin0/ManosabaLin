@@ -15,8 +15,11 @@ public sealed class FusionStandPower : ManosabaPowerTemplate
 
     public override async Task AfterApplied(Creature? applier, CardModel? cardSource)
     {
-        if (Owner.Monster != null)
-            FusionStandManager.EnsurePartner(Owner.Monster);
+        if (Owner.Monster != null && FusionStandManager.EnsureStand(Owner.Monster))
+        {
+            FusionStandVisualPatch.TryCreateStand(Owner.Monster);
+            FusionStandIntentPatch.TryApplyFusionMove(Owner.Monster);
+        }
 
         await Task.CompletedTask;
     }
