@@ -211,5 +211,5 @@
   "MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.title": "失控的正义",
   "MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.description": "[jitter][color=#CC6666]「在这个世界里，我变成了游走在监牢的残骸————」[/color][/jitter]\n每次执行意图后，每层有20%概率额外执行一次同一意图",
   "MANOSABA_LIN_POWER_FUSION_STAND_POWER.title": "执念",
-  "MANOSABA_LIN_POWER_FUSION_STAND_POWER.description": "执行意图时，追加一个随机替身怪物的意图效果。"
+  "MANOSABA_LIN_POWER_FUSION_STAND_POWER.description": "生成一个与Boss相同的透明幻影。Boss执行意图时，幻影追加执行一个随机的原版二阶段Boss意图。"
 }
