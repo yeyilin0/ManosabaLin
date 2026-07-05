@@ -18,8 +18,13 @@ public sealed class TempStrengthDown : ManosabaPowerTemplate
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+    public override decimal ModifyDamageAdditive(
+        Creature? target,
+        decimal amount,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (dealer != Owner) return 0m;
         if (props.HasFlag(ValueProp.Unpowered)) return 0m;

@@ -1,4 +1,4 @@
-﻿using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -37,14 +37,7 @@ public class NymPower : ManosabaPowerTemplate
         _isProcessing = true;
 
         // 再受到一次等于伤害数值的伤害（不受格挡、不受力量影响）
-        await CreatureCmd.Damage(
-            choiceContext,
-            Owner,
-            result.TotalDamage,
-            ValueProp.Unblockable | ValueProp.Unpowered,
-            dealer,
-            cardSource
-        );
+        await CreatureCmd.Damage(choiceContext, Owner, result.TotalDamage, ValueProp.Unblockable | ValueProp.Unpowered, cardSource, null);
 
         _isProcessing = false;
 

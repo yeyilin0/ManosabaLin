@@ -39,7 +39,7 @@ public sealed class MadnessSpread() : ManosabaCardTemplate(-1, CardType.Attack, 
             if (enemies.Count > 0)
             {
                 var target = enemies[rng.NextInt(enemies.Count)];
-                await CreatureCmd.Damage(choiceContext, target, 1, ValueProp.Unpowered, source.Owner.Creature, source);
+                await CreatureCmd.Damage(choiceContext, target, 1, ValueProp.Unpowered, source, cardPlay);
             }
         }
     }

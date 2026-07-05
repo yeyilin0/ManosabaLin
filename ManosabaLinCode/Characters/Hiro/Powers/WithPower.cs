@@ -2,6 +2,8 @@ using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Hiro.Cards;
 using ManosabaLin.Characters.Sherrylin.Cards;
+using ManosabaLin.Characters.Ema.Cards;
+using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -13,8 +15,6 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
-using ManosabaLin.Characters.Ema.Cards;
-using ManosabaLin.Characters.Emalin;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -25,16 +25,26 @@ public sealed class WithPower : ManosabaPowerTemplate
     public override PowerStackType StackType => PowerStackType.Counter;
     public override bool AllowNegative => false;
 
-    public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+    public override decimal ModifyDamageMultiplicative(
+        Creature? target,
+        decimal amount,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (dealer != Owner) return 1m;
         if (props.HasFlag(ValueProp.Unpowered)) return 1m;
         return 1m + Amount / 200m;
     }
 
-    public override decimal ModifyDamageAdditive(Creature? target, decimal amount, ValueProp props, Creature? dealer,
-        CardModel? cardSource)
+    public override decimal ModifyDamageAdditive(
+        Creature? target,
+        decimal amount,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (dealer != Owner) return 0m;
         if (props.HasFlag(ValueProp.Unpowered)) return 0m;
@@ -66,8 +76,9 @@ public sealed class WithPower : ManosabaPowerTemplate
                     source.Owner,
                     hpLoss,
                     ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move,
-                    cardPlay.Card
-                );
+                    source.Owner,
+                    cardPlay.Card,
+                    null);
             }
 
         if (source.Amount >= 300 && cardPlay.Card.Type == CardType.Attack)
@@ -84,8 +95,9 @@ public sealed class WithPower : ManosabaPowerTemplate
                 source.Owner,
                 13m,
                 ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move,
-                source.Owner
-            );
+                source.Owner,
+                null,
+                null);
     }
 
     public override async Task AfterPowerAmountChanged(

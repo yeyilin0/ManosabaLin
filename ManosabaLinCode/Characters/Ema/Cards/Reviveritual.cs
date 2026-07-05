@@ -58,12 +58,10 @@ public sealed class Reviveritual : ManosabaCardTemplate
             choiceContext, target, 1, source.Owner.Creature, this, false);
 
         // 999伤害
-        await CreatureCmd.Damage(choiceContext, target, 999m,
-            ValueProp.Unblockable | ValueProp.Unpowered, source.Owner.Creature, this);
+        await CreatureCmd.Damage(choiceContext, target, 999m, ValueProp.Unblockable | ValueProp.Unpowered, this, cardPlay);
 
         // 失去39血
-        await CreatureCmd.Damage(choiceContext, target, 39m,
-            ValueProp.Unblockable | ValueProp.Unpowered, source.Owner.Creature, this);
+        await CreatureCmd.Damage(choiceContext, target, 39m, ValueProp.Unblockable | ValueProp.Unpowered, this, cardPlay);
 
         // 给予 Reviveritualpower 和 999 BufferPower
         await PowerCmd.Apply<Reviveritualpower>(

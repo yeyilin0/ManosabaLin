@@ -43,7 +43,7 @@ public sealed class SherrylinNym() : ManosabaCardTemplate(2, CardType.Attack, Ca
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

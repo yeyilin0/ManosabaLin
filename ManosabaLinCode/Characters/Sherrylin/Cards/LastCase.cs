@@ -1,4 +1,4 @@
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 using ManosabaLin.Characters.Sherrylin.Powers;
 using ManosabaLin.Characters.Sherrylin.Relics;
@@ -60,7 +60,7 @@ public sealed class LastCase() : ManosabaCardTemplate(2, CardType.Attack, CardRa
 
         // 造成13点伤害
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(cardPlay.Target!)
             .Execute(choiceContext);
 
@@ -80,7 +80,7 @@ public sealed class LastCase() : ManosabaCardTemplate(2, CardType.Attack, CardRa
         for (int i = 0; i < removeCount; i++)
         {
             await DamageCmd.Attack(repeatDamage)
-                .FromCard(source)
+                .FromCard(source, cardPlay)
                 .Targeting(cardPlay.Target!)
                 .Execute(choiceContext);
         }

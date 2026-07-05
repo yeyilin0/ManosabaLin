@@ -1,5 +1,7 @@
 using Godot;
 using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Ema.Cards;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2RitsuLib.Combat.Ui.ExtraCornerAmountLabels;
@@ -31,6 +33,8 @@ public class BondPower : ManosabaPowerTemplate, IPowerExtraIconAmountLabelsProvi
 
             if (delta > 0)
             {
+                ReduceBondVerdicts(delta);
+
                 var yalisabond = Owner?.GetPower<Yalisabond>();
                 if (yalisabond != null)
                 {
@@ -57,6 +61,8 @@ public class BondPower : ManosabaPowerTemplate, IPowerExtraIconAmountLabelsProvi
 
             if (delta > 0)
             {
+                ReduceBondVerdicts(delta);
+
                 var yalisabond = Owner?.GetPower<Yalisabond>();
                 if (yalisabond != null)
                 {
@@ -67,6 +73,18 @@ public class BondPower : ManosabaPowerTemplate, IPowerExtraIconAmountLabelsProvi
     }
 
     public override int DisplayAmount => Amount;
+
+    private void ReduceBondVerdicts(int amount)
+    {
+        var player = Owner?.Player;
+        if (player == null || amount <= 0) return;
+
+        foreach (var pileType in new[] { PileType.Hand, PileType.Draw, PileType.Discard })
+        {
+            foreach (var card in pileType.GetPile(player).Cards.OfType<BondVerdict>())
+                card.ReduceForBondChange(amount);
+        }
+    }
 
     public IReadOnlyList<ExtraIconAmountLabelSlot> GetPowerExtraIconAmountLabelSlots()
     {

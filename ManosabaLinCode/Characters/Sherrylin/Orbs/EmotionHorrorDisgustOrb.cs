@@ -35,7 +35,7 @@ public sealed class EmotionHorrorDisgustOrb : EmotionOrb<EmotionHorrorDisgust>
             foreach (var enemy in combatState.HittableEnemies)
             {
                 if (enemy.IsAlive)
-                    await CreatureCmd.Damage(choiceContext, enemy, result.TotalDamage, ValueProp.Move, Owner.Creature, null);
+                    await CreatureCmd.Damage(choiceContext, enemy, result.TotalDamage, ValueProp.Move, null, null);
             }
         }
 
@@ -61,7 +61,7 @@ public sealed class EmotionHorrorDisgustOrb : EmotionOrb<EmotionHorrorDisgust>
                     for (int i = 0; i < _nextTurnDamageCount; i++)
                     {
                         var enemy = enemies[i % enemies.Count];
-                        await CreatureCmd.Damage(ctx, enemy, 1m, ValueProp.Move, Owner.Creature, null);
+                        await CreatureCmd.Damage(ctx, enemy, 1m, ValueProp.Move, null, null);
                     }
                 }
             }

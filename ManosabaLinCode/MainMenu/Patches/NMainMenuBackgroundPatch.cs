@@ -1,5 +1,7 @@
 using HarmonyLib;
+using MegaCrit.Sts2.Core.Nodes.Audio;
 using MegaCrit.Sts2.Core.Nodes.Screens.MainMenu;
+using ManosabaLin.Audio.Services;
 
 namespace ManosabaLin.MainMenu.Patches;
 
@@ -21,6 +23,25 @@ public static class NMainMenuBackgroundPatch
     }
 
     [HarmonyPostfix]
+    [HarmonyPatch(typeof(NMainMenu), "_Ready")]
+    public static void MainMenuReady()
+    {
+        if (!MainMenuBackgroundSettingsService.IsEnabled)
+        {
+            return;
+        }
+
+        var option = MainMenuBackgroundOptions.GetActiveOrPick();
+        if (string.IsNullOrWhiteSpace(option.MusicEventPath))
+        {
+            return;
+        }
+
+        NAudioManager.Instance?.StopMusic();
+        MainMenuBackgroundOptions.TryPlayMusic(option);
+    }
+
+    [HarmonyPostfix]
     [HarmonyPatch("ShowLogo")]
     public static void ShowLogo(NMainMenuBg __instance)
     {
@@ -36,7 +57,7 @@ public static class NMainMenuBackgroundPatch
     {
         Clean(host);
 
-        var option = MainMenuBackgroundOptions.PickRandom();
+        var option = MainMenuBackgroundOptions.PickNewActive();
         var texture = ResourceLoader.Load<Texture2D>(option.ImagePath);
         if (texture == null)
         {
@@ -70,7 +91,11 @@ public static class NMainMenuBackgroundPatch
         host.AddChild(background);
         host.MoveChild(background, 0);
 
-        MainMenuBackgroundOptions.TryPlayMusic(option);
+        if (!string.IsNullOrWhiteSpace(option.MusicEventPath)
+            && !FmodHelper.IsEventExists(option.MusicEventPath))
+        {
+            MainFile.Logger.Warn($"[MainMenuBackground] Missing music event: {option.MusicEventPath}");
+        }
     }
 
     private static void Clean(NMainMenuBg host)

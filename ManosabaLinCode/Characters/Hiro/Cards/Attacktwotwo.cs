@@ -49,7 +49,7 @@ public sealed class Attacktwotwo() : ManosabaCardTemplate(0, CardType.Attack, Ca
 
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
             .WithHitCount(hits)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .TargetingAllOpponents(source.CombatState)
             .WithHitFx("vfx/vfx_starry_impact")
             .Execute(choiceContext);

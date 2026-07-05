@@ -40,7 +40,7 @@ public sealed class SuspectSpread() : ManosabaCardTemplate(1, CardType.Attack, C
         var totalDamage = source.DynamicVars.Damage.BaseValue + suspectAmt;
 
         await DamageCmd.Attack(totalDamage)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

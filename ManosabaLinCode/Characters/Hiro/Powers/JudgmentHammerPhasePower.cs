@@ -20,8 +20,7 @@ public class JudgmentHammerPhasePower : ManosabaPowerTemplate
         if (thisCount == playerCounts.Max())
         {
             Flash();
-            await CreatureCmd.Damage(choiceContext, Owner, playerCounts.Sum(),
-                ValueProp.Unblockable | ValueProp.Unpowered, Owner);
+            await CreatureCmd.Damage(choiceContext, Owner, playerCounts.Sum(), ValueProp.Unblockable | ValueProp.Unpowered, null, null);
         }
     }
 

@@ -65,8 +65,7 @@ public sealed class CosmicApathy() : ManosabaCardTemplate(2, CardType.Attack, Ca
         {
             var target = rng.NextItem(allTargets);
 
-            await CreatureCmd.Damage(choiceContext, target, 1m,
-                ValueProp.Unpowered, source.Owner.Creature, source);
+            await CreatureCmd.Damage(choiceContext, target, 1m, ValueProp.Unpowered, source, cardPlay);
 
             // 判断目标是敌方还是友方
             if (target.Side != source.Owner.Creature.Side)

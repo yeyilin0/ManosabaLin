@@ -40,12 +40,10 @@ public sealed class ShockwaveFist() : ManosabaCardTemplate(1, CardType.Attack, C
             source.Owner.Creature, source, false);
 
         // 自己失去1点生命
-        await CreatureCmd.Damage(choiceContext, source.Owner.Creature,
-            1, ValueProp.Unpowered, source);
+        await CreatureCmd.Damage(choiceContext, source.Owner.Creature, 1, ValueProp.Unpowered, source, cardPlay);
 
         // 攻击敌人
-        await CreatureCmd.Damage(choiceContext, target,
-            1, ValueProp.Move, source);
+        await CreatureCmd.Damage(choiceContext, target, 1, ValueProp.Move, source, cardPlay);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

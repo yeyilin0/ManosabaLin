@@ -17,6 +17,7 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Scaffolding.Godot;
 using ManosabaLin.Characters.Ema.Afflictions;
 using ManosabaLin.Characters.Hiro.Cards;
+using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Assets;
 using MegaCrit.Sts2.Core.Nodes.Audio;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
@@ -38,12 +39,22 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
     private const int InitialJusticeAmount = 1;
     private const int MaxJustice = 5;
     private int Phase2SelfDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 50, 40);
-    private int Phase2AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 22, 20);
+    private int Phase2AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 35, 30);
     private int Phase2ExtraDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 16, 15);
     private int _phase2DeathTextCount;
     private bool _isPhaseTwo;
     private Timer? _phaseOneTextTimer;
     private string _lastVisual = "phase1";
+
+    public IEnumerable<MoveState> CreatePhaseTwoStandMoves()
+    {
+        yield return new MoveState("PHASE2_ATTACK", Phase2AttackMove,
+            new SingleAttackIntent(Phase2AttackDamage), new BuffIntent());
+        yield return new MoveState("TASK_MOVE", TaskMove,
+            new DebuffIntent());
+        yield return new MoveState("ADD_CARDS", AddCardsMove,
+            new CardDebuffIntent());
+    }
 
     public override MonsterAssetProfile AssetProfile => new(
         VisualsScenePath: "res://ManosabaLin/scenes/monsters/guard_three.tscn"
@@ -74,14 +85,10 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
         punishErosion.FollowUpState = increaseJustice;
         increaseJustice.FollowUpState = erosionAttack;
 
-        var phase2Attack = new MoveState("PHASE2_ATTACK", Phase2AttackMove,
-            new SingleAttackIntent(Phase2AttackDamage), new BuffIntent());
-
-        var taskMove = new MoveState("TASK_MOVE", TaskMove,
-            new DebuffIntent());
-
-        var addCards = new MoveState("ADD_CARDS", AddCardsMove,
-            new CardDebuffIntent());
+        var phaseTwoMoves = CreatePhaseTwoStandMoves().ToArray();
+        var phase2Attack = phaseTwoMoves[0];
+        var taskMove = phaseTwoMoves[1];
+        var addCards = phaseTwoMoves[2];
 
         phase2Attack.FollowUpState = taskMove;
         taskMove.FollowUpState = addCards;
@@ -183,7 +190,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
             {
                 await CreatureCmd.Damage(
                     new ThrowingPlayerChoiceContext(), player.Creature,
-                    ErosionDamage, ValueProp.Move, Creature, null);
+                    ErosionDamage, ValueProp.Move, null, null);
 
                 recorder?.RememberedCards.Add(card);
                 await CardPileCmd.RemoveFromCombat(card);
@@ -250,7 +257,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
                     var target = players[Rng.NextInt(players.Count)];
                     await CreatureCmd.Damage(
                         new ThrowingPlayerChoiceContext(), target.Creature,
-                        Phase2ExtraDamage, ValueProp.Move, Creature, null);
+                        Phase2ExtraDamage, ValueProp.Move, null, null);
                 }
             }
 
@@ -265,6 +272,12 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
         foreach (var player in CombatState.Players.Where(p => p.Creature.IsAlive))
         {
+            // 玩家失去1层 ThirteenWaterPlayerIntelPower
+            var playerIntel = player.Creature.GetPower<ThirteenWaterPlayerIntelPower>();
+            if (playerIntel != null && playerIntel.Amount > 0)
+                await PowerCmd.Decrement(playerIntel);
+
+            // 施加1层 ThirteenWaterTaskPower
             await PowerCmd.Apply<ThirteenWaterTaskPower>(
                 new ThrowingPlayerChoiceContext(), player.Creature, 1, Creature, null);
         }
@@ -275,10 +288,18 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
         UpdateVisual("phase2");
         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
 
+        // 自身获得30 WithPower
+        await PowerCmd.Apply<WithPower>(
+            new ThrowingPlayerChoiceContext(), Creature, 30, Creature, null);
+
         foreach (var player in CombatState.Players)
         {
-            var card = CombatState.CreateCard<Hiroparanoid>(player);
-            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
+            // 生成2张 Hiroparanoid
+            for (int i = 0; i < 2; i++)
+            {
+                var card = CombatState.CreateCard<Hiroparanoid>(player);
+                await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
+            }
         }
     }
 

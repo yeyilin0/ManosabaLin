@@ -71,7 +71,7 @@ public sealed class CardTwentyOne() : ManosabaCardTemplate(1, CardType.Attack, C
 
         // 造成伤害
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

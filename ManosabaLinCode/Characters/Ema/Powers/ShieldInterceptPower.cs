@@ -19,6 +19,13 @@ public class ShieldInterceptPower : ManosabaPowerTemplate
     public override PowerStackType StackType => PowerStackType.Single;
 
     private decimal _totalDamageTaken;
+    private readonly List<Creature> _coveredCreatures = new();
+
+    public void AddCoveredCreature(Creature c)
+    {
+        if (!_coveredCreatures.Contains(c))
+            _coveredCreatures.Add(c);
+    }
 
     public override async Task AfterDamageReceived(
         PlayerChoiceContext choiceContext,
@@ -39,22 +46,14 @@ public class ShieldInterceptPower : ManosabaPowerTemplate
 
         Flash();
 
-        if (Amount > 0)
+        // 给掩护列表中的队友加格挡
+        foreach (var covered in _coveredCreatures)
         {
-            var allies = Owner.CombatState.Allies;
-            if (allies != null)
-            {
-                foreach (var ally in allies)
-                {
-                    if (ally is { IsAlive: true } && ally != Owner)
-                    {
-                        await CreatureCmd.GainBlock(ally, _totalDamageTaken, ValueProp.Move, null);
-                        break;
-                    }
-                }
-            }
+            if (covered is { IsAlive: true })
+                await CreatureCmd.GainBlock(covered, _totalDamageTaken, ValueProp.Move, null);
         }
 
+        // 羁绊偏亲密时自己也获得格挡
         var bond = Owner.GetPower<BondPower>();
         if (bond != null && bond.Affinity > bond.Estrangement)
         {

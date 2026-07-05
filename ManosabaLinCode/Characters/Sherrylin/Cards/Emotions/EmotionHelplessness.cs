@@ -120,9 +120,7 @@ public sealed class EmotionHelplessness() : CaseFileCard<EmotionHelplessnessOrb>
                 {
                     var rng = source.Owner.RunState.Rng.CombatCardSelection;
                     var target = enemies[rng.NextInt(enemies.Count)];
-                    await CreatureCmd.Damage(choiceContext, target,
-                        damage,
-                        ValueProp.Move, source.Owner.Creature, source);
+                    await CreatureCmd.Damage(choiceContext, target, damage, ValueProp.Move, source, cardPlay);
                 }
             }
         }

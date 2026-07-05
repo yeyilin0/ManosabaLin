@@ -87,11 +87,7 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
                 var rng = new System.Random();
                 for (var i = 0; i < perjuryAmt; i++)
                 {
-                    await CreatureCmd.Damage(
-                        choiceContext, enemies[rng.Next(enemies.Count)],
-                        2 + (int)(withAmt / 50),
-                        ValueProp.Unpowered, owner.Creature, null
-                    );
+                    await CreatureCmd.Damage(choiceContext, enemies[rng.Next(enemies.Count)], 2 + (int)(withAmt / 50), ValueProp.Unpowered, null, null);
                 }
             }
             await PowerCmd.Apply<JusticePower>(choiceContext, owner.Creature, perjuryAmt, owner.Creature, source, false);

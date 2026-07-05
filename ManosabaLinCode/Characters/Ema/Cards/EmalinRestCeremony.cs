@@ -24,7 +24,7 @@ public sealed class EmalinRestCeremony : ManosabaCardTemplate
         var totalDamage = DynamicVars.Damage.BaseValue + distinctTypes * 10m;
 
         await DamageCmd.Attack(totalDamage)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target!)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

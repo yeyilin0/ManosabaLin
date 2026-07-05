@@ -39,7 +39,7 @@ public sealed class Sixteen() : ManosabaCardTemplate(1, CardType.Attack, CardRar
 
         // 1. 造成伤害
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

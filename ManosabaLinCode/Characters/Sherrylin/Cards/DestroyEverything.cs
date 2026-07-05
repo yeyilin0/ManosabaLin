@@ -1,4 +1,4 @@
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
 using ManosabaLin.Characters.Sherrylin.Components;
@@ -42,7 +42,7 @@ public sealed class DestroyEverything() : ManosabaCardTemplate(3, CardType.Attac
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(cardPlay.Target!)
             .Execute(choiceContext);
 
@@ -78,7 +78,7 @@ public sealed class DestroyEverything() : ManosabaCardTemplate(3, CardType.Attac
             var damage = suspectAmount * source.DynamicVars["PerClear"].IntValue;
             foreach (var enemy in CombatState.Enemies.Where(e => e.IsAlive))
             {
-                await CreatureCmd.Damage(choiceContext, enemy, damage, ValueProp.Unpowered, Owner.Creature, source);
+                await CreatureCmd.Damage(choiceContext, enemy, damage, ValueProp.Unpowered, source, cardPlay);
             }
         }
 
@@ -99,9 +99,7 @@ public sealed class DestroyEverything() : ManosabaCardTemplate(3, CardType.Attac
             {
                 foreach (var enemy in CombatState.Enemies.Where(e => e.IsAlive))
                 {
-                    await CreatureCmd.Damage(choiceContext, enemy,
-                        source.DynamicVars["PerExhaust"].IntValue,
-                        ValueProp.Unpowered, Owner.Creature, source);
+                    await CreatureCmd.Damage(choiceContext, enemy, source.DynamicVars["PerExhaust"].IntValue, ValueProp.Unpowered, source, cardPlay);
                 }
             }
             else
@@ -111,14 +109,11 @@ public sealed class DestroyEverything() : ManosabaCardTemplate(3, CardType.Attac
                 {
                     var rng = source.Owner.RunState.Rng.CombatCardSelection;
                     var target = enemies[rng.NextInt(enemies.Count)];
-                    await CreatureCmd.Damage(choiceContext, target,
-                        source.DynamicVars["PerExhaust"].IntValue,
-                        ValueProp.Unpowered, Owner.Creature, source);
+                    await CreatureCmd.Damage(choiceContext, target, source.DynamicVars["PerExhaust"].IntValue, ValueProp.Unpowered, source, cardPlay);
                 }
             }
 
-            await CreatureCmd.Damage(choiceContext, Owner.Creature, 1m,
-                ValueProp.Unblockable | ValueProp.Unpowered, Owner.Creature, source);
+            await CreatureCmd.Damage(choiceContext, Owner.Creature, 1m, ValueProp.Unblockable | ValueProp.Unpowered, source, null);
         }
 
         // === 毁灭等待 ===

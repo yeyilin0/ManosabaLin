@@ -25,7 +25,8 @@ public class XlmPower : ManosabaPowerTemplate
         Decimal amount,
         ValueProp props,
         Creature? dealer,
-        CardModel? cardSource)
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (dealer != Owner) return 0m;
         if (target == null || target.Side == Owner.Side) return 0m;

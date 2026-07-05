@@ -21,7 +21,7 @@ public sealed class ShockwavePower : ManosabaPowerTemplate, IHealthBarForecastSo
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    // ========== 回合开始时失去血量 ==========
+    // ========== 回合开始时失去血�?==========
     public override async Task AfterSideTurnStart(
         CombatSide side,
         IReadOnlyList<Creature> participants,
@@ -36,7 +36,8 @@ public sealed class ShockwavePower : ManosabaPowerTemplate, IHealthBarForecastSo
             Amount,
             ValueProp.Unblockable | ValueProp.Unpowered,
             dealer: null,
-            cardSource: null);
+            cardSource: null,
+            cardPlay: null);
     }
 
     // ========== 被攻击时额外受到伤害 ==========
@@ -55,16 +56,10 @@ public sealed class ShockwavePower : ManosabaPowerTemplate, IHealthBarForecastSo
         if (extraDamage <= 0) return;
 
         Flash();
-        await CreatureCmd.Damage(
-            choiceContext,
-            Owner,
-            extraDamage,
-            ValueProp.Move,
-            dealer,
-            cardSource);
+        await CreatureCmd.Damage(choiceContext, Owner, extraDamage, ValueProp.Move, null, null);
     }
 
-    // ========== 血条预测 ==========
+    // ========== 血条预�?==========
     public IEnumerable<HealthBarForecastSegment> GetHealthBarForecastSegments(
         HealthBarForecastContext context)
     {

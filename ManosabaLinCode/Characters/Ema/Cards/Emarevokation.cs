@@ -1,4 +1,4 @@
-﻿using MinionLib.Component.Core;
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -53,7 +53,7 @@ public sealed class Emarevokation() : ManosabaCardTemplate(1, CardType.Attack, C
         // 攻击目标
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

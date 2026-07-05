@@ -43,13 +43,7 @@ public sealed class EmotionDiverge() : ManosabaCardTemplate(1, CardType.Attack, 
             // 升级：无论大于6还是小于6都触发对应效果，并额外获得情绪
             if (emotionAmount < 6)
             {
-                await CreatureCmd.Damage(
-                    choiceContext,
-                    target,
-                    source.DynamicVars.Damage.BaseValue,
-                    ValueProp.Move,
-                    source.Owner.Creature,
-                    source);
+                await CreatureCmd.Damage(choiceContext, target, source.DynamicVars.Damage.BaseValue, ValueProp.Move, source, cardPlay);
             }
             else
             {
@@ -68,13 +62,7 @@ public sealed class EmotionDiverge() : ManosabaCardTemplate(1, CardType.Attack, 
         else if (emotionAmount < 6)
         {
             // 低于6层：攻击敌人
-            await CreatureCmd.Damage(
-                choiceContext,
-                target,
-                source.DynamicVars.Damage.BaseValue,
-                ValueProp.Move,
-                source.Owner.Creature,
-                source);
+            await CreatureCmd.Damage(choiceContext, target, source.DynamicVars.Damage.BaseValue, ValueProp.Move, source, cardPlay);
         }
         else
         {

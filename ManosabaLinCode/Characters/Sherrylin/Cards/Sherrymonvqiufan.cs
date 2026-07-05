@@ -54,7 +54,7 @@ public sealed class Sherrymonvqiufan() : ManosabaCardTemplate(3, CardType.Attack
         );
 
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(cardPlay.Target!)
             .Execute(choiceContext);
     }

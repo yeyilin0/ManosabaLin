@@ -196,24 +196,19 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
             _isPhaseTwoMusicPlayed = true;
         }
 
-        var rewardCardId = new ModelId("CARD", "MANOSABA_LIN_CARD_TRANSFORMATION_MAGIC");
-        var rewardCard = ModelDb.GetById<CardModel>(rewardCardId);
-        if (rewardCard != null)
-        {
-            foreach (var player in CombatState.Players)
-            {
-                var options = new CardCreationOptions(
-                    new List<CardModel> { rewardCard },
-                    CardCreationSource.Other,
-                    CardRarityOddsType.Uniform
-                );
+        var linCardPool = ModelDb.CardPool<LinCardPool>();
+        if (linCardPool == null) return;
 
-                var rewards = new List<Reward>
-                {
-                    new CardReward(options, 1, player, null)
-                };
-                await RewardsCmd.OfferCustom(player, rewards);
-            }
+        foreach (var player in CombatState.Players)
+        {
+            var options = CardCreationOptions.ForNonCombatWithUniformOdds(
+                new[] { linCardPool },
+                c => c.Id.Entry == "MANOSABA_LIN_CARD_TRANSFORMATION_MAGIC");
+            var rewards = new List<Reward>
+            {
+                new CardReward(options, 1, player, null)
+            };
+            await RewardsCmd.OfferCustom(player, rewards);
         }
     }
 }

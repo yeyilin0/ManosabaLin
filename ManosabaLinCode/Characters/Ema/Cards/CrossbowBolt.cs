@@ -36,7 +36,7 @@ public sealed class CrossbowBolt : ManosabaCardTemplate
         var damage = isAttackIntent ? DynamicVars.Damage.BaseValue * 2 : DynamicVars.Damage.BaseValue;
 
         await DamageCmd.Attack(damage)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

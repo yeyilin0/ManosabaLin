@@ -37,13 +37,7 @@ public sealed class GlobalRage() : ManosabaCardTemplate(2, CardType.Attack, Card
 
         foreach (var enemy in enemies)
         {
-            await CreatureCmd.Damage(
-                choiceContext,
-                enemy,
-                damage,
-                ValueProp.Move,
-                source.Owner.Creature,
-                source);
+            await CreatureCmd.Damage(choiceContext, enemy, damage, ValueProp.Move, source, cardPlay);
 
             await PowerCmd.Apply<EmotionPower>(
                 choiceContext, source.Owner.Creature, 1,

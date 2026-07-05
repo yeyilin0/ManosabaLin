@@ -1,3 +1,4 @@
+﻿// Rebuttal.cs
 using ManosabaLin.Characters.Ema.Relics;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.Commands;
@@ -34,7 +35,6 @@ public class Rebuttal : ModEnchantmentTemplate
         return (count + 1) % 5 == 0 ? originalPlayCount + 1 : originalPlayCount;
     }
 
-    // Rebuttal.cs
     public override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay? cardPlay)
     {
         var card = Card;
@@ -63,16 +63,16 @@ public class Rebuttal : ModEnchantmentTemplate
             count = 1;
         }
 
-        // ×1：每点计数造成1点伤害
+        // 脳1锛氭瘡鐐硅鏁伴€犳垚1鐐逛激瀹?
         if (cardPlay?.Target is { IsAlive: true } target)
             await CreatureCmd.Damage(choiceContext, target, 1m,
-                ValueProp.Unpowered, ownerCreature, null);
+                ValueProp.Unpowered, ownerCreature, null, null);
 
-        // ×2：获得1点力量
+        // 脳2锛氳幏寰?鐐瑰姏閲?
         if (count % 2 == 0)
             await PowerCmd.Apply<StrengthPower>(choiceContext, ownerCreature, 1m, ownerCreature, null, false);
 
-        // ×3：敌方全体1层易伤
+        // 脳3锛氭晫鏂瑰叏浣?灞傛槗浼?
         if (count % 3 == 0)
         {
             var enemies = card.CombatState.Enemies.Where(e => e is { IsAlive: true });
@@ -80,7 +80,7 @@ public class Rebuttal : ModEnchantmentTemplate
                 await PowerCmd.Apply<VulnerablePower>(choiceContext, enemy, 1m, ownerCreature, null, false);
         }
 
-        // ×4：按计数器数值造成等次数的1点伤害
+        // 脳4锛氭寜璁℃暟鍣ㄦ暟鍊奸€犳垚绛夋鏁扮殑1鐐逛激瀹?
         if (count % 4 == 0)
         {
             for (var i = 0; i < count; i++)
@@ -91,7 +91,7 @@ public class Rebuttal : ModEnchantmentTemplate
                 if (randomTarget.Count == 0) break;
                 var t = randomTarget[owner.RunState.Rng.CombatCardSelection.NextInt(randomTarget.Count)];
                 await CreatureCmd.Damage(choiceContext, t, 1m,
-                    ValueProp.Unpowered, ownerCreature, null);
+                    ValueProp.Unpowered, ownerCreature, null, null);
             }
         }
     }

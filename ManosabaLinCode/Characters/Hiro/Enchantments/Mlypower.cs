@@ -28,8 +28,9 @@ public class Mlypower : ModEnchantmentTemplate
             choiceContext,
             Card.Owner.Creature,
             1m,
-            ValueProp.Unpowered,    // 不受力量等能力影响，但可被格挡
+            ValueProp.Unpowered,
             null,
-            Card);
+            Card,
+            null);  // CardPlay?
     }
 }

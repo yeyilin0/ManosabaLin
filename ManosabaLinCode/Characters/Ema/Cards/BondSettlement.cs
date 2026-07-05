@@ -109,8 +109,7 @@ public sealed class BondSettlement : ManosabaCardTemplate
         {
             if (enemies.Count == 0) break;
             var target = rng.NextItem(enemies);
-            await CreatureCmd.Damage(choiceContext, target, 6m,
-                ValueProp.Unpowered, creature, this);
+            await CreatureCmd.Damage(choiceContext, target, 6m, ValueProp.Unpowered, this, cardPlay);
         }
 
         // 重新读取亲和

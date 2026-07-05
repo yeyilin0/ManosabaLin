@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 
@@ -27,6 +28,7 @@ public sealed class MargaretAffinity : ManosabaCardTemplate
             yield return HoverTipFactory.FromPower<BondPower>();
             yield return HoverTipFactory.FromPower<MgmPower>();
             yield return HoverTipFactory.FromPower<ShieldInterceptPower>();
+            
         }
     }
 
@@ -40,14 +42,28 @@ public sealed class MargaretAffinity : ManosabaCardTemplate
         var owner = Owner;
         var creature = owner.Creature;
 
+        // 多人选队友，单人默认自己
+        var target = cardPlay.Target ?? creature;
+
         var bond = creature.GetPower<BondPower>();
         if (bond != null) bond.Affinity++;
 
+        // 自己获得 MgmPower
         await PowerCmd.Apply<MgmPower>(
             choiceContext, creature, DynamicVars["MgmStacks"].BaseValue, creature, this, false);
 
-        await PowerCmd.Apply<ShieldInterceptPower>(
+        // 自己获得 ShieldInterceptPower
+        var shield = await PowerCmd.Apply<ShieldInterceptPower>(
             choiceContext, creature, 1, creature, this, false);
+
+        // 如果目标是其他队友，给目标加 GuardedPower 并加入掩护列表
+        if (target != creature)
+        {
+            await PowerCmd.Apply<GuardedPower>(
+                choiceContext, target, 1, creature, this, false);
+
+            shield?.AddCoveredCreature(target);
+        }
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

@@ -51,7 +51,7 @@ public sealed class SherrylinAmm() : ManosabaCardTemplate(3, CardType.Attack, Ca
         var totalDamage = source.DynamicVars.Damage.BaseValue + suspectAmt + (int)(withAmt / 20);
 
         await DamageCmd.Attack(totalDamage)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

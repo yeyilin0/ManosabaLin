@@ -17,8 +17,12 @@ public sealed class WitchificationEmotionOrb : EmotionOrb<WitchificationEmotion>
     private decimal _damageAccumulated;
 
     public override decimal ModifyDamageMultiplicative(
-        Creature? target, decimal amount, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+        Creature? target,
+        decimal amount,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (dealer != Owner.Creature) return 1m;
         if (target == null || target.Side == Owner.Creature.Side) return 1m;
@@ -45,9 +49,7 @@ public sealed class WitchificationEmotionOrb : EmotionOrb<WitchificationEmotion>
 
             if (hpLoss > 0)
             {
-                await CreatureCmd.Damage(choiceContext, Owner.Creature,
-                    hpLoss, ValueProp.Unblockable | ValueProp.Unpowered,
-                    Owner.Creature, null);
+                await CreatureCmd.Damage(choiceContext, Owner.Creature, hpLoss, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
             }
         }
     }
@@ -57,9 +59,7 @@ public sealed class WitchificationEmotionOrb : EmotionOrb<WitchificationEmotion>
         var currentHp = Owner.Creature.CurrentHp;
         if (currentHp > 0)
         {
-            await CreatureCmd.Damage(ctx, Owner.Creature,
-                currentHp, ValueProp.Unblockable | ValueProp.Unpowered,
-                Owner.Creature, null);
+            await CreatureCmd.Damage(ctx, Owner.Creature, currentHp, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
         }
     }
 }

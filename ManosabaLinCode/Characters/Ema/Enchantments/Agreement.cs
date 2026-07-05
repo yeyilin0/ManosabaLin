@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Common.Powers;
+using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Ema.Relics;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -32,7 +33,6 @@ public class Agreement : ModEnchantmentTemplate
         var ownerCreature = owner.Creature;
         var combatState = card.CombatState;
 
-        // 从遗物获取计数器
         var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault()
                     ?? (object)owner.Relics.OfType<Withema>().FirstOrDefault();
     

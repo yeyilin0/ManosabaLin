@@ -46,9 +46,7 @@ public sealed class WitchCleansing : ManosabaCardTemplate
         if (bond != null) bond.Estrangement++;
 
         // 对自己造成5点伤害（不受力量加成）
-        await CreatureCmd.Damage(choiceContext, creature,
-            DynamicVars.Damage.BaseValue,
-            ValueProp.Unpowered | ValueProp.Move, creature, this);
+        await CreatureCmd.Damage(choiceContext, creature, DynamicVars.Damage.BaseValue, ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
 
         // 移除全体友方四分之一的魔女化层数
         var totalRemoved = 0m;

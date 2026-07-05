@@ -17,8 +17,12 @@ public sealed class EmotionAngerOrb : EmotionOrb<EmotionAnger>
     protected override Color OrbColor => new(1f, 0.2f, 0.2f);
 
     public override decimal ModifyDamageMultiplicative(
-        Creature? target, decimal amount, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+        Creature? target,
+        decimal amount,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (dealer != Owner.Creature) return 1m;
         if (target == null || target.Side == Owner.Creature.Side) return 1m;

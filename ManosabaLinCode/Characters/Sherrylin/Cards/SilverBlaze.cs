@@ -57,7 +57,7 @@ public sealed class SilverBlaze() : ManosabaCardTemplate(1, CardType.Attack, Car
         capturedDamage = Hook.ModifyDamage(
             Owner.RunState, Owner.Creature.CombatState, null,
             Owner.Creature, capturedDamage, ValueProp.Move,
-            selectedAttack, ModifyDamageHookType.All, CardPreviewMode.None,
+            selectedAttack, null, ModifyDamageHookType.All, CardPreviewMode.None,
             out _);
 
         await CardCmd.Exhaust(choiceContext, selectedAttack);

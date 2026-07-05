@@ -36,7 +36,7 @@ public sealed class SilverBlazeToken() : ManosabaCardTemplate(0, CardType.Attack
         var damage = DynamicVars.Damage.BaseValue;
 
         await DamageCmd.Attack(damage)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

@@ -7,7 +7,6 @@ namespace ManosabaLin.Patches;
 
 internal static class FusionStandManager
 {
-    private static readonly string[] GuardThreePhaseTwoMoves = ["PHASE2_ATTACK", "TASK_MOVE", "ADD_CARDS"];
     private static readonly Dictionary<MonsterModel, int> TurnCounts = [];
 
     internal static event Action<MonsterModel>? StandActivated;
@@ -27,6 +26,7 @@ internal static class FusionStandManager
 
         _combatHash = combatHash;
         TurnCounts.Clear();
+        FusionStandIntentPatch.ClearForNewCombat();
     }
 
     internal static bool EnsureStand(MonsterModel monster)
@@ -58,12 +58,10 @@ internal static class FusionStandManager
 
     private static IReadOnlyList<MoveState> GetStandMoves(MonsterModel monster)
     {
-        if (monster is not GuardThreeMonster || monster.MoveStateMachine == null)
+        if (monster is not GuardThreeMonster guardThree)
             return [];
 
-        return GuardThreePhaseTwoMoves
-            .Select(id => monster.MoveStateMachine.States.TryGetValue(id, out var state) ? state : null)
-            .OfType<MoveState>()
+        return guardThree.CreatePhaseTwoStandMoves()
             .Where(move => move.Intents.Count > 0)
             .ToList();
     }

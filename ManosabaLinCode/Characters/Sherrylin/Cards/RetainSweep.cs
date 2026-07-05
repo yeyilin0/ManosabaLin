@@ -40,9 +40,7 @@ public sealed class RetainSweep() : ManosabaCardTemplate(2, CardType.Attack, Car
         var enemies = CombatState.HittableEnemies.Where(e => e.IsAlive).ToList();
         foreach (var enemy in enemies)
         {
-            await CreatureCmd.Damage(choiceContext, enemy,
-                source.DynamicVars.Damage.BaseValue,
-                ValueProp.Move, source);
+            await CreatureCmd.Damage(choiceContext, enemy, source.DynamicVars.Damage.BaseValue, ValueProp.Move, source, cardPlay);
         }
     }
 

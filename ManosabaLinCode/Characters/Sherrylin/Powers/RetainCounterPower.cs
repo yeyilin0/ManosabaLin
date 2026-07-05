@@ -37,6 +37,6 @@ public sealed class RetainCounterPower : ManosabaPowerTemplate
         var target = targets[rng.NextInt(targets.Count)];
 
         Flash();
-        await CreatureCmd.Damage(choiceContext, target, Amount, ValueProp.Unpowered, Owner, null);
+        await CreatureCmd.Damage(choiceContext, target, Amount, ValueProp.Unpowered, null, null);
     }
 }

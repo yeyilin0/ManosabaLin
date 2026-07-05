@@ -43,7 +43,7 @@ public sealed class Ten : ManosabaCardTemplate
             // 2. 根据嫌疑层数造成对应次数的伤害（不消耗嫌疑）
             await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
                 .WithHitCount(suspectAmount)
-                .FromCard(source)
+                .FromCard(source, cardPlay)
                 .TargetingRandomOpponents(source.CombatState)
                 .WithHitFx("vfx/vfx_attack_slash")
                 .Execute(choiceContext);

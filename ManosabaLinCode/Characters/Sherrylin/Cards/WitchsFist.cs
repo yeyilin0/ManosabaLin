@@ -1,4 +1,4 @@
-using ManosabaLin.Characters.Common;
+﻿using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Sherrylin.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
@@ -45,7 +45,7 @@ public sealed class WitchsFist() : ManosabaCardTemplate(1, CardType.Attack, Card
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
@@ -54,7 +54,7 @@ public sealed class WitchsFist() : ManosabaCardTemplate(1, CardType.Attack, Card
         var cardRemoved = false;
         var powerRemoved = false;
 
-        // 从手牌、弃牌堆、抽牌堆中选 SuperStrength 移除
+        // 浠庢墜鐗屻€佸純鐗屽爢銆佹娊鐗屽爢涓€?SuperStrength 绉婚櫎
         var combatSuperStrengths = new[] { PileType.Hand, PileType.Discard, PileType.Draw }
             .SelectMany(p => p.GetPile(player).Cards)
             .Where(c => c is SuperStrength)
@@ -75,14 +75,14 @@ public sealed class WitchsFist() : ManosabaCardTemplate(1, CardType.Attack, Card
             }
         }
 
-        // 移除自身 SuperStrengthPower
+        // 绉婚櫎鑷韩 SuperStrengthPower
         if (source.Owner.Creature.GetPower<SuperStrengthPower>() != null)
         {
             await PowerCmd.Remove<SuperStrengthPower>(source.Owner.Creature);
             powerRemoved = true;
         }
 
-        // 战斗结束后移除牌组中所有 SuperStrength
+        // 鎴樻枟缁撴潫鍚庣Щ闄ょ墝缁勪腑鎵€鏈?SuperStrength
         CombatManager.Instance.CombatEnded += OnCombatEnded;
         async void OnCombatEnded(CombatRoom room)
         {
@@ -94,7 +94,7 @@ public sealed class WitchsFist() : ManosabaCardTemplate(1, CardType.Attack, Card
                 await CardPileCmd.RemoveFromDeck(c, showPreview: false);
         }
 
-        // 如果移除了卡或能力，获得带保留的愚者
+        // 濡傛灉绉婚櫎浜嗗崱鎴栬兘鍔涳紝鑾峰緱甯︿繚鐣欑殑鎰氳€?
         if (cardRemoved || powerRemoved)
         {
             var fool = source.CombatState.CreateCard<TheFool>(source.Owner);

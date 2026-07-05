@@ -7,7 +7,6 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.ValueProps;
-using MegaCrit.Sts2.Core.Hooks;
 using System.Threading.Tasks;
 using ManosabaLin.Characters.Common;
 
@@ -27,21 +26,16 @@ public class AmmPower : ManosabaPowerTemplate
         Creature? dealer,
         CardModel? cardSource)
     {
-        // dealer必须是Owner打出的攻击卡
         if (dealer?.GetPower<AmmPower>() == null) return;
         if (cardSource?.Owner?.Creature != Owner) return;
         if (cardSource?.Type != CardType.Attack) return;
         if (target == null || !target.IsEnemy || !target.IsAlive) return;
-        
-        // 必须打到血条
         if (result.UnblockedDamage <= 0) return;
 
         var with = Owner.GetPower<WithPower>();
         var withAmount = with?.Amount ?? 0;
-
         var threshold = (int)(withAmount / 4);
 
-        // 伤害后检查HP是否在阈值内
         if (target.CurrentHp <= threshold && target.CurrentHp > 0)
         {
             Flash();
@@ -52,13 +46,12 @@ public class AmmPower : ManosabaPowerTemplate
                 99999m,
                 ValueProp.Unblockable | ValueProp.Unpowered,
                 Owner,
-                cardSource
-            );
+                cardSource,
+                null);
 
             await PowerCmd.Apply<WithPower>(
                 choiceContext, Owner, 10,
-                Owner, null, false
-            );
+                Owner, null, false);
         }
     }
 }

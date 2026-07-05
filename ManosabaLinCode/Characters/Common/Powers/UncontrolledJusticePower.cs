@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib.Interop.AutoRegistration;
+using ManosabaLin.Characters.Hiro.Monsters;
 using System.Threading.Tasks;
 using HarmonyLib;
 
@@ -14,6 +15,21 @@ public sealed class UncontrolledJusticePower : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
+
+    public override bool ShouldDie(Creature creature)
+    {
+        if (creature != Owner) return true;
+        if (Owner.Monster is not GuardThreeMonster) return true;
+        return false;
+    }
+
+    public override async Task AfterPreventingDeath(Creature creature)
+    {
+        if (creature != Owner) return;
+        if (Owner.Monster is not GuardThreeMonster) return;
+
+        await GuardThreeCombatSingleton.HandlePhaseOneResurrection(creature, this);
+    }
 }
 
 [HarmonyPatch(typeof(MonsterModel), nameof(MonsterModel.PerformMove))]

@@ -1,4 +1,4 @@
-﻿using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Interop.AutoRegistration;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -22,13 +22,7 @@ public class YlsmPower : ManosabaPowerTemplate
         if (side != Owner.Side) return;
         if (Owner.IsDead) return;
 
-        await CreatureCmd.Damage(
-            choiceContext,
-            Owner,
-            1m,
-            ValueProp.Unblockable | ValueProp.Unpowered,
-            null, null
-        );
+        await CreatureCmd.Damage(choiceContext, Owner, 1m, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
 
         await PowerCmd.Remove(this);
     }

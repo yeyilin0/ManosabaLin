@@ -25,7 +25,7 @@ public sealed class ReasoningEstablished : ManosabaCardTemplate
         var totalDamage = DynamicVars.Damage.BaseValue + enchantmentCount * bonusPerCard;
 
         await DamageCmd.Attack(totalDamage)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target!)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

@@ -34,8 +34,12 @@ public sealed class SacrificeTankPower : ManosabaPowerTemplate
     }
 
     public override decimal ModifyDamageMultiplicative(
-        Creature? target, decimal amount, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+        Creature? target,
+        decimal amount,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource,
+        CardPlay? cardPlay)
     {
         if (target == Owner && props.IsPoweredAttack())
             return 2m;

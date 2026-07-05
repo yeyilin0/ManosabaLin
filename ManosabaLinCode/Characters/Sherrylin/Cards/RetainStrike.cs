@@ -37,9 +37,7 @@ public sealed class RetainStrike() : ManosabaCardTemplate(1, CardType.Attack, Ca
         var target = cardPlay.Target ?? source.Owner.Creature;
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Attack", source.Owner.Character.AttackAnimDelay);
-        await CreatureCmd.Damage(choiceContext, target,
-            source.DynamicVars.Damage.BaseValue,
-            ValueProp.Move, source);
+        await CreatureCmd.Damage(choiceContext, target, source.DynamicVars.Damage.BaseValue, ValueProp.Move, source, cardPlay);
         await CreatureCmd.GainBlock(source.Owner.Creature, source.DynamicVars.Block, cardPlay);
     }
 

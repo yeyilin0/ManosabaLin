@@ -103,7 +103,7 @@ public sealed class Justice : ManosabaCardTemplate
                     if (target != null)
                     {
                         var attackCmd = await DamageCmd.Attack(attackCard.DynamicVars.Damage.BaseValue)
-                            .FromCard(attackCard)
+                            .FromCard(attackCard, cardPlay)
                             .Targeting(target)
                             .WithHitFx("vfx/vfx_attack_slash")
                             .Execute(choiceContext);

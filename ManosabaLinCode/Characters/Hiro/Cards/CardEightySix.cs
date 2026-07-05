@@ -47,7 +47,7 @@ public class CardEightySix() : ManosabaCardTemplate(1, CardType.Attack, CardRari
                 ArgumentNullException.ThrowIfNull(cardPlay.Target, nameof(cardPlay));
 
                 await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                    .FromCard(this)
+                    .FromCard(this, cardPlay)
                     .Targeting(cardPlay.Target)
                     .WithHitFx("vfx/vfx_attack_slash")
                     .Execute(choiceContext);
@@ -107,7 +107,7 @@ public class CardEightySix() : ManosabaCardTemplate(1, CardType.Attack, CardRari
         }
         else
         {
-            vfx = NExhaustVfx.Create(nodeToAnim);
+            vfx = null;
         }
 
         if (vfx != null)

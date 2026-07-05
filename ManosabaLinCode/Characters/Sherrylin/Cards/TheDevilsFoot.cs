@@ -49,13 +49,7 @@ public sealed class TheDevilsFoot() : ManosabaCardTemplate(13, CardType.Attack, 
             var enemies = CombatState.HittableEnemies.Where(e => e.IsAlive).ToList();
             foreach (var enemy in enemies)
             {
-                await CreatureCmd.Damage(
-                    choiceContext,
-                    enemy,
-                    damage,
-                    ValueProp.Move,
-                    Owner.Creature,
-                    source);
+                await CreatureCmd.Damage(choiceContext, enemy, damage, ValueProp.Move, source, cardPlay);
             }
         }
 

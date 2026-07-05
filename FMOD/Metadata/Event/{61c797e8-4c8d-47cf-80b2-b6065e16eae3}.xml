@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{61c797e8-4c8d-47cf-80b2-b6065e16eae3}">
 		<property name="name">
-			<value>emawitchkiller</value>
+			<value>emawitchkillercard</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>

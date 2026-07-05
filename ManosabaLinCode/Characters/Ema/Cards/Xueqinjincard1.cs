@@ -1,4 +1,4 @@
-﻿using MinionLib.Component.Core;
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin;
@@ -55,8 +55,7 @@ public sealed class Xueqinjincard1 : ManosabaCardTemplate
         // 造成 3 点伤害
         if (cardPlay.Target != null)
         {
-            await CreatureCmd.Damage(choiceContext, cardPlay.Target, 3m,
-                ValueProp.Move, creature, this);
+            await CreatureCmd.Damage(choiceContext, cardPlay.Target, 3m, ValueProp.Move, this, cardPlay);
         }
 
         // 选择一张手牌变成随机疏远牌

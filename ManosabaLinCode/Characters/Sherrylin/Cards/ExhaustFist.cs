@@ -1,4 +1,4 @@
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
 using MegaCrit.Sts2.Core.Commands;
@@ -31,7 +31,7 @@ public sealed class ExhaustFist() : ManosabaCardTemplate(3, CardType.Attack, Car
         var source = this;
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
         await DamageCmd.Attack(source.DynamicVars.CalculatedDamage)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(cardPlay.Target!)
             .Execute(choiceContext);
     }

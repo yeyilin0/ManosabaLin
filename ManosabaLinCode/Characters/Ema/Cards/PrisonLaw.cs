@@ -24,7 +24,7 @@ public sealed class PrisonLaw : ManosabaCardTemplate
         var totalDamage = DynamicVars.Damage.BaseValue + (doubtCount > 0 ? 4m : 0m);
 
         await DamageCmd.Attack(totalDamage)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target!)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

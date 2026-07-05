@@ -71,7 +71,7 @@ public sealed class CardFourteen() : ManosabaCardTemplate(0, CardType.Attack, Ca
 
         // 第二步：造成 33 点伤害
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(cardPlay.Target)
             .Execute(choiceContext);
 

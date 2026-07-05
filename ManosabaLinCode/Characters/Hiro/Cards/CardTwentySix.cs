@@ -66,7 +66,7 @@ public sealed class CardTwentySix : ManosabaCardTemplate
 
         // 3. 造成 4 点伤害
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

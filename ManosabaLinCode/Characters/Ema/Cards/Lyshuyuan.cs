@@ -1,4 +1,4 @@
-﻿using MinionLib.Component.Core;
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin;
@@ -47,8 +47,7 @@ public sealed class Lyshuyuan : ManosabaCardTemplate
         // 造成8点伤害
         if (cardPlay.Target != null)
         {
-            await CreatureCmd.Damage(choiceContext, cardPlay.Target, source.DynamicVars.Damage.BaseValue,
-                ValueProp.Move, creature, this);
+            await CreatureCmd.Damage(choiceContext, cardPlay.Target, source.DynamicVars.Damage.BaseValue, ValueProp.Move, this, cardPlay);
         }
 
         var bond = creature.GetPower<BondPower>();

@@ -1,4 +1,4 @@
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Sherrylin.Components;
 using ManosabaLin.Characters.Sherrylin.Relics;
 using MegaCrit.Sts2.Core.Commands;
@@ -39,7 +39,7 @@ public sealed class EmptyHouse() : ManosabaCardTemplate(4, CardType.Attack, Card
         for (int i = 0; i < hitCount; i++)
         {
             await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-                .FromCard(source)
+                .FromCard(source, cardPlay)
                 .Targeting(cardPlay.Target!)
                 .Execute(choiceContext);
         }

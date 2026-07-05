@@ -54,7 +54,7 @@ public static class FusionStandVisualPatch
             var stand = monster.CreateVisuals();
             stand.Name = "FusionStand";
             stand.ShowBehindParent = true;
-            stand.Modulate = new Color(0.4f, 0.5f, 1.0f, 0.45f);
+            stand.Modulate = new Color(1.0f, 0f, 0f, 0.5f);
             stand.Scale = new Vector2(1.05f, 1.05f);
             stand.Position = new Vector2(80f, -60f);
             stand.SetProcess(true);

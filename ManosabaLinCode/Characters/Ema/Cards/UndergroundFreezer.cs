@@ -31,7 +31,7 @@ public sealed class UndergroundFreezer : ManosabaCardTemplate
     {
         var target = cardPlay.Target!;
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

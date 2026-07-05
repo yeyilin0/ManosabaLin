@@ -22,7 +22,7 @@ public sealed class EmaSeven() : ManosabaCardTemplate(1, CardType.Skill, CardRar
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
-        get { yield return HoverTipFactory.FromCard<EmaTen>(IsUpgraded); }
+        get { yield return HoverTipFactory.FromCard<EmaTwo>(IsUpgraded); }
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new[]

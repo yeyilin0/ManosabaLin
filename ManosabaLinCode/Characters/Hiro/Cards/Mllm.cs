@@ -38,9 +38,7 @@ public sealed class Mllm() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
         // 不受力量加成的伤害
-        await CreatureCmd.Damage(choiceContext, target,
-            source.DynamicVars.Damage.BaseValue,
-            ValueProp.Unpowered | ValueProp.Move, source);
+        await CreatureCmd.Damage(choiceContext, target, source.DynamicVars.Damage.BaseValue, ValueProp.Unpowered | ValueProp.Move, source, cardPlay);
 
         // 给予 MllmPower
         await PowerCmd.Apply<MllmPower>(

@@ -75,8 +75,7 @@ public sealed class FinalJudgment : ManosabaCardTemplate
         if (bondDamage > 0)
         {
             foreach (var enemy in enemies)
-                await CreatureCmd.Damage(choiceContext, enemy, bondDamage,
-                    ValueProp.Unpowered | ValueProp.Move, creature, this);
+                await CreatureCmd.Damage(choiceContext, enemy, bondDamage, ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
         }
 
         if (affinity > estrangement && affinity > 0)
@@ -104,8 +103,7 @@ public sealed class FinalJudgment : ManosabaCardTemplate
                 if (enemies.Count > 0)
                 {
                     var target = rng.NextItem(enemies);
-                    await CreatureCmd.Damage(choiceContext, target, 1m,
-                        ValueProp.Unpowered, creature, null);
+                    await CreatureCmd.Damage(choiceContext, target, 1m, ValueProp.Unpowered, null, null);
                 }
             }
             else if (card.Enchantment is Agreement)
@@ -158,8 +156,7 @@ public sealed class FinalJudgment : ManosabaCardTemplate
 
             var suspectDamage = (int)suspect.Amount * 3 + bondTotal;
             if (suspectDamage > 0)
-                await CreatureCmd.Damage(choiceContext, enemy, suspectDamage,
-                    ValueProp.Unpowered | ValueProp.Move, creature, this);
+                await CreatureCmd.Damage(choiceContext, enemy, suspectDamage, ValueProp.Unpowered | ValueProp.Move, this, null);
 
             await PowerCmd.Remove(suspect);
         }

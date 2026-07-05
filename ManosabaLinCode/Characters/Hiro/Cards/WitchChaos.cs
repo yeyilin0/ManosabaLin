@@ -61,9 +61,7 @@ public sealed class WitchChaos : ManosabaCardTemplate
 
             var target = rng.Shuffle.NextItem(allTargets);
 
-            await CreatureCmd.Damage(choiceContext, target,
-                source.DynamicVars.Damage.BaseValue,
-                ValueProp.Unpowered | ValueProp.Move, source);
+            await CreatureCmd.Damage(choiceContext, target, source.DynamicVars.Damage.BaseValue, ValueProp.Unpowered | ValueProp.Move, source, cardPlay);
 
             if (target.IsEnemy)
             {
@@ -114,6 +112,6 @@ public sealed class WitchChaos : ManosabaCardTemplate
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars["HitCount"].UpgradeValueBy(13m); 
-        EnergyCost.UpgradeBy(1);
+        EnergyCost.UpgradeBy(2);
     }
 }

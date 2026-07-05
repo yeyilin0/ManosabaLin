@@ -41,7 +41,7 @@ public sealed class SherrylinSuspectSpread() : ManosabaCardTemplate(1, CardType.
         var totalDamage = source.DynamicVars.Damage.BaseValue + suspectAmt;
 
         await DamageCmd.Attack(totalDamage)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

@@ -47,20 +47,19 @@ public sealed class WildDance : ManosabaCardTemplate
 
             await CardCmd.AutoPlay(choiceContext, card, null);
 
-            var allTargets = CombatState.Allies.Where(a => a.IsAlive)
-                .Concat(CombatState.Enemies.Where(e => e.IsAlive))
-                .ToList();
-            if (allTargets.Count == 0) continue;
+            var enemies = CombatState.Enemies.Where(e => e.IsAlive).ToList();
+            var allies = CombatState.Allies.Where(a => a.IsAlive).ToList();
 
-            var target = rng.NextItem(allTargets);
-
-            if (target.IsEnemy)
+            // 随机决定打敌人还是友方
+            var roll = rng.NextInt(2);
+            if (roll == 0 && enemies.Count > 0)
             {
-                await CreatureCmd.Damage(choiceContext, target, baseDamage * multiplier,
-                    ValueProp.Unpowered | ValueProp.Move, creature, this);
+                var target = rng.NextItem(enemies);
+                await CreatureCmd.Damage(choiceContext, target, baseDamage * multiplier, ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
             }
-            else
+            else if (allies.Count > 0)
             {
+                var target = rng.NextItem(allies);
                 var suspect = target.GetPower<SuspectPower>();
                 if (suspect != null && suspect.Amount > 0)
                     await PowerCmd.ModifyAmount(choiceContext, suspect, -1, target, null, false);

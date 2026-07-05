@@ -8,9 +8,11 @@ using ManosabaLin.Characters.Common.Powers;
 
 namespace ManosabaLin.Patches;
 
+[HarmonyPatch]
 public static class FusionStandIntentPatch
 {
     private static readonly FieldInfo? OnPerformField = AccessTools.Field(typeof(MoveState), "_onPerform");
+    private static readonly Dictionary<MoveState, MoveState> BaseMovesByFusedMove = [];
 
     [ThreadStatic] private static bool _isApplyingFusionMove;
 
@@ -27,8 +29,8 @@ public static class FusionStandIntentPatch
         if (!FusionStandManager.IsActiveForCurrentCombat()) return false;
         if (monster.Creature.GetPower<FusionStandPower>() == null) return false;
 
-        var mainMove = monster.NextMove;
-        if (mainMove == null || mainMove.Id.EndsWith(FusionStandManager.FusedMoveSuffix, StringComparison.Ordinal))
+        var mainMove = ResolveBaseMove(monster.NextMove);
+        if (mainMove == null)
             return false;
 
         if (!FusionStandManager.EnsureStand(monster))
@@ -68,6 +70,7 @@ public static class FusionStandIntentPatch
                 FollowUpStateId = mainMove.FollowUpStateId,
                 MustPerformOnceBeforeTransitioning = mainMove.MustPerformOnceBeforeTransitioning
             };
+            BaseMovesByFusedMove[fusedMove] = mainMove;
 
             _isApplyingFusionMove = true;
             try
@@ -87,5 +90,21 @@ public static class FusionStandIntentPatch
             MainFile.Logger.Warn($"[FusionStand] intent failed: {ex.Message}");
             return false;
         }
+    }
+
+    internal static void ClearForNewCombat()
+    {
+        BaseMovesByFusedMove.Clear();
+    }
+
+    private static MoveState? ResolveBaseMove(MoveState? move)
+    {
+        if (move == null)
+            return null;
+
+        if (!move.Id.EndsWith(FusionStandManager.FusedMoveSuffix, StringComparison.Ordinal))
+            return move;
+
+        return BaseMovesByFusedMove.GetValueOrDefault(move);
     }
 }

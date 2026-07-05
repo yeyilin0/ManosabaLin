@@ -13,7 +13,7 @@ using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
-/// <summary>坏掉的门锁 - 1费攻击, 反驳附魔, 8伤害, 无视护盾, 升级+4伤</summary>
+/// <summary>坏掉的门�?- 1费攻�? 反驳附魔, 8伤害, 无视护盾, 升级+4�?/summary>
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class BrokenDoorLock : ManosabaCardTemplate
 {
@@ -27,10 +27,10 @@ public sealed class BrokenDoorLock : ManosabaCardTemplate
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var attack = DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .Targeting(cardPlay.Target!)
             .WithHitFx("vfx/vfx_attack_slash");
-        attack.DamageProps = ValueProp.Unblockable;
+        attack.DamageProps = ValueProp.Move | ValueProp.Unblockable;
         await attack.Execute(choiceContext);
     }
 

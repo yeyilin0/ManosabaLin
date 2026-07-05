@@ -19,7 +19,12 @@ public sealed class Ritualsword : ManosabaRelicTemplate
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
-        get { yield return HoverTipFactory.FromCard<Witchrestceremony>(); }
+        get
+        {
+            yield return HoverTipFactory.FromCard<Witchrestceremony>(); 
+            yield return HoverTipFactory.FromPower<RitualCeremonyPower>();
+        }
+        
     }
 
     public override async Task AfterObtained()

@@ -35,7 +35,7 @@ public sealed class EmaBadEnding() : ManosabaCardTemplate(3, CardType.Attack, Ca
         await PowerCmd.Apply<EmaBadEndingPower>(choiceContext, CombatState!.Enemies, 1, Owner.Creature, this);
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-            .FromCard(this)
+            .FromCard(this, cardPlay)
             .TargetingAllOpponents(CombatState)
             .Execute(choiceContext);
 

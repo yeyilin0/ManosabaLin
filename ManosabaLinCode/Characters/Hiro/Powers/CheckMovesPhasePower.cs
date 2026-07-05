@@ -32,7 +32,7 @@ public class CheckMovesPhasePower : ManosabaPowerTemplate
         {
             await CreatureCmd.Damage(
                 choiceContext, Owner, FailDamage,
-                ValueProp.Unpowered | ValueProp.Move, Owner, null);
+                ValueProp.Unpowered | ValueProp.Move, null, null);
 
             var boss = Owner.CombatState?.Enemies
                 .FirstOrDefault(c => c.GetPower<GuardTwoBossLastStandPower>() != null);

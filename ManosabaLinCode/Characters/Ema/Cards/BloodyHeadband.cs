@@ -1,4 +1,4 @@
-using MinionLib.Component.Core;
+﻿using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.Commands;
@@ -34,15 +34,15 @@ public sealed class BloodyHeadband : ManosabaCardTemplate
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
-        // 自己获得 5 格挡
-        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+        var creature = Owner.Creature;
+        var allies = CombatState.Allies.Where(a => a is { IsAlive: true } && a != creature).ToList();
 
-        // 多人随机选队友，单人自己
-        var allies = CombatState.Allies.Where(a => a is { IsAlive: true } && a != Owner.Creature).ToList();
+        // 澶氫汉鏃堕€夐槦鍙嬶紝鍗曚汉榛樿鑷繁
         var target = allies.Count > 0
             ? Owner.RunState.Rng.CombatTargets.NextItem(allies)
-            : Owner.Creature;
+            : creature;
 
+        await CreatureCmd.GainBlock(creature, DynamicVars.Block, cardPlay);
         await PlayerCmd.GainEnergy(DynamicVars["EnergyGain"].BaseValue, target.Player ?? Owner);
     }
 

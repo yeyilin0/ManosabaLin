@@ -67,9 +67,7 @@ public class Reviveritualpower : ManosabaPowerTemplate
             if (buffer != null)
                 await PowerCmd.Remove(buffer);
 
-            await CreatureCmd.Damage(
-                choiceContext, Owner, Owner.MaxHp,
-                MegaCrit.Sts2.Core.ValueProps.ValueProp.Unblockable, Owner, null);
+            await CreatureCmd.Damage(choiceContext, Owner, Owner.MaxHp, MegaCrit.Sts2.Core.ValueProps.ValueProp.Unblockable, null, null);
             await PowerCmd.Remove(this);
         }
         else

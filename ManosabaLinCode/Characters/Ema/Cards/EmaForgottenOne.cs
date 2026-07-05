@@ -98,8 +98,7 @@ public sealed class EmaForgottenOne : ManosabaCardTemplate
         // 失去等于审判附魔数量的HP
         if (trialCount > 0)
         {
-            await CreatureCmd.Damage(choiceContext, creature, trialCount,
-                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, source);
+            await CreatureCmd.Damage(choiceContext, creature, trialCount, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, source, null);
         }
 
         // 移除四分之一的审判附魔
@@ -185,8 +184,7 @@ public sealed class EmaForgottenOne : ManosabaCardTemplate
             await PowerCmd.Remove(buff);
         }
 
-        await CreatureCmd.Damage(choiceContext, creature, source.DynamicVars["Damage"].BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, source);
+        await CreatureCmd.Damage(choiceContext, creature, source.DynamicVars["Damage"].BaseValue, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, source, cardPlay);
     }
 
     // 被丢弃时返回手牌

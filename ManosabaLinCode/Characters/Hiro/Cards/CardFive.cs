@@ -54,7 +54,7 @@ public sealed class CardFive : ManosabaCardTemplate
             // 3. 根据消耗的正义层数造成对应次数的伤害
             await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
                 .WithHitCount(justiceAmount)
-                .FromCard(source)
+                .FromCard(source, cardPlay)
                 .TargetingRandomOpponents(source.CombatState)
                 .WithHitFx("vfx/vfx_starry_impact")
                 .Execute(choiceContext);

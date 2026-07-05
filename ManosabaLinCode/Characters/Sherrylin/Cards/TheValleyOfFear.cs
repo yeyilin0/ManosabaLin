@@ -47,14 +47,7 @@ public sealed class TheValleyOfFear() : ManosabaCardTemplate(2, CardType.Attack,
             if (enemies.Count == 0) break;
             var randomEnemy = rng.NextItem(enemies);
 
-            await CreatureCmd.Damage(
-                choiceContext,
-                randomEnemy,
-                DynamicVars.Damage.BaseValue,
-                ValueProp.Unblockable | ValueProp.Unpowered,
-                Owner.Creature,
-                source
-            );
+            await CreatureCmd.Damage(choiceContext, randomEnemy, DynamicVars.Damage.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered, source, cardPlay);
         }
     }
 

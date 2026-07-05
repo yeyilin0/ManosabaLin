@@ -24,7 +24,7 @@ public sealed class EmaTrueEndingRewardAction : ManosabaActionTemplate
     protected override async Task OnAct(PlayerChoiceContext choiceContext, Creature? target)
     {
         ArgumentNullException.ThrowIfNull(target);
-        await CreatureCmd.Damage(choiceContext, target, (decimal)target.CurrentHp / 4, ValueProp.Unblockable, Owner);
+        await CreatureCmd.Damage(choiceContext, target, (decimal)target.CurrentHp / 4, ValueProp.Unblockable, null, null);
 
         var targetDeckCard = Owner.Player?.Deck.Cards.OfType<EmaEnding>().FirstOrDefault();
         targetDeckCard?.SubtractComponent(new EmaTrueEndingRewardComponent(1));

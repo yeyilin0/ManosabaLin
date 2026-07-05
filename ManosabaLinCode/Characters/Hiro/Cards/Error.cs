@@ -74,7 +74,7 @@ public sealed class Error : ManosabaCardTemplate
         var handAttackCount = (int)DynamicVars["ErrorHandAttackCount"].BaseValue;
         var hpLoss = (int)(target.MaxHp * 0.01m * handAttackCount);
         if (hpLoss > 0)
-            await CreatureCmd.Damage(choiceContext, target, hpLoss, DamageProps.cardHpLoss, source.Owner.Creature, source);
+            await CreatureCmd.Damage(choiceContext, target, hpLoss, DamageProps.cardHpLoss, source, cardPlay);
 
         if (handAttackCount >= 12)
         {

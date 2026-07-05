@@ -13,7 +13,7 @@ using STS2RitsuLib.Scaffolding.Content;
 
 namespace ManosabaLin.Characters.Hiro.Events;
 
-[RegisterActEvent(typeof(Hive))]
+[RegisterActEvent(typeof(Glory))]
 public sealed class KinmaneyurakuchoEvent : ModEventTemplate
 {
     private const string BaseImagePath = "res://ManosabaLin/images/events/kinmaneyurakucho.png";
@@ -28,7 +28,7 @@ public sealed class KinmaneyurakuchoEvent : ModEventTemplate
         InitialPortraitPath: BaseImagePath
     );
 
-    public override bool IsShared => true;
+    public override bool IsShared => false;
 
     protected override IReadOnlyList<EventOption> GenerateInitialOptions()
     {
@@ -127,8 +127,7 @@ public sealed class KinmaneyurakuchoEvent : ModEventTemplate
 
         ChangePortrait(ThreeImagePath);
 
-        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner.Creature,
-            HpCost, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+        await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), Owner.Creature, HpCost, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
 
         var prefs = new CardSelectorPrefs(CardSelectorPrefs.RemoveSelectionPrompt, 4)
         {

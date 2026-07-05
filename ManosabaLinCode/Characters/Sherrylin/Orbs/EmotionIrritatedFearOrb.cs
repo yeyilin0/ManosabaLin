@@ -27,7 +27,7 @@ public sealed class EmotionIrritatedFearOrb : EmotionOrb<EmotionIrritatedFear>
 
     public override async Task BeforeTurnEndOrbTrigger(PlayerChoiceContext ctx)
     {
-        await CreatureCmd.Damage(ctx, Owner.Creature, 3m, ValueProp.Unpowered, Owner.Creature, null);
+        await CreatureCmd.Damage(ctx, Owner.Creature, 3m, ValueProp.Unpowered, null, null);
 
         var blockAmount = Owner.Creature.Block;
 

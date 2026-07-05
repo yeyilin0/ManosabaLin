@@ -43,13 +43,7 @@ public sealed class WitchBurn() : ManosabaCardTemplate(-1, CardType.Curse, CardR
     {
         var source = this;
 
-        await CreatureCmd.Damage(
-            choiceContext,
-            source.Owner.Creature,
-            source.DynamicVars["Damage"].BaseValue,
-            ValueProp.Unblockable | ValueProp.Move,
-            source
-        );
+        await CreatureCmd.Damage(choiceContext, source.Owner.Creature, source.DynamicVars["Damage"].BaseValue, ValueProp.Unblockable | ValueProp.Move, source, null);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

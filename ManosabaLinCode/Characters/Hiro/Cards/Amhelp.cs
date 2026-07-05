@@ -39,13 +39,7 @@ public sealed class Amhelp() : ManosabaCardTemplate(1, CardType.Attack, CardRari
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
         // 自己失去 6 点生命
-        await CreatureCmd.Damage(
-            choiceContext,
-            source.Owner.Creature,
-            6m,
-            ValueProp.Unblockable | ValueProp.Unpowered,
-            null, null
-        );
+        await CreatureCmd.Damage(choiceContext, source.Owner.Creature, 6m, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
 
         // 全体队友获得护盾
         var allies = source.Owner.Creature.CombatState.Creatures

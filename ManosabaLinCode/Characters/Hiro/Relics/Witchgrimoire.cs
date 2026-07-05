@@ -20,7 +20,7 @@ namespace ManosabaLin.Characters.Hiro.Relics;
 [RegisterRelic(typeof(HiroRelicPool))]
 public sealed class Witchgrimoire : ManosabaRelicTemplate
 {
-    public const int CardCount = 13;
+    public const int CardCount = 26;
 
     public override RelicRarity Rarity => RelicRarity.Ancient;
 
@@ -42,9 +42,10 @@ public sealed class Witchgrimoire : ManosabaRelicTemplate
         var relic = this;
         var hiroPool = ModelDb.Character<Hiro>().CardPool;
         var emaPool = ModelDb.GetById<CharacterModel>(new ModelId("CHARACTER", "MANOSABA_LIN_CHARACTER_EMALIN")).CardPool;
+        var sherrylinPool = ModelDb.GetById<CharacterModel>(new ModelId("CHARACTER", "MANOSABA_LIN_CHARACTER_SHERRAYLIN")).CardPool;
 
         var options = CardCreationOptions.ForNonCombatWithUniformOdds(
-                new CardPoolModel[] { hiroPool, emaPool })
+                new CardPoolModel[] { hiroPool, emaPool, sherrylinPool })
             .WithFlags(CardCreationFlags.NoRarityModification | CardCreationFlags.NoCardPoolModifications);
 
         var cards = CardFactory.CreateForReward(relic.Owner, CardCount, options).ToList();

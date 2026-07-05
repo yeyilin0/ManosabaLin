@@ -14,6 +14,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
+using ManosabaLin.Characters.Common.Powers;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -51,7 +52,7 @@ public sealed class SharedFate : ManosabaCardTemplate
         {
             foreach (var ally in CombatState.Allies.Where(a => a is { IsAlive: true }))
             {
-                await PowerCmd.Apply<StrengthPower>(
+                await PowerCmd.Apply<TempStrength>(
                     choiceContext, ally, 5, creature, this, false);
             }
         }

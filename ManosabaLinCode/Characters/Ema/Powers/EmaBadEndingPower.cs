@@ -17,7 +17,7 @@ public sealed class EmaBadEndingPower : ManosabaPowerTemplate
     public override PowerStackType StackType => PowerStackType.Counter;
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
-        Creature? dealer, CardModel? cardSource)
+        Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)
     {
         if (target?.Side != Owner.Side && props.IsPoweredAttack() && dealer == Owner)
             return 1m + 0.1m * Amount;

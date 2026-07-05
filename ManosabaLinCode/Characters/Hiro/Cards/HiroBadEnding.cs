@@ -173,7 +173,7 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
         var justiceAmount = justicePower?.Amount ?? 0;
         if (justiceAmount > 0)
             await CreatureCmd.Damage(choiceContext, source.Owner.Creature, justiceAmount,
-                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, source);
+                ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, source, null);
 
         await PowerCmd.Apply<SuspectPower>(
             choiceContext,
@@ -208,7 +208,7 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
 
         // 3. 对自己造成999不可减免伤害
         await CreatureCmd.Damage(choiceContext, creature, source.DynamicVars["Damage"].BaseValue,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, source);
+            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, source, cardPlay);
     }
 
     protected override async Task AfterCardDiscarded(PlayerChoiceContext choiceContext, CardModel card, ComponentContext componentContext)

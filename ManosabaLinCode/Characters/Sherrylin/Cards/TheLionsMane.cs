@@ -43,13 +43,7 @@ public sealed class TheLionsMane() : ManosabaCardTemplate(1, CardType.Attack, Ca
             var rng = Owner.RunState.Rng.CombatTargets;
             var randomEnemy = rng.NextItem(enemies);
 
-            await CreatureCmd.Damage(
-                choiceContext,
-                randomEnemy,
-                DynamicVars.Damage.BaseValue,
-                ValueProp.Move,
-                Owner.Creature,
-                source);
+            await CreatureCmd.Damage(choiceContext, randomEnemy, DynamicVars.Damage.BaseValue, ValueProp.Move, source, cardPlay);
         }
 
         await PowerCmd.Apply<TheLionsManePower>(

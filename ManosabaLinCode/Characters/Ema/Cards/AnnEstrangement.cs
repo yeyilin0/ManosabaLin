@@ -54,7 +54,7 @@ public sealed class AnnEstrangement : ManosabaCardTemplate
             if (damage > 0)
             {
                 await CreatureCmd.Damage(choiceContext, target, damage,
-                    ValueProp.Unpowered | ValueProp.Move, creature, this);
+                    ValueProp.Unpowered | ValueProp.Move, creature, this, null);
             }
         }
     }

@@ -46,9 +46,7 @@ public sealed class PawnRealization : ManosabaCardTemplate
         var estrangement = bond?.Estrangement ?? 0;
         if (estrangement > 0)
         {
-            await CreatureCmd.Damage(choiceContext, creature,
-                estrangement,
-                ValueProp.Unpowered | ValueProp.Move, creature, this);
+            await CreatureCmd.Damage(choiceContext, creature, estrangement, ValueProp.Unpowered | ValueProp.Move, this, cardPlay);
         }
 
         var shieldAmount = estrangement * 2;

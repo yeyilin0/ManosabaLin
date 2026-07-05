@@ -20,7 +20,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class Lyqinjin : ManosabaCardTemplate
 {
-    public Lyqinjin() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyAlly) { }
+    public Lyqinjin() : base(1, CardType.Attack, CardRarity.Common, TargetType.Self) { }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

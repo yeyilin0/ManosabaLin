@@ -25,9 +25,7 @@ public sealed class EmotionDisgustOrb : EmotionOrb<EmotionDisgust>
         if (dealer == null || dealer.Side == Owner.Creature.Side) return;
         if (result.TotalDamage <= 0) return;
 
-        await CreatureCmd.Damage(
-            choiceContext, dealer, result.TotalDamage,
-            ValueProp.Move, Owner.Creature, null);
+        await CreatureCmd.Damage(choiceContext, dealer, result.TotalDamage, ValueProp.Move, null, null);
 
         if (result.UnblockedDamage > 0)
         {

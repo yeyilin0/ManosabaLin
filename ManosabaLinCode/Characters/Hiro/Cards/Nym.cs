@@ -43,7 +43,7 @@ public sealed class Nym() : ManosabaCardTemplate(2, CardType.Attack, CardRarity.
 
         // 造成 6 点伤害
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)
-            .FromCard(source)
+            .FromCard(source, cardPlay)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);

@@ -19,7 +19,7 @@ namespace ManosabaLin.Characters.Ema.Powers;
 public class EmaWitchFactorPower : ManosabaPowerTemplate, IHealthBarForecastSource
 {
     public override PowerType Type => PowerType.Debuff;
-    public override PowerStackType StackType => PowerStackType.Single;
+    public override PowerStackType StackType => PowerStackType.Counter;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
 
@@ -52,9 +52,7 @@ public class EmaWitchFactorPower : ManosabaPowerTemplate, IHealthBarForecastSour
         // 必须打到了血条（有未被格挡的伤害）
         if (result.UnblockedDamage <= 0) return;
 
-        await CreatureCmd.Damage(choiceContext, Owner, Owner.CurrentHp,
-            ValueProp.Unblockable | ValueProp.Unpowered,
-            null, null);
+        await CreatureCmd.Damage(choiceContext, Owner, Owner.CurrentHp, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
     }
 
     public IEnumerable<HealthBarForecastSegment> GetHealthBarForecastSegments(HealthBarForecastContext context)

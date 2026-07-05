@@ -25,9 +25,7 @@ public sealed class InstantStrike() : ManosabaCardTemplate(0, CardType.Attack, C
         var target = cardPlay.Target ?? source.Owner.Creature;
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Attack", source.Owner.Character.AttackAnimDelay);
-        await CreatureCmd.Damage(choiceContext, target,
-            source.DynamicVars.Damage.BaseValue,
-            ValueProp.Move, source);
+        await CreatureCmd.Damage(choiceContext, target, source.DynamicVars.Damage.BaseValue, ValueProp.Move, source, cardPlay);
 
         if (IsUpgraded)
             await CardPileCmd.Draw(choiceContext, 1, source.Owner);

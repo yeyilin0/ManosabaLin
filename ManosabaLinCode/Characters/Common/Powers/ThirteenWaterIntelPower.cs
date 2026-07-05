@@ -1,4 +1,4 @@
-﻿// ThirteenWaterIntelPower.cs — 加上文字特效
+﻿// ThirteenWaterIntelPower.cs
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Ascension;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -11,6 +11,9 @@ using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using ManosabaLin.Characters.Common.Powers;
 using ManosabaLin.Characters.Hiro.Monsters;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -25,6 +28,8 @@ public sealed class ThirteenWaterIntelPower : ManosabaPowerTemplate
         public int DeathCount;
         public int LastTaskFailedCount;
         public Dictionary<ulong, int> PlayerIntelThisTurn = new();
+        public decimal PreviousMaxHp;
+        public bool Initialized;
     }
 
     public override PowerType Type => PowerType.Debuff;
@@ -38,6 +43,14 @@ public sealed class ThirteenWaterIntelPower : ManosabaPowerTemplate
     {
         get => State.LastTaskFailedCount;
         set => State.LastTaskFailedCount = value;
+    }
+
+    public void InitializePreviousMaxHp(decimal maxHp)
+    {
+        if (State.Initialized) return;
+
+        State.PreviousMaxHp = maxHp;
+        State.Initialized = true;
     }
 
     public override bool ShouldDie(Creature creature)
@@ -60,7 +73,7 @@ public sealed class ThirteenWaterIntelPower : ManosabaPowerTemplate
 
         foreach (var player in Owner.CombatState.Players)
         {
-            await CreatureCmd.SetCurrentHp(player.Creature, player.Creature.MaxHp);
+            await CreatureCmd.Heal(player.Creature, player.Creature.MaxHp);
             await RemoveDebuffs(player.Creature);
         }
 
@@ -70,8 +83,15 @@ public sealed class ThirteenWaterIntelPower : ManosabaPowerTemplate
                 await PowerCmd.Remove(power);
         }
 
-        await CreatureCmd.GainMaxHp(Owner, MaxHpIncrease);
+        if (!State.Initialized)
+            InitializePreviousMaxHp(Owner.MaxHp);
+
+        var newMaxHp = State.PreviousMaxHp + MaxHpIncrease;
+        Owner.MaxHp = (int)Math.Min(newMaxHp, 999999999M);
+        Owner.CurrentHp = Math.Min(Owner.CurrentHp, Owner.MaxHp);
         await CreatureCmd.SetCurrentHp(Owner, Owner.MaxHp);
+        State.PreviousMaxHp = newMaxHp;
+
         await CreatureCmd.GainBlock(Owner, 50, ValueProp.Move, null);
         GuardThreeWrongTextVfx.SpawnPersistentWrong(Owner, 3);
     }

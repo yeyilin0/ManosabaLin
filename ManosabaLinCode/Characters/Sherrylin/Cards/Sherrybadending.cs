@@ -1,4 +1,4 @@
-﻿using MinionLib.Component.Core;
+using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Sherrylin;
@@ -122,8 +122,7 @@ public sealed class Sherrybadending : ManosabaCardTemplate
         }
 
         // 3. 对自己造成999不可减免伤害
-        await CreatureCmd.Damage(choiceContext, creature, 999m,
-            ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, source);
+        await CreatureCmd.Damage(choiceContext, creature, 999m, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, source, cardPlay);
     }
 
     // ===== 回合结束在手牌中 =====

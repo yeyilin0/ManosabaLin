@@ -10,9 +10,13 @@ using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Cards.Transforms;
 using ManosabaLin.Characters.Common.Powers;
 using ManosabaLin.Characters.Ema.Afflictions;
 using ManosabaLin.Characters.Hiro.Powers;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ManosabaLin.Characters.Hiro.Monsters;
 
@@ -20,10 +24,17 @@ namespace ManosabaLin.Characters.Hiro.Monsters;
 public sealed class GuardThreeCombatSingleton : SingletonModel
 {
     private const int MaxHpLossPerPlayer = 50;
+    private static bool _transformListenerRegistered;
+    private bool _isProcessingResurrection;
+
+    public static GuardThreeCombatSingleton? Instance { get; private set; }
+    public decimal PreviousMaxHp { get; private set; }
 
     public GuardThreeCombatSingleton()
     {
+        Instance = this;
         ModHelper.SubscribeForCombatStateHooks(Id.Entry, CombatSubModels);
+        RegisterTransformListener();
     }
 
     public override bool ShouldReceiveCombatHooks => true;
@@ -35,31 +46,43 @@ public sealed class GuardThreeCombatSingleton : SingletonModel
 
     public override bool ShouldDie(Creature creature)
     {
-        if (creature.Monster is not GuardThreeMonster) return true;
-        return creature.GetPower<UncontrolledJusticePower>() == null;
+        return true;
     }
 
     public override async Task AfterPreventingDeath(Creature creature)
     {
-        if (creature.Monster is not GuardThreeMonster monster) return;
-
         var justice = creature.GetPower<UncontrolledJusticePower>();
         if (justice == null) return;
 
-        // ① 立即打断当前意图
+        await HandlePhaseOneResurrection(creature, justice);
+    }
+
+    public static async Task HandlePhaseOneResurrection(Creature creature, UncontrolledJusticePower justice)
+    {
+        var instance = Instance;
+        if (instance == null) return;
+
+        if (creature.Monster is not GuardThreeMonster monster) return;
+
+        if (justice.Owner != creature) return;
+
+        if (instance._isProcessingResurrection) return;
+        instance._isProcessingResurrection = true;
+
         if (monster.MoveStateMachine?.States.TryGetValue("PHASE2_ATTACK", out var move) == true &&
             move is MoveState moveState)
         {
             monster.SetMoveImmediate(moveState, forceTransition: true);
         }
 
-        // ② 回满血 + 失去 50×玩家人数 的血量上限
         int playerCount = creature.CombatState.Players.Count();
         int hpLoss = MaxHpLossPerPlayer * playerCount;
-        creature.SetMaxHpInternal(creature.MaxHp - hpLoss);
+        var newMaxHp = monster.MaxInitialHp - hpLoss;
+        creature.MaxHp = (int)Math.Min(newMaxHp, 999999999M);
+        creature.CurrentHp = Math.Min(creature.CurrentHp, creature.MaxHp);
         await CreatureCmd.SetCurrentHp(creature, creature.MaxHp);
+        instance.PreviousMaxHp = newMaxHp;
 
-        // ③ 清除阶段1遗留：移除所有玩家的所有Debuff，清除所有侵蚀牌
         foreach (var player in creature.CombatState.Players)
         {
             foreach (var power in player.Creature.Powers.ToList())
@@ -72,23 +95,56 @@ public sealed class GuardThreeCombatSingleton : SingletonModel
                 CardCmd.ClearAffliction(card);
         }
 
-        // ④ 先加 ThirteenWaterIntelPower（1层），确认成功
-        await PowerCmd.Apply<ThirteenWaterIntelPower>(
+        var intelPower = await PowerCmd.Apply<ThirteenWaterIntelPower>(
             new ThrowingPlayerChoiceContext(), creature, 1, creature, null);
+        intelPower?.InitializePreviousMaxHp(newMaxHp);
 
-        // ⑤ 如果没有 FusionStandPower，加 FusionStandPower（1层）
         if (creature.GetPower<FusionStandPower>() == null)
         {
             await PowerCmd.Apply<FusionStandPower>(
                 new ThrowingPlayerChoiceContext(), creature, 1, creature, null);
         }
 
-        // ⑥ 确认 ThirteenWaterIntelPower 存在后，移除 UncontrolledJusticePower
-        if (creature.GetPower<ThirteenWaterIntelPower>() != null)
-            await PowerCmd.Remove(justice);
+        await PowerCmd.Remove(justice);
+        instance._isProcessingResurrection = false;
 
-        // ⑦ 播放转阶段动画
         await monster.EnterPhaseTwo();
+    }
+
+    public override async Task AfterCardExhausted(
+        PlayerChoiceContext choiceContext, CardModel card, bool causedByEthereal)
+    {
+        if (card.Affliction is not ErosionAffliction) return;
+        if (CombatManager.Instance.IsEnding) return;
+
+        await CardPileCmd.Add(card, PileType.Hand);
+    }
+
+    private static void RegisterTransformListener()
+    {
+        if (_transformListenerRegistered) return;
+        _transformListenerRegistered = true;
+
+        ModCardTransformRegistry.For("ManosabaLin").Register(
+            "GuardThree_ErosionPreventTransform",
+            async context =>
+            {
+                if (context.Original.Affliction is not ErosionAffliction) return;
+                if (context.Original.CombatState == null) return;
+
+                context.Replacement.RemoveFromCurrentPile();
+
+                if (context.Replacement.Affliction is ErosionAffliction)
+                    CardCmd.ClearAffliction(context.Replacement);
+
+                await CardPileCmd.Add(context.Original, PileType.Hand);
+
+                if (context.Original.Affliction == null)
+                {
+                    var erosion = (AfflictionModel)ModelDb.Get(typeof(ErosionAffliction)).MutableClone();
+                    await CardCmd.Afflict(erosion, context.Original, 1m);
+                }
+            });
     }
 
     private static IEnumerable<CardModel> CombatCards(Player player)

@@ -66,8 +66,8 @@ public sealed class CardEightyFivePower : ManosabaPowerTemplate
                 source.Amount,
                 ValueProp.Unpowered,
                 source.Owner,
-                null
-            );
+                null,
+                null);
         }
     }
 }

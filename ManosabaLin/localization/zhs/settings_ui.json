@@ -1,6 +1,6 @@
 ﻿{
   "MANOSABALIN_UPDATE_POPUP.title": "ManosabaLin，新的魔女审判",
-  "MANOSABALIN_UPDATE_POPUP.body": "[color=#cccccc]当前案件：[/color] [color=#ff99cc]{0}[/color]\n[color=#cccccc]最新案件：[/color] [color=#CC6666]{1}[/color]\n\n一起成为[color=#ff99cc][b]共犯[/b][/color]吧！",
+  "MANOSABALIN_UPDATE_POPUP.body": "[color=#cccccc]当前案件：[/color] [color=#ff99cc]{0}[/color]\n[color=#cccccc]最新案件：[/color] [color=#CC6666]{1}[/color]\n一起成为[color=#ff99cc][b]「共[/b][/color][color=#CC6666][b]犯」[/b][/color]吧！",
   "MANOSABALIN_UPDATE_POPUP.download": "成为共犯",
   "MANOSABALIN_UPDATE_POPUP.close": "下次再说",
   "MANOSABALIN_SETTINGS.title": "ManosabaLin",
