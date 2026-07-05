@@ -24,8 +24,11 @@ namespace ManosabaLin.Characters.Hiro.Monsters;
 public sealed class GuardThreeCombatSingleton : SingletonModel
 {
     private const int MaxHpLossPerPlayer = 50;
+    private const int IntelEndTurnThreshold = 5;
     private static bool _transformListenerRegistered;
     private bool _isProcessingResurrection;
+    private readonly Dictionary<ulong, int> _intelGainedThisTurn = new();
+    private bool _intelEndTurnTriggered;
 
     public static GuardThreeCombatSingleton? Instance { get; private set; }
     public decimal PreviousMaxHp { get; private set; }
@@ -55,6 +58,43 @@ public sealed class GuardThreeCombatSingleton : SingletonModel
         if (justice == null) return;
 
         await HandlePhaseOneResurrection(creature, justice);
+    }
+
+    // 情报强制结束回合
+    public override Task BeforeSideTurnStart(
+        PlayerChoiceContext choiceContext, CombatSide side,
+        IReadOnlyList<Creature> participants, ICombatState combatState)
+    {
+        _intelGainedThisTurn.Clear();
+        _intelEndTurnTriggered = false;
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterPowerAmountChanged(
+        PlayerChoiceContext choiceContext,
+        PowerModel power,
+        decimal amount,
+        Creature? applier,
+        CardModel? cardSource)
+    {
+        if (power is not ThirteenWaterPlayerIntelPower) return Task.CompletedTask;
+        if (amount <= 0) return Task.CompletedTask;
+
+        var player = power.Owner?.Player;
+        if (player == null) return Task.CompletedTask;
+
+        if (!_intelGainedThisTurn.ContainsKey(player.NetId))
+            _intelGainedThisTurn[player.NetId] = 0;
+        _intelGainedThisTurn[player.NetId] += (int)amount;
+
+        if (_intelEndTurnTriggered) return Task.CompletedTask;
+        if (_intelGainedThisTurn[player.NetId] < IntelEndTurnThreshold) return Task.CompletedTask;
+
+        _intelEndTurnTriggered = true;
+        foreach (var p in player.Creature.CombatState.Players.Where(p => p.Creature.IsAlive))
+            PlayerCmd.EndTurn(p, false);
+
+        return Task.CompletedTask;
     }
 
     public static async Task HandlePhaseOneResurrection(Creature creature, UncontrolledJusticePower justice)
