@@ -1,6 +1,7 @@
 using STS2RitsuLib;
 using STS2RitsuLib.Settings;
 using STS2RitsuLib.Utils.Persistence;
+using ManosabaLin.Settings;
 
 namespace ManosabaLin.MainMenu;
 
@@ -29,6 +30,7 @@ public static class MainMenuBackgroundSettingsService
     public static void Register()
     {
         RegisterSettingsData();
+        EventSettingsService.RegisterSettingsData();
         RitsuLibFramework.RegisterModSettings(
             MainFile.ModId,
             page => page
@@ -52,7 +54,41 @@ public static class MainMenuBackgroundSettingsService
                         EnabledBinding,
                         T(
                             "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description",
-                            "When enabled, one of two still backgrounds is chosen each time the main menu opens."))),
+                            "When enabled, one of two still backgrounds is chosen each time the main menu opens.")))
+                .AddSection("events", section => section
+                    .WithTitle(EventSettingsService.T(
+                        "MANOSABALIN_SETTINGS.events.section.title",
+                        "Events"))
+                    .WithDescription(EventSettingsService.T(
+                        "MANOSABALIN_SETTINGS.events.section.description",
+                        "Choose which ManosabaLin events can appear in a run."))
+                    .AddToggle(
+                        "kinmaneyurakuchoEvent",
+                        EventSettingsService.T(
+                            "MANOSABALIN_SETTINGS.events.kinmaneyurakuchoEvent.label",
+                            "Kinmane Yurakucho"),
+                        EventSettingsService.KinmaneyurakuchoEventBinding,
+                        EventSettingsService.T(
+                            "MANOSABALIN_SETTINGS.events.kinmaneyurakuchoEvent.description",
+                            "Allow the Kinmane Yurakucho event to appear."))
+                    .AddToggle(
+                        "multiplayerCooperationEvent",
+                        EventSettingsService.T(
+                            "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.label",
+                            "Multiplayer Cooperation"),
+                        EventSettingsService.MultiplayerCooperationEventBinding,
+                        EventSettingsService.T(
+                            "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.description",
+                            "Allow the Multiplayer Cooperation event to appear."))
+                    .AddToggle(
+                        "teamCardExchangeEvent",
+                        EventSettingsService.T(
+                            "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.label",
+                            "Cooperative Testimony"),
+                        EventSettingsService.TeamCardExchangeEventBinding,
+                        EventSettingsService.T(
+                            "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.description",
+                            "Allow the Cooperative Testimony event to appear."))),
             "manosabalin");
     }
 

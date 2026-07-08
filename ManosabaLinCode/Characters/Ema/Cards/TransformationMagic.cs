@@ -1,5 +1,6 @@
 using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common.Components;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
@@ -13,7 +14,6 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ManosabaLin.Characters.Common.Components;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
@@ -58,6 +58,7 @@ public sealed class TransformationMagic : ManosabaCardTemplate
         for (int i = 0; i < target.CurrentUpgradeLevel; i++)
             CardCmd.Upgrade(newCard);
 
-        await CardCmd.Transform(source, newCard);
+        await CardPileCmd.RemoveFromCombat(source);
+        await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, source.Owner);
     }
 }

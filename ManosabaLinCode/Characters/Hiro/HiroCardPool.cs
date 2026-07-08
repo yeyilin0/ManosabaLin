@@ -1,12 +1,13 @@
 using Godot;
 using ManosabaLin.Extensions;
+using STS2RitsuLib.Scaffolding.Characters;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Utils;
 
 namespace ManosabaLin.Characters.Hiro;
 
 // 定义希罗角色卡牌池的标题、能量图标和卡背配色参数。
-public class HiroCardPool : TypeListCardPoolModel
+public class HiroCardPool : TypeListCardPoolModel, IModColorfulPhilosophersCardPool
 {
 	private const string CharacterIdLower = "hiro";
 

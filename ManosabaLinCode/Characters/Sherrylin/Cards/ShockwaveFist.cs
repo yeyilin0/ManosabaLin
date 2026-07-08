@@ -11,9 +11,6 @@ using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
-/// <summary>
-/// 冲击波的拳风：保留，给予敌人10层冲击，自己失去1点生命，攻击敌人，升级后变为零费
-/// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class ShockwaveFist() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy, false)
 {
@@ -34,15 +31,11 @@ public sealed class ShockwaveFist() : ManosabaCardTemplate(1, CardType.Attack, C
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Attack", source.Owner.Character.AttackAnimDelay);
 
-        // 给予敌人10层冲击
         await PowerCmd.Apply<ShockwavePower>(
             choiceContext, target, 10,
             source.Owner.Creature, source, false);
 
-        // 自己失去1点生命
         await CreatureCmd.Damage(choiceContext, source.Owner.Creature, 1, ValueProp.Unpowered, source, cardPlay);
-
-        // 攻击敌人
         await CreatureCmd.Damage(choiceContext, target, 1, ValueProp.Move, source, cardPlay);
     }
 

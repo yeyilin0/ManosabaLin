@@ -23,13 +23,7 @@ public sealed class TheLionsMane() : ManosabaCardTemplate(1, CardType.Attack, Ca
         new DamageVar(12, ValueProp.Move)
     };
 
-    protected override IEnumerable<IHoverTip> AdditionalHoverTips
-    {
-        get
-        {
-            yield return HoverTipFactory.FromPower<TheLionsManePower>();
-        }
-    }
+  
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
@@ -46,13 +40,18 @@ public sealed class TheLionsMane() : ManosabaCardTemplate(1, CardType.Attack, Ca
             await CreatureCmd.Damage(choiceContext, randomEnemy, DynamicVars.Damage.BaseValue, ValueProp.Move, source, cardPlay);
         }
 
-        await PowerCmd.Apply<TheLionsManePower>(
-            choiceContext,
-            source.Owner.Creature,
-            1,
-            source.Owner.Creature,
-            source,
-            false);
+    }
+
+    protected override async Task AfterAutoPrePlayPhaseEntered(
+        PlayerChoiceContext choiceContext,
+        Player player,
+        ComponentContext componentContext)
+    {
+        if (player != Owner) return;
+        if (Pile?.Type != PileType.Exhaust) return;
+
+        SetToFreeThisTurn();
+        await CardCmd.AutoPlay(choiceContext, this, null);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

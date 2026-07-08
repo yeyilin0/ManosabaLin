@@ -11,7 +11,7 @@ using System;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class SuspectCovenant() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Rare, TargetType.AnyAlly)
+public sealed class SuspectCovenant() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyAlly)
 {
     public override CardMultiplayerConstraint MultiplayerConstraint => CardMultiplayerConstraint.MultiplayerOnly;
 
@@ -48,7 +48,7 @@ public sealed class SuspectCovenant() : ManosabaCardTemplate(2, CardType.Skill, 
 
         // 检查自己的嫌疑是否恰好为12
         var mySuspect = Owner.Creature.GetPower<SuspectPower>();
-        if (mySuspect?.Amount == 12)
+        if (mySuspect?.Amount == 11)
         {
             await PowerCmd.Apply<RitualCeremonyPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this, false);
             await PowerCmd.Apply<RitualCeremonyPower>(choiceContext, target, 1m, Owner.Creature, this, false);

@@ -5,6 +5,8 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
@@ -36,8 +38,10 @@ public sealed class SharedExhaustPlay() : ManosabaCardTemplate(3, CardType.Skill
             foreach (var exhaustedCard in exhausted)
             {
                 var copy = CombatState.CreateCard(exhaustedCard.CanonicalInstance, player);
+                copy.SetToFreeThisTurn();
                 await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, player);
                 await CardCmd.AutoPlay(choiceContext, copy, PickTarget(copy));
+                await CardPileCmd.RemoveFromCombat(copy);
             }
         }
     }

@@ -1,5 +1,8 @@
 {
   "BLACK_HAND_AFFLICTION.title": "変身の魔法",
-  "BLACK_HAND_AFFLICTION.description": "[color=gray]ターン終了時、このカードを保持する[/color]",
-  "BLACK_HAND_AFFLICTION.extraCardText": "変身の魔法"
+  "BLACK_HAND_AFFLICTION.description": "[color=gray]ラウンド終了時にこのカードを残しておく[/color]",
+  "BLACK_HAND_AFFLICTION.extraCardText": "変身の魔法",
+  "MANOSABA_LIN_AFFLICTION_EROSION_AFFLICTION.title": "ドア",
+  "MANOSABA_LIN_AFFLICTION_EROSION_AFFLICTION.description": "このカードは消費したり変身したりすることはできない。\n再度攻撃を受けた場合、このカードを手札から除外する",
+  "MANOSABA_LIN_AFFLICTION_EROSION_AFFLICTION.extraCardText": "ドア"
 }

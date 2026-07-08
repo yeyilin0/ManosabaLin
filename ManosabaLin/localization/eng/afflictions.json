@@ -1,5 +1,8 @@
 {
-  "BLACK_HAND_AFFLICTION.title": "Transformation Magic",
-  "BLACK_HAND_AFFLICTION.description": "[color=gray]Retain this card at the end of your turn.[/color]",
-  "BLACK_HAND_AFFLICTION.extraCardText": "Transformation Magic"
+  "BLACK_HAND_AFFLICTION.title": "The magic of transformation",
+  "BLACK_HAND_AFFLICTION.description": "[color=gray]Keep this card at the end of the round[/color]",
+  "BLACK_HAND_AFFLICTION.extraCardText": "The magic of transformation",
+  "MANOSABA_LIN_AFFLICTION_EROSION_AFFLICTION.title": "Door",
+  "MANOSABA_LIN_AFFLICTION_EROSION_AFFLICTION.description": "This card cannot be consumed or transformed.\nRemove this card from your hand after being attacked again",
+  "MANOSABA_LIN_AFFLICTION_EROSION_AFFLICTION.extraCardText": "Door"
 }

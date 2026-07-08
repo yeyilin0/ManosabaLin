@@ -42,7 +42,7 @@ public sealed class Witchgrimoire : ManosabaRelicTemplate
         var relic = this;
         var hiroPool = ModelDb.Character<Hiro>().CardPool;
         var emaPool = ModelDb.GetById<CharacterModel>(new ModelId("CHARACTER", "MANOSABA_LIN_CHARACTER_EMALIN")).CardPool;
-        var sherrylinPool = ModelDb.GetById<CharacterModel>(new ModelId("CHARACTER", "MANOSABA_LIN_CHARACTER_SHERRAYLIN")).CardPool;
+        var sherrylinPool = ModelDb.GetById<CharacterModel>(new ModelId("CHARACTER", "MANOSABA_LIN_CHARACTER_SHERRYLIN")).CardPool;
 
         var options = CardCreationOptions.ForNonCombatWithUniformOdds(
                 new CardPoolModel[] { hiroPool, emaPool, sherrylinPool })

@@ -93,11 +93,12 @@ public class Doubt : ModEnchantmentTemplate
                 CardCmd.Preview(replayCard);
 
                 var enchantTargets = handCards
-                    .Where(c => c != replayCard
-                        && c.Enchantment == null
-                        && c.Rarity != CardRarity.Status
-                        && c.Rarity != CardRarity.Curse
-                        && c.Rarity != CardRarity.Quest)
+                    .Where(c => c != replayCard 
+                                && c.Enchantment == null
+                                && c.Rarity != CardRarity.Status
+                                && c.Rarity != CardRarity.Curse
+                                && c.Rarity != CardRarity.Quest
+                                && c.Rarity != CardRarity.Ancient)  // 加这行
                     .ToList();
                 if (enchantTargets.Count > 0)
                 {

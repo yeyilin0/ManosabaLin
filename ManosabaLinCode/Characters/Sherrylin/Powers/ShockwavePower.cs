@@ -56,7 +56,7 @@ public sealed class ShockwavePower : ManosabaPowerTemplate, IHealthBarForecastSo
         if (extraDamage <= 0) return;
 
         Flash();
-        await CreatureCmd.Damage(choiceContext, Owner, extraDamage, ValueProp.Move, null, null);
+        await CreatureCmd.Damage(choiceContext, Owner, extraDamage, ValueProp.Unpowered, null, null);
     }
 
     // ========== 血条预�?==========

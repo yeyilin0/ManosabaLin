@@ -33,7 +33,8 @@ public class Randomtrialenchantpower : ManosabaPowerTemplate
         var drawPile = PileType.Draw.GetPile(Owner.Player);
         var drawCards = drawPile.Cards
             .Where(c => c.Enchantment == null 
-                        && c.Rarity != CardRarity.Token 
+                        && c.Rarity != CardRarity.Token
+                        && c.Rarity != CardRarity.Ancient
                         && c.Type != CardType.Status 
                         && c.Type != CardType.Curse)
             .ToList();

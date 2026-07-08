@@ -213,7 +213,7 @@
   "MANOSABA_LIN_POWER_FUSION_STAND_POWER.title": "执念",
   "MANOSABA_LIN_POWER_FUSION_STAND_POWER.description": "Boss执行意图时，幻影追加执行一个意图",
   "MANOSABA_LIN_POWER_THREE_CARD_OMEN_POWER.title": "预兆",
-  "MANOSABA_LIN_POWER_THREE_CARD_OMEN_POWER.description":"连续打出三张同类型牌获得能力\n攻击:耗念引牌\n技能:跳舞的小人\n能力:最后致意",
+  "MANOSABA_LIN_POWER_THREE_CARD_OMEN_POWER.description":"连续打出三张同类型牌获得能力(仅一次)\n攻击:耗念引牌\n技能:跳舞的小人\n能力:最后致意",
   "MANOSABA_LIN_POWER_ENCHANTMENT_CONVERGENCE_POWER.title": "审判开庭",
   "MANOSABA_LIN_POWER_ENCHANTMENT_CONVERGENCE_POWER.description":"本回合内当你任一审判附魔计数达到5进行锚定，之后此附魔计数的额外效果友方也能触发",
   "MANOSABA_LIN_POWER_GEINIZHENGYIPOWER.title": "殊途同归的正义",

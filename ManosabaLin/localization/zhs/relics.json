@@ -62,5 +62,14 @@
   "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.flavor": "橘雪莉侦探身份的[color=#33ccff]【象征】[/color]，可谁都猜不到，她用【放大镜】看到了什么",
   "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.title": "魔女因子",
   "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.description": "当[b]【魔女化】[/b]达到100层时，获得1张[b]【魔女化】[/b][rainbow][b]【情绪】[/b][/rainbow]卡加入手牌\n[b][rainbow][b]【基础情绪】[/b][/rainbow]:[purple]【快乐】[/purple]，[color=#ffcc99]【悲伤】[/color]，[color=#CC6666]【愤怒】[/color]，[color=#ff99cc]【恐惧】[/color]，[color=#6666cc]【厌恶】[/color]，[color=#cc9966]【惊讶】[/color]\n[color=#33ccff]情绪融合配方[/color]：\n[purple]【快乐】[/purple]+[color=#ffcc99]【悲伤】[/color] → [color=#999999]【怅然】[/color]\n[color=#CC6666]【愤怒】[/color]+[color=#ff99cc]【恐惧】[/color] → [color=#ff9966]【恼惧】[/color]\n[color=#ffcc99]【悲伤】[/color]+[color=#ff99cc]【恐惧】[/color] → [color=#ff0000]【凄惶】[/color]\n[color=#6666cc]【厌恶】[/color]+[color=#cc9966]【惊讶】[/color] → [gold]【骇厌】[/gold]\n[purple]【快乐】[/purple]+[color=#cc9966]【惊讶】[/color] → [blue]【雀跃】[/blue][/b]\n6种[rainbow][b]【基础情绪】[/b][/rainbow]+[b][color=33ccff]【好奇】[/color][/b]+[green][b]【无助】[/b][/green]→[b][color=#33ccff]「友[/color][green]谊」[/green][/b]",
-  "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.flavor": "魔女的力量源自内心的[color=#ff99cc]【情感】[/color]"
+  "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.flavor": "魔女的力量源自内心的[color=#ff99cc]【情感】[/color]",
+  "MANOSABA_LIN_RELIC_XUELICHOUMA.title": "橘雪莉的筹码",
+  "MANOSABA_LIN_RELIC_XUELICHOUMA.description": "在[color=#33ccff]战斗房间中[/color]你一回合一次可以选择右键点击此遗物消耗10[gold]金币[/gold]将随机卡加入手卡\n[color=#33ccff]战斗房间外[/color]则消耗100[gold]金币[/gold]获得一次随机卡牌奖励",
+  "MANOSABA_LIN_RELIC_XUELICHOUMA.flavor": "运气足够好的话，可能获得[color=#33ccff]意想不到[/color]的卡",
+  "MANOSABA_LIN_RELIC_HIROCHOUMA.title": "二阶堂希罗的筹码",
+  "MANOSABA_LIN_RELIC_HIROCHOUMA.description": "在[color=#CC6666]战斗房间中[/color]你一回合一次可以选择右键点击此遗物消耗10[gold]金币[/gold]将随机卡加入手卡\n[color=#CC6666]战斗房间外[/color]则消耗100[gold]金币[/gold]获得一次随机卡牌奖励",
+  "MANOSABA_LIN_RELIC_HIROCHOUMA.flavor": "运气足够好的话，可能获得[color=#CC6666]意想不到[/color]的卡",
+  "MANOSABA_LIN_RELIC_EMACHOUMA.title": "樱羽艾玛的筹码",
+  "MANOSABA_LIN_RELIC_EMACHOUMA.description": "在[color=#ff99cc]战斗房间中[/color]你一回合一次可以选择右键点击此遗物消耗10[gold]金币[/gold]将随机卡加入手卡\n[color=#ff99cc]战斗房间外[/color]则消耗100[gold]金币[/gold]获得一次随机卡牌奖励",
+  "MANOSABA_LIN_RELIC_EMACHOUMA.flavor": "运气足够好的话，可能获得[color=#ff99cc]意想不到[/color]的卡"
 }

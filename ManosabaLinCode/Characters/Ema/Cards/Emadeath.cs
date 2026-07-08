@@ -72,14 +72,12 @@ public sealed class Emadeath : ManosabaCardTemplate
 
         await CreatureCmd.TriggerAnim(creature, "Cast", owner.Character.CastAnimDelay);
 
-        // 读取羁绊值
         var bond = creature.GetPower<BondPower>();
         var affinity = bond?.Affinity ?? 0;
         var estrangement = bond?.Estrangement ?? 0;
         var higherBondValue = Math.Max(affinity, estrangement);
         var bondCardCount = higherBondValue / 2;
 
-        // 统计审判附魔数量（抽牌堆+弃牌堆+手卡）
         var drawPile = PileType.Draw.GetPile(owner);
         var handPile = PileType.Hand.GetPile(owner);
         var discardPile = PileType.Discard.GetPile(owner);
@@ -88,13 +86,11 @@ public sealed class Emadeath : ManosabaCardTemplate
             .Count(c => c.Enchantment is Rebuttal or Agreement or Doubt);
         var enchantTargetCount = trialEnchantCount / 2;
 
-        // 对全体队友生效
         var teammates = combatState.GetTeammatesOf(creature)
             .Where(c => c != null && c.IsAlive && c.IsPlayer);
 
         foreach (var teammate in teammates)
         {
-            // 消耗50层魔女化
             var withPower = teammate.GetPower<WithPower>();
             if (withPower != null && withPower.Amount > 0)
             {
@@ -102,7 +98,6 @@ public sealed class Emadeath : ManosabaCardTemplate
                 await PowerCmd.ModifyAmount(choiceContext, withPower, -withToRemove, creature, source, false);
             }
 
-            // 消耗3层嫌疑
             var suspectPower = teammate.GetPower<SuspectPower>();
             if (suspectPower != null && suspectPower.Amount > 0)
             {
@@ -112,7 +107,6 @@ public sealed class Emadeath : ManosabaCardTemplate
 
             if (teammate.Player == null) continue;
 
-            // 给予等量的羁绊卡并减1费
             for (int i = 0; i < bondCardCount; i++)
             {
                 var chosenType = rng.NextItem(BondCardTypes);
@@ -122,7 +116,6 @@ public sealed class Emadeath : ManosabaCardTemplate
                 await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Draw, teammate.Player, CardPilePosition.Random);
             }
 
-            // 给予等量的审判附魔（跳过已有附魔的卡）
             var teammateDrawPile = PileType.Draw.GetPile(teammate.Player);
             var teammateHandPile = PileType.Hand.GetPile(teammate.Player);
             var teammateDiscardPile = PileType.Discard.GetPile(teammate.Player);
@@ -130,7 +123,11 @@ public sealed class Emadeath : ManosabaCardTemplate
             var unenchantedCards = teammateDrawPile.Cards
                 .Concat(teammateHandPile.Cards)
                 .Concat(teammateDiscardPile.Cards)
-                .Where(c => c.Enchantment == null)
+                .Where(c => c.Enchantment == null
+                    && c.Rarity != CardRarity.Token
+                    && c.Rarity != CardRarity.Ancient
+                    && c.Type != CardType.Status
+                    && c.Type != CardType.Curse)
                 .Distinct()
                 .ToList();
 

@@ -25,9 +25,8 @@ public sealed class TheGreekInterpreter() : ManosabaCardTemplate(2, CardType.Ski
         var selectedCard = rng.NextItem(exhaustCards);
         if (selectedCard == null) return;
 
-        await CardPileCmd.RemoveFromCombat(selectedCard);
-        await CardPileCmd.Add(selectedCard, PileType.Hand);
         selectedCard.SetToFreeThisTurn();
+        await CardPileCmd.Add(selectedCard, PileType.Hand);
 
         await CreatureCmd.GainBlock(Owner.Creature, 8m, ValueProp.Unpowered, null);
     }

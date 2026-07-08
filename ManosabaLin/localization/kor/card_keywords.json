@@ -1,12 +1,12 @@
 {
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "윤회",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[color=#CC6666]【죽음의 역행】[/color]의 선물, [color=#CC6666]【죽음의 역행】[/color]의 저주\n당신이 [color=#CC6666]【윤회】[/color]가 있는 카드를 사용할 때, 뽑기 더미에 있는 같은 이름의 [color=#CC6666]【윤회】[/color] 카드를 자동으로 사용합니다 (최대 2장)",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "윤윤회회회회",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "[color=#CC6666]【윤윤회회회회】[/color]가 있는 카드를 사용할 때, 어디서든 [color=#CC6666]【윤윤회회회회】[/color]가 있는 카드를 사용합니다",
-  "MANOSABA_LIN_KEYWORD_AGREE.title": "찬성",
-  "MANOSABA_LIN_KEYWORD_AGREE.description": "사용 시 1~5의 배수이면 효과 발동\n×1: 모든 아군이 보호막 3 획득\n×2: 자신이 보호막 3 획득\n×3: 모든 아군이 임시 신속 1 중첩 획득\n×4: 모든 아군이 임시 힘 2 중첩 획득\n×5: 무작위 손패 1장을 무료로 1회 사용 가능, 모든 아군이 에너지 1 획득",
-  "MANOSABA_LIN_KEYWORD_DOUBT.title": "의문",
-  "MANOSABA_LIN_KEYWORD_DOUBT.description": "사용 시 1~5의 배수이면 효과 발동\n×1: 자신이 보호막 1 획득\n×2: 자신이 카드 1장 드로우\n×3: 자신이 에너지 1 획득\n×4: 버린 카드 더미에서 카드 1장 회수\n×5: 손패 1장에 재생 1 추가, 손패 1장이 [color=#339966]【[/color][color=#cc9966]심[/color][color=#6699cc]판[/color][color=#339966]】[/color] 마법부여 1개 획득",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "반박",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "사용 시 1~5의 배수이면 효과 발동\n×1: 무작위로 피해 1\n×2: 자신이 힘 1 획득\n×3: 적 전체가 취약 1 중첩 획득\n×4: 무작위로 동일 횟수만큼 피해 1\n×5: 이 카드를 1회 추가로 사용"
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "재생",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[color=#CC6666] [데스 리콜] [/color]의 선물, [color=#CC6666] [데스 리콜] [/color]의 저주\n[color=#CC6666] [환생] [/color] 카드를 낼 때, 뽑기 더미에 있는 [color=#CC6666] [환생] [/color]와 같은 이름의 카드가 자동으로 나옵니다. (최대 2장)",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "환생, 환생, 환생",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "[color=#CC6666]【환생 및 환생】 [/color]로 카드를 사용하면 어디에서나 [color=#CC6666]【환생 및 환생】 [/color]로 카드를 사용할 수 있으며, 매번 최대 3장의 카드를 사용할 수 있습니다.",
+  "MANOSABA_LIN_KEYWORD_AGREE.title": "동의하다",
+  "MANOSABA_LIN_KEYWORD_AGREE.description": "숫자가 1~5의 배수이면 효과가 발동됩니다.\n×1: 모든 아군이 쉴드 포인트 3점을 얻습니다.\n×2: 자신의 실드 포인트 3점을 얻습니다.\n×3: 모든 아군이 임시 민첩성 1단계를 얻습니다.\n×4: 모든 아군이 임시 힘 2단계를 얻습니다.\n×5: 손에 있는 무작위 카드를 1회 무료로 사용할 수 있으며, 모든 친구가 에너지 1점을 얻습니다.",
+  "MANOSABA_LIN_KEYWORD_DOUBT.title": "의심",
+  "MANOSABA_LIN_KEYWORD_DOUBT.description": "숫자가 1~5의 배수이면 효과가 발동됩니다.\n×1: 자신의 보호막을 1개 얻습니다.\n×2: 자신이 카드 1장을 뽑는다\n×3: 에너지 1포인트 획득\n×4: 버려진 더미에서 카드 1장을 재활용합니다.\n×5: 리플레이 1에 핸드 카드 1장 추가, [color=#339966] [[/color][color=#cc9966] 심판 [/color][color=#6699cc] [/color][color=#339966]] [/color] 인챈트 1장을 얻기 위해 핸드 카드 1장 추가",
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "반박하다",
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "숫자가 1~5의 배수이면 효과가 발동됩니다.\n×1: 무작위로 1점의 피해를 입힙니다.\n×2: 힘 1포인트 획득\n×3: 모든 적에게 취약성 1층이 부여됩니다.\n×4: 무작위로 동일한 수의 1점 피해를 입힙니다.\n×5: 이 카드는 1번 더 사용됩니다."
 }

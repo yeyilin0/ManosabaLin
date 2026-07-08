@@ -23,7 +23,7 @@ public sealed class MagicAbsorption : ManosabaCardTemplate
     private const CardRarity Rarity = CardRarity.Rare;
     private const TargetType CardTarget = TargetType.AnyEnemy;
 
-    private const int WithReduction = 60;
+    private const int WithReduction = 50;
     private const int ShieldAmount = 20;
     private const int NyxmStacks = 1;
 

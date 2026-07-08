@@ -120,7 +120,7 @@ public sealed class SuspectPower : ManosabaPowerTemplate
         ModelId curseModelId;
 
         if (characterType == typeof(Emalin.Emalin))
-            curseModelId = ModelDb.GetId<EmaBadEnding>();
+            curseModelId = ModelDb.GetId<EmaForgottenOne>();
         else if (characterType == typeof(Sherrylin.Sherrylin))
             curseModelId = ModelDb.GetId<Sherrybadending>();
         else

@@ -21,7 +21,8 @@ namespace ManosabaLin.Characters.Hiro.Powers;
 public sealed class ThirteenWaterIntelPower : ManosabaPowerTemplate
 {
     private const int IntelMaxPerTurn = 5;
-    private static int MaxHpIncrease => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 90, 80);
+    private const int WithPowerLossOnDeath = 20;
+    private static int MaxHpIncrease => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 50, 40);
 
     private sealed class Data
     {
@@ -69,6 +70,17 @@ public sealed class ThirteenWaterIntelPower : ManosabaPowerTemplate
         {
             await PowerCmd.Apply<FusionStandPower>(
                 new ThrowingPlayerChoiceContext(), Owner, 1, Owner, null);
+        }
+
+        // 每次死亡减少20魔女化
+        var withPower = Owner.GetPower<WithPower>();
+        if (withPower != null)
+        {
+            if (withPower.Amount <= WithPowerLossOnDeath)
+                await PowerCmd.Remove(withPower);
+            else
+                await PowerCmd.Apply<WithPower>(
+                    new ThrowingPlayerChoiceContext(), Owner, -WithPowerLossOnDeath, Owner, null);
         }
 
         foreach (var player in Owner.CombatState.Players)

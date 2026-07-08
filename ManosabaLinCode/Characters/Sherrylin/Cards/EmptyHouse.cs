@@ -17,11 +17,11 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 public sealed class EmptyHouse() : ManosabaCardTemplate(4, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     protected override IEnumerable<ICardComponent> CanonicalComponents =>
-        [new RetainCounterComponent(), new EmptyHouseComponent()];
+        [new RetainCounterComponent()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(6, DamageProps.cardUnpowered)
+        new DamageVar(3, DamageProps.cardUnpowered)
     ];
 
 
@@ -31,10 +31,12 @@ public sealed class EmptyHouse() : ManosabaCardTemplate(4, CardType.Attack, Card
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        var emptyHouseComp = source.GetComponent<EmptyHouseComponent>();
-        var markedCards = emptyHouseComp?.MarkedCards;
+        var markedCards = new[] { PileType.Draw, PileType.Hand, PileType.Discard, PileType.Exhaust }
+            .SelectMany(pileType => pileType.GetPile(Owner).Cards)
+            .Where(card => card.HasComponent<EmptyHouseComponebt>())
+            .ToList();
 
-        int hitCount = 1 + (markedCards?.Count ?? 0);
+        int hitCount = 1 + markedCards.Count;
 
         for (int i = 0; i < hitCount; i++)
         {
@@ -44,20 +46,34 @@ public sealed class EmptyHouse() : ManosabaCardTemplate(4, CardType.Attack, Card
                 .Execute(choiceContext);
         }
 
-        if (markedCards != null)
+        var magnifyingGlass = Owner.Relics.OfType<MagnifyingGlass>().FirstOrDefault();
+        var hasTriggeredCaseReversalThisTurn = magnifyingGlass?.HasTriggeredThisCombat == true;
+
+        foreach (var card in markedCards)
         {
-            foreach (var card in markedCards)
-            {
-                await CardPileCmd.RemoveFromCombat(card);
-                await CardPileCmd.Add(card, PileType.Hand);
+            if (hasTriggeredCaseReversalThisTurn)
+                card.SetToFreeThisTurn();
 
-                var magnifyingGlass = Owner.Relics.OfType<MagnifyingGlass>().FirstOrDefault();
-                if (magnifyingGlass != null && magnifyingGlass.HasTriggeredThisCombat)
-                    card.SetToFreeThisTurn();
-            }
-
-            emptyHouseComp.ClearMarkedCards();
+            await CardPileCmd.Add(card, PileType.Hand);
+            card.TryRemoveComponent<EmptyHouseComponebt>();
         }
+    }
+
+    protected override Task AfterPlayerTurnStart(
+        PlayerChoiceContext choiceContext,
+        Player player,
+        ComponentContext componentContext)
+    {
+        if (player != Owner) return Task.CompletedTask;
+
+        var exhaustCards = PileType.Exhaust.GetPile(Owner).Cards
+            .Where(card => card is IComponentsCardModel && !card.HasComponent<EmptyHouseComponebt>())
+            .ToList();
+        if (exhaustCards.Count == 0) return Task.CompletedTask;
+
+        var rng = Owner.RunState.Rng.CombatCardSelection;
+        rng.NextItem(exhaustCards)?.TryAddComponent(new EmptyHouseComponebt());
+        return Task.CompletedTask;
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

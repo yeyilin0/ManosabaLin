@@ -1,12 +1,20 @@
 {
-  "MANOSABALIN_UPDATE_POPUP.title": "ManosabaLin, A New Witch Trial",
-  "MANOSABALIN_UPDATE_POPUP.body": "[color=#cccccc]Current Case:[/color] [color=#ff99cc]{0}[/color]\n[color=#cccccc]Latest Case:[/color] [color=#CC6666]{1}[/color]\n\nLet's become [color=#ff99cc][b]Accomplices[/b][/color] together!",
-  "MANOSABALIN_UPDATE_POPUP.download": "Become an Accomplice",
-  "MANOSABALIN_UPDATE_POPUP.close": "Maybe Next Time",
+  "MANOSABALIN_UPDATE_POPUP.title": "ManosabaLin, the new witch trial",
+  "MANOSABALIN_UPDATE_POPUP.body": "[color=#cccccc] Current case: [/color] [color=#ff99cc]{0}[/color]\n[color=#cccccc] latest case: [/color] [color=#CC6666]{1}[/color]\nLet's become [color=#ff99cc][b] \"total [/b][/color][color=#CC6666][b] offenders\" [/b][/color]!",
+  "MANOSABALIN_UPDATE_POPUP.download": "become an accomplice",
+  "MANOSABALIN_UPDATE_POPUP.close": "See you next time",
   "MANOSABALIN_SETTINGS.title": "ManosabaLin",
   "MANOSABALIN_SETTINGS.description": "Adjust ManosabaLin options.",
   "MANOSABALIN_SETTINGS.mainMenuBackground.section.title": "Main menu background",
-  "MANOSABALIN_SETTINGS.mainMenuBackground.section.description": "Replace the game main menu with a random ManosabaLin still background.",
+  "MANOSABALIN_SETTINGS.mainMenuBackground.section.description": "Replaces the game's main menu with a random ManosabaLin static background.",
   "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.label": "Enable replacement",
-  "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description": "When enabled, one of two still backgrounds is chosen each time the main menu opens."
+  "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description": "When enabled, one of two static backgrounds will be randomly selected each time the main menu is opened.",
+  "MANOSABALIN_SETTINGS.events.section.title": "event",
+  "MANOSABALIN_SETTINGS.events.section.description": "Choose which ManosabaLin events can appear in a match.",
+  "MANOSABALIN_SETTINGS.events.kinmaneyurakuchoEvent.label": "\"Magical Girl's Witch Judge\"",
+  "MANOSABALIN_SETTINGS.events.kinmaneyurakuchoEvent.description": "Allow \"Magical Girl's Witch Judge\" × \"Karako\" to appear",
+  "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.label": "\"Magical Girl No Witch Judge\" × Nora",
+  "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.description": "Allow \"Magical Girl No Witch Judge\" x Nora to appear",
+  "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.label": "\"Magical Girl No Witch Judge\"",
+  "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.description": "Allows \"Magical Girl No Witch Judge\" × \"Arikana\" to appear."
 }

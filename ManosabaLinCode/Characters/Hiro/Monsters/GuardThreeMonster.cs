@@ -38,8 +38,8 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
     private int ShieldAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 40, 30);
     private const int InitialJusticeAmount = 1;
     private const int MaxJustice = 5;
-    private int Phase2SelfDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 50, 40);
-    private int Phase2AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 35, 30);
+    private int Phase2SelfDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 60, 50);
+    private int Phase2AttackDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 30, 25);
     private int Phase2ExtraDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 16, 15);
     private int _phase2DeathTextCount;
     private bool _isPhaseTwo;

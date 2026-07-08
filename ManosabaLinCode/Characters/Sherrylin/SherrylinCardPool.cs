@@ -1,11 +1,12 @@
 using Godot;
 using ManosabaLin.Extensions;
+using STS2RitsuLib.Scaffolding.Characters;
 using STS2RitsuLib.Scaffolding.Content;
 using STS2RitsuLib.Utils;
 
 namespace ManosabaLin.Characters.Sherrylin;
 
-public class SherrylinCardPool : TypeListCardPoolModel
+public class SherrylinCardPool : TypeListCardPoolModel, IModColorfulPhilosophersCardPool
 {
     private const string CharacterIdLower = "sherrylin";
 

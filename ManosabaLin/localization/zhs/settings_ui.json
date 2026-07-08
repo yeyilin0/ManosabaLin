@@ -8,5 +8,13 @@
   "MANOSABALIN_SETTINGS.mainMenuBackground.section.title": "主菜单背景",
   "MANOSABALIN_SETTINGS.mainMenuBackground.section.description": "将游戏主菜单替换为随机的 ManosabaLin 静态背景。",
   "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.label": "启用替换",
-  "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description": "启用后，每次打开主菜单时会随机选择两张静态背景之一。"
+  "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description": "启用后，每次打开主菜单时会随机选择两张静态背景之一。",
+  "MANOSABALIN_SETTINGS.events.section.title": "事件",
+  "MANOSABALIN_SETTINGS.events.section.description": "选择哪些 ManosabaLin 事件可以在对局中出现。",
+  "MANOSABALIN_SETTINGS.events.kinmaneyurakuchoEvent.label": "「魔法少女の魔女裁判」×「カラオケまねきねこ」",
+  "MANOSABALIN_SETTINGS.events.kinmaneyurakuchoEvent.description": "允许 「魔法少女の魔女裁判」×「カラオケまねきねこ」 出现",
+  "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.label": "「魔法少女ノ魔女裁判」×ポカチェコラボ",
+  "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.description": "允许 「魔法少女ノ魔女裁判」×ポカチェコラボ 出现",
+  "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.label": "『魔法少女ノ魔女裁判』×『アクアリウムは踊らない』",
+  "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.description": "允许 『魔法少女ノ魔女裁判』×『アクアリウムは踊らない』 出现"
 }

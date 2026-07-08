@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Models.Capabilities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,12 +30,22 @@ public sealed class ZeroEnergyGrab() : ManosabaCardTemplate(3, CardType.Skill, C
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
+        // 自己的卡池中的0费牌
+        var ownPool = source.Owner.Character.CardPool
+            .GetUnlockedCards(source.Owner.UnlockState, source.Owner.RunState.CardMultiplayerConstraint)
+            .Where(c => c.EnergyCost.Canonical == 0 && !c.EnergyCost.CostsX);
+
+        // 所有其他角色卡池中的0费牌
+        var otherPools = source.Owner.UnlockState.CharacterCardPools
+            .Where(p => p != source.Owner.Character.CardPool)
+            .SelectMany(p => p.GetUnlockedCards(source.Owner.UnlockState, source.Owner.RunState.CardMultiplayerConstraint))
+            .Where(c => c.EnergyCost.Canonical == 0 && !c.EnergyCost.CostsX);
+
+        var candidates = ownPool.Concat(otherPools).Distinct().ToList();
+
         foreach (var newCard in CardFactory.GetForCombat(
                      source.Owner,
-                     source.Owner.Character.CardPool.GetUnlockedCards(
-                             source.Owner.UnlockState,
-                             source.Owner.RunState.CardMultiplayerConstraint)
-                         .Where(c => c.EnergyCost.Canonical == 0 && !c.EnergyCost.CostsX),
+                     candidates,
                      source.DynamicVars.Cards.IntValue,
                      source.Owner.RunState.Rng.CombatCardGeneration))
         {

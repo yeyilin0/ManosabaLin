@@ -5,9 +5,11 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Models.Characters;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Models.Capabilities;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
@@ -28,9 +30,18 @@ public sealed class TeamZeroGift() : ManosabaCardTemplate(2, CardType.Skill, Car
         var source = this;
         await CreatureCmd.TriggerAnim(Owner.Creature, "Cast", Owner.Character.CastAnimDelay);
 
-        var candidates = Owner.Character.CardPool
+        // 自己的卡池中的0费牌
+        var ownPool = Owner.Character.CardPool
             .GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
             .Where(c => c.EnergyCost.Canonical == 0 && !c.EnergyCost.CostsX);
+
+        // 所有其他角色卡池中的0费牌
+        var otherPools = Owner.UnlockState.CharacterCardPools
+            .Where(p => p != Owner.Character.CardPool)
+            .SelectMany(p => p.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint))
+            .Where(c => c.EnergyCost.Canonical == 0 && !c.EnergyCost.CostsX);
+
+        var candidates = ownPool.Concat(otherPools).Distinct().ToList();
 
         var cardCount = source.DynamicVars[CardsCountKey].IntValue;
 
