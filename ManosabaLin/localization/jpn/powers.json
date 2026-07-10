@@ -146,7 +146,7 @@
   "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.title": "残響",
   "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.description": "ラウンド終了時、手札の [color=gray]ZZQ1QXZXXQ2QXZ の数が全プレイヤーの中で最も多い場合、全プレイヤーの手札の [color=gray]ZZQ4QXZXXQ5QXZ と同量の血液が失われます。",
   "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.title": "魔女の力",
-  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "[jitter]XXQ1QXZ 「醜は不死の怪物【魔女】と化し、終わりのない絶望に陥る」 [/color]XXQ3QXZ\n[color=gray]が第3の意図[/color]で攻撃したとき、すべてのプレイヤーが手札にプレイヤー総数の3倍の[color=gray]【変身の魔法】[/color]カードを持っている場合、次のラウンドで[color=gray]は[/color]でもう一度攻撃します。\n死亡時HP1回復、魔女変身3回分の[b]獲得、ブロック[/b]、意思切り替え[color=gray](ラウンドに1回)[/color]、次ラウンド開始時にHP半分回復。",
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "[jitter]XXQ1QXZ 「醜は不死の怪物【魔女】と化し、終わりのない絶望に陥る」 [/color]XXQ3QXZ\n[color=gray]が第3の意図[/color]で攻撃したとき、すべてのプレイヤーが手札にプレイヤー総数の3倍の[color=gray]【変身の魔法】[/color]カードを持っている場合、次のラウンドで[color=gray]は[/color]でもう一度攻撃します。\n各ターン最初に死亡する時、死亡を防ぎ、HPを無限にして魔女化の3倍の[b]ブロック[/b]を獲得し、意図を切り替える[color=gray](1ラウンドに1回)[/color]。ブロックが破られなかった場合、次のターン開始時に最大HPを戦闘開始時の値へ戻し、HPを半分回復する。",
   "MANOSABA_LIN_POWER_THE_NORWOOD_BUILDER_POWER.title": "ノーウッド アーキテクツ",
   "MANOSABA_LIN_POWER_THE_NORWOOD_BUILDER_POWER.description": "カードが消費されるたびに、{Amount}ブロック。",
   "MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.title": "踊る小さな男",
@@ -218,4 +218,7 @@
   "MANOSABA_LIN_POWER_ENCHANTMENT_CONVERGENCE_POWER.description": "このラウンド中に、あなたの裁きのエンチャントのいずれかが 5 に達すると、それを固定します。その後、このエンチャント数の追加効果は味方にも発動できます。",
   "MANOSABA_LIN_POWER_GEINIZHENGYIPOWER.title": "異なる道を通って同じ目的に向かう正義",
   "MANOSABA_LIN_POWER_GEINIZHENGYIPOWER.description": "このラウンドでは、味方プレイヤーがカードを引いてそれを回収するたびに{energyPrefix:energyIcons(1)}それからそれに正義の層を1つ与えてください"
+,
+  "MANOSABA_LIN_POWER_SILENT_POWER.title": "沈黙",
+  "MANOSABA_LIN_POWER_SILENT_POWER.description": "右クリックで[color=#6666cc]沈黙[/color]を13消費: すべての敵は現在の意図を即座に実行し、その後スタンする。スタン後の次の意図はプレイヤーに有利な意図に置き換わる。"
 }

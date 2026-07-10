@@ -40,5 +40,19 @@
   "MANOSABA_LIN_CHARACTER_SHERRYLIN.possessiveAdjective": "她的",
   "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounObject": "她",
   "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounPossessive": "她的",
-  "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounSubject": "她"
+  "MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounSubject": "她",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.title": "夏目安安",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.titleObject": "夏目安安",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.description": "未完成",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.aromaPrinciple": "......什么都没有。",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.banter.alive.endTurnPing": "案件还没结束吧？",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.banter.dead.endTurnPing": "......原来这就是'遗憾'吗。",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.cardsModifierDescription": "夏目安安卡牌将出现在奖励与商店中",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.cardsModifierTitle": "夏目安安卡牌",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.eventDeathPrevention": "我还没有......调查完。",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.goldMonologue": "这些能让我有感觉吗？",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.possessiveAdjective": "她的",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.pronounObject": "她",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.pronounPossessive": "她的",
+  "MANOSABA_LIN_CHARACTER_ANANLIN.pronounSubject": "她"
 }

@@ -146,7 +146,7 @@
   "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.title": "반향",
   "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.description": "라운드 종료 시, 손에 있는 [color=gray][변신의 마법][/color] 카드 수가 모든 플레이어 중 가장 많으면 모든 플레이어의 손에 있는 [color=gray][변신의 마법][/color] 카드 총수만큼 HP를 잃습니다.",
   "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.title": "마녀의 힘",
-  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "[jitter][color=#cccccc] \"추악한 불사의 괴물[마녀]로 변해 끝없는 절망에 빠진다\" [/color][/jitter]\n[color=gray]가 세 번째 의도 [/color]로 공격할 때 모든 플레이어가 손에 있는 총 플레이어 수의 3배에 해당하는 [color=gray] [변형의 마법] [/color] 카드를 보유하고 있으면 다음 라운드에서 [color=gray]는 [/color]로 한 번 더 공격합니다.\n사망 시 HP 1을 회복하고, 마녀 변신의 3배에 해당하는 [b]를 얻고, [/b]를 막고, 의도 [color=gray](라운드당 1회) [/color]를 전환하고, 다음 라운드 시작 시 HP의 절반을 회복합니다.",
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "[jitter][color=#cccccc] \"추악한 불사의 괴물[마녀]로 변해 끝없는 절망에 빠진다\" [/color][/jitter]\n[color=gray]가 세 번째 의도 [/color]로 공격할 때 모든 플레이어가 손에 있는 총 플레이어 수의 3배에 해당하는 [color=gray] [변형의 마법] [/color] 카드를 보유하고 있으면 다음 라운드에서 [color=gray]는 [/color]로 한 번 더 공격합니다.\n각 턴 처음 죽을 때 죽음을 막고 HP를 무한으로 만들며, 마녀화의 3배만큼 [b]방어도[/b]를 얻고 의도를 전환합니다[color=gray](라운드당 1회)[/color]. 방어도가 깨지지 않으면 다음 턴 시작 시 최대 HP를 전투 시작 시 값으로 되돌리고 HP를 절반 회복합니다.",
   "MANOSABA_LIN_POWER_THE_NORWOOD_BUILDER_POWER.title": "노우드 건축가",
   "MANOSABA_LIN_POWER_THE_NORWOOD_BUILDER_POWER.description": "카드를 소모할 때마다{Amount}차단하다.",
   "MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.title": "춤추는 작은 남자",

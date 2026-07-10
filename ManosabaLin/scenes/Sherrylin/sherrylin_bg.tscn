@@ -19,6 +19,6 @@ pivot_offset = Vector2(1280, 600)
 
 [node name="SherrylinBg" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(208.00002, 37.999977)
-scale = Vector2(0.64257807, 0.5986328)
+position = Vector2(18.000015, 38.999985)
+scale = Vector2(0.64257807, 0.6333008)
 texture = ExtResource("1_4mdpw")

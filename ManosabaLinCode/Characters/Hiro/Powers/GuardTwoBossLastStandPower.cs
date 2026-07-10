@@ -6,13 +6,15 @@ namespace ManosabaLin.Characters.Hiro.Powers;
 public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
 {
     private const int BlockMultiplier = 3;
-    private const decimal ReviveHp = 1m;
+    private const decimal InfiniteHp = 999999999m;
     private const decimal HealRatio = 0.5m;
 
     private sealed class Data
     {
         public bool TriggeredThisTurn;
         public bool PendingHeal;
+        public decimal StartingMaxHp;
+        public bool StartingMaxHpInitialized;
     }
 
     public override PowerType Type => PowerType.Debuff;
@@ -28,11 +30,42 @@ public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
 
     private Data State => GetInternalData<Data>();
 
+    public override Task AfterApplied(Creature? applier, CardModel? cardSource)
+    {
+        InitializeStartingMaxHp();
+        return Task.CompletedTask;
+    }
+
+    private void InitializeStartingMaxHp()
+    {
+        if (State.StartingMaxHpInitialized)
+            return;
+
+        State.StartingMaxHp = Owner.MaxHp;
+        State.StartingMaxHpInitialized = true;
+    }
+
     public override bool ShouldDie(Creature creature)
     {
         if (creature != Owner)
             return true;
-        return State.TriggeredThisTurn;
+        return false;
+    }
+
+    public override async Task BeforeDamageReceived(
+        PlayerChoiceContext choiceContext,
+        Creature target,
+        Decimal amount,
+        ValueProp props,
+        Creature? dealer,
+        CardModel? cardSource)
+    {
+        if (target != Owner) return;
+        if (!State.TriggeredThisTurn) return;
+        if (target.Block > 0) return;
+
+        Flash();
+        await CreatureCmd.Kill(Owner, force: true);
     }
 
     public override async Task AfterPreventingDeath(Creature creature)
@@ -47,10 +80,11 @@ public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
 
         var block = (Owner.GetPower<WithPower>()?.Amount ?? 0) * BlockMultiplier;
 
-        await CreatureCmd.SetCurrentHp(creature, ReviveHp);
+        InitializeStartingMaxHp();
+        await CreatureCmd.SetMaxAndCurrentHp(creature, InfiniteHp);
+        creature.HpDisplay = HpDisplay.InfiniteWithoutNumbers;
         await CreatureCmd.GainBlock(creature, block, ValueProp.Move, null);
 
-        // 给每个玩家一张 MagicAbsorption
         var magicAbsorption = ModelDb.GetById<CardModel>(new ModelId("CARD", "MANOSABA_LIN_CARD_MAGIC_ABSORPTION"));
         if (magicAbsorption != null)
         {
@@ -76,6 +110,9 @@ public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
         State.PendingHeal = false;
         State.TriggeredThisTurn = false;
 
+        InitializeStartingMaxHp();
+        Owner.HpDisplay = HpDisplay.Normal;
+        await CreatureCmd.SetMaxHp(Owner, State.StartingMaxHp);
         await CreatureCmd.SetCurrentHp(Owner, Owner.MaxHp * HealRatio);
     }
 }

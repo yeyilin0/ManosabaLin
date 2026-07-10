@@ -146,7 +146,7 @@
   "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.title": "reverberation",
   "MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.description": "At the end of the round, if the number of [color=gray][Transformation Magic][/color] cards in your hand is the highest among all players, lose HP equal to the total number of [color=gray][Transformation Magic][/color] cards in all players' hands.",
   "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.title": "Witch's power",
-  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "[jitter][color=#cccccc] \"Ugly turned into an immortal monster [witch], falling into endless despair\" [/color][/jitter]\nWhen [color=gray] attacks with the third intention [/color], if all players have [color=gray] [Magic of Transformation] [/color] cards equal to 3 times the total number of players in their hands, [color=gray] will attack once more with [/color] in the next round.\nRestores 1 HP when dying, gains [b] equal to 3 times of the witch transformation, blocks [/b], switches intention [color=gray] (once per round) [/color], and recovers half of the HP at the beginning of the next round.",
+  "MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description": "[jitter][color=#cccccc] \"Ugly turned into an immortal monster [witch], falling into endless despair\" [/color][/jitter]\nWhen [color=gray] attacks with the third intention [/color], if all players have [color=gray] [Magic of Transformation] [/color] cards equal to 3 times the total number of players in their hands, [color=gray] will attack once more with [/color] in the next round.\nThe first time each turn this monster would die, prevent death, set its HP to infinite, gain [b]Block[/b] equal to 3 times Witch Transformation, and switch intent [color=gray](once per round)[/color]. If the Block is not broken, at the start of its next turn restore its Max HP to the combat-start value and heal to half HP.",
   "MANOSABA_LIN_POWER_THE_NORWOOD_BUILDER_POWER.title": "Norwood Architects",
   "MANOSABA_LIN_POWER_THE_NORWOOD_BUILDER_POWER.description": "Whenever a card is consumed, you get{Amount}Block.",
   "MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.title": "dancing little man",
@@ -218,4 +218,7 @@
   "MANOSABA_LIN_POWER_ENCHANTMENT_CONVERGENCE_POWER.description": "During this round, when any of your Judgment enchantment counts reaches 5, you will anchor it. After that, the additional effects of this enchantment count can also be triggered by allies.",
   "MANOSABA_LIN_POWER_GEINIZHENGYIPOWER.title": "Justice that leads to the same goal through different paths",
   "MANOSABA_LIN_POWER_GEINIZHENGYIPOWER.description": "This round, every time a friendly player draws a card and recovers it{energyPrefix:energyIcons(1)}Then give it 1 layer of justice"
+,
+  "MANOSABA_LIN_POWER_SILENT_POWER.title": "Silence",
+  "MANOSABA_LIN_POWER_SILENT_POWER.description": "Right-click to spend 13 [color=#6666cc]Silence[/color]: all enemies immediately perform their current intent, then become stunned. Their next intent after the stunned turn is replaced by a player-beneficial intent."
 }

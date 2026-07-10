@@ -19,6 +19,6 @@ pivot_offset = Vector2(1280, 600)
 
 [node name="EmalinBg" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(30.000004, -20.99998)
-scale = Vector2(0.51053333, 0.5622893)
+position = Vector2(30.000004, -15.607826)
+scale = Vector2(0.51053333, 0.5570235)
 texture = ExtResource("1_to7mj")

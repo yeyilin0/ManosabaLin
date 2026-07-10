@@ -82,7 +82,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="ManosabaLinCode\Characters\Anan\"/>
+        <Folder Include="ManosabaLinCode\Characters\Ananlin\" />
         <Folder Include="ManosabaLinCode\Characters\Hanna\"/>
         <Folder Include="ManosabaLinCode\Characters\Hiro\Ancients\"/>
         <Folder Include="ManosabaLinCode\Characters\Hiro\Potions\"/>
