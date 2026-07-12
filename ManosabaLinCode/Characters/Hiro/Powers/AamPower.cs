@@ -15,6 +15,7 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using ManosabaLin.Characters.Common.GameActions;
+using ManosabaLin.Characters.Ananlin.Relics;
 using MegaCrit.Sts2.Core.Runs;
 
 namespace ManosabaLin.ManosabaLinCode.Characters.Hiro.Powers;
@@ -77,10 +78,14 @@ public class AamPower : ManosabaPowerTemplate, IRedirectPower
     {
         var move = _moves.ElementAtOrDefault(chosenMoveIndex);
         if (move is null) return;
+        var previousMove = Owner.Monster!.NextMove;
         _chosenMoveStateId = move.StateId;
         Owner.Monster!.SetMoveImmediate(move, forceTransition: true);
         _chosenMoveTarget = chosenMoveTarget;
         await RefreshOwnerIntent();
+
+        if (previousMove?.StateId != move.StateId)
+            AnanlinSilenceIntentManager.RecordIntentRewrites(Owner.CombatState, 1);
     }
 
     private async Task<int?> ChooseMove(PlayerChoiceContext choiceContext, Player player)

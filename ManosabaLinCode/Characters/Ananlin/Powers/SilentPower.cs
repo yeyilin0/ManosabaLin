@@ -17,10 +17,14 @@ public sealed class SilentPower : ManosabaPowerTemplate, IEasyRightClickablePowe
     {
         if (Amount < SilenceCost) return;
         if (Owner.Player?.Relics.OfType<AnansSketchbook>().FirstOrDefault() is not { } sketchbook) return;
+        if (!sketchbook.CanTriggerSilenceRewrite()) return;
 
         await PowerCmd.ModifyAmount(choiceContext, this, -SilenceCost, Owner, null);
         await sketchbook.TriggerSilenceRewrite(choiceContext);
+
+        if (Owner.GetPower<AnanlinLiePower>() is { } liePower)
+            await liePower.ResolveAfterSilenceRightClick(choiceContext);
     }
 
-    public string RightClickPrompt => "消耗13层缄默";
+    public string RightClickPrompt => "消耗13层缄默。";
 }

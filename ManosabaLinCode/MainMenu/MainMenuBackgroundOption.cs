@@ -10,6 +10,7 @@ public static class MainMenuBackgroundOptions
     [
         new($"{MainFile.ResPath}/images/ui/xiluo.png", "event:/ManosabaLin/music/biaoti"),
         new($"{MainFile.ResPath}/images/ui/aima.png", "event:/ManosabaLin/music/biaoti"),
+        new($"{MainFile.ResPath}/images/ui/amxiluo.png", "event:/ManosabaLin/music/bloom"),
     ];
 
     private static MainMenuBackgroundOption? activeOption;
@@ -41,6 +42,7 @@ public static class MainMenuBackgroundOptions
 
         try
         {
+            NAudioManager.Instance?.StopMusic();
             NAudioManager.Instance?.PlayMusic(option.MusicEventPath);
         }
         catch (Exception ex)

@@ -54,7 +54,7 @@ public static class MainMenuBackgroundSettingsService
                         EnabledBinding,
                         T(
                             "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description",
-                            "When enabled, one of two still backgrounds is chosen each time the main menu opens.")))
+                            "When enabled, one of three still backgrounds is chosen each time the main menu opens.")))
                 .AddSection("events", section => section
                     .WithTitle(EventSettingsService.T(
                         "MANOSABALIN_SETTINGS.events.section.title",

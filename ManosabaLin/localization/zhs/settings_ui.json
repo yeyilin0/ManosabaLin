@@ -8,7 +8,7 @@
   "MANOSABALIN_SETTINGS.mainMenuBackground.section.title": "主菜单背景",
   "MANOSABALIN_SETTINGS.mainMenuBackground.section.description": "将游戏主菜单替换为随机的 ManosabaLin 静态背景。",
   "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.label": "启用替换",
-  "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description": "启用后，每次打开主菜单时会随机选择两张静态背景之一。",
+  "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description": "启用后，每次打开主菜单时会随机选择三张静态背景之一。",
   "MANOSABALIN_SETTINGS.events.section.title": "事件",
   "MANOSABALIN_SETTINGS.events.section.description": "选择哪些 ManosabaLin 事件可以在对局中出现。",
   "MANOSABALIN_SETTINGS.events.kinmaneyurakuchoEvent.label": "「魔法少女の魔女裁判」×「カラオケまねきねこ」",

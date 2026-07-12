@@ -22,7 +22,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class TheFool : ManosabaCardTemplate
 {
-    public TheFool() : base(3, CardType.Power, CardRarity.Ancient, TargetType.Self)
+    public TheFool() : base(4, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
     }
 
@@ -122,7 +122,8 @@ public sealed class TheFool : ManosabaCardTemplate
             if (firstCard != null)
             {
                 await CardPileCmd.AddGeneratedCardToCombat(firstCard, PileType.Discard, owner);
-                await CaseFilePileHelper.AddToCaseFilePile(firstCard, owner, CardPilePosition.Top);
+                await CaseFilePileHelper.AddToCaseFilePile(
+                    firstCard, owner, CardPilePosition.Top, choiceContext);
             }
 
             CardModel? secondCard;
@@ -134,7 +135,8 @@ public sealed class TheFool : ManosabaCardTemplate
             if (secondCard != null)
             {
                 await CardPileCmd.AddGeneratedCardToCombat(secondCard, PileType.Discard, owner);
-                await CaseFilePileHelper.AddToCaseFilePile(secondCard, owner, CardPilePosition.Top);
+                await CaseFilePileHelper.AddToCaseFilePile(
+                    secondCard, owner, CardPilePosition.Top, choiceContext);
             }
         }
 

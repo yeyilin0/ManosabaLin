@@ -29,6 +29,15 @@ namespace ManosabaLin.Characters.Hiro.Monsters;
 [RegisterMonster]
 public sealed class GuardThreeMonster : ModMonsterTemplate
 {
+    private static readonly MethodInfo? UpdateBoundsMethod = typeof(NCreature)
+        .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+        .FirstOrDefault(static method =>
+        {
+            if (method.Name != "UpdateBounds") return false;
+            var parameters = method.GetParameters();
+            return parameters.Length == 1 && parameters[0].ParameterType == typeof(Node);
+        });
+
     public override int MinInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 380, 360);
     public override int MaxInitialHp => AscensionHelper.GetValueIfAscension(AscensionLevel.ToughEnemies, 380, 360);
 
@@ -124,6 +133,7 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
         await GuardThreePhaseTransitionOverlay.PlayAsync();
         GuardThreeWrongTextVfx.SpawnPersistentWrong(Creature, 4);
+        UpdateVisual("phase2");
     }
 
     // ========== 阶段1 ==========
@@ -322,9 +332,69 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
         {
             var path = $"guard_three_{name}.png".MonstersImagePath();
             body.Texture = PreloadManager.Cache.GetTexture2D(path);
+            ApplyVisualLayout(creatureNode, name);
         }));
 
         tween.TweenProperty(body, (NodePath)"modulate", Colors.White, 0.3);
+    }
+
+    private static void ApplyVisualLayout(NCreature creatureNode, string name)
+    {
+        if (name == "phase2")
+        {
+            SetBounds(creatureNode, -330f, -690f, 430f, 150f);
+            SetMarker(creatureNode, "IntentPos", -5f, -630f);
+            SetMarker(creatureNode, "CenterPos", -5f, -275f);
+            SetMarker(creatureNode, "TalkPos", -235f, -500f);
+            RefreshCreatureBounds(creatureNode, new Vector2(90f, 0f));
+            return;
+        }
+
+        SetBounds(creatureNode, -290f, -587f, 239f, 140f);
+        SetMarker(creatureNode, "IntentPos", -3.8497314f, -583.08246f);
+        SetMarker(creatureNode, "CenterPos", -5.8015137f, -192.5856f);
+        SetMarker(creatureNode, "TalkPos", -239.18f, -449.50003f);
+        RefreshCreatureBounds(creatureNode, Vector2.Zero);
+    }
+
+    private static void RefreshCreatureBounds(NCreature creatureNode, Vector2 hitboxOffset)
+    {
+        UpdateBoundsMethod?.Invoke(creatureNode, new object?[] { creatureNode.Visuals });
+        SyncHitboxToBounds(creatureNode, hitboxOffset);
+    }
+
+    private static void SyncHitboxToBounds(NCreature creatureNode, Vector2 hitboxOffset)
+    {
+        var bounds = GetVisualNode<Control>(creatureNode, "Bounds");
+        if (bounds is null) return;
+
+        creatureNode.Hitbox.GlobalPosition = bounds.GlobalPosition + hitboxOffset;
+        creatureNode.Hitbox.Size = bounds.Size;
+    }
+
+    private static void SetBounds(NCreature creatureNode, float left, float top, float right, float bottom)
+    {
+        var bounds = GetVisualNode<Control>(creatureNode, "Bounds");
+        if (bounds is null) return;
+
+        bounds.OffsetLeft = left;
+        bounds.OffsetTop = top;
+        bounds.OffsetRight = right;
+        bounds.OffsetBottom = bottom;
+    }
+
+    private static void SetMarker(NCreature creatureNode, string nodeName, float x, float y)
+    {
+        var marker = GetVisualNode<Marker2D>(creatureNode, nodeName);
+        if (marker is null) return;
+
+        marker.Position = new Vector2(x, y);
+    }
+
+    private static T? GetVisualNode<T>(NCreature creatureNode, string nodeName) where T : Node
+    {
+        return creatureNode.Visuals.GetNodeOrNull<T>(nodeName)
+               ?? creatureNode.Visuals.GetNodeOrNull<T>($"%{nodeName}");
     }
 
     // ========== 死亡/复活 ==========

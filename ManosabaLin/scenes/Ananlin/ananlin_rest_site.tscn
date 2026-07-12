@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Texture2D" uid="uid://chr5c5l10khat" path="res://ManosabaLin/images/characters/Ananlin/AnanlinRest.png" id="1_ananlin"]
+[ext_resource type="PackedScene" uid="uid://mtrlxduupxi0" path="res://ManosabaLin/scenes/selection_reticle.tscn" id="2_reticle"]
+
+[node name="AnanlinRestSite" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-33.71527, 10.812681)
+scale = Vector2(0.455, 0.455)
+texture = ExtResource("1_ananlin")
+
+[node name="ControlRoot" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SelectionReticle" parent="ControlRoot" instance=ExtResource("2_reticle")]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -260.0
+offset_top = -345.0
+offset_right = 227.0
+offset_bottom = 377.0
+
+[node name="Hitbox" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -272.0
+offset_top = -347.0
+offset_right = 203.0
+offset_bottom = 380.0
+
+[node name="ThoughtBubbleRight" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -21.432007
+offset_top = -66.20697
+offset_right = -21.432007
+offset_bottom = -66.20697
+
+[node name="ThoughtBubbleLeft" type="Control" parent="ControlRoot"]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = -54.10205
+offset_top = -55.316956
+offset_right = -54.10205
+offset_bottom = -55.316956

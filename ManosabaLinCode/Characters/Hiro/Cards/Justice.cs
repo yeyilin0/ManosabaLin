@@ -23,14 +23,13 @@ public sealed class Justice : ManosabaCardTemplate
     {
     }
 
- 
-
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
         get
         {
             yield return HoverTipFactory.FromPower<WithPower>();
             yield return HoverTipFactory.FromPower<JusticePower>();
+            yield return HoverTipFactory.FromPower<RitualCeremonyPower>();
             yield return EnergyHoverTip;
             yield return HoverTipFactory.FromKeyword(CardKeyword.Exhaust);
             yield return HoverTipFactory.FromCard<Save>();
@@ -145,6 +144,11 @@ public sealed class Justice : ManosabaCardTemplate
             source,
             false
         );
+
+        // 获得 1 层 RitualCeremonyPower
+        await PowerCmd.Apply<RitualCeremonyPower>(
+            choiceContext, source.Owner.Creature, 1,
+            source.Owner.Creature, source, false);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

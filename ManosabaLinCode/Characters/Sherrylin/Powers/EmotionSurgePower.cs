@@ -1,4 +1,6 @@
 using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
+using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
@@ -10,9 +12,6 @@ using System.Threading.Tasks;
 
 namespace ManosabaLin.Characters.Sherrylin.Powers;
 
-/// <summary>
-/// 情绪涌动能力：本回合每打出1张牌，情绪计数额外+1。
-/// </summary>
 [RegisterPower]
 public sealed class EmotionSurgePower : ManosabaPowerTemplate
 {
@@ -24,11 +23,16 @@ public sealed class EmotionSurgePower : ManosabaPowerTemplate
     {
         if (cardPlay.Card.Owner?.Creature != Owner) return;
 
-        // 找到EmotionPower并额外+1计数
         var emotionPower = Owner.GetPower<EmotionPower>();
         if (emotionPower != null)
         {
+            var wasBefore = emotionPower.Amount;
             emotionPower.Amount++;
+
+            // 满13层获得情绪卡时恢复1点能量
+            if (wasBefore == 12)
+                await PlayerCmd.GainEnergy(1, Owner.Player);
+
             Flash();
         }
     }

@@ -34,6 +34,14 @@ public class CrimsonbutterflyPower : ManosabaPowerTemplate
         _recordedDamage += result.TotalDamage;
     }
 
+    internal void RecordExtraDamage(decimal amount)
+    {
+        if (amount <= 0) return;
+
+        _recordedDamage += amount;
+        Flash();
+    }
+
     public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != Owner.Side) return;

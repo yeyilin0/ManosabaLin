@@ -1,6 +1,6 @@
 {
   "MANOSABALIN_UPDATE_POPUP.title": "マノサバリン、新たな魔女裁判",
-  "MANOSABALIN_UPDATE_POPUP.body": "[color=#cccccc] 現在のケース: [/color] [color=#ff99cc]{0}[/color]\n[color=#cccccc] 最新のケース: [/color] [color=#CC6666]{1}[/color]\n[color=#ff99cc]ZZQ2QXZ「合計[/b]ZZQ4QXZZZQ5QXZZZQ6QXZ犯罪者」[/b]ZZQ8QXZになろう！",
+  "MANOSABALIN_UPDATE_POPUP.body": "[color=#cccccc] 現在のケース: [/color] [color=#ff99cc]{0}[/color]\n[color=#cccccc] 最新のケース: [/color] [color=#CC6666]{1}[/color]\n[color=#ff99cc][color=#ff99cc]「合計[color=#cccccc][/color][color=#CC6666]犯罪者」[color=#ff99cc]になろう！[/color][/color][/color][/color]",
   "MANOSABALIN_UPDATE_POPUP.download": "共犯者になる",
   "MANOSABALIN_UPDATE_POPUP.close": "次回会いましょう",
   "MANOSABALIN_SETTINGS.title": "ManosabaLin",
@@ -8,7 +8,7 @@
   "MANOSABALIN_SETTINGS.mainMenuBackground.section.title": "メインメニューの背景",
   "MANOSABALIN_SETTINGS.mainMenuBackground.section.description": "ゲームのメイン メニューをランダムな ManosabaLin 静的背景に置き換えます。",
   "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.label": "置換を有効にする",
-  "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description": "有効にすると、メイン メニューが開くたびに、2 つの静的な背景のうち 1 つがランダムに選択されます。",
+  "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description": "有効にすると、メイン メニューが開くたびに、3 つの静的な背景のうち 1 つがランダムに選択されます。",
   "MANOSABALIN_SETTINGS.events.section.title": "イベント",
   "MANOSABALIN_SETTINGS.events.section.description": "試合にどの ManosabaLin イベントを表示できるかを選択します。",
   "MANOSABALIN_SETTINGS.events.kinmaneyurakuchoEvent.label": "「魔法少女のウィッチジャッジ」",

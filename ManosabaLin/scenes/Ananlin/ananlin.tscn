@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn1ulr3jaj6xa"]
+
+[ext_resource type="Texture2D" uid="uid://cnpikvw5qhf8x" path="res://ManosabaLin/images/characters/Ananlin/ananlin_char_visual.png" id="1_ananlin"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ananlin_idle"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ananlin")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="Ananlin" type="Node2D"]
+
+[node name="Visuals" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-3, -172)
+scale = Vector2(0.25834557, 0.26380622)
+sprite_frames = SubResource("SpriteFrames_ananlin_idle")
+autoplay = "default"
+
+[node name="Bounds" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -129.0
+offset_top = -451.0
+offset_right = 120.0
+mouse_filter = 2
+
+[node name="IntentPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-1, -388)
+
+[node name="CenterPos" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-3, -168)

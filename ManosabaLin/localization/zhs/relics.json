@@ -74,6 +74,7 @@
   "MANOSABA_LIN_RELIC_EMACHOUMA.flavor": "运气足够好的话，可能获得[color=#ff99cc]意想不到[/color]的卡"
 ,
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.title": "安安的素描本",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "每个玩家回合开始时，获得1层[color=#6666cc]【缄默】[/color]。当你打出技能牌时，获得2层[color=#6666cc]【缄默】[/color]。当你打出攻击牌时，消耗1层[color=#6666cc]【缄默】[/color]，打出后获得1层活力。先古事件额外出现一次可跳过的跨角色三选一卡牌奖励，选择卡牌后记录其卡池。[color=#6666cc]【空白书页】[/color]根据记录卡池生成卡牌。",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "安安的素描本记录着别人还没来得及说出口的话。"
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "每个玩家回合开始时，获得1层[color=#6666cc]【缄默】[/color]。当你打出技能牌时，获得2层[color=#6666cc]【缄默】[/color]。当你打出攻击牌时，消耗1层[color=#6666cc]【缄默】[/color]，打出后获得1层活力。每层第一场战斗开始时，自动出现一次可跳过的跨角色三选一卡牌奖励，选择卡牌后记录其卡池。[color=#6666cc]【空白书页】[/color]根据记录卡池生成卡牌。",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "安安的素描本记录着别人还没来得及说出口的话。",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.selectionScreenPrompt": "选择缄默替换意图"
 }

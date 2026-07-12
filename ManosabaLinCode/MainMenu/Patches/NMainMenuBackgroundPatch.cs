@@ -1,5 +1,4 @@
 using HarmonyLib;
-using MegaCrit.Sts2.Core.Nodes.Audio;
 using MegaCrit.Sts2.Core.Nodes.Screens.MainMenu;
 using ManosabaLin.Audio.Services;
 
@@ -32,13 +31,7 @@ public static class NMainMenuBackgroundPatch
         }
 
         var option = MainMenuBackgroundOptions.GetActiveOrPick();
-        if (string.IsNullOrWhiteSpace(option.MusicEventPath))
-        {
-            return;
-        }
-
-        NAudioManager.Instance?.StopMusic();
-        MainMenuBackgroundOptions.TryPlayMusic(option);
+        TryApplyMusic(option);
     }
 
     [HarmonyPostfix]
@@ -91,11 +84,23 @@ public static class NMainMenuBackgroundPatch
         host.AddChild(background);
         host.MoveChild(background, 0);
 
-        if (!string.IsNullOrWhiteSpace(option.MusicEventPath)
-            && !FmodHelper.IsEventExists(option.MusicEventPath))
+        TryApplyMusic(option);
+    }
+
+    private static void TryApplyMusic(MainMenuBackgroundOption option)
+    {
+        if (string.IsNullOrWhiteSpace(option.MusicEventPath))
+        {
+            return;
+        }
+
+        if (!FmodHelper.IsEventExists(option.MusicEventPath))
         {
             MainFile.Logger.Warn($"[MainMenuBackground] Missing music event: {option.MusicEventPath}");
+            return;
         }
+
+        MainMenuBackgroundOptions.TryPlayMusic(option);
     }
 
     private static void Clean(NMainMenuBg host)

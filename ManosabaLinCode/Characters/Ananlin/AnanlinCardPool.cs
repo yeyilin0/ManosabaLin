@@ -13,8 +13,8 @@ public class AnanlinCardPool : TypeListCardPoolModel, IModColorfulPhilosophersCa
     public override string Title => Ananlin.CharacterId;
     public override string EnergyColorName => CharacterIdLower;
 
-    public override string BigEnergyIconPath => "characters/Sherrylin/sherrylin_energy.png".ImagePath();
-    public override string TextEnergyIconPath => "characters/Sherrylin/sherrylin_energy_small.png".ImagePath();
+    public override string BigEnergyIconPath => "characters/Ananlin/ananlin_energy.png".ImagePath();
+    public override string TextEnergyIconPath => "characters/Ananlin/ananlin_energy_small.png".ImagePath();
 
     private static readonly Material? _poolFrameMaterial = MaterialUtils.CreateHsvShaderMaterial(0.68f, 0.55f, 1.05f);
     public override Material? PoolFrameMaterial => _poolFrameMaterial;

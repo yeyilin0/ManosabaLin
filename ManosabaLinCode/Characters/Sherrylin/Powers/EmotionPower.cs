@@ -19,7 +19,18 @@ public sealed class EmotionPower : ManosabaActionTemplate
     public override TargetType TargetType => TargetType.Self;
     public override bool DecrementAfterAct => false;
 
-    private int _reachThirteenCount;
+    private int _basicEmotionAddedCount;
+
+    public async Task AfterBasicEmotionAddedToCaseFile(PlayerChoiceContext choiceContext)
+    {
+        _basicEmotionAddedCount++;
+
+        if (_basicEmotionAddedCount < 3) return;
+
+        _basicEmotionAddedCount -= 3;
+        await PowerCmd.Apply<EmotionFusionPower>(
+            choiceContext, Owner, 1, Owner, null, false);
+    }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -32,7 +43,6 @@ public sealed class EmotionPower : ManosabaActionTemplate
         if (Amount >= 13)
         {
             Amount = 0;
-            _reachThirteenCount++;
 
             var rng = Owner.Player.RunState.Rng.CombatCardSelection;
             var roll = rng.NextInt(6);
@@ -52,14 +62,8 @@ public sealed class EmotionPower : ManosabaActionTemplate
                 };
 
                 if (emotionCard != null)
-                    await CaseFilePileHelper.AddToCaseFilePile(emotionCard, Owner.Player, CardPilePosition.Top);
-
-                if (_reachThirteenCount >= 3)
-                {
-                    _reachThirteenCount = 0;
-                    await PowerCmd.Apply<EmotionFusionPower>(
-                        choiceContext, Owner, 1, Owner, null, false);
-                }
+                    await CaseFilePileHelper.AddToCaseFilePile(
+                        emotionCard, Owner.Player, CardPilePosition.Top, choiceContext);
             }
         }
     }

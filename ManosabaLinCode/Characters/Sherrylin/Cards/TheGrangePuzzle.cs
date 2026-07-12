@@ -1,6 +1,7 @@
 using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
+using ManosabaLin.Characters.Sherrylin.Components;
 using ManosabaLin.Characters.Sherrylin.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -8,6 +9,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
+using MinionLib.Component.Interfaces;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +35,9 @@ public sealed class TheGrangePuzzle() : ManosabaCardTemplate(2, CardType.Skill, 
         }
     }
 
+    protected override IEnumerable<ICardComponent> CanonicalComponents =>
+        [new RemoveOnPlayComponent()];
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
@@ -56,24 +61,17 @@ public sealed class TheGrangePuzzle() : ManosabaCardTemplate(2, CardType.Skill, 
             }
         }
 
-        // 将魔法层数一半的消耗卡拿到手牌
-        var retrieveCount = xlmStacks / 3;
-        if (retrieveCount > 0)
+        // 获得 XlmPower层数 / 2 的能量
+        var energyGain = xlmStacks / 2;
+        if (energyGain > 0)
         {
-            var exhaustCards = PileType.Exhaust.GetPile(Owner).Cards.ToList();
-            if (exhaustCards.Count > 0)
-            {
-                var cardsToRetrieve = exhaustCards.OrderBy(_ => rng.NextFloat()).Take(retrieveCount).ToList();
-                foreach (var card in cardsToRetrieve)
-                {
-                    await CardPileCmd.Add(card, PileType.Hand);
-                }
-            }
+            await PlayerCmd.GainEnergy(energyGain, Owner);
         }
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars["Bonus"].UpgradeValueBy(2m);
+        this.RemoveComponent<RemoveOnPlayComponent>();
     }
 }

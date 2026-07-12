@@ -63,12 +63,25 @@ public static class FusionStandVisualPatch
             creatureNode.AddChild(stand);
             stand.SetUpSkin(monster);
             stand.UpdatePhobiaMode(monster);
+            DisableStandTargetingControls(stand);
             ApplyStandPhaseVisual(monster, stand);
             PlayFirstAnimation(stand, IdleAnimations, loop: true);
         }
         catch (Exception ex)
         {
             MainFile.Logger.Warn($"[FusionStand] visual failed: {ex.Message}");
+        }
+    }
+
+    private static void DisableStandTargetingControls(Node node)
+    {
+        foreach (var child in node.GetChildren())
+        {
+            if (child is Control control)
+                control.MouseFilter = Control.MouseFilterEnum.Ignore;
+
+            if (child is Node childNode)
+                DisableStandTargetingControls(childNode);
         }
     }
 

@@ -1,6 +1,6 @@
 {
   "MANOSABALIN_UPDATE_POPUP.title": "ManosabaLin, the new witch trial",
-  "MANOSABALIN_UPDATE_POPUP.body": "[color=#cccccc] Current case: [/color] [color=#ff99cc]{0}[/color]\n[color=#cccccc] latest case: [/color] [color=#CC6666]{1}[/color]\nLet's become [color=#ff99cc][b] \"total [/b][/color][color=#CC6666][b] offenders\" [/b][/color]!",
+  "MANOSABALIN_UPDATE_POPUP.body": "[color=#cccccc] Current case: [/color] [color=#ff99cc]{0}[/color]\n[color=#cccccc] latest case: [/color] [color=#CC6666]{1}[/color]\nLet's become [color=#ff99cc] \"total [/color][color=#CC6666] offenders\" [/color]!",
   "MANOSABALIN_UPDATE_POPUP.download": "become an accomplice",
   "MANOSABALIN_UPDATE_POPUP.close": "See you next time",
   "MANOSABALIN_SETTINGS.title": "ManosabaLin",
@@ -8,7 +8,7 @@
   "MANOSABALIN_SETTINGS.mainMenuBackground.section.title": "Main menu background",
   "MANOSABALIN_SETTINGS.mainMenuBackground.section.description": "Replaces the game's main menu with a random ManosabaLin static background.",
   "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.label": "Enable replacement",
-  "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description": "When enabled, one of two static backgrounds will be randomly selected each time the main menu is opened.",
+  "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description": "When enabled, one of three static backgrounds will be randomly selected each time the main menu is opened.",
   "MANOSABALIN_SETTINGS.events.section.title": "event",
   "MANOSABALIN_SETTINGS.events.section.description": "Choose which ManosabaLin events can appear in a match.",
   "MANOSABALIN_SETTINGS.events.kinmaneyurakuchoEvent.label": "\"Magical Girl's Witch Judge\"",

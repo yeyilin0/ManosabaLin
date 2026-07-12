@@ -165,7 +165,8 @@ public sealed class DestroyEverything() : ManosabaCardTemplate(3, CardType.Attac
                 extraCard = CombatState.CreateCard<EmotionCuriosity>(Owner);
 
             if (extraCard != null)
-                await CaseFilePileHelper.AddToCaseFilePile(extraCard, Owner, CardPilePosition.Top);
+                await CaseFilePileHelper.AddToCaseFilePile(
+                    extraCard, Owner, CardPilePosition.Top, choiceContext);
             var maxEnergy = Owner.MaxEnergy;
             var currentEnergy = Owner.PlayerCombatState?.Energy ?? 0;
             await PlayerCmd.GainEnergy(maxEnergy - currentEnergy, Owner);

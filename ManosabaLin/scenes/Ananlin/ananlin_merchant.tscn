@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Texture2D" uid="uid://bmx82q4iufnvi" path="res://ManosabaLin/images/characters/Ananlin/AnanlinThink.png" id="1_ananlin"]
+
+[node name="AnanlinMerchant" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-7, -264)
+scale = Vector2(0.393, 0.393)
+texture = ExtResource("1_ananlin")

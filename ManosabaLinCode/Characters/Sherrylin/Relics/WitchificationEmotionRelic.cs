@@ -44,6 +44,7 @@ public sealed class WitchificationEmotionRelic : ManosabaRelicTemplate
         if (combatState == null) return;
 
         var newCard = combatState.CreateCard<WitchificationEmotion>(Owner);
-        await CaseFilePileHelper.AddToCaseFilePile(newCard, Owner, CardPilePosition.Top);
+        await CaseFilePileHelper.AddToCaseFilePile(
+            newCard, Owner, CardPilePosition.Top, choiceContext);
     }
 }

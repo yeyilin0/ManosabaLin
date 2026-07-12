@@ -81,7 +81,8 @@ public sealed class EmotionFusionPower : ManosabaActionTemplate
 
         var resultCard = chosenRecipe.Factory(combatState, player);
         if (resultCard != null)
-            await CaseFilePileHelper.AddToCaseFilePile(resultCard, player, CardPilePosition.Top);
+            await CaseFilePileHelper.AddToCaseFilePile(
+                resultCard, player, CardPilePosition.Top, choiceContext);
 
         await PowerCmd.Remove(this);
     }

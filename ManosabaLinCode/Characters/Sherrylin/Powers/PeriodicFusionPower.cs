@@ -43,7 +43,8 @@ public sealed class PeriodicFusionPower : ManosabaPowerTemplate
             var emotionCard = Owner.CombatState.CreateCard(
                 ModelDb.GetById<CardModel>(ModelDb.GetId(emotionTypes[roll])), player);
             if (emotionCard != null)
-                await CaseFilePileHelper.AddToCaseFilePile(emotionCard, player, CardPilePosition.Top);
+                await CaseFilePileHelper.AddToCaseFilePile(
+                    emotionCard, player, CardPilePosition.Top, choiceContext);
         }
     }
 }

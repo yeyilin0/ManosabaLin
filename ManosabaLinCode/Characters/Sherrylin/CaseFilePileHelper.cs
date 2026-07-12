@@ -1,8 +1,11 @@
 using ManosabaLin.Characters.Common.Components;
+using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
+using ManosabaLin.Characters.Sherrylin.Powers;
 using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 
 namespace ManosabaLin.Characters.Sherrylin;
 
@@ -11,7 +14,8 @@ internal static class CaseFilePileHelper
     public static async Task<CardPileAddResult?> AddToCaseFilePile(
         CardModel card,
         Player player,
-        CardPilePosition position = CardPilePosition.Top)
+        CardPilePosition position = CardPilePosition.Top,
+        PlayerChoiceContext? choiceContext = null)
     {
         if (ShouldBlockUnique(card, player))
         {
@@ -20,7 +24,16 @@ internal static class CaseFilePileHelper
             return null;
         }
 
-        return await CardPileCmd.Add(card, MainFile.CaseFilePile, position);
+        var result = await CardPileCmd.Add(card, MainFile.CaseFilePile, position);
+
+        if (choiceContext != null && IsBasicEmotion(card))
+        {
+            var emotionPower = player.Creature.GetPower<EmotionPower>();
+            if (emotionPower != null)
+                await emotionPower.AfterBasicEmotionAddedToCaseFile(choiceContext);
+        }
+
+        return result;
     }
 
     public static async Task<CardPileAddResult?> MoveToCombatHand(
@@ -52,5 +65,11 @@ internal static class CaseFilePileHelper
         var caseFilePile = MainFile.CaseFilePile.GetPile(player);
         return caseFilePile.Cards.Any(existing =>
             !ReferenceEquals(existing, card) && existing.Id.Entry == card.Id.Entry);
+    }
+
+    private static bool IsBasicEmotion(CardModel card)
+    {
+        return card is EmotionAnger or EmotionDisgust or EmotionSadness
+            or EmotionFear or EmotionJoy or EmotionSurprise;
     }
 }

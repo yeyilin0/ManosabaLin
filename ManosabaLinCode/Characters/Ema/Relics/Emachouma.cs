@@ -44,7 +44,8 @@ public sealed class Emachouma : ManosabaRelicTemplate, IEasyRightClickableRelic
     [
         "MANOSABA_LIN_CARD_HIRO_WITH",
         "MANOSABA_LIN_CARD_EMAWICHPOWER",
-        "MANOSABA_LIN_CARD_SHERRYLIN_WITCH_POWER"
+        "MANOSABA_LIN_CARD_SHERRYLIN_WITCH_POWER",
+        "MANOSABA_LIN_CARD_ANANLIN_WITCH_POWER"
     ];
 
     private static readonly (int caseId, int weight)[] RollTable =

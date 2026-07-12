@@ -43,7 +43,8 @@ public sealed class Xuelichouma : ManosabaRelicTemplate, IEasyRightClickableReli
     [
         "MANOSABA_LIN_CARD_HIRO_WITH",
         "MANOSABA_LIN_CARD_EMAWICHPOWER",
-        "MANOSABA_LIN_CARD_SHERRYLIN_WITCH_POWER"
+        "MANOSABA_LIN_CARD_SHERRYLIN_WITCH_POWER",
+        "MANOSABA_LIN_CARD_ANANLIN_WITCH_POWER"
     ];
 
     // 权重分布：case0=10%, case1=14%, case2=25%, case3=20%, case4=15%, case5=6%, case6=10%
