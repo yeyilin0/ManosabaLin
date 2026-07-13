@@ -12,7 +12,8 @@ public sealed class AnanlinPushTheDoorOpen()
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(16m, ValueProp.Move),
-        new IntVar(PeaceBonusVar, 3)
+        new IntVar(PeaceBonusVar, 3),
+        new IntVar("Hits", 1)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
@@ -31,6 +32,7 @@ public sealed class AnanlinPushTheDoorOpen()
         var damage = DynamicVars.Damage.BaseValue + peace * DynamicVars[PeaceBonusVar].IntValue;
 
         await DamageCmd.Attack(damage)
+            .WithHitCount(DynamicVars["Hits"].IntValue)
             .FromCard(this, cardPlay)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_blunt")
@@ -40,6 +42,7 @@ public sealed class AnanlinPushTheDoorOpen()
         if (await this.LosePeaceOfMind(choiceContext) <= 0) return;
 
         await DamageCmd.Attack(damage)
+            .WithHitCount(DynamicVars["Hits"].IntValue)
             .FromCard(this, cardPlay)
             .TargetingAllOpponents(combatState)
             .WithHitFx("vfx/vfx_attack_blunt")
@@ -48,6 +51,7 @@ public sealed class AnanlinPushTheDoorOpen()
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars.Damage.UpgradeValueBy(-8m);
+        DynamicVars["Hits"].UpgradeValueBy(1m);
     }
 }

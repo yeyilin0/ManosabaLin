@@ -9,7 +9,7 @@ public sealed class AnanlinSilentAmplification()
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<AnanlinSilentAmplificationPower>(1m),
-        new IntVar("Rewrites", 2m)
+        new IntVar("Rewrites", 3m)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
@@ -26,16 +26,17 @@ public sealed class AnanlinSilentAmplification()
         if (Owner.Creature.GetPower<AnanlinSilentAmplificationPower>() is not null)
             return;
 
-        await PowerCmd.Apply<AnanlinSilentAmplificationPower>(
+        var power = await PowerCmd.Apply<AnanlinSilentAmplificationPower>(
             choiceContext,
             Owner.Creature,
             DynamicVars["AnanlinSilentAmplificationPower"].BaseValue,
             Owner.Creature,
             this);
+        power?.SetRewritesPerAmplification(DynamicVars["Rewrites"].IntValue);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars["Rewrites"].UpgradeValueBy(-1m);
     }
 }

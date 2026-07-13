@@ -4,7 +4,7 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
 public sealed class AnanlinClutchSleeve()
-    : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.Self),
+    : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self),
         IAnanlinPeaceOfMindSpecialCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>

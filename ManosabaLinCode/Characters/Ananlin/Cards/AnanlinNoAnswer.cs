@@ -3,11 +3,11 @@ using ManosabaLin.Characters.Ananlin.Powers;
 namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
-public sealed class AnanlinNoAnswer() : ManosabaCardTemplate(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+public sealed class AnanlinNoAnswer() : ManosabaCardTemplate(1, CardType.Power, CardRarity.Common, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<AnanlinNoAnswerPower>(3m)
+        new PowerVar<AnanlinNoAnswerPower>(2m)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>

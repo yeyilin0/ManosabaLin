@@ -33,6 +33,16 @@ public sealed class AnanlinLiePower : ManosabaPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
+    public override LocString Description
+    {
+        get
+        {
+            var description = base.Description;
+            description.Add(new PowerVar<VigorPower>(VigorPerLieKey, 2m));
+            return description;
+        }
+    }
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<VigorPower>(VigorPerLieKey, 2m)

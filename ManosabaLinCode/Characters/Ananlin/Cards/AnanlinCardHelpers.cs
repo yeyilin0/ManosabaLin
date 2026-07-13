@@ -19,6 +19,15 @@ internal static class AnanlinCardHelpers
         await CardPileCmd.AddGeneratedCardToCombat(blankPage, PileType.Hand, source.Owner);
     }
 
+    internal static async Task AddBlankPageToDrawPile(this CardModel source, bool upgraded)
+    {
+        var blankPage = source.CombatState.CreateCard<BlankPage>(source.Owner);
+        if (upgraded)
+            CardCmd.Upgrade(blankPage);
+
+        await CardPileCmd.AddGeneratedCardToCombat(blankPage, PileType.Draw, source.Owner, CardPilePosition.Random);
+    }
+
     internal static async Task AddMarginPageToHand(this CardModel source, bool upgraded)
     {
         var marginPage = source.CombatState.CreateCard<MarginPage>(source.Owner);
@@ -51,6 +60,21 @@ internal static class AnanlinCardHelpers
             amount,
             card.Owner.Creature,
             card);
+    }
+
+    internal static Task AddSilence(
+        this CardModel card,
+        PlayerChoiceContext choiceContext,
+        int amount)
+    {
+        return card.Sketchbook() is { } sketchbook
+            ? sketchbook.AddSilence(choiceContext, amount, card)
+            : PowerCmd.Apply<SilentPower>(
+                choiceContext,
+                card.Owner.Creature,
+                amount,
+                card.Owner.Creature,
+                card);
     }
 
     internal static async Task<int> LosePeaceOfMind(
@@ -94,6 +118,22 @@ internal static class AnanlinCardHelpers
             and not CardRarity.Curse
             and not CardRarity.Quest
             and not CardRarity.Event;
+    }
+
+    internal static bool IsStatusOrCurse(CardModel card)
+    {
+        return card.Rarity is CardRarity.Status or CardRarity.Curse
+            || card.Type is CardType.Status or CardType.Curse;
+    }
+
+    internal static bool IsStatus(CardModel card)
+    {
+        return card.Rarity == CardRarity.Status || card.Type == CardType.Status;
+    }
+
+    internal static bool IsAnanlinPoolCard(CardModel card)
+    {
+        return card.Pool.Id == ModelDb.GetId(typeof(AnanlinCardPool));
     }
 
     internal static void CopyUpgradeLevel(CardModel source, CardModel target)

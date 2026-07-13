@@ -4,12 +4,17 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
 public sealed class AnanlinSaveLoad()
-    : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Rare, TargetType.None)
+    : ManosabaCardTemplate(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     [SavedProperty] public string StoredCardId { get; set; } = string.Empty;
     [SavedProperty] public int StoredUpgradeLevel { get; set; }
 
     private bool HasStoredCard => !string.IsNullOrWhiteSpace(StoredCardId);
+
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new DamageVar(10m, ValueProp.Move)
+    ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -40,6 +45,15 @@ public sealed class AnanlinSaveLoad()
         CardPlay cardPlay,
         ComponentContext componentContext)
     {
+        if (cardPlay.Target is { } target)
+        {
+            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+                .FromCard(this, cardPlay)
+                .Targeting(target)
+                .WithHitFx("vfx/vfx_attack_blunt")
+                .Execute(choiceContext);
+        }
+
         if (!HasStoredCard)
         {
             await StoreExhaustCard(choiceContext);
@@ -137,5 +151,6 @@ public sealed class AnanlinSaveLoad()
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         AddKeyword(CardKeyword.Retain);
+        EnergyCost.UpgradeBy(-1);
     }
 }

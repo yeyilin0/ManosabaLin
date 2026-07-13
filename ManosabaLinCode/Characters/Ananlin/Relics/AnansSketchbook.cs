@@ -118,14 +118,14 @@ public sealed class AnansSketchbook : ManosabaRelicTemplate
             return playCount;
 
         return PendingNonAttackRepeatChargesThisTurn > 0
-            ? playCount + 1
+            ? playCount + PendingNonAttackRepeatChargesThisTurn
             : playCount;
     }
 
     public override Task AfterModifyingCardPlayCount(CardModel card)
     {
         if (PendingNonAttackRepeatChargesThisTurn > 0)
-            PendingNonAttackRepeatChargesThisTurn--;
+            PendingNonAttackRepeatChargesThisTurn = 0;
 
         Flash();
         return Task.CompletedTask;
@@ -212,7 +212,12 @@ public sealed class AnansSketchbook : ManosabaRelicTemplate
         }
 
         if (genrePower is not null)
-            await PowerCmd.Remove(genrePower);
+        {
+            if (genrePower.Amount <= 1)
+                await PowerCmd.Remove(genrePower);
+            else
+                await PowerCmd.ModifyAmount(choiceContext, genrePower, -1, Owner.Creature, source);
+        }
 
         var added = new List<CardModel>();
         foreach (var card in selected)
@@ -279,9 +284,9 @@ public sealed class AnansSketchbook : ManosabaRelicTemplate
 
     internal int CurrentSilence => (int)(Owner.Creature.GetPower<SilentPower>()?.Amount ?? 0);
 
-    internal void QueueNonAttackRepeatThisTurn()
+    internal void QueueNonAttackRepeatThisTurn(int extraPlays = 1)
     {
-        PendingNonAttackRepeatChargesThisTurn++;
+        PendingNonAttackRepeatChargesThisTurn += Math.Max(0, extraPlays);
     }
 
     internal bool TryForgetRecordedAttack(Creature target)

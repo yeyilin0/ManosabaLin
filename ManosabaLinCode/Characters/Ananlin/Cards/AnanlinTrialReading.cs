@@ -3,11 +3,11 @@ using ManosabaLin.Characters.Ananlin.Powers;
 namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
-public sealed class AnanlinTrialReading() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+public sealed class AnanlinTrialReading() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<SilentPower>("FallbackSilence", 3m)
+        new PowerVar<SilentPower>("FallbackSilence", 1m)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)

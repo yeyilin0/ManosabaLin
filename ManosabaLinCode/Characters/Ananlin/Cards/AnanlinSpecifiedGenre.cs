@@ -3,8 +3,13 @@ using ManosabaLin.Characters.Ananlin.Powers;
 namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
-public sealed class AnanlinSpecifiedGenre() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class AnanlinSpecifiedGenre() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.Self)
 {
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new IntVar("BlankPages", 1)
+    ];
+
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     [
         HoverTipFactory.FromCard<BlankPage>(),
@@ -30,7 +35,7 @@ public sealed class AnanlinSpecifiedGenre() : ManosabaCardTemplate(1, CardType.S
         if (selected is null) return;
 
         var power = await PowerCmd.Apply<AnanlinSpecifiedGenrePower>(
-            choiceContext, Owner.Creature, 1, Owner.Creature, this);
+            choiceContext, Owner.Creature, DynamicVars["BlankPages"].BaseValue, Owner.Creature, this);
         if (power is null) return;
 
         power.PreferredType = selected switch
@@ -43,6 +48,6 @@ public sealed class AnanlinSpecifiedGenre() : ManosabaCardTemplate(1, CardType.S
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars["BlankPages"].UpgradeValueBy(1m);
     }
 }

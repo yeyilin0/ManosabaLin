@@ -7,7 +7,7 @@ public sealed class AnanlinSilentForeshadow() : ManosabaCardTemplate(0, CardType
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<SilentPower>("Silence", 4m),
+        new PowerVar<SilentPower>("Silence", 1m),
         new CardsVar(1)
     ];
 

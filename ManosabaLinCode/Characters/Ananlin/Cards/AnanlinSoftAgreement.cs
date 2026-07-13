@@ -4,12 +4,13 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
 public sealed class AnanlinSoftAgreement()
-    : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.Self),
+    : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self),
         IAnanlinPeaceOfMindSpecialCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("Heal", 3)
+        new IntVar("Heal", 3),
+        new PowerVar<AnanlinPeaceOfMindPower>("Peace", 1m)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
@@ -41,11 +42,11 @@ public sealed class AnanlinSoftAgreement()
             1,
             Owner.Creature,
             this);
-        power?.Track(selected, heal);
+        power?.Track(selected, heal, DynamicVars["Peace"].IntValue);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars["Peace"].UpgradeValueBy(1m);
     }
 }

@@ -7,17 +7,19 @@ public sealed class AnanlinSoftAgreementPower : ManosabaPowerTemplate
 {
     private CardModel? _card;
     private int _heal;
+    private int _peace;
     private bool _pending = true;
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.None;
     protected override bool IsVisibleInternal => false;
 
-    internal void Track(CardModel card, int heal)
+    internal void Track(CardModel card, int heal, int peace)
     {
         _card = card;
         _heal = heal;
-        Amount = Math.Max(1, heal);
+        _peace = Math.Max(1, peace);
+        Amount = _peace;
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
@@ -44,7 +46,7 @@ public sealed class AnanlinSoftAgreementPower : ManosabaPowerTemplate
         {
             _pending = false;
             Flash();
-            await PowerCmd.Apply<AnanlinPeaceOfMindPower>(choiceContext, Owner, 1, Owner, _card);
+            await PowerCmd.Apply<AnanlinPeaceOfMindPower>(choiceContext, Owner, _peace, Owner, _card);
             return;
         }
 

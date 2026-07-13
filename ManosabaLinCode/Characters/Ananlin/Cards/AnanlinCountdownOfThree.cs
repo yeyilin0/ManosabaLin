@@ -4,11 +4,12 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
 public sealed class AnanlinCountdownOfThree()
-    : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self),
+    : ManosabaCardTemplate(2, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy),
         IAnanlinPeaceOfMindSpecialCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
+        new DamageVar(8m, ValueProp.Move),
         new IntVar("Bonus", 2)
     ];
 
@@ -22,6 +23,14 @@ public sealed class AnanlinCountdownOfThree()
         CardPlay cardPlay,
         ComponentContext componentContext)
     {
+        if (cardPlay.Target is not { } target) return;
+
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this, cardPlay)
+            .Targeting(target)
+            .WithHitFx("vfx/vfx_attack_blunt")
+            .Execute(choiceContext);
+
         var power = await PowerCmd.Apply<AnanlinCountdownOfThreePower>(
             choiceContext,
             Owner.Creature,

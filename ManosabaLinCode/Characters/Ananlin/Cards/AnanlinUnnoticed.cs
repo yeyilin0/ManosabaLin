@@ -4,11 +4,12 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
 public sealed class AnanlinUnnoticed()
-    : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Common, TargetType.Self),
+    : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy),
         IAnanlinPeaceOfMindSpecialCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
+        new DamageVar(6m, ValueProp.Move),
         new CardsVar(1)
     ];
 
@@ -22,6 +23,14 @@ public sealed class AnanlinUnnoticed()
         CardPlay cardPlay,
         ComponentContext componentContext)
     {
+        if (cardPlay.Target is not { } target) return;
+
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this, cardPlay)
+            .Targeting(target)
+            .WithHitFx("vfx/vfx_attack_blunt")
+            .Execute(choiceContext);
+
         var power = await PowerCmd.Apply<AnanlinUnnoticedPower>(
             choiceContext,
             Owner.Creature,
@@ -33,6 +42,6 @@ public sealed class AnanlinUnnoticed()
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

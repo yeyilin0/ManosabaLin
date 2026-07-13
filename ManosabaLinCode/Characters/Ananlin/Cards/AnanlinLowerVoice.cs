@@ -10,8 +10,8 @@ public sealed class AnanlinLowerVoice() : ManosabaCardTemplate(1, CardType.Skill
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new BlockVar(8m, ValueProp.Move),
-        new PowerVar<SilentPower>("Silence", 2m),
-        new PowerVar<SilentPower>("AttackIntentSilence", 2m)
+        new PowerVar<SilentPower>("Silence", 1m),
+        new BlockVar("AttackIntentBlock", 4m, ValueProp.Move)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<SilentPower>()];
@@ -21,11 +21,10 @@ public sealed class AnanlinLowerVoice() : ManosabaCardTemplate(1, CardType.Skill
         if (this.Sketchbook() is not { } sketchbook) return;
 
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-        var silence = DynamicVars["Silence"].IntValue;
         if (sketchbook.HasAnyEnemyAttackIntent())
-            silence += DynamicVars["AttackIntentSilence"].IntValue;
+            await CreatureCmd.GainBlock(Owner.Creature, (BlockVar)DynamicVars["AttackIntentBlock"], cardPlay);
 
-        await sketchbook.AddSilence(choiceContext, silence, this);
+        await sketchbook.AddSilence(choiceContext, DynamicVars["Silence"].IntValue, this);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

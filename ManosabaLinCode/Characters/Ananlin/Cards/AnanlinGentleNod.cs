@@ -4,11 +4,13 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
 public sealed class AnanlinGentleNod()
-    : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self),
+    : ManosabaCardTemplate(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy),
         IAnanlinPeaceOfMindSpecialCard
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
+        new DamageVar(8m, ValueProp.Move),
+        new IntVar("ExtraPlays", 1),
         new CardsVar(1)
     ];
 
@@ -22,6 +24,14 @@ public sealed class AnanlinGentleNod()
         CardPlay cardPlay,
         ComponentContext componentContext)
     {
+        if (cardPlay.Target is not { } target) return;
+
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this, cardPlay)
+            .Targeting(target)
+            .WithHitFx("vfx/vfx_attack_blunt")
+            .Execute(choiceContext);
+
         var peace = this.PeaceOfMindAmount();
         if (peace > 0)
         {
@@ -30,12 +40,12 @@ public sealed class AnanlinGentleNod()
                 peace * DynamicVars.Cards.IntValue,
                 card => AnanlinCardHelpers.IsPlayableCombatCard(card) && card.Type != CardType.Attack);
             await this.LosePeaceOfMind(choiceContext);
-            this.Sketchbook()?.QueueNonAttackRepeatThisTurn();
+            this.Sketchbook()?.QueueNonAttackRepeatThisTurn(DynamicVars["ExtraPlays"].IntValue);
         }
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars["ExtraPlays"].UpgradeValueBy(1m);
     }
 }

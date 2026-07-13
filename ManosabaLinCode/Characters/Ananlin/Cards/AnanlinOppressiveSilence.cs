@@ -8,12 +8,11 @@ public sealed class AnanlinOppressiveSilence() : ManosabaCardTemplate(1, CardTyp
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<AnanlinOppressiveSilencePower>(1m),
-        new PowerVar<SilentPower>("Silence", 0m)
+        new EnergyVar("Energy", 0)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     [
-        HoverTipFactory.FromPower<SilentPower>(),
         HoverTipFactory.FromPower<AnanlinOppressiveSilencePower>()
     ];
 
@@ -22,17 +21,12 @@ public sealed class AnanlinOppressiveSilence() : ManosabaCardTemplate(1, CardTyp
         await PowerCmd.Apply<AnanlinOppressiveSilencePower>(
             choiceContext, Owner.Creature, DynamicVars["AnanlinOppressiveSilencePower"].BaseValue, Owner.Creature, this);
 
-        var silence = DynamicVars["Silence"].IntValue;
-        if (silence <= 0) return;
-
-        if (this.Sketchbook() is { } sketchbook)
-            await sketchbook.AddSilence(choiceContext, silence, this);
-        else
-            await PowerCmd.Apply<SilentPower>(choiceContext, Owner.Creature, silence, Owner.Creature, this);
+        if (DynamicVars.Energy.IntValue > 0)
+            await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars["Silence"].UpgradeValueBy(3m);
+        DynamicVars.Energy.UpgradeValueBy(1m);
     }
 }

@@ -8,7 +8,7 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
 public sealed class AnanlinTakeTheHitForTeammate()
-    : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+    : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
 {
     private const string BlockThresholdKey = "BlockThreshold";
     private const string IntentDamageKey = "IntentDamage";
@@ -17,7 +17,7 @@ public sealed class AnanlinTakeTheHitForTeammate()
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar(BlockThresholdKey, 10m),
+        new IntVar(BlockThresholdKey, 15m),
         new PowerVar<ThornsPower>(1m),
         new DamageVar(IntentDamageKey, 1m, ValueProp.Move)
     ];
@@ -66,7 +66,7 @@ public sealed class AnanlinTakeTheHitForTeammate()
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars[BlockThresholdKey].UpgradeValueBy(-5m);
     }
 
     private Creature? PickRandomTeammate()

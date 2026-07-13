@@ -4,13 +4,14 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
 public sealed class AnanlinDeleteStress()
-    : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+    : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     private const string SilenceVar = "Silence";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<SilentPower>(SilenceVar, 3m),
+        new DamageVar(8m, ValueProp.Move),
+        new PowerVar<SilentPower>(SilenceVar, 10m),
         new PowerVar<AnanlinDeletedStressPower>(1m)
     ];
 
@@ -25,16 +26,18 @@ public sealed class AnanlinDeleteStress()
         HoverTipFactory.FromPower<AnanlinDeletedStressPower>()
     ];
 
-    protected override bool IsPlayableC =>
-        base.IsPlayableC
-        && Owner.Creature.GetPower<SilentPower>()?.Amount >= DynamicVars[SilenceVar].IntValue;
-
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay cardPlay,
         ComponentContext componentContext)
     {
         if (cardPlay.Target is not { } target) return;
+
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this, cardPlay)
+            .Targeting(target)
+            .WithHitFx("vfx/vfx_attack_blunt")
+            .Execute(choiceContext);
 
         var silenceCost = DynamicVars[SilenceVar].IntValue;
         var silence = Owner.Creature.GetPower<SilentPower>();
@@ -54,6 +57,6 @@ public sealed class AnanlinDeleteStress()
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars[SilenceVar].UpgradeValueBy(-2m);
     }
 }

@@ -15,7 +15,7 @@ public sealed class AnanlinTemporaryBorrowing() : ManosabaCardTemplate(1, CardTy
         if (IsUpgraded)
             CardCmd.Upgrade(card);
 
-        var isLowCost = !card.EnergyCost.CostsX && card.EnergyCost.GetWithModifiers(CostModifiers.None) < 1;
+        var isLowCost = !card.EnergyCost.CostsX && card.EnergyCost.GetWithModifiers(CostModifiers.None) <= 1;
         if (isLowCost)
             card.ExhaustOnNextPlay = true;
         else

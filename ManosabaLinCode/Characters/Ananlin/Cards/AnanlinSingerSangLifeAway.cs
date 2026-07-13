@@ -4,7 +4,7 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
 public sealed class AnanlinSingerSangLifeAway()
-    : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    : ManosabaCardTemplate(2, CardType.Attack, CardRarity.Rare, TargetType.Self)
 {
     private const string SilencePerTriggerKey = "SilencePerTrigger";
     private const string LowHpThresholdKey = "LowHpThreshold";
@@ -63,7 +63,7 @@ public sealed class AnanlinSingerSangLifeAway()
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        EnergyCost.UpgradeBy(-1);
+        DynamicVars[LowHpThresholdKey].UpgradeValueBy(20m);
     }
 
     private async Task TriggerSilentVocal(PlayerChoiceContext choiceContext, CardPlay cardPlay)

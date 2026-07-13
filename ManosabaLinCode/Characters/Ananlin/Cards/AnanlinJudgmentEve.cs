@@ -3,7 +3,7 @@ using ManosabaLin.Characters.Ananlin.Powers;
 namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
-public sealed class AnanlinJudgmentEve() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+public sealed class AnanlinJudgmentEve() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

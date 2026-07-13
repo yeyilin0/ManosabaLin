@@ -60,7 +60,16 @@ public sealed class AnanlinPeaceOfMindPower : ManosabaPowerTemplate
         if (result.UnblockedDamage <= 0) return;
 
         Flash();
-        await PowerCmd.ModifyAmount(choiceContext, this, -Amount, Owner, cardSource);
+        var doorNotLocked = Owner.GetPower<AnanlinDoorNotLockedPower>();
+        doorNotLocked?.AllowNextPeaceLossFromUnblockedDamage();
+        try
+        {
+            await PowerCmd.ModifyAmount(choiceContext, this, -Amount, Owner, cardSource);
+        }
+        finally
+        {
+            doorNotLocked?.ClearUnblockedDamagePeaceLoss();
+        }
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)

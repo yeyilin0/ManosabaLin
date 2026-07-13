@@ -8,7 +8,7 @@ public sealed class AnanlinRhetoricalQuestion() : ManosabaCardTemplate(1, CardTy
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(8m, ValueProp.Move),
-        new PowerVar<SilentPower>("Silence", 3m)
+        new PowerVar<SilentPower>("Silence", 1m)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<SilentPower>()];

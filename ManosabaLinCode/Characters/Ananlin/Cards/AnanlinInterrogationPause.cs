@@ -7,7 +7,7 @@ public sealed class AnanlinInterrogationPause() : ManosabaCardTemplate(2, CardTy
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<SilentPower>("Silence", 10m),
+        new PowerVar<SilentPower>("Silence", 5m),
         new PowerVar<AnanlinInterrogationPausePower>(1m)
     ];
 

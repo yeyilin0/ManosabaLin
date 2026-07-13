@@ -91,15 +91,56 @@ internal static class AnanlinSilenceIntentManager
         {
             MarkReplacementIntentUsed(owner, selectedBuff.Kind);
             RewritesThisCombatByPlayer[owner] = GetRewritesThisCombat(owner) + rewriteCount;
+            if (owner.Creature.GetPower<AnanlinSealedPagePower>() is { } sealedPage)
+                await sealedPage.AfterSilenceRightClickRewrite(choiceContext);
         }
 
         RecordIntentRewrites(combatState, rewriteCount);
         return rewriteCount;
     }
 
+    internal static async Task<bool> ForceBrainwash(
+        PlayerChoiceContext choiceContext,
+        Player owner,
+        Func<Task<bool>>? beforeApply = null)
+    {
+        var combatState = owner.Creature.CombatState;
+        if (combatState is null) return false;
+
+        var targets = GetBrainwashTargets(owner);
+        if (targets.Count == 0) return false;
+
+        var selectedBuff = await ChoosePlayerBuffIntent(choiceContext, owner);
+        if (selectedBuff is null) return false;
+
+        if (beforeApply is not null && !await beforeApply())
+            return false;
+
+        var rewriteCount = 0;
+        foreach (var target in targets.Where(CanBrainwashTarget))
+        {
+            if (target.Monster is not { } monster) continue;
+            if (ApplyReplacementMove(monster, selectedBuff.Move))
+                rewriteCount++;
+        }
+
+        if (rewriteCount <= 0) return false;
+
+        MarkReplacementIntentUsed(owner, selectedBuff.Kind);
+        RewritesThisCombatByPlayer[owner] = GetRewritesThisCombat(owner) + rewriteCount;
+        RecordIntentRewrites(combatState, rewriteCount);
+        return true;
+    }
+
     internal static int GetRewritesThisCombat(Player owner)
     {
         return RewritesThisCombatByPlayer.GetValueOrDefault(owner);
+    }
+
+    internal static bool CanForceBrainwash(Player owner)
+    {
+        return GetBrainwashTargets(owner).Any()
+            && GetAvailableReplacementIntentKinds(owner).Any();
     }
 
     internal static bool CanTrigger(Player owner)
@@ -118,6 +159,22 @@ internal static class AnanlinSilenceIntentManager
         }
 
         return false;
+    }
+
+    private static IReadOnlyList<Creature> GetBrainwashTargets(Player owner)
+    {
+        var combatState = owner.Creature.CombatState;
+        if (combatState is null) return Array.Empty<Creature>();
+
+        return combatState.Enemies
+            .Where(CanBrainwashTarget)
+            .ToArray();
+    }
+
+    private static bool CanBrainwashTarget(Creature enemy)
+    {
+        return enemy is { IsAlive: true, Monster: { NextMove: { } nextMove } }
+            && !IsReplacementMove(nextMove);
     }
 
     internal static bool TryApplyPendingBuffMove(MonsterModel monster)

@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
-public sealed class AnanlinNoahsButterflyTalisman() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
+public sealed class AnanlinNoahsButterflyTalisman() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     private const string RecordVar = "Record";
     private const string TriggerSilenceVar = "TriggerSilence";
@@ -12,9 +12,10 @@ public sealed class AnanlinNoahsButterflyTalisman() : ManosabaCardTemplate(1, Ca
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
+        new DamageVar(6m, ValueProp.Move),
         new PowerVar<AnanlinButterflyTalismanPower>(RecordVar, 8m),
         new PowerVar<SilentPower>(TriggerSilenceVar, 2m),
-        new PowerVar<SilentPower>(FallbackSilenceVar, 4m)
+        new PowerVar<SilentPower>(FallbackSilenceVar, 2m)
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords
@@ -32,6 +33,12 @@ public sealed class AnanlinNoahsButterflyTalisman() : ManosabaCardTemplate(1, Ca
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         if (cardPlay.Target is not { } target) return;
+
+        await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
+            .FromCard(this, cardPlay)
+            .TargetingAllOpponents(CombatState)
+            .WithHitFx("vfx/vfx_attack_blunt")
+            .Execute(choiceContext);
 
         if (HasAttackIntent(target))
         {
