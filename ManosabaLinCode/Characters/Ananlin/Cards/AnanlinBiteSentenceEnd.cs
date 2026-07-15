@@ -27,6 +27,9 @@ public sealed class AnanlinBiteSentenceEnd()
     {
         if (cardPlay.Target is not { } target) return;
 
+        if (this.PeaceOfMindAmount() <= 0)
+            await this.GainPeaceOfMind(choiceContext);
+
         var peace = this.PeaceOfMindAmount();
         var damage = DynamicVars.Damage.BaseValue + peace * DynamicVars["PeaceBonus"].BaseValue;
 

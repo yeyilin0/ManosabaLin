@@ -35,6 +35,9 @@ public sealed class AnanlinConfirmDoorGap()
         if (selected is null) return;
 
         var attacksPlayed = this.Sketchbook()?.AttacksPlayedThisTurn ?? 0;
+        if (this.PeaceOfMindAmount() <= 0)
+            await this.GainPeaceOfMind(choiceContext);
+
         var bonusBlock = this.PeaceOfMindAmount() * DynamicVars.Block.IntValue;
         var power = await PowerCmd.Apply<AnanlinDoorGapConfirmationPower>(
             choiceContext,

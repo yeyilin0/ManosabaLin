@@ -23,6 +23,10 @@ public sealed class AnanlinRoomEcho()
         ComponentContext componentContext)
     {
         if (this.Sketchbook() is not { } sketchbook) return;
+
+        if (this.PeaceOfMindAmount() <= 0)
+            await this.GainPeaceOfMind(choiceContext);
+
         var bonus = this.PeaceOfMindAmount() * DynamicVars["Bonus"].IntValue;
 
         if (sketchbook.LastPlayedCardType == CardType.Skill)

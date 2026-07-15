@@ -10,7 +10,7 @@ public sealed class AnanlinAvertedGaze()
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<AnanlinAvertedGazePower>(1m),
-        new PowerVar<AnanlinPeaceOfMindPower>("Peace", 0m)
+        new PowerVar<AnanlinPeaceOfMindPower>("Peace", 1m)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>

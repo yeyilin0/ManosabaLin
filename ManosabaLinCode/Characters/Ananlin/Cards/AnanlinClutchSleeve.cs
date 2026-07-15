@@ -34,6 +34,9 @@ public sealed class AnanlinClutchSleeve()
             new CardSelectorPrefs(SelectionScreenPrompt, 1, 1))).FirstOrDefault();
         if (selected is null) return;
 
+        if (this.PeaceOfMindAmount() <= 0)
+            await this.GainPeaceOfMind(choiceContext);
+
         selected.GiveSingleTurnRetain();
 
         var reduction = this.PeaceOfMindAmount() * DynamicVars["CostReduction"].IntValue;

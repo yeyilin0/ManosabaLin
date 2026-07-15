@@ -31,17 +31,31 @@ public sealed class AnanlinUnnoticed()
             .WithHitFx("vfx/vfx_attack_blunt")
             .Execute(choiceContext);
 
+        var bonusDraws = this.PeaceOfMindAmount() * DynamicVars.Cards.IntValue;
+        if (!HasAnyEnemyAttackIntent())
+        {
+            await this.GainPeaceOfMind(choiceContext);
+            if (bonusDraws > 0)
+                await CardPileCmd.Draw(choiceContext, bonusDraws, Owner);
+            return;
+        }
+
         var power = await PowerCmd.Apply<AnanlinUnnoticedPower>(
             choiceContext,
             Owner.Creature,
             1,
             Owner.Creature,
             this);
-        power?.Arm(this, this.PeaceOfMindAmount() * DynamicVars.Cards.IntValue);
+        power?.Arm(this, bonusDraws);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Damage.UpgradeValueBy(3m);
+    }
+
+    private bool HasAnyEnemyAttackIntent()
+    {
+        return this.Sketchbook()?.HasAnyEnemyAttackIntent() == true;
     }
 }

@@ -9,7 +9,7 @@ public sealed class AnanlinSyncedBreathing()
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("RequiredStreak", 3),
+        new IntVar("RequiredStreak", 2),
         new CardsVar(1)
     ];
 
@@ -34,6 +34,6 @@ public sealed class AnanlinSyncedBreathing()
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars["RequiredStreak"].UpgradeValueBy(-1m);
+        DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }
