@@ -7,12 +7,13 @@ namespace ManosabaLin.Characters.Ananlin.Powers;
 public sealed class AnanlinPeaceOfMindPower : ManosabaPowerTemplate
 {
     internal const int MaxStacks = 3;
-    private const int MaxTurnsEndedWithPeace = 3;
+    private const int MaxTurnsEndedWithPeace = 2;
 
     [SavedProperty] public int TurnsEndedWithPeace { get; set; }
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    protected override bool IsVisibleInternal => false;
 
     public override bool TryModifyPowerAmountReceived(
         PowerModel canonicalPower,
@@ -45,7 +46,11 @@ public sealed class AnanlinPeaceOfMindPower : ManosabaPowerTemplate
         await base.AfterPowerAmountChanged(choiceContext, power, amount, applier, cardSource);
 
         if (power == this)
+        {
             ClampStacks();
+            if (Amount < MaxStacks)
+                TurnsEndedWithPeace = 0;
+        }
     }
 
     public override async Task AfterDamageReceived(
@@ -113,7 +118,11 @@ public sealed class AnanlinPeaceOfMindPower : ManosabaPowerTemplate
         IEnumerable<Creature> participants)
     {
         if (side != Owner.Side) return;
-        if (Amount <= 0) return;
+        if (Amount < MaxStacks)
+        {
+            TurnsEndedWithPeace = 0;
+            return;
+        }
 
         TurnsEndedWithPeace++;
         if (TurnsEndedWithPeace < MaxTurnsEndedWithPeace)

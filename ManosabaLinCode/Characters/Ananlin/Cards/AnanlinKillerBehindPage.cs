@@ -54,6 +54,11 @@ public sealed class AnanlinKillerBehindPage()
             await PlayerCmd.GainEnergy(energyToGain, Owner);
     }
 
+    protected override void OnUpgrade(ComponentContext componentContext)
+    {
+        DynamicVars.Damage.UpgradeValueBy(3m);
+    }
+
     private IEnumerable<CardModel> GetCardsInMainCombatPiles()
     {
         return PileType.Hand.GetPile(Owner).Cards

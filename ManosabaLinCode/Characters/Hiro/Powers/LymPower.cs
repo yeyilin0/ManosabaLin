@@ -111,13 +111,13 @@ public class LymPower : ManosabaPowerTemplate, IRedirectPower
         return LocalContext.IsMe(player);
     }
 
-    internal static Creature? GetRedirectChosenMoveTarget(Creature? owner)
+    internal static Creature? GetRedirectChosenMoveTarget(Creature? owner, RedirectTargetScope? scope = null)
     {
         if (owner is not { IsAlive: true }) return null;
         return owner.Powers
             .OfType<IRedirectPower>()
             .Select(p => p.ChosenMoveTarget)
-            .FirstOrDefault(t => t is not null);
+            .FirstOrDefault(t => t is not null && (scope is null || IsValidMoveTarget(t, scope.Value)));
     }
 
     private async Task RefreshOwnerIntentTarget()

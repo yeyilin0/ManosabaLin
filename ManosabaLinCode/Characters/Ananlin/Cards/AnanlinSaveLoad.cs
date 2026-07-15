@@ -29,6 +29,33 @@ public sealed class AnanlinSaveLoad()
         }
     }
 
+    public override void BetterAddExtraArgsToDescription(
+        LocString description,
+        PileType pileType,
+        MinionLib.Utilities.BetterExtraArgs.DescriptionPreviewType previewType,
+        Creature? target = null)
+    {
+        base.BetterAddExtraArgsToDescription(description, pileType, previewType, target);
+        description.Add("ConsumedName", StoredCardTitleForDescription);
+    }
+
+    private string StoredCardTitleForDescription
+    {
+        get
+        {
+            if (GetStoredCanonicalCard() is not { } stored)
+                return "未存入卡牌";
+
+            var title = stored.TitleLocString.GetFormattedText();
+            return StoredUpgradeLevel switch
+            {
+                <= 0 => title,
+                1 => title + "+",
+                _ => $"{title}+{StoredUpgradeLevel}"
+            };
+        }
+    }
+
     protected override bool IsPlayableC =>
         base.IsPlayableC
         && (GetStoredCanonicalCard() is not null || HasRecordableExhaustCardInHand());
@@ -87,14 +114,7 @@ public sealed class AnanlinSaveLoad()
 
         var copy = combatState.CreateCard(canonical, Owner);
         ApplyUpgradeLevels(copy, StoredUpgradeLevel);
-        copy.AddKeyword(CardKeyword.Exhaust);
-
-        await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, Owner);
-        await CardCmd.AutoPlay(
-            choiceContext,
-            copy,
-            PickTarget(copy),
-            skipXCapture: true);
+        await AnanlinCardHelpers.ResolveAsFreeCardEffect(choiceContext, copy, skipCardPileVisuals: false);
     }
 
     private bool HasRecordableExhaustCardInHand()
@@ -113,30 +133,6 @@ public sealed class AnanlinSaveLoad()
     {
         if (!HasStoredCard) return null;
         return ModelDb.GetByIdOrNull<CardModel>(new ModelId("CARD", StoredCardId));
-    }
-
-    private Creature? PickTarget(CardModel card)
-    {
-        if (Owner.Creature.CombatState is not { } combatState) return null;
-
-        if (card.TargetType is TargetType.AnyEnemy or TargetType.RandomEnemy)
-        {
-            var enemies = combatState.HittableEnemies.ToArray();
-            return enemies.Length == 0 ? null : Owner.RunState.Rng.CombatTargets.NextItem(enemies);
-        }
-
-        if (card.TargetType == TargetType.AnyAlly)
-        {
-            var allies = combatState.Creatures
-                .Where(c => c.Side == Owner.Creature.Side && c.IsAlive && c != Owner.Creature)
-                .ToArray();
-            return allies.Length == 0 ? null : Owner.RunState.Rng.CombatTargets.NextItem(allies);
-        }
-
-        if (card.TargetType == TargetType.AnyPlayer)
-            return Owner.Creature;
-
-        return null;
     }
 
     private static void ApplyUpgradeLevels(CardModel card, int upgradeLevel)

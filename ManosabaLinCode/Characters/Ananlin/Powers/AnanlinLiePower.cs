@@ -78,27 +78,29 @@ public sealed class AnanlinLiePower : ManosabaPowerTemplate
     private async Task AddRandomMultiHitAttackToHand(Player player)
     {
         if (CombatState is not { } combatState) return;
+        var sketchbook = player.Relics.OfType<AnansSketchbook>().FirstOrDefault();
+        if (sketchbook is null) return;
 
-        var candidates = BuildPlayableMultiHitAttacks(player, combatState).ToArray();
+        var candidates = BuildPlayableMultiHitAttacks(sketchbook, player, combatState).ToArray();
         if (candidates.Length == 0) return;
 
         var card = player.RunState.Rng.CombatCardGeneration.NextItem(candidates);
-        if (card is null) return;
-
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
     }
 
-    private IEnumerable<CardModel> BuildPlayableMultiHitAttacks(Player player, ICombatState combatState)
+    private IEnumerable<CardModel> BuildPlayableMultiHitAttacks(
+        AnansSketchbook sketchbook,
+        Player player,
+        ICombatState combatState)
     {
         var seenIds = new HashSet<ModelId>();
 
-        foreach (var pool in player.UnlockState.CharacterCardPools)
+        foreach (var pool in sketchbook.GetRecordedCardPools())
         {
-            foreach (var template in pool.GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint))
+            foreach (var template in sketchbook.GetRecordableCardsFromPool(pool, CardType.Attack))
             {
                 if (!seenIds.Add(template.Id)) continue;
                 if (!IsStableMultiHitAttack(template)) continue;
-                if (!AnansSketchbook.CanSketchbookGenerate(template)) continue;
 
                 var card = combatState.CreateCard(template, player);
                 card.SetToFreeThisTurn();

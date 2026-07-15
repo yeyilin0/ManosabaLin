@@ -79,7 +79,7 @@ public sealed class AnanlinLover() : ManosabaCardTemplate(4, CardType.Power, Car
         {
             if (await this.LosePeaceOfMind(choiceContext) > 0)
             {
-                card.SetToFreeThisTurn();
+                card.SetFreeIgnoringCardPlayConditions();
                 card.GetOrCreateCapability<AnanlinLoverDoublePlayCapability>();
             }
             else
@@ -146,25 +146,13 @@ public sealed class AnanlinLover() : ManosabaCardTemplate(4, CardType.Power, Car
     private static void ApplyPlayabilityProbeModifier(CardModel card, bool willSpendPeace)
     {
         if (willSpendPeace)
-            card.SetToFreeThisTurn();
+            card.SetFreeIgnoringCardPlayConditions();
         else
             card.EnergyCost.AddThisTurnOrUntilPlayed(-1, reduceOnly: true);
     }
 
     private static bool IsCurrentlyPlayable(CardModel card, ICombatState combatState)
     {
-        if (!HasValidTarget(card, combatState)) return false;
-
-        return card.CanPlay();
-    }
-
-    private static bool HasValidTarget(CardModel card, ICombatState combatState)
-    {
-        return card.TargetType switch
-        {
-            TargetType.AnyEnemy => combatState.Enemies.Any(card.IsValidTarget),
-            TargetType.AnyAlly => combatState.PlayerCreatures.Any(card.IsValidTarget),
-            _ => card.IsValidTarget(null)
-        };
+        return AnanlinCardHelpers.HasValidEffectTarget(card, combatState);
     }
 }

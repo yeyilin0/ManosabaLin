@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Ananlin.Relics;
+using ManosabaLin.Characters.Ananlin.Cards;
 
 namespace ManosabaLin.Characters.Ananlin.Powers;
 
@@ -9,6 +10,7 @@ public sealed class AnanlinMoviePromisePower : ManosabaPowerTemplate
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     internal void AddPromise(CardModel card)
     {
@@ -34,14 +36,14 @@ public sealed class AnanlinMoviePromisePower : ManosabaPowerTemplate
         {
             var returned = CombatState.CreateCard(promise.CanonicalCard, player);
             CopyUpgradeLevel(promise.UpgradeLevel, returned);
-            returned.SetToFreeThisTurn();
+            returned.SetFreeIgnoringCardPlayConditions();
 
             await CardPileCmd.AddGeneratedCardToCombat(returned, PileType.Hand, player);
 
             var extra = RollExtraFromPool(player, promise.Pool);
             if (extra is null) continue;
 
-            extra.SetToFreeThisTurn();
+            extra.SetFreeIgnoringCardPlayConditions();
             extra.ExhaustOnNextPlay = true;
             extra.AddKeyword(CardKeyword.Ethereal);
 

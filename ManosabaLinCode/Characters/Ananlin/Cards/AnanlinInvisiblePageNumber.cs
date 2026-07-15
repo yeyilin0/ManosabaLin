@@ -2,7 +2,7 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
 public sealed class AnanlinInvisiblePageNumber()
-    : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
+    : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

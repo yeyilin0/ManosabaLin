@@ -8,6 +8,7 @@ public static class CardAudioService
     public static string? GetCardPlayEvent(CardModel card)
     {
         if (card is not ManosabaCardTemplate) return null;
+        if (card.VisualCardPool is LinCardPool) return null;
 
         var pool = CardPoolName(card);
         var owner = CardOwnerName(card);
@@ -41,6 +42,8 @@ public static class CardAudioService
 
     public static void PlayCardPlaySfx(CardModel card)
     {
+        if (card is ManosabaCardTemplate && card.VisualCardPool is LinCardPool) return;
+
         if (card is ICustomCardPlaySfx customSfxCard)
         {
             customSfxCard.PlayCustomCardPlaySfx();

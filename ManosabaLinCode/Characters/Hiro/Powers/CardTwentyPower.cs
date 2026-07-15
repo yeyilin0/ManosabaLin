@@ -13,6 +13,7 @@ public class CardTwentyPower : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     // 监听伪证层数变化
     public override async Task AfterPowerAmountChanged(

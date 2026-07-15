@@ -16,6 +16,7 @@ public sealed class DualAscension2Power : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     private int _cardsPlayed;
 

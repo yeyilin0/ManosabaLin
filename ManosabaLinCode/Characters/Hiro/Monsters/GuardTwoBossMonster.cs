@@ -186,15 +186,19 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
     private bool _isPhaseTwoMusicPlayed = false;
 
+    public void PlayLastStandMusic()
+    {
+        if (_isPhaseTwoMusicPlayed) return;
+
+        NRunMusicController.Instance?.PlayCustomMusic("event:/ManosabaLin/music/GuardTwotwo");
+        _isPhaseTwoMusicPlayed = true;
+    }
+
     public override async Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented, float deathAnimLength)
     {
         if (creature != Creature) return;
 
-        if (!_isPhaseTwoMusicPlayed)
-        {
-            NRunMusicController.Instance?.PlayCustomMusic("event:/ManosabaLin/music/GuardTwotwo");
-            _isPhaseTwoMusicPlayed = true;
-        }
+        PlayLastStandMusic();
 
         var linCardPool = ModelDb.CardPool<LinCardPool>();
         if (linCardPool == null) return;

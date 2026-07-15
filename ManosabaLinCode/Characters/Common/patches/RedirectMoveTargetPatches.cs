@@ -32,22 +32,26 @@ internal static class RedirectMoveTargetContext
     }
 }
 
+internal readonly record struct RedirectMoveTargetState(Creature? Owner, Creature? RedirectTarget);
+
 [HarmonyPatch(typeof(MonsterModel), nameof(MonsterModel.PerformMove))]
 internal static class MonsterModelPerformMovePatch
 {
-    private static void Prefix(MonsterModel __instance, out Creature? __state)
+    private static void Prefix(MonsterModel __instance, out RedirectMoveTargetState __state)
     {
-        __state = RedirectMoveTargetContext.Owner;
+        __state = new RedirectMoveTargetState(
+            RedirectMoveTargetContext.Owner,
+            RedirectMoveTargetContext.RedirectTarget);
         RedirectMoveTargetContext.Owner = __instance.Creature;
         RedirectMoveTargetContext.RedirectTarget = LymPower.GetRedirectChosenMoveTarget(__instance.Creature);
     }
 
-    private static void Postfix(ref Task __result, Creature? __state)
+    private static void Postfix(ref Task __result, RedirectMoveTargetState __state)
     {
         __result = RestoreOwnerAfterMove(__result, __state);
     }
 
-    private static async Task RestoreOwnerAfterMove(Task moveTask, Creature? previousOwner)
+    private static async Task RestoreOwnerAfterMove(Task moveTask, RedirectMoveTargetState previousState)
     {
         try
         {
@@ -55,7 +59,8 @@ internal static class MonsterModelPerformMovePatch
         }
         finally
         {
-            RedirectMoveTargetContext.Owner = previousOwner;
+            RedirectMoveTargetContext.Owner = previousState.Owner;
+            RedirectMoveTargetContext.RedirectTarget = previousState.RedirectTarget;
         }
     }
 }
@@ -65,7 +70,9 @@ internal static class MoveStatePerformMovePatch
 {
     private static void Prefix(ref IEnumerable<Creature> targets)
     {
-        var chosenTarget = LymPower.GetRedirectChosenMoveTarget(RedirectMoveTargetContext.Owner);
+        var chosenTarget = LymPower.GetRedirectChosenMoveTarget(
+            RedirectMoveTargetContext.Owner,
+            RedirectTargetScope.Player);
         if (chosenTarget is null) return;
 
         targets = new[] { chosenTarget };

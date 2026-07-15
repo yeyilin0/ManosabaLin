@@ -24,7 +24,7 @@ public sealed class AnanlinTrialReading() : ManosabaCardTemplate(0, CardType.Ski
         card.ExhaustOnNextPlay = true;
         card.AddKeyword(CardKeyword.Ethereal);
         if (IsUpgraded)
-            card.SetToFreeThisTurn();
+            card.SetFreeIgnoringCardPlayConditions();
 
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
     }

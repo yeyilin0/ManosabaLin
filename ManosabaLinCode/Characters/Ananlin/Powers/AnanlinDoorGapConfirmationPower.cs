@@ -38,8 +38,6 @@ public sealed class AnanlinDoorGapConfirmationPower : ManosabaPowerTemplate
         for (var i = 0; i < _upgradeLevel; i++)
             CardCmd.Upgrade(copy);
 
-        await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, player);
-
         if (_bonusBlock > 0)
         {
             var bonus = await PowerCmd.Apply<AnanlinDoorGapBlockBonusPower>(
@@ -52,7 +50,7 @@ public sealed class AnanlinDoorGapConfirmationPower : ManosabaPowerTemplate
         }
 
         Flash();
-        await CardCmd.AutoPlay(choiceContext, copy, null);
+        await AnanlinCardHelpers.ResolveAsFreeCardEffect(choiceContext, copy, skipCardPileVisuals: false);
         await PowerCmd.Remove(this);
     }
 

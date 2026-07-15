@@ -17,7 +17,7 @@ namespace ManosabaLin.Characters.Sherrylin.Powers;
 public sealed class FinalFarewellPower : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.None;
+    public override PowerStackType StackType => PowerStackType.Single;
 
     private decimal _storm;
 

@@ -16,6 +16,7 @@ public sealed class CardEightyFivePower : ManosabaPowerTemplate
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
     public override bool AllowNegative => false;
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips

@@ -18,7 +18,7 @@ public sealed class ThreeCardOmenPower : ManosabaPowerTemplate
     private bool _triggered;
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.None;
+    public override PowerStackType StackType => PowerStackType.Single;
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {

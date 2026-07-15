@@ -6,12 +6,16 @@ namespace ManosabaLin.Characters.Ananlin.Powers;
 [RegisterPower]
 public sealed class AnanlinBrainwashBacklashPower : ManosabaPowerTemplate
 {
+    internal const int BrainwashSilenceCost = 26;
+    internal const int BrainwashSilenceCostIncrease = 13;
+
     private const int SilenceTaxThreshold = 13;
     private const int WitchificationOnThirdBacklash = 25;
 
     [SavedProperty] public int PendingSilenceGained { get; set; }
+    [SavedProperty] public int RequiredSilenceCost { get; set; }
 
-    public override PowerType Type => PowerType.Debuff;
+    public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
     public override LocString Description
@@ -21,6 +25,8 @@ public sealed class AnanlinBrainwashBacklashPower : ManosabaPowerTemplate
             var description = base.Description;
             description.Add(new IntVar("SilenceTaxThreshold", SilenceTaxThreshold));
             description.Add(new PowerVar<WithPower>(WitchificationOnThirdBacklash));
+            description.Add(new IntVar("NextBrainwashSilenceCost", CurrentBrainwashSilenceCost));
+            description.Add(new IntVar("BacklashSilenceCostIncrease", BrainwashSilenceCostIncrease));
             return description;
         }
     }
@@ -28,7 +34,9 @@ public sealed class AnanlinBrainwashBacklashPower : ManosabaPowerTemplate
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new IntVar("SilenceTaxThreshold", SilenceTaxThreshold),
-        new PowerVar<WithPower>(WitchificationOnThirdBacklash)
+        new PowerVar<WithPower>(WitchificationOnThirdBacklash),
+        new IntVar("NextBrainwashSilenceCost", 0),
+        new IntVar("BacklashSilenceCostIncrease", BrainwashSilenceCostIncrease)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
@@ -48,9 +56,13 @@ public sealed class AnanlinBrainwashBacklashPower : ManosabaPowerTemplate
     {
         await base.AfterPowerAmountChanged(choiceContext, power, amount, applier, cardSource);
 
-        if (power == this && amount > 0)
+        if (power == this)
         {
-            await ResolveBacklashThresholds(choiceContext, (int)Math.Max(0, Amount - amount), (int)Amount);
+            if (amount > 0)
+                await ResolveBacklashThresholds(choiceContext, (int)Math.Max(0, Amount - amount), (int)Amount);
+
+            RefreshBrainwashSilenceCostVars();
+            Owner.GetPower<AnanlinBrainwashPower>()?.RefreshRequiredSilenceCostVar();
             return;
         }
 
@@ -80,8 +92,34 @@ public sealed class AnanlinBrainwashBacklashPower : ManosabaPowerTemplate
                 null,
                 false);
 
-            Owner.GetPower<AnanlinBrainwashPower>()?.EnterBacklashCostMode();
+            EnterBrainwashCostMode();
         }
+    }
+
+    internal int CurrentBrainwashSilenceCost =>
+        Amount >= 3 ? Math.Max(BrainwashSilenceCost, RequiredSilenceCost) : 0;
+
+    internal int BrainwashSilenceCostForDescription =>
+        Math.Max(BrainwashSilenceCost, CurrentBrainwashSilenceCost);
+
+    internal void IncreaseBrainwashSilenceCostAfterPaidUse()
+    {
+        RequiredSilenceCost = Math.Max(BrainwashSilenceCost, RequiredSilenceCost) + BrainwashSilenceCostIncrease;
+        RefreshBrainwashSilenceCostVars();
+    }
+
+    private void EnterBrainwashCostMode()
+    {
+        if (RequiredSilenceCost <= 0)
+            RequiredSilenceCost = BrainwashSilenceCost;
+
+        RefreshBrainwashSilenceCostVars();
+    }
+
+    private void RefreshBrainwashSilenceCostVars()
+    {
+        if (DynamicVars.TryGetValue("NextBrainwashSilenceCost", out var nextBrainwashSilenceCost))
+            nextBrainwashSilenceCost.BaseValue = CurrentBrainwashSilenceCost;
     }
 
     private async Task LosePeace(PlayerChoiceContext choiceContext, int amount)

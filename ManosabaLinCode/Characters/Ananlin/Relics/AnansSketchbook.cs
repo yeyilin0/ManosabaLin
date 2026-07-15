@@ -11,7 +11,7 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 namespace ManosabaLin.Characters.Ananlin.Relics;
 
 [RegisterRelic(typeof(AnanlinRelicPool))]
-[RegisterCharacterStarterRelic(typeof(Ananlin))]
+[RegisterCharacterStarterRelic(typeof(Ananlin), Order = -10)]
 public sealed class AnansSketchbook : ManosabaRelicTemplate
 {
     internal const int MaxRecordedPools = 3;

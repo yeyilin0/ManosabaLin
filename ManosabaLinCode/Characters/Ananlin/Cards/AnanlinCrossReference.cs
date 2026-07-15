@@ -8,6 +8,11 @@ public sealed class AnanlinCrossReference() : ManosabaCardTemplate(2, CardType.S
         new CardsVar("Cards", 3)
     ];
 
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+    [
+        HoverTipFactory.FromCard<MarginPage>()
+    ];
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         for (var i = 0; i < DynamicVars.Cards.IntValue; i++)

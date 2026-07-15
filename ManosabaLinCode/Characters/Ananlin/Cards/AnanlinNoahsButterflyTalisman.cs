@@ -32,15 +32,16 @@ public sealed class AnanlinNoahsButterflyTalisman() : ManosabaCardTemplate(1, Ca
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
-        if (cardPlay.Target is not { } target) return;
-
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
             .FromCard(this, cardPlay)
             .TargetingAllOpponents(CombatState)
             .WithHitFx("vfx/vfx_attack_blunt")
             .Execute(choiceContext);
 
-        if (HasAttackIntent(target))
+        var anyAttackIntent = CombatState.GetOpponentsOf(Owner.Creature)
+            .Any(enemy => enemy.IsAlive && HasAttackIntent(enemy));
+
+        if (anyAttackIntent)
         {
             var talisman = await PowerCmd.Apply<AnanlinButterflyTalismanPower>(
                 choiceContext,
@@ -48,7 +49,11 @@ public sealed class AnanlinNoahsButterflyTalisman() : ManosabaCardTemplate(1, Ca
                 DynamicVars[RecordVar].BaseValue,
                 Owner.Creature,
                 this);
-            talisman?.Arm(target, DynamicVars[TriggerSilenceVar].IntValue);
+            if (talisman != null)
+            {
+                foreach (var enemy in CombatState.GetOpponentsOf(Owner.Creature).Where(e => e.IsAlive && HasAttackIntent(e)))
+                    talisman.Arm(enemy, DynamicVars[TriggerSilenceVar].IntValue);
+            }
             return;
         }
 

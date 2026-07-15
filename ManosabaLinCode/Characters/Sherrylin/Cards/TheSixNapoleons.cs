@@ -15,7 +15,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class TheSixNapoleons() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+public sealed class TheSixNapoleons() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     private const string DivisorKey = "Divisor";
 

@@ -17,7 +17,7 @@ namespace ManosabaLin.Characters.Sherrylin.Powers;
 public sealed class SuperStrengthPower : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.None;
+    public override PowerStackType StackType => PowerStackType.Single;
 
     [SavedProperty] public bool CardUpgraded { get; set; }
 

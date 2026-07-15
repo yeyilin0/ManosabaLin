@@ -13,7 +13,7 @@ namespace ManosabaLin.Characters.Sherrylin.Powers;
 public sealed class DualFistPower : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.None;
+    public override PowerStackType StackType => PowerStackType.Single;
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {

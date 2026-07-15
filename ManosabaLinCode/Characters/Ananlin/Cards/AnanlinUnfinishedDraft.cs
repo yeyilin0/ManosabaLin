@@ -58,16 +58,7 @@ public sealed class AnanlinUnfinishedDraft()
     {
         get
         {
-            yield return HoverTipFactory.FromPower<YlsmPower>();
-            yield return HoverTipFactory.FromPower<MllmPower>();
-            yield return HoverTipFactory.FromPower<MgmPower>();
-            yield return HoverTipFactory.FromPower<LymPower>();
-            yield return HoverTipFactory.FromPower<XlmPower>();
-            yield return HoverTipFactory.FromPower<HnmPower>();
-            yield return HoverTipFactory.FromPower<NymPower>();
-            yield return HoverTipFactory.FromPower<KkmPower>();
-            yield return HoverTipFactory.FromPower<NyxmPower>();
-            yield return HoverTipFactory.FromPower<MlyPower>();
+         
             yield return HoverTipFactory.FromCard<AnanlinFinishedDraft>();
         }
     }

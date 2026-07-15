@@ -8,7 +8,7 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
 public sealed class AnanlinTakeTheHitForTeammate()
-    : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
+    : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
     private const string BlockThresholdKey = "BlockThreshold";
     private const string IntentDamageKey = "IntentDamage";

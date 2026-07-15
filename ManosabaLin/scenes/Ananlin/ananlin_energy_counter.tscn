@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://vfd1ka6x1d3q"]
+[gd_scene load_steps=7 format=3 uid="uid://vfd1ka6x1d3q"]
 
 [ext_resource type="Texture2D" uid="uid://b3ouft47b2fvl" path="res://ManosabaLin/images/characters/Ananlin/ananlin_energy.png" id="1_x2kth"]
 [ext_resource type="FontFile" uid="uid://dw06xuu3rgihj" path="res://ManosabaLin/font/kreon_bold.ttf" id="2_msyww"]
+[ext_resource type="Script" path="res://ManosabaLinCode/Characters/Ananlin/Nodes/AnanlinPeaceProgressCounter.cs" id="3_peace"]
 
 [sub_resource type="Curve" id="Curve_umldk"]
 _data = [Vector2(0.00596422, 0.0309963), 0.0, 4.46389, 0, 0, Vector2(0.298211, 0.736162), 0.832039, 0.832039, 0, 0, Vector2(0.99006, 0.932841), -0.247478, 0.0, 0, 0]
@@ -69,6 +70,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="AnanlinPeaceProgress" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -42.0
+offset_top = 12.0
+offset_right = -14.0
+offset_bottom = 116.0
+mouse_filter = 1
+script = ExtResource("3_peace")
+
+[node name="PeaceSlot1" type="ColorRect" parent="AnanlinPeaceProgress"]
+layout_mode = 0
+offset_top = 72.0
+offset_right = 28.0
+offset_bottom = 104.0
+mouse_filter = 2
+color = Color(0.14902, 0.14902, 0.211765, 1)
+
+[node name="PeaceSlot2" type="ColorRect" parent="AnanlinPeaceProgress"]
+layout_mode = 0
+offset_top = 36.0
+offset_right = 28.0
+offset_bottom = 68.0
+mouse_filter = 2
+color = Color(0.14902, 0.14902, 0.211765, 1)
+
+[node name="PeaceSlot3" type="ColorRect" parent="AnanlinPeaceProgress"]
+layout_mode = 0
+offset_right = 28.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.14902, 0.14902, 0.211765, 1)
 
 [node name="BurstFront" type="CPUParticles2D" parent="."]
 unique_name_in_owner = true

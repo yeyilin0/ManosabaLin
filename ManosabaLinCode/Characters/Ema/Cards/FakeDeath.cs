@@ -14,7 +14,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class FakeDeath : ManosabaCardTemplate
 {
-    public FakeDeath() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
+    public FakeDeath() : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(2)];
 

@@ -12,8 +12,7 @@ public sealed class AnanlinLoverDoublePlayCapability : ManosabaCardCapability
 
     public override Task AfterModifyingCardPlayCount(CardModel card)
     {
-        if (card == Owner)
-            RemoveFromOwner();
+        
 
         return Task.CompletedTask;
     }

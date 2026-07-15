@@ -26,8 +26,10 @@ public sealed class AnanlinJudgmentEvePower : ManosabaPowerTemplate
     {
         if (player.Creature != Owner || RecordedRewrites < MinimumRecords) return;
 
-        var rewards = Math.Min(RecordedRewrites, (int)Amount);
-        RecordedRewrites = 0;
+        var rewards = Math.Min(RecordedRewrites, Math.Max(0, (int)Amount));
+        if (rewards <= 0) return;
+
+        RecordedRewrites -= rewards;
         InvokeDisplayAmountChanged();
 
         Flash();

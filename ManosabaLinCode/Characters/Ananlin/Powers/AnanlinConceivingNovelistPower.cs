@@ -13,7 +13,7 @@ public sealed class AnanlinConceivingNovelistPower : ManosabaPowerTemplate
     [SavedProperty] public bool FreeCopies { get; set; }
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Single;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

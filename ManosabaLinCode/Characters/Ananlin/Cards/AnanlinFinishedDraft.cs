@@ -37,7 +37,11 @@ public sealed class AnanlinFinishedDraft()
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new DamageVar(1m, ValueProp.Move),
-        new IntVar(InheritedKey, InheritedUpgradeLevel)
+        new IntVar(InheritedKey, InheritedUpgradeLevel),
+        new CalculationBaseVar(0m),
+        new CalculationExtraVar(1m),
+        new CalculatedVar("Vigor").WithMultiplier((card, _) => ((AnanlinFinishedDraft)card).CalculateVigorAmount()),
+        new CalculatedVar("Hits").WithMultiplier((card, _) => ((AnanlinFinishedDraft)card).CalculateHitCount())
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
@@ -50,8 +54,7 @@ public sealed class AnanlinFinishedDraft()
         CardPlay cardPlay,
         ComponentContext componentContext)
     {
-        var inherited = Math.Max(0, InheritedUpgradeLevel);
-        var vigorAmount = CountOtherCardsPlayedThisCombat() + inherited;
+        var vigorAmount = CalculateVigorAmount();
         if (vigorAmount > 0)
         {
             await PowerCmd.Apply<VigorPower>(
@@ -62,7 +65,7 @@ public sealed class AnanlinFinishedDraft()
                 this);
         }
 
-        var hitCount = AnanlinSilenceIntentManager.GetRewritesThisCombat(Owner) + inherited;
+        var hitCount = CalculateHitCount();
         if (hitCount <= 0 || cardPlay.Target is not { } target) return;
 
         await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
@@ -73,11 +76,22 @@ public sealed class AnanlinFinishedDraft()
             .Execute(choiceContext);
     }
 
-    private int CountOtherCardsPlayedThisCombat()
+    private int CalculateVigorAmount()
+    {
+        return CountOtherCardPoolCardsPlayedThisCombat() + Math.Max(0, InheritedUpgradeLevel);
+    }
+
+    private int CalculateHitCount()
+    {
+        return AnanlinSilenceIntentManager.GetRewritesThisCombat(Owner) + Math.Max(0, InheritedUpgradeLevel);
+    }
+
+    private int CountOtherCardPoolCardsPlayedThisCombat()
     {
         return CombatManager.Instance.History.CardPlaysFinished.Count(entry =>
             entry.CardPlay.Card.Owner == Owner
-            && entry.CardPlay.Card != this);
+            && entry.CardPlay.Card != this
+            && entry.CardPlay.Card.Pool is not AnanlinCardPool);
     }
 
     private void RefreshInheritedVar()

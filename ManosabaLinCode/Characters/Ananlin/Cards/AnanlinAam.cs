@@ -1,55 +1,55 @@
 using MinionLib.Component.Core;
 using ManosabaLin.Characters.Common;
-using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Ananlin;
-using ManosabaLin.ManosabaLinCode.Characters.Hiro.Powers;
+using ManosabaLin.Characters.Ananlin.Powers;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using STS2RitsuLib.Interop.AutoRegistration;
-using System.Linq;
 
 namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
-public class AnanlinAam() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Uncommon, TargetType.AnyEnemy)
+public class AnanlinAam() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<SuspectPower>(3m),
-        new PowerVar<AamPower>(1m)
+        new PowerVar<AnanlinBrainwashBacklashPower>(1m)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
         get
         {
-            yield return HoverTipFactory.FromPower<AamPower>();
-            yield return HoverTipFactory.FromPower<SuspectPower>();
+            yield return HoverTipFactory.FromPower<AnanlinBrainwashBacklashPower>();
         }
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
-        var markedEnemy = cardPlay.Target;
-        ArgumentNullException.ThrowIfNull(markedEnemy);
+        var owner = source.Owner.Creature;
 
-        await PowerCmd.Apply<SuspectPower>(
-            choiceContext, source.Owner.Creature, source.DynamicVars["SuspectPower"].BaseValue,
-            source.Owner.Creature, source, false);
+        if (owner.GetPower<AnanlinAamBacklashReductionUsedPower>() is not null) return;
+        if (owner.GetPower<AnanlinBrainwashBacklashPower>() is not { Amount: > 0 } backlash) return;
 
-        await PowerCmd.Apply<AamPower>(
-            choiceContext, markedEnemy, source.DynamicVars["AamPower"].BaseValue,
-            source.Owner.Creature, source, false);
+        await PowerCmd.ModifyAmount(
+            choiceContext,
+            backlash,
+            -source.DynamicVars["AnanlinBrainwashBacklashPower"].BaseValue,
+            owner,
+            source,
+            false);
 
-        var redirectPower = markedEnemy.Powers.OfType<AamPower>().FirstOrDefault();
-        if (redirectPower is not null)
-            _ = TaskHelper.RunSafely(redirectPower.ChooseMoveAndTarget(choiceContext, source.Owner));
+        await PowerCmd.Apply<AnanlinAamBacklashReductionUsedPower>(
+            choiceContext,
+            owner,
+            1,
+            owner,
+            source,
+            false);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

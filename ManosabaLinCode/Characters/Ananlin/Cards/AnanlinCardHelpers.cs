@@ -1,10 +1,53 @@
 using ManosabaLin.Characters.Ananlin.Relics;
 using ManosabaLin.Characters.Ananlin.Powers;
+using ManosabaLin.Characters.Ananlin.Capabilities;
+using ManosabaLin.Compat.Core;
+using MegaCrit.Sts2.Core.Hooks;
+using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Ananlin.Cards;
 
 internal static class AnanlinCardHelpers
 {
+    private static readonly HashSet<string> StableMultiHitAttackNames =
+    [
+        "AstralPulse",
+        "CelestialMight",
+        "Conflagration",
+        "DaggerSpray",
+        "Dismantle",
+        "Exterminate",
+        "FightMe",
+        "GunkUp",
+        "Maul",
+        "Omnislice",
+        "OneTwoPunch",
+        "Peck",
+        "Quadcast",
+        "Refract",
+        "Ricochet",
+        "RipAndTear",
+        "Salvo",
+        "SevenStars",
+        "SwordBoomerang",
+        "Thrash",
+        "TwinStrike",
+        "Uproar",
+        "Volley"
+    ];
+
+    private static readonly string[] MultiHitVarNames =
+    [
+        "HitCount",
+        "Hits",
+        "CalculatedHits",
+        "Repeat",
+        "Repeats",
+        "AttackCount",
+        "ShotCount",
+        "Times"
+    ];
+
     internal static AnansSketchbook? Sketchbook(this CardModel card)
     {
         return card.Owner.Relics.OfType<AnansSketchbook>().FirstOrDefault();
@@ -142,6 +185,165 @@ internal static class AnanlinCardHelpers
             CardCmd.Upgrade(target);
     }
 
+    internal static void SetFreeIgnoringCardPlayConditions(this CardModel card)
+    {
+        card.SetToFreeThisTurn();
+        card.GetOrCreateCapability<AnanlinIgnorePlayConditionsCapability>();
+    }
+
+    internal static CardModel? RollPlayableStableMultiHitAttack(
+        Player player,
+        ICombatState combatState,
+        bool setBaseCostToZero)
+    {
+        var candidates = BuildPlayableStableMultiHitAttacks(player, combatState, setBaseCostToZero).ToArray();
+        return candidates.Length == 0
+            ? null
+            : player.RunState.Rng.CombatCardGeneration.NextItem(candidates);
+    }
+
+    internal static IEnumerable<CardModel> BuildPlayableStableMultiHitAttacks(
+        Player player,
+        ICombatState combatState,
+        bool setBaseCostToZero)
+    {
+        var seenIds = new HashSet<ModelId>();
+
+        foreach (var template in ModelDb.AllCards)
+        {
+            if (!seenIds.Add(template.Id)) continue;
+            if (!CanUseCardLibraryCandidate(template, player)) continue;
+            if (!IsStableMultiHitAttack(template)) continue;
+
+            var card = combatState.CreateCard(template, player);
+            if (setBaseCostToZero && !card.EnergyCost.CostsX && card.EnergyCost.Canonical > 0)
+                card.EnergyCost.UpgradeBy(-card.EnergyCost.Canonical);
+
+            card.SetFreeIgnoringCardPlayConditions();
+
+            if (HasValidEffectTarget(card, combatState))
+                yield return card;
+        }
+    }
+
+    internal static async Task ResolveAsFreeCardEffect(
+        PlayerChoiceContext choiceContext,
+        CardModel card,
+        Creature? target = null,
+        bool skipCardPileVisuals = true)
+    {
+        if (CombatManager.Instance.IsOverOrEnding || card.Owner.Creature.IsDead) return;
+
+        var combatState = card.CombatState ?? card.Owner.Creature.CombatState;
+        if (combatState is null) return;
+        if (!HasValidEffectTarget(card, combatState)) return;
+
+        var resolvedTarget = PickValidEffectTarget(card, combatState, target);
+        if (RequiresExplicitEffectTarget(card.TargetType) && resolvedTarget is null) return;
+
+        if (card.EnergyCost.CostsX)
+            card.EnergyCost.CapturedXValue = 0;
+        if (card.HasStarCostX)
+            card.LastStarsSpent = 0;
+
+        card.GetOrCreateCapability<AnanlinResolveOnlyCapability>();
+        await Hook.BeforeCardAutoPlayed(combatState, card, resolvedTarget, AutoPlayType.Default);
+        await card.OnPlayWrapper(
+            choiceContext,
+            resolvedTarget,
+            isAutoPlay: true,
+            new ResourceInfo
+            {
+                EnergySpent = 0,
+                EnergyValue = 0,
+                StarsSpent = 0,
+                StarValue = 0
+            },
+            skipCardPileVisuals);
+
+        if (card.Pile?.IsCombatPile == true)
+            await CardPileCmd.RemoveFromCombat(card, skipVisuals: true);
+    }
+
+    internal static bool HasValidEffectTarget(CardModel card, ICombatState combatState)
+    {
+        return card.TargetType switch
+        {
+            TargetType.AnyEnemy => combatState.HittableEnemies.Any(card.IsValidTarget),
+            TargetType.RandomEnemy or TargetType.AllEnemies => combatState.HittableEnemies.Any(),
+            TargetType.AnyAlly => ValidAllyTargets(card, combatState).Any(),
+            TargetType.AnyPlayer => ValidPlayerTargets(card, combatState).Any(),
+            _ => card.IsValidTarget(null)
+        };
+    }
+
+    private static bool CanUseCardLibraryCandidate(CardModel template, Player player)
+    {
+        if (!template.ShouldShowInCardLibrary) return false;
+        if (!CompatContentGate.IsCompendiumCardVisible(template)) return false;
+        if (!template.CanBeGeneratedInCombat) return false;
+        if (!IsPlayableCombatCard(template)) return false;
+        if (template.MultiplayerConstraint == CardMultiplayerConstraint.MultiplayerOnly
+            && player.RunState.CardMultiplayerConstraint == CardMultiplayerConstraint.SingleplayerOnly)
+            return false;
+        if (template.MultiplayerConstraint == CardMultiplayerConstraint.SingleplayerOnly
+            && player.RunState.CardMultiplayerConstraint == CardMultiplayerConstraint.MultiplayerOnly)
+            return false;
+
+        return true;
+    }
+
+    private static bool IsStableMultiHitAttack(CardModel template)
+    {
+        if (template.Type != CardType.Attack) return false;
+        if (template.EnergyCost.CostsX) return false;
+        if (!HasDamageOutput(template)) return false;
+        if (template.DynamicVars.ContainsKey("CardCount")) return false;
+
+        foreach (var varName in MultiHitVarNames)
+        {
+            if (template.DynamicVars.TryGetValue(varName, out var dynamicVar) && IsMultiHitVar(dynamicVar))
+                return true;
+        }
+
+        var title = template.Title;
+        return StableMultiHitAttackNames.Contains(template.GetType().Name)
+            || StableMultiHitAttackNames.Contains(template.Id.Entry)
+            || StableMultiHitAttackNames.Contains(title);
+    }
+
+    private static bool HasDamageOutput(CardModel template)
+    {
+        return template.DynamicVars.ContainsKey("Damage")
+            || template.DynamicVars.ContainsKey("CalculatedDamage")
+            || template.DynamicVars.ContainsKey("OstyDamage");
+    }
+
+    private static bool IsMultiHitVar(DynamicVar dynamicVar)
+    {
+        if (dynamicVar is CalculatedVar)
+            return true;
+
+        return dynamicVar.IntValue > 1;
+    }
+
+    internal static Creature? PickValidEffectTarget(
+        CardModel card,
+        ICombatState combatState,
+        Creature? requestedTarget = null)
+    {
+        if (requestedTarget is not null && card.IsValidTarget(requestedTarget))
+            return requestedTarget;
+
+        return card.TargetType switch
+        {
+            TargetType.AnyEnemy => PickRandomTarget(card, combatState.HittableEnemies.Where(card.IsValidTarget)),
+            TargetType.AnyAlly => PickRandomTarget(card, ValidAllyTargets(card, combatState)),
+            TargetType.AnyPlayer => PickRandomTarget(card, ValidPlayerTargets(card, combatState)),
+            _ => null
+        };
+    }
+
     private static CardModel? FindMatchingCard(Player player, Func<CardModel, bool> predicate)
     {
         var hand = PileType.Hand.GetPile(player);
@@ -154,5 +356,35 @@ internal static class AnanlinCardHelpers
         return candidates.Length == 0
             ? null
             : player.RunState.Rng.CombatCardSelection.NextItem(candidates);
+    }
+
+    private static bool RequiresExplicitEffectTarget(TargetType targetType)
+    {
+        return targetType is TargetType.AnyEnemy or TargetType.AnyAlly or TargetType.AnyPlayer;
+    }
+
+    private static IEnumerable<Creature> ValidAllyTargets(CardModel card, ICombatState combatState)
+    {
+        return combatState.PlayerCreatures
+            .Where(creature => creature.IsAlive
+                && creature.IsPlayer
+                && creature != card.Owner.Creature
+                && card.IsValidTarget(creature));
+    }
+
+    private static IEnumerable<Creature> ValidPlayerTargets(CardModel card, ICombatState combatState)
+    {
+        return combatState.PlayerCreatures
+            .Where(creature => creature.IsAlive
+                && creature.IsPlayer
+                && card.IsValidTarget(creature));
+    }
+
+    private static Creature? PickRandomTarget(CardModel card, IEnumerable<Creature> candidates)
+    {
+        var targets = candidates.ToArray();
+        return targets.Length == 0
+            ? null
+            : card.Owner.RunState.Rng.CombatTargets.NextItem(targets);
     }
 }

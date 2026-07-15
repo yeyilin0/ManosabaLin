@@ -25,7 +25,7 @@ public sealed class SherrylinFriend() : ManosabaCardTemplate(1, CardType.Power, 
             yield return HoverTipFactory.FromPower<XlmPower>();
             yield return HoverTipFactory.FromPower<HnmPower>();
             yield return HoverTipFactory.FromPower<SuspectPower>();
-            yield return HoverTipFactory.FromCard<Xlm>(IsUpgraded);
+            yield return HoverTipFactory.FromCard<Xlmk>(IsUpgraded);
             yield return HoverTipFactory.FromCard<Hnm>(IsUpgraded);
         }
     }
@@ -38,7 +38,7 @@ public sealed class SherrylinFriend() : ManosabaCardTemplate(1, CardType.Power, 
             choiceContext, source.Owner.Creature, 1,
             source.Owner.Creature, source, false);
 
-        var xlmCard = CombatState.CreateCard<Xlm>(source.Owner);
+        var xlmCard = CombatState.CreateCard<Xlmk>(source.Owner);
         var hnmCard = CombatState.CreateCard<Hnm>(source.Owner);
 
         if (IsUpgraded)

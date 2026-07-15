@@ -11,7 +11,7 @@ public sealed class AnanlinCountToThreeIsFinePower : ManosabaPowerTemplate
     private int _discount;
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.None;
+    public override PowerStackType StackType => PowerStackType.Single;
     protected override bool IsVisibleInternal => false;
 
     internal void Arm(CardModel sourceCard, int discount)

@@ -26,7 +26,8 @@ namespace ManosabaLin.Characters.Ema.Powers;
 public class Hiroshuyuanpower : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Single;
+    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [];
 

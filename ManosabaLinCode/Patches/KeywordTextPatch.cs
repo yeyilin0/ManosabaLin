@@ -1,60 +1,87 @@
 using HarmonyLib;
+using ManosabaLin.Characters.Common.HiroKeywords;
+using ManosabaLin.Characters.Emalin;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text.RegularExpressions;
+using STS2RitsuLib;
+using STS2RitsuLib.Keywords;
 
 namespace ManosabaLin.Patches;
 
 [HarmonyPatch]
+[HarmonyAfter(RitsuLibContentAssetsHarmonyId)]
 public static class KeywordTextPatch
 {
-    static IEnumerable<MethodBase> TargetMethods()
-    {
-        yield return AccessTools.Method(typeof(CardModel), "GetDescriptionForPile",
-            [typeof(PileType), typeof(Creature)]);
-        yield return AccessTools.Method(typeof(CardModel), "GetDescriptionForUpgradePreview",
-            Type.EmptyTypes);
-    }
+    private const string RitsuLibContentAssetsHarmonyId = Const.ModId + ".framework-content-assets";
+    private const string DescriptionPreviewTypeName = "DescriptionPreviewType";
 
-    [HarmonyPriority(Priority.Low)]
-    static void Postfix(CardModel __instance, ref string __result)
-    {
-        var keywordColors = new Dictionary<string, string>
+    private static readonly IReadOnlyDictionary<string, string> KeywordColors =
+        new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
-            { "轮回",     "#CC6666" },
-            { "轮轮轮回回回",     "#CC6666" },
-            { "赞同",     "#6699cc" },
-            { "质疑",     "#339966" },
-            { "反驳",     "#339966" },
-           
+            [TransmigrationRules.TransmigrationKeywordId] = "#CC6666",
+            [Transmigration3Rules.Transmigration3KeywordId] = "#CC6666",
+            [EmalinKeywordRules.AgreeKeywordId] = "#6699cc",
+            [EmalinKeywordRules.DoubtKeywordId] = "#cc9966",
+            [EmalinKeywordRules.RebuttalKeywordId] = "#339966",
         };
 
-        HashSet<string> whitelist = new(keywordColors.Keys);
+    static IEnumerable<MethodBase> TargetMethods()
+    {
+        var privateDescriptionBuilder = AccessTools.Method(
+            typeof(CardModel),
+            nameof(CardModel.GetDescriptionForPile),
+            [typeof(PileType), GetDescriptionPreviewType(), typeof(Creature)]);
+        if (privateDescriptionBuilder != null)
+            yield return privateDescriptionBuilder;
 
-        var matches = Regex.Matches(__result, @"\[gold\](.+?)\[/gold\]")
-            .Cast<Match>()
-            .Where(m => whitelist.Contains(m.Groups[1].Value))
-            .ToList();
+        // Keep the public wrappers as a final safety net for call sites that bypass the private builder.
+        var descriptionForPile = AccessTools.Method(
+            typeof(CardModel),
+            nameof(CardModel.GetDescriptionForPile),
+            [typeof(PileType), typeof(Creature)]);
+        if (descriptionForPile != null)
+            yield return descriptionForPile;
 
-        if (matches.Count == 0) return;
+        var upgradePreview = AccessTools.Method(
+            typeof(CardModel),
+            nameof(CardModel.GetDescriptionForUpgradePreview),
+            Type.EmptyTypes);
+        if (upgradePreview != null)
+            yield return upgradePreview;
+    }
 
-        int offset = 0;
-        for (int i = 0; i < matches.Count; i++)
+    [HarmonyPriority(Priority.Last)]
+    static void Postfix(CardModel __instance, ref string __result)
+    {
+        if (string.IsNullOrEmpty(__result))
+            return;
+
+        foreach (var keywordId in __instance.GetModKeywordIds())
         {
-            Match m = matches[i];
-            string name = m.Groups[1].Value;
-
-            if (!keywordColors.TryGetValue(name, out string? color))
+            if (!KeywordColors.TryGetValue(keywordId, out var color))
                 continue;
 
-            string replacement = $"[color={color}]{name}[/color]";
+            var title = ModKeywordRegistry.GetTitle(keywordId).GetFormattedText();
+            if (string.IsNullOrEmpty(title))
+                continue;
 
-            __result = __result.Remove(m.Index + offset, m.Length)
-                             .Insert(m.Index + offset, replacement);
-            offset += replacement.Length - m.Length;
+            __result = ColorizeGoldKeyword(__result, title, color);
         }
+    }
+
+    private static string ColorizeGoldKeyword(string text, string title, string color)
+    {
+        return text.Replace(
+            $"[gold]{title}[/gold]",
+            $"[color={color}]{title}[/color]",
+            StringComparison.Ordinal);
+    }
+
+    private static Type GetDescriptionPreviewType()
+    {
+        return typeof(CardModel).GetNestedType(DescriptionPreviewTypeName, BindingFlags.NonPublic)
+               ?? throw new MissingMemberException(typeof(CardModel).FullName, DescriptionPreviewTypeName);
     }
 }

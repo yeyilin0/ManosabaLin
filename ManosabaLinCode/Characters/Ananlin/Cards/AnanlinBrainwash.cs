@@ -18,7 +18,6 @@ public sealed class AnanlinBrainwash()
         HoverTipFactory.FromPower<SilentPower>(),
         HoverTipFactory.FromPower<AnanlinPeaceOfMindPower>(),
         HoverTipFactory.FromPower<WithPower>(),
-        HoverTipFactory.FromCard<BlankPage>()
     ];
 
     protected override async Task OnPlay(

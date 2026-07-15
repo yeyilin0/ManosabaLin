@@ -5,10 +5,13 @@ namespace ManosabaLin.Characters.Ananlin.Powers;
 [RegisterPower]
 public sealed class AnanlinOppressiveSilencePower : ManosabaPowerTemplate
 {
+    private const int CycleLength = 4;
+
     [SavedProperty] public int NextCycleStep { get; set; } = 1;
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
     public override int DisplayAmount => NextCycleStep;
 
     public override Task AfterPlayerTurnStartEarly(PlayerChoiceContext choiceContext, Player player)
@@ -34,13 +37,12 @@ public sealed class AnanlinOppressiveSilencePower : ManosabaPowerTemplate
 
         Flash();
         var currentStep = NextCycleStep;
-        NextCycleStep = currentStep == 5 ? 1 : currentStep + 1;
+        NextCycleStep = currentStep == CycleLength ? 1 : currentStep + 1;
         InvokeDisplayAmountChanged();
 
-        var reward = Math.Max(1, (int)Amount);
-        if (currentStep is 1 or 5)
-            await PlayerCmd.GainEnergy(reward, ownerPlayer);
+        if (currentStep == 1)
+            await PlayerCmd.GainEnergy(1, ownerPlayer);
         else
-            await CardPileCmd.Draw(choiceContext, reward, ownerPlayer);
+            await CardPileCmd.Draw(choiceContext, 1, ownerPlayer);
     }
 }

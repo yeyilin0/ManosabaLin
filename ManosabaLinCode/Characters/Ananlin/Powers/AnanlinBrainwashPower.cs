@@ -8,11 +8,7 @@ namespace ManosabaLin.Characters.Ananlin.Powers;
 [RegisterPower]
 public sealed class AnanlinBrainwashPower : ManosabaPowerTemplate, IEasyRightClickablePower
 {
-    private const int BacklashSilenceCost = 26;
-    private const int BacklashSilenceCostIncrease = 13;
-
     [SavedProperty] public bool UsedThisTurn { get; set; }
-    [SavedProperty] public int RequiredSilenceCost { get; set; }
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
@@ -22,17 +18,17 @@ public sealed class AnanlinBrainwashPower : ManosabaPowerTemplate, IEasyRightCli
         get
         {
             var description = base.Description;
-            description.Add(new IntVar("BacklashSilenceCostIncrease", BacklashSilenceCostIncrease));
-            description.Add(new IntVar("RequiredSilenceCost", RequiredSilenceCostForDescription));
+            description.Add(new IntVar("BacklashSilenceCostIncrease", AnanlinBrainwashBacklashPower.BrainwashSilenceCostIncrease));
+            description.Add(new IntVar("RequiredSilenceCost", RequiredSilenceCostDescriptionVar));
             return description;
         }
     }
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("BacklashSilenceCost", BacklashSilenceCost),
-        new IntVar("BacklashSilenceCostIncrease", BacklashSilenceCostIncrease),
-        new IntVar("RequiredSilenceCost", CurrentRequiredSilenceCost)
+        new IntVar("BacklashSilenceCost", AnanlinBrainwashBacklashPower.BrainwashSilenceCost),
+        new IntVar("BacklashSilenceCostIncrease", AnanlinBrainwashBacklashPower.BrainwashSilenceCostIncrease),
+        new IntVar("RequiredSilenceCost", AnanlinBrainwashBacklashPower.BrainwashSilenceCost)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
@@ -52,6 +48,7 @@ public sealed class AnanlinBrainwashPower : ManosabaPowerTemplate, IEasyRightCli
         if (clickContext.Player != Owner.Player) return;
         if (!CanUseRightClick()) return;
 
+        var backlash = Owner.GetPower<AnanlinBrainwashBacklashPower>();
         var silenceCost = CurrentRequiredSilenceCost;
         var paidSilenceCost = false;
 
@@ -75,7 +72,7 @@ public sealed class AnanlinBrainwashPower : ManosabaPowerTemplate, IEasyRightCli
         UsedThisTurn = true;
         if (paidSilenceCost)
         {
-            RequiredSilenceCost = Math.Max(BacklashSilenceCost, RequiredSilenceCost) + BacklashSilenceCostIncrease;
+            backlash?.IncreaseBrainwashSilenceCostAfterPaidUse();
             RefreshRequiredSilenceCostVar();
         }
 
@@ -86,6 +83,8 @@ public sealed class AnanlinBrainwashPower : ManosabaPowerTemplate, IEasyRightCli
             Owner,
             null,
             false);
+
+        RefreshRequiredSilenceCostVar();
     }
 
     public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
@@ -96,26 +95,16 @@ public sealed class AnanlinBrainwashPower : ManosabaPowerTemplate, IEasyRightCli
         return Task.CompletedTask;
     }
 
-    internal void EnterBacklashCostMode()
-    {
-        if (RequiredSilenceCost <= 0)
-            RequiredSilenceCost = BacklashSilenceCost;
+    private int CurrentRequiredSilenceCost =>
+        IsCanonical
+            ? 0
+            : Owner.GetPower<AnanlinBrainwashBacklashPower>()?.CurrentBrainwashSilenceCost ?? 0;
 
-        RefreshRequiredSilenceCostVar();
-    }
-
-    private int CurrentRequiredSilenceCost
-    {
-        get
-        {
-            if (RequiredSilenceCost > 0) return RequiredSilenceCost;
-            return Owner?.GetPower<AnanlinBrainwashBacklashPower>()?.Amount >= 3
-                ? BacklashSilenceCost
-                : 0;
-        }
-    }
-
-    private int RequiredSilenceCostForDescription => Math.Max(BacklashSilenceCost, CurrentRequiredSilenceCost);
+    private int RequiredSilenceCostDescriptionVar =>
+        IsCanonical
+            ? AnanlinBrainwashBacklashPower.BrainwashSilenceCost
+            : Owner.GetPower<AnanlinBrainwashBacklashPower>()?.BrainwashSilenceCostForDescription
+              ?? AnanlinBrainwashBacklashPower.BrainwashSilenceCost;
 
     private bool CanUseRightClick()
     {
@@ -127,10 +116,10 @@ public sealed class AnanlinBrainwashPower : ManosabaPowerTemplate, IEasyRightCli
         return cost <= 0 || Owner.GetPower<SilentPower>()?.Amount >= cost;
     }
 
-    private void RefreshRequiredSilenceCostVar()
+    internal void RefreshRequiredSilenceCostVar()
     {
         if (DynamicVars.TryGetValue("RequiredSilenceCost", out var requiredSilenceCost))
-            requiredSilenceCost.BaseValue = CurrentRequiredSilenceCost;
+            requiredSilenceCost.BaseValue = RequiredSilenceCostDescriptionVar;
     }
 
     public string RightClickPrompt => "强制洗脑";

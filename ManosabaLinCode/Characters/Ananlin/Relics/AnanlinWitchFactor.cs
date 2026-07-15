@@ -3,7 +3,7 @@ using ManosabaLin.Characters.Hiro.Powers;
 namespace ManosabaLin.Characters.Ananlin.Relics;
 
 [RegisterRelic(typeof(AnanlinRelicPool))]
-[RegisterCharacterStarterRelic(typeof(Ananlin))]
+[RegisterCharacterStarterRelic(typeof(Ananlin), Order = 10)]
 public sealed class AnanlinWitchFactor : ManosabaRelicTemplate
 {
     public override RelicRarity Rarity => RelicRarity.Starter;

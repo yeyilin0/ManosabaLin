@@ -11,7 +11,7 @@ public sealed class AnanlinSilentAmplificationPower : ManosabaPowerTemplate
     [SavedProperty] public int RewritesPerAmplification { get; set; } = DefaultRewritesPerAmplification;
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Single;
 
     public override LocString Description
     {

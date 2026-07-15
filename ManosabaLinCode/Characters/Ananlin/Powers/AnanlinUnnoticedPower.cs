@@ -28,10 +28,12 @@ public sealed class AnanlinUnnoticedPower : ManosabaPowerTemplate
 
         Flash();
         if (!HasAnyEnemyAttackIntent())
+        {
             await PowerCmd.Apply<AnanlinPeaceOfMindPower>(choiceContext, Owner, 1, Owner, _sourceCard);
 
-        if (_bonusDraws > 0 && Owner.Player is { } player)
-            await CardPileCmd.Draw(choiceContext, _bonusDraws, player);
+            if (_bonusDraws > 0 && Owner.Player is { } player)
+                await CardPileCmd.Draw(choiceContext, _bonusDraws, player);
+        }
 
         await PowerCmd.Remove(this);
     }

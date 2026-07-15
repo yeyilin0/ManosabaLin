@@ -11,8 +11,7 @@ public sealed class AnanlinFullTextReplace()
         new DamageVar(12m, ValueProp.Move),
         new PowerVar<SilentPower>("Silence", 2m),
         new BlockVar(3m, ValueProp.Move),
-        new IntVar("FirstRewriteThreshold", 4),
-        new IntVar("SecondRewriteThreshold", 8),
+        new IntVar("RewriteStep", 4),
         new CardsVar("CardsPerBlankPage", 2)
     ];
 
@@ -58,11 +57,8 @@ public sealed class AnanlinFullTextReplace()
         await this.AddSilence(choiceContext, exhausted * DynamicVars["Silence"].IntValue);
         await CreatureCmd.GainBlock(Owner.Creature, exhausted * DynamicVars.Block.BaseValue, ValueProp.Move, cardPlay);
 
-        var rewriteCount = 0;
-        if (exhausted >= DynamicVars["FirstRewriteThreshold"].IntValue)
-            rewriteCount++;
-        if (exhausted >= DynamicVars["SecondRewriteThreshold"].IntValue)
-            rewriteCount++;
+        var rewriteStep = DynamicVars["RewriteStep"].IntValue;
+        var rewriteCount = exhausted / rewriteStep;
 
         for (var i = 0; i < rewriteCount; i++)
             if (this.Sketchbook() is { } sketchbook)

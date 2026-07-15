@@ -9,7 +9,7 @@ public sealed class AnanlinCountdownOfThreePower : ManosabaPowerTemplate
     private int _bonus;
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.None;
+    public override PowerStackType StackType => PowerStackType.Single;
     protected override bool IsVisibleInternal => false;
 
     internal void Arm(CardModel sourceCard, int bonus)

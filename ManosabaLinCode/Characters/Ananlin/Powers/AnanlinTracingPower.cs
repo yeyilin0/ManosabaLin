@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Ananlin.Relics;
+using ManosabaLin.Characters.Ananlin.Cards;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace ManosabaLin.Characters.Ananlin.Powers;
@@ -30,7 +31,7 @@ public sealed class AnanlinTracingPower : ManosabaPowerTemplate
                 var copy = combatState.CreateCard(canonical, ownerPlayer);
                 sketchbook.CopyUpgradeLevel(original, copy);
                 if (FreeCopies)
-                    copy.SetToFreeThisTurn();
+                    copy.SetFreeIgnoringCardPlayConditions();
 
                 await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, ownerPlayer);
             }

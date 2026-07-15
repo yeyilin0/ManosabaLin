@@ -1,4 +1,5 @@
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
+using ManosabaLin.Characters.Hiro.Monsters;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -63,6 +64,7 @@ public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
         if (target != Owner) return;
         if (!State.TriggeredThisTurn) return;
         if (target.Block > 0) return;
+        if (!props.HasFlag(ValueProp.Move)) return;
 
         Flash();
         await CreatureCmd.Kill(Owner, force: true);
@@ -77,6 +79,8 @@ public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
 
         State.TriggeredThisTurn = true;
         State.PendingHeal = true;
+        if (creature.Monster is GuardTwoBossMonster boss)
+            boss.PlayLastStandMusic();
 
         var block = (Owner.GetPower<WithPower>()?.Amount ?? 0) * BlockMultiplier;
 

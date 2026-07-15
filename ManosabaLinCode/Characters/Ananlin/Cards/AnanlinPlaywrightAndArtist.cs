@@ -129,7 +129,7 @@ public sealed class AnanlinPlaywrightAndArtist() : ManosabaCardTemplate(1, CardT
     private static void ApplyRewriteModifiers(CardModel card, bool selectedFromRecordedPool)
     {
         if (selectedFromRecordedPool)
-            card.SetToFreeThisTurn();
+            card.SetFreeIgnoringCardPlayConditions();
         else
             card.EnergyCost.AddThisTurnOrUntilPlayed(-1, reduceOnly: true);
 
@@ -139,18 +139,6 @@ public sealed class AnanlinPlaywrightAndArtist() : ManosabaCardTemplate(1, CardT
 
     private static bool IsCurrentlyPlayable(CardModel card, ICombatState combatState)
     {
-        if (!HasValidTarget(card, combatState)) return false;
-
-        return card.CanPlay();
-    }
-
-    private static bool HasValidTarget(CardModel card, ICombatState combatState)
-    {
-        return card.TargetType switch
-        {
-            TargetType.AnyEnemy => combatState.Enemies.Any(card.IsValidTarget),
-            TargetType.AnyAlly => combatState.PlayerCreatures.Any(card.IsValidTarget),
-            _ => card.IsValidTarget(null)
-        };
+        return AnanlinCardHelpers.HasValidEffectTarget(card, combatState);
     }
 }
