@@ -229,6 +229,9 @@ public sealed class AnansSketchbook : ManosabaRelicTemplate
         if (added.Count > 0 && Owner.Creature.GetPower<AnanlinTracingPower>() is { } tracing)
             await tracing.CopyGeneratedCards(choiceContext, added, this);
 
+        if (added.Count > 0)
+            await AnanlinBadEnding.TryAddRandomCurseFromPage(choiceContext, Owner, source);
+
         return added;
     }
 
@@ -259,6 +262,9 @@ public sealed class AnansSketchbook : ManosabaRelicTemplate
 
         if (added.Count > 0 && Owner.Creature.GetPower<AnanlinTracingPower>() is { } tracing)
             await tracing.CopyGeneratedCards(choiceContext, added, this);
+
+        if (added.Count > 0)
+            await AnanlinBadEnding.TryAddRandomCurseFromPage(choiceContext, Owner, source);
 
         return added;
     }

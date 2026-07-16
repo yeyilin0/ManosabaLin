@@ -76,7 +76,7 @@
   "MANOSABA_LIN_RELIC_ANANLIN_WITCH_FACTOR.description": "Whenever you play an Attack, gain {AttackGain:diff()} [b]Witchification[/b]. Whenever you play a Skill, lose {SkillLoss:diff()} [b]Witchification[/b]. Whenever you play a Power, lose {PowerLoss:diff()} [b]Witchification[/b].",
   "MANOSABA_LIN_RELIC_ANANLIN_WITCH_FACTOR.flavor": "When the witch factor is overactive, people lose their senses and become monster-like beings, treated as dangers that must be eliminated.",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.title": "Anan's Sketchbook",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "At the start of each player turn, gain 1 [color=#6666cc]Silence[/color]. Whenever you play a Skill, gain 2 [color=#6666cc]Silence[/color]. Whenever you play an Attack, spend 1 [color=#6666cc]Silence[/color] to gain 1 Vigor after it is played. At the start of the first combat of each act, automatically offer an extra skippable cross-character card reward; taking a card records its card pool. [color=#6666cc]Blank Page[/color] uses recorded pools.",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "Anan's sketchbook records what others tried to say.",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "[color=#6666cc]At turn start[/color], gain 1 [color=#6666cc]【Silence】[/color].\nWhenever you play a Skill, gain 2 [color=#6666cc]【Silence】[/color]. Whenever you play an Attack, spend 1 [color=#6666cc]【Silence】[/color], then after it is played gain 1 Vigor.\nAt the start of the [color=#6666cc]first combat of each act[/color], a three-card reward appears once. After you choose a card, record its card pool.",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "Anan\u0027s sketchbook records other people\u0027s stories.",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.selectionScreenPrompt": "Choose a Silence replacement intent"
 }

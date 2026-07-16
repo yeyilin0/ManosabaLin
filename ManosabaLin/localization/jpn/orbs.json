@@ -26,5 +26,5 @@
   "MANOSABA_LIN_ORB_EMOTION_HELPLESSNESS_ORB.title": "無力な",
   "MANOSABA_LIN_ORB_EMOTION_HELPLESSNESS_ORB.description": "[green]【遠野ハンナ】[/green]\n次のラウンドの開始時に、マイナスの敏捷性をすべて消費し、同量の [green] の棘 [/green] に変換し、同時にランダムな敵に同量の [green] を与え、敵の強さを [/green] 減少させます。",
   "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.title": "友情",
-  "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.description": "[color=#33ccff]「[/color][green]以降」[/green]\n[color=#33ccff] がカード [/color] をプレイするたびに、カードが 2 枚引かれます。カードが最初にプレイされるとき、コストは +1 され、カードが 2 回目にプレイされるとき、元のコストが復元されます (代替)。\n[green] はカード 2 枚ごとに 1 層の一時的なパワーを獲得します [/green]\n[color=#ff99cc] はカード 3 枚ごとに 1 エネルギーを回復します [/color]\n[color=#ffcc99] カード4枚ごとに [/color] 手札を1枚消費 [color=#33ccff] 呪い [/color]/[green] ステータス [/green]"
+  "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.description": "[color=#33ccff][b]「自[/b][/color][green][b]由」[/b][/green]\n[color=#33ccff]カードをプレイするたび[/color]2枚引く。カードは初めてプレイされた時にコスト+1、2回目にプレイされた時に元のコストへ戻る（交互）。\n[green]2枚ごと[/green]に1エナジーを回復する。\n[color=#ff99cc]3枚ごと[/color]に1層の[b]一時筋力[/b]を得る。\n[color=#ffcc99]4枚ごと[/color]に手札の[color=#33ccff]呪い[/color]/[green]状態[/green]を1枚廃棄する。"
 }

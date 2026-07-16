@@ -18,6 +18,7 @@ public sealed class LyXl() : ManosabaCardTemplate(-1, CardType.Skill, CardRarity
     {
         get { yield return CardKeyword.Retain; }
     }
+    public override int MaxUpgradeLevel => 0;
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

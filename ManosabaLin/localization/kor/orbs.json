@@ -26,5 +26,5 @@
   "MANOSABA_LIN_ORB_EMOTION_HELPLESSNESS_ORB.title": "어찌할 수 없는",
   "MANOSABA_LIN_ORB_EMOTION_HELPLESSNESS_ORB.description": "[green]【한나 토노】[/green]\n다음 라운드 시작 시 음의 민첩성을 모두 소모하여 동일한 양의 [green] 가시 [/green]로 변환하고 동시에 무작위 적에게 동일한 양의 [green]를 부여하고 [/green]만큼 힘을 감소시킵니다.",
   "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.title": "우정",
-  "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.description": "[color=#33ccff]「[/color][green]부터」[/green]\n[color=#33ccff]가 [/color] 카드를 사용할 때마다 카드 2장을 뽑습니다. 카드를 처음 사용하면 비용이 +1되고, 두 번째 카드를 사용하면 원래 비용이 복원됩니다(대체).\n[green]는 카드 2장마다 임시 전원 레이어 1개를 얻습니다.\n[color=#ff99cc]는 카드 3장당 에너지 1을 회복합니다.\n[color=#ffcc99] 카드 4장당 [/color]는 손에 있는 카드 1장을 소비합니다. [color=#33ccff] 저주 [/color]/[green] 상태 [/green][/color][/green]"
+  "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.description": "[color=#33ccff][b]「자[/b][/color][green][b]유」[/b][/green]\n[color=#33ccff]카드를 낼 때마다[/color] 2장을 뽑습니다. 카드가 처음 사용될 때 비용이 +1 되고, 두 번째 사용될 때 원래 비용으로 돌아옵니다(교대).\n[green]카드 2장마다[/green] 에너지 1을 회복합니다.\n[color=#ff99cc]카드 3장마다[/color] [b]임시 힘[/b] 1을 얻습니다.\n[color=#ffcc99]카드 4장마다[/color] 손패의 [color=#33ccff]저주[/color]/[green]상태[/green] 1장을 소멸시킵니다."
 }

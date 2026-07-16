@@ -17,7 +17,7 @@ public sealed class TheEnd : ManosabaCardTemplate
     public TheEnd() : base(-1, CardType.Skill, CardRarity.Ancient, TargetType.None)
     {
     }
-
+    public override int MaxUpgradeLevel => 0;
     protected override HashSet<CardTag> CanonicalTags => new();
 
   

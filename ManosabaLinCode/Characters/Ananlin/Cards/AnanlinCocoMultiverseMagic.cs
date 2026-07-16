@@ -1,10 +1,10 @@
 namespace ManosabaLin.Characters.Ananlin.Cards;
 
-[RegisterCard(typeof(AnanlinCardPool))]
+[RegisterCard(typeof(LinCardPool))]
 public sealed class AnanlinCocoMultiverseMagic()
-    : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Token, TargetType.Self, shouldShowInCardLibrary: false)
+    : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Ancient, TargetType.Self)
 {
-    
+    public override int MaxUpgradeLevel => 0;
 
     protected override Task OnPlay(
         PlayerChoiceContext choiceContext,

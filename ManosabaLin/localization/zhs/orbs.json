@@ -26,5 +26,5 @@
   "MANOSABA_LIN_ORB_EMOTION_HELPLESSNESS_ORB.title": "无助",
   "MANOSABA_LIN_ORB_EMOTION_HELPLESSNESS_ORB.description": "[green]【远野汉娜】[/green]\n下回合开始时，消耗所有负敏捷转为等量[green]荆棘[/green]，同时给随机敌人等量[green]减少力量[/green]",
   "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.title": "友谊",
-  "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.description": "[color=#33ccff][b]「自[/b][/color][green][b]由」[/b][/green]\n[color=#33ccff]每打出牌[/color]抽2张，牌第一次打出费用+1，第二次打出恢复原费用（交替）\n[green]每两张牌[/green]获得1层临时力量\n[color=#ff99cc]每三张牌[/color]回复1能量\n[color=#ffcc99]每4张牌[/color]消耗手牌中1张[color=#33ccff]诅咒[/color]/[green]状态[/green]"
+  "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.description": "[color=#33ccff][b]「自[/b][/color][green][b]由」[/b][/green]\n[color=#33ccff]每打出牌[/color]抽2张，牌第一次打出费用+1，第二次打出恢复原费用（交替）\n[green]每两张牌[/green]回复1能量\n[color=#ff99cc]每三张牌[/color]获得1层[b]临时力量[/b]\n[color=#ffcc99]每4张牌[/color]消耗手牌中1张[color=#33ccff]诅咒[/color]/[green]状态[/green]"
 }

@@ -76,7 +76,7 @@
   "MANOSABA_LIN_RELIC_ANANLIN_WITCH_FACTOR.description": "アタックをプレイするたび、{AttackGain:diff()}層の[b]魔女化[/b]を得る。スキルをプレイするたび、{SkillLoss:diff()}層の[b]魔女化[/b]を失う。パワーをプレイするたび、{PowerLoss:diff()}層の[b]魔女化[/b]を失う。",
   "MANOSABA_LIN_RELIC_ANANLIN_WITCH_FACTOR.flavor": "魔女因子が過剰に働きすぎると人は正気を失い、怪物のような存在となり、排除すべき危険人物とみなされる。",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.title": "安安のスケッチブック",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "各プレイヤーターン開始時、[color=#6666cc]沈黙[/color]を1得る。スキルをプレイするたび、[color=#6666cc]沈黙[/color]を2得る。アタックをプレイするたび、[color=#6666cc]沈黙[/color]を1消費して活力を1得る。各階層の最初の戦闘開始時、スキップ可能な全キャラクター3択カード報酬が自動で出現し、選んだカードのプールを記録する。[color=#6666cc]Blank Page[/color]は記録したプールからカードを作る。",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "安安のスケッチブックは、誰かの言葉になる前のものを記録する。",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "[color=#6666cc]ターン開始[/color]時、1層の[color=#6666cc]【沈黙】[/color]を得る。\nスキルをプレイした時、2層の[color=#6666cc]【沈黙】[/color]を得る。アタックをプレイした時、1層の[color=#6666cc]【沈黙】[/color]を消費し、プレイ後に1層の活力を得る。\n各階層の[color=#6666cc]最初の戦闘開始[/color]時、3択報酬が1回出現する。カードを選んだ後、そのカードプールを記録する。",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "安安のスケッチブックは他人の物語を記録している。",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.selectionScreenPrompt": "沈黙置換意図を選ぶ"
 }

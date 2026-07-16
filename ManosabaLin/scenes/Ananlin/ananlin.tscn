@@ -1,16 +1,258 @@
-[gd_scene load_steps=3 format=3 uid="uid://bn1ulr3jaj6xa"]
+[gd_scene load_steps=38 format=3 uid="uid://bn1ulr3jaj6xa"]
 
-[ext_resource type="Texture2D" uid="uid://cnpikvw5qhf8x" path="res://ManosabaLin/images/characters/Ananlin/ananlin_char_visual.png" id="1_ananlin"]
+[ext_resource type="Texture2D" uid="uid://m3a4y818wjq0" path="res://ManosabaLin/images/characters/Ananlin/anan_loop_16fps_sheet_7x5.png" id="1_anan_sheet"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_01"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(0, 0, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_02"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(874, 0, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_03"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(1748, 0, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_04"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(2622, 0, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_05"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(3496, 0, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_06"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(4370, 0, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_07"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(5244, 0, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_08"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(0, 1052, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_09"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(874, 1052, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_10"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(1748, 1052, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_11"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(2622, 1052, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_12"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(3496, 1052, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_13"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(4370, 1052, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_14"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(5244, 1052, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_15"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(0, 2104, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_16"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(874, 2104, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_17"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(1748, 2104, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_18"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(2622, 2104, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_19"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(3496, 2104, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_20"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(4370, 2104, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_21"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(5244, 2104, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_22"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(0, 3156, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_23"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(874, 3156, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_24"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(1748, 3156, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_25"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(2622, 3156, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_26"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(3496, 3156, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_27"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(4370, 3156, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_28"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(5244, 3156, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_29"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(0, 4208, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_30"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(874, 4208, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_31"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(1748, 4208, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_32"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(2622, 4208, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_33"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(3496, 4208, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_34"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(4370, 4208, 874, 1052)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_anan_idle_35"]
+atlas = ExtResource("1_anan_sheet")
+region = Rect2(5244, 4208, 874, 1052)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ananlin_idle"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_ananlin")
+"texture": SubResource("AtlasTexture_anan_idle_01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_05")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_09")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_10")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_19")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_21")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_29")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_anan_idle_35")
 }],
 "loop": true,
 "name": &"default",
-"speed": 1.0
+"speed": 16.0
 }]
 
 [node name="Ananlin" type="Node2D"]
@@ -18,13 +260,12 @@ animations = [{
 [node name="Visuals" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-3, -172)
-scale = Vector2(0.25834557, 0.26380622)
+scale = Vector2(0.35498595, 0.36228004)
 sprite_frames = SubResource("SpriteFrames_ananlin_idle")
 autoplay = "default"
 
 [node name="Bounds" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -129.0

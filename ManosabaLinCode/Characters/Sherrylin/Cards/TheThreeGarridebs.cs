@@ -36,18 +36,20 @@ public sealed class TheThreeGarridebs() : ManosabaCardTemplate(0, CardType.Skill
     {
         var source = this;
 
-        var magnifyingGlass = Owner.Relics.OfType<MagnifyingGlass>().FirstOrDefault();
-        if (magnifyingGlass == null) return;
-
-        if (!magnifyingGlass.HasTriggeredThisCombat) return;
-
-        await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
-
+        // 1. 获得5点格挡（无条件）
         await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block.BaseValue, ValueProp.Unpowered, null);
 
+        // 2. 升级后额外抽1张卡
         if (IsUpgraded)
         {
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.BaseValue, Owner);
+        }
+
+        // 3. 如果放大镜遗物本场已被触发过，获得3点能量
+        var magnifyingGlass = Owner.Relics.OfType<MagnifyingGlass>().FirstOrDefault();
+        if (magnifyingGlass != null && magnifyingGlass.HasTriggeredThisCombat)
+        {
+            await PlayerCmd.GainEnergy(DynamicVars.Energy.BaseValue, Owner);
         }
     }
 

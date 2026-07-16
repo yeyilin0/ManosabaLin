@@ -53,13 +53,13 @@ public sealed class EmotionFriendshipOrb : EmotionOrb<EmotionFriendship>
 
         if (_cardsPlayed % 2 == 0)
         {
-            await PowerCmd.Apply<TempStrength>(
-                choiceContext, Owner.Creature, 1, Owner.Creature, null, false);
+            await PlayerCmd.GainEnergy(1m, Owner);
         }
 
         if (_cardsPlayed % 3 == 0)
         {
-            await PlayerCmd.GainEnergy(1m, Owner);
+            await PowerCmd.Apply<TempStrength>(
+                choiceContext, Owner.Creature, 1, Owner.Creature, null, false);
         }
 
         if (_cardsPlayed % 4 == 0)

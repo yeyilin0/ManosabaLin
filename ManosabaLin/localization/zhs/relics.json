@@ -77,7 +77,7 @@
   "MANOSABA_LIN_RELIC_ANANLIN_WITCH_FACTOR.description": "当你打出攻击牌时，获得{AttackGain:diff()}层[b]【魔女化】[/b]。当你打出技能牌时，减少{SkillLoss:diff()}层[b]【魔女化】[/b]。当你打出能力牌时，减少{PowerLoss:diff()}层[b]【魔女化】[/b]。",
   "MANOSABA_LIN_RELIC_ANANLIN_WITCH_FACTOR.flavor": "魔女因子过度活跃时人会失去理智，变成怪物一样的存在，被视为必须消灭的危险个体。",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.title": "安安的素描本",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "每个玩家回合开始时，获得1层[color=#6666cc]【缄默】[/color]。当你打出技能牌时，获得2层[color=#6666cc]【缄默】[/color]。当你打出攻击牌时，消耗1层[color=#6666cc]【缄默】[/color]，打出后获得1层活力。每层第一场战斗开始时，自动出现一次可跳过的跨角色三选一卡牌奖励，选择卡牌后记录其卡池。[color=#6666cc]【空白书页】[/color]根据记录卡池生成卡牌。",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "安安的素描本记录着别人还没来得及说出口的话。",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "[color=#6666cc]回合开始[/color]时，获得1层[color=#6666cc]【缄默】[/color]。\n当你打出技能牌时，获得2层[color=#6666cc]【缄默】[/color]。当你打出攻击牌时，消耗1层[color=#6666cc]【缄默】[/color]，打出后获得1层活力。\n每层[color=#6666cc]第一场战斗开始[/color]时，出现一次三选一奖励，选择卡牌后记录其卡池",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "安安的素描本记录着别人的故事",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.selectionScreenPrompt": "选择缄默替换意图"
 }

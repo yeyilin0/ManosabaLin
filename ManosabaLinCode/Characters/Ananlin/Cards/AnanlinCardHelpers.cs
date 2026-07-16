@@ -9,6 +9,10 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 
 internal static class AnanlinCardHelpers
 {
+    private const int FallbackGeneratedHitCount = 6;
+    private const string OstyDamageKey = "OstyDamage";
+    private const string CalculationBaseKey = "CalculationBase";
+
     private static readonly HashSet<string> StableMultiHitAttackNames =
     [
         "AstralPulse",
@@ -27,7 +31,6 @@ internal static class AnanlinCardHelpers
         "Refract",
         "Ricochet",
         "RipAndTear",
-        "Salvo",
         "SevenStars",
         "SwordBoomerang",
         "Thrash",
@@ -213,12 +216,14 @@ internal static class AnanlinCardHelpers
         {
             if (!seenIds.Add(template.Id)) continue;
             if (!CanUseCardLibraryCandidate(template, player)) continue;
+            if (IsOstyAttack(template)) continue;
             if (!IsStableMultiHitAttack(template)) continue;
 
             var card = combatState.CreateCard(template, player);
             if (setBaseCostToZero && !card.EnergyCost.CostsX && card.EnergyCost.Canonical > 0)
                 card.EnergyCost.UpgradeBy(-card.EnergyCost.Canonical);
 
+            SetZeroHitCountToFallback(card);
             card.SetFreeIgnoringCardPlayConditions();
 
             if (HasValidEffectTarget(card, combatState))
@@ -315,8 +320,7 @@ internal static class AnanlinCardHelpers
     private static bool HasDamageOutput(CardModel template)
     {
         return template.DynamicVars.ContainsKey("Damage")
-            || template.DynamicVars.ContainsKey("CalculatedDamage")
-            || template.DynamicVars.ContainsKey("OstyDamage");
+            || template.DynamicVars.ContainsKey("CalculatedDamage");
     }
 
     private static bool IsMultiHitVar(DynamicVar dynamicVar)
@@ -325,6 +329,39 @@ internal static class AnanlinCardHelpers
             return true;
 
         return dynamicVar.IntValue > 1;
+    }
+
+    private static bool IsOstyAttack(CardModel template)
+    {
+        return template.Type == CardType.Attack && template.DynamicVars.ContainsKey(OstyDamageKey);
+    }
+
+    private static void SetZeroHitCountToFallback(CardModel card)
+    {
+        foreach (var varName in MultiHitVarNames)
+        {
+            if (!card.DynamicVars.TryGetValue(varName, out var dynamicVar)) continue;
+            if (GetHitCountValue(dynamicVar) != 0) return;
+
+            if (dynamicVar is CalculatedVar
+                && card.DynamicVars.TryGetValue(CalculationBaseKey, out var calculationBase))
+            {
+                calculationBase.BaseValue = FallbackGeneratedHitCount;
+            }
+            else
+            {
+                dynamicVar.BaseValue = FallbackGeneratedHitCount;
+            }
+
+            return;
+        }
+    }
+
+    private static int GetHitCountValue(DynamicVar dynamicVar)
+    {
+        return dynamicVar is CalculatedVar calculatedVar
+            ? (int)calculatedVar.Calculate(null)
+            : dynamicVar.IntValue;
     }
 
     internal static Creature? PickValidEffectTarget(

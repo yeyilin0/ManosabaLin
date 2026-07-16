@@ -132,6 +132,34 @@ internal static class AnanlinSilenceIntentManager
         return true;
     }
 
+    internal static int ApplyRandomReplacementIntentToAllEnemies(Player owner)
+    {
+        var combatState = owner.Creature.CombatState;
+        if (combatState is null) return 0;
+
+        var targets = combatState.Enemies
+            .Where(static enemy => enemy is { IsAlive: true, Monster: { NextMove: not null } })
+            .ToArray();
+        if (targets.Length == 0) return 0;
+
+        var kind = owner.RunState.Rng.CombatCardGeneration.NextItem(ReplacementIntentCycle);
+        var move = CreateReplacementMove(owner, kind);
+
+        var rewriteCount = 0;
+        foreach (var target in targets)
+        {
+            if (target.Monster is { } monster && ApplyReplacementMove(monster, move, replaceExistingReplacement: true))
+                rewriteCount++;
+        }
+
+        if (rewriteCount <= 0) return 0;
+
+        MarkReplacementIntentUsed(owner, kind);
+        RewritesThisCombatByPlayer[owner] = GetRewritesThisCombat(owner) + rewriteCount;
+        RecordIntentRewrites(combatState, rewriteCount);
+        return rewriteCount;
+    }
+
     internal static int GetRewritesThisCombat(Player owner)
     {
         return RewritesThisCombatByPlayer.GetValueOrDefault(owner);
@@ -186,10 +214,13 @@ internal static class AnanlinSilenceIntentManager
         return ApplyReplacementMove(monster, buffMove);
     }
 
-    private static bool ApplyReplacementMove(MonsterModel monster, MoveState buffMove)
+    private static bool ApplyReplacementMove(
+        MonsterModel monster,
+        MoveState buffMove,
+        bool replaceExistingReplacement = false)
     {
         if (_isApplyingReplacement) return false;
-        if (IsReplacementMove(monster.NextMove)) return false;
+        if (!replaceExistingReplacement && IsReplacementMove(monster.NextMove)) return false;
 
         var baseMove = ResolveBaseMove(monster.NextMove);
         if (baseMove is null) return false;

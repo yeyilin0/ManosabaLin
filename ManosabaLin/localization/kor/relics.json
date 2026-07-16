@@ -76,7 +76,7 @@
   "MANOSABA_LIN_RELIC_ANANLIN_WITCH_FACTOR.description": "공격 카드를 사용할 때마다 [b]마녀화[/b]를 {AttackGain:diff()} 얻습니다. 스킬 카드를 사용할 때마다 [b]마녀화[/b]를 {SkillLoss:diff()} 잃습니다. 능력 카드를 사용할 때마다 [b]마녀화[/b]를 {PowerLoss:diff()} 잃습니다.",
   "MANOSABA_LIN_RELIC_ANANLIN_WITCH_FACTOR.flavor": "마녀 요인이 과도하게 활성화되면 사람은 이성을 잃고 괴물 같은 존재가 되어 제거해야 할 위험 대상으로 여겨집니다.",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.title": "안안의 스케치북",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "각 플레이어 턴 시작 시 [color=#6666cc]침묵[/color] 1을 얻는다. 스킬 카드를 낼 때 [color=#6666cc]침묵[/color] 2를 얻는다. 공격 카드를 낼 때 [color=#6666cc]침묵[/color] 1을 소비하고, 낸 뒤 활력 1을 얻는다. 각 막의 첫 전투 시작 시, 건너뛸 수 있는 크로스 캐릭터 3택 카드 보상이 자동으로 등장한다. 카드를 선택한 뒤 그 카드 풀을 기록한다. [color=#6666cc]빈 페이지[/color]는 기록된 카드 풀에 따라 카드를 생성한다.",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "안안의 스케치북에는 다른 이들이 미처 말하지 못한 말들이 적혀 있다.",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "[color=#6666cc]턴 시작[/color] 시 [color=#6666cc]【침묵】[/color]을 1 얻습니다.\n스킬 카드를 사용할 때 [color=#6666cc]【침묵】[/color]을 2 얻습니다. 공격 카드를 사용할 때 [color=#6666cc]【침묵】[/color]을 1 소비하고, 사용 후 활력 1을 얻습니다.\n각 막의 [color=#6666cc]첫 전투 시작[/color] 시 3택 보상이 한 번 등장합니다. 카드를 선택한 뒤 그 카드 풀을 기록합니다.",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "안안의 스케치북은 다른 사람들의 이야기를 기록하고 있다.",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.selectionScreenPrompt": "침묵 교체 의도 선택"
 }

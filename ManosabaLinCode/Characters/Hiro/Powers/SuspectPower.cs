@@ -1,5 +1,6 @@
 ﻿using ManosabaLin.Characters.Ema.Cards;
 using ManosabaLin.Characters.Hiro.Cards;
+using ManosabaLin.Characters.Ananlin.Cards;
 using ManosabaLin.Characters.Sherrylin.Cards;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
@@ -121,6 +122,8 @@ public sealed class SuspectPower : ManosabaPowerTemplate
 
         if (characterType == typeof(Emalin.Emalin))
             curseModelId = ModelDb.GetId<EmaForgottenOne>();
+        else if (characterType == typeof(Ananlin.Ananlin))
+            curseModelId = ModelDb.GetId<AnanlinBadEnding>();
         else if (characterType == typeof(Sherrylin.Sherrylin))
             curseModelId = ModelDb.GetId<Sherrybadending>();
         else
