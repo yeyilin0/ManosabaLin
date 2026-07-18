@@ -12,7 +12,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class Banyanfa() : ManosabaCardTemplate(1, CardType.Power, CardRarity.Rare, TargetType.Self)
+public sealed class Banyanfa() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -61,5 +61,6 @@ public sealed class Banyanfa() : ManosabaCardTemplate(1, CardType.Power, CardRar
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
+        EnergyCost.UpgradeBy(-1);
     }
 }

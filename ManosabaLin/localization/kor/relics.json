@@ -60,6 +60,10 @@
   "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.title": "돋보기",
   "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.description": "[color=#33ccff]【리버설】[/color]: 뽑기 더미가 비어 있으면 소비 더미에 있는 카드를 버린 카드 더미에 있는 카드와 교환합니다. 카드 1장 교환에 성공할 때마다 [color=#33ccff] 탠저린 셜리의 마법 [/color] 2겹을 획득합니다. (카드가 제거되면 이번 전투에서 다시 획득할 수 없으며, 저주/상태이상/고대 소모 시 자동으로 제거됩니다.)",
   "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.flavor": "타치바나 셜리 형사의 정체는 [color=#33ccff] 기호 [/color]이지만, 그녀가 돋보기로 본 것은 누구도 추측할 수 없습니다.",
+  "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.title": "셰리의 작은 새",
+  "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.description": "[color=#33ccff]돋보기[/color]의 효과를 가집니다.\n[color=#33ccff]턴 시작[/color] 시 손의 카드 1장을 소멸시킬 수 있습니다. 그렇게 했다면 카드 1장을 뽑습니다.\n[color=#33ccff]감정 능력[/color]으로 [rainbow][b]기본 감정[/b][/rainbow] 카드 2장을 얻을 때마다 [rainbow][b]복잡한 감정[/b][/rainbow]을 1 얻습니다.\n[color=#33ccff]턴 종료[/color] 시 손의 카드 1장의 [b]마녀화[/b] 카운터를 무작위로 +1 합니다.",
+  "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.flavor": "그 새는 셰리의 어깨에 앉아 아직 숨 쉬는 단서처럼 보인다.",
+  "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.selectionScreenPrompt": "소멸시킬 카드를 선택하세요",
   "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.title": "마녀 요인",
   "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.description": "마녀 변신 가 레벨 100 달성 시,  마녀 변신 [rainbow] 감정 [/rainbow] 카드 1장을 획득하여 패에 추가합니다.\n[rainbow] 기본 감정 [/rainbow]: [purple] 행복 [/purple], [color=#ffcc99] 슬픔 [/color], [color=#CC6666] 분노 [/color], [color=#ff99cc] 공포 [/color], [color=#6666cc] 혐오 [/color], [color=#cc9966] 놀람 [/color]\n[color=#33ccff] 감성 융합 공식 [/color]:\n[purple]【행복】[/purple]+[color=#ffcc99]【슬픔】[/color] → [color=#999999]【슬픔】[/color]\n[color=#CC6666]【분노】[/color]+[color=#ff99cc]【공포】[/color] → [color=#ff9966]【성가심】[/color]\n[color=#ffcc99]【슬픔】[/color]+[color=#ff99cc]【공포】[/color] → [color=#ff0000]【슬픔】[/color]\n[color=#6666cc]【역겨움】[/color]+[color=#cc9966]【놀라다】[/color] → [gold]【경악하다】[/gold]\n[purple]【기쁨】[/purple]+[color=#cc9966]【놀라다】[/color] → [blue]【흥분】[/blue]\n[rainbow] 6종 기본 감정 [/rainbow]+[color=33ccff] 호기심 [/color]+[green]【무력함】[/green]→[color=#33ccff]「우정 [/color][green]」[/green]",
   "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.flavor": "마녀의 힘은 내면에서 나온다 [color=#ff99cc] 감정 [/color]",
@@ -78,5 +82,12 @@
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.title": "안안의 스케치북",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "[color=#6666cc]턴 시작[/color] 시 [color=#6666cc]【침묵】[/color]을 1 얻습니다.\n스킬 카드를 사용할 때 [color=#6666cc]【침묵】[/color]을 2 얻습니다. 공격 카드를 사용할 때 [color=#6666cc]【침묵】[/color]을 1 소비하고, 사용 후 활력 1을 얻습니다.\n각 막의 [color=#6666cc]첫 전투 시작[/color] 시 3택 보상이 한 번 등장합니다. 카드를 선택한 뒤 그 카드 풀을 기록합니다.",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "안안의 스케치북은 다른 사람들의 이야기를 기록하고 있다.",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.selectionScreenPrompt": "침묵 교체 의도 선택"
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.selectionScreenPrompt": "침묵 교체 의도 선택",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.recordedPools.title": "기록한 카드 풀",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.recordedPools.description": "현재 기록: {Count}/{Max}",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.recordedPools.empty": "아직 기록한 카드 풀이 없습니다.",
+  "MANOSABA_LIN_RELIC_BLESSED_OBJECT.title": "축복받은 물건",
+  "MANOSABA_LIN_RELIC_BLESSED_OBJECT.description": "[color=#6666cc]안안의 스케치북[/color]의 효과를 가지며 기록한 카드 풀을 유지합니다.\n전투마다 처음으로 적이 공격 의도를 가졌을 때 [color=#6666cc]침묵[/color] 교체를 발동하기 직전 [b]진홍나비[/b]를 2 얻습니다.\n[color=#6666cc]빈 페이지[/color] 또는 [color=#6666cc]빈 페이지+[/color]를 얻을 때 20% 확률로 [color=#6666cc]여백 페이지[/color] 또는 [color=#6666cc]여백 페이지+[/color]로 바뀝니다.\n[color=#6666cc]턴 종료[/color] 시 [b]안심[/b]을 1 얻습니다.",
+  "MANOSABA_LIN_RELIC_BLESSED_OBJECT.flavor": "빈칸 위에 손이 조용히 얹히고, 이야기는 더 이상 떨어지지 않는다.",
+  "MANOSABA_LIN_RELIC_BLESSED_OBJECT.selectionScreenPrompt": "침묵 교체 의도 선택"
 }

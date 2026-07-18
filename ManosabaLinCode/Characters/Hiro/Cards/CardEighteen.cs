@@ -69,10 +69,12 @@ public sealed class CardEighteen() : ManosabaCardTemplate(0, CardType.Skill, Car
     }
 
     // 返回手牌而不是弃牌堆
-    protected override PileType GetResultPileTypeForCardPlayC()
+    protected override CardLocation GetResultLocationForCardPlayC()
     {
-        var resultPileType = base.GetResultPileTypeForCardPlayC();
-        return resultPileType != PileType.Discard ? resultPileType : PileType.Hand;
+        var resultLocation = base.GetResultLocationForCardPlayC();
+        return resultLocation.pileType != PileType.Discard
+            ? resultLocation
+            : new CardLocation(resultLocation.player, PileType.Hand, resultLocation.position);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

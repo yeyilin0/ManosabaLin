@@ -18,7 +18,7 @@ namespace ManosabaLin.Characters.Sherrylin.Powers;
 [RegisterPower]
 public sealed class ShockwavePower : ManosabaPowerTemplate, IHealthBarForecastSource
 {
-    public override PowerType Type => PowerType.Debuff;
+    public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
     // ========== 回合开始时失去血�?==========

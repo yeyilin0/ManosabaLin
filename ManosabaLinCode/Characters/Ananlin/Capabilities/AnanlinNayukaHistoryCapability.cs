@@ -4,7 +4,7 @@ using STS2RitsuLib.Models.Capabilities;
 namespace ManosabaLin.Characters.Ananlin.Capabilities;
 
 [RegisterModelCapability]
-public sealed class AnanlinNayukaHistoryCapability : ManosabaCardCapability
+public sealed class AnanlinNayukaHistoryCapability : ManosabaCardCapability, ICardPlayResultContributor
 {
     private const string SourceCardIdKey = "sourceCardId";
 
@@ -28,10 +28,9 @@ public sealed class AnanlinNayukaHistoryCapability : ManosabaCardCapability
             .ToArray();
         foreach (var card in toRemove)
             await CardPileCmd.RemoveFromCombat(card, skipVisuals: true);
-
-        if (ownerCard.Pile is { IsCombatPile: true })
-            await CardPileCmd.RemoveFromCombat(ownerCard, skipVisuals: true);
     }
+
+    public PileType? GetResultPileTypeForCardPlay(CardModel card) => PileType.None;
 
     protected override JsonNode? SaveAdditionalState()
     {

@@ -45,7 +45,7 @@ public class BondExchangepower : ManosabaPowerTemplate
     [
         typeof(SwapBodySuccess),
         typeof(GuardianOath),
-        typeof(SharedFate),
+        typeof(Sharedfate),
         typeof(DollGift),
         typeof(TheOnlyClue),
         typeof(SubstituteCost),

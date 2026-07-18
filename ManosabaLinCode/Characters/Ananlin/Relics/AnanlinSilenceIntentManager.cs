@@ -403,42 +403,63 @@ internal static class AnanlinSilenceIntentManager
         {
             ReplacementIntentKind.Energy => new MoveState(
                 EnergyMoveId,
-                async _ => await PowerCmd.Apply<EnergyNextTurnPower>(
-                    new ThrowingPlayerChoiceContext(),
-                    owner.Creature,
-                    BaseEnergy * multiplier,
-                    owner.Creature,
-                    null),
+                async _ => await ApplyEnergyToAllPlayers(owner, BaseEnergy * multiplier),
                 new BuffIntent()),
             ReplacementIntentKind.Draw => new MoveState(
                 DrawMoveId,
-                async _ => await CardPileCmd.Draw(
-                    new ThrowingPlayerChoiceContext(),
-                    BaseDraw * multiplier,
-                    owner),
+                async _ => await DrawForAllPlayers(owner, BaseDraw * multiplier),
                 new BuffIntent()),
             ReplacementIntentKind.Block => new MoveState(
                 BlockMoveId,
-                async _ => await CreatureCmd.GainBlock(
-                    owner.Creature,
-                    BaseBlock * multiplier,
-                    ValueProp.Move,
-                    null),
+                async _ => await GainBlockForAllPlayers(owner, BaseBlock * multiplier),
                 new DefendIntent()),
             ReplacementIntentKind.Vigor => new MoveState(
                 VigorMoveId,
-                async _ => await PowerCmd.Apply<VigorPower>(
-                    new ThrowingPlayerChoiceContext(),
-                    owner.Creature,
-                    BaseVigor * multiplier,
-                    owner.Creature,
-                    null),
+                async _ => await ApplyVigorToAllPlayers(owner, BaseVigor * multiplier),
                 new BuffIntent()),
             _ => new MoveState(
                 BlockMoveId,
-                async _ => await CreatureCmd.GainBlock(owner.Creature, BaseBlock * multiplier, ValueProp.Move, null),
+                async _ => await GainBlockForAllPlayers(owner, BaseBlock * multiplier),
                 new DefendIntent())
         };
+    }
+
+    private static Player[] GetLivingEffectPlayers(Player owner)
+    {
+        var players = owner.Creature.CombatState?.Players;
+        if (players is null) return [owner];
+
+        var livingPlayers = players
+            .Where(static player => player.Creature.IsAlive)
+            .ToArray();
+        return livingPlayers.Length > 0 ? livingPlayers : [owner];
+    }
+
+    private static async Task ApplyEnergyToAllPlayers(Player owner, int amount)
+    {
+        var choiceContext = new ThrowingPlayerChoiceContext();
+        foreach (var player in GetLivingEffectPlayers(owner))
+            await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, player.Creature, amount, owner.Creature, null);
+    }
+
+    private static async Task DrawForAllPlayers(Player owner, int amount)
+    {
+        var choiceContext = new ThrowingPlayerChoiceContext();
+        foreach (var player in GetLivingEffectPlayers(owner))
+            await CardPileCmd.Draw(choiceContext, amount, player);
+    }
+
+    private static async Task GainBlockForAllPlayers(Player owner, int amount)
+    {
+        foreach (var player in GetLivingEffectPlayers(owner))
+            await CreatureCmd.GainBlock(player.Creature, amount, ValueProp.Move, null);
+    }
+
+    private static async Task ApplyVigorToAllPlayers(Player owner, int amount)
+    {
+        var choiceContext = new ThrowingPlayerChoiceContext();
+        foreach (var player in GetLivingEffectPlayers(owner))
+            await PowerCmd.Apply<VigorPower>(choiceContext, player.Creature, amount, owner.Creature, null);
     }
 
     private static int GetReplacementValueMultiplier(Player owner)

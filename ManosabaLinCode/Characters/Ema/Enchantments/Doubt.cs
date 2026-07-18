@@ -35,20 +35,14 @@ public class Doubt : ModEnchantmentTemplate
         var owner = card.Owner;
         var ownerCreature = owner.Creature;
 
-        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault()
-                    ?? (object)owner.Relics.OfType<Withema>().FirstOrDefault();
-    
+        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault();
+
         int count;
-    
-        if (badge is EmaTrialBadge trialBadge)
+
+        if (badge is not null)
         {
-            trialBadge.IncrementCount(this);
-            count = trialBadge.DoubtCount;
-        }
-        else if (badge is Withema withema)
-        {
-            withema.IncrementCount(this);
-            count = withema.DoubtCount;
+            badge.IncrementCount(this);
+            count = badge.DoubtCount;
         }
         else
         {

@@ -60,6 +60,10 @@
   "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.title": "magnifier",
   "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.description": "[color=#33ccff]【Reversal】[/color]: When the draw pile is empty, swap the cards in the consumption pile with the cards in the discard pile. Every time you successfully exchange one card, you will get 2 layers of [color=#33ccff] Tangerine Shirley's Magic [/color] (when the card is removed, it cannot be obtained again in this battle, and it will be automatically removed when the curse/status/ancient is consumed)",
   "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.flavor": "Detective Tachibana Shirley’s identity is [color=#33ccff] symbol [/color], but no one can guess what she saw with her magnifying glass",
+  "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.title": "Sherry's Bird",
+  "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.description": "Has the effect of [color=#33ccff]Magnifying Glass[/color].\nAt [color=#33ccff]turn start[/color], you may Exhaust 1 card from your hand, then draw 1 card.\nThrough [color=#33ccff]Emotion Power[/color], whenever you gain 2 [rainbow][b]Basic Emotion[/b][/rainbow] cards, gain 1 [rainbow][b]Complex Emotion[/b][/rainbow].\nAt [color=#33ccff]turn end[/color], randomly increase the [b]Witchification[/b] counter of 1 card in your hand by 1.",
+  "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.flavor": "It perches on Sherry's shoulder like a clue that is still breathing.",
+  "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.selectionScreenPrompt": "Choose a card to Exhaust",
   "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.title": "Witch factor",
   "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.description": "When  Witch Transformation  reaches level 100, get 1  Witch Transformation [rainbow] Emotion [/rainbow] card and add it to your hand.\n[rainbow] Basic emotion [/rainbow]: [purple] Happy [/purple], [color=#ffcc99] Sad [/color], [color=#CC6666] anger [/color], [color=#ff99cc] fear [/color], [color=#6666cc] disgust [/color], [color=#cc9966] surprise [/color]\n[color=#33ccff] Emotion Fusion Formula [/color]:\n[purple]【Happy】[/purple]+[color=#ffcc99]【Sad】[/color] → [color=#999999]【Sad】[/color]\n[color=#CC6666]【Angry】[/color]+[color=#ff99cc]【Fear】[/color] → [color=#ff9966]【Annoyance】[/color]\n[color=#ffcc99]【Sadness】[/color]+[color=#ff99cc]【Fear】[/color] → [color=#ff0000]【Sadness】[/color]\n[color=#6666cc]【disgusted】[/color]+[color=#cc9966]【surprised】[/color] → [gold]【horrified】[/gold]\n[purple]【Happy】[/purple]+[color=#cc9966]【Surprised】[/color] → [blue]【Excited】[/blue]\n6 kinds of [rainbow] Basic emotions [/rainbow]+[color=33ccff] Curiosity [/color]+[green]【Helpless】[/green]→[color=#33ccff]「Friendship [/color][green]」[/green]",
   "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.flavor": "The power of the witch comes from the inner [color=#ff99cc] emotion [/color]",
@@ -78,5 +82,12 @@
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.title": "Anan's Sketchbook",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "[color=#6666cc]At turn start[/color], gain 1 [color=#6666cc]【Silence】[/color].\nWhenever you play a Skill, gain 2 [color=#6666cc]【Silence】[/color]. Whenever you play an Attack, spend 1 [color=#6666cc]【Silence】[/color], then after it is played gain 1 Vigor.\nAt the start of the [color=#6666cc]first combat of each act[/color], a three-card reward appears once. After you choose a card, record its card pool.",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "Anan\u0027s sketchbook records other people\u0027s stories.",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.selectionScreenPrompt": "Choose a Silence replacement intent"
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.selectionScreenPrompt": "Choose a Silence replacement intent",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.recordedPools.title": "Recorded Card Pools",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.recordedPools.description": "Current records: {Count}/{Max}",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.recordedPools.empty": "No card pools recorded.",
+  "MANOSABA_LIN_RELIC_BLESSED_OBJECT.title": "Blessed Object",
+  "MANOSABA_LIN_RELIC_BLESSED_OBJECT.description": "Has the effect of [color=#6666cc]Anan's Sketchbook[/color] and keeps its recorded card pools.\nThe first time each combat you trigger [color=#6666cc]Silence[/color] rewrite while an enemy has an Attack intent, gain 2 [b]Crimson Butterfly[/b] before the rewrite.\nWhen you gain [color=#6666cc]Blank Page[/color] or [color=#6666cc]Blank Page+[/color], it has a 20% chance to become [color=#6666cc]Margin Page[/color] or [color=#6666cc]Margin Page+[/color] instead.\nAt [color=#6666cc]turn end[/color], gain 1 [b]Peace of Mind[/b].",
+  "MANOSABA_LIN_RELIC_BLESSED_OBJECT.flavor": "A hand rests over the blank space, and the story stops falling.",
+  "MANOSABA_LIN_RELIC_BLESSED_OBJECT.selectionScreenPrompt": "Choose a Silence replacement intent"
 }

@@ -51,7 +51,11 @@ public sealed class Revivefragment : ManosabaCardTemplate
         await CardPileCmd.RemoveFromCombat(this);
     }
 
-    protected override PileType GetResultPileTypeForCardPlayC() => PileType.None;
+    protected override CardLocation GetResultLocationForCardPlayC()
+    {
+        var resultLocation = base.GetResultLocationForCardPlayC();
+        return new CardLocation(resultLocation.player, PileType.None, resultLocation.position);
+    }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {

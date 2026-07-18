@@ -53,18 +53,18 @@ public sealed class EmotionFusionPower : ManosabaActionTemplate
         if (previewCards.Count == 0) return;
 
         var prefs = new CardSelectorPrefs(
-            new LocString("powers", Id.Entry + ".selectionScreenPrompt"), 1);
+            new LocString("powers", Id.Entry + ".selectionScreenPrompt"), 0, 1);
         var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, previewCards, player, prefs);
         var selectedCard = selected.FirstOrDefault();
+        var chosenRecipe = selectedCard != null && recipeMap.TryGetValue(selectedCard, out var selectedRecipe)
+            ? selectedRecipe
+            : null;
 
         await Task.Yield();
         foreach (var card in previewCards)
-        {
-            if (!ReferenceEquals(card, selectedCard))
-                card.RemoveFromState();
-        }
+            card.RemoveFromState();
 
-        if (selectedCard == null || !recipeMap.TryGetValue(selectedCard, out var chosenRecipe))
+        if (chosenRecipe == null)
             return;
 
         var remaining = caseFileCards.ToList();
@@ -84,6 +84,6 @@ public sealed class EmotionFusionPower : ManosabaActionTemplate
             await CaseFilePileHelper.AddToCaseFilePile(
                 resultCard, player, CardPilePosition.Top, choiceContext);
 
-        await PowerCmd.Remove(this);
+        await PowerCmd.ModifyAmount(choiceContext, this, -1, Owner, null);
     }
 }

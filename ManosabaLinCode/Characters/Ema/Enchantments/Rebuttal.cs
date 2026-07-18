@@ -41,22 +41,14 @@ public class Rebuttal : ModEnchantmentTemplate
         var owner = card.Owner;
         var ownerCreature = owner.Creature;
 
-        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault()
-                    ?? (object)owner.Relics.OfType<Withema>().FirstOrDefault();
+        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault();
 
         int count;
 
-        if (badge is EmaTrialBadge trialBadge)
+        if (badge is not null)
         {
-            count = trialBadge.RebuttalCount;
-            trialBadge.IncrementCount(this);
-            count = trialBadge.RebuttalCount;
-        }
-        else if (badge is Withema withema)
-        {
-            count = withema.RebuttalCount;
-            withema.IncrementCount(this);
-            count = withema.RebuttalCount;
+            badge.IncrementCount(this);
+            count = badge.RebuttalCount;
         }
         else
         {

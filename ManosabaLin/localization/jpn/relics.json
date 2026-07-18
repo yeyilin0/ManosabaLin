@@ -60,6 +60,10 @@
   "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.title": "拡大鏡",
   "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.description": "[color=#33ccff]【逆転】[/color]：山札が空の場合、消費山のカードと捨て札のカードを交換する。カード1枚の交換に成功するごとに、[color=#33ccff]【タンジェリン・シャーリーの魔法】[/color]を2層獲得（カードが取り除かれると、このバトルでは再入手不可、呪い/ステータス/エンシェントが消費されると自動的に取り除かれる）",
   "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.flavor": "刑事タチバナ・シャーリーの正体は[color=#33ccff]記号[/color]だが、彼女が虫眼鏡で何を見たのかは誰も推測できない。",
+  "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.title": "シェリーの小鳥",
+  "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.description": "[color=#33ccff]拡大鏡[/color]の効果を持つ。\n[color=#33ccff]ターン開始[/color]時、手札を1枚廃棄してよい。そうしたならカードを1枚引く。\n[color=#33ccff]感情能力[/color]により、[rainbow][b]基本感情[/b][/rainbow]カードを2枚獲得するたび、[rainbow][b]複雑な感情[/b][/rainbow]を1層得る。\n[color=#33ccff]ターン終了[/color]時、手札のカード1枚の[b]魔女化[/b]カウンターをランダムに+1する。",
+  "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.flavor": "それはシェリーの肩に止まり、まだ息づく手がかりのように見える。",
+  "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.selectionScreenPrompt": "廃棄するカードを選ぶ",
   "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.title": "魔女因子",
   "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.description": "【魔女変身】がレベル100に到達すると、【魔女変身】[rainbow]【感情】[/rainbow]カードを1枚入手して手札に加える。\n[rainbow] 基本感情 [/rainbow]: [purple] 嬉しい [/purple]、[color=#ffcc99] 悲しい [/color]、[color=#CC6666] 怒り [/color]、[color=#ff99cc] 恐怖 [/color]、[color=#6666cc] 嫌悪感 [/color]、[color=#cc9966] 驚き [/color]\n[color=#33ccff] エモーションフュージョンフォーミュラ [/color]:\n[purple]【嬉しい】[/purple]+[color=#ffcc99]【悲しい】[/color] → [color=#999999]【悲しい】[/color]\n[color=#CC6666]【怒り】[/color]+[color=#ff99cc]【恐怖】[/color] → [color=#ff9966]【迷惑】[/color]\n[color=#ffcc99]【悲しみ】[/color]+[color=#ff99cc]【恐怖】[/color] → [color=#ff0000]【悲しみ】[/color]\n[color=#6666cc]【うんざり】[/color]+[color=#cc9966]【びっくり】[/color] → [gold]【恐怖】[/gold]\n[purple]【嬉しい】[/purple]+[color=#cc9966]【驚く】[/color] → [blue]【興奮】[/blue]\n[rainbow] 基本感情 [/rainbow]+[color=33ccff] 好奇心 [/color]+ZXQ66の6種類QXZ【無力】→[color=#33ccff]「友情 [/color][green]」[/green]",
   "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.flavor": "魔女の力は内なる[color=#ff99cc] 感情 [/color]",
@@ -78,5 +82,12 @@
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.title": "安安のスケッチブック",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "[color=#6666cc]ターン開始[/color]時、1層の[color=#6666cc]【沈黙】[/color]を得る。\nスキルをプレイした時、2層の[color=#6666cc]【沈黙】[/color]を得る。アタックをプレイした時、1層の[color=#6666cc]【沈黙】[/color]を消費し、プレイ後に1層の活力を得る。\n各階層の[color=#6666cc]最初の戦闘開始[/color]時、3択報酬が1回出現する。カードを選んだ後、そのカードプールを記録する。",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "安安のスケッチブックは他人の物語を記録している。",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.selectionScreenPrompt": "沈黙置換意図を選ぶ"
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.selectionScreenPrompt": "沈黙置換意図を選ぶ",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.recordedPools.title": "記録済みカードプール",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.recordedPools.description": "現在の記録：{Count}/{Max}",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.recordedPools.empty": "カードプールはまだ記録されていません。",
+  "MANOSABA_LIN_RELIC_BLESSED_OBJECT.title": "祝福されたもの",
+  "MANOSABA_LIN_RELIC_BLESSED_OBJECT.description": "[color=#6666cc]安安のスケッチブック[/color]の効果を持ち、記録済みカードプールを保持する。\n各戦闘で初めて、敵がアタック意図を持つ時に[color=#6666cc]沈黙[/color]の書き換えを発動する直前、[b]真紅の蝶[/b]を2層得る。\n[color=#6666cc]空白のページ[/color]または[color=#6666cc]空白のページ+[/color]を得る時、20%の確率で[color=#6666cc]余白のページ[/color]または[color=#6666cc]余白のページ+[/color]に置き換わる。\n[color=#6666cc]ターン終了[/color]時、[b]安心[/b]を1層得る。",
+  "MANOSABA_LIN_RELIC_BLESSED_OBJECT.flavor": "空白にそっと手が置かれ、物語は落ちるのをやめる。",
+  "MANOSABA_LIN_RELIC_BLESSED_OBJECT.selectionScreenPrompt": "沈黙置換意図を選ぶ"
 }

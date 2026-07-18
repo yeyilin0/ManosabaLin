@@ -10,24 +10,23 @@ public sealed class AnanlinCellPower : ManosabaPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
+    public override CardLocation ModifyCardPlayResultLocation(
         CardModel card,
         bool isAutoPlay,
         ResourceInfo resources,
-        PileType pileType,
-        CardPilePosition position)
+        CardLocation cardLocation)
     {
-        if (_returnedSkill is not null) return (pileType, position);
-        if (card.Owner?.Creature != Owner) return (pileType, position);
-        if (card.Type != CardType.Skill) return (pileType, position);
-        if (pileType != PileType.Discard && pileType != PileType.Exhaust) return (pileType, position);
+        if (_returnedSkill is not null) return cardLocation;
+        if (card.Owner?.Creature != Owner) return cardLocation;
+        if (card.Type != CardType.Skill) return cardLocation;
+        if (cardLocation.pileType != PileType.Discard && cardLocation.pileType != PileType.Exhaust) return cardLocation;
 
         _returnedSkill = card;
         card.EnergyCost.AddThisTurnOrUntilPlayed(-1, reduceOnly: true);
-        return (PileType.Draw, CardPilePosition.Top);
+        return new CardLocation(cardLocation.player, PileType.Draw, CardPilePosition.Top);
     }
 
-    public override Task AfterModifyingCardPlayResultPileOrPosition(CardModel card, PileType pileType, CardPilePosition position)
+    public override Task AfterModifyingCardPlayResultLocation(CardModel card, CardLocation cardLocation)
     {
         if (card == _returnedSkill)
             Flash();

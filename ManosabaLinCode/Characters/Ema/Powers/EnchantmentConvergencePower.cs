@@ -73,30 +73,17 @@ public sealed class EnchantmentConvergencePower : ManosabaPowerTemplate
 
     private static int GetEnchantmentCount(Player player, EnchantmentModel enchantment)
     {
-        var badge = player.Relics.OfType<EmaTrialBadge>().FirstOrDefault()
-                    ?? (object)player.Relics.OfType<Withema>().FirstOrDefault();
+        var badge = player.Relics.OfType<EmaTrialBadge>().FirstOrDefault();
 
-        if (badge is EmaTrialBadge trialBadge)
-        {
-            return enchantment switch
+        return badge is null
+            ? 0
+            : enchantment switch
             {
-                Agreement => trialBadge.AgreeCount,
-                Rebuttal => trialBadge.RebuttalCount,
-                Doubt => trialBadge.DoubtCount,
+                Agreement => badge.AgreeCount,
+                Rebuttal => badge.RebuttalCount,
+                Doubt => badge.DoubtCount,
                 _ => 0
             };
-        }
-        if (badge is Withema withema)
-        {
-            return enchantment switch
-            {
-                Agreement => withema.AgreeCount,
-                Rebuttal => withema.RebuttalCount,
-                Doubt => withema.DoubtCount,
-                _ => 0
-            };
-        }
-        return 0;
     }
 
     public IEnumerable<Player> OtherAllyPlayers()

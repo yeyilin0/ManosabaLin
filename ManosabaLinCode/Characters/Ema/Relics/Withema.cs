@@ -30,27 +30,20 @@ using MinionLib.Component;
 namespace ManosabaLin.Characters.Ema.Relics;
 
 [RegisterRelic(typeof(EmalinRelicPool))]
-public sealed class Withema : ManosabaRelicTemplate
+public sealed class Withema : EmaTrialBadge
 {
-    private int _agreeCount;
-    private int _doubtCount;
-    private int _rebuttalCount;
-    private int _lastResetRound;
-    private bool _enchantedThisCombat;
     private bool _affinity7Triggered;
     private bool _estrangement7Triggered;
 
     public override RelicRarity Rarity => RelicRarity.Starter;
     public override bool ShouldFlashOnPlayer => false;
 
-    public int AgreeCount => _agreeCount;
-    public int DoubtCount => _doubtCount;
-    public int RebuttalCount => _rebuttalCount;
-
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
         get
         {
+            foreach (var tip in HoverTipFactory.FromRelic<EmaTrialBadge>())
+                yield return tip;
             foreach (var tip in HoverTipFactory.FromEnchantment<Agreement>())
                 yield return tip;
             foreach (var tip in HoverTipFactory.FromEnchantment<Rebuttal>())
@@ -60,20 +53,6 @@ public sealed class Withema : ManosabaRelicTemplate
             yield return HoverTipFactory.FromPower<BondPower>();
             yield return HoverTipFactory.FromPower<WithPower>();
         }
-    }
-
-    [SavedProperty]
-    public int LastResetRound
-    {
-        get => _lastResetRound;
-        set { AssertMutable(); _lastResetRound = value; }
-    }
-
-    [SavedProperty]
-    public bool EnchantedThisCombat
-    {
-        get => _enchantedThisCombat;
-        set { AssertMutable(); _enchantedThisCombat = value; }
     }
 
     [SavedProperty]
@@ -94,35 +73,15 @@ public sealed class Withema : ManosabaRelicTemplate
         PlayerChoiceContext choiceContext,
         Player player)
     {
+        await base.AfterPlayerTurnStart(choiceContext, player);
         if (player != Owner) return;
-
-        var combatState = player.Creature.CombatState;
-        var currentRound = combatState.RoundNumber;
-
-        if (!EnchantedThisCombat)
-        {
-            EnchantedThisCombat = true;
-            EnchantAllTrialCards();
-        }
-
-        if (currentRound != LastResetRound)
-        {
-            LastResetRound = currentRound;
-            _agreeCount = 0;
-            _doubtCount = 0;
-            _rebuttalCount = 0;
-            SyncCountersToEnchantments();
-        }
 
         AddTrialComponentsToCards();
     }
 
     public override async Task AfterCombatEnd(CombatRoom room)
     {
-        EnchantedThisCombat = false;
-        _agreeCount = 0;
-        _doubtCount = 0;
-        _rebuttalCount = 0;
+        await base.AfterCombatEnd(room);
         _affinity7Triggered = false;
         _estrangement7Triggered = false;
     }
@@ -176,93 +135,12 @@ public sealed class Withema : ManosabaRelicTemplate
         }
     }
 
-    public void IncrementCount(EnchantmentModel enchantment)
+    protected override bool CanReceiveInitialTrialComponent(CardModel card)
     {
-        switch (enchantment)
-        {
-            case Agreement:
-                _agreeCount++;
-                break;
-            case Doubt:
-                _doubtCount++;
-                break;
-            case Rebuttal:
-                _rebuttalCount++;
-                break;
-        }
-        SyncCountersToEnchantments();
-    }
-
-    private void SyncCountersToEnchantments()
-    {
-        var piles = new[] { PileType.Hand, PileType.Draw, PileType.Discard };
-        foreach (var pileType in piles)
-        {
-            foreach (var card in pileType.GetPile(Owner).Cards)
-            {
-                switch (card.Enchantment)
-                {
-                    case Agreement:
-                        card.Enchantment.Amount = _agreeCount;
-                        break;
-                    case Doubt:
-                        card.Enchantment.Amount = _doubtCount;
-                        break;
-                    case Rebuttal:
-                        card.Enchantment.Amount = _rebuttalCount;
-                        break;
-                }
-            }
-        }
-    }
-
-    private void EnchantAllTrialCards()
-    {
-        var allCards = PileType.Draw.GetPile(Owner).Cards
-            .Concat(PileType.Hand.GetPile(Owner).Cards)
-            .Concat(PileType.Discard.GetPile(Owner).Cards)
-            .Concat(PileType.Deck.GetPile(Owner).Cards)
-            .Distinct()
-            .ToList();
-
-        foreach (var card in allCards)
-        {
-            if (card.Enchantment != null) continue;
-
-            try
-            {
-                if (EmalinKeywordRules.HasAgreeKeyword(card))
-                    CardCmd.Enchant(ModelDb.Enchantment<Agreement>().ToMutable(), card, 1m);
-                else if (EmalinKeywordRules.HasRebuttalKeyword(card))
-                    CardCmd.Enchant(ModelDb.Enchantment<Rebuttal>().ToMutable(), card, 1m);
-                else if (EmalinKeywordRules.HasDoubtKeyword(card))
-                    CardCmd.Enchant(ModelDb.Enchantment<Doubt>().ToMutable(), card, 1m);
-            }
-            catch (Exception ex)
-            {
-                MainFile.Logger.Info($"[Withema] Skip {card.Id.Entry}: {ex.Message}");
-            }
-        }
-
-        var componentPiles = new[] { PileType.Draw, PileType.Hand, PileType.Discard };
-        var availableCards = componentPiles
-            .SelectMany(p => p.GetPile(Owner).Cards)
-            .Where(c => c.Enchantment == null && c.Rarity != CardRarity.Token && c.Type != CardType.Status && c.Type != CardType.Curse)
-            .Distinct()
-            .ToList();
-
-        if (availableCards.Count >= 3)
-        {
-            var rng = Owner.RunState.Rng.CombatCardSelection;
-            var shuffled = availableCards.OrderBy(_ => rng.NextFloat()).ToList();
-
-            shuffled[0].TryAddComponent(new AgreementTrialComponent());
-            shuffled[1].TryAddComponent(new RebuttalTrialComponent());
-            shuffled[2].TryAddComponent(new DoubtTrialComponent());
-        }
-
-        if (Owner?.Creature != null)
-            PowerCmd.Apply<BondPower>(null, Owner.Creature, 1m, Owner.Creature, null, false);
+        return base.CanReceiveInitialTrialComponent(card)
+            && card.Rarity != CardRarity.Token
+            && card.Type != CardType.Status
+            && card.Type != CardType.Curse;
     }
 
     private void AddTrialComponentsToCards()
@@ -314,7 +192,7 @@ public sealed class Withema : ManosabaRelicTemplate
         {
             typeof(SwapBodySuccess),
             typeof(GuardianOath),
-            typeof(SharedFate),
+            typeof(Sharedfate),
             typeof(DollGift),
             typeof(TheOnlyClue),
             typeof(SubstituteCost),
@@ -374,7 +252,7 @@ public sealed class Withema : ManosabaRelicTemplate
 
     private static bool IsAffinityCard(CardModel card)
     {
-        return card is SwapBodySuccess or GuardianOath or SharedFate or DollGift
+        return card is SwapBodySuccess or GuardianOath or Sharedfate or DollGift
             or TheOnlyClue or SubstituteCost or NoahAffinity or MargaretAffinity
             or CocoAffinity or AnnAffinity or Lyqinjin or BondSettlement;
     }

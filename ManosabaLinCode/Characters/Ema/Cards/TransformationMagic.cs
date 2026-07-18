@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,17 +49,18 @@ public sealed class TransformationMagic : ManosabaCardTemplate
         if (handCards.Count == 0) return;
 
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 0, 1);
-        var selected = await CardSelectCmd.FromHand(choiceContext, source.Owner, prefs, null, this);
+        var selected = await CardSelectCmd.FromHand(choiceContext, source.Owner, prefs, card => card != source, this);
         var target = selected.FirstOrDefault();
 
         if (target == null) return;
+        if (source.Pile?.Type != PileType.Hand) return;
+        if (target.Pile?.Type != PileType.Hand || target.Owner != source.Owner) return;
 
         var newCard = CombatState.CreateCard(target.CanonicalInstance, source.Owner);
 
         for (int i = 0; i < target.CurrentUpgradeLevel; i++)
             CardCmd.Upgrade(newCard);
 
-        await CardPileCmd.RemoveFromCombat(source);
-        await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, source.Owner);
+        await CardCmd.Transform(source, newCard, CardPreviewStyle.None);
     }
 }

@@ -33,22 +33,14 @@ public class Agreement : ModEnchantmentTemplate
         var ownerCreature = owner.Creature;
         var combatState = card.CombatState;
 
-        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault()
-                    ?? (object)owner.Relics.OfType<Withema>().FirstOrDefault();
-    
+        var badge = owner.Relics.OfType<EmaTrialBadge>().FirstOrDefault();
+
         int count;
-    
-        if (badge is EmaTrialBadge trialBadge)
+
+        if (badge is not null)
         {
-            count = trialBadge.AgreeCount;
-            trialBadge.IncrementCount(this);
-            count = trialBadge.AgreeCount;
-        }
-        else if (badge is Withema withema)
-        {
-            count = withema.AgreeCount;
-            withema.IncrementCount(this);
-            count = withema.AgreeCount;
+            badge.IncrementCount(this);
+            count = badge.AgreeCount;
         }
         else
         {

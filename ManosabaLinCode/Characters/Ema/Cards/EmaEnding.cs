@@ -36,11 +36,13 @@ public class EmaEnding() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Ra
 
     protected override IEnumerable<ICardComponent> CanonicalComponents => [new UniqueComponent()];
 
-    protected override PileType GetResultPileTypeForCardPlayC()
+    protected override CardLocation GetResultLocationForCardPlayC()
     {
         var bond = Owner.Creature.GetPower<BondPower>();
-        if (bond != null && (bond.Affinity >= 13 || bond.Estrangement >= 13)) return PileType.Hand;
-        return base.GetResultPileTypeForCardPlayC();
+        if (bond != null && (bond.Affinity >= 13 || bond.Estrangement >= 13))
+            return new CardLocation(Owner, PileType.Hand, CardPilePosition.Bottom);
+
+        return base.GetResultLocationForCardPlayC();
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)

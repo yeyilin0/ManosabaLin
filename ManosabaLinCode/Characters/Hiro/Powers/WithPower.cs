@@ -53,12 +53,12 @@ public sealed class WithPower : ManosabaPowerTemplate
         return Amount / 50;
     }
 
-    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
-        CardModel card, bool isAutoPlay, ResourceInfo resources, PileType pileType, CardPilePosition position)
+    public override CardLocation ModifyCardPlayResultLocation(
+        CardModel card, bool isAutoPlay, ResourceInfo resources, CardLocation cardLocation)
     {
         if (Amount < 300 || card.Owner.Creature != Owner || card.Type != CardType.Skill)
-            return (pileType, position);
-        return (PileType.Exhaust, position);
+            return cardLocation;
+        return new CardLocation(cardLocation.player, PileType.Exhaust, cardLocation.position);
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)

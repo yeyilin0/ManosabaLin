@@ -19,7 +19,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class BloodyHeadband : ManosabaCardTemplate
 {
-    public BloodyHeadband() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
+    public BloodyHeadband() : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyPlayer) { }
 
     public override bool GainsBlock => true;
 
@@ -35,15 +35,10 @@ public sealed class BloodyHeadband : ManosabaCardTemplate
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var creature = Owner.Creature;
-        var allies = CombatState.Allies.Where(a => a is { IsAlive: true } && a != creature).ToList();
-
-        // 澶氫汉鏃堕€夐槦鍙嬶紝鍗曚汉榛樿鑷繁
-        var target = allies.Count > 0
-            ? Owner.RunState.Rng.CombatTargets.NextItem(allies)
-            : creature;
+        var targetPlayer = (cardPlay.Target ?? creature).Player ?? Owner;
 
         await CreatureCmd.GainBlock(creature, DynamicVars.Block, cardPlay);
-        await PlayerCmd.GainEnergy(DynamicVars["EnergyGain"].BaseValue, target.Player ?? Owner);
+        await PlayerCmd.GainEnergy(DynamicVars["EnergyGain"].BaseValue, targetPlayer);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

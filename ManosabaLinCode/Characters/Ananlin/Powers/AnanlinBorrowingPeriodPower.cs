@@ -1,12 +1,15 @@
 using ManosabaLin.Characters.Ananlin.Relics;
+using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace ManosabaLin.Characters.Ananlin.Powers;
 
 [RegisterPower]
 public sealed class AnanlinBorrowingPeriodPower : ManosabaPowerTemplate
 {
-    private readonly HashSet<CardModel> _cardsToReplaceWithExhaust = [];
-    private int _usedThisTurn;
+    private readonly HashSet<CardModel> _cardsChangedToExhaust = [];
+    private readonly HashSet<CardModel> _cardsAwaitingDraw = [];
+
+    [SavedProperty] public int UsedThisTurn { get; set; }
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
@@ -15,36 +18,53 @@ public sealed class AnanlinBorrowingPeriodPower : ManosabaPowerTemplate
     {
         if (player.Creature == Owner)
         {
-            _usedThisTurn = 0;
-            _cardsToReplaceWithExhaust.Clear();
+            UsedThisTurn = 0;
+            _cardsChangedToExhaust.Clear();
+            _cardsAwaitingDraw.Clear();
         }
 
         return Task.CompletedTask;
     }
 
-    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
+    public override CardLocation ModifyCardPlayResultLocation(
         CardModel card,
         bool isAutoPlay,
         ResourceInfo resources,
-        PileType pileType,
-        CardPilePosition position)
+        CardLocation cardLocation)
     {
-        if (pileType != PileType.Discard || _usedThisTurn >= Amount) return (pileType, position);
-        if (card.Owner?.Creature != Owner) return (pileType, position);
-        if (Owner.Player?.Relics.OfType<AnansSketchbook>().FirstOrDefault() is not { } sketchbook) return (pileType, position);
-        if (!sketchbook.IsFromRecordedPool(card)) return (pileType, position);
+        if (cardLocation.pileType != PileType.Discard || UsedThisTurn >= Amount) return cardLocation;
+        if (!IsRecordedPoolCardOwnedByOwner(card)) return cardLocation;
 
-        _usedThisTurn++;
-        _cardsToReplaceWithExhaust.Add(card);
-        return (PileType.Exhaust, position);
+        _cardsChangedToExhaust.Add(card);
+        return new CardLocation(cardLocation.player, PileType.Exhaust, cardLocation.position);
+    }
+
+    public override Task AfterModifyingCardPlayResultLocation(CardModel card, CardLocation cardLocation)
+    {
+        if (!_cardsChangedToExhaust.Remove(card)) return Task.CompletedTask;
+        if (cardLocation.pileType != PileType.Exhaust) return Task.CompletedTask;
+        if (UsedThisTurn >= Amount) return Task.CompletedTask;
+
+        UsedThisTurn++;
+        _cardsAwaitingDraw.Add(card);
+        return Task.CompletedTask;
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        if (!_cardsToReplaceWithExhaust.Remove(cardPlay.Card)) return;
+        if (!_cardsAwaitingDraw.Remove(cardPlay.Card)) return;
+        if (cardPlay.ResultPile != PileType.Exhaust) return;
         if (Owner.Player is not { } ownerPlayer) return;
 
         Flash();
         await CardPileCmd.Draw(choiceContext, 1, ownerPlayer);
+    }
+
+    private bool IsRecordedPoolCardOwnedByOwner(CardModel card)
+    {
+        if (card.Owner?.Creature != Owner) return false;
+        if (Owner.Player?.Relics.OfType<AnansSketchbook>().FirstOrDefault() is not { } sketchbook) return false;
+
+        return sketchbook.IsFromRecordedPool(card);
     }
 }

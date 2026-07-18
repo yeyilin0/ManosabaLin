@@ -36,6 +36,7 @@ public sealed class AnanlinCocoMultiverseCapability : ManosabaCardCapability
     public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
         if (Owner?.Owner != player) return Task.CompletedTask;
+        if (Owner.Pile?.Type != PileType.Hand) return Task.CompletedTask;
 
         var sketchbook = player.Relics.OfType<AnansSketchbook>().FirstOrDefault();
         RerollFromRecordedPools(sketchbook);

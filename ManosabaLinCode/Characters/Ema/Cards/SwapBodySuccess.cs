@@ -17,7 +17,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class SwapBodySuccess : ManosabaCardTemplate
 {
-    public SwapBodySuccess() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
+    public SwapBodySuccess() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyPlayer) { }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -34,13 +34,7 @@ public sealed class SwapBodySuccess : ManosabaCardTemplate
         if (bond != null) bond.Affinity++;
 
         // 选择目标玩家
-        Player targetPlayer = owner;
-        var otherPlayers = combatState.Players.Where(p => p != owner).ToList();
-        if (otherPlayers.Count > 0)
-        {
-            var rng = owner.RunState.Rng.CombatTargets;
-            targetPlayer = rng.NextItem(otherPlayers);
-        }
+        var targetPlayer = (cardPlay.Target ?? creature).Player ?? owner;
 
         // 获得一张目标角色卡池零费随机卡
         var targetPool = targetPlayer.Character.CardPool;

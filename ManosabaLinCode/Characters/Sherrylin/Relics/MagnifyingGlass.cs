@@ -19,7 +19,8 @@ namespace ManosabaLin.Characters.Sherrylin.Relics;
 
 [RegisterRelic(typeof(SherrylinRelicPool))]
 [RegisterCharacterStarterRelic(typeof(Sherrylin))]
-public sealed class MagnifyingGlass : ManosabaRelicTemplate
+[RegisterTouchOfOrobasRefinement(typeof(SherrylinsBird))]
+public class MagnifyingGlass : ManosabaRelicTemplate
 {
     private static readonly HashSet<Player> Swapping = [];
 

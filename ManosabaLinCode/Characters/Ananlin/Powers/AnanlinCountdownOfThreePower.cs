@@ -19,19 +19,18 @@ public sealed class AnanlinCountdownOfThreePower : ManosabaPowerTemplate
         Amount = 1;
     }
 
-    public override (PileType, CardPilePosition) ModifyCardPlayResultPileTypeAndPosition(
+    public override CardLocation ModifyCardPlayResultLocation(
         CardModel card,
         bool isAutoPlay,
         ResourceInfo resources,
-        PileType pileType,
-        CardPilePosition position)
+        CardLocation cardLocation)
     {
-        if (_thirdCard is not null) return (pileType, position);
-        if (!ShouldCount(card)) return (pileType, position);
-        if (_playedCards != 2) return (pileType, position);
+        if (_thirdCard is not null) return cardLocation;
+        if (!ShouldCount(card)) return cardLocation;
+        if (_playedCards != 2) return cardLocation;
 
         _thirdCard = card;
-        return (PileType.Hand, CardPilePosition.Bottom);
+        return new CardLocation(cardLocation.player, PileType.Hand, CardPilePosition.Bottom);
     }
 
     public override decimal ModifyDamageAdditive(

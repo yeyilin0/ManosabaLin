@@ -30,7 +30,7 @@ public class NyxmPower : ManosabaPowerTemplate
 
         if (cards.Count > 0)
         {
-            var card = player.RunState.Rng.Shuffle.NextItem(cards);
+            var card = player.RunState.Rng.CombatCardSelection.NextItem(cards);
             await CardPileCmd.Add(card, PileType.Hand);
         }
 

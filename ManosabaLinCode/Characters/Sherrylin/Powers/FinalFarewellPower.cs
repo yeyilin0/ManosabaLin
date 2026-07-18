@@ -21,6 +21,12 @@ public sealed class FinalFarewellPower : ManosabaPowerTemplate
 
     private decimal _storm;
 
+    internal void RecordStorm(decimal amount)
+    {
+        if (amount > 0)
+            _storm += amount;
+    }
+
     public override async Task AfterPowerAmountChanged(
         PlayerChoiceContext choiceContext,
         PowerModel power,
@@ -32,7 +38,7 @@ public sealed class FinalFarewellPower : ManosabaPowerTemplate
         if (amount <= 0) return;
 
         power.Amount -= (int)amount;
-        _storm += amount;
+        RecordStorm(amount);
     }
 
     public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)

@@ -22,7 +22,11 @@ public sealed class AnanlinDraftRewritePower : ManosabaPowerTemplate
             this)).FirstOrDefault();
         if (source is null) return;
 
-        var rewriteOptions = BuildRewriteOptions(player, combatState, source).ToArray();
+        var rewritePools = BuildRewritePools(player, combatState, source).ToArray();
+        if (rewritePools.Length == 0) return;
+
+        var selectedRewritePool = player.RunState.Rng.CombatCardSelection.NextItem(rewritePools);
+        var rewriteOptions = selectedRewritePool.Options;
         if (rewriteOptions.Length == 0) return;
 
         var rewritten = rewriteOptions.Length == 1
@@ -35,35 +39,47 @@ public sealed class AnanlinDraftRewritePower : ManosabaPowerTemplate
         if (rewritten is null) return;
 
         Flash();
+        var transformResult = await CardCmd.Transform(source, rewritten);
+        var transformed = transformResult?.cardAdded ?? rewritten;
+
         var sketchbook = player.Relics.OfType<AnansSketchbook>().FirstOrDefault();
         var poolWasRecorded = sketchbook is not null
             && await EnsurePoolRecorded(choiceContext, player, sketchbook, rewritten.Pool);
-
-        var transformResult = await CardCmd.Transform(source, rewritten);
-        var transformed = transformResult?.cardAdded ?? rewritten;
 
         if (poolWasRecorded)
             await AddPermanentCopyToDeck(player, transformed);
     }
 
-    private IEnumerable<CardModel> BuildRewriteOptions(Player player, ICombatState combatState, CardModel source)
+    private IEnumerable<(CardPoolModel Pool, CardModel[] Options)> BuildRewritePools(
+        Player player,
+        ICombatState combatState,
+        CardModel source)
     {
-        var ananlinPoolId = ModelDb.GetId(typeof(AnanlinCardPool));
-        var seenIds = new HashSet<ModelId>();
-
         foreach (var pool in player.UnlockState.CharacterCardPools
-                     .Where(pool => pool.Id != ananlinPoolId)
                      .OrderBy(pool => pool.Id.Entry))
         {
-            foreach (var template in pool
-                         .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
-                         .Where(template => IsRewriteTemplate(template, source))
-                         .OrderBy(template => template.Id.Entry))
-            {
-                if (!seenIds.Add(template.Id)) continue;
+            var options = BuildRewriteOptions(player, combatState, source, pool).ToArray();
+            if (options.Length > 0)
+                yield return (pool, options);
+        }
+    }
 
-                yield return combatState.CreateCard(template, player);
-            }
+    private static IEnumerable<CardModel> BuildRewriteOptions(
+        Player player,
+        ICombatState combatState,
+        CardModel source,
+        CardPoolModel pool)
+    {
+        var seenIds = new HashSet<ModelId>();
+
+        foreach (var template in pool
+                     .GetUnlockedCards(player.UnlockState, player.RunState.CardMultiplayerConstraint)
+                     .Where(template => IsRewriteTemplate(template, source))
+                     .OrderBy(template => template.Id.Entry))
+        {
+            if (!seenIds.Add(template.Id)) continue;
+
+            yield return combatState.CreateCard(template, player);
         }
     }
 

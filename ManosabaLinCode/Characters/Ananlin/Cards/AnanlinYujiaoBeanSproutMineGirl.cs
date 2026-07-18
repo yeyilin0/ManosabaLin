@@ -61,11 +61,11 @@ public sealed class AnanlinYujiaoBeanSproutMineGirl()
         HoverTipFactory.FromCard<AnanlinBombDisposalExpert>()
     ];
 
-    protected override (PileType, CardPilePosition) GetResultPileTypeAndPositionForCardPlayC()
+    protected override CardLocation GetResultLocationForCardPlayC()
     {
         return IsComplete
-            ? (PileType.Exhaust, CardPilePosition.Bottom)
-            : base.GetResultPileTypeAndPositionForCardPlayC();
+            ? new CardLocation(Owner, PileType.Exhaust, CardPilePosition.Bottom)
+            : base.GetResultLocationForCardPlayC();
     }
 
     protected override async Task OnPlay(

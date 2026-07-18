@@ -13,7 +13,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 [RegisterCard(typeof(SherrylinCardPool))]
-public sealed class RetainAmplify() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+public sealed class RetainAmplify() : ManosabaCardTemplate(3, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 {
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [..RetainCounterComponent.Tip, RemoveOnPlayComponent.Tip];
 

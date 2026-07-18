@@ -48,6 +48,9 @@ public sealed class FinalFarewell() : ManosabaCardTemplate(2, CardType.Power, Ca
             await PowerCmd.Remove(withPower);
 
         await PowerCmd.Apply<FinalFarewellPower>(choiceContext, Owner.Creature, 1, Owner.Creature, source);
+
+        if (IsUpgraded)
+            Owner.Creature.GetPower<FinalFarewellPower>()?.RecordStorm(80m);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

@@ -95,7 +95,6 @@ public sealed class AnanlinFourfoldMagicFinale()
         else
             AnanlinCardHelpers.CopyUpgradeLevel(source, copy);
 
-        copy.AddKeyword(CardKeyword.Exhaust);
         if (WasPlayedThisCombat(source))
             copy.SetFreeIgnoringCardPlayConditions();
 

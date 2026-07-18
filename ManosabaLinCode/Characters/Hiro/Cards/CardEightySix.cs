@@ -33,9 +33,10 @@ public class CardEightySix() : ManosabaCardTemplate(1, CardType.Attack, CardRari
         EnergyCost.UpgradeBy(-1);
     }
 
-    protected override PileType GetResultPileTypeForCardPlayC()
+    protected override CardLocation GetResultLocationForCardPlayC()
     {
-        return PileType.None;
+        var resultLocation = base.GetResultLocationForCardPlayC();
+        return new CardLocation(resultLocation.player, PileType.None, resultLocation.position);
     }
 
     protected override async Task OnPlayPhased(PlayerChoiceContext choiceContext, CardPlay cardPlay,

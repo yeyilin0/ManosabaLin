@@ -24,7 +24,7 @@ namespace ManosabaLin.Characters.Ema.Relics;
 [RegisterRelic(typeof(EmalinRelicPool))]
 [RegisterCharacterStarterRelic(typeof(Emalin.Emalin))]
 [RegisterTouchOfOrobasRefinement(typeof(Withema))]
-public sealed class EmaTrialBadge : ManosabaRelicTemplate
+public class EmaTrialBadge : ManosabaRelicTemplate
 {
     private int _agreeCount;
     private int _doubtCount;
@@ -139,7 +139,7 @@ public sealed class EmaTrialBadge : ManosabaRelicTemplate
         }
     }
 
-    private void EnchantAllTrialCards()
+    protected virtual void EnchantAllTrialCards()
     {
         var allCards = PileType.Draw.GetPile(Owner).Cards
             .Concat(PileType.Hand.GetPile(Owner).Cards)
@@ -163,7 +163,7 @@ public sealed class EmaTrialBadge : ManosabaRelicTemplate
             }
             catch (Exception ex)
             {
-                MainFile.Logger.Info($"[EmaTrialBadge] Skip {card.Id.Entry}: {ex.Message}");
+                MainFile.Logger.Info($"[{GetType().Name}] Skip {card.Id.Entry}: {ex.Message}");
             }
         }
 
@@ -171,7 +171,7 @@ public sealed class EmaTrialBadge : ManosabaRelicTemplate
         var componentPiles = new[] { PileType.Draw, PileType.Hand, PileType.Discard };
         var availableCards = componentPiles
             .SelectMany(p => p.GetPile(Owner).Cards)
-            .Where(c => c.Enchantment == null)
+            .Where(CanReceiveInitialTrialComponent)
             .Distinct()
             .ToList();
 
@@ -187,5 +187,10 @@ public sealed class EmaTrialBadge : ManosabaRelicTemplate
 
         if (Owner?.Creature != null)
             PowerCmd.Apply<BondPower>(null, Owner.Creature, 1m, Owner.Creature, null, false);
+    }
+
+    protected virtual bool CanReceiveInitialTrialComponent(CardModel card)
+    {
+        return card.Enchantment == null;
     }
 }

@@ -20,7 +20,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class Reviveritual : ManosabaCardTemplate
 {
-    public Reviveritual() : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
+    public Reviveritual() : base(2, CardType.Skill, CardRarity.Rare, TargetType.AnyPlayer) { }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
@@ -94,4 +94,5 @@ public sealed class Reviveritual : ManosabaCardTemplate
     {
         EnergyCost.UpgradeBy(-1);
     }
+
 }

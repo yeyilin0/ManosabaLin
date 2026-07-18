@@ -22,6 +22,14 @@ public sealed partial class RetainCounterComponent : KeywordLikeComponent
 
     public int Counter => _counter;
 
+    internal void IncrementCounter(int amount = 1)
+    {
+        if (amount <= 0) return;
+
+        _counter += amount;
+        ApplyCounterToStoredValues();
+    }
+
     protected override void OnAttach()
     {
         base.OnAttach();
@@ -60,9 +68,13 @@ public sealed partial class RetainCounterComponent : KeywordLikeComponent
         if (Card?.Owner != player) return;
         if (Card.Pile?.Type != PileType.Hand) return;
 
-        _counter++;
+        IncrementCounter();
+    }
 
-        if (!_stored) return;
+    private void ApplyCounterToStoredValues()
+    {
+        if (!_stored || Card == null) return;
+
         foreach (var entry in Card.DynamicVars)
         {
             if (_originalValues.TryGetValue(entry.Key, out var original) && original > 0)

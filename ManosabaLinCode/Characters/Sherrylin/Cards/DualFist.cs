@@ -31,5 +31,6 @@ public sealed class DualFist() : ManosabaCardTemplate(2, CardType.Power, CardRar
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
+        AddKeyword(CardKeyword.Retain);
     }
 }

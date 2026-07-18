@@ -41,7 +41,7 @@ public sealed class Xueqinjincard2 : ManosabaCardTemplate
         {
             typeof(SwapBodySuccess),
             typeof(GuardianOath),
-            typeof(SharedFate),
+            typeof(Sharedfate),
             typeof(DollGift),
             typeof(TheOnlyClue),
             typeof(SubstituteCost),

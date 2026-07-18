@@ -18,7 +18,12 @@ public sealed partial class RemoveOnPlayComponent : CardComponent
         new LocString("cards", "ManosabaLin.RemoveOnPlayComponent.hovertip.description"));
 
     public override IEnumerable<IHoverTip> HoverTips => [Tip];
-    public override PileType? GetResultPileTypeForCardPlay() => PileType.None;
+    public override CardLocation? GetResultLocationForCardPlay()
+    {
+        return Card is { Owner: { } owner }
+            ? new CardLocation(owner, PileType.None, CardPilePosition.Bottom)
+            : null;
+    }
 
     public override async Task OnPlayPostfix(PlayerChoiceContext choiceContext, CardPlay cardPlay,
         ComponentContext componentContext)

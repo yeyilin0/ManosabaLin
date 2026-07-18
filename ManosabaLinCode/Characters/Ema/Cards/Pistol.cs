@@ -21,7 +21,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class Pistol : ManosabaCardTemplate
 {
-    public Pistol() : base(2, CardType.Skill, CardRarity.Common, TargetType.Self) { }
+    public Pistol() : base(2, CardType.Skill, CardRarity.Common, TargetType.AnyPlayer) { }
 
     public override bool GainsBlock => true;
 
@@ -37,12 +37,7 @@ public sealed class Pistol : ManosabaCardTemplate
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var creature = Owner.Creature;
-        var allies = CombatState.Allies.Where(a => a is { IsAlive: true } && a != creature).ToList();
-
-        // 多人时选队友，单人默认自己
-        var target = allies.Count > 0
-            ? Owner.RunState.Rng.CombatTargets.NextItem(allies)
-            : creature;
+        var target = cardPlay.Target ?? creature;
 
         await PowerCmd.Apply<StrengthPower>(choiceContext, target, DynamicVars["TempStrength"].BaseValue, creature, this);
         await CreatureCmd.GainBlock(creature, DynamicVars.Block, cardPlay);

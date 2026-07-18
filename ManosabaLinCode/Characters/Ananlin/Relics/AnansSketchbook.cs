@@ -1,6 +1,9 @@
 using ManosabaLin.Characters.Ananlin.Cards;
 using ManosabaLin.Characters.Ananlin.Powers;
+using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Rewards;
@@ -12,10 +15,12 @@ namespace ManosabaLin.Characters.Ananlin.Relics;
 
 [RegisterRelic(typeof(AnanlinRelicPool))]
 [RegisterCharacterStarterRelic(typeof(Ananlin), Order = -10)]
-public sealed class AnansSketchbook : ManosabaRelicTemplate
+[RegisterTouchOfOrobasRefinement(typeof(BlessedObject))]
+public class AnansSketchbook : ManosabaRelicTemplate
 {
     internal const int MaxRecordedPools = 3;
     private const int AncientRewardChoices = 3;
+    private const string SketchbookLocEntry = "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK";
     private CardModel? _trackedCard;
     private decimal _trackedDamage;
     private decimal _trackedBlock;
@@ -39,6 +44,16 @@ public sealed class AnansSketchbook : ManosabaRelicTemplate
     public override RelicRarity Rarity => RelicRarity.Starter;
     public override bool ShowCounter => RecordedPoolEntries.Count > 0;
     public override int DisplayAmount => RecordedPoolEntries.Count;
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips
+    {
+        get
+        {
+            yield return new HoverTip(
+                new LocString("relics", $"{SketchbookLocEntry}.recordedPools.title"),
+                GetRecordedPoolsHoverTipDescription());
+        }
+    }
 
     internal IReadOnlyList<string> RecordedPoolEntries =>
         new[] { RecordedPool1, RecordedPool2, RecordedPool3 }
@@ -157,15 +172,21 @@ public sealed class AnansSketchbook : ManosabaRelicTemplate
         return Task.CompletedTask;
     }
 
-    public override async Task AfterRewardTaken(Player player, Reward reward)
+    public override Task AfterRewardTaken(Player player, Reward reward)
     {
-        if (player != Owner) return;
+        if (player != Owner) return Task.CompletedTask;
 
-        if (AnansSketchbookRewardTracker.TryRecordSelectedPool(reward, this))
-            InvokeDisplayAmountChanged();
+        AnansSketchbookRewardTracker.TryRecordSelectedPool(reward, this);
+        return Task.CompletedTask;
     }
 
-    internal async Task TriggerSilenceRewrite(PlayerChoiceContext choiceContext)
+    public override async Task AfterRemoved()
+    {
+        await base.AfterRemoved();
+        AnansSketchbookRefinementMemory.TryStore(this);
+    }
+
+    internal virtual async Task TriggerSilenceRewrite(PlayerChoiceContext choiceContext)
     {
         Flash();
         await AnanlinSilenceIntentManager.Trigger(choiceContext, Owner);
@@ -440,6 +461,7 @@ public sealed class AnansSketchbook : ManosabaRelicTemplate
         else if (string.IsNullOrWhiteSpace(RecordedPool3)) RecordedPool3 = entry;
         else return false;
 
+        InvokeDisplayAmountChanged();
         return true;
     }
 
@@ -448,7 +470,6 @@ public sealed class AnansSketchbook : ManosabaRelicTemplate
         if (!TryRecordPool(pool)) return false;
 
         Flash();
-        InvokeDisplayAmountChanged();
         return true;
     }
 
@@ -544,6 +565,38 @@ public sealed class AnansSketchbook : ManosabaRelicTemplate
         foreach (var entry in RecordedPoolEntries)
             if (ModelDb.GetByIdOrNull<CardPoolModel>(new ModelId("CARD_POOL", entry)) is { } pool)
                 yield return pool;
+    }
+
+    private string GetRecordedPoolsHoverTipDescription()
+    {
+        var description = new LocString("relics", $"{SketchbookLocEntry}.recordedPools.description");
+        description.Add("Count", RecordedPoolCount);
+        description.Add("Max", MaxRecordedPools);
+
+        var poolNames = GetRecordedPools()
+            .Select(GetCardPoolDisplayName)
+            .ToArray();
+
+        if (poolNames.Length == 0)
+            return description.GetFormattedText()
+                + "\n"
+                + new LocString("relics", $"{SketchbookLocEntry}.recordedPools.empty").GetFormattedText();
+
+        return description.GetFormattedText()
+            + "\n"
+            + string.Join("\n", poolNames.Select(static name => $"- {name}"));
+    }
+
+    private static string GetCardPoolDisplayName(CardPoolModel pool)
+    {
+        var character = ModelDb.AllCharacters.FirstOrDefault(character => character.CardPool.Id == pool.Id);
+        if (character is not null)
+            return character.Title.GetFormattedText();
+
+        if (LocString.Exists("characters", $"{pool.Title}.title"))
+            return new LocString("characters", $"{pool.Title}.title").GetFormattedText();
+
+        return pool.Title;
     }
 
     private static bool IsAttackIntent(MoveState? move)
@@ -727,5 +780,66 @@ internal static class AnansSketchbookRewardTracker
         var poolEntry = poolsByCardId[selectedCardId];
         var pool = ModelDb.GetByIdOrNull<CardPoolModel>(new ModelId("CARD_POOL", poolEntry));
         return pool is not null && sketchbook.TryRecordPool(pool);
+    }
+}
+
+internal static class AnansSketchbookRefinementMemory
+{
+    private static readonly Dictionary<Player, Snapshot> PendingSnapshots = [];
+
+    internal static void TryStore(AnansSketchbook sketchbook)
+    {
+        if (sketchbook.GetType() != typeof(AnansSketchbook)) return;
+        if (!IsTouchOfOrobasUpgradeToBlessedObject(sketchbook)) return;
+
+        PendingSnapshots[sketchbook.Owner] = Snapshot.From(sketchbook);
+    }
+
+    internal static bool TryRestore(BlessedObject blessedObject)
+    {
+        if (!PendingSnapshots.Remove(blessedObject.Owner, out var snapshot)) return false;
+
+        snapshot.ApplyTo(blessedObject);
+        return true;
+    }
+
+    private static bool IsTouchOfOrobasUpgradeToBlessedObject(AnansSketchbook sketchbook)
+    {
+        var blessedObjectId = ModelDb.GetId(typeof(BlessedObject));
+        return sketchbook.Owner.Relics
+            .OfType<TouchOfOrobas>()
+            .Any(orobas =>
+                (orobas.StarterRelic is null || orobas.StarterRelic == sketchbook.Id)
+                && (orobas.UpgradedRelic is null || orobas.UpgradedRelic == blessedObjectId));
+    }
+
+    private readonly record struct Snapshot(
+        string RecordedPool1,
+        string RecordedPool2,
+        string RecordedPool3,
+        int LastRecordRewardActIndex,
+        bool PeaceLostThisTurn,
+        int PendingNonAttackRepeatChargesThisTurn)
+    {
+        internal static Snapshot From(AnansSketchbook sketchbook)
+        {
+            return new Snapshot(
+                sketchbook.RecordedPool1,
+                sketchbook.RecordedPool2,
+                sketchbook.RecordedPool3,
+                sketchbook.LastRecordRewardActIndex,
+                sketchbook.PeaceLostThisTurn,
+                sketchbook.PendingNonAttackRepeatChargesThisTurn);
+        }
+
+        internal void ApplyTo(AnansSketchbook sketchbook)
+        {
+            sketchbook.RecordedPool1 = RecordedPool1;
+            sketchbook.RecordedPool2 = RecordedPool2;
+            sketchbook.RecordedPool3 = RecordedPool3;
+            sketchbook.LastRecordRewardActIndex = LastRecordRewardActIndex;
+            sketchbook.PeaceLostThisTurn = PeaceLostThisTurn;
+            sketchbook.PendingNonAttackRepeatChargesThisTurn = PendingNonAttackRepeatChargesThisTurn;
+        }
     }
 }

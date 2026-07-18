@@ -38,7 +38,7 @@ public sealed class BondSettlement : ManosabaCardTemplate
         typeof(Lyshuyuan),
         typeof(SwapBodySuccess),
         typeof(GuardianOath),
-        typeof(SharedFate),
+        typeof(Sharedfate),
         typeof(DollGift),
         typeof(TheOnlyClue),
         typeof(SubstituteCost),
@@ -54,7 +54,7 @@ public sealed class BondSettlement : ManosabaCardTemplate
     [
         typeof(SwapBodySuccess),
         typeof(GuardianOath),
-        typeof(SharedFate),
+        typeof(Sharedfate),
         typeof(DollGift),
         typeof(TheOnlyClue),
         typeof(SubstituteCost),
@@ -124,7 +124,7 @@ public sealed class BondSettlement : ManosabaCardTemplate
             {
                 Type t when t == typeof(SwapBodySuccess) => CombatState.CreateCard<SwapBodySuccess>(owner),
                 Type t when t == typeof(GuardianOath) => CombatState.CreateCard<GuardianOath>(owner),
-                Type t when t == typeof(SharedFate) => CombatState.CreateCard<SharedFate>(owner),
+                Type t when t == typeof(Sharedfate) => CombatState.CreateCard<Sharedfate>(owner),
                 Type t when t == typeof(DollGift) => CombatState.CreateCard<DollGift>(owner),
                 Type t when t == typeof(TheOnlyClue) => CombatState.CreateCard<TheOnlyClue>(owner),
                 Type t when t == typeof(SubstituteCost) => CombatState.CreateCard<SubstituteCost>(owner),

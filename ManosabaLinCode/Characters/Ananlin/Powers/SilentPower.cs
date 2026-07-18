@@ -13,6 +13,14 @@ public sealed class SilentPower : ManosabaPowerTemplate, IEasyRightClickablePowe
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
+    public bool CanHandleRightClickLocal(RightClickContext context)
+    {
+        return context.Model == this
+            && context.Player == Owner.Player
+            && Amount >= SilenceCost
+            && Owner.Player?.Relics.OfType<AnansSketchbook>().FirstOrDefault()?.CanTriggerSilenceRewrite() == true;
+    }
+
     public async Task OnRightClick(PlayerChoiceContext choiceContext, RightClickContext clickContext)
     {
         if (Amount < SilenceCost) return;

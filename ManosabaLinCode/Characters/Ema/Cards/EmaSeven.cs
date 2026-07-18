@@ -33,15 +33,15 @@ public sealed class EmaSeven() : ManosabaCardTemplate(1, CardType.Skill, CardRar
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
-        var target = cardPlay.Target ?? source.Owner.Creature;
+        var targetPlayer = (cardPlay.Target ?? source.Owner.Creature).Player ?? source.Owner;
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
         for (var i = 0; i < source.DynamicVars.Cards.IntValue; i++)
         {
-            var emaTenCard = source.CombatState.CreateCard<EmaTen>(target.Player);
+            var emaTenCard = source.CombatState.CreateCard<EmaTen>(targetPlayer);
             if (IsUpgraded) emaTenCard.UpgradeInternal();
-            await CardPileCmd.AddGeneratedCardToCombat(emaTenCard, PileType.Draw, target.Player);
+            await CardPileCmd.AddGeneratedCardToCombat(emaTenCard, PileType.Draw, targetPlayer);
             await Cmd.Wait(0.05f);
         }
     }

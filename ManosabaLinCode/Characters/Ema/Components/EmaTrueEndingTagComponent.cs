@@ -11,5 +11,10 @@ public sealed partial class EmaTrueEndingTagComponent : CardComponent
     private bool CanIncreaseAchieveCount => Card?.Owner.Creature.Powers.OfType<EmaTrueEndingPower>()
         .Any(p => !p.AchievedCards.Contains(Card.Id.Entry)) ?? false;
 
-    public override PileType? GetResultPileTypeForCardPlay() => PileType.None;
+    public override CardLocation? GetResultLocationForCardPlay()
+    {
+        return Card is { Owner: { } owner }
+            ? new CardLocation(owner, PileType.None, CardPilePosition.Bottom)
+            : null;
+    }
 }

@@ -1,5 +1,6 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
+using ManosabaLin.Characters.Sherrylin.Relics;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -25,9 +26,10 @@ public sealed class EmotionPower : ManosabaActionTemplate
     {
         _basicEmotionAddedCount++;
 
-        if (_basicEmotionAddedCount < 3) return;
+        var threshold = Owner.Player?.Relics.OfType<SherrylinsBird>().Any() == true ? 2 : 3;
+        if (_basicEmotionAddedCount < threshold) return;
 
-        _basicEmotionAddedCount -= 3;
+        _basicEmotionAddedCount -= threshold;
         await PowerCmd.Apply<EmotionFusionPower>(
             choiceContext, Owner, 1, Owner, null, false);
     }

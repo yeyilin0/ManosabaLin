@@ -19,9 +19,9 @@ using ManosabaLin.Characters.Common.Powers;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
-public sealed class SharedFate : ManosabaCardTemplate
+public sealed class Sharedfate : ManosabaCardTemplate
 {
-    public SharedFate() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
+    public Sharedfate() : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self) { }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

@@ -20,7 +20,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class Lyqinjin : ManosabaCardTemplate
 {
-    public Lyqinjin() : base(1, CardType.Attack, CardRarity.Common, TargetType.Self) { }
+    public Lyqinjin() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyPlayer) { }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -43,14 +43,14 @@ public sealed class Lyqinjin : ManosabaCardTemplate
         if (bond != null)
             bond.Affinity++;
 
-        // 确定目标：多人时选队友，单人默认自己
+        // 确定目标：多人时选择玩家，单人默认自己
         Creature targetAlly;
         if (cardPlay.Target != null)
             targetAlly = cardPlay.Target;
         else
             targetAlly = creature;
 
-        // 亲近 > 疏远时，帮队友减少的嫌疑为2层
+        // 亲近 > 疏远时，目标额外减少的嫌疑为2层
         var selfReduce = 1;
         var allyReduce = 1;
         if (bond != null && bond.Affinity > bond.Estrangement)

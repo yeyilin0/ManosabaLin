@@ -50,8 +50,9 @@ internal static class FusionStandManager
 
         var runSeed = RunManager.Instance?.DebugOnlyGetState()?.Rng.StringSeed ?? "0";
         var monsterId = ((AbstractModel)monster).Id.Entry;
-        var seed = MegaCrit.Sts2.Core.Helpers.StringHelper.GetDeterministicHashCode(
+        var hash = MegaCrit.Sts2.Core.Helpers.StringHelper.GetDeterministicHashCode(
             $"{runSeed}_{monsterId}_FUSION_STAND_T{turn}");
+        var seed = unchecked((int)(hash ^ (hash >> 32)));
 
         return standMoves[new Random(seed).Next(standMoves.Count)];
     }

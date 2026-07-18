@@ -39,7 +39,8 @@ public sealed class AnanlinBrainwashPower : ManosabaPowerTemplate, IEasyRightCli
 
     public bool CanHandleRightClickLocal(RightClickContext context)
     {
-        return context.Player == Owner.Player
+        return context.Model == this
+            && context.Player == Owner.Player
             && CanUseRightClick();
     }
 

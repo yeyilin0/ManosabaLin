@@ -46,7 +46,7 @@ public sealed class Emadeath : ManosabaCardTemplate
         typeof(Lyshuyuan),
         typeof(SwapBodySuccess),
         typeof(GuardianOath),
-        typeof(SharedFate),
+        typeof(Sharedfate),
         typeof(DollGift),
         typeof(TheOnlyClue),
         typeof(SubstituteCost),

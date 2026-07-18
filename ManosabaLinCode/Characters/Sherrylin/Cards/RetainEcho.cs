@@ -51,6 +51,6 @@ public sealed class RetainEcho() : ManosabaCardTemplate(1, CardType.Power, CardR
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars["RetainCounterPower"].UpgradeValueBy(1m);
+        EnergyCost.UpgradeBy(-1);
     }
 }
