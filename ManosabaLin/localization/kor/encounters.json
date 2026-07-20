@@ -1,8 +1,8 @@
 {
-  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.title": "난파",
-  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.loss": "{character}작성자: [gold]{encounter}[/gold]가 패배했습니다...",
-  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_BOSS_ENCOUNTER.title": "나노야카의 여동생",
-  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_BOSS_ENCOUNTER.loss": "{character}작성자: [gold]{encounter}[/gold]가 패배했습니다...",
-  "MANOSABA_LIN_ENCOUNTER_GUARD_THREE_ENCOUNTER.title": "한때 \"니카이도 히로\"라고 불렸던 것",
-  "MANOSABA_LIN_ENCOUNTER_GUARD_THREE_ENCOUNTER.loss": "{character}작성자: [gold]{encounter}[/gold]가 패배했습니다..."
+    "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.title":  "잔해",
+    "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.loss":  "{character}이(가) [gold]{encounter}[/gold]에게 패배했습니다...",
+    "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_BOSS_ENCOUNTER.title":  "나노카의 언니",
+    "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_BOSS_ENCOUNTER.loss":  "{character}이(가) [gold]{encounter}[/gold]에게 패배했습니다...",
+    "MANOSABA_LIN_ENCOUNTER_GUARD_THREE_ENCOUNTER.title":  "한때 「니카이도 히로」라 불렸던 것",
+    "MANOSABA_LIN_ENCOUNTER_GUARD_THREE_ENCOUNTER.loss":  "{character}이(가) [gold]{encounter}[/gold]에게 패배했습니다..."
 }
