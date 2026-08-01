@@ -7,7 +7,7 @@ public sealed class AnanlinPrisonIsHomePower : ManosabaPowerTemplate
     private bool _attackedThisTurn;
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Single;
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     internal void InitializeCurrentTurn(bool attackedThisTurn)

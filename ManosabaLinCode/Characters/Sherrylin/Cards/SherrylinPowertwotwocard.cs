@@ -15,7 +15,7 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class SherrylinPowertwotwocard() : ManosabaCardTemplate(2, CardType.Power, CardRarity.Rare, TargetType.Self)
 {
-    private const int RequiredWithAmount = 100;
+    private const int RequiredWithAmount = 50;
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {

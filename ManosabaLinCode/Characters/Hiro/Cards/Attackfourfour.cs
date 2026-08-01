@@ -24,7 +24,7 @@ public sealed class Attackfourfour() : ManosabaCardTemplate(2, CardType.Attack, 
         new[]
         {
             CardKeyword.Exhaust,
-            TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword()
+            TransmigrationRules.TransmigrationCardKeyword
         };
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips

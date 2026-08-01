@@ -5,7 +5,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Sherrylin.Powers;
@@ -29,12 +28,12 @@ public sealed class MindCostDrawPower : ManosabaPowerTemplate
 
         Flash();
 
-        var prefs = new CardSelectorPrefs(new LocString("MindCostDraw", "选择一张卡消耗"), 1);
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1);
         var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, hand, Owner.Player, prefs);
         var selectedList = selected.ToList();
         if (selectedList.Count == 0) return;
 
-        await CardPileCmd.RemoveFromCombat(selectedList[0]);
+        await CardCmd.Exhaust(choiceContext, selectedList[0]);
 
         await CardPileCmd.Draw(choiceContext, (int)Amount, Owner.Player);
     }

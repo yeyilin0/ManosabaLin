@@ -16,5 +16,10 @@
   "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.label": "\"Magical Girl No Witch Judge\" × Nora",
   "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.description": "Allow \"Magical Girl No Witch Judge\" x Nora to appear",
   "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.label": "\"Magical Girl No Witch Judge\"",
-  "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.description": "Allows \"Magical Girl No Witch Judge\" × \"Arikana\" to appear."
+  "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.description": "Allows \"Magical Girl No Witch Judge\" × \"Arikana\" to appear.",
+  "MANOSABALIN_TELEMETRY_NAME": "ManosabaLin",
+  "MANOSABALIN_TELEMETRY_USAGE": "Basic usage data",
+  "MANOSABALIN_TELEMETRY_MODS": "Mod list",
+  "MANOSABALIN_TELEMETRY_DIAGNOSTICS": "Diagnostics",
+  "MANOSABALIN_TELEMETRY_RUNS": "Run history"
 }

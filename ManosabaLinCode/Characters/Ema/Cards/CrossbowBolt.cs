@@ -24,7 +24,7 @@ public sealed class CrossbowBolt : ManosabaCardTemplate
     public CrossbowBolt() : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { EmalinKeywordRules.RebuttalKeywordId.GetModCardKeyword() };
+        new[] { EmalinKeywordRules.RebuttalCardKeyword };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move)];
 

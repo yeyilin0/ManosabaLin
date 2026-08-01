@@ -49,7 +49,7 @@ public sealed class Hirodeath : ManosabaCardTemplate
         var justiceToGive = justiceAmount / 2;
 
         // 统计自己的轮回关键词个数
-        var rebirthId = TransmigrationRules.TransmigrationKeywordId;
+        var rebirthId = TransmigrationRules.TransmigrationCardKeyword;
         var cycleCount = source.Owner.PlayerCombatState.AllCards
             .Count(c => c.HasModKeyword(rebirthId));
 

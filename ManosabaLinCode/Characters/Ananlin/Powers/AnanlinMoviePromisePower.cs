@@ -9,7 +9,7 @@ public sealed class AnanlinMoviePromisePower : ManosabaPowerTemplate
     private readonly List<PromiseEntry> _promises = [];
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.None;
     public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     internal void AddPromise(CardModel card)

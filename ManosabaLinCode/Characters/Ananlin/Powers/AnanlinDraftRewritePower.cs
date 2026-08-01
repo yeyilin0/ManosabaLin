@@ -22,7 +22,7 @@ public sealed class AnanlinDraftRewritePower : ManosabaPowerTemplate
             this)).FirstOrDefault();
         if (source is null) return;
 
-        var rewritePools = BuildRewritePools(player, combatState, source).ToArray();
+        var rewritePools = BuildRewritePools(player, source).ToArray();
         if (rewritePools.Length == 0) return;
 
         var selectedRewritePool = player.RunState.Rng.CombatCardSelection.NextItem(rewritePools);
@@ -38,9 +38,13 @@ public sealed class AnanlinDraftRewritePower : ManosabaPowerTemplate
                 new CardSelectorPrefs(new LocString("powers", $"{Id.Entry}.selectionScreenPrompt2"), 1, 1))).FirstOrDefault();
         if (rewritten is null) return;
 
+        var canonical = rewritten.CanonicalInstance ?? ModelDb.GetById<CardModel>(rewritten.Id);
+        if (canonical is null) return;
+
         Flash();
-        var transformResult = await CardCmd.Transform(source, rewritten);
-        var transformed = transformResult?.cardAdded ?? rewritten;
+        var replacement = combatState.CreateCard(canonical, player);
+        var transformResult = await CardCmd.Transform(source, replacement);
+        var transformed = transformResult?.cardAdded ?? replacement;
 
         var sketchbook = player.Relics.OfType<AnansSketchbook>().FirstOrDefault();
         var poolWasRecorded = sketchbook is not null
@@ -52,13 +56,12 @@ public sealed class AnanlinDraftRewritePower : ManosabaPowerTemplate
 
     private IEnumerable<(CardPoolModel Pool, CardModel[] Options)> BuildRewritePools(
         Player player,
-        ICombatState combatState,
         CardModel source)
     {
         foreach (var pool in player.UnlockState.CharacterCardPools
                      .OrderBy(pool => pool.Id.Entry))
         {
-            var options = BuildRewriteOptions(player, combatState, source, pool).ToArray();
+            var options = BuildRewriteOptions(player, source, pool).ToArray();
             if (options.Length > 0)
                 yield return (pool, options);
         }
@@ -66,7 +69,6 @@ public sealed class AnanlinDraftRewritePower : ManosabaPowerTemplate
 
     private static IEnumerable<CardModel> BuildRewriteOptions(
         Player player,
-        ICombatState combatState,
         CardModel source,
         CardPoolModel pool)
     {
@@ -79,7 +81,10 @@ public sealed class AnanlinDraftRewritePower : ManosabaPowerTemplate
         {
             if (!seenIds.Add(template.Id)) continue;
 
-            yield return combatState.CreateCard(template, player);
+            // Preview options must not enter CombatState; only the chosen card is created for the transform.
+            var option = template.ToMutable();
+            option.Owner = player;
+            yield return option;
         }
     }
 

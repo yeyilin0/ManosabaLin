@@ -47,7 +47,7 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
         var withAmt = with?.Amount ?? 0;
 
         var handCards = PileType.Hand.GetPile(owner).Cards.Where(c => c != source).ToList();
-        var rebirthCards = handCards.Where(c => c.HasModKeyword(TransmigrationRules.TransmigrationKeywordId)).ToList();
+        var rebirthCards = handCards.Where(c => c.HasModKeyword(TransmigrationRules.TransmigrationCardKeyword)).ToList();
 
         if (rebirthCards.Count > 0)
         {
@@ -63,7 +63,7 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
                 {
                     var randomId = owner.RunState.Rng.Shuffle.NextItem(pool);
                     var generated = CombatState.CreateCard(randomId, owner);
-                    generated.AddModKeyword(TransmigrationRules.TransmigrationKeywordId);
+                    generated.AddModKeyword(TransmigrationRules.TransmigrationCardKeyword);
                     await CardPileCmd.AddGeneratedCardToCombat(generated, PileType.Hand, owner, CardPilePosition.Bottom);
                 }
 
@@ -120,7 +120,7 @@ public sealed class JusticeEnforcer() : ManosabaCardTemplate(3, CardType.Power, 
             if (justiceAmt >= 10)
             {
                 foreach (var card in handCards)
-                    card.AddModKeyword(TransmigrationRules.TransmigrationKeywordId);
+                    card.AddModKeyword(TransmigrationRules.TransmigrationCardKeyword);
             }
         }
 

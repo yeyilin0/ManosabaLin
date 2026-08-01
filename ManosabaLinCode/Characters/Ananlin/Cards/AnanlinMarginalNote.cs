@@ -25,11 +25,8 @@ public sealed class AnanlinMarginalNote() : ManosabaCardTemplate(1, CardType.Ski
             new CardSelectorPrefs(SelectionScreenPrompt, 1, 1))).FirstOrDefault();
         if (selected is null) return;
 
-        var blankPage = CombatState.CreateCard<BlankPage>(Owner);
-        if (IsUpgraded)
-            CardCmd.Upgrade(blankPage);
-
-        await CardCmd.Transform(selected, blankPage);
+        var page = this.CreateBlankPageOrBlessedReplacement(IsUpgraded);
+        await CardCmd.Transform(selected, page);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

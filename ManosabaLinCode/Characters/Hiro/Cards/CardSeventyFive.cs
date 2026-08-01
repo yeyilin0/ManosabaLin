@@ -21,7 +21,7 @@ public sealed class CardSeventyFive : ManosabaCardTemplate
     }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        [TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword()];
+        [TransmigrationRules.TransmigrationCardKeyword];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

@@ -66,19 +66,30 @@ public sealed class Externalinformation : ManosabaRelicTemplate
             RequireManualConfirmation = true
         };
 
-        var selection = await CardSelectCmd.FromDeckForUpgrade(Owner, prefs);
-        var cards = selection.ToList();
+        if (!PileType.Deck.GetPile(Owner).Cards.Any(static card => card.IsUpgradable))
+            return;
 
-        if (cards.Count == 0) return;
+        await choiceContext.SignalPlayerChoiceBegun(Owner, MegaCrit.Sts2.Core.Entities.Multiplayer.PlayerChoiceOptions.None);
+        try
+        {
+            var selection = await CardSelectCmd.FromDeckForUpgrade(Owner, prefs);
+            var cards = selection.ToList();
 
-        foreach (var card in cards)
-            CardCmd.Upgrade(card, CardPreviewStyle.None);
+            if (cards.Count == 0) return;
 
-        // 每升一张扣 2 点最大生命值
-        await CreatureCmd.LoseMaxHp(
-            new BlockingPlayerChoiceContext(),
-            Owner.Creature,
-            MaxHpLossPerCard * cards.Count,
-            false);
+            foreach (var card in cards)
+                CardCmd.Upgrade(card, CardPreviewStyle.None);
+
+            // Lose 2 max HP per upgraded card.
+            await CreatureCmd.LoseMaxHp(
+                choiceContext,
+                Owner.Creature,
+                MaxHpLossPerCard * cards.Count,
+                false);
+        }
+        finally
+        {
+            await choiceContext.SignalPlayerChoiceEnded();
+        }
     }
 }

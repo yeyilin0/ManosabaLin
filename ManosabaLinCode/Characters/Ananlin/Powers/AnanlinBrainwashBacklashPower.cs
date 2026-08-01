@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Ananlin.Cards;
+using ManosabaLin.Characters.Ananlin.Relics;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace ManosabaLin.Characters.Ananlin.Powers;
@@ -144,8 +145,12 @@ public sealed class AnanlinBrainwashBacklashPower : ManosabaPowerTemplate
         if (Owner.Player is not { } player) return;
         if (Owner.CombatState is not { } combatState) return;
 
-        var blankPage = combatState.CreateCard<BlankPage>(player);
-        await CardPileCmd.AddGeneratedCardToCombat(blankPage, PileType.Draw, player, CardPilePosition.Random);
+        var blessedObject = player.Relics.OfType<BlessedObject>().FirstOrDefault();
+        var page = blessedObject is not null
+            ? blessedObject.CreateBlankPageOrReplacement(combatState, upgraded: false, player)
+            : combatState.CreateCard<BlankPage>(player);
+
+        await CardPileCmd.AddGeneratedCardToCombat(page, PileType.Draw, player, CardPilePosition.Random);
     }
 
     private async Task TaxSilenceGained(PlayerChoiceContext choiceContext, int gainedSilence)

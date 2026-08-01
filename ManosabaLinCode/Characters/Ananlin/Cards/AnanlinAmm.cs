@@ -1,5 +1,5 @@
 using MinionLib.Component.Core;
-﻿using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Ananlin;
 using MegaCrit.Sts2.Core.Commands;
@@ -16,13 +16,7 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 [RegisterCard(typeof(AnanlinCardPool))]
 public sealed class AnanlinAmm() : ManosabaCardTemplate(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
-        new DamageVar(8m, ValueProp.Move),
-        new PowerVar<AmmPower>(1m),
-        new PowerVar<SuspectPower>(1m),
-        new PowerVar<WithPower>(10m)
-    };
+    protected override IEnumerable<DynamicVar> CanonicalVars => AmmCardMath.CreateVars();
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -42,15 +36,7 @@ public sealed class AnanlinAmm() : ManosabaCardTemplate(3, CardType.Attack, Card
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        var suspect = source.Owner.Creature.GetPower<SuspectPower>();
-        var suspectAmt = suspect?.Amount ?? 0;
-
-        var with = source.Owner.Creature.GetPower<WithPower>();
-        var withAmt = with?.Amount ?? 0;
-
-        var totalDamage = source.DynamicVars.Damage.BaseValue + suspectAmt + (int)(withAmt / 20);
-
-        await DamageCmd.Attack(totalDamage)
+        await DamageCmd.Attack(source.DynamicVars.CalculatedDamage)
             .FromCard(source, cardPlay)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
@@ -71,6 +57,6 @@ public sealed class AnanlinAmm() : ManosabaCardTemplate(3, CardType.Attack, Card
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars.Damage.UpgradeValueBy(4m);
+        DynamicVars.CalculationBase.UpgradeValueBy(4m);
     }
 }

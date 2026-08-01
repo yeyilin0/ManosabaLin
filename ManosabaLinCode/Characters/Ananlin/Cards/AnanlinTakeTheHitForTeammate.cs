@@ -61,7 +61,7 @@ public sealed class AnanlinTakeTheHitForTeammate()
         var hitCount = blockedResults.Length;
         if (hitCount <= 0) return;
 
-        monster.SetMoveImmediate(CreateOneDamageMove(monster, hitCount), forceTransition: true);
+        monster.SetMoveImmediate(CreateOneDamageMove(monster, monster.NextMove, hitCount), forceTransition: true);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
@@ -88,7 +88,7 @@ public sealed class AnanlinTakeTheHitForTeammate()
             .OfType<DamageReceivedEntry>();
     }
 
-    private MoveState CreateOneDamageMove(MonsterModel monster, int hitCount)
+    private MoveState CreateOneDamageMove(MonsterModel monster, MoveState followUpSource, int hitCount)
     {
         return new MoveState(
             $"MANOSABA_LIN_ANANLIN_TAKE_THE_HIT_{hitCount}",
@@ -99,6 +99,13 @@ public sealed class AnanlinTakeTheHitForTeammate()
                     .WithHitCount(hitCount)
                     .Execute(null);
             },
-            new MultiAttackIntent((int)DynamicVars[IntentDamageKey].BaseValue, hitCount));
+            new MultiAttackIntent((int)DynamicVars[IntentDamageKey].BaseValue, hitCount))
+        {
+            FollowUpState = followUpSource.FollowUpState,
+            FollowUpStateId = followUpSource.FollowUpStateId
+                ?? followUpSource.FollowUpState?.Id
+                ?? monster.MoveStateMachine?.StateLog.LastOrDefault()?.Id,
+            MustPerformOnceBeforeTransitioning = true
+        };
     }
 }

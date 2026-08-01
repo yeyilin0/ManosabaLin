@@ -11,7 +11,7 @@ public sealed class AnanlinDeletedStressPower : ManosabaPowerTemplate
     }
 
     public override PowerType Type => PowerType.Debuff;
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.None;
 
     protected override object InitInternalData()
     {

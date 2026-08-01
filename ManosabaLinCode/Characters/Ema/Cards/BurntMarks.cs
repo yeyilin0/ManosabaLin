@@ -20,7 +20,7 @@ public sealed class BurntMarks : ManosabaCardTemplate
     public BurntMarks() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) { }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { EmalinKeywordRules.RebuttalKeywordId.GetModCardKeyword() };
+        new[] { EmalinKeywordRules.RebuttalCardKeyword };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

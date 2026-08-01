@@ -9,7 +9,7 @@ namespace ManosabaLin.Characters.Ananlin.Powers;
 [RegisterPower]
 public sealed class AnanlinBackstageResentmentPower : ManosabaPowerTemplate
 {
-    private const int SilenceCost = 13;
+    private const int InitialSilenceCost = 13;
 
     private enum AuditionEffect
     {
@@ -20,19 +20,42 @@ public sealed class AnanlinBackstageResentmentPower : ManosabaPowerTemplate
     }
 
     [SavedProperty] public bool FirstAuditionEffectTriggersAgain { get; set; }
+    [SavedProperty] public int RequiredSilenceCost { get; set; }
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Single;
+    public override int DisplayAmount
+    {
+        get
+        {
+            RefreshRequiredSilenceCostVars();
+            return CurrentRequiredSilenceCost;
+        }
+    }
+
+    public override LocString Description
+    {
+        get
+        {
+            var description = base.Description;
+            description.Add(new IntVar("RequiredSilenceCost", CurrentRequiredSilenceCost));
+            description.Add(new IntVar("SilenceCostIncrease", AnanlinBrainwashBacklashPower.BrainwashSilenceCostIncrease));
+            return description;
+        }
+    }
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new IntVar("SilenceCost", SilenceCost)
+        new IntVar("RequiredSilenceCost", InitialSilenceCost),
+        new IntVar("SilenceCostIncrease", AnanlinBrainwashBacklashPower.BrainwashSilenceCostIncrease)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     [
         HoverTipFactory.FromPower<AnanlinPeaceOfMindPower>(),
         HoverTipFactory.FromPower<SilentPower>(),
+        HoverTipFactory.FromPower<AnanlinBrainwashPower>(),
+        HoverTipFactory.FromPower<AnanlinBrainwashBacklashPower>(),
         HoverTipFactory.FromCard<BlankPage>(),
         HoverTipFactory.FromCard<MarginPage>()
     ];
@@ -116,8 +139,11 @@ public sealed class AnanlinBackstageResentmentPower : ManosabaPowerTemplate
         if (Owner.Player is not { } player) return;
         if (Owner.CombatState is not { } combatState) return;
 
-        var page = combatState.CreateCard<BlankPage>(player);
-        if (upgraded)
+        var blessedObject = player.Relics.OfType<BlessedObject>().FirstOrDefault();
+        var page = blessedObject is not null
+            ? blessedObject.CreateBlankPageOrReplacement(combatState, upgraded, player)
+            : combatState.CreateCard<BlankPage>(player);
+        if (blessedObject is null && upgraded)
             CardCmd.Upgrade(page);
 
         await CardPileCmd.AddGeneratedCardToCombat(page, PileType.Hand, player);
@@ -127,21 +153,46 @@ public sealed class AnanlinBackstageResentmentPower : ManosabaPowerTemplate
     {
         if (Owner.Player is not { } player) return;
 
+        var silenceCost = CurrentRequiredSilenceCost;
         var sketchbook = player.Relics.OfType<AnansSketchbook>().FirstOrDefault();
-        if (sketchbook is null || !sketchbook.CanTriggerSilenceRewrite() || sketchbook.CurrentSilence < SilenceCost)
+        if (sketchbook is null
+            || sketchbook.CurrentSilence < silenceCost
+            || !AnanlinSilenceIntentManager.CanForceBrainwash(player))
         {
             await AddBlankPage(upgraded: false);
             return;
         }
 
-        var spent = await sketchbook.SpendSilence(choiceContext, SilenceCost, null);
-        if (spent < SilenceCost)
+        var rewritten = await AnanlinSilenceIntentManager.ForceBrainwash(
+            choiceContext,
+            player,
+            async () => await sketchbook.SpendSilence(choiceContext, silenceCost, null) >= silenceCost);
+        if (!rewritten)
         {
             await AddBlankPage(upgraded: false);
             return;
         }
 
-        await sketchbook.TriggerSilenceRewrite(choiceContext);
+        IncreaseRequiredSilenceCost();
+    }
+
+    private int CurrentRequiredSilenceCost =>
+        IsCanonical ? InitialSilenceCost : Math.Max(InitialSilenceCost, RequiredSilenceCost);
+
+    private void IncreaseRequiredSilenceCost()
+    {
+        RequiredSilenceCost = CurrentRequiredSilenceCost + AnanlinBrainwashBacklashPower.BrainwashSilenceCostIncrease;
+        RefreshRequiredSilenceCostVars();
+        InvokeDisplayAmountChanged();
+    }
+
+    private void RefreshRequiredSilenceCostVars()
+    {
+        if (DynamicVars.TryGetValue("RequiredSilenceCost", out var requiredSilenceCost))
+            requiredSilenceCost.BaseValue = CurrentRequiredSilenceCost;
+
+        if (DynamicVars.TryGetValue("SilenceCostIncrease", out var silenceCostIncrease))
+            silenceCostIncrease.BaseValue = AnanlinBrainwashBacklashPower.BrainwashSilenceCostIncrease;
     }
 
     private async Task DrawAndMarkCard(PlayerChoiceContext choiceContext)

@@ -24,7 +24,7 @@ public sealed class BloodyHeadband : ManosabaCardTemplate
     public override bool GainsBlock => true;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { EmalinKeywordRules.AgreeKeywordId.GetModCardKeyword() };
+        new[] { EmalinKeywordRules.AgreeCardKeyword };
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [

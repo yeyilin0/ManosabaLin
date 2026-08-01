@@ -14,6 +14,10 @@ public abstract class ManosabaCardTemplate(
     bool shouldShowInCardLibrary = true)
     : ModComponentsCardTemplate(energyCost, type, rarity, targetType, shouldShowInCardLibrary)
 {
+    public override bool CanBeGeneratedInCombat => Rarity != CardRarity.Token && base.CanBeGeneratedInCombat;
+
+    public override bool CanBeGeneratedByModifiers => Rarity != CardRarity.Token && base.CanBeGeneratedByModifiers;
+
     public override CardAssetProfile AssetProfile
     {
         get

@@ -1,12 +1,15 @@
 using ManosabaLin.Characters.Ananlin.Relics;
 using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Runs;
+using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
-public sealed class BlankPage() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Token, TargetType.Self, false)
+public sealed class BlankPage() : AnanlinNonRandomCardTemplate(0, CardType.Skill, CardRarity.Token, TargetType.Self, false)
 {
+    [SavedProperty] public bool BlessedObjectReplacementResolved { get; set; }
+
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
         get { yield return CardKeyword.Exhaust; }

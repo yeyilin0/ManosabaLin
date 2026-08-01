@@ -32,7 +32,7 @@ public sealed class CardSixtyFourPower : ManosabaPowerTemplate
             return;
 
         // 直接使用 HasModKeyword 检查轮回关键词
-        if (!cardPlay.Card.HasModKeyword(TransmigrationRules.TransmigrationKeywordId))
+        if (!cardPlay.Card.HasModKeyword(TransmigrationRules.TransmigrationCardKeyword))
             return;
 
         source.Flash();

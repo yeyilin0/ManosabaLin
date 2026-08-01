@@ -22,7 +22,7 @@ public sealed class NyxGun : ManosabaCardTemplate
     public NyxGun() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { EmalinKeywordRules.RebuttalKeywordId.GetModCardKeyword() };
+        new[] { EmalinKeywordRules.RebuttalCardKeyword };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(15m, ValueProp.Move)];
 

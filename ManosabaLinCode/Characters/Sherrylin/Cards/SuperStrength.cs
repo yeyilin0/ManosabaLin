@@ -39,5 +39,6 @@ public sealed class SuperStrength() : ManosabaCardTemplate(3, CardType.Power, Ca
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         AddKeyword(CardKeyword.Innate);
+        EnergyCost.UpgradeBy(-1);
     }
 }

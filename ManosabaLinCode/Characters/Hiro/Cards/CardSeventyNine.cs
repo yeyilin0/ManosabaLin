@@ -27,7 +27,7 @@ public sealed class CardSeventyNine() : ManosabaCardTemplate(1, CardType.Skill, 
     };
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword() };
+        new[] { TransmigrationRules.TransmigrationCardKeyword };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
@@ -39,7 +39,7 @@ public sealed class CardSeventyNine() : ManosabaCardTemplate(1, CardType.Skill, 
 
         var removeCount = source.DynamicVars[RemoveCountKey].IntValue;
         var grantCount = source.DynamicVars[GrantCountKey].IntValue;
-        var rebirthId = TransmigrationRules.TransmigrationKeywordId;
+        var rebirthId = TransmigrationRules.TransmigrationCardKeyword;
 
         // 1. 选择要失去"轮回"的牌
         var cardsToRemove = await CardSelectCmd.FromHand(

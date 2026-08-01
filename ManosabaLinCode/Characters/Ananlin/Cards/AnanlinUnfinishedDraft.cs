@@ -1,6 +1,7 @@
 using ManosabaLin.Characters.Ananlin.Relics;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.ManosabaLinCode.Characters.Hiro.Powers;
+using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace ManosabaLin.Characters.Ananlin.Cards;
@@ -10,10 +11,15 @@ public sealed class AnanlinUnfinishedDraft()
     : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     private const int RequiredMagicCount = 10;
+    private const int PlaysPerPermanentUpgrade = 3;
     private const string RecordedMagicKey = "RecordedMagic";
     private const string RequiredMagicKey = "RequiredMagic";
+    private const string PlayProgressKey = "PlayProgress";
+    private const string PlayRequirementKey = "PlayRequirement";
 
     private int _recordedMagicMask;
+    private int _playProgress;
+    private bool _suppressMagicRecordOnNextUpgrade;
 
     private enum DraftMagic
     {
@@ -44,6 +50,17 @@ public sealed class AnanlinUnfinishedDraft()
         }
     }
 
+    [SavedProperty]
+    public int PlayProgress
+    {
+        get => _playProgress;
+        set
+        {
+            _playProgress = Math.Max(0, value);
+            RefreshPlayProgressVar();
+        }
+    }
+
     private int RecordedMagicCount => CountRecordedMagic();
     private bool IsComplete => RecordedMagicCount >= RequiredMagicCount;
 
@@ -51,7 +68,9 @@ public sealed class AnanlinUnfinishedDraft()
     [
         new DamageVar(6m, ValueProp.Move),
         new IntVar(RecordedMagicKey, RecordedMagicCount),
-        new IntVar(RequiredMagicKey, RequiredMagicCount)
+        new IntVar(RequiredMagicKey, RequiredMagicCount),
+        new IntVar(PlayProgressKey, PlayProgress),
+        new IntVar(PlayRequirementKey, PlaysPerPermanentUpgrade)
     ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
@@ -86,7 +105,9 @@ public sealed class AnanlinUnfinishedDraft()
         foreach (var magic in GetRecordedMagics())
             await ApplyMagic(choiceContext, magic, target);
 
-        if (IsComplete)
+        var wasComplete = IsComplete;
+        AdvancePermanentUpgradeProgress();
+        if (wasComplete)
             await CreateFinishedDraft();
     }
 
@@ -184,10 +205,61 @@ public sealed class AnanlinUnfinishedDraft()
             recordedMagicVar.BaseValue = RecordedMagicCount;
     }
 
+    private void RefreshPlayProgressVar()
+    {
+        if (DynamicVars.TryGetValue(PlayProgressKey, out var playProgressVar))
+            playProgressVar.BaseValue = PlayProgress;
+    }
+
+    private void AdvancePermanentUpgradeProgress()
+    {
+        var deckVersion = DeckVersion as AnanlinUnfinishedDraft;
+        var progressCard = deckVersion ?? this;
+        progressCard.PlayProgress++;
+
+        if (progressCard.PlayProgress >= PlaysPerPermanentUpgrade)
+        {
+            progressCard.PlayProgress = 0;
+            PermanentlyUpgradeSelf(deckVersion);
+        }
+
+        if (!ReferenceEquals(progressCard, this))
+            PlayProgress = progressCard.PlayProgress;
+    }
+
+    private void PermanentlyUpgradeSelf(AnanlinUnfinishedDraft? deckVersion)
+    {
+        if (deckVersion is null)
+        {
+            CardCmd.Upgrade(this, CardPreviewStyle.None);
+            return;
+        }
+
+        if (!deckVersion.IsUpgradable)
+            return;
+
+        CardCmd.Upgrade(deckVersion, CardPreviewStyle.None);
+        if (!IsUpgradable)
+            return;
+
+        _suppressMagicRecordOnNextUpgrade = true;
+        try
+        {
+            UpgradeInternal();
+            FinalizeUpgradeInternal();
+        }
+        finally
+        {
+            _suppressMagicRecordOnNextUpgrade = false;
+        }
+
+        RecordedMagicMask = deckVersion.RecordedMagicMask;
+    }
+
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         DynamicVars.Damage.UpgradeValueBy(1m);
-        if (Owner != null)
+        if (!_suppressMagicRecordOnNextUpgrade && Owner != null)
             RecordRandomNewMagic();
     }
 }

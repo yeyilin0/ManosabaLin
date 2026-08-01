@@ -37,8 +37,8 @@ public sealed class AnanTestConsoleCommand : AbstractConsoleCmd
         typeof(AnanlinMarginalNote),
         typeof(AnanlinBorrowingPeriod),
         typeof(AnanlinCrossReference),
-        typeof(AnanlinCompleteCharacter),
-        typeof(AnanlinSpecifiedGenre),
+        typeof(AnanlinMiliaAssist),
+        typeof(AnanlinNoahAssist),
         typeof(AnanlinTrialReading),
         typeof(AnanlinSpreadProofreading),
         typeof(AnanlinTemporaryBorrowing)

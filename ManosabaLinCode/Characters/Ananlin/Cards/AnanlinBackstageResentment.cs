@@ -20,6 +20,8 @@ public sealed class AnanlinBackstageResentment()
     [
         HoverTipFactory.FromPower<AnanlinPeaceOfMindPower>(),
         HoverTipFactory.FromPower<SilentPower>(),
+        HoverTipFactory.FromPower<AnanlinBrainwashPower>(),
+        HoverTipFactory.FromPower<AnanlinBrainwashBacklashPower>(),
         HoverTipFactory.FromCard<BlankPage>(),
         HoverTipFactory.FromCard<MarginPage>()
     ];

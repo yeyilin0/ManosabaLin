@@ -1,14 +1,12 @@
-using STS2RitsuLib.Interop.AutoRegistration;
-using MegaCrit.Sts2.Core.Combat;
+using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
-using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.ValueProps;
-using System.Threading.Tasks;
-using ManosabaLin.Characters.Common;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
+using STS2RitsuLib.Interop.AutoRegistration;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -19,6 +17,7 @@ public class NymPower : ManosabaPowerTemplate
     public override PowerStackType StackType => PowerStackType.Counter;
 
     private bool _isProcessing;
+    private readonly HashSet<CardModel> _cardSourcesPendingDecrement = [];
 
     public override async Task AfterDamageReceived(
         PlayerChoiceContext choiceContext,
@@ -29,19 +28,41 @@ public class NymPower : ManosabaPowerTemplate
         CardModel? cardSource)
     {
         if (target != Owner) return;
+        if (!props.IsPoweredAttack()) return;
         if (result.TotalDamage <= 0) return;
-        if (_isProcessing) return; // 防止无限循环
+        if (_isProcessing) return;
 
         Flash();
-
         _isProcessing = true;
+        try
+        {
+            await CreatureCmd.Damage(
+                choiceContext,
+                Owner,
+                result.TotalDamage,
+                ValueProp.Unblockable | ValueProp.Unpowered,
+                dealer,
+                cardSource,
+                null);
+        }
+        finally
+        {
+            _isProcessing = false;
+        }
 
-        // 再受到一次等于伤害数值的伤害（不受格挡、不受力量影响）
-        await CreatureCmd.Damage(choiceContext, Owner, result.TotalDamage, ValueProp.Unblockable | ValueProp.Unpowered, cardSource, null);
+        if (cardSource is null)
+        {
+            await PowerCmd.Decrement(this);
+            return;
+        }
 
-        _isProcessing = false;
+        _cardSourcesPendingDecrement.Add(cardSource);
+    }
 
-        // 清除一层
+    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        if (!_cardSourcesPendingDecrement.Remove(cardPlay.Card)) return;
+
         await PowerCmd.Decrement(this);
     }
 }

@@ -60,13 +60,6 @@ public sealed class AnanlinSaveLoad()
         base.IsPlayableC
         && (GetStoredCanonicalCard() is not null || HasRecordableExhaustCardInHand());
 
-    protected override CardLocation GetResultLocationForCardPlayC()
-    {
-        return HasStoredCard
-            ? base.GetResultLocationForCardPlayC()
-            : new CardLocation(Owner, PileType.Hand, CardPilePosition.Bottom);
-    }
-
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay cardPlay,
@@ -84,6 +77,7 @@ public sealed class AnanlinSaveLoad()
         if (!HasStoredCard)
         {
             await StoreExhaustCard(choiceContext);
+            await CardPileCmd.Add(this, PileType.Hand, CardPilePosition.Bottom);
             return;
         }
 

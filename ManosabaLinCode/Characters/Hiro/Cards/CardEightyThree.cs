@@ -29,7 +29,7 @@ public class CardEightyThree : ManosabaCardTemplate
     };
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword() };
+        new[] { TransmigrationRules.TransmigrationCardKeyword };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
@@ -52,14 +52,9 @@ public class CardEightyThree : ManosabaCardTemplate
         var drawCount = source.DynamicVars[DrawCountKey].IntValue;
 
         // 从抽牌堆中找出所有带轮回的卡
-        List<CardModel> rebirthCards = new();
-        foreach (var c in PileType.Draw.GetPile(owner).Cards)
-        foreach (var kw in c.Keywords)
-            if (kw.ToString() == TransmigrationRules.TransmigrationKeywordId)
-            {
-                rebirthCards.Add(c);
-                break;
-            }
+        var rebirthCards = PileType.Draw.GetPile(owner).Cards
+            .Where(TransmigrationRules.HasTransmigration)
+            .ToList();
 
         // 随机抽取指定数量
         var actualDraw = Math.Min(drawCount, rebirthCards.Count);

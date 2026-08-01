@@ -20,7 +20,7 @@ public sealed class CardSeventySix : ManosabaCardTemplate
     }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        [TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword()];
+        [TransmigrationRules.TransmigrationCardKeyword];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

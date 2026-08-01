@@ -23,6 +23,22 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class Xueqinjincard1 : ManosabaCardTemplate
 {
+    internal static readonly Type[] RandomEstrangementCardTypes =
+    [
+        typeof(BalloonFragments),
+        typeof(StabbingBlade),
+        typeof(ShatteredResonance),
+        typeof(WitchCleansing),
+        typeof(ChainedTrust),
+        typeof(PawnRealization),
+        typeof(NoahEstrangement),
+        typeof(MargaretEstrangement),
+        typeof(CocoEstrangement),
+        typeof(AnnEstrangement),
+        typeof(Hiroshuyuancard),
+        typeof(Lyshuyuan),
+    ];
+
     public Xueqinjincard1() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy) { }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
@@ -69,24 +85,8 @@ public sealed class Xueqinjincard1 : ManosabaCardTemplate
         var picked = selected.FirstOrDefault();
         if (picked == null) return;
 
-        var estrangementCards = new[]
-        {
-            typeof(BalloonFragments),
-            typeof(StabbingBlade),
-            typeof(ShatteredResonance),
-            typeof(WitchCleansing),
-            typeof(ChainedTrust),
-            typeof(PawnRealization),
-            typeof(NoahEstrangement),
-            typeof(MargaretEstrangement),
-            typeof(CocoEstrangement),
-            typeof(AnnEstrangement),
-            typeof(Hiroshuyuancard),
-            typeof(Lyshuyuan),
-        };
-
         var rng = owner.RunState.Rng.CombatCardSelection;
-        var chosenType = rng.NextItem(estrangementCards);
+        var chosenType = rng.NextItem(RandomEstrangementCardTypes);
 
         var createCardMethod = typeof(ICombatState).GetMethod("CreateCard", new Type[] { typeof(Player) });
         var genericMethod = createCardMethod.MakeGenericMethod(chosenType);

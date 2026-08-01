@@ -54,11 +54,17 @@ public sealed class AnanlinSingerSangLifeAway()
         }
 
         var triggers = consumed / DynamicVars[SilencePerTriggerKey].IntValue;
-        if (Owner.Creature.CurrentHp <= DynamicVars[LowHpThresholdKey].IntValue)
-            triggers += DynamicVars[BonusTriggersKey].IntValue;
+        if (triggers <= 0) return;
 
-        for (var i = 0; i < triggers; i++)
-            await TriggerSilentVocal(choiceContext, cardPlay);
+        var repeatCount = 1;
+        if (Owner.Creature.CurrentHp <= DynamicVars[LowHpThresholdKey].IntValue)
+            repeatCount += DynamicVars[BonusTriggersKey].IntValue;
+
+        for (var repeat = 0; repeat < repeatCount; repeat++)
+        {
+            for (var i = 0; i < triggers; i++)
+                await TriggerSilentVocal(choiceContext, cardPlay);
+        }
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

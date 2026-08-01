@@ -192,7 +192,7 @@ public sealed class GuardOneMonster : ModMonsterTemplate
             new ThrowingPlayerChoiceContext(), Creature, WithAmount, Creature, null);
 
         var withPower = Creature.GetPower<WithPower>();
-        var shieldAmount = (withPower?.Amount ?? 0m) * 3m / 2m;
+        var shieldAmount = (withPower?.Amount ?? 0m) * 2m / 5m;
         if (shieldAmount > 0)
             await CreatureCmd.GainBlock(Creature, shieldAmount, ValueProp.Move, null);
     }

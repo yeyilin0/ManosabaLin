@@ -8,7 +8,7 @@ public sealed class AnanlinCellPower : ManosabaPowerTemplate
     private CardModel? _returnedSkill;
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Single;
 
     public override CardLocation ModifyCardPlayResultLocation(
         CardModel card,

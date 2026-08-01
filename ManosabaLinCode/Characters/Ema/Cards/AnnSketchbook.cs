@@ -21,7 +21,7 @@ public sealed class AnnSketchbook : ManosabaCardTemplate
     public AnnSketchbook() : base(1, CardType.Skill, CardRarity.Common, TargetType.Self) { }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { EmalinKeywordRules.DoubtKeywordId.GetModCardKeyword() };
+        new[] { EmalinKeywordRules.DoubtCardKeyword };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new CardsVar(3)];
 

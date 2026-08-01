@@ -15,10 +15,7 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCard(typeof(HiroCardPool))]
 public sealed class Amm() : ManosabaCardTemplate(3, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
-    {
-        new DamageVar(8m, ValueProp.Move)
-    };
+    protected override IEnumerable<DynamicVar> CanonicalVars => AmmCardMath.CreateVars();
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -38,38 +35,30 @@ public sealed class Amm() : ManosabaCardTemplate(3, CardType.Attack, CardRarity.
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        var suspect = source.Owner.Creature.GetPower<SuspectPower>();
-        var suspectAmt = suspect?.Amount ?? 0;
-
-        var with = source.Owner.Creature.GetPower<WithPower>();
-        var withAmt = with?.Amount ?? 0;
-
-        var totalDamage = source.DynamicVars.Damage.BaseValue + suspectAmt + (int)(withAmt / 20);
-
-        await DamageCmd.Attack(totalDamage)
+        await DamageCmd.Attack(source.DynamicVars.CalculatedDamage)
             .FromCard(source, cardPlay)
             .Targeting(target)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
         await PowerCmd.Apply<AmmPower>(
-            choiceContext, source.Owner.Creature, 1,
+            choiceContext, source.Owner.Creature, source.DynamicVars["AmmPower"].BaseValue,
             source.Owner.Creature, source, false
         );
 
         await PowerCmd.Apply<SuspectPower>(
-            choiceContext, source.Owner.Creature, 1,
+            choiceContext, source.Owner.Creature, source.DynamicVars["SuspectPower"].BaseValue,
             source.Owner.Creature, source, false
         );
 
         await PowerCmd.Apply<WithPower>(
-            choiceContext, source.Owner.Creature, 10,
+            choiceContext, source.Owner.Creature, source.DynamicVars["WithPower"].BaseValue,
             source.Owner.Creature, source, false
         );
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars.Damage.UpgradeValueBy(4m);
+        DynamicVars.CalculationBase.UpgradeValueBy(4m);
     }
 }

@@ -50,11 +50,14 @@ public sealed class AnanlinBrainwashPower : ManosabaPowerTemplate, IEasyRightCli
         if (!CanUseRightClick()) return;
 
         var backlash = Owner.GetPower<AnanlinBrainwashBacklashPower>();
+        var noahAssist = Owner.GetPower<AnanlinNoahAssistPower>();
+        var useNoahAssist = noahAssist?.HasFreeRewriteCharge == true;
         var silenceCost = CurrentRequiredSilenceCost;
         var paidSilenceCost = false;
 
         async Task<bool> SpendSilenceCost()
         {
+            if (useNoahAssist) return true;
             if (silenceCost <= 0) return true;
             var silence = Owner.GetPower<SilentPower>();
             if (silence is null || silence.Amount < silenceCost) return false;
@@ -64,11 +67,14 @@ public sealed class AnanlinBrainwashPower : ManosabaPowerTemplate, IEasyRightCli
             return true;
         }
 
-        var rewritten = await AnanlinSilenceIntentManager.ForceBrainwash(
+        var rewrittenTargets = await AnanlinSilenceIntentManager.ForceBrainwashAndGetTargets(
             choiceContext,
             clickContext.Player,
             SpendSilenceCost);
-        if (!rewritten) return;
+        if (rewrittenTargets.Count == 0 && !useNoahAssist) return;
+
+        if (useNoahAssist)
+            await noahAssist!.ResolveFreeRewriteAttempt(choiceContext, rewrittenTargets, Owner, null);
 
         UsedThisTurn = true;
         if (paidSilenceCost)
@@ -114,7 +120,9 @@ public sealed class AnanlinBrainwashPower : ManosabaPowerTemplate, IEasyRightCli
         if (!AnanlinSilenceIntentManager.CanForceBrainwash(player)) return false;
 
         var cost = CurrentRequiredSilenceCost;
-        return cost <= 0 || Owner.GetPower<SilentPower>()?.Amount >= cost;
+        return Owner.GetPower<AnanlinNoahAssistPower>()?.HasFreeRewriteCharge == true
+            || cost <= 0
+            || Owner.GetPower<SilentPower>()?.Amount >= cost;
     }
 
     internal void RefreshRequiredSilenceCostVar()

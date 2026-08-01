@@ -23,7 +23,7 @@ public sealed class UndergroundFreezer : ManosabaCardTemplate
     public UndergroundFreezer() : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy) { }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { EmalinKeywordRules.RebuttalKeywordId.GetModCardKeyword() };
+        new[] { EmalinKeywordRules.RebuttalCardKeyword };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8m, ValueProp.Move)];
 

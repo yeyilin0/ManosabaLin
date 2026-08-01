@@ -6,15 +6,25 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
 public sealed class AnanlinYujiaoBeanSproutMineGirl()
-    : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy),
+    : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.Self),
         IAnanlinPeaceOfMindSpecialCard
 {
     private const int RequiredPeace = 13;
     private const int PeacePerBonusEnergy = 6;
     private const int BaseEnergyGain = 1;
     private const int BaseDraw = 1;
+    private const int PeaceForTurnEndReward = AnanlinPeaceOfMindPower.MaxStacks;
     private const string RecordedPeaceKey = "RecordedPeace";
     private const string RequiredPeaceKey = "RequiredPeace";
+
+    private static readonly Type[] PeaceConsumerCardTypes =
+    [
+        typeof(AnanlinAfterDeepBreath),
+        typeof(AnanlinGentleNod),
+        typeof(AnanlinLover),
+        typeof(AnanlinPushTheDoorOpen),
+        typeof(AnanlinWeavingLiesSleepingPrincess)
+    ];
 
     private int _recordedPeace;
     private int _timesPlayedThisCombat;
@@ -47,7 +57,6 @@ public sealed class AnanlinYujiaoBeanSproutMineGirl()
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(7m, ValueProp.Move),
         new EnergyVar(BaseEnergyGain + BonusEnergy),
         new CardsVar(BaseDraw),
         new IntVar(RecordedPeaceKey, RecordedPeace),
@@ -68,6 +77,19 @@ public sealed class AnanlinYujiaoBeanSproutMineGirl()
             : base.GetResultLocationForCardPlayC();
     }
 
+    protected override async Task AfterPlayerTurnStart(
+        PlayerChoiceContext choiceContext,
+        Player player,
+        ComponentContext componentContext)
+    {
+        if (player != Owner) return;
+
+        if (Pile?.Type != PileType.Hand)
+            await CardPileCmd.Add(this, PileType.Hand);
+
+        await this.GainPeaceOfMind(choiceContext);
+    }
+
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay cardPlay,
@@ -76,15 +98,6 @@ public sealed class AnanlinYujiaoBeanSproutMineGirl()
         await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
         await CardPileCmd.Draw(choiceContext, BaseDraw, Owner);
         await this.AddMarginPageToHand(false);
-
-        if (cardPlay.Target is { } target)
-        {
-            await DamageCmd.Attack(DynamicVars.Damage.BaseValue)
-                .FromCard(this, cardPlay)
-                .Targeting(target)
-                .WithHitFx("vfx/vfx_attack_slash")
-                .Execute(choiceContext);
-        }
 
         DoubleCostForCombat();
         if (IsComplete)
@@ -105,9 +118,20 @@ public sealed class AnanlinYujiaoBeanSproutMineGirl()
         RecordedPeace += peaceToRecord;
     }
 
+    protected override bool HasTurnEndInHandEffectC => true;
+
+    protected override async Task OnTurnEndInHand(
+        PlayerChoiceContext choiceContext,
+        ComponentContext componentContext)
+    {
+        if (this.PeaceOfMindAmount() < PeaceForTurnEndReward) return;
+
+        await AddRetainedPeaceConsumerCardToHand();
+    }
+
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars.Damage.UpgradeValueBy(3m);
+        EnergyCost.UpgradeBy(-1);
     }
 
     private void DoubleCostForCombat()
@@ -132,5 +156,28 @@ public sealed class AnanlinYujiaoBeanSproutMineGirl()
 
         var card = combatState.CreateCard<AnanlinBombDisposalExpert>(Owner);
         await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
+    }
+
+    private async Task AddRetainedPeaceConsumerCardToHand()
+    {
+        if (CombatState is not { } combatState) return;
+
+        var canonical = RollPeaceConsumerCard();
+        if (canonical is null) return;
+
+        var card = combatState.CreateCard(canonical, Owner);
+        card.AddKeyword(CardKeyword.Retain);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, Owner);
+    }
+
+    private CardModel? RollPeaceConsumerCard()
+    {
+        var candidates = PeaceConsumerCardTypes
+            .Select(static type => ModelDb.GetByIdOrNull<CardModel>(ModelDb.GetId(type)))
+            .OfType<CardModel>()
+            .ToArray();
+        if (candidates.Length == 0) return null;
+
+        return Owner.RunState.Rng.CombatCardGeneration.NextItem(candidates);
     }
 }

@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Ananlin.Cards;
+using ManosabaLin.Characters.Ananlin.Relics;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace ManosabaLin.Characters.Ananlin.Powers;
@@ -53,12 +54,15 @@ public sealed class AnanlinFakeDeathActPower : ManosabaPowerTemplate
         if (count <= 0) return;
         if (Owner.Player is not { } player) return;
         if (Owner.CombatState is not { } combatState) return;
+        var blessedObject = player.Relics.OfType<BlessedObject>().FirstOrDefault();
 
         for (var i = 0; i < count; i++)
         {
             CardModel page = marginPages
                 ? combatState.CreateCard<MarginPage>(player)
-                : combatState.CreateCard<BlankPage>(player);
+                : blessedObject is not null
+                    ? blessedObject.CreateBlankPageOrReplacement(combatState, upgraded: false, player)
+                    : combatState.CreateCard<BlankPage>(player);
             await CardPileCmd.AddGeneratedCardToCombat(page, PileType.Hand, player);
         }
     }

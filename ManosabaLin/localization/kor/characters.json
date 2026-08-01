@@ -54,5 +54,19 @@
   "MANOSABA_LIN_CHARACTER_ANANLIN.possessiveAdjective": "그녀의",
   "MANOSABA_LIN_CHARACTER_ANANLIN.pronounObject": "그녀",
   "MANOSABA_LIN_CHARACTER_ANANLIN.pronounPossessive": "그녀의",
-  "MANOSABA_LIN_CHARACTER_ANANLIN.pronounSubject": "그녀"
+  "MANOSABA_LIN_CHARACTER_ANANLIN.pronounSubject": "그녀",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.aromaPrinciple": "너무 가까이 오지 마.",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.banter.alive.endTurnPing": "들었어?",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.banter.dead.endTurnPing": "나를 두고 가지 마.",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.cardsModifierDescription": "등나무 아리사 카드가 보상과 상점에 등장합니다.",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.cardsModifierTitle": "등나무 아리사 카드",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.description": "[color=#aa66cc]가까움[/color]과 [color=#aa66cc]멀어짐[/color] 사이에서 마법이 흔들리는 소녀.",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.eventDeathPrevention": "여기서 멈출 수는 없어.",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.goldMonologue": "이것도 연결일까?",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.possessiveAdjective": "그녀의",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.pronounObject": "그녀",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.pronounPossessive": "그녀의",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.pronounSubject": "그녀",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.title": "등나무 아리사",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.titleObject": "등나무 아리사"
 }

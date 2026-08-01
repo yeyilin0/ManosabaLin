@@ -58,20 +58,30 @@ internal static class AnanlinCardHelpers
 
     internal static async Task AddBlankPageToHand(this CardModel source, bool upgraded)
     {
-        var blankPage = source.CombatState.CreateCard<BlankPage>(source.Owner);
-        if (upgraded)
-            CardCmd.Upgrade(blankPage);
-
-        await CardPileCmd.AddGeneratedCardToCombat(blankPage, PileType.Hand, source.Owner);
+        var page = source.CreateBlankPageOrBlessedReplacement(upgraded);
+        await CardPileCmd.AddGeneratedCardToCombat(page, PileType.Hand, source.Owner);
     }
 
     internal static async Task AddBlankPageToDrawPile(this CardModel source, bool upgraded)
     {
-        var blankPage = source.CombatState.CreateCard<BlankPage>(source.Owner);
+        var page = source.CreateBlankPageOrBlessedReplacement(upgraded);
+        await CardPileCmd.AddGeneratedCardToCombat(page, PileType.Draw, source.Owner, CardPilePosition.Random);
+    }
+
+    internal static CardModel CreateBlankPageOrBlessedReplacement(this CardModel source, bool upgraded)
+    {
+        var combatState = source.CombatState ?? source.Owner.Creature.CombatState;
+        ArgumentNullException.ThrowIfNull(combatState, nameof(source.CombatState));
+
+        var blessedObject = source.Owner.Relics.OfType<BlessedObject>().FirstOrDefault();
+        if (blessedObject is not null)
+            return blessedObject.CreateBlankPageOrReplacement(combatState, upgraded, source.Owner);
+
+        var blankPage = combatState.CreateCard<BlankPage>(source.Owner);
         if (upgraded)
             CardCmd.Upgrade(blankPage);
 
-        await CardPileCmd.AddGeneratedCardToCombat(blankPage, PileType.Draw, source.Owner, CardPilePosition.Random);
+        return blankPage;
     }
 
     internal static async Task AddMarginPageToHand(this CardModel source, bool upgraded)

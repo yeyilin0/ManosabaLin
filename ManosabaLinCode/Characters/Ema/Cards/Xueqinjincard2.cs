@@ -20,6 +20,22 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(LinCardPool))]
 public sealed class Xueqinjincard2 : ManosabaCardTemplate
 {
+    internal static readonly Type[] RandomAffinityCardTypes =
+    [
+        typeof(SwapBodySuccess),
+        typeof(GuardianOath),
+        typeof(Sharedfate),
+        typeof(DollGift),
+        typeof(TheOnlyClue),
+        typeof(SubstituteCost),
+        typeof(NoahAffinity),
+        typeof(MargaretAffinity),
+        typeof(CocoAffinity),
+        typeof(AnnAffinity),
+        typeof(Lyqinjin),
+        typeof(BondSettlement),
+    ];
+
     public Xueqinjincard2() : base(1, CardType.Skill, CardRarity.Rare, TargetType.Self) { }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords
@@ -37,26 +53,10 @@ public sealed class Xueqinjincard2 : ManosabaCardTemplate
         if (bond != null)
             bond.Affinity++;
 
-        var allAffinityCards = new[]
-        {
-            typeof(SwapBodySuccess),
-            typeof(GuardianOath),
-            typeof(Sharedfate),
-            typeof(DollGift),
-            typeof(TheOnlyClue),
-            typeof(SubstituteCost),
-            typeof(NoahAffinity),
-            typeof(MargaretAffinity),
-            typeof(CocoAffinity),
-            typeof(AnnAffinity),
-            typeof(Lyqinjin),
-            typeof(BondSettlement),
-        };
-
         var rng = owner.RunState.Rng.CombatCardSelection;
         var createCardMethod = typeof(ICombatState).GetMethod("CreateCard", new Type[] { typeof(Player) });
 
-        var generatedCards = allAffinityCards
+        var generatedCards = RandomAffinityCardTypes
             .OrderBy(_ => rng.NextFloat())
             .Take(3)
             .Select(type =>

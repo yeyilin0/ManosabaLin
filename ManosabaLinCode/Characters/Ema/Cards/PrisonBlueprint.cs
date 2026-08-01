@@ -18,7 +18,7 @@ public sealed class PrisonBlueprint : ManosabaCardTemplate
     public PrisonBlueprint() : base(2, CardType.Power, CardRarity.Rare, TargetType.Self) { }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { EmalinKeywordRules.AgreeKeywordId.GetModCardKeyword() };
+        new[] { EmalinKeywordRules.AgreeCardKeyword };
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

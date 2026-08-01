@@ -26,7 +26,7 @@ public sealed class Threehiro : ManosabaCardTemplate
     }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { Transmigration3Rules.Transmigration3KeywordId.GetModCardKeyword() };
+        new[] { Transmigration3Rules.Transmigration3CardKeyword };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
@@ -35,7 +35,7 @@ public sealed class Threehiro : ManosabaCardTemplate
 
         await CreatureCmd.TriggerAnim(owner.Creature, "Cast", owner.Character.CastAnimDelay);
 
-        var keywordId = Transmigration3Rules.Transmigration3KeywordId;
+        var keywordId = Transmigration3Rules.Transmigration3CardKeyword;
 
         // 从抽牌堆、手牌、弃牌堆各选一张卡
         var drawPile = PileType.Draw.GetPile(owner).Cards

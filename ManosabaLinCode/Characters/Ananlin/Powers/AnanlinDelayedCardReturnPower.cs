@@ -6,7 +6,7 @@ public sealed class AnanlinDelayedCardReturnPower : ManosabaPowerTemplate
     private readonly List<ReturnEntry> _cards = [];
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.None;
 
     internal void AddCard(CardModel card)
     {

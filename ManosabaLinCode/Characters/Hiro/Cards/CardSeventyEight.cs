@@ -27,7 +27,7 @@ public class CardSeventyEight : ManosabaCardTemplate
     }
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword() };
+        new[] { TransmigrationRules.TransmigrationCardKeyword };
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
@@ -60,7 +60,7 @@ public class CardSeventyEight : ManosabaCardTemplate
 
             if (IsUpgraded) CardCmd.Upgrade(generated);
 
-            generated.AddModKeyword(TransmigrationRules.TransmigrationKeywordId);
+            generated.AddModKeyword(TransmigrationRules.TransmigrationCardKeyword);
             await CardPileCmd.AddGeneratedCardToCombat(generated, PileType.Hand, owner, CardPilePosition.Bottom);
         }
 
@@ -76,7 +76,7 @@ public class CardSeventyEight : ManosabaCardTemplate
 
             if (card is HiroAttack || card is HiroDefend)
             {
-                card.AddModKeyword(TransmigrationRules.TransmigrationKeywordId);
+                card.AddModKeyword(TransmigrationRules.TransmigrationCardKeyword);
                 if (IsUpgraded) CardCmd.Upgrade(card);
 
                 CardCmd.Preview(card);

@@ -93,7 +93,8 @@ public sealed class AnanlinWeavingLiesSleepingPrincess()
         var rewritten = 0;
         foreach (var enemy in CombatState.Enemies.Where(static enemy => enemy is { IsAlive: true, Monster: not null }))
         {
-            enemy.Monster!.SetMoveImmediate(CreateSelfLossMove(enemy.Monster, lieCount), forceTransition: true);
+            var monster = enemy.Monster!;
+            monster.SetMoveImmediate(CreateSelfLossMove(monster, monster.NextMove, lieCount), forceTransition: true);
             rewritten++;
         }
 
@@ -108,7 +109,7 @@ public sealed class AnanlinWeavingLiesSleepingPrincess()
             await PowerCmd.Apply<TempStrengthDown>(choiceContext, enemy, amount, Owner.Creature, this);
     }
 
-    private MoveState CreateSelfLossMove(MonsterModel monster, int hitCount)
+    private MoveState CreateSelfLossMove(MonsterModel monster, MoveState followUpSource, int hitCount)
     {
         var damage = DynamicVars[SelfLossKey].BaseValue;
         return new MoveState(
@@ -128,7 +129,14 @@ public sealed class AnanlinWeavingLiesSleepingPrincess()
                         null);
                 }
             },
-            new MultiAttackIntent((int)damage, hitCount));
+            new MultiAttackIntent((int)damage, hitCount))
+        {
+            FollowUpState = followUpSource.FollowUpState,
+            FollowUpStateId = followUpSource.FollowUpStateId
+                ?? followUpSource.FollowUpState?.Id
+                ?? monster.MoveStateMachine?.StateLog.LastOrDefault()?.Id,
+            MustPerformOnceBeforeTransitioning = true
+        };
     }
 
     private async Task ConsumeWitchificationAndGenerateRetainCards(

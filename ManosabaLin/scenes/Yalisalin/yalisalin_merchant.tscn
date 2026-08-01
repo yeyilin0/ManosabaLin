@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d240knph4uug7"]
+
+[ext_resource type="Texture2D" uid="uid://ctdt4jqhbw53" path="res://ManosabaLin/images/characters/Yalisalin/YalisalinThink.png" id="1_yalisalin"]
+
+[node name="YalisalinMerchant" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-7, -211)
+scale = Vector2(0.393, 0.393)
+texture = ExtResource("1_yalisalin")

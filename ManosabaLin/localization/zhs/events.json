@@ -40,6 +40,8 @@
   "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.HIRO.description": "获得{Cards}张[color=#CC6666]二阶堂希罗[/color]的卡牌",
   "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.SHERRYLIN.title": "青蓝色",
   "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.SHERRYLIN.description": "获得{Cards}张[color=33ccff]橘雪莉[/color]的卡牌",
+  "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.ANANLINLIN.title": "紫蓝色",
+  "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.ANANLINLIN.description": "获得{Cards}张[color=6666cc]夏目安安[/color]的卡牌",
   "MANOSABA_LIN_EVENT_TEAM_CARD_EXCHANGE_EVENT.title": "『魔法少女ノ魔女裁判』×『アクアリウムは踊らない』",
   "MANOSABA_LIN_EVENT_TEAM_CARD_EXCHANGE_EVENT.pages.INITIAL.description": "[font_size=45][b]桌上摊开了所有人的案件记录。\n你可以整理[color=ff99cc]自己[/color]的笔记；如果队伍构成足够混杂，也可以借用[color=33ccff]队友[/color]的方法[/b][/font_size]",
   "MANOSABA_LIN_EVENT_TEAM_CARD_EXCHANGE_EVENT.pages.INITIAL.options.OWN_CARDS.title": "整理自己的笔记",

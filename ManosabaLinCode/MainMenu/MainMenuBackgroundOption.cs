@@ -11,6 +11,7 @@ public static class MainMenuBackgroundOptions
         new($"{MainFile.ResPath}/images/ui/xiluo.png", "event:/ManosabaLin/music/biaoti"),
         new($"{MainFile.ResPath}/images/ui/aima.png", "event:/ManosabaLin/music/biaoti"),
         new($"{MainFile.ResPath}/images/ui/amxiluo.png", "event:/ManosabaLin/music/bloom"),
+        new($"{MainFile.ResPath}/images/ui/oneyear.png", "event:/ManosabaLin/music/oneyear"),
     ];
 
     private static MainMenuBackgroundOption? activeOption;

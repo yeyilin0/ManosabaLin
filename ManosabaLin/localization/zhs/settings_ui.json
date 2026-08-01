@@ -16,5 +16,10 @@
   "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.label": "「魔法少女ノ魔女裁判」×ポカチェコラボ",
   "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.description": "允许 「魔法少女ノ魔女裁判」×ポカチェコラボ 出现",
   "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.label": "『魔法少女ノ魔女裁判』×『アクアリウムは踊らない』",
-  "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.description": "允许 『魔法少女ノ魔女裁判』×『アクアリウムは踊らない』 出现"
+  "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.description": "允许 『魔法少女ノ魔女裁判』×『アクアリウムは踊らない』 出现",
+  "MANOSABALIN_TELEMETRY_NAME": "魔法少女的魔女审判LIN",
+  "MANOSABALIN_TELEMETRY_USAGE": "使用情况",
+  "MANOSABALIN_TELEMETRY_MODS": "模组列表",
+  "MANOSABALIN_TELEMETRY_DIAGNOSTICS": "诊断信息",
+  "MANOSABALIN_TELEMETRY_RUNS": "历史记录"
 }

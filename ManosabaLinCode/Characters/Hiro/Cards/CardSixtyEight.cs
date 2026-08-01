@@ -32,7 +32,7 @@ public sealed class CardSixtyEight() : ManosabaCardTemplate(1, CardType.Skill, C
             choiceContext,
             source.Owner,
             prefs,
-            c => c.HasModKeyword(TransmigrationRules.TransmigrationKeywordId),
+            c => c.HasModKeyword(TransmigrationRules.TransmigrationCardKeyword),
             source
         );
 

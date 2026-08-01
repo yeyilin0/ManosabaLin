@@ -20,13 +20,13 @@ public class DeathRewindPower : ManosabaPowerTemplate
 
     public override PowerStackType StackType => (PowerStackType)2;
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new("HealPercent", 0m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new("HealAmount", 0m)];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips => [HoverTipFactory.FromPower<WithPower>()];
 
     public override Task AfterApplied(Creature applier, CardModel cardSource)
     {
-        SyncHealPercent();
+        SyncHealAmount();
         return Task.CompletedTask;
     }
 
@@ -38,18 +38,13 @@ public class DeathRewindPower : ManosabaPowerTemplate
         CardModel? cardSource)
     {
         if (power is WithPower && power.Owner == Owner)
-            SyncHealPercent();
+            SyncHealAmount();
         return Task.CompletedTask;
     }
 
     public override bool ShouldDieLate(Creature creature)
     {
         if (creature != Owner || Amount < 1) return true;
-
-        // 魔女化 >= 300 时，复活能力不生效
-        var withAmount = creature.GetPowerAmount<WithPower>();
-        if (withAmount >= 300m)
-            return true;
 
         return false;
     }
@@ -58,10 +53,14 @@ public class DeathRewindPower : ManosabaPowerTemplate
     {
         Flash();
         var withAmount = creature.GetPowerAmount<WithPower>();
-        var healPercent = Math.Min(100m, withAmount);
         await PowerCmd.Remove<DeathRewindPower>(creature);
-        var num = Math.Max(1m, creature.MaxHp * (healPercent / 100m));
-        await CreatureCmd.Heal(creature, num);
+
+        // 魔女化 >= 300 时，本次触发失效；不回血，让死亡流程继续。
+        if (withAmount >= 300m)
+            return;
+
+        var healAmount = Math.Max(1m, withAmount);
+        await CreatureCmd.Heal(creature, healAmount);
 
         // 魔女化 >= 200 时，战斗后移除牌组中所有死亡回溯
         if (withAmount >= 200m)
@@ -83,9 +82,9 @@ public class DeathRewindPower : ManosabaPowerTemplate
         }
     }
 
-    private void SyncHealPercent()
+    private void SyncHealAmount()
     {
         if (Owner != null)
-            DynamicVars["HealPercent"].BaseValue = Math.Min(100m, Owner.GetPowerAmount<WithPower>());
+            DynamicVars["HealAmount"].BaseValue = Math.Max(1m, Owner.GetPowerAmount<WithPower>());
     }
 }

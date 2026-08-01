@@ -17,11 +17,6 @@ public sealed class AnanlinWhatDoesItMean()
         Replace
     }
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get { yield return CardKeyword.Exhaust; }
-    }
-
     protected override async Task OnPlay(
         PlayerChoiceContext choiceContext,
         CardPlay cardPlay,

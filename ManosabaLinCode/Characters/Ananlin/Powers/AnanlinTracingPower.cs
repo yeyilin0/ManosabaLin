@@ -10,7 +10,7 @@ public sealed class AnanlinTracingPower : ManosabaPowerTemplate
     [SavedProperty] public bool FreeCopies { get; set; }
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.None;
 
     internal async Task CopyGeneratedCards(
         PlayerChoiceContext choiceContext,

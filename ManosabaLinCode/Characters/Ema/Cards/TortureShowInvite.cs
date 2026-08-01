@@ -23,7 +23,7 @@ public sealed class TortureShowInvite : ManosabaCardTemplate
     public override bool GainsBlock => true;
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        new[] { EmalinKeywordRules.AgreeKeywordId.GetModCardKeyword() };
+        new[] { EmalinKeywordRules.AgreeCardKeyword };
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(4m, ValueProp.Move)];
 

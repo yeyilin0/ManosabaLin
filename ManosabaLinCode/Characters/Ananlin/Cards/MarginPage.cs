@@ -3,7 +3,7 @@ using ManosabaLin.Characters.Ananlin.Relics;
 namespace ManosabaLin.Characters.Ananlin.Cards;
 
 [RegisterCard(typeof(AnanlinCardPool))]
-public sealed class MarginPage() : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Token, TargetType.Self, false)
+public sealed class MarginPage() : AnanlinNonRandomCardTemplate(0, CardType.Skill, CardRarity.Token, TargetType.Self, false)
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {

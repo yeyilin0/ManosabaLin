@@ -54,5 +54,19 @@
   "MANOSABA_LIN_CHARACTER_ANANLIN.possessiveAdjective": "her",
   "MANOSABA_LIN_CHARACTER_ANANLIN.pronounObject": "her",
   "MANOSABA_LIN_CHARACTER_ANANLIN.pronounPossessive": "her",
-  "MANOSABA_LIN_CHARACTER_ANANLIN.pronounSubject": "her"
+  "MANOSABA_LIN_CHARACTER_ANANLIN.pronounSubject": "her",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.aromaPrinciple": "Do not get too close.",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.banter.alive.endTurnPing": "Did you hear that?",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.banter.dead.endTurnPing": "Do not leave me behind.",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.cardsModifierDescription": "Wisteria Arisa cards will appear in rewards and shops.",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.cardsModifierTitle": "Wisteria Arisa Cards",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.description": "A girl whose magic is pulled between [color=#aa66cc]closeness[/color] and [color=#aa66cc]distance[/color].",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.eventDeathPrevention": "I cannot stop here.",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.goldMonologue": "Is this a kind of connection too?",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.possessiveAdjective": "her",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.pronounObject": "her",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.pronounPossessive": "her",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.pronounSubject": "she",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.title": "Wisteria Arisa",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.titleObject": "Wisteria Arisa"
 }

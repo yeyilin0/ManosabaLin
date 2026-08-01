@@ -51,7 +51,7 @@ public sealed class CardSixtyThree() : ManosabaCardTemplate(0, CardType.Skill, C
         );
 
         // 给选中的卡牌添加轮回关键词
-        foreach (var card in selectedCards) card.AddModKeyword(TransmigrationRules.TransmigrationKeywordId);
+        foreach (var card in selectedCards) card.AddModKeyword(TransmigrationRules.TransmigrationCardKeyword);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

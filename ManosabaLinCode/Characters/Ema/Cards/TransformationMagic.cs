@@ -61,6 +61,6 @@ public sealed class TransformationMagic : ManosabaCardTemplate
         for (int i = 0; i < target.CurrentUpgradeLevel; i++)
             CardCmd.Upgrade(newCard);
 
-        await CardCmd.Transform(source, newCard, CardPreviewStyle.None);
+        await CardCmd.Transform(source, newCard);
     }
 }

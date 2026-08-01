@@ -16,5 +16,10 @@
   "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.label": "\"마법소녀 노마녀판사\"×노라",
   "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.description": "\"마법소녀 노마녀판사\"×노라 등장을 허용",
   "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.label": "\"마법소녀의 마녀판사\"",
-  "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.description": "\"마법소녀 무마녀판사\"×\"아리카나\"가 등장 가능."
+  "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.description": "\"마법소녀 무마녀판사\"×\"아리카나\"가 등장 가능.",
+  "MANOSABALIN_TELEMETRY_NAME": "ManosabaLin",
+  "MANOSABALIN_TELEMETRY_USAGE": "사용 현황",
+  "MANOSABALIN_TELEMETRY_MODS": "모드 목록",
+  "MANOSABALIN_TELEMETRY_DIAGNOSTICS": "진단 정보",
+  "MANOSABALIN_TELEMETRY_RUNS": "기록"
 }

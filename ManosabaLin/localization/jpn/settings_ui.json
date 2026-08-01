@@ -16,5 +16,10 @@
   "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.label": "『魔法少女ノウィッチジャッジ』×ノーラ",
   "MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.description": "『魔法少女ノウィッチジャッジ』×ノーラを登場可能にする",
   "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.label": "『魔法少女ノウィッチジャッジ』",
-  "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.description": "「魔法少女ノウィッチジャッジ」×「アリカナ」が出現可能となる。"
+  "MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.description": "「魔法少女ノウィッチジャッジ」×「アリカナ」が出現可能となる。",
+  "MANOSABALIN_TELEMETRY_NAME": "ManosabaLin",
+  "MANOSABALIN_TELEMETRY_USAGE": "使用状況",
+  "MANOSABALIN_TELEMETRY_MODS": "Mod一覧",
+  "MANOSABALIN_TELEMETRY_DIAGNOSTICS": "診断情報",
+  "MANOSABALIN_TELEMETRY_RUNS": "履歴"
 }

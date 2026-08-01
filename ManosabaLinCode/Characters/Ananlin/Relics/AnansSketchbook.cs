@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Models.Relics;
 using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
-using MegaCrit.Sts2.Core.Rewards;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
@@ -77,7 +76,7 @@ public class AnansSketchbook : ManosabaRelicTemplate
         AttacksPlayedThisTurn = 0;
         SkillsPlayedThisTurn = 0;
         PeaceLostThisTurn = false;
-        await OfferFirstCombatRecordReward();
+        await OfferFirstCombatRecordReward(choiceContext);
         await AddSilence(choiceContext, 1, null);
     }
 
@@ -172,14 +171,6 @@ public class AnansSketchbook : ManosabaRelicTemplate
         return Task.CompletedTask;
     }
 
-    public override Task AfterRewardTaken(Player player, Reward reward)
-    {
-        if (player != Owner) return Task.CompletedTask;
-
-        AnansSketchbookRewardTracker.TryRecordSelectedPool(reward, this);
-        return Task.CompletedTask;
-    }
-
     public override async Task AfterRemoved()
     {
         await base.AfterRemoved();
@@ -188,8 +179,13 @@ public class AnansSketchbook : ManosabaRelicTemplate
 
     internal virtual async Task TriggerSilenceRewrite(PlayerChoiceContext choiceContext)
     {
+        await TriggerSilenceRewriteAndGetTargets(choiceContext);
+    }
+
+    internal virtual async Task<IReadOnlyList<Creature>> TriggerSilenceRewriteAndGetTargets(PlayerChoiceContext choiceContext)
+    {
         Flash();
-        await AnanlinSilenceIntentManager.Trigger(choiceContext, Owner);
+        return await AnanlinSilenceIntentManager.TriggerAndGetTargets(choiceContext, Owner);
     }
 
     internal bool CanTriggerSilenceRewrite()
@@ -204,14 +200,9 @@ public class AnansSketchbook : ManosabaRelicTemplate
 
         var rng = Owner.RunState.Rng.CombatCardGeneration;
         var indexPower = Owner.Creature.GetPower<AnanlinIndexPagePower>();
-        var genrePower = Owner.Creature.GetPower<AnanlinSpecifiedGenrePower>();
-        var preferredType = genrePower?.PreferredType;
-
         var baseOptionCount = recordedPools.Length < MaxRecordedPools ? 1 : MaxRecordedPools;
         var optionCount = Math.Max(1, baseOptionCount + (indexPower?.Amount ?? 0));
-        var options = RollCombatCardsFromRecordedPools((int)optionCount, preferredType, rng);
-        if (options.Count == 0 && preferredType is not null)
-            options = RollCombatCardsFromRecordedPools((int)optionCount, null, rng);
+        var options = RollCombatCardsFromRecordedPools((int)optionCount, null, rng);
         if (options.Count == 0) return [];
 
         if (source.IsUpgraded)
@@ -230,14 +221,6 @@ public class AnansSketchbook : ManosabaRelicTemplate
                 options,
                 Owner,
                 new CardSelectorPrefs(source.SelectionScreenPrompt, 1, 1))).ToArray();
-        }
-
-        if (genrePower is not null)
-        {
-            if (genrePower.Amount <= 1)
-                await PowerCmd.Remove(genrePower);
-            else
-                await PowerCmd.ModifyAmount(choiceContext, genrePower, -1, Owner.Creature, source);
         }
 
         var added = new List<CardModel>();
@@ -503,13 +486,13 @@ public class AnansSketchbook : ManosabaRelicTemplate
         return true;
     }
 
-    private CardReward? CreateAncientRecordReward()
+    private IReadOnlyList<(CardPoolModel Pool, CardModel Card)> CreateAncientRecordChoices()
     {
-        if (HasFullRecordedPools) return null;
+        if (HasFullRecordedPools) return [];
 
         var ananlinPoolId = ModelDb.GetId(typeof(AnanlinCardPool));
         var existing = RecordedPoolEntries.ToHashSet();
-        var rng = Owner.RunState.Rng.UpFront;
+        var rng = Owner.PlayerRng.Rewards;
 
         var rewardOptions = Owner.UnlockState.CharacterCardPools
             .Where(pool => pool.Id != ananlinPoolId && !existing.Contains(pool.Id.Entry))
@@ -519,7 +502,7 @@ public class AnansSketchbook : ManosabaRelicTemplate
             .Take(AncientRewardChoices)
             .ToArray();
 
-        var candidates = new List<(CardPoolModel pool, CardModel card)>();
+        var candidates = new List<(CardPoolModel Pool, CardModel Card)>();
         foreach (var (pool, cards) in rewardOptions)
         {
             var canonical = rng.NextItem(cards);
@@ -527,25 +510,10 @@ public class AnansSketchbook : ManosabaRelicTemplate
                 candidates.Add((pool, Owner.RunState.CreateCard(canonical, Owner)));
         }
 
-        if (candidates.Count == 0) return null;
-
-        var rewardCards = candidates.Select(static entry => entry.card).ToArray();
-        var rewardPools = candidates.Select(static entry => entry.pool).ToArray();
-        var options = CardCreationOptions
-            .ForNonCombatWithUniformOdds(rewardPools, c => IsRecordableCard(c))
-            .WithFlags(CardCreationFlags.NoRarityModification | CardCreationFlags.NoCardPoolModifications);
-
-        var reward = new CardReward(rewardCards, CardCreationSource.Other, Owner, options)
-        {
-            CanSkip = true,
-            CanReroll = false
-        };
-
-        AnansSketchbookRewardTracker.Track(reward, candidates.ToDictionary(static e => e.card.Id.Entry, static e => e.pool.Id.Entry));
-        return reward;
+        return candidates;
     }
 
-    private async Task OfferFirstCombatRecordReward()
+    private async Task OfferFirstCombatRecordReward(PlayerChoiceContext choiceContext)
     {
         if (HasFullRecordedPools) return;
 
@@ -553,11 +521,24 @@ public class AnansSketchbook : ManosabaRelicTemplate
         if (LastRecordRewardActIndex == actIndex) return;
 
         LastRecordRewardActIndex = actIndex;
-        var reward = CreateAncientRecordReward();
-        if (reward is null) return;
+        var choices = CreateAncientRecordChoices();
+        if (choices.Count == 0) return;
 
         Flash();
-        await RewardsCmd.OfferCustom(Owner, [reward]);
+        var selected = await CardSelectCmd.FromChooseACardScreen(
+            choiceContext,
+            choices.Select(static choice => choice.Card).ToArray(),
+            Owner,
+            canSkip: true);
+
+        if (selected is null) return;
+
+        var selectedPool = choices
+            .Where(choice => choice.Card == selected)
+            .Select(static choice => choice.Pool)
+            .FirstOrDefault();
+        if (selectedPool is not null)
+            TryRecordPoolWithFeedback(selectedPool);
     }
 
     private IEnumerable<CardPoolModel> GetRecordedPools()
@@ -756,30 +737,6 @@ public class AnansSketchbook : ManosabaRelicTemplate
             CardRarity.Rare => 2,
             _ => null
         };
-    }
-}
-
-internal static class AnansSketchbookRewardTracker
-{
-    private static readonly Dictionary<Reward, Dictionary<string, string>> PoolsByReward = [];
-
-    internal static void Track(CardReward reward, Dictionary<string, string> poolsByCardId)
-    {
-        PoolsByReward[reward] = poolsByCardId;
-    }
-
-    internal static bool TryRecordSelectedPool(Reward reward, AnansSketchbook sketchbook)
-    {
-        if (!PoolsByReward.Remove(reward, out var poolsByCardId)) return false;
-        if (reward is not CardReward cardReward) return false;
-
-        var remaining = cardReward.Cards.Select(static c => c.Id.Entry).ToHashSet();
-        var selectedCardId = poolsByCardId.Keys.FirstOrDefault(id => !remaining.Contains(id));
-        if (selectedCardId is null) return false;
-
-        var poolEntry = poolsByCardId[selectedCardId];
-        var pool = ModelDb.GetByIdOrNull<CardPoolModel>(new ModelId("CARD_POOL", poolEntry));
-        return pool is not null && sketchbook.TryRecordPool(pool);
     }
 }
 

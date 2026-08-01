@@ -26,7 +26,7 @@ public sealed class CardSeventyTwo : ManosabaCardTemplate
         // 第一步：手牌里所有带有轮回关键词的卡牌本回合免费
         var handPile = PileType.Hand.GetPile(source.Owner);
         foreach (var card in handPile.Cards)
-            if (card.HasModKeyword(TransmigrationRules.TransmigrationKeywordId) && !card.EnergyCost.CostsX)
+            if (card.HasModKeyword(TransmigrationRules.TransmigrationCardKeyword) && !card.EnergyCost.CostsX)
                 card.SetToFreeThisTurn();
 
         // 第二步：获得不能再抽卡的能力

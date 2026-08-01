@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Ananlin.Cards;
+using ManosabaLin.Characters.Ananlin.Relics;
 using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace ManosabaLin.Characters.Ananlin.Powers;
@@ -23,10 +24,13 @@ public sealed class AnanlinSealedPagePower : ManosabaPowerTemplate
         Flash();
         await CreatureCmd.GainBlock(Owner, Amount, ValueProp.Move, null);
 
-        var blankPage = CombatState.CreateCard<BlankPage>(player);
-        if (UpgradedPages)
-            CardCmd.Upgrade(blankPage);
+        var blessedObject = player.Relics.OfType<BlessedObject>().FirstOrDefault();
+        var page = blessedObject is not null
+            ? blessedObject.CreateBlankPageOrReplacement(CombatState, UpgradedPages, player)
+            : CombatState.CreateCard<BlankPage>(player);
+        if (blessedObject is null && UpgradedPages)
+            CardCmd.Upgrade(page);
 
-        await CardPileCmd.AddGeneratedCardToCombat(blankPage, PileType.Hand, player);
+        await CardPileCmd.AddGeneratedCardToCombat(page, PileType.Hand, player);
     }
 }

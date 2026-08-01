@@ -32,7 +32,7 @@ public sealed class CardSixty : ManosabaCardTemplate
     {
         get
         {
-            yield return TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword();
+            yield return TransmigrationRules.TransmigrationCardKeyword;
             yield return CardKeyword.Exhaust;
         }
     }
@@ -60,9 +60,11 @@ public sealed class CardSixty : ManosabaCardTemplate
         {
             for (var i = 0; i < copyCount; i++)
             {
-                var clonedCard = originalCard.CreateClone();
+                var clonedCard = source.CombatState.CreateCard(originalCard.CanonicalInstance, owner);
+                for (var upgradeLevel = 0; upgradeLevel < originalCard.CurrentUpgradeLevel; upgradeLevel++)
+                    CardCmd.Upgrade(clonedCard);
 
-                clonedCard.AddModKeyword(TransmigrationRules.TransmigrationKeywordId);
+                clonedCard.AddModKeyword(TransmigrationRules.TransmigrationCardKeyword);
 
                 CardCmd.Preview(clonedCard);
 

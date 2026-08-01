@@ -41,14 +41,12 @@ public class Hiro : ManosabaCharacterTemplate<HiroCardPool, HiroRelicPool, HiroP
 			"nikaido_hiro_merchant.tscn".CharacterScenePath(CharacterId),
 			"nikaido_hiro_rest_site.tscn".CharacterScenePath(CharacterId)),
 		new CharacterUiAssetSet(
-			"hiro_map.png".CharacterImgPath(CharacterId),
-			null,
-			"nikaido_hiro_icon.tscn".CharacterScenePath(CharacterId),
-			"hiro_bg.tscn".CharacterScenePath(CharacterId),
-			"hiro_char_select.png".CharacterImgPath(CharacterId),
-			null,
-			null,
-			"hiro_map.png".CharacterImgPath(CharacterId)),
+			IconTexturePath: "hiro_map.png".CharacterImgPath(CharacterId),
+			IconOutlineTexturePath: "hiro_map.png".CharacterImgPath(CharacterId),
+			IconPath: "nikaido_hiro_icon.tscn".CharacterScenePath(CharacterId),
+			CharacterSelectBgPath: "hiro_bg.tscn".CharacterScenePath(CharacterId),
+			CharacterSelectIconPath: "hiro_char_select.png".CharacterImgPath(CharacterId),
+			MapMarkerPath: "hiro_map.png".CharacterImgPath(CharacterId)),
 		
 		Multiplayer: new CharacterMultiplayerAssetSet(
 			"nikaido_hiro_arm_pointing.png".CharacterImgPath(CharacterId),

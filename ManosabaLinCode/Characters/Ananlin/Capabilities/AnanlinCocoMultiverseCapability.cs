@@ -33,12 +33,12 @@ public sealed class AnanlinCocoMultiverseCapability : ManosabaCardCapability
         MarkDirty();
     }
 
-    public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    public override Task AfterCardChangedPiles(CardModel card, PileType oldPileType, AbstractModel? clonedBy)
     {
-        if (Owner?.Owner != player) return Task.CompletedTask;
-        if (Owner.Pile?.Type != PileType.Hand) return Task.CompletedTask;
+        if (card != Owner) return Task.CompletedTask;
+        if (oldPileType == PileType.Hand || Owner?.Pile?.Type != PileType.Hand) return Task.CompletedTask;
 
-        var sketchbook = player.Relics.OfType<AnansSketchbook>().FirstOrDefault();
+        var sketchbook = Owner.Owner?.Relics.OfType<AnansSketchbook>().FirstOrDefault();
         RerollFromRecordedPools(sketchbook);
         return Task.CompletedTask;
     }

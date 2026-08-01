@@ -8,7 +8,8 @@ public sealed class AnanlinThreeColorBookmark() : ManosabaCardTemplate(2, CardTy
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CardsVar(1),
-        new BlockVar(3m, ValueProp.Move)
+        new BlockVar(3m, ValueProp.Move),
+        new EnergyVar(1)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
@@ -20,6 +21,9 @@ public sealed class AnanlinThreeColorBookmark() : ManosabaCardTemplate(2, CardTy
 
         await CardPileCmd.Draw(choiceContext, pools * DynamicVars.Cards.IntValue, Owner);
         await CreatureCmd.GainBlock(Owner.Creature, pools * DynamicVars.Block.IntValue, ValueProp.Move, cardPlay);
+
+        if (pools >= 2)
+            await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

@@ -54,5 +54,19 @@
   "MANOSABA_LIN_CHARACTER_ANANLIN.possessiveAdjective": "彼女の",
   "MANOSABA_LIN_CHARACTER_ANANLIN.pronounObject": "彼女",
   "MANOSABA_LIN_CHARACTER_ANANLIN.pronounPossessive": "彼女の",
-  "MANOSABA_LIN_CHARACTER_ANANLIN.pronounSubject": "彼女"
+  "MANOSABA_LIN_CHARACTER_ANANLIN.pronounSubject": "彼女",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.aromaPrinciple": "近づきすぎないで。",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.banter.alive.endTurnPing": "聞こえた？",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.banter.dead.endTurnPing": "置いていかないで。",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.cardsModifierDescription": "紫藤アリサのカードが報酬とショップに出現します。",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.cardsModifierTitle": "紫藤アリサのカード",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.description": "[color=#aa66cc]親近[/color]と[color=#aa66cc]疎遠[/color]の間で魔法を揺らす少女。",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.eventDeathPrevention": "ここで止まるわけにはいかない。",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.goldMonologue": "これも繋がりなの？",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.possessiveAdjective": "彼女の",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.pronounObject": "彼女",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.pronounPossessive": "彼女の",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.pronounSubject": "彼女",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.title": "紫藤アリサ",
+  "MANOSABA_LIN_CHARACTER_YALISALIN.titleObject": "紫藤アリサ"
 }

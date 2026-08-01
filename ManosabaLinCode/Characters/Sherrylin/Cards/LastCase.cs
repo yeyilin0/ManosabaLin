@@ -53,10 +53,14 @@ public sealed class LastCase() : ManosabaCardTemplate(2, CardType.Attack, CardRa
 
         // 移除其他牌
         var toRemove = caseFileCards.Where(c => c != keepCard).ToList();
-        var removeCount = toRemove.Count;
+        var removeCount = 0;
 
         foreach (var card in toRemove)
-            await CardPileCmd.RemoveFromCombat(card);
+        {
+            if (!ReferenceEquals(card.Pile, caseFilePile)) continue;
+            CaseFilePileHelper.Remove(card);
+            removeCount++;
+        }
 
         // 造成13点伤害
         await DamageCmd.Attack(source.DynamicVars.Damage.BaseValue)

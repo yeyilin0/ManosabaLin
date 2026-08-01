@@ -52,22 +52,22 @@ public class Trialenchantcyclepower : ManosabaPowerTemplate
         // Step 2: Pick one random trial enchantment type
         var chosenType = rng.NextItem(EnchantTypes);
         EnchantmentModel canonical;
-        string keywordId;
+        CardKeyword keyword;
 
         if (chosenType == typeof(Rebuttal))
         {
             canonical = ModelDb.Enchantment<Rebuttal>();
-            keywordId = EmalinKeywordRules.RebuttalKeywordId;
+            keyword = EmalinKeywordRules.RebuttalCardKeyword;
         }
         else if (chosenType == typeof(Agreement))
         {
             canonical = ModelDb.Enchantment<Agreement>();
-            keywordId = EmalinKeywordRules.AgreeKeywordId;
+            keyword = EmalinKeywordRules.AgreeCardKeyword;
         }
         else
         {
             canonical = ModelDb.Enchantment<Doubt>();
-            keywordId = EmalinKeywordRules.DoubtKeywordId;
+            keyword = EmalinKeywordRules.DoubtCardKeyword;
         }
 
         // Step 3: Clear old enchantment and apply the new same one to all trial cards
@@ -80,7 +80,7 @@ public class Trialenchantcyclepower : ManosabaPowerTemplate
         // Step 4: Generate a matching keyword card, enchant it, add to hand with free this turn
         var poolCards = owner.Character.CardPool
             .GetUnlockedCards(owner.UnlockState, owner.RunState.CardMultiplayerConstraint)
-            .Where(c => c.HasModKeyword(keywordId))
+            .Where(c => c.HasModKeyword(keyword))
             .ToList();
 
         if (poolCards.Count > 0)

@@ -21,7 +21,7 @@ public sealed class CardSixtyNine() : ManosabaCardTemplate(0, CardType.Skill, Ca
     ];
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        [TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword()];
+        [TransmigrationRules.TransmigrationCardKeyword];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
@@ -36,7 +36,7 @@ public sealed class CardSixtyNine() : ManosabaCardTemplate(0, CardType.Skill, Ca
         await PlayerCmd.GainEnergy(source.DynamicVars.Energy.BaseValue, source.Owner);
 
         // 失去轮回关键词
-        source.RemoveModKeyword(TransmigrationRules.TransmigrationKeywordId);
+        source.RemoveModKeyword(TransmigrationRules.TransmigrationCardKeyword);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

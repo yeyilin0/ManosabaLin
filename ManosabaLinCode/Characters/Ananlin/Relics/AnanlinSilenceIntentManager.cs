@@ -50,8 +50,13 @@ internal static class AnanlinSilenceIntentManager
 
     internal static async Task<int> Trigger(PlayerChoiceContext choiceContext, Player owner)
     {
+        return (await TriggerAndGetTargets(choiceContext, owner)).Count;
+    }
+
+    internal static async Task<IReadOnlyList<Creature>> TriggerAndGetTargets(PlayerChoiceContext choiceContext, Player owner)
+    {
         var combatState = owner.Creature.CombatState;
-        if (combatState is null) return 0;
+        if (combatState is null) return [];
 
         var enemies = combatState.Enemies
             .Where(static c => c.IsAlive && c.Monster?.NextMove is not null)
@@ -74,29 +79,29 @@ internal static class AnanlinSilenceIntentManager
                 replacementTargets.Add(enemy);
         }
 
-        if (replacementTargets.Count == 0) return 0;
+        if (replacementTargets.Count == 0) return [];
 
         var selectedBuff = await ChoosePlayerBuffIntent(choiceContext, owner);
-        if (selectedBuff is null) return 0;
+        if (selectedBuff is null) return [];
 
-        var rewriteCount = 0;
+        var rewrittenTargets = new List<Creature>();
         foreach (var enemy in replacementTargets.Where(static e => e.IsAlive))
         {
             if (enemy.Monster is not { } monster) continue;
             if (ApplyReplacementMove(monster, selectedBuff.Move))
-                rewriteCount++;
+                rewrittenTargets.Add(enemy);
         }
 
-        if (rewriteCount > 0)
+        if (rewrittenTargets.Count > 0)
         {
             MarkReplacementIntentUsed(owner, selectedBuff.Kind);
-            RewritesThisCombatByPlayer[owner] = GetRewritesThisCombat(owner) + rewriteCount;
+            RewritesThisCombatByPlayer[owner] = GetRewritesThisCombat(owner) + rewrittenTargets.Count;
             if (owner.Creature.GetPower<AnanlinSealedPagePower>() is { } sealedPage)
                 await sealedPage.AfterSilenceRightClickRewrite(choiceContext);
         }
 
-        RecordIntentRewrites(combatState, rewriteCount);
-        return rewriteCount;
+        RecordIntentRewrites(combatState, rewrittenTargets.Count);
+        return rewrittenTargets;
     }
 
     internal static async Task<bool> ForceBrainwash(
@@ -104,32 +109,40 @@ internal static class AnanlinSilenceIntentManager
         Player owner,
         Func<Task<bool>>? beforeApply = null)
     {
+        return (await ForceBrainwashAndGetTargets(choiceContext, owner, beforeApply)).Count > 0;
+    }
+
+    internal static async Task<IReadOnlyList<Creature>> ForceBrainwashAndGetTargets(
+        PlayerChoiceContext choiceContext,
+        Player owner,
+        Func<Task<bool>>? beforeApply = null)
+    {
         var combatState = owner.Creature.CombatState;
-        if (combatState is null) return false;
+        if (combatState is null) return [];
 
         var targets = GetBrainwashTargets(owner);
-        if (targets.Count == 0) return false;
+        if (targets.Count == 0) return [];
 
         var selectedBuff = await ChoosePlayerBuffIntent(choiceContext, owner);
-        if (selectedBuff is null) return false;
+        if (selectedBuff is null) return [];
 
         if (beforeApply is not null && !await beforeApply())
-            return false;
+            return [];
 
-        var rewriteCount = 0;
+        var rewrittenTargets = new List<Creature>();
         foreach (var target in targets.Where(CanBrainwashTarget))
         {
             if (target.Monster is not { } monster) continue;
             if (ApplyReplacementMove(monster, selectedBuff.Move))
-                rewriteCount++;
+                rewrittenTargets.Add(target);
         }
 
-        if (rewriteCount <= 0) return false;
+        if (rewrittenTargets.Count <= 0) return [];
 
         MarkReplacementIntentUsed(owner, selectedBuff.Kind);
-        RewritesThisCombatByPlayer[owner] = GetRewritesThisCombat(owner) + rewriteCount;
-        RecordIntentRewrites(combatState, rewriteCount);
-        return true;
+        RewritesThisCombatByPlayer[owner] = GetRewritesThisCombat(owner) + rewrittenTargets.Count;
+        RecordIntentRewrites(combatState, rewrittenTargets.Count);
+        return rewrittenTargets;
     }
 
     internal static int ApplyRandomReplacementIntentToAllEnemies(Player owner)
@@ -230,9 +243,9 @@ internal static class AnanlinSilenceIntentManager
             async targets =>
             {
                 await buffMove.PerformMove(targets);
-                monster.SetMoveImmediate(baseMove, forceTransition: true);
             },
-            $"{buffMove.StateId}_{baseMove.StateId}");
+            $"{buffMove.StateId}_{baseMove.StateId}",
+            baseMove);
 
         BaseMovesByReplacement[replacement] = baseMove;
 
@@ -411,7 +424,7 @@ internal static class AnanlinSilenceIntentManager
                 new BuffIntent()),
             ReplacementIntentKind.Block => new MoveState(
                 BlockMoveId,
-                async _ => await GainBlockForAllPlayers(owner, BaseBlock * multiplier),
+                async _ => await ApplyBlockNextTurnToAllPlayers(owner, BaseBlock * multiplier),
                 new DefendIntent()),
             ReplacementIntentKind.Vigor => new MoveState(
                 VigorMoveId,
@@ -419,7 +432,7 @@ internal static class AnanlinSilenceIntentManager
                 new BuffIntent()),
             _ => new MoveState(
                 BlockMoveId,
-                async _ => await GainBlockForAllPlayers(owner, BaseBlock * multiplier),
+                async _ => await ApplyBlockNextTurnToAllPlayers(owner, BaseBlock * multiplier),
                 new DefendIntent())
         };
     }
@@ -449,10 +462,11 @@ internal static class AnanlinSilenceIntentManager
             await CardPileCmd.Draw(choiceContext, amount, player);
     }
 
-    private static async Task GainBlockForAllPlayers(Player owner, int amount)
+    private static async Task ApplyBlockNextTurnToAllPlayers(Player owner, int amount)
     {
+        var choiceContext = new ThrowingPlayerChoiceContext();
         foreach (var player in GetLivingEffectPlayers(owner))
-            await CreatureCmd.GainBlock(player.Creature, amount, ValueProp.Move, null);
+            await PowerCmd.Apply<BlockNextTurnPower>(choiceContext, player.Creature, amount, owner.Creature, null);
     }
 
     private static async Task ApplyVigorToAllPlayers(Player owner, int amount)
@@ -529,16 +543,22 @@ internal static class AnanlinSilenceIntentManager
     private static MoveState CloneMoveWithPerform(
         MoveState source,
         Func<IReadOnlyList<Creature>, Task> perform,
-        string suffix)
+        string suffix,
+        MoveState transitionSource)
     {
+        // The wrapper replaces transitionSource for one turn, so its next state must follow that move's graph.
+        var fallbackFollowUp = transitionSource.FollowUpStateId is null
+            ? transitionSource
+            : null;
+
         var clone = new MoveState(
             $"{source.StateId}_{suffix}",
             perform,
             source.Intents.ToArray())
         {
-            FollowUpState = source.FollowUpState,
-            FollowUpStateId = source.FollowUpStateId,
-            MustPerformOnceBeforeTransitioning = source.MustPerformOnceBeforeTransitioning
+            FollowUpState = transitionSource.FollowUpState ?? fallbackFollowUp,
+            FollowUpStateId = transitionSource.FollowUpStateId,
+            MustPerformOnceBeforeTransitioning = transitionSource.MustPerformOnceBeforeTransitioning
         };
 
         if (OnPerformField?.GetValue(source) is not null)

@@ -86,7 +86,7 @@ public sealed class HiroBadEnding : ManosabaCardTemplate
 
         if (source.Pile?.Type != PileType.Hand) await CardPileCmd.Add(source, PileType.Hand);
 
-        var rebirthId = TransmigrationRules.TransmigrationKeywordId;
+        var rebirthId = TransmigrationRules.TransmigrationCardKeyword;
 
         var drawCards = PileType.Draw.GetPile(source.Owner).Cards.Where(c => c.HasModKeyword(rebirthId)).ToList();
         var handCards = PileType.Hand.GetPile(source.Owner).Cards.Where(c => c != this && c.HasModKeyword(rebirthId))

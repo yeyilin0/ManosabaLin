@@ -23,7 +23,7 @@ public class CardSixtyTwo() : ManosabaCardTemplate(1, CardType.Attack, CardRarit
     };
 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
-        [TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword()];
+        [TransmigrationRules.TransmigrationCardKeyword];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {

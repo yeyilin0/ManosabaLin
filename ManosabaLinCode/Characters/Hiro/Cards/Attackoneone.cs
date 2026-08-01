@@ -36,7 +36,7 @@ public sealed class Attackoneone : ManosabaCardTemplate
         new[]
         {
             CardKeyword.Exhaust,
-            TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword()
+            TransmigrationRules.TransmigrationCardKeyword
         };
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
@@ -98,7 +98,7 @@ public sealed class Attackoneone : ManosabaCardTemplate
         if (handCards.Count > 0)
         {
             var chosen = handCards[Owner.RunState.Rng.CombatCardSelection.NextInt(handCards.Count)];
-            chosen.AddModKeyword(TransmigrationRules.TransmigrationKeywordId);
+            chosen.AddModKeyword(TransmigrationRules.TransmigrationCardKeyword);
         }
 
         await PowerCmd.Apply<PerjuryPower>(

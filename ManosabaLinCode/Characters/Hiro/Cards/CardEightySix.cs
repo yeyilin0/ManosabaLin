@@ -1,21 +1,14 @@
-using Godot;
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.Components;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Extensions;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using MinionLib.Component.Core;
 using MinionLib.Component.Interfaces;
 using STS2RitsuLib.Interop.AutoRegistration;
-using MegaCrit.Sts2.Core.Context;
-using MegaCrit.Sts2.Core.Nodes.Cards;
-using MegaCrit.Sts2.Core.Nodes.Rooms;
-using MegaCrit.Sts2.Core.Nodes.Vfx;
-using MegaCrit.Sts2.Core.Nodes.Vfx.Cards;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -60,76 +53,9 @@ public class CardEightySix() : ManosabaCardTemplate(1, CardType.Attack, CardRari
                     .ToList()
                     .StableShuffle(Owner.RunState.Rng.Shuffle);
 
-                var success = false;
                 if (drawPileCards.FirstOrDefault() is IComponentsCardModel card)
-                {
-                    success = true;
                     card.AddComponent(new GenerateComponent(this));
-                }
-
-                FlyToDrawOrExhaustAnimation(cardPlay.IsLastInSeries, success);
-                if (cardPlay.IsLastInSeries) await CardPileCmd.RemoveFromCombat(this, skipVisuals: true);
                 return;
-        }
-    }
-
-    private void FlyToDrawOrExhaustAnimation(bool isLast, bool success)
-    {
-        if (Pile is not { IsCombatPile: true }) return;
-        if (!LocalContext.IsMine(this)) return;
-
-        var originalNode = NCard.FindOnTable(this);
-        var vfxContainer = NCombatRoom.Instance?.CombatVfxContainer;
-
-        if (originalNode is null || vfxContainer is null) return;
-
-        NCard? nodeToAnim;
-        var originalPosition = originalNode.GlobalPosition;
-        if (isLast)
-        {
-            nodeToAnim = originalNode;
-            originalNode.GetParent()?.RemoveChildSafely(nodeToAnim);
-            vfxContainer.AddChildSafely(originalNode);
-        }
-        else
-        {
-            nodeToAnim = NCard.Create(this);
-            vfxContainer.AddChildSafely(nodeToAnim);
-        }
-        if (nodeToAnim is null) return;
-        nodeToAnim.GlobalPosition = originalPosition;
-
-        Node2D? vfx;
-        if (success)
-        {
-           
-            vfx = NCardFlyVfx.Create(nodeToAnim, PileType.Draw, isAddingToPile: false,
-                Owner.Character.TrailPath);
-        }
-        else
-        {
-            vfx = null;
-        }
-
-        if (vfx != null)
-        {
-            vfxContainer.AddChildSafely(vfx);
-            if (success) return;
-            var tween = NCombatRoom.Instance?.CreateTween();
-            if (tween != null)
-            {
-                tween.TweenProperty(nodeToAnim, "modulate", StsColors.exhaustGray, 0.2f);
-                tween.Chain().TweenCallback(Callable.From(() => nodeToAnim.QueueFreeSafely()));
-                tween.Play();
-            }
-            else
-            {
-                nodeToAnim.QueueFreeSafely();
-            }
-        }
-        else
-        {
-            nodeToAnim.QueueFreeSafely();
         }
     }
 }

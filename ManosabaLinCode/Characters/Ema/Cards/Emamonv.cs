@@ -57,9 +57,9 @@ public sealed class Emamonv : ManosabaCardTemplate
 
         var keywords = new[]
         {
-            EmalinKeywordRules.AgreeKeywordId,
-            EmalinKeywordRules.DoubtKeywordId,
-            EmalinKeywordRules.RebuttalKeywordId
+            EmalinKeywordRules.AgreeCardKeyword,
+            EmalinKeywordRules.DoubtCardKeyword,
+            EmalinKeywordRules.RebuttalCardKeyword
         };
 
         var cards = CardFactory.GetDistinctForCombat(

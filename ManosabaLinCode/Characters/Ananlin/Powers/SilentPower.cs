@@ -17,21 +17,32 @@ public sealed class SilentPower : ManosabaPowerTemplate, IEasyRightClickablePowe
     {
         return context.Model == this
             && context.Player == Owner.Player
-            && Amount >= SilenceCost
+            && (Amount >= SilenceCost || HasNoahAssistCharge())
             && Owner.Player?.Relics.OfType<AnansSketchbook>().FirstOrDefault()?.CanTriggerSilenceRewrite() == true;
     }
 
     public async Task OnRightClick(PlayerChoiceContext choiceContext, RightClickContext clickContext)
     {
-        if (Amount < SilenceCost) return;
+        var noahAssist = Owner.GetPower<AnanlinNoahAssistPower>();
+        var useNoahAssist = noahAssist?.HasFreeRewriteCharge == true;
+        if (!useNoahAssist && Amount < SilenceCost) return;
         if (Owner.Player?.Relics.OfType<AnansSketchbook>().FirstOrDefault() is not { } sketchbook) return;
         if (!sketchbook.CanTriggerSilenceRewrite()) return;
 
-        await PowerCmd.ModifyAmount(choiceContext, this, -SilenceCost, Owner, null);
-        await sketchbook.TriggerSilenceRewrite(choiceContext);
+        if (!useNoahAssist)
+            await PowerCmd.ModifyAmount(choiceContext, this, -SilenceCost, Owner, null);
+
+        var rewrittenTargets = await sketchbook.TriggerSilenceRewriteAndGetTargets(choiceContext);
+        if (useNoahAssist)
+            await noahAssist!.ResolveFreeRewriteAttempt(choiceContext, rewrittenTargets, Owner, null);
 
         if (Owner.GetPower<AnanlinLiePower>() is { } liePower)
             await liePower.ResolveAfterSilenceRightClick(choiceContext);
+    }
+
+    private bool HasNoahAssistCharge()
+    {
+        return Owner.GetPower<AnanlinNoahAssistPower>()?.HasFreeRewriteCharge == true;
     }
 
     public string RightClickPrompt => "消耗13层缄默。";

@@ -41,7 +41,7 @@ public sealed class Geinilunhui : ManosabaCardTemplate
         var source = this;
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        var rebirthKeyword = TransmigrationRules.TransmigrationKeywordId.GetModCardKeyword();
+        var rebirthKeyword = TransmigrationRules.TransmigrationCardKeyword;
         var targetPlayer = cardPlay.Target?.Player ?? Owner;
 
         // 1. 从自己的手牌、抽牌堆、弃牌堆中选 1 张有轮回的牌

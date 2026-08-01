@@ -25,9 +25,11 @@ public static class TransmigrationRules
     public static string TransmigrationKeywordId =>
         ModContentRegistry.GetQualifiedKeywordId(MainFile.ModId, "transmigration");
 
+    public static CardKeyword TransmigrationCardKeyword => TransmigrationKeywordId.GetModCardKeyword();
+
     public static bool HasTransmigration(CardModel? card)
     {
-        return card != null && card.HasModKeyword(TransmigrationKeywordId);
+        return card != null && card.HasModKeyword(TransmigrationCardKeyword);
     }
 
     private static List<CardModel> GetMatchingCardsFromDrawPile(CardModel source)

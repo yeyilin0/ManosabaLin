@@ -10,19 +10,19 @@ public sealed class AnanlinBombDisposalExpert()
     : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Ancient, TargetType.Self),
         IAnanlinPeaceOfMindSpecialCard
 {
-    private const int PeaceThreshold = 3;
+    private const int PeaceThreshold = 1;
     private const string PeaceThresholdKey = "PeaceThreshold";
 
-    private int _turnsEndedWithThreePeace;
+    private int _turnStartPeaceCount;
     private int _timesPlayedThisCombat;
 
     public override int MaxUpgradeLevel => 0;
 
     [SavedProperty]
-    public int TurnsEndedWithThreePeace
+    public int TurnStartPeaceCount
     {
-        get => _turnsEndedWithThreePeace;
-        set => _turnsEndedWithThreePeace = Math.Max(0, value);
+        get => _turnStartPeaceCount;
+        set => _turnStartPeaceCount = Math.Max(0, value);
     }
 
     [SavedProperty]
@@ -37,7 +37,7 @@ public sealed class AnanlinBombDisposalExpert()
         new IntVar(PeaceThresholdKey, PeaceThreshold),
         new CalculationBaseVar(0m),
         new CalculationExtraVar(1m),
-        new CalculatedVar("PeaceVigor").WithMultiplier((card, _) => ((AnanlinBombDisposalExpert)card).TurnsEndedWithThreePeace),
+        new CalculatedVar("PeaceVigor").WithMultiplier((card, _) => ((AnanlinBombDisposalExpert)card).TurnStartPeaceCount),
         new CalculatedVar("RewriteVigor").WithMultiplier((card, _) => ((AnanlinBombDisposalExpert)card).RewriteVigor())
     ];
 
@@ -61,7 +61,7 @@ public sealed class AnanlinBombDisposalExpert()
             Owner.Creature,
             this);
 
-        var peaceVigor = TurnsEndedWithThreePeace;
+        var peaceVigor = TurnStartPeaceCount;
         if (peaceVigor > 0)
         {
             await PowerCmd.Apply<VigorPower>(
@@ -87,14 +87,15 @@ public sealed class AnanlinBombDisposalExpert()
         DoubleCostForCombat();
     }
 
-    protected override Task AfterSideTurnEnd(
+    protected override Task BeforeSideTurnStart(
         PlayerChoiceContext choiceContext,
         CombatSide side,
-        IEnumerable<Creature> participants,
+        IReadOnlyList<Creature> participants,
+        ICombatState combatState,
         ComponentContext componentContext)
     {
-        if (side == Owner.Creature.Side && this.PeaceOfMindAmount() >= PeaceThreshold)
-            TurnsEndedWithThreePeace++;
+        if (side == Owner.Creature.Side)
+            TurnStartPeaceCount += this.PeaceOfMindAmount() / PeaceThreshold;
 
         return Task.CompletedTask;
     }

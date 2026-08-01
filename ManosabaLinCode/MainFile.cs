@@ -1,15 +1,26 @@
 using HarmonyLib;
+using ManosabaLin.Characters.Ananlin;
+using ManosabaLin.Characters.Ananlin.Cards;
+using ManosabaLin.Characters.Ema.Cards;
+using ManosabaLin.Characters.Emalin;
 using ManosabaLin.Characters.Hiro;
+using ManosabaLin.Characters.Hiro.Cards;
 using ManosabaLin.Characters.Sherrylin;
+using ManosabaLin.Characters.Sherrylin.Cards;
+using ManosabaLin.Characters.Yalisalin;
+using ManosabaLin.Characters.Yalisalin.Components;
 using ManosabaLin.MainMenu;
 using ManosabaLin.Utils;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
+using MegaCrit.Sts2.Core.Models;
 using STS2RitsuLib;
 using STS2RitsuLib.Audio;
 using STS2RitsuLib.CardPiles;
 using STS2RitsuLib.Interop;
+using STS2RitsuLib.Settings;
+using STS2RitsuLib.Telemetry;
 using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace ManosabaLin;
@@ -41,6 +52,7 @@ public partial class MainFile : Node
 
         using (RitsuLibFramework.BeginModDataRegistration(ModId));
         MainMenuBackgroundSettingsService.Register();
+        RegisterManosabaLinTelemetry();
 
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
         // 加载 FMOD 音频库
@@ -57,9 +69,18 @@ public partial class MainFile : Node
                         HiroCardPool => new Color(204f / 255f, 102f / 255f, 102f / 255f),
                         EmalinCardPool => new Color(1f, 0.6f, 0.8f),
                         SherrylinCardPool => new Color(0.2f, 0.8f, 1f),
+                        YalisalinCardPool => new Color(0.67f, 0.4f, 0.8f),
                         LinCardPool => new Color(0.8f, 0.8f, 0.8f),
                         _ => null
                     })
+            .CardHandOutline<CardModel>(card =>
+                YalisalinFireComponentRules.HasFireComponent(card)
+                    ? new Color(1f, 0.42f, 0.08f)
+                    : null)
+            .DustyTomeCard<Hiro, HiroWith>()
+            .DustyTomeCard<Emalin, Emawichpower>()
+            .DustyTomeCard<Sherrylin, SherrylinWitchPower>()
+            .DustyTomeCard<Ananlin, AnanlinWitchPower>()
             .Apply();
 // 注册雪莉琳专属「案卷」牌堆
         CaseFilePile = ModCardPileRegistry.For(ModId)
@@ -80,6 +101,28 @@ public partial class MainFile : Node
         harmony.PatchAll();
 
         _ = CheckUpdateAsync();
+    }
+
+    private static void RegisterManosabaLinTelemetry()
+    {
+        TelemetryRegistry.RegisterApplicant(new()
+        {
+            ApplicantId = ModId,
+            OwnerModId = ModId,
+            DisplayName = ModId,
+            DisplayNameText = ModSettingsText.LocString("settings_ui", "MANOSABALIN_TELEMETRY_NAME", ModId),
+            Adapter = new PostHogTelemetryAdapter(
+                host: "https://telemetry.r9jji.icu",
+                projectApiKey: "proxy"
+            ),
+            Requests =
+            [
+                TelemetryRequest.BasicUsage(ModSettingsText.LocString("settings_ui", "MANOSABALIN_TELEMETRY_USAGE", "Basic usage data")),
+                TelemetryRequest.ModInventory(ModSettingsText.LocString("settings_ui", "MANOSABALIN_TELEMETRY_MODS", "Mod list")),
+                TelemetryRequest.Diagnostics(ModSettingsText.LocString("settings_ui", "MANOSABALIN_TELEMETRY_DIAGNOSTICS", "Diagnostics")),
+                TelemetryRequest.RunHistory(ModSettingsText.LocString("settings_ui", "MANOSABALIN_TELEMETRY_RUNS", "Run history"))
+            ],
+        });
     }
 
     private static async Task CheckUpdateAsync()
