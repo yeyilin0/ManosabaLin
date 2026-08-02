@@ -39,6 +39,8 @@
   "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.HIRO.description": "得る{Cards}[color=#CC6666] 二階堂ヒロ [/color]のカード",
   "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.SHERRYLIN.title": "シアンブルー",
   "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.SHERRYLIN.description": "得る{Cards}[color=33ccff] オレンジシャーリー [/color]のカード",
+  "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.ANANLINLIN.title": "紫青色",
+  "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.ANANLINLIN.description": "{Cards}枚の[color=6666cc]夏目安安[/color]のカードを得る。",
   "MANOSABA_LIN_EVENT_TEAM_CARD_EXCHANGE_EVENT.title": "『魔法少女ノウィッチジャッジ』",
   "MANOSABA_LIN_EVENT_TEAM_CARD_EXCHANGE_EVENT.pages.INITIAL.description": "[font_size=45]全員の事件記録が机の上に広げられている。\n[color=ff99cc]自分[/color]のノートを整理できる。チーム構成が十分に混ざっていれば、[color=33ccff]仲間[/color]の方法を借りることもできる。[/font_size]",
   "MANOSABA_LIN_EVENT_TEAM_CARD_EXCHANGE_EVENT.pages.INITIAL.options.OWN_CARDS.title": "メモを整理する",

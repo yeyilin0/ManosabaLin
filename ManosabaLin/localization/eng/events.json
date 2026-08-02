@@ -39,6 +39,8 @@
   "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.HIRO.description": "get{Cards}A card of [color=#CC6666] Nikaido Hiro [/color]",
   "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.SHERRYLIN.title": "cyan blue",
   "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.SHERRYLIN.description": "get{Cards}A card of [color=33ccff] Orange Shirley [/color]",
+  "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.ANANLINLIN.title": "Violet Blue",
+  "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.ANANLINLIN.description": "Gain {Cards} [color=6666cc]Natsume Anan[/color] cards.",
   "MANOSABA_LIN_EVENT_TEAM_CARD_EXCHANGE_EVENT.title": "\"Magical Girl No Witch Judge\"",
   "MANOSABA_LIN_EVENT_TEAM_CARD_EXCHANGE_EVENT.pages.INITIAL.description": "[font_size=45]Everyone's case records are spread out on the table.\nYou can organize your [color=ff99cc]own[/color] notes; if the party is mixed enough, you can also borrow your [color=33ccff]teammates'[/color] methods.[/font_size]",
   "MANOSABA_LIN_EVENT_TEAM_CARD_EXCHANGE_EVENT.pages.INITIAL.options.OWN_CARDS.title": "Organize your notes",

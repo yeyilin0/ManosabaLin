@@ -1034,7 +1034,7 @@
   "MANOSABA_LIN_MODEL_CAPABILITY_ANANLIN_COCO_MULTIVERSE_CAPABILITY.empty": "无",
   "MANOSABA_LIN_MODEL_CAPABILITY_ANANLIN_NAYUKA_HISTORY_CAPABILITY.afterBase": "\n[color=#999999]【黑部奈叶香的魔法】[/color]：打出后，移除此复制牌和消耗堆中对应牌名的牌",
   "MANOSABA_LIN_CARD_ANANLIN_MILIA_ASSIST.title": "米莉亚的协力",
-  "MANOSABA_LIN_CARD_ANANLIN_MILIA_ASSIST.description": "造成{Damage:diff()}点[color=#6666cc]伤害[/color]。\n选择1张将其变形成{IfUpgraded:show:本回合费用为0且无视打出条件|已记录卡池中的可打出牌}",
+  "MANOSABA_LIN_CARD_ANANLIN_MILIA_ASSIST.description": "造成{Damage:diff()}点[color=#6666cc]伤害[/color]。\n选择1张手牌将其变形成{IfUpgraded:show:本回合费用为0且无视打出条件|已记录卡池中的可打出牌}",
   "MANOSABA_LIN_CARD_ANANLIN_MILIA_ASSIST.selectionScreenPrompt": "选择要改写的手牌",
   "MANOSABA_LIN_CARD_ANANLIN_NOAH_ASSIST.title": "诺亚的协力",
   "MANOSABA_LIN_CARD_ANANLIN_NOAH_ASSIST.description": "本回合只有1次可以免费右键使用[color=#6666cc]【缄默】[/color]或[color=#6666cc]【洗脑】[/color]。\n回合结束时，给予被改写的敌人{RewrittenNymPower:diff()}层[blue]【城崎诺亚的魔法】[/blue]\n若没有改写敌人，给予所有敌人{NoRewriteNymPower:diff()}层。",
