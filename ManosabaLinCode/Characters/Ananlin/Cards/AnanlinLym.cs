@@ -19,7 +19,7 @@ public class AnanlinLym() : ManosabaCardTemplate(2, CardType.Skill, CardRarity.R
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new PowerVar<SuspectPower>(5m),
+        new PowerVar<SuspectPower>(4m),
         new PowerVar<LymPower>(1m)
     ];
 

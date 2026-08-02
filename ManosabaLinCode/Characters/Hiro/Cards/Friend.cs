@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +48,7 @@ public sealed class Friend() : ManosabaCardTemplate(1, CardType.Power, CardRarit
         var options = new List<CardModel> { xlmCard, hnmCard };
         var selected = await CardSelectCmd.FromSimpleGrid(
             choiceContext, options, source.Owner,
-            new CardSelectorPrefs(new LocString("Friend", "选择一项能力"), 1)
+            new CardSelectorPrefs(SelectionScreenPrompt, 1)
         );
 
         var chosen = selected.FirstOrDefault();

@@ -24,13 +24,16 @@ public sealed class AnanlinAfterAwakening()
         CardPlay cardPlay,
         ComponentContext componentContext)
     {
-        var peace = this.PeaceOfMindAmount();
-
         if (this.HasLostPeaceOfMindThisTurn())
+        {
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
+        }
         else
+        {
             await this.GainPeaceOfMind(choiceContext);
+        }
 
+        var peace = this.PeaceOfMindAmount();
         if (peace > 0 && this.Sketchbook() is { } sketchbook)
             await sketchbook.AddSilence(choiceContext, peace * DynamicVars["Silence"].IntValue, this);
     }

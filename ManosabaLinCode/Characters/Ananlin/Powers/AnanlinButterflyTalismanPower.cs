@@ -21,6 +21,22 @@ public sealed class AnanlinButterflyTalismanPower : ManosabaPowerTemplate
         _triggered = false;
     }
 
+    internal void RecordDamage(decimal amount)
+    {
+        var amountToRecord = Math.Min(Amount, amount);
+        if (amountToRecord <= 0) return;
+
+        Flash();
+        if (Owner.GetPower<CrimsonbutterflyPower>() is { } butterfly)
+        {
+            butterfly.RecordExtraDamage(amountToRecord);
+        }
+        else
+        {
+            _recordedDamage += amountToRecord;
+        }
+    }
+
     public override async Task AfterDamageReceived(
         PlayerChoiceContext choiceContext,
         Creature target,
@@ -35,17 +51,8 @@ public sealed class AnanlinButterflyTalismanPower : ManosabaPowerTemplate
         if (result.TotalDamage <= 0) return;
 
         _triggered = true;
-        Flash();
 
-        var amountToRecord = Math.Min(Amount, result.TotalDamage);
-        if (Owner.GetPower<CrimsonbutterflyPower>() is { } butterfly)
-        {
-            butterfly.RecordExtraDamage(amountToRecord);
-        }
-        else
-        {
-            _recordedDamage += amountToRecord;
-        }
+        RecordDamage(result.TotalDamage);
 
         if (_silenceOnTrigger > 0)
             await PowerCmd.Apply<SilentPower>(choiceContext, Owner, _silenceOnTrigger, Owner, cardSource);

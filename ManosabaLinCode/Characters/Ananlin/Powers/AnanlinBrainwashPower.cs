@@ -74,7 +74,10 @@ public sealed class AnanlinBrainwashPower : ManosabaPowerTemplate, IEasyRightCli
         if (rewrittenTargets.Count == 0 && !useNoahAssist) return;
 
         if (useNoahAssist)
+        {
             await noahAssist!.ResolveFreeRewriteAttempt(choiceContext, rewrittenTargets, Owner, null);
+            return;
+        }
 
         UsedThisTurn = true;
         if (paidSilenceCost)

@@ -51,9 +51,10 @@ public sealed class AnanlinNoahsButterflyTalisman() : ManosabaCardTemplate(1, Ca
                 this);
             if (talisman != null)
             {
-                foreach (var enemy in CombatState.GetOpponentsOf(Owner.Creature).Where(e => e.IsAlive && HasAttackIntent(e)))
-                    talisman.Arm(enemy, DynamicVars[TriggerSilenceVar].IntValue);
+                talisman.RecordDamage(DynamicVars[RecordVar].BaseValue);
             }
+
+            await this.AddSilence(choiceContext, DynamicVars[TriggerSilenceVar].IntValue);
             return;
         }
 

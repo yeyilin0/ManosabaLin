@@ -99,7 +99,6 @@ public sealed class AnanlinYujiaoBeanSproutMineGirl()
         await CardPileCmd.Draw(choiceContext, BaseDraw, Owner);
         await this.AddMarginPageToHand(false);
 
-        DoubleCostForCombat();
         if (IsComplete)
             await CreateBombDisposalExpert();
     }
@@ -132,14 +131,6 @@ public sealed class AnanlinYujiaoBeanSproutMineGirl()
     protected override void OnUpgrade(ComponentContext componentContext)
     {
         EnergyCost.UpgradeBy(-1);
-    }
-
-    private void DoubleCostForCombat()
-    {
-        TimesPlayedThisCombat++;
-        var cappedMultiplierStep = Math.Min(TimesPlayedThisCombat, 7);
-        var nextCost = Math.Min(99, Math.Max(1, EnergyCost.Canonical) * (1 << cappedMultiplierStep));
-        EnergyCost.SetThisCombat(nextCost);
     }
 
     private void RefreshVars()

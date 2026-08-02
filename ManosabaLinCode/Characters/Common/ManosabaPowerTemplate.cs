@@ -9,6 +9,8 @@ namespace ManosabaLin.Characters.Common;
 
 public abstract class ManosabaPowerTemplate : ModPowerTemplate
 {
+    protected override bool IsVisibleInternal => StackType != PowerStackType.None && base.IsVisibleInternal;
+
     public override PowerAssetProfile AssetProfile
     {
         get

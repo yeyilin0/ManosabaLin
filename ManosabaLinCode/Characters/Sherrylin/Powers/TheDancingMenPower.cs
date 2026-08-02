@@ -6,7 +6,6 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.Localization;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Linq;
 
@@ -28,7 +27,7 @@ public sealed class TheDancingMenPower : ManosabaPowerTemplate
 
         Flash();
 
-        var prefs = new CardSelectorPrefs(new LocString("TheDancingMen", "选择一张牌消耗"), 1, 1);
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
         var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, drawPile.Cards.ToList(), Owner.Player, prefs);
         var selectedCard = selected.FirstOrDefault();
         if (selectedCard == null) return;

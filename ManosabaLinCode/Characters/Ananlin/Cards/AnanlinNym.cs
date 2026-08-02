@@ -21,7 +21,7 @@ public sealed class AnanlinNym() : ManosabaCardTemplate(2, CardType.Attack, Card
         new DamageVar(6m, ValueProp.Move),
         new PowerVar<SuspectPower>(1m),
         new PowerVar<WithPower>(10m),
-        new PowerVar<NymPower>(1m)
+        new PowerVar<NymPower>(2m)
     };
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips

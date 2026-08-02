@@ -7,16 +7,16 @@ namespace ManosabaLin.Characters.Ananlin.Powers;
 public sealed class AnanlinUnnoticedPower : ManosabaPowerTemplate
 {
     private CardModel? _sourceCard;
-    private int _bonusDraws;
+    private int _cardsPerPeace;
 
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.None;
     protected override bool IsVisibleInternal => false;
 
-    internal void Arm(CardModel sourceCard, int bonusDraws)
+    internal void Arm(CardModel sourceCard, int cardsPerPeace)
     {
         _sourceCard = sourceCard;
-        _bonusDraws = bonusDraws;
+        _cardsPerPeace = cardsPerPeace;
         Amount = 1;
     }
 
@@ -31,8 +31,9 @@ public sealed class AnanlinUnnoticedPower : ManosabaPowerTemplate
         {
             await PowerCmd.Apply<AnanlinPeaceOfMindPower>(choiceContext, Owner, 1, Owner, _sourceCard);
 
-            if (_bonusDraws > 0 && Owner.Player is { } player)
-                await CardPileCmd.Draw(choiceContext, _bonusDraws, player);
+            var bonusDraws = _sourceCard?.PeaceOfMindAmount() * _cardsPerPeace ?? 0;
+            if (bonusDraws > 0 && Owner.Player is { } player)
+                await CardPileCmd.Draw(choiceContext, bonusDraws, player);
         }
 
         await PowerCmd.Remove(this);

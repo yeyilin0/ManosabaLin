@@ -15,6 +15,7 @@ using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
+using MinionLib.Utilities.CustomGlowColor;
 using STS2RitsuLib;
 using STS2RitsuLib.Audio;
 using STS2RitsuLib.CardPiles;
@@ -61,22 +62,12 @@ public partial class MainFile : Node
 
 
         var ctx = RitsuLibFramework.CreateContentPack(ModId)
-            .CardHandOutline<ManosabaCardTemplate>(card =>
-                card.GlowColor != null
-                    ? null
-                    : card.VisualCardPool switch
-                    {
-                        HiroCardPool => new Color(204f / 255f, 102f / 255f, 102f / 255f),
-                        EmalinCardPool => new Color(1f, 0.6f, 0.8f),
-                        SherrylinCardPool => new Color(0.2f, 0.8f, 1f),
-                        YalisalinCardPool => new Color(0.67f, 0.4f, 0.8f),
-                        LinCardPool => new Color(0.8f, 0.8f, 0.8f),
-                        _ => null
-                    })
+            .CardHandOutline<CardModel>(DefaultCardHandOutlineColor)
             .CardHandOutline<CardModel>(card =>
-                YalisalinFireComponentRules.HasFireComponent(card)
+                card.CanPlay() && !HasCustomGlowColor(card) && YalisalinFireComponentRules.HasFireComponent(card)
                     ? new Color(1f, 0.42f, 0.08f)
-                    : null)
+                    : null,
+                priority: 100)
             .DustyTomeCard<Hiro, HiroWith>()
             .DustyTomeCard<Emalin, Emawichpower>()
             .DustyTomeCard<Sherrylin, SherrylinWitchPower>()
@@ -101,6 +92,41 @@ public partial class MainFile : Node
         harmony.PatchAll();
 
         _ = CheckUpdateAsync();
+    }
+
+    private static Color? DefaultCardHandOutlineColor(CardModel card)
+    {
+        if (!card.CanPlay() || HasCustomGlowColor(card))
+            return null;
+
+        return card.VisualCardPool switch
+        {
+            AnanlinCardPool => Ananlin.Color,
+            HiroCardPool => Hiro.Color,
+            EmalinCardPool => Emalin.Color,
+            SherrylinCardPool => Sherrylin.Color,
+            YalisalinCardPool => Yalisalin.Color,
+            LinCardPool => OwnerCharacterColor(card) ?? new Color(0.8f, 0.8f, 0.8f),
+            _ => null
+        };
+    }
+
+    private static bool HasCustomGlowColor(CardModel card)
+    {
+        return card is ICustomGlowColorCard { GlowColor: not null };
+    }
+
+    private static Color? OwnerCharacterColor(CardModel card)
+    {
+        return card.Owner?.Character switch
+        {
+            Ananlin => Ananlin.Color,
+            Hiro => Hiro.Color,
+            Emalin => Emalin.Color,
+            Sherrylin => Sherrylin.Color,
+            Yalisalin => Yalisalin.Color,
+            _ => null
+        };
     }
 
     private static void RegisterManosabaLinTelemetry()
