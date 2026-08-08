@@ -18,6 +18,11 @@ public sealed class Yalisaqinjin : ManosabaCardTemplate
 {
     public Yalisaqinjin() : base(1, CardType.Power, CardRarity.Ancient, TargetType.Self) { }
 
+    public override CardAssetProfile AssetProfile => base.AssetProfile with
+    {
+        AncientTextBgPath = "ancient_empty_text_bg.png".CardsImagePath()
+    };
+
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
         get

@@ -24,6 +24,7 @@ namespace ManosabaLin.Characters.Ema.Cards;
 public sealed class Emarevokation() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     private const int MaxHpLoss = 3;
+    private const string LamortEffectHoverLocEntry = "MANOSABA_LIN_CARD_LAMORT_EFFECT";
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
@@ -38,6 +39,9 @@ public sealed class Emarevokation() : ManosabaCardTemplate(1, CardType.Attack, C
             yield return HoverTipFactory.FromCard<EmaWitchKillerCard>();
             yield return HoverTipFactory.FromPower<EmaWitchKillerPower>();
             yield return HoverTipFactory.FromCard<Lamort>();
+            yield return CardEffectHoverTipFactory.FromCard(
+                ModelDb.Card<Lamort>(),
+                LamortEffectHoverLocEntry);
         }
     }
 

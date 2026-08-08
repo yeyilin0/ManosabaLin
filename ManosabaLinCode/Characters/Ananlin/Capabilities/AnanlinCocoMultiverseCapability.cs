@@ -13,6 +13,11 @@ public sealed class AnanlinCocoMultiverseCapability : ManosabaCardCapability
 
     private List<string> SelectedCardIds { get; set; } = [];
 
+    public override IEnumerable<CardDescriptionFragment> GetDescriptionFragments(CardDescriptionContext context)
+    {
+        yield break;
+    }
+
     public void RerollFromRecordedPools(AnansSketchbook? sketchbook)
     {
         if (sketchbook is null)

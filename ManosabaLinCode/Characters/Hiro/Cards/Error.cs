@@ -13,16 +13,32 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCard(typeof(LinCardPool))]
 public sealed class Error : ManosabaCardTemplate
 {
+    private const string TheEndEffectHoverLocEntry = "MANOSABA_LIN_CARD_THE_END_EFFECT";
+
     private int _handAttackCount;
 
     public Error() : base(2, CardType.Attack, CardRarity.Ancient, TargetType.AnyEnemy)
     {
     }
 
+    public override CardAssetProfile AssetProfile => base.AssetProfile with
+    {
+        AncientTextBgPath = "ancient_empty_text_bg.png".CardsImagePath()
+    };
+
     public override IEnumerable<CardKeyword> CanonicalKeywords
     {
         get { yield return CardKeyword.Retain; }
     }
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+    [
+        HoverTipFactory.FromCard<TheEnd>(),
+        CardEffectHoverTipFactory.FromCard(
+            ModelDb.Card<TheEnd>(),
+            TheEndEffectHoverLocEntry),
+       
+    ];
 
     protected override IEnumerable<DynamicVar> CanonicalVars
     {

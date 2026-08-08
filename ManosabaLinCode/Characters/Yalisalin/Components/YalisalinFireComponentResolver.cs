@@ -1,5 +1,6 @@
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Hooks;
+using ManosabaLin.Characters.Hiro.Cards;
 using ManosabaLin.Characters.Yalisalin.Capabilities;
 using ManosabaLin.Characters.Yalisalin.Relics;
 using STS2RitsuLib.Models.Capabilities;
@@ -116,7 +117,9 @@ public static class YalisalinFireComponentResolver
             foreach (var modifier in modifiers)
                 modifier.ModifyFireComponentRightClickQueue(context);
 
-            context.ChoiceOptions.RemoveAll(card => card == null || card.HasBeenRemovedFromState);
+            context.ChoiceOptions.RemoveAll(card => card == null
+                                                    || card.HasBeenRemovedFromState
+                                                    || SamePlaceTruth.IsSelectionLocked(card));
             if (context.ChoiceOptions.Count == 0)
                 return context;
 

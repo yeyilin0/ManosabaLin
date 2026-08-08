@@ -1,5 +1,3 @@
-using ManosabaLin.Characters.Hiro;
-
 namespace ManosabaLin.Audio.Services;
 
 public static class AudioEventPathProvider
@@ -12,6 +10,17 @@ public static class AudioEventPathProvider
     public static string CardOwnerName(CardModel card)
     {
         return card.Owner.Character.GetType().Name.ToLowerInvariant();
+    }
+
+    public static string? CardHomeName(CardModel card)
+    {
+        var ns = card.GetType().Namespace ?? "";
+        if (ns.Contains(".Characters.Ananlin.")) return "ananlin";
+        if (ns.Contains(".Characters.Ema.")) return "emalin";
+        if (ns.Contains(".Characters.Hiro.")) return "hiro";
+        if (ns.Contains(".Characters.Sherrylin.")) return "sherrylin";
+        if (ns.Contains(".Characters.Yalisalin.")) return "yalisalin";
+        return null;
     }
 
     public static string CardNameSlug(CardModel card)

@@ -1,6 +1,7 @@
 using ManosabaLin.Characters.Ema.Relics;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Hiro.Enchantments;
+using ManosabaLin.Characters.Hiro.Cards;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -63,7 +64,9 @@ public class Doubt : ModEnchantmentTemplate
         if (count % 4 == 0)
         {
             var discardPile = PileType.Discard.GetPile(owner);
-            var discardCards = discardPile.Cards.ToList();
+            var discardCards = discardPile.Cards
+                .Where(static card => !SamePlaceTruth.IsSelectionLocked(card))
+                .ToList();
             if (discardCards.Count > 0)
             {
                 var retrieved = owner.RunState.Rng.CombatCardSelection.NextItem(discardCards);

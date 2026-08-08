@@ -3,6 +3,7 @@ using ManosabaLin.Characters.Common.Powers;
 using ManosabaLin.Characters.Ema.Powers;
 using ManosabaLin.Characters.Emalin.Enchantments;
 using ManosabaLin.Characters.Ema.Relics;
+using ManosabaLin.Characters.Hiro.Cards;
 using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Combat;
@@ -167,7 +168,9 @@ public sealed class EnchantmentConvergencePower : ManosabaPowerTemplate
 
         if (count % 4 == 0)
         {
-            var discardCards = PileType.Discard.GetPile(ally).Cards.ToList();
+            var discardCards = PileType.Discard.GetPile(ally).Cards
+                .Where(static card => !SamePlaceTruth.IsSelectionLocked(card))
+                .ToList();
             if (discardCards.Count > 0)
                 await CardPileCmd.Add(ally.RunState.Rng.CombatCardSelection.NextItem(discardCards), PileType.Hand);
         }

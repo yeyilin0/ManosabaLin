@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
+using ManosabaLin.Characters.Hiro.Cards;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Keywords;
@@ -88,7 +89,9 @@ public sealed class TransmigrationSingleton : SingletonModel
 
     public override Task AfterCardPlayed(PlayerChoiceContext context, CardPlay cardPlay)
     {
-        if (cardPlay.IsAutoPlay) return Task.CompletedTask;
+        if (cardPlay.IsAutoPlay)
+            return SamePlaceTruth.AdvanceLockedTruthsForAutoPlay(context, cardPlay);
+
         return TransmigrationRules.TriggerTransmigrationEffect(cardPlay.Card, context, cardPlay.Target);
     }
 }

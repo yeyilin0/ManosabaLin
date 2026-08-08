@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -66,6 +67,11 @@ public sealed class BondSettlement : ManosabaCardTemplate
         typeof(BondSettlement),
     ];
 
+    protected override CardLocation GetResultLocationForCardPlayC()
+    {
+        return new CardLocation(Owner, PileType.Exhaust, CardPilePosition.Bottom);
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var owner = Owner;
@@ -93,11 +99,14 @@ public sealed class BondSettlement : ManosabaCardTemplate
 
         foreach (var card in drawPile.Cards.Concat(handPile.Cards).Concat(discardPile.Cards))
         {
+            if (ReferenceEquals(card, this) || ReferenceEquals(card, cardPlay.Card))
+                continue;
+
             if (BondCardTypes.Contains(card.GetType()) && seen.Add(card))
                 allBondCards.Add(card);
         }
 
-        var exhaustedCount = 0;
+        var exhaustedCount = BondCardTypes.Contains(cardPlay.Card.GetType()) ? 1 : 0;
         foreach (var card in allBondCards)
         {
             await CardCmd.Exhaust(choiceContext, card);
@@ -119,46 +128,47 @@ public sealed class BondSettlement : ManosabaCardTemplate
         for (int i = 0; i < affinity; i++)
         {
             var chosenType = rng.NextItem(AffinityTypes);
-
-            CardModel? newCard = chosenType switch
-            {
-                Type t when t == typeof(SwapBodySuccess) => CombatState.CreateCard<SwapBodySuccess>(owner),
-                Type t when t == typeof(GuardianOath) => CombatState.CreateCard<GuardianOath>(owner),
-                Type t when t == typeof(Sharedfate) => CombatState.CreateCard<Sharedfate>(owner),
-                Type t when t == typeof(DollGift) => CombatState.CreateCard<DollGift>(owner),
-                Type t when t == typeof(TheOnlyClue) => CombatState.CreateCard<TheOnlyClue>(owner),
-                Type t when t == typeof(SubstituteCost) => CombatState.CreateCard<SubstituteCost>(owner),
-                Type t when t == typeof(NoahAffinity) => CombatState.CreateCard<NoahAffinity>(owner),
-                Type t when t == typeof(MargaretAffinity) => CombatState.CreateCard<MargaretAffinity>(owner),
-                Type t when t == typeof(CocoAffinity) => CombatState.CreateCard<CocoAffinity>(owner),
-                Type t when t == typeof(AnnAffinity) => CombatState.CreateCard<AnnAffinity>(owner),
-                Type t when t == typeof(Lyqinjin) => CombatState.CreateCard<Lyqinjin>(owner),
-                Type t when t == typeof(BondSettlement) => CombatState.CreateCard<BondSettlement>(owner),
-                _ => null
-            };
-
-            if (newCard != null)
-                await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, owner, CardPilePosition.Bottom);
+            var newCard = CreateAffinityCard(CombatState, chosenType, owner);
+            await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, owner, CardPilePosition.Bottom);
         }
 
         // ===== 选择疏远层数张手牌减1费（循环 FromHand） =====
         if (estrangement > 0)
         {
-            var handCards = handPile.Cards.Where(c => c != this).ToList();
-            var maxSelect = Math.Min(estrangement, handCards.Count);
+            var discountableCards = PileType.Hand.GetPile(owner).Cards
+                .Where(c => !ReferenceEquals(c, this) && !ReferenceEquals(c, cardPlay.Card))
+                .Distinct()
+                .ToHashSet();
+            var maxSelect = Math.Min(estrangement, discountableCards.Count);
 
-            for (int i = 0; i < maxSelect; i++)
+            if (maxSelect > 0)
             {
-                if (handCards.Count == 0) break;
-                var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
-                var selected = await CardSelectCmd.FromHand(choiceContext, owner, prefs, null, this);
-                var card = selected.FirstOrDefault();
-                if (card == null) break;
+                var prefs = new CardSelectorPrefs(SelectionScreenPrompt, maxSelect, maxSelect);
+                var selected = await CardSelectCmd.FromHand(
+                    choiceContext, owner, prefs, discountableCards.Contains, this);
 
-                card.EnergyCost.UpgradeBy(-1);
-                handCards.Remove(card);
+                foreach (var card in selected.Distinct())
+                    card.EnergyCost.UpgradeBy(-1);
             }
         }
+    }
+
+    private static CardModel CreateAffinityCard(ICombatState combatState, Type cardType, Player owner)
+    {
+        if (cardType == typeof(SwapBodySuccess)) return combatState.CreateCard<SwapBodySuccess>(owner);
+        if (cardType == typeof(GuardianOath)) return combatState.CreateCard<GuardianOath>(owner);
+        if (cardType == typeof(Sharedfate)) return combatState.CreateCard<Sharedfate>(owner);
+        if (cardType == typeof(DollGift)) return combatState.CreateCard<DollGift>(owner);
+        if (cardType == typeof(TheOnlyClue)) return combatState.CreateCard<TheOnlyClue>(owner);
+        if (cardType == typeof(SubstituteCost)) return combatState.CreateCard<SubstituteCost>(owner);
+        if (cardType == typeof(NoahAffinity)) return combatState.CreateCard<NoahAffinity>(owner);
+        if (cardType == typeof(MargaretAffinity)) return combatState.CreateCard<MargaretAffinity>(owner);
+        if (cardType == typeof(CocoAffinity)) return combatState.CreateCard<CocoAffinity>(owner);
+        if (cardType == typeof(AnnAffinity)) return combatState.CreateCard<AnnAffinity>(owner);
+        if (cardType == typeof(Lyqinjin)) return combatState.CreateCard<Lyqinjin>(owner);
+        if (cardType == typeof(BondSettlement)) return combatState.CreateCard<BondSettlement>(owner);
+
+        throw new InvalidOperationException($"Unsupported affinity card type: {cardType.FullName}");
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

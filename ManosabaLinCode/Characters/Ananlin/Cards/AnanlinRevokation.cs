@@ -8,6 +8,7 @@ public sealed class AnanlinRevokation()
     : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     private const int MaxHpLoss = 3;
+    private const string AnanlinLoverEffectHoverLocEntry = "MANOSABA_LIN_CARD_ANANLIN_LOVER_EFFECT";
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
@@ -17,8 +18,10 @@ public sealed class AnanlinRevokation()
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     [
         HoverTipFactory.FromCard<AnanlinBrainwash>(),
-        HoverTipFactory.FromPower<AnanlinBrainwashPower>(),
         HoverTipFactory.FromCard<AnanlinLover>(),
+        CardEffectHoverTipFactory.FromCard(
+            ModelDb.Card<AnanlinLover>(),
+            AnanlinLoverEffectHoverLocEntry),
         HoverTipFactory.FromKeyword(CardKeyword.Retain)
     ];
 

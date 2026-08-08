@@ -6,7 +6,8 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
-using MegaCrit.Sts2.Core.Entities.Players;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
 
@@ -16,9 +17,10 @@ public  class MllmPower : ManosabaPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
-        if (player != Owner.Player) return;
+        if (side != Owner.Side) return;
+        if (!participants.Contains(Owner)) return;
 
         // 恢复 30 生命
         await CreatureCmd.Heal(Owner, 30);
@@ -27,6 +29,6 @@ public  class MllmPower : ManosabaPowerTemplate
         if (Amount <= 1)
             await PowerCmd.Remove(this);
         else
-            await PowerCmd.ModifyAmount(choiceContext, this, -1, Owner, null, false);
+            await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -1, Owner, null, false);
     }
 }

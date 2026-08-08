@@ -23,6 +23,7 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 public sealed class Revokation() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
     private const int MaxHpLoss = 3;
+    private const string JusticeEffectHoverLocEntry = "MANOSABA_LIN_CARD_JUSTICE_EFFECT";
 
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
@@ -36,8 +37,12 @@ public sealed class Revokation() : ManosabaCardTemplate(1, CardType.Attack, Card
         {
             yield return HoverTipFactory.FromCard<DeathRewind>();
             yield return HoverTipFactory.FromPower<DeathRewindPower>();
-            yield return HoverTipFactory.FromPower<JusticePower>();
             yield return HoverTipFactory.FromCard<Justice>();
+            yield return CardEffectHoverTipFactory.FromCard(
+                ModelDb.Card<Justice>(),
+                JusticeEffectHoverLocEntry);
+            yield return HoverTipFactory.FromCard<Save>();
+            yield return HoverTipFactory.FromPower<JusticePower>();
         }
     }
 

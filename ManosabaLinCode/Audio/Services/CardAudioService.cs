@@ -9,17 +9,17 @@ public static class CardAudioService
     {
         if (card is not ManosabaCardTemplate) return null;
 
-        var pool = CardPoolName(card);
+        var home = CardHomeName(card);
         var owner = CardOwnerName(card);
         var slug = CardNameSlug(card);
 
         string path;
 
-        path = BuildCardEventPath(pool, slug);
-        if (IsEventExists(path)) return path;
-
-        path = BuildCardEventPath(owner, slug);
-        if (IsEventExists(path)) return path;
+        if (home is not null)
+        {
+            path = BuildCardEventPath(home, slug);
+            if (IsEventExists(path)) return path;
+        }
 
         path = BuildCardEventPath("common", slug);
         if (IsEventExists(path)) return path;
@@ -29,9 +29,6 @@ public static class CardAudioService
 
         if (CardTypeName(card) is { } type)
         {
-            path = BuildCardEventPath(pool, $"fallback/{type}");
-            if (IsEventExists(path)) return path;
-
             path = BuildCardEventPath(owner, $"fallback/{type}");
             if (IsEventExists(path)) return path;
         }

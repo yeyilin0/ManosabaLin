@@ -12,21 +12,25 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Hiro.Cards;
 
 [RegisterCard(typeof(LinCardPool))]
-public sealed class LyXl() : ManosabaCardTemplate(-1, CardType.Skill, CardRarity.Ancient, TargetType.AnyPlayer)
+public sealed class LyXl() : ManosabaCardTemplate(-1, CardType.Attack, CardRarity.Ancient, TargetType.AnyPlayer)
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords
+    private const string EffectHoverLocEntry = "MANOSABA_LIN_CARD_LY_XL_EFFECT";
+
+    public override CardAssetProfile AssetProfile => base.AssetProfile with
     {
-        get { yield return CardKeyword.Retain; }
-    }
+        AncientTextBgPath = "ancient_empty_text_bg.png".CardsImagePath()
+    };
+
     public override int MaxUpgradeLevel => 0;
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
         get
         {
-            yield return HoverTipFactory.FromPower<WithPower>();
             yield return HoverTipFactory.FromPower<Powerthreethree>();
-            yield return HoverTipFactory.FromPower<RitualCeremonyPower>();
+            yield return new HoverTip(
+                new LocString("cards", $"{EffectHoverLocEntry}.title"),
+                new LocString("cards", $"{EffectHoverLocEntry}.description"));
         }
     }
 

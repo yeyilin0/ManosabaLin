@@ -19,11 +19,21 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCard(typeof(HiroCardPool))]
 public sealed class Powerthreethreecard() : ManosabaCardTemplate(1, CardType.Power, CardRarity.Rare, TargetType.AnyPlayer)
 {
+    private const string LyXlEffectHoverLocEntry = "MANOSABA_LIN_CARD_LY_XL_EFFECT";
+
+    public override IEnumerable<CardKeyword> CanonicalKeywords
+    {
+        get { yield return CardKeyword.Retain; }
+    }
+
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
         get
         {
             yield return HoverTipFactory.FromCard<LyXl>();
+            yield return CardEffectHoverTipFactory.FromCard(
+                ModelDb.Card<LyXl>(),
+                LyXlEffectHoverLocEntry);
             yield return HoverTipFactory.FromPower<Powerthreethree>();
         }
     }

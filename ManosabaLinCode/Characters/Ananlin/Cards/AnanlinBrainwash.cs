@@ -15,9 +15,7 @@ public sealed class AnanlinBrainwash()
     [
         HoverTipFactory.FromPower<AnanlinBrainwashPower>(),
         HoverTipFactory.FromPower<AnanlinBrainwashBacklashPower>(),
-        HoverTipFactory.FromPower<SilentPower>(),
-        HoverTipFactory.FromPower<AnanlinPeaceOfMindPower>(),
-        HoverTipFactory.FromPower<WithPower>(),
+     
     ];
 
     protected override async Task OnPlay(

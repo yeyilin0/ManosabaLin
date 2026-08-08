@@ -28,6 +28,11 @@ public sealed class Emadeath : ManosabaCardTemplate
     {
     }
 
+    public override CardAssetProfile AssetProfile => base.AssetProfile with
+    {
+        AncientTextBgPath = "ancient_empty_text_bg.png".CardsImagePath()
+    };
+
     public override int MaxUpgradeLevel => 0;
 
     private static readonly Type[] BondCardTypes =

@@ -14,9 +14,17 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCard(typeof(LinCardPool))]
 public sealed class TheEnd : ManosabaCardTemplate
 {
+    private const string EffectHoverLocEntry = "MANOSABA_LIN_CARD_THE_END_EFFECT";
+
     public TheEnd() : base(-1, CardType.Skill, CardRarity.Ancient, TargetType.None)
     {
     }
+
+    public override CardAssetProfile AssetProfile => base.AssetProfile with
+    {
+        AncientTextBgPath = "ancient_empty_text_bg.png".CardsImagePath()
+    };
+
     public override int MaxUpgradeLevel => 0;
     protected override HashSet<CardTag> CanonicalTags => new();
 
@@ -26,6 +34,11 @@ public sealed class TheEnd : ManosabaCardTemplate
     {
         get { yield return new DynamicVar("KillCount", 0); }
     }
+
+    protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
+    [
+        CardEffectHoverTipFactory.FromCard(this, EffectHoverLocEntry)
+    ];
 
     [SavedProperty] public bool HasBeenPlayed { get; set; }
 

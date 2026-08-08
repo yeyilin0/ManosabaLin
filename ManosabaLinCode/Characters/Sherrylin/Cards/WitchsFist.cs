@@ -22,6 +22,8 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class WitchsFist() : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 {
+    private const string TheFoolEffectHoverLocEntry = "MANOSABA_LIN_CARD_THE_FOOL_EFFECT";
+
     protected override IEnumerable<DynamicVar> CanonicalVars => new DynamicVar[]
     {
         new DamageVar(10m, ValueProp.Move),
@@ -32,8 +34,10 @@ public sealed class WitchsFist() : ManosabaCardTemplate(1, CardType.Attack, Card
         get
         {
             yield return HoverTipFactory.FromCard<SuperStrength>();
-            yield return HoverTipFactory.FromPower<SuperStrengthPower>();
             yield return HoverTipFactory.FromCard<TheFool>();
+            yield return CardEffectHoverTipFactory.FromCard(
+                ModelDb.Card<TheFool>(),
+                TheFoolEffectHoverLocEntry);
         }
     }
 

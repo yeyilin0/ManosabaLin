@@ -27,6 +27,11 @@ public sealed class Hirodeath : ManosabaCardTemplate
     {
     }
 
+    public override CardAssetProfile AssetProfile => base.AssetProfile with
+    {
+        AncientTextBgPath = "ancient_empty_text_bg.png".CardsImagePath()
+    };
+
     public override int MaxUpgradeLevel => 0;
 
     protected override IEnumerable<DynamicVar> CanonicalVars

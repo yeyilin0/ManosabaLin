@@ -39,9 +39,9 @@ public sealed class EmaSeven() : ManosabaCardTemplate(1, CardType.Skill, CardRar
 
         for (var i = 0; i < source.DynamicVars.Cards.IntValue; i++)
         {
-            var emaTenCard = source.CombatState.CreateCard<EmaTen>(targetPlayer);
-            if (IsUpgraded) emaTenCard.UpgradeInternal();
-            await CardPileCmd.AddGeneratedCardToCombat(emaTenCard, PileType.Draw, targetPlayer);
+            var emaTwoCard = source.CombatState.CreateCard<EmaTwo>(targetPlayer);
+            if (IsUpgraded) emaTwoCard.UpgradeInternal();
+            await CardPileCmd.AddGeneratedCardToCombat(emaTwoCard, PileType.Draw, targetPlayer);
             await Cmd.Wait(0.05f);
         }
     }

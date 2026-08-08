@@ -13,12 +13,15 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class PawnRealization : ManosabaCardTemplate
 {
+    private const string MeruruAndEmaEffectHoverLocEntry = "MANOSABA_LIN_CARD_MERURU_AND_EMA_EFFECT";
+
     public PawnRealization() : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.Self) { }
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
@@ -32,6 +35,11 @@ public sealed class PawnRealization : ManosabaCardTemplate
         {
             yield return HoverTipFactory.FromPower<BondPower>();
             yield return HoverTipFactory.FromPower<MllmPower>();
+            yield return HoverTipFactory.FromCard<MeruruAndEma>();
+            yield return CardEffectHoverTipFactory.FromCard(
+                ModelDb.Card<MeruruAndEma>(),
+                MeruruAndEmaEffectHoverLocEntry);
+            yield return HoverTipFactory.FromPower<MeruruAndEmaAccomplicePower>();
         }
     }
 
@@ -60,6 +68,50 @@ public sealed class PawnRealization : ManosabaCardTemplate
             await PowerCmd.Apply<MllmPower>(
                 choiceContext, creature, 1, creature, this, false);
         }
+
+        await TryFuseMeruruAndEma(choiceContext);
+    }
+
+    private async Task TryFuseMeruruAndEma(PlayerChoiceContext choiceContext)
+    {
+        var owner = Owner;
+        if (owner.Creature.GetPower<BondPower>() is not { } bond) return;
+        if (bond.Affinity + bond.Estrangement != 13) return;
+
+        var deckCards = owner.Deck.Cards.ToList();
+        if (deckCards.Any(static card => card is MeruruAndEma)) return;
+
+        var deckPawnRealization = deckCards.OfType<PawnRealization>().FirstOrDefault();
+        var deckSubstituteCost = deckCards.OfType<SubstituteCost>().FirstOrDefault();
+        if (deckPawnRealization == null || deckSubstituteCost == null) return;
+
+        var combatSubstituteCost = FindCombatSubstituteCost(owner);
+        if (combatSubstituteCost == null) return;
+        if (owner.Creature.CombatState is not { } combatState) return;
+
+        await CardPileCmd.RemoveFromCombat(combatSubstituteCost);
+        if (Pile?.IsCombatPile == true)
+            await CardPileCmd.RemoveFromCombat(this);
+
+        var combatCard = combatState.CreateCard<MeruruAndEma>(owner);
+        await CardPileCmd.AddGeneratedCardToCombat(combatCard, PileType.Hand, owner);
+
+        await CardPileCmd.RemoveFromDeck(deckPawnRealization, showPreview: false);
+        await CardPileCmd.RemoveFromDeck(deckSubstituteCost, showPreview: false);
+
+        var permanentCard = owner.RunState.CreateCard<MeruruAndEma>(owner);
+        CardCmd.PreviewCardPileAdd(await CardPileCmd.Add(permanentCard, PileType.Deck));
+    }
+
+    private static SubstituteCost? FindCombatSubstituteCost(Player owner)
+    {
+        foreach (var pileType in new[] { PileType.Hand, PileType.Draw, PileType.Discard, PileType.Exhaust, PileType.Play })
+        {
+            var card = pileType.GetPile(owner).Cards.OfType<SubstituteCost>().FirstOrDefault();
+            if (card != null) return card;
+        }
+
+        return null;
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

@@ -66,7 +66,7 @@ public sealed class WithPower : ManosabaPowerTemplate
         var source = this;
         if (cardPlay.Card.Owner.Creature != source.Owner) return;
 
-        if (source.Amount >= 200)
+        if (source.Amount >= 200 && !source.ShouldIgnoreWitchificationHpLoss())
             if (cardPlay.Card.Type == CardType.Skill || cardPlay.Card.Type == CardType.Power)
             {
                 var hpLoss = 1m;
@@ -91,6 +91,8 @@ public sealed class WithPower : ManosabaPowerTemplate
     {
         if (side != Owner.Side) return;
         var source = this;
+        if (source.ShouldIgnoreWitchificationHpLoss()) return;
+
         if (source.Amount >= 200)
             await CreatureCmd.Damage(
                 choiceContext,
@@ -100,6 +102,11 @@ public sealed class WithPower : ManosabaPowerTemplate
                 source.Owner,
                 null,
                 null);
+    }
+
+    private bool ShouldIgnoreWitchificationHpLoss()
+    {
+        return Owner.GetPower<Powerthreethree>() != null;
     }
 
     public override async Task AfterPowerAmountChanged(

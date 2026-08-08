@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Yalisalin.Capabilities;
+using ManosabaLin.Characters.Hiro.Cards;
 
 namespace ManosabaLin.Characters.Yalisalin.Components;
 
@@ -86,6 +87,7 @@ public sealed class YalisalinFireComponentContext
     public void AddConnectionCandidate(CardModel card)
     {
         if (card == SourceCard) return;
+        if (SamePlaceTruth.IsSelectionLocked(card)) return;
         if (ConnectionPool.Contains(card)) return;
 
         ConnectionPool.Add(card);
@@ -101,6 +103,7 @@ public sealed class YalisalinFireComponentContext
 
     public void AddChoiceOption(CardModel card)
     {
+        if (SamePlaceTruth.IsSelectionLocked(card)) return;
         if (ChoiceOptions.Contains(card)) return;
 
         ChoiceOptions.Add(card);

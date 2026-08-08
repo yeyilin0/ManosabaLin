@@ -29,6 +29,8 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public sealed class Lamort : ManosabaCardTemplate
 {
+    private const string EffectHoverLocEntry = "MANOSABA_LIN_CARD_LAMORT_EFFECT";
+
     public Lamort() : base(3, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
     }
@@ -37,9 +39,7 @@ public sealed class Lamort : ManosabaCardTemplate
     {
         get
         {
-            yield return HoverTipFactory.FromPower<WithPower>();
-            yield return HoverTipFactory.FromPower<EmaWitchFactorPower>();
-            yield return HoverTipFactory.FromPower<RitualCeremonyPower>();
+            yield return CardEffectHoverTipFactory.FromCard(this, EffectHoverLocEntry);
         }
     }
 

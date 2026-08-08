@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Yalisalin.Capabilities;
+using ManosabaLin.Characters.Hiro.Cards;
 using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Yalisalin.Components;
@@ -19,6 +20,7 @@ public static class YalisalinFireComponentRules
         Func<CardModel, bool>? filter = null)
     {
         return AllCombatCards(player)
+            .Where(static card => !SamePlaceTruth.IsSelectionLocked(card))
             .Where(static card => !HasFireComponent(card))
             .Where(card => filter?.Invoke(card) ?? true);
     }
@@ -31,6 +33,9 @@ public static class YalisalinFireComponentRules
     public static bool TryAddFireComponent(CardModel? card)
     {
         if (card == null)
+            return false;
+
+        if (SamePlaceTruth.IsSelectionLocked(card))
             return false;
 
         if (HasFireComponent(card))
@@ -48,6 +53,7 @@ public static class YalisalinFireComponentRules
     {
         var candidates = PileType.Hand.GetPile(owner).Cards
             .Where(card => card != source)
+            .Where(static card => !SamePlaceTruth.IsSelectionLocked(card))
             .Where(static card => !HasFireComponent(card))
             .ToArray();
 
@@ -71,6 +77,7 @@ public static class YalisalinFireComponentRules
         LocString prompt)
     {
         var candidates = PileType.Discard.GetPile(owner).Cards
+            .Where(static card => !SamePlaceTruth.IsSelectionLocked(card))
             .Where(static card => !HasFireComponent(card))
             .ToArray();
 

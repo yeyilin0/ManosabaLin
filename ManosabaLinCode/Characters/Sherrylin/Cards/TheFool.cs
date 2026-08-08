@@ -22,6 +22,8 @@ namespace ManosabaLin.Characters.Sherrylin.Cards;
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class TheFool : ManosabaCardTemplate
 {
+    private const string EffectHoverLocEntry = "MANOSABA_LIN_CARD_THE_FOOL_EFFECT";
+
     public TheFool() : base(4, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
     }
@@ -30,9 +32,7 @@ public sealed class TheFool : ManosabaCardTemplate
     {
         get
         {
-            yield return HoverTipFactory.FromPower<EmotionPower>();
-            yield return HoverTipFactory.FromPower<WithPower>();
-            yield return HoverTipFactory.FromPower<RitualCeremonyPower>();
+            yield return CardEffectHoverTipFactory.FromCard(this, EffectHoverLocEntry);
         }
     }
 

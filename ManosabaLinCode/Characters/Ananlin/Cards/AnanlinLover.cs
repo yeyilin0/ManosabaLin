@@ -9,6 +9,7 @@ namespace ManosabaLin.Characters.Ananlin.Cards;
 public sealed class AnanlinLover() : ManosabaCardTemplate(4, CardType.Power, CardRarity.Ancient, TargetType.Self),
         IAnanlinPeaceOfMindSpecialCard
 {
+    private const string EffectHoverLocEntry = "MANOSABA_LIN_CARD_ANANLIN_LOVER_EFFECT";
     private const int MaxGeneratedCards = 3;
     private const string BlockPerSilenceKey = "BlockPerSilence";
     private const string MaxCardsKey = "MaxCards";
@@ -24,10 +25,7 @@ public sealed class AnanlinLover() : ManosabaCardTemplate(4, CardType.Power, Car
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips =>
     [
-        HoverTipFactory.FromPower<WithPower>(),
-        HoverTipFactory.FromPower<RitualCeremonyPower>(),
-        HoverTipFactory.FromPower<AnanlinPeaceOfMindPower>(),
-        HoverTipFactory.FromPower<SilentPower>()
+        CardEffectHoverTipFactory.FromCard(this, EffectHoverLocEntry)
     ];
 
     protected override async Task OnPlay(

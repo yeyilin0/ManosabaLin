@@ -1,6 +1,7 @@
 using ManosabaLin.Characters.Ananlin.Relics;
 using ManosabaLin.Characters.Ananlin.Powers;
 using ManosabaLin.Characters.Ananlin.Capabilities;
+using ManosabaLin.Characters.Hiro.Cards;
 using ManosabaLin.Compat.Core;
 using MegaCrit.Sts2.Core.Hooks;
 using STS2RitsuLib.Models.Capabilities;
@@ -398,6 +399,7 @@ internal static class AnanlinCardHelpers
 
         var candidates = PileType.Draw.GetPile(player).Cards
             .Concat(PileType.Discard.GetPile(player).Cards)
+            .Where(static card => !SamePlaceTruth.IsSelectionLocked(card))
             .Where(predicate)
             .ToArray();
         return candidates.Length == 0

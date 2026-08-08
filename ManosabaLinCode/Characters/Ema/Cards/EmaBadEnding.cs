@@ -13,10 +13,16 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Ema.Cards;
 
 [RegisterCard(typeof(LinCardPool))]
-public sealed class EmaBadEnding() : ManosabaCardTemplate(3, CardType.Attack, CardRarity.Ancient, TargetType.AllEnemies)
+public sealed class EmaBadEnding() : ManosabaCardTemplate(3, CardType.Power, CardRarity.Ancient, TargetType.AllEnemies)
 {
+    private const string EffectHoverLocEntry = "MANOSABA_LIN_CARD_EMA_BAD_ENDING_EFFECT";
+
+    public override CardAssetProfile AssetProfile => base.AssetProfile with
+    {
+        AncientTextBgPath = "ancient_empty_text_bg.png".CardsImagePath()
+    };
+
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10, DamageProps.card)];
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [CardKeyword.Exhaust];
 
     public override int MaxUpgradeLevel => 0;
 
@@ -24,6 +30,7 @@ public sealed class EmaBadEnding() : ManosabaCardTemplate(3, CardType.Attack, Ca
     {
         get
         {
+            yield return CardEffectHoverTipFactory.FromCard(this, EffectHoverLocEntry);
             yield return HoverTipFactory.FromPower<EmaBadEndingPower>();
             yield return HoverTipFactory.FromPower<EmaBadEndingRewardPower>();
         }

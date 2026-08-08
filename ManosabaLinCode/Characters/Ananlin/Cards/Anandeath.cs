@@ -9,6 +9,11 @@ public sealed class Anandeath() : ManosabaCardTemplate(-1, CardType.Skill, CardR
     private const int WithLoss = 50;
     private const int SuspectLoss = 3;
 
+    public override CardAssetProfile AssetProfile => base.AssetProfile with
+    {
+        AncientTextBgPath = "ancient_empty_text_bg.png".CardsImagePath()
+    };
+
     public override int MaxUpgradeLevel => 0;
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>

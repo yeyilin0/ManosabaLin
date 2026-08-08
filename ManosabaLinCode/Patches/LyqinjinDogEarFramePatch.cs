@@ -1,11 +1,8 @@
 using Godot;
 using HarmonyLib;
 using ManosabaLin.Characters.Ema.Cards;
-using ManosabaLin.Characters.Ema.Powers;
 using MegaCrit.Sts2.Core.Entities.Cards;
-using MegaCrit.Sts2.Core.Entities.Powers;
 using MegaCrit.Sts2.Core.Entities.UI;
-using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace ManosabaLin.Patches;
@@ -14,24 +11,6 @@ namespace ManosabaLin.Patches;
     [typeof(PileType), typeof(CardPreviewMode)])]
 internal static class LyqinjinDogEarFramePatch
 {
-    private enum BondEarStyle
-    {
-        None,
-        Affinity,
-        Estrangement,
-        BadEnding,
-        TrueEnding,
-        YalisaQinjin,
-        PinkGray
-    }
-
-    private enum BondFrameGlowStyle
-    {
-        None,
-        Affinity,
-        Estrangement
-    }
-
     private const string DogEarNodeName = "ManosabaLinAffinityDogEarOverlay";
     private const string FrameGlowNodeName = "ManosabaLinAffinityFrameGlowOverlay";
     private const float EarOverlayLeft = -150f;
@@ -135,12 +114,12 @@ internal static class LyqinjinDogEarFramePatch
         var dogEarOverlay = parent.GetNodeOrNull<ColorRect>(DogEarNodeName);
         var frameGlowOverlay = parent.GetNodeOrNull<ColorRect>(FrameGlowNodeName);
         var model = __instance.Model;
-        var style = model is not null ? GetBondEarStyle(model) : BondEarStyle.None;
-        var shouldShow = style != BondEarStyle.None;
-        var dogEarActive = model is not null && shouldShow && ShouldUseActiveDogEarMaterial(model, style);
+        var style = model is not null ? BondCardVisualRules.GetStyle(model) : BondCardVisualStyle.None;
+        var shouldShow = style != BondCardVisualStyle.None;
+        var dogEarActive = model is not null && shouldShow && BondCardVisualRules.ShouldUseActiveDogEarMaterial(model, style);
         var frameGlowStyle = model is not null && shouldShow
-            ? GetFrameGlowStyle(model, style)
-            : BondFrameGlowStyle.None;
+            ? BondCardVisualRules.GetFrameGlowStyle(model, style)
+            : BondCardFrameGlowStyle.None;
 
         if (!shouldShow)
         {
@@ -151,7 +130,7 @@ internal static class LyqinjinDogEarFramePatch
             return;
         }
 
-        if (frameGlowStyle != BondFrameGlowStyle.None)
+        if (frameGlowStyle != BondCardFrameGlowStyle.None)
         {
             frameGlowOverlay ??= CreateFrameGlowOverlay(parent);
             ConfigureFrameGlowOverlay(frameGlowOverlay);
@@ -224,108 +203,15 @@ internal static class LyqinjinDogEarFramePatch
         overlay.CustomMinimumSize = new Vector2(FrameGlowRight - FrameGlowLeft, FrameGlowBottom - FrameGlowTop);
     }
 
-    private static BondEarStyle GetBondEarStyle(CardModel card)
-    {
-        var cardType = card.GetType();
-        if (cardType == typeof(EmaBadEnding))
-            return BondEarStyle.BadEnding;
-
-        if (cardType == typeof(EmaTrueEnding))
-            return BondEarStyle.TrueEnding;
-
-        if (cardType == typeof(Yalisaqinjin))
-            return BondEarStyle.YalisaQinjin;
-
-        if (cardType == typeof(BondExchangecard)
-            || cardType == typeof(Xueshuyuancard))
-            return BondEarStyle.PinkGray;
-
-        if (cardType == typeof(Xueqinjincard2)
-            || Array.IndexOf(Xueqinjincard2.RandomAffinityCardTypes, cardType) >= 0)
-            return BondEarStyle.Affinity;
-
-        if (cardType == typeof(Xueqinjincard1)
-            || Array.IndexOf(Xueqinjincard1.RandomEstrangementCardTypes, cardType) >= 0)
-            return BondEarStyle.Estrangement;
-
-        return BondEarStyle.None;
-    }
-
-    private static bool ShouldUseActiveDogEarMaterial(CardModel card, BondEarStyle style)
+    private static ShaderMaterial GetDogEarMaterial(BondCardVisualStyle style, bool active)
     {
         return style switch
         {
-            BondEarStyle.Affinity or BondEarStyle.Estrangement => CanTriggerBondBonus(card, style),
-            BondEarStyle.BadEnding or BondEarStyle.TrueEnding
-                or BondEarStyle.YalisaQinjin or BondEarStyle.PinkGray => true,
-            _ => false
-        };
-    }
-
-    private static BondFrameGlowStyle GetFrameGlowStyle(CardModel card, BondEarStyle style)
-    {
-        return style switch
-        {
-            BondEarStyle.Affinity => CanTriggerBondBonus(card, style)
-                ? BondFrameGlowStyle.Affinity
-                : BondFrameGlowStyle.None,
-            BondEarStyle.Estrangement => CanTriggerBondBonus(card, style)
-                ? BondFrameGlowStyle.Estrangement
-                : BondFrameGlowStyle.None,
-            BondEarStyle.PinkGray => GetCurrentBondFrameGlowStyle(card),
-            _ => BondFrameGlowStyle.None
-        };
-    }
-
-    private static BondFrameGlowStyle GetCurrentBondFrameGlowStyle(CardModel card)
-    {
-        if (!card.IsMutable)
-            return BondFrameGlowStyle.None;
-
-        var owner = card.Owner;
-        if (owner?.Creature is not { } creature)
-            return BondFrameGlowStyle.None;
-
-        var bond = creature.GetPower<BondPower>();
-        if (bond is null)
-            return BondFrameGlowStyle.None;
-
-        if (bond.Affinity > bond.Estrangement)
-            return BondFrameGlowStyle.Affinity;
-
-        if (bond.Estrangement > bond.Affinity)
-            return BondFrameGlowStyle.Estrangement;
-
-        return BondFrameGlowStyle.None;
-    }
-
-    private static bool CanTriggerBondBonus(CardModel card, BondEarStyle style)
-    {
-        if (!card.IsMutable)
-            return false;
-
-        var owner = card.Owner;
-        if (owner?.Creature is not { } creature)
-            return false;
-
-        var bond = creature.GetPower<BondPower>();
-        return bond is not null && (style switch
-        {
-            BondEarStyle.Affinity => bond.Affinity + 1 > bond.Estrangement,
-            BondEarStyle.Estrangement => bond.Estrangement + 1 > bond.Affinity,
-            _ => false
-        });
-    }
-
-    private static ShaderMaterial GetDogEarMaterial(BondEarStyle style, bool active)
-    {
-        return style switch
-        {
-            BondEarStyle.BadEnding => BadEndingDogEarMaterial.Value,
-            BondEarStyle.TrueEnding => TrueEndingDogEarMaterial.Value,
-            BondEarStyle.YalisaQinjin => YalisaQinjinDogEarMaterial.Value,
-            BondEarStyle.PinkGray => PinkGrayDogEarMaterial.Value,
-            BondEarStyle.Estrangement => active
+            BondCardVisualStyle.BadEnding => BadEndingDogEarMaterial.Value,
+            BondCardVisualStyle.TrueEnding => TrueEndingDogEarMaterial.Value,
+            BondCardVisualStyle.YalisaQinjin => YalisaQinjinDogEarMaterial.Value,
+            BondCardVisualStyle.PinkGray => PinkGrayDogEarMaterial.Value,
+            BondCardVisualStyle.Estrangement => active
                 ? ActiveEstrangementCatEarMaterial.Value
                 : NormalEstrangementCatEarMaterial.Value,
             _ => active
@@ -334,9 +220,9 @@ internal static class LyqinjinDogEarFramePatch
         };
     }
 
-    private static ShaderMaterial GetFrameGlowMaterial(BondFrameGlowStyle style)
+    private static ShaderMaterial GetFrameGlowMaterial(BondCardFrameGlowStyle style)
     {
-        return style == BondFrameGlowStyle.Estrangement
+        return style == BondCardFrameGlowStyle.Estrangement
             ? EstrangementFrameGlowMaterial.Value
             : AffinityFrameGlowMaterial.Value;
     }

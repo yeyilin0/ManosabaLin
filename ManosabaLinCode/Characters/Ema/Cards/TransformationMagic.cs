@@ -61,6 +61,7 @@ public sealed class TransformationMagic : ManosabaCardTemplate
         for (int i = 0; i < target.CurrentUpgradeLevel; i++)
             CardCmd.Upgrade(newCard);
 
-        await CardCmd.Transform(source, newCard);
+        await CardPileCmd.RemoveFromCombat(source);
+        await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, source.Owner, CardPilePosition.Bottom);
     }
 }

@@ -24,7 +24,7 @@ public class Yalisalin : ManosabaCharacterTemplate<YalisalinCardPool, YalisalinR
 
     public override CharacterAssetProfile AssetProfile => new(
         new CharacterSceneAssetSet(
-            null,
+            "yalisalin_idle.tscn".CharacterScenePath(CharacterId),
             "yalisalin_energy_counter.tscn".CharacterScenePath(CharacterId),
             "yalisalin_merchant.tscn".CharacterScenePath(CharacterId),
             "yalisalin_rest_site.tscn".CharacterScenePath(CharacterId)),
@@ -34,7 +34,9 @@ public class Yalisalin : ManosabaCharacterTemplate<YalisalinCardPool, YalisalinR
             IconPath: "yalisalin_icon.tscn".CharacterScenePath(CharacterId),
             CharacterSelectBgPath: "yalisalin_bg.tscn".CharacterScenePath(CharacterId),
             CharacterSelectIconPath: "yalisalin_char_select.png".CharacterImgPath(CharacterId),
-            MapMarkerPath: "yalisalin_map.png".CharacterImgPath(CharacterId)));
+            MapMarkerPath: "yalisalin_map.png".CharacterImgPath(CharacterId)),
+        Audio: new CharacterAudioAssetSet(
+            CharacterSelectSfx: $"event:/{ModId}/sfx/characters/sherrylin/select"));
 
     public override string? PlaceholderCharacterId => "ironclad";
     public override float AttackAnimDelay => 0.15f;
@@ -44,7 +46,7 @@ public class Yalisalin : ManosabaCharacterTemplate<YalisalinCardPool, YalisalinR
     protected override NCreatureVisuals? TryCreateCreatureVisuals()
     {
         return RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(
-            "yalisalin.tscn".CharacterScenePath(CharacterId));
+            "yalisalin_idle.tscn".CharacterScenePath(CharacterId));
     }
 
     public override List<string> GetArchitectAttackVfx()

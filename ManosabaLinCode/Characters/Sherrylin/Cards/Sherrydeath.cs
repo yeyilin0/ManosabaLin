@@ -36,6 +36,11 @@ public sealed class Sherrydeath : ManosabaCardTemplate
 
     public Sherrydeath() : base(-1, CardType.Skill, CardRarity.Ancient, TargetType.AllAllies) { }
 
+    public override CardAssetProfile AssetProfile => base.AssetProfile with
+    {
+        AncientTextBgPath = "ancient_empty_text_bg.png".CardsImagePath()
+    };
+
     public override int MaxUpgradeLevel => 0;
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)

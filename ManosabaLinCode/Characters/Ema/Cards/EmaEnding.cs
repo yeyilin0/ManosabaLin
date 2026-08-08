@@ -19,6 +19,9 @@ namespace ManosabaLin.Characters.Ema.Cards;
 [RegisterCard(typeof(EmalinCardPool))]
 public class EmaEnding() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Rare, TargetType.Self)
 {
+    private const string EmaTrueEndingEffectHoverLocEntry = "MANOSABA_LIN_CARD_EMA_TRUE_ENDING_EFFECT";
+    private const string EmaBadEndingEffectHoverLocEntry = "MANOSABA_LIN_CARD_EMA_BAD_ENDING_EFFECT";
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new EnergyVar(1), new CardsVar(1)];
 
@@ -27,10 +30,16 @@ public class EmaEnding() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Ra
         get
         {
             yield return HoverTipFactory.FromCard<EmaTrueEnding>();
+            yield return CardEffectHoverTipFactory.FromCard(
+                ModelDb.Card<EmaTrueEnding>(),
+                EmaTrueEndingEffectHoverLocEntry);
             yield return HoverTipFactory.FromCard<EmaBadEnding>();
+            yield return CardEffectHoverTipFactory.FromCard(
+                ModelDb.Card<EmaBadEnding>(),
+                EmaBadEndingEffectHoverLocEntry);
             yield return HoverTipFactory.FromPower<EmaBadEndingPower>();
             yield return HoverTipFactory.FromPower<EmaBadEndingRewardPower>();
-            yield return HoverTipFactory.FromPower<EmaTrueEndingPower>();
+            yield return HoverTipFactory.FromPower<EmaTrueEndingRewardAction>();
         }
     }
 

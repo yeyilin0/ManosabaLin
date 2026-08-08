@@ -19,6 +19,8 @@ namespace ManosabaLin.Characters.Hiro.Cards;
 [RegisterCard(typeof(HiroCardPool))]
 public sealed class Justice : ManosabaCardTemplate
 {
+    private const string EffectHoverLocEntry = "MANOSABA_LIN_CARD_JUSTICE_EFFECT";
+
     public Justice() : base(4, CardType.Power, CardRarity.Ancient, TargetType.Self)
     {
     }
@@ -27,11 +29,7 @@ public sealed class Justice : ManosabaCardTemplate
     {
         get
         {
-            yield return HoverTipFactory.FromPower<WithPower>();
-            yield return HoverTipFactory.FromPower<JusticePower>();
-            yield return HoverTipFactory.FromPower<RitualCeremonyPower>();
-            yield return EnergyHoverTip;
-            yield return HoverTipFactory.FromKeyword(CardKeyword.Exhaust);
+            yield return CardEffectHoverTipFactory.FromCard(this, EffectHoverLocEntry);
             yield return HoverTipFactory.FromCard<Save>();
         }
     }
@@ -39,6 +37,7 @@ public sealed class Justice : ManosabaCardTemplate
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new PowerVar<WithPower>(100m),
+        new PowerVar<RitualCeremonyPower>(1m),
         new PowerVar<JusticePower>(3m),
         new EnergyVar(3),
         new CardsVar(3)
@@ -147,7 +146,8 @@ public sealed class Justice : ManosabaCardTemplate
 
         // 获得 1 层 RitualCeremonyPower
         await PowerCmd.Apply<RitualCeremonyPower>(
-            choiceContext, source.Owner.Creature, 1,
+            choiceContext, source.Owner.Creature,
+            source.DynamicVars["RitualCeremonyPower"].BaseValue,
             source.Owner.Creature, source, false);
     }
 

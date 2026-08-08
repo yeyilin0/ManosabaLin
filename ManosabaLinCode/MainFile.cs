@@ -64,6 +64,9 @@ public partial class MainFile : Node
         var ctx = RitsuLibFramework.CreateContentPack(ModId)
             .CardHandOutline<CardModel>(DefaultCardHandOutlineColor)
             .CardHandOutline<CardModel>(card =>
+                HasCustomGlowColor(card) ? null : BondCardVisualRules.GetHandOutlineColor(card),
+                priority: 200)
+            .CardHandOutline<CardModel>(card =>
                 card.CanPlay() && !HasCustomGlowColor(card) && YalisalinFireComponentRules.HasFireComponent(card)
                     ? new Color(1f, 0.42f, 0.08f)
                     : null,
@@ -96,7 +99,7 @@ public partial class MainFile : Node
 
     private static Color? DefaultCardHandOutlineColor(CardModel card)
     {
-        if (!card.CanPlay() || HasCustomGlowColor(card))
+        if (!card.CanPlay() || HasSpecialGlowColor(card))
             return null;
 
         return card.VisualCardPool switch
@@ -114,6 +117,11 @@ public partial class MainFile : Node
     private static bool HasCustomGlowColor(CardModel card)
     {
         return card is ICustomGlowColorCard { GlowColor: not null };
+    }
+
+    private static bool HasSpecialGlowColor(CardModel card)
+    {
+        return HasCustomGlowColor(card) || card.ShouldGlowGold || card.ShouldGlowRed;
     }
 
     private static Color? OwnerCharacterColor(CardModel card)

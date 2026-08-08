@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Hiro.Cards;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -58,6 +59,7 @@ public sealed class SharedExhaustPlay() : ManosabaCardTemplate(3, CardType.Skill
     {
         var cards = PileType.Draw.GetPile(ally.Player).Cards
             .Concat(PileType.Discard.GetPile(ally.Player).Cards)
+            .Where(static c => !SamePlaceTruth.IsSelectionLocked(c))
             .Where(c => !c.Keywords.Contains(CardKeyword.Unplayable))
             .ToList();
 
