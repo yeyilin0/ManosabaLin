@@ -1,12 +1,12 @@
 {
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "生まれ変わり",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[color=#CC6666] デス・リコール [/color]の贈り物、[color=#CC6666] デス・リコール [/color]の呪い\n[color=#CC6666]【転生】[/color]のカードをプレイすると、山札の[color=#CC6666]【転生】[/color]と同名カードが自動的にプレイされます(最大2枚)",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "輪廻転生、輪廻転生、輪廻転生",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "[color=#CC6666]【輪廻転生】[/color]のカードをプレイした場合、[color=#CC6666]【輪廻転生】[/color]のカードをどこからでもプレイ、1回につき3枚まで",
-  "MANOSABA_LIN_KEYWORD_AGREE.title": "同意する",
-  "MANOSABA_LIN_KEYWORD_AGREE.description": "数値が1～5の倍数の場合に効果が発動します。\n×1：味方全員のシールドポイントが3増加\n×2：自身のシールドポイントを3獲得\n×3: 味方全員が一時的に敏捷性を 1 層獲得\n×4：味方全員が一時的に2層のパワーを得る\n×5：手札にあるランダムなカードを1回無料でプレイでき、フレンド全員にエネルギーを1ポイント追加します。",
-  "MANOSABA_LIN_KEYWORD_DOUBT.title": "疑い",
-  "MANOSABA_LIN_KEYWORD_DOUBT.description": "数値が1～5の倍数の場合に効果が発動します。\n×1：自分のシールドを1つ獲得\n×2：自分はカードを1枚引く\n×3：気力を1ポイント獲得\n×4：捨て札からカードを1枚リサイクルする\n×5：リプレイ1で手札1枚追加、手札1枚で[color=#339966] [[/color][color=#cc9966] ジャッジメント [/color][color=#6699cc] [/color][color=#339966]] [/color] エンチャント",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "反論する",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "数値が1～5の倍数の場合に効果が発動します。\n×1：ランダムで1ポイントのダメージを与える\n×2：体力が1ポイント増加\n×3：敵全体に1層の脆弱性を与える\n×4：ランダムに同数の1ポイントダメージを与える\n×5：このカードは延長1回プレイされる"
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "転生",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[color=#CC6666][ DEATH RETRACEMENT ][/color]の贈り物、[color=#CC6666][ DEATH RETRACEMENT ][/color]の呪い\n[color=#CC6666][ REINCARNATION ][/color]でカードをプレイすると、ドロースタックに[color=#CC6666][ REINCARNATION ][/color]が入った同じ名前のカードが自動的にプレイされます（カード2枚まで）。",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "転生転生",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "[color=#CC6666][転生][/color]でカードをプレイするとき、どこからでも[color=#CC6666][転生][/color]でカードをプレイします。一度に最大3枚のカードをプレイできます",
+  "MANOSABA_LIN_KEYWORD_AGREE.title": "そう思う",
+  "MANOSABA_LIN_KEYWORD_AGREE.description": "1から5の倍数で発動 \n × 1 ：味方全員がシールドを3つ得る \n × 2 ：味方全員がシールドを3つ得る \n × 3 ：味方全員が一時的なスウィフトを1つ得る \n × 4 ：味方全員が一時的なパワーを2つ得る \n × 5 ：ランダムなハンドカードを1枚無料でプレイでき、味方全員が1ポイントのエネルギーを得る",
+  "MANOSABA_LIN_KEYWORD_DOUBT.title": "質問",
+  "MANOSABA_LIN_KEYWORD_DOUBT.description": "1から5の倍数で発動 \n × 1 ：自分のためにシールドを1つ得る \n × 2 ：自分のためにカードを1枚引く \n × 3 ：自分のためにエネルギーを1ポイント得る \n × 4 ：捨てられたカードのデッキ1枚をリサイクルする \n × 5 ： 1手リプレイ1を追加し、手1枚を獲得[color=#339966][[/color][color=#cc9966]レビュー[/color][color=#6699cc]ジャッジ[/color][color=#339966]][/color]エンチャント",
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "反論",
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "1から5の倍数で発動 \n x 1 ：ランダムに1ダメージを与える \n x 2 ：パワーを1得る \n x 3 ：敵全員が1スタックの脆弱性を得る \n x 4 ：ランダムに1ダメージを与える \n x 5 ：このカードに追加ダメージを1与える"
 }

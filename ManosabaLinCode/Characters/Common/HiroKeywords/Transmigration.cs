@@ -6,9 +6,11 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using ManosabaLin.Characters.Hiro.Cards;
+using ManosabaLin.Characters.Hiro.Capabilities;
 using STS2RitsuLib.Content;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Keywords;
+using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Common.HiroKeywords;
 
@@ -37,12 +39,28 @@ public static class TransmigrationRules
     {
         if (source?.Owner == null) return new List<CardModel>();
 
-        var drawPile = PileType.Draw.GetPile(source.Owner);
+        var owner = source.Owner;
+        var drawPile = PileType.Draw.GetPile(owner);
+        var discardPile = PileType.Discard.GetPile(owner);
 
-        return drawPile.Cards
+        // 抽牌堆中的同名轮回卡（原有逻辑）
+        var matching = drawPile.Cards
             .Where(c => c.Id == source.Id && c != source && HasTransmigration(c))
             .Take(MaxCopiesToPlay)
             .ToList();
+
+        // 带真相组件的卡在弃牌堆也能被轮回自动打出（真相组件扩展）
+        if (matching.Count < MaxCopiesToPlay)
+        {
+            var fromDiscard = discardPile.Cards
+                .Where(c => c.Id == source.Id && c != source && HasTransmigration(c)
+                            && c.TryGetCapability<TruthComponentCapability>(out _))
+                .Take(MaxCopiesToPlay - matching.Count);
+
+            matching.AddRange(fromDiscard);
+        }
+
+        return matching;
     }
 
     public static async Task TriggerTransmigrationEffect(CardModel card, PlayerChoiceContext choiceContext,

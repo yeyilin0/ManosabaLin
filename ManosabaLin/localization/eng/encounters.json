@@ -1,8 +1,8 @@
 {
-  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.title": "wreckage",
-  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.loss": "{character}By [gold]{encounter}[/gold] defeated...",
-  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_BOSS_ENCOUNTER.title": "Nanoyaka's sister",
-  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_BOSS_ENCOUNTER.loss": "{character}By [gold]{encounter}[/gold] defeated...",
-  "MANOSABA_LIN_ENCOUNTER_GUARD_THREE_ENCOUNTER.title": "What was once called \"Nikaido Hiro\"",
-  "MANOSABA_LIN_ENCOUNTER_GUARD_THREE_ENCOUNTER.loss": "{character}By [gold]{encounter}[/gold] defeated..."
+  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.title": "Wreckage",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.loss": "{character} was defeated by [gold] {encounter} [/gold]...",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_BOSS_ENCOUNTER.title": "Kaoru Naha's sister",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_BOSS_ENCOUNTER.loss": "{character} was defeated by [gold] {encounter} [/gold]...",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_THREE_ENCOUNTER.title": "What used to be known as \"Second Order Hall Hiro\"",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_THREE_ENCOUNTER.loss": "{character} was defeated by [gold] {encounter} [/gold]..."
 }

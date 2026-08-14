@@ -1,0 +1,12 @@
+{
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "Реинкарнация",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "Подарок [color=#CC6666] [Death Retracement] [/color], проклятие [color=#CC6666] [Death Retracement] [/color] \n Когда вы разыгрываете карту с [color=#CC6666] [Reincarnation] [/color], автоматически разыгрывайте одну и ту же карту с [color=#CC6666] [Reincarnation] [/color] в своем стеке (до 2 карт)",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "Реинкарнация Реинкарнация",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "Когда вы разыгрываете карту с [color=#CC6666] [Reincarnation] [/color], разыгрывайте карту с [color=#CC6666] [Reincarnation] [/color] из любого места, до трех карт одновременно",
+  "MANOSABA_LIN_KEYWORD_AGREE.title": "Согласен",
+  "MANOSABA_LIN_KEYWORD_AGREE.description": "Срабатывает кратно от 1 до 5 \n × 1: Все союзники получают 3 щита \n × 2: Все союзники получают 3 щита \n × 3: Все союзники получают 1 слой временной скорости \n × 4: Все союзники получают 2 слоя временной силы \n × 5: 1 случайная карта руки может быть разыграна 1 раз бесплатно, все союзники получают 1 очко энергии",
+  "MANOSABA_LIN_KEYWORD_DOUBT.title": "Вопрос",
+  "MANOSABA_LIN_KEYWORD_DOUBT.description": "Срабатывает кратно от 1 до 5 \n × 1: получает 1 щит для себя \n × 2: берет 1 карту для себя \n × 3: получает 1 очко энергии для себя \n × 4: перерабатывает 1 колоду сброшенных карт \n × 5: 1 рука добавляет 1 повтор, 1 рука получает 1 [color=#339966] [[/color] [color=#cc9966] обзор [/color] [color=#6699cc] судья [/color] [color=#339966]] [/color] чары",
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "Опровержение",
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "Срабатывает кратно от 1 до 5 \n x1: Наносит 1 урон случайным образом \n x2: Получает 1 силу \n x3: Все противники получают 1 стек Уязвимости \n x4: Наносит 1 урон случайным образом \n x5: Наносит 1 дополнительный урон этой карте"
+}

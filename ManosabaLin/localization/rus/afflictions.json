@@ -1,0 +1,8 @@
+{
+  "BLACK_HAND_AFFLICTION.title": "Магия трансформации",
+  "BLACK_HAND_AFFLICTION.description": "Храните эту карту в конце [color=gray] хода (-ов) [/color]",
+  "BLACK_HAND_AFFLICTION.extraCardText": "Магия трансформации",
+  "MANOSABA_LIN_AFFLICTION_EROSION_AFFLICTION.title": "Дверь",
+  "MANOSABA_LIN_AFFLICTION_EROSION_AFFLICTION.description": "Эту карту нельзя использовать, нельзя деформировать \n, чтобы извлечь карту из карты руки после повторной атаки",
+  "MANOSABA_LIN_AFFLICTION_EROSION_AFFLICTION.extraCardText": "Дверь"
+}

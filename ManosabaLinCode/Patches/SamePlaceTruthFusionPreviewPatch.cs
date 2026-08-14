@@ -52,6 +52,8 @@ internal static class SamePlaceTruthFusionPreviewPatch
     [HarmonyPostfix]
     private static void HolderUnfocusPostfix(NCardHolder __instance)
     {
+        if (NTargetManager.Instance == null) return;
+
         if (__instance.CardModel is SamePlaceTruth truth && !ShouldKeepQueuedAfterUnfocus(__instance))
         {
             SamePlaceTruthFusionState.Reset(truth);
@@ -86,7 +88,23 @@ internal static class SamePlaceTruthFusionPreviewPatch
             return;
         }
 
-        if (cardNode!.Model is not SamePlaceTruth truth || !SamePlaceTruthFusionState.IsQueued(truth))
+        // 不可变模板（图鉴等）不处理
+        if (cardNode!.Model == null)
+        {
+            RemovePreview(cardNode);
+            return;
+        }
+
+// 战斗外的卡片（图鉴、选牌界面）不处理
+        try
+        {
+            if (cardNode.Model.CombatState == null)
+            {
+                RemovePreview(cardNode);
+                return;
+            }
+        }
+        catch
         {
             RemovePreview(cardNode);
             return;
@@ -97,7 +115,8 @@ internal static class SamePlaceTruthFusionPreviewPatch
 
     private static bool IsCardPlayInProgress()
     {
-        return NPlayerHand.Instance?.InCardPlay == true || NTargetManager.Instance.IsInSelection;
+        return NPlayerHand.Instance?.InCardPlay == true
+            || (NTargetManager.Instance != null && NTargetManager.Instance.IsInSelection);
     }
 
     private static bool ShouldKeepQueuedAfterUnfocus(NCardHolder holder)

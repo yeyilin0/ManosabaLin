@@ -1,0 +1,20 @@
+{
+  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.title": "Яблоко Эммы",
+  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.extraCardText": "При разыгрывании этой карты получите 1 макс. HP.",
+  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.description": "При разыгрывании этой карты получите 1 [b] макс. HP [/b].",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.title": "Опровержение",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.extraCardText": "Сыграно {Amount} [color=#339966] [Counter] [/color] карт",
+  "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.description": "Запишите количество карт с [b] [color=#339966] [Counter] [/color] [/b], зачарованных в этом ходу.\n Сбрасывает каждый ход",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.title": "Согласен",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.extraCardText": "Сыграно {Amount} [color=#6699cc] [Agree] [/color] карт",
+  "MANOSABA_LIN_ENCHANTMENT_AGREEMENT.description": "Запишите количество карт с [b] [color=#6699cc] [Agree] [/color] [/b], зачарованными в этом ходу.\n Сбрасывает каждый ход",
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT.title": "Вопрос",
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT.extraCardText": "Сыграно {Amount} [color=#cc9966] [question] [/color] карт",
+  "MANOSABA_LIN_ENCHANTMENT_DOUBT.description": "Запишите количество карт с [b] [color=#cc9966] [Question] [/color] [/b], зачарованными в этом ходу.\n Сбрасывает каждый ход",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.title": "Колдовство",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.extraCardText": "Воспроизвести эту карту снова автоматически",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.description": "Воспроизвести эту карту снова автоматически",
+  "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.title": "Магическое наследие",
+  "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.extraCardText": "Получайте небольшой урон при попадании",
+  "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.description": "Получайте небольшой урон при попадании"
+}

@@ -1,5 +1,7 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
+using ManosabaLin.Characters.Hiro.Capabilities;
+using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Multiplayer;
@@ -13,6 +15,7 @@ using MinionLib.Component.Core;
 using MinionLib.RightClick;
 using MinionLib.RightClick.Easy;
 using STS2RitsuLib.Interop.AutoRegistration;
+using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -154,12 +157,80 @@ public sealed class SamePlaceTruth()
         }
     }
 
-    private static Task PlayPendingTruthEffect(
+    private async Task PlayPendingTruthEffect(
         PlayerChoiceContext choiceContext,
         CardPlay cardPlay,
         ComponentContext componentContext)
     {
-        return Task.CompletedTask;
+        if (Owner is not { } player) return;
+
+        // 从弃牌堆/抽牌堆/手牌/消耗牌堆中选择一张卡加入手牌
+        var candidates = new[]
+            {
+                PileType.Discard,
+                PileType.Draw,
+                PileType.Hand,
+                PileType.Exhaust
+            }
+            .SelectMany(pile => pile.GetPile(player).Cards)
+            .Where(card => !ReferenceEquals(card, this))
+            .ToArray();
+
+        if (candidates.Length == 0) return;
+
+        var selected = (await CardSelectCmd.FromSimpleGrid(
+            choiceContext,
+            candidates,
+            player,
+            new CardSelectorPrefs(SelectionScreenPrompt, 0, 1))).FirstOrDefault();
+        if (selected is null) return;
+
+        // 移入手中（若在消耗牌堆则先移出战斗）
+        if (selected.Pile is { IsCombatPile: true } pile)
+        {
+            if (pile.Type == PileType.Exhaust)
+                await CardPileCmd.RemoveFromCombat(selected);
+        }
+
+        await CardPileCmd.Add(selected, PileType.Hand, CardPilePosition.Bottom);
+
+        // 若其有消耗 → 移除消耗
+        if (selected.Keywords.Contains(CardKeyword.Exhaust))
+        {
+            selected.RemoveKeyword(CardKeyword.Exhaust);
+        }
+
+        // 若其有轮回 → 复制一张进入抽牌堆，复制一张进入弃牌堆，三张都获得真相组件
+        if (!TransmigrationRules.HasTransmigration(selected))
+        {
+            return;
+        }
+
+        await AddTruthComponent(selected);
+
+        var copyToDraw = CreateTruthCopy(selected, player);
+        await CardPileCmd.AddGeneratedCardToCombat(copyToDraw, PileType.Draw, player, CardPilePosition.Random);
+
+        var copyToDiscard = CreateTruthCopy(selected, player);
+        await CardPileCmd.AddGeneratedCardToCombat(copyToDiscard, PileType.Discard, player, CardPilePosition.Random);
+    }
+
+    private CardModel CreateTruthCopy(CardModel source, Player player)
+    {
+        var copy = CombatState.CreateCard(source.CanonicalInstance, player);
+        for (var upgradeLevel = 0; upgradeLevel < source.CurrentUpgradeLevel; upgradeLevel++)
+        {
+            copy.UpgradeInternal();
+        }
+
+        copy.GetOrCreateCapability<TruthComponentCapability>();
+        return copy;
+    }
+
+    private static async Task AddTruthComponent(CardModel card)
+    {
+        card.GetOrCreateCapability<TruthComponentCapability>();
+        await Task.CompletedTask;
     }
 
     private void LockInDiscard()

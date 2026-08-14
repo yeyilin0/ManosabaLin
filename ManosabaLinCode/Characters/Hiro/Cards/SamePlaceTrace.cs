@@ -1,5 +1,7 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.HiroKeywords;
+using ManosabaLin.Characters.Hiro.Capabilities;
+using ManosabaLin.Characters.Hiro.Powers;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -9,6 +11,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MinionLib.Component.Core;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Keywords;
+using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -107,6 +110,11 @@ public sealed class SamePlaceTrace() : ManosabaCardTemplate(1, CardType.Skill, C
         foreach (var selectedCard in selectedCards)
         {
             selectedCard.AddModKeyword(TransmigrationRules.TransmigrationCardKeyword);
+            // 真相能力：给予卡牌轮回关键词时自动追加真相组件
+            if (TruthPower.HasTruthPower(Owner))
+            {
+                selectedCard.GetOrCreateCapability<TruthComponentCapability>();
+            }
         }
     }
 

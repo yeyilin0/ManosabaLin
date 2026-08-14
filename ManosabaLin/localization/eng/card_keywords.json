@@ -1,12 +1,12 @@
 {
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "reincarnation",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[color=#CC6666] Death Recall [/color]’s gift, [color=#CC6666] Death Recall [/color]’s curse\nWhen you play a card with [color=#CC6666] Reincarnation [/color], the same card with the same name as [color=#CC6666] Reincarnation [/color] in your draw pile is automatically played (up to 2 cards)",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "reincarnation, reincarnation, reincarnation",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "When you play a card with [color=#CC6666]【 reincarnations and reincarnations】 [/color], play cards with [color=#CC6666]【 reincarnations and reincarnations】 [/color] from anywhere, up to three cards each time",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "Reincarnation",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[color=#CC6666] [Death Retracement] [/color] 's gift, [color=#CC6666] [Death Retracement] [/color] 's curse \n When you play a card with [color=#CC6666] [Reincarnation] [/color], automatically play the same name card with [color=#CC6666] [Reincarnation] [/color] in your draw stack (up to 2 cards)",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "Reincarnation Reincarnation",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "When you play a card with [color=#CC6666] [Reincarnation] [/color], play a card with [color=#CC6666] [Reincarnation] [/color] from anywhere, up to three cards at a time",
   "MANOSABA_LIN_KEYWORD_AGREE.title": "Agree",
-  "MANOSABA_LIN_KEYWORD_AGREE.description": "If the number is a multiple of 1 to 5, the effect will be triggered.\n×1: All allies gain 3 shield points\n×2: Gain 3 shield points for yourself\n×3: All allies gain 1 layer of temporary agility\n×4: All allies gain 2 layers of temporary power\n×5: A random card in your hand can be played once for free, and all friends will gain 1 point of energy.",
-  "MANOSABA_LIN_KEYWORD_DOUBT.title": "doubt",
-  "MANOSABA_LIN_KEYWORD_DOUBT.description": "If the number is a multiple of 1 to 5, the effect will be triggered.\n×1: Gain 1 shield for yourself\n×2: Draw 1 card yourself\n×3: Gain 1 point of energy\n×4: Recycle 1 card from the discard pile\n×5: 1 hand card added to replay 1, 1 hand card to get 1 [color=#339966] [[/color][color=#cc9966] Judgment [/color][color=#6699cc] [/color][color=#339966]] [/color] Enchantment",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "refute",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "If the number is a multiple of 1 to 5, the effect will be triggered.\n×1: Randomly causes 1 point of damage\n×2: Gain 1 point of strength\n×3: All enemies gain 1 layer of vulnerability\n×4: Randomly cause an equal number of 1 points of damage\n×5: This card is played 1 extra time"
+  "MANOSABA_LIN_KEYWORD_AGREE.description": "Triggered by multiples of 1 to 5 \n × 1: All allies get 3 shields \n × 2: All allies get 3 shields \n × 3: All allies get 1 layer of temporary swift \n × 4: All allies get 2 layers of temporary power \n × 5: 1 random hand card can be played 1 time for free, all allies get 1 point of energy",
+  "MANOSABA_LIN_KEYWORD_DOUBT.title": "Question",
+  "MANOSABA_LIN_KEYWORD_DOUBT.description": "Triggered by multiples of 1 to 5 \n × 1: Gain 1 shield for self \n × 2: Draw 1 card for self \n × 3: Gain 1 point of energy for self \n × 4: Recycle 1 deck of discarded cards \n × 5: 1 hand Add replay 1, 1 hand get 1 [color=#339966] [[/color] [color=#cc9966] review [/color] [color=#6699cc] judge [/color] [color=#339966]] [/color] enchantment",
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "Rebuttal",
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "Triggered by multiples of 1 to 5 \n x1: Deal 1 damage randomly \n x2: Gain 1 power \n x3: All enemies gain 1 stack of Vulnerability \n x4: Deal 1 damage randomly \n x5: Deal 1 extra damage to this card"
 }

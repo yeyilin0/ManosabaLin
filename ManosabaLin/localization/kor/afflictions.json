@@ -1,8 +1,8 @@
 {
-  "BLACK_HAND_AFFLICTION.title": "변신의 마법",
-  "BLACK_HAND_AFFLICTION.description": "[color=gray]라운드 종료 시 이 카드를 유지하세요[/color]",
-  "BLACK_HAND_AFFLICTION.extraCardText": "변신의 마법",
+  "BLACK_HAND_AFFLICTION.title": "트랜스포메이션 매직",
+  "BLACK_HAND_AFFLICTION.description": "[color=gray] 턴이 끝날 때 이 카드를 보관하세요 [/color]",
+  "BLACK_HAND_AFFLICTION.extraCardText": "트랜스포메이션 매직",
   "MANOSABA_LIN_AFFLICTION_EROSION_AFFLICTION.title": "문",
-  "MANOSABA_LIN_AFFLICTION_EROSION_AFFLICTION.description": "이 카드는 소비되거나 변신할 수 없습니다.\n다시 공격을 받은 후 이 카드를 손에서 제거합니다.",
+  "MANOSABA_LIN_AFFLICTION_EROSION_AFFLICTION.description": "이 카드는 소모할 수 없으며, 다시 공격당한 후 핸드 카드의 카드를 제거하기 위해 \n 을 (를) 변형할 수 없습니다",
   "MANOSABA_LIN_AFFLICTION_EROSION_AFFLICTION.extraCardText": "문"
 }

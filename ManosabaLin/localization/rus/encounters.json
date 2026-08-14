@@ -1,0 +1,8 @@
+{
+  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.title": "Обломки",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.loss": "{character} был побежден [gold] {encounter} [/gold]...",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_BOSS_ENCOUNTER.title": "Сестра Каору Нахи",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_TWO_BOSS_ENCOUNTER.loss": "{character} был побежден [gold] {encounter} [/gold]...",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_THREE_ENCOUNTER.title": "То, что раньше называлось «Зал Второго Ордена Хиро»",
+  "MANOSABA_LIN_ENCOUNTER_GUARD_THREE_ENCOUNTER.loss": "{character} был побежден [gold] {encounter} [/gold]..."
+}

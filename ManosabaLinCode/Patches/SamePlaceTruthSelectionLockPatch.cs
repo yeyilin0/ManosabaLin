@@ -6,65 +6,41 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes.Cards;
+using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
+using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 
 namespace ManosabaLin.Patches;
 
+// 锁定的旧识疑影：由卡片自身声明"不可被选择"，不再逐个 Patch CardSelectCmd.From* 入口。
+// 浏览（查看弃牌堆/牌组）时卡正常可见，但任何选择操作都无法选中它。
+// 改为 Patch 引擎选择系统的两个点击汇聚点（覆盖所有现有及未来新增的选卡入口）：
+//   1. NCardGrid.OnHolderPressed —— 网格中所有卡片的 Pressed 信号都汇聚到这里，再由它
+//      emit HolderPressed 通知选择屏幕。Prefix 拦截锁定卡的单击（返回 false），使其
+//      可见但无法被选中；右键查看详情（HolderAltPressed）不受影响。
+//   2. NChooseACardSelectionScreen.SelectHolder —— 非网格的"从给定列表选卡"屏幕
+//      （奖励/事件类）的点击确认入口，拦截对锁定卡的选择。
+// 过滤判定由卡片自带：SamePlaceTruth.IsSelectionLocked（card is SamePlaceTruth && LockedInDiscard）。
 [HarmonyPatch]
 internal static class SamePlaceTruthSelectionLockPatch
 {
-    [HarmonyPatch(typeof(CardSelectCmd), nameof(CardSelectCmd.FromChooseACardScreen),
-        [typeof(PlayerChoiceContext), typeof(IReadOnlyList<CardModel>), typeof(Player), typeof(bool)])]
+    [HarmonyPatch(typeof(NCardGrid), "OnHolderPressed")]
     [HarmonyPrefix]
-    private static void FromChooseACardScreenPrefix(ref IReadOnlyList<CardModel> __1)
+    private static bool OnHolderPressedPrefix(NCardHolder holder)
     {
-        __1 = FilterCards(__1);
+        return !SamePlaceTruth.IsSelectionLocked(holder.CardModel);
     }
 
-    [HarmonyPatch(typeof(CardSelectCmd), nameof(CardSelectCmd.FromSimpleGrid),
-        [typeof(PlayerChoiceContext), typeof(IReadOnlyList<CardModel>), typeof(Player), typeof(CardSelectorPrefs)])]
+    [HarmonyPatch(typeof(NChooseACardSelectionScreen), "SelectHolder")]
     [HarmonyPrefix]
-    private static void FromSimpleGridPrefix(ref IReadOnlyList<CardModel> __1)
+    private static bool SelectHolderPrefix(NCardHolder holder)
     {
-        __1 = FilterCards(__1);
-    }
-
-    [HarmonyPatch(typeof(CardSelectCmd), nameof(CardSelectCmd.FromCombatPile),
-        [typeof(PlayerChoiceContext), typeof(CardPile), typeof(Player), typeof(CardSelectorPrefs), typeof(Func<CardModel, bool>)])]
-    [HarmonyPrefix]
-    private static void FromCombatPilePrefix(ref Func<CardModel, bool>? __4)
-    {
-        __4 = CombineFilter(__4);
-    }
-
-    [HarmonyPatch(typeof(CardSelectCmd), nameof(CardSelectCmd.FromHand),
-        [typeof(PlayerChoiceContext), typeof(Player), typeof(CardSelectorPrefs), typeof(Func<CardModel, bool>), typeof(AbstractModel)])]
-    [HarmonyPrefix]
-    private static void FromHandPrefix(ref Func<CardModel, bool>? __3)
-    {
-        __3 = CombineFilter(__3);
-    }
-
-    [HarmonyPatch(typeof(CardSelectCmd), nameof(CardSelectCmd.FromHandForDiscard),
-        [typeof(PlayerChoiceContext), typeof(Player), typeof(CardSelectorPrefs), typeof(Func<CardModel, bool>), typeof(AbstractModel)])]
-    [HarmonyPrefix]
-    private static void FromHandForDiscardPrefix(ref Func<CardModel, bool>? __3)
-    {
-        __3 = CombineFilter(__3);
-    }
-
-    private static IReadOnlyList<CardModel> FilterCards(IReadOnlyList<CardModel> cards)
-    {
-        return cards.Any(SamePlaceTruth.IsSelectionLocked)
-            ? cards.Where(static card => !SamePlaceTruth.IsSelectionLocked(card)).ToArray()
-            : cards;
-    }
-
-    private static Func<CardModel, bool> CombineFilter(Func<CardModel, bool>? original)
-    {
-        return card => !SamePlaceTruth.IsSelectionLocked(card) && (original?.Invoke(card) ?? true);
+        return !SamePlaceTruth.IsSelectionLocked(holder.CardModel);
     }
 }
 
+// 打出封锁（与选卡无关）：锁定中的旧识疑影不可手动打出。
+// CardModel.CanPlay 等是引擎非虚方法，无法在卡上 override，只能 Patch 引擎打出判定点。
 [HarmonyPatch]
 internal static class SamePlaceTruthCanPlayLockPatch
 {

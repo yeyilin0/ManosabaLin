@@ -450,28 +450,28 @@ internal static class AnanlinSilenceIntentManager
 
     private static async Task ApplyEnergyToAllPlayers(Player owner, int amount)
     {
-        var choiceContext = new ThrowingPlayerChoiceContext();
+        var choiceContext = new BlockingPlayerChoiceContext();
         foreach (var player in GetLivingEffectPlayers(owner))
             await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, player.Creature, amount, owner.Creature, null);
     }
 
     private static async Task DrawForAllPlayers(Player owner, int amount)
     {
-        var choiceContext = new ThrowingPlayerChoiceContext();
+        var choiceContext = new BlockingPlayerChoiceContext();
         foreach (var player in GetLivingEffectPlayers(owner))
             await CardPileCmd.Draw(choiceContext, amount, player);
     }
 
     private static async Task ApplyBlockNextTurnToAllPlayers(Player owner, int amount)
     {
-        var choiceContext = new ThrowingPlayerChoiceContext();
+        var choiceContext = new BlockingPlayerChoiceContext();
         foreach (var player in GetLivingEffectPlayers(owner))
             await PowerCmd.Apply<BlockNextTurnPower>(choiceContext, player.Creature, amount, owner.Creature, null);
     }
 
     private static async Task ApplyVigorToAllPlayers(Player owner, int amount)
     {
-        var choiceContext = new ThrowingPlayerChoiceContext();
+        var choiceContext = new BlockingPlayerChoiceContext();
         foreach (var player in GetLivingEffectPlayers(owner))
             await PowerCmd.Apply<VigorPower>(choiceContext, player.Creature, amount, owner.Creature, null);
     }

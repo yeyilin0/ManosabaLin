@@ -1,4 +1,4 @@
-{
+﻿{
   "MANOSABA_LIN_CARD_HIRO_ATTACK.description": "造成{Damage:diff()}点[color=#CC6666]伤害[/color]",
   "MANOSABA_LIN_CARD_HIRO_ATTACK.title": "打击",
   "MANOSABA_LIN_CARD_CARD_ONE.description": "获得{PerjuryPower:diff()}层[color=#CC6666]【伪证】[/color],将1张[color=#CC6666]弃牌堆[/color]的卡返回手卡",
@@ -100,12 +100,11 @@
   "MANOSABA_LIN_CARD_SAME_PLACE_TRACE.title": "同一处痕迹",
   "MANOSABA_LIN_CARD_SAME_PLACE_TRACE.description": "将{CopyCount:diff()}张本牌加入抽牌堆。抽{Cards:diff()}张牌。\n若本牌通过[color=#CC6666]【轮回】[/color]打出，选择1张手牌获得[color=#CC6666]【轮回】[/color]并获得{Energy:energyIcons(1)}。\n本场战斗中每当你通过[color=#CC6666]【轮回】[/color]打出此牌{AutoPlayRequirement:diff()}次，记录1次。记录达到{RequiredClues:diff()}次后，消耗所有同一处痕迹。\n[color=#CC6666]{ClueCount:diff()}[/color][b]/[/b][blue]{RequiredClues:diff()}[/blue]",
   "MANOSABA_LIN_CARD_SAME_PLACE_TRACE.selectionScreenPrompt": "选择1张手牌获得【轮回】",
-  "MANOSABA_LIN_CARD_SAME_PLACE_TRUTH.title": "？？？",
-  "MANOSABA_LIN_CARD_SAME_PLACE_TRUTH.description": "",
-  "MANOSABA_LIN_CARD_SAME_PLACE_TRUTH_EFFECT.title": "？？？",
-  "MANOSABA_LIN_CARD_SAME_PLACE_TRUTH_EFFECT.description": "打出后锁定在弃牌堆，无法被抽取、移动至手牌或被其他卡选择。\n每当你通过[color=#CC6666]【轮回】[/color]自动打出1张牌，进度+1；达到{AutoPlayUnlockRequirement:diff()}后移至手牌。\n[color=#CC6666]{AutoPlayUnlockProgress:diff()}[/color][b]/[/b][blue]{AutoPlayUnlockRequirement:diff()}[/blue]\n右键或双指点击：右侧拼接显示1张【待定】先古卡。\n在离开本卡前打出时，结算【待定】的效果。\n离开本卡后失效。",
-  "MANOSABA_LIN_CARD_SAME_PLACE_PENDING_TRUTH.title": "待定",
-  "MANOSABA_LIN_CARD_SAME_PLACE_PENDING_TRUTH.description": "",
+  "MANOSABA_LIN_CARD_SAME_PLACE_TRUTH.title": "旧识疑影",
+  "MANOSABA_LIN_CARD_SAME_PLACE_TRUTH_EFFECT.title": "旧识疑影",
+  "MANOSABA_LIN_CARD_SAME_PLACE_TRUTH_EFFECT.description": "选择1张卡加入手牌。\n若其有[color=#6666cc]【消耗】[/color]，移除消耗。若其有[color=#CC6666]【轮回】[/color]，复制1张进入[color=#CC6666]抽牌堆[/color]，复制1张进入[color=#CC6666]弃牌堆[/color]，三张卡都获得[color=#ffcc66]【真相】[/color]\n右键或双指点击：右侧拼接显示1张【霜覆初心】。\n打出后锁定在[color=#CC6666]弃牌堆[/color]，无法被影响。\n每当你通过[color=#CC6666]【轮回】[/color]自动打出1张牌，进度加1；达到{AutoPlayUnlockRequirement:diff()}后移至手牌。\n[color=#CC6666]{AutoPlayUnlockProgress:diff()}[/color][b]/[/b][blue]{AutoPlayUnlockRequirement:diff()}[/blue]",
+  "MANOSABA_LIN_CARD_SAME_PLACE_PENDING_TRUTH.title": "霜覆初心",
+  "MANOSABA_LIN_CARD_SAME_PLACE_PENDING_TRUTH.description": "本场战斗移除所有[color=#CC6666]【旧识疑影】[/color]。\n所有带[color=#CC6666]【轮回】[/color]的卡获得[color=#ffcc66]【真相】[/color]。\n获得[color=#ffcc66]【真相】[/color]。",
   "MANOSABA_LIN_CARD_CARD_SEVENTY_SEVEN.title": "77",
   "MANOSABA_LIN_CARD_CARD_SEVENTY_SEVEN.description": "",
   "MANOSABA_LIN_CARD_CARD_SEVENTY_SEVEN.selectionScreenPrompt": "选择{Cards:diff()}张卡至手卡",
@@ -1223,5 +1222,7 @@
   "MANOSABA_LIN_CARD_THIRTEENTHLISTENER.title": "第十三格旁听",
   "MANOSABA_LIN_CARD_THIRTEENTHLISTENER.description": "每回合第一次你用封存火焰覆盖火色后，若目标满格，获得1层保留最高火色能力。每回合第一次保留最高火色能力改写消耗后，获得被保留颜色的封存火焰能力。",
   "MANOSABA_LIN_CARD_POCKETMATCHBOX.title": "口袋里的火柴盒",
-  "MANOSABA_LIN_CARD_POCKETMATCHBOX.description": "将目标最后1格火色移到最前。若这格颜色与本回合上次消耗的火色不同，抽{Cards:diff()}张牌。{IfUpgraded:show:获得{Block:diff()}点[color=#6666cc]格挡[/color]。|}"
+  "MANOSABA_LIN_CARD_POCKETMATCHBOX.description": "将目标最后1格火色移到最前。若这格颜色与本回合上次消耗的火色不同，抽{Cards:diff()}张牌。{IfUpgraded:show:获得{Block:diff()}点[color=#6666cc]格挡[/color]。|}",
+  "ManosabaLin.TruthComponentCapability.hovertip.title": "真相",
+  "ManosabaLin.TruthComponentCapability.hovertip.description": "带[color=#CC6666]【轮回】[/color]关键词的卡在[color=#6666cc]弃牌堆[/color]中也能被[color=#CC6666]【轮回】[/color]自动打出。\n被自动打出时获得1点能量。"
 }
