@@ -26,5 +26,5 @@
   "MANOSABA_LIN_ORB_EMOTION_HELPLESSNESS_ORB.title": "беспомощный",
   "MANOSABA_LIN_ORB_EMOTION_HELPLESSNESS_ORB.description": "[green] [Hannah] [/green] \n В начале следующего хода используйте всю Отрицательную Ловкость, чтобы преобразовать в такое же количество [green] Шипов [/green] и уменьшить силу случайных врагов на [green] [/green]",
   "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.title": "Дружба",
-  "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.description": "[color=#33ccff][b]「自[/b][/color][green][b]由」[/b][/green]\n[color=#33ccff]每打出牌[/color]抽2张，牌第一次打出费用+1，第二次打出恢复原费用（交替）\n[green]每两张牌[/green]回复1能量\n[color=#ff99cc]每三张牌[/color]获得1层[b]临时力量[/b]\n[color=#ffcc99]每4张牌[/color]消耗手牌中1张[color=#33ccff]诅咒[/color]/[green]状态[/green]"
+  "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.description": "[color=#33ccff][b]«Сво[/b][/color][green][b]бода»[/b][/green]\n[color=#33ccff]За каждую сыгранную карту[/color] возьмите 2 карты; карта, сыгранная впервые, стоит на 1 дороже, при втором розыгрыше возвращается исходная стоимость (по очереди)\n[green]Каждые 2 карты[/green] восстанавливают 1 энергию\n[color=#ff99cc]Каждые 3 карты[/color] дают 1 уровень [b]временной Силы[/b]\n[color=#ffcc99]Каждые 4 карты[/color]: сожгите 1 [color=#33ccff]проклятие[/color]/[green]статус[/green] из руки"
 }

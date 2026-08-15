@@ -1221,5 +1221,7 @@
     "MANOSABA_LIN_CARD_SAME_PLACE_TRUTH.description":  "Choose 1 card from your discard pile, draw pile, hand, or exhaust pile to add to your hand.\nIf it has [color=#6666cc]Exhaust[/color], remove Exhaust.\nIf it has [color=#CC6666]Transmigration[/color], copy it once into your draw pile and once into your discard pile; all three copies gain the [color=#ffcc66]Truth[/color] component.",
     "MANOSABA_LIN_CARD_SAME_PLACE_PENDING_TRUTH.description":  "Remove all [color=#CC6666]Same Place Truth[/color] from combat.\nAll cards with [color=#CC6666]Transmigration[/color] in your draw pile, discard pile, hand, and exhaust pile gain the [color=#ffcc66]Truth[/color] component.\nGain the [color=#ffcc66]Truth[/color] power.",
     "ManosabaLin.TruthComponentCapability.hovertip.title":  "Truth",
-    "ManosabaLin.TruthComponentCapability.hovertip.description":  "Cards with [color=#CC6666]Transmigration[/color] can also be auto-played by Transmigration from the [color=#6666cc]discard pile[/color].\nGain 1 energy when auto-played."
+    "ManosabaLin.TruthComponentCapability.hovertip.description":  "Cards with [color=#CC6666]Transmigration[/color] can also be auto-played by Transmigration from the [color=#6666cc]discard pile[/color].\nGain 1 energy when auto-played.",
+  "ManosabaLin.AnanlinReassuranceMarkCapability.hovertip.title": "안심 북마크",
+  "ManosabaLin.AnanlinReassuranceMarkCapability.hovertip.description": "이 카드를 플레이한 후, 다음에 플레이하는 카드가 같은 타입이면 [color=#99ccff]【안심】[/color]을 1층 획득한다."
 }

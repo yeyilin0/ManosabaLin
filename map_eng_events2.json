@@ -1,0 +1,16 @@
+{
+  "eng/events.json": {
+    "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.title": "Startle and Retreat",
+    "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.title": "「Magical Girl Witch Trial」×「Karaoke Manekineko」",
+    "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.TRANSFORM.description": "Pay 100 gold to transform 4 cards",
+    "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.UPGRADE.description": "Give up a random potion to upgrade 6 cards",
+    "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.REMOVE.title": "「Truth Seeker」",
+    "MANOSABA_LIN_EVENT_MULTIPLAYER_COOPERATION_EVENT.title": "「Magical Girl Witch Trial」× PokaChe Collaboration",
+    "MANOSABA_LIN_EVENT_MULTIPLAYER_COOPERATION_EVENT.pages.INITIAL.options.ALL_IN.title": "All In",
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.EMALIN.title": "Pink",
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.HIRO.title": "Dark Red",
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.SHERRYLIN.title": "Cyan Blue",
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.ANANLINLIN.title": "Violet Blue",
+    "MANOSABA_LIN_EVENT_TEAM_CARD_EXCHANGE_EVENT.title": "『Magical Girl Witch Trial』×『The Aquarium Doesn't Dance』"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "kor/relics.json": {
+    "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.title": "돋보기",
+    "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.description": "[color=#33ccff]【번안】[/color]: 드로우 더미가 비면 소모 더미의 카드와 버린 카드 더미의 카드를 교환. 1장 교환 성공마다 [color=#33ccff]【타치바나 셰리의 마법】[/color] 2스택 획득(카드가 제거되면 이번 전투에서 다시 획득 불가, 저주/상태/고대 카드가 소모되면 자동 제거)",
+    "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.flavor": "타치바나 셰리 탐정 신분의 [color=#33ccff]【상징】[/color]. 하지만 아무도 그녀가 【돋보기】로 무엇을 봤는지 짐작하지 못한다",
+    "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.title": "마음을 담은 물건",
+    "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.description": "[color=#33ccff]「진범을 찾아내 한나의 혐의를 벗겨내자!」[/color]\n[color=#33ccff]턴 시작[/color] 시, 손패 1장을 소모하고 [color=#33ccff]카드[/color] 1장을 드로우할 수 있음.[rainbow][b]감정[/b][/rainbow]은 [rainbow][b]【기본 감정】[/b][/rainbow] 2장 획득마다 발동으로 변경\n[color=#33ccff]턴 종료[/color] 시, 손패 1장의 [color=#33ccff]【마녀화】[/color] 카운트 +1",
+    "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.flavor": "[color=#33ccff]「한나가 사라지는 게 싫어, 한나가 고민하고 괴로워하는 모습이 싫어...... 정말정말 싫어」[/color]",
+    "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.selectionScreenPrompt": "소모할 손패 선택",
+    "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.title": "마녀 인자",
+    "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.description": "[b]【마녀화】[/b]가 100스택에 도달하면 [b]【마녀화】[/b][rainbow][b]【감정】[/b][/rainbow] 카드 1장을 손패에 추가\n[b][rainbow][b]【기본 감정】[/b][/rainbow]:[purple]【기쁨】[/purple], [color=#ffcc99]【슬픔】[/color], [color=#CC6666]【분노】[/color], [color=#ff99cc]【공포】[/color], [color=#6666cc]【혐오】[/color], [color=#cc9966]【놀람】[/color]\n[color=#33ccff]감정 융합 레시피[/color]:\n[purple]【기쁨】[/purple]+[color=#ffcc99]【슬픔】[/color] → [color=#999999]【허탈】[/color]\n[color=#CC6666]【분노】[/color]+[color=#ff99cc]【공포】[/color] → [color=#ff9966]【초조한 공포】[/color]\n[color=#ffcc99]【슬픔】[/color]+[color=#ff99cc]【공포】[/color] → [color=#ff0000]【비참함】[/color]\n[color=#6666cc]【혐오】[/color]+[color=#cc9966]【놀람】[/color] → [gold]【경악과 혐오】[/gold]\n[purple]【기쁨】[/purple]+[color=#cc9966]【놀람】[/color] → [blue]【들뜸】[/blue][/b]\n6종 [rainbow][b]【기본 감정】[/b][/rainbow]+[b][color=33ccff]【호기심】[/color][/b]+[green][b]【무기력】[/b][/green]→[b][color=#33ccff]「우[/color][green]정」[/green][/b]",
+    "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.flavor": "마녀의 힘은 마음속 [color=#ff99cc]【감정】[/color]에서 나온다",
+    "MANOSABA_LIN_RELIC_XUELICHOUMA.title": "타치바나 셰리의 칩",
+    "MANOSABA_LIN_RELIC_XUELICHOUMA.description": "[color=#33ccff]전투 방 안에서[/color] 턴당 1회 우클릭 또는 두 손가락 탭으로 이 유물을 사용해 [gold]골드[/gold] 10을 소모해 무작위 카드를 손패에 추가\n[color=#33ccff]전투 방 밖에서는[/color] [gold]골드[/gold] 100을 소모해 무작위 카드 보상 1회 획득",
+    "MANOSABA_LIN_RELIC_XUELICHOUMA.flavor": "운이 좋다면 [color=#33ccff]예상치 못한[/color] 카드를 얻을 수도 있다",
+    "MANOSABA_LIN_RELIC_HIROCHOUMA.title": "니카이도 히로의 칩",
+    "MANOSABA_LIN_RELIC_HIROCHOUMA.description": "[color=#CC6666]전투 방 안에서[/color] 턴당 1회 우클릭 또는 두 손가락 탭으로 이 유물을 사용해 [gold]골드[/gold] 10을 소모해 무작위 카드를 손패에 추가\n[color=#CC6666]전투 방 밖에서는[/color] [gold]골드[/gold] 100을 소모해 무작위 카드 보상 1회 획득",
+    "MANOSABA_LIN_RELIC_HIROCHOUMA.flavor": "운이 좋다면 [color=#CC6666]예상치 못한[/color] 카드를 얻을 수도 있다",
+    "MANOSABA_LIN_RELIC_EMACHOUMA.title": "사쿠라바 에마의 칩",
+    "MANOSABA_LIN_RELIC_EMACHOUMA.description": "[color=#ff99cc]전투 방 안에서[/color] 턴당 1회 우클릭 또는 두 손가락 탭으로 이 유물을 사용해 [gold]골드[/gold] 10을 소모해 무작위 카드를 손패에 추가\n[color=#ff99cc]전투 방 밖에서는[/color] [gold]골드[/gold] 100을 소모해 무작위 카드 보상 1회 획득",
+    "MANOSABA_LIN_RELIC_EMACHOUMA.flavor": "운이 좋다면 [color=#ff99cc]예상치 못한[/color] 카드를 얻을 수도 있다"
+  }
+}

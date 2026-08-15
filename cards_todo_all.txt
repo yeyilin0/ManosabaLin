@@ -1,0 +1,4064 @@
+﻿总条目: 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+title: 544, description: 541, prompts: 89, other: 48
+
+KEY: MANOSABA_LIN_CARD_HIRO_ATTACK.description
+ZHS: 造成{Damage:diff()}点[color=#CC6666]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_HIRO_ATTACK.title
+ZHS: 打击
+
+KEY: MANOSABA_LIN_CARD_CARD_ONE.description
+ZHS: 获得{PerjuryPower:diff()}层[color=#CC6666]【伪证】[/color],将1张[color=#CC6666]弃牌堆[/color]的卡返回手卡
+
+KEY: MANOSABA_LIN_CARD_CARD_ONE.title
+ZHS: 谎证归裁
+
+KEY: MANOSABA_LIN_CARD_CARD_ONE.selectionScreenPrompt
+ZHS: 选择1张卡返回手卡
+
+KEY: MANOSABA_LIN_CARD_CARD_TWO.title
+ZHS: 执裁余温
+
+KEY: MANOSABA_LIN_CARD_CARD_TWO.description
+ZHS: [color=CC6666]回合结束[/color]时触发1次[color=#CC6666]【正义】[/color]的回血效果
+
+KEY: MANOSABA_LIN_CARD_CARD_FOUR.title
+ZHS: 虚言叠罪
+
+KEY: MANOSABA_LIN_CARD_CARD_FOUR.description
+ZHS: 抽{Cards:diff()}张[color=#CC6666]卡牌[/color]，获得{PerjuryPower:diff()}层[color=#CC6666]【伪证】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_FIVE.title
+ZHS: 执刃诛妄
+
+KEY: MANOSABA_LIN_CARD_CARD_FIVE.description
+ZHS: [b]消耗[/b]所有[color=#CC6666]【正义】[/color]，每消耗一层造成{Damage:diff()}点[color=#CC6666]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_SIX.title
+ZHS: 伪证织就的秩序
+
+KEY: MANOSABA_LIN_CARD_CARD_SIX.description
+ZHS: 增加1张[color=#CC6666]【二阶堂希罗的偏执】[/color]进入[color=#CC6666]抽牌堆[/color]，抽等同于你 [color=#CC6666]【伪证】[/color] 层数的[color=#CC6666]卡牌[/color]。获得等同于你 [color=#CC6666]【正义】[/color] 层数的{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVEN.title
+ZHS: 真正的正义
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVEN.description
+ZHS: [b]消耗[/b]{JusticePower:diff()}层[color=#CC6666]【正义】[/color]，获得{Block:diff()}点[color=#CC6666]格挡[/color]，获得{RitualCeremonyPower:diff()}层[b]【魔女仪式】[/b]
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHT.title
+ZHS: 罪证烙下之伤
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHT.description
+ZHS: 造成{Damage:diff()}点[color=#CC6666]伤害[/color]，获得{PerjuryPower:diff()}层[color=#CC6666]【伪证】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_TEN.title
+ZHS: 以伪护身
+
+KEY: MANOSABA_LIN_CARD_CARD_TEN.description
+ZHS: 获得{Block:diff()}点[color=#CC6666]格挡[/color]，获得{PerjuryPower:diff()}层[color=#CC6666]【伪证】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_ELEVEN.title
+ZHS: 正义之代价
+
+KEY: MANOSABA_LIN_CARD_CARD_ELEVEN.description
+ZHS: 抽{Cards:diff()}张[color=#CC6666]卡牌[/color]，可将至多{Cards:diff()}张牌[b]消耗[/b]以获得对于数量的[color=#CC6666]【伪证】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_TWELVE.description
+ZHS: [color=CC6666]本回合[/color]内获得6层[b]力量[/b]，5层[b]敏捷[/b]，9层[color=#CC6666]【伪证】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_TWELVE.title
+ZHS: 魔女囚犯
+
+KEY: MANOSABA_LIN_CARD_CARD_THIRTEEN.description
+ZHS: 获得1层[color=#CC6666]【伪证】[/color]，抽取1张[color=#CC6666]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_THIRTEEN.title
+ZHS: 魔女审判
+
+KEY: MANOSABA_LIN_CARD_CARD_ELEVEN.selectionScreenPrompt
+ZHS: 选择{Cards:diff()}张卡进行[b]消耗[/b]
+
+KEY: MANOSABA_LIN_CARD_CARD_FOURTEEN.title
+ZHS: 以此义罚，挫灭凶戾
+
+KEY: MANOSABA_LIN_CARD_CARD_FOURTEEN.description
+ZHS: [b]消耗[/b]3层[color=#CC6666]【正义】[/color]，造成{Damage:diff()}点[color=#CC6666]伤害[/color]，施加3层[b]【虚弱】[/b]
+
+KEY: MANOSABA_LIN_CARD_CARD_FIFTEEN.title
+ZHS: 希望的明天
+
+KEY: MANOSABA_LIN_CARD_CARD_FIFTEEN.description
+ZHS: [color=CC6666]回合开始[/color]时获得2层[color=#CC6666]【正义】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTEEN.title
+ZHS: 正邪相缠
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTEEN.description
+ZHS: 抽卡至到抽到[color=#CC6666]攻击[/color]卡，获得等于抽卡数量的[color=#CC6666]【伪证】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVEN_TEEN.title
+ZHS: 裁念回溯
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVEN_TEEN.description
+ZHS: 获得1层[color=#CC6666]【正义】[/color]，当获得4层[color=#CC6666]【伪证】[/color]时返回手卡{IfUpgraded:show:\n获得{energyPrefix:energyIcons(1)}。|}
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTEEN.title
+ZHS: 重复的时间
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTEEN.description
+ZHS: [b]消耗[/b]{PerjuryPower:diff()}层[color=#CC6666]【伪证】[/color]，获得{Block:diff()}点[color=#CC6666]格挡[/color]，返回手卡
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY.title
+ZHS: 当伪证归于正义，便得新生
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY.description
+ZHS: 当【伪证】转化为[color=#CC6666]【正义】[/color]时，获得{energyPrefix:energyIcons(1)}，抽1张[color=#CC6666]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_ONE.title
+ZHS: 以伪证与正义同祭
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_ONE.description
+ZHS: [b]消耗[/b]{JusticePower:diff()}层[color=#CC6666]【正义】[/color]以及{PerjuryPower:diff()}层[color=#CC6666]【伪证】[/color]，造成{Damage:diff()}点[color=#CC6666]伤害[/color]并降低3层[b]临时力量[/b]，[color=CC6666]回合开始[/color]返回手卡
+
+KEY: MANOSABA_LIN_CARD_DEATH_REWIND.title
+ZHS: 「死亡回溯」
+
+KEY: MANOSABA_LIN_CARD_DEATH_REWIND.description
+ZHS: [b]魔法[/b]
+[color=#CC6666][jitter]「这是【回溯了】吗……对我而言，这是不可饶恕的行为。对我而言，这是不正确的行为」[/jitter][/color]
+
+KEY: MANOSABA_LIN_CARD_HIRO_DEFEND.title
+ZHS: 防御
+
+KEY: MANOSABA_LIN_CARD_HIRO_DEFEND.description
+ZHS: 获得{Block:diff()}点[color=#CC6666]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_MENTAL_TRAUMA.title
+ZHS: 精神创伤
+
+KEY: MANOSABA_LIN_CARD_MENTAL_TRAUMA.description
+ZHS: 获得{WithPower:diff()}层[b]【魔女化】[/b]{IfUpgraded:show:\n抽取1张卡}
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_TWO.title
+ZHS: 回归的残想
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_TWO.description
+ZHS: 获得{JusticePower:diff()}层[color=#CC6666]【正义】[/color]，抽{Cards:diff()}[color=#CC6666]卡牌[/color]，获得{IfUpgraded:show:{energyPrefix:energyIcons(3)}|{energyPrefix:energyIcons(1)}} 
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_SEVEN.selectionScreenPrompt
+ZHS: 选择{Cards:diff()}张牌返回手卡
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_SEVEN.description
+ZHS: 从[color=#CC6666]消耗堆[/color]将{Cards:diff()}张牌返回手卡
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_SEVEN.title
+ZHS: 往返的宿命
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_EIGHT.description
+ZHS: 获得{Block:diff()}点[color=#CC6666]格挡[/color]，选择{Cards:diff()}张卡加入手卡，获得{PerjuryPower:diff()}层[color=#CC6666]【伪证】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_EIGHT.selectionScreenPrompt
+ZHS: 选择{Cards:diff()}张卡至手卡
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_EIGHT.title
+ZHS: 正确如期而至
+
+KEY: MANOSABA_LIN_CARD_JUSTICE.description
+ZHS: [color=#CC6666][jitter]「我的愿望只有一个……只想再一次，和大家相见。为此…… 我要拯救所有人」[/jitter][/color]
+
+KEY: MANOSABA_LIN_CARD_JUSTICE_EFFECT.title
+ZHS: 正义
+
+KEY: MANOSABA_LIN_CARD_JUSTICE_EFFECT.description
+ZHS: 获得1张[color=#CC6666]【拯救】[/color]，获得{WithPower:diff()}层[b]【魔女化】[/b]，获得{RitualCeremonyPower:diff()}层[b]【魔女仪式】[/b]
+选择牌组里三张[color=#CC6666]攻击[/color]牌免费打出，并获得等于造成伤害数值的[color=#CC6666]格挡[/color]
+在[color=#CC6666]下回合[/color]获得{JusticePower:diff()}层[color=#CC6666]【正义】[/color]、{Energy:energyIcons()}，抽{Cards:diff()}张[color=#CC6666]牌[/color]
+
+KEY: MANOSABA_LIN_CARD_JUSTICE.title
+ZHS: 正义
+
+KEY: MANOSABA_LIN_CARD_JUSTICE.selectionScreenPrompt
+ZHS: 选择3张[b]攻击[/b]牌打出并获得等同造成伤害量的[color=#33ccff]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_SAVE.title
+ZHS: 拯救
+
+KEY: MANOSABA_LIN_CARD_SAVE.description
+ZHS: 给予1个队友100层【魔女化】
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_SIX.title
+ZHS: 裁决
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_SIX.description
+ZHS: 获得3层[color=#CC6666]【伪证】[/color]，造成4点[color=#CC6666]伤害[/color]，获得5层[b]【魔女化】[/b]
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_FIVE.title
+ZHS: 放手所有执念，以偏执换取救赎
+
+KEY: MANOSABA_LIN_CARD_CARD_TWENTY_FIVE.description
+ZHS: 丢弃所有手牌。
+每丢弃1张牌，就将1张[color=#CC6666]{IfUpgraded:show:裁决+|裁决}[/color]添加至你的手牌
+
+KEY: MANOSABA_LIN_CARD_HIRO_WITH.title
+ZHS: 魔女之力
+
+KEY: MANOSABA_LIN_CARD_HIRO_WITH.description
+ZHS: [color=#CC6666][jitter]「啊，原来你一直与我同在…… 」[/jitter][/color]
+100层[b]【魔女化】[/b]可用
+获得1层[b]【魔女仪式】[/b]，2层[color=#CC6666]无实体[/color]，
+[color=#CC6666]【乱战】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_ONE.title
+ZHS: 心之壁
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_ONE.description
+ZHS: 获得{Block:diff()}点[color=#CC6666]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_TWO.title
+ZHS: 斩灭轮回
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_TWO.description
+ZHS: 造成{Damage:diff()}点[color=#CC6666]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_THREE.title
+ZHS: 命定之环
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_THREE.description
+ZHS: 选择{Cards:diff()}张[color=#CC6666]卡牌[/color]获得[color=#CC6666]【轮回】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_THREE.selectionScreenPrompt
+ZHS: 选择{Cards:diff()}张[color=#CC6666]卡牌[/color]获得[color=#CC6666]【轮回】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_FOUR.title
+ZHS: 叠罪
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_FOUR.description
+ZHS: 你每打出1张[color=#CC6666]【轮回】[/color]卡，就获得2层[color=#CC6666]【伪证】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_FIVE.title
+ZHS: 十次回光
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_FIVE.description
+ZHS: 每当你打出10张[color=#CC6666]【轮回】[/color]卡就获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_SEVEN.title
+ZHS: 十三重的罪罚宣告
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_SEVEN.description
+ZHS: 你在[color=CC6666]本回合[/color]内使用过[color=#CC6666]十三[/color]张牌才能打出
+造成{Damage:diff()}点[color=#CC6666]伤害[/color],给予{SuspectAmount:diff()}层[b]【嫌疑】[/b]
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_EIGHT.title
+ZHS: 永劫的轮回
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_EIGHT.description
+ZHS: 复制{Repeat:diff()}张[color=#CC6666]【轮回】[/color]卡
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_EIGHT.selectionScreenPrompt
+ZHS: 选择{Repeat:diff()}张卡
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_NINE.title
+ZHS: 回溯的命运抽丝
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY_NINE.description
+ZHS: 抽取{Cards:diff()}张[color=#CC6666]卡牌[/color]，获得{energyPrefix:energyIcons(1)}，失去[color=#CC6666]【轮回】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVENTY_ONE.selectionScreenPrompt
+ZHS: 选择{Cards:diff()}张卡至手卡
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVENTY_TWO.title
+ZHS: 绝念的宿命禁锢
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVENTY_TWO.description
+ZHS: [color=CC6666]本回合[/color]内你不能抽牌，手牌中的[color=#CC6666]【轮回】[/color]卡[b]消耗[/b]变为0
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVENTY_FIVE.title
+ZHS: 似曾相识
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVENTY_FIVE.description
+ZHS: 造成{Damage:diff()}点[color=#CC6666]伤害[/color]，获得{PerjuryPower:diff()}层[color=#CC6666]【伪证】[/color]
+
+KEY: MANOSABA_LIN_CARD_SAME_PLACE_TRACE.title
+ZHS: 同一处痕迹
+
+KEY: MANOSABA_LIN_CARD_SAME_PLACE_TRACE.description
+ZHS: 将{CopyCount:diff()}张本牌加入抽牌堆。抽{Cards:diff()}张牌。
+若本牌通过[color=#CC6666]【轮回】[/color]打出，选择1张手牌获得[color=#CC6666]【轮回】[/color]并获得{Energy:energyIcons(1)}。
+本场战斗中每当你通过[color=#CC6666]【轮回】[/color]打出此牌{AutoPlayRequirement:diff()}次，记录1次。记录达到{RequiredClues:diff()}次后，消耗所有同一处痕迹。
+[color=#CC6666]{ClueCount:diff()}[/color][b]/[/b][blue]{RequiredClues:diff()}[/blue]
+
+KEY: MANOSABA_LIN_CARD_SAME_PLACE_TRACE.selectionScreenPrompt
+ZHS: 选择1张手牌获得【轮回】
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVENTY_SEVEN.selectionScreenPrompt
+ZHS: 选择{Cards:diff()}张卡至手卡
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVENTY_EIGHT.title
+ZHS: 弃命的轮回献祭
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVENTY_EIGHT.description
+ZHS: [b]消耗[/b]所有手牌，每[b]消耗[/b]1张随机获得1张带有[color=#CC6666]【轮回】[/color]的[color=#CC6666]{IfUpgraded:show:打击+或防御+|打击或防御}[/color]，使2张[color=#CC6666]抽牌堆[/color]里的[color=#CC6666]打击或防御[/color]获得[color=#CC6666]【轮回】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVENTY_NINE.title
+ZHS: 宿命的轮替
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVENTY_NINE.description
+ZHS: 使{RemoveCount:diff()}张卡失去[color=#CC6666]【轮回】[/color]，使{GrantCount:diff()}张卡获得[color=#CC6666]【轮回】[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_SEVENTY_NINE.selectionScreenPrompt
+ZHS: 选择目标
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTY_ONE.title
+ZHS: 回归的壁障
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTY_ONE.description
+ZHS: 选择{Cards:diff()}张[color=#CC6666]卡牌[/color]返回[color=#CC6666]抽牌堆[/color]，获得{Block:diff()}点[color=#CC6666]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTY_ONE.selectionScreenPrompt
+ZHS: 选择{Cards:diff()}张卡返回[color=#CC6666]抽牌堆[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTY_TWO.title
+ZHS: 罪痕循环
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTY_TWO.description
+ZHS: 获得1层[b]【嫌疑】[/b]，选择{Cards:diff()}张[color=#CC6666]卡牌[/color]返回[color=#CC6666]抽牌堆[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTY_TWO.selectionScreenPrompt
+ZHS: 选择{Cards:diff()}张卡返回[color=#CC6666]抽牌堆[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTY_THREE.title
+ZHS: 罪染引魂
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTY_THREE.description
+ZHS: 若有则失去1层[b]【嫌疑】[/b]，然后抽{DrawCount:diff()}张[color=#CC6666]【轮回】[/color]卡
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTY_FOUR.selectionScreenPrompt
+ZHS: 选择{Cards:diff()}张卡至手卡
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTY_FIVE.title
+ZHS: 往复狂乱的攻守
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTY_FIVE.description
+ZHS: 你每打出1张手牌获得1点[color=#CC6666]格挡[/color]，每打出2张随机造成1点[color=#CC6666]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_ONE.title
+ZHS: 罪疑蚀骨
+
+KEY: MANOSABA_LIN_CARD_ONE.description
+ZHS: 使敌人获得{SuspectPower:diff()}层[b]【嫌疑】[/b]和[b]虚弱[/b]
+
+KEY: MANOSABA_LIN_CARD_TWO.title
+ZHS: 罪之前置
+
+KEY: MANOSABA_LIN_CARD_TWO.description
+ZHS: 使自己获得{SuspectPower:diff()}层[b]【嫌疑】[/b]，抽取{Cards:diff()}张[color=#CC6666]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_THREE.title
+ZHS: 逆转魔染
+
+KEY: MANOSABA_LIN_CARD_THREE.description
+ZHS: 降低一个友方目标{Reduction:diff()}层[b]【魔女化】[/b]，自己和友方目标抽取{Draw:diff()}张卡
+
+KEY: MANOSABA_LIN_CARD_SIX.title
+ZHS: 湖底恶鬼
+
+KEY: MANOSABA_LIN_CARD_SIX.description
+ZHS: 使自己获得10层[b]【嫌疑】[/b]，获得{IntangiblePower:diff()}层[color=#CC6666]无实体[/color]
+
+KEY: MANOSABA_LIN_CARD_SEVEN.title
+ZHS: 共犯
+
+KEY: MANOSABA_LIN_CARD_SEVEN.description
+ZHS: 给予友方3张{IfUpgraded:show:罪之前置+|罪之前置}
+
+KEY: MANOSABA_LIN_CARD_EIGHT.title
+ZHS: 脱罪
+
+KEY: MANOSABA_LIN_CARD_EIGHT.description
+ZHS: 失去1层[b]【嫌疑】[/b]，获得{Block:diff()}点[color=#CC6666]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_TEN.title
+ZHS: 二阶堂希罗
+
+KEY: MANOSABA_LIN_CARD_TEN.description
+ZHS: 你每有1层[b]【嫌疑】[/b]造成1次5点[color=#CC6666]伤害[/color]，然后获得1层[b]【嫌疑】[/b]
+
+KEY: MANOSABA_LIN_CARD_TWELVE.title
+ZHS: 紫藤亚里沙
+
+KEY: MANOSABA_LIN_CARD_TWELVE.description
+ZHS: 减少1个友方{ConsumeAmount:diff()}层[b]【嫌疑】[/b]，获得{IfUpgraded:show:{energyPrefix:energyIcons(3)}|{energyPrefix:energyIcons(2)}},自己获得{SuspectPower:diff()}层[b]【嫌疑】[/b],获得1层[color=#ff0000]【紫藤亚里沙的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_SIXTEEN.title
+ZHS: 指责
+
+KEY: MANOSABA_LIN_CARD_SIXTEEN.description
+ZHS: 造成{Damage:diff()}点[color=#CC6666]伤害[/color]，给予{SuspectPower:diff()}层[b]【嫌疑】[/b]
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY.title
+ZHS: 可塑性记忆
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY.description
+ZHS: 选择{SelectCount}张手牌获得[color=#CC6666]【轮回】[/color]，将其复制{CopyCount:diff()}张加入[color=#CC6666]抽牌堆[/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_SIXTY.selectionScreenPrompt
+ZHS: 选择卡
+
+KEY: MANOSABA_LIN_CARD_THE_END.title
+ZHS: 结局
+
+KEY: MANOSABA_LIN_CARD_THE_END.description
+ZHS: [jitter][color=#ff99cc]「只要大家全部[/color][b]去死[/b][color=#ff99cc]不就好了」[/color]
+[color=#CC6666]「休想迷惑我！」[/color][/jitter]
+
+KEY: MANOSABA_LIN_CARD_THE_END_EFFECT.title
+ZHS: 结局
+
+KEY: MANOSABA_LIN_CARD_THE_END_EFFECT.description
+ZHS: [color=#CC6666]击杀敌方全场敌人[/color]，从牌组里移除[b]【死亡回溯】[/b]
+
+KEY: MANOSABA_LIN_CARD_HAPPY_ENDING.title
+ZHS: 不举行安息仪式
+
+KEY: MANOSABA_LIN_CARD_HAPPY_ENDING.description
+ZHS: [color=#CC6666][sine]「果然，我没办法举行仪式」[/sine][/color]
+获得1张[color=#CC6666]【ERROR】[/color]
+
+KEY: MANOSABA_LIN_CARD_ERROR.title
+ZHS: 我来亲手，把这一切终结
+
+KEY: MANOSABA_LIN_CARD_ERROR.description
+ZHS: [color=#CC6666][jitter]「我会拯救大家，别来碍事」[/jitter][/color]
+每当你打出1张[color=#CC6666]攻击[/color]牌增加1%造成敌人[color=#CC6666]最大生命值[/color]的伤害，当计数为[color=#CC6666]12[/color]时打出获得1张[color=#CC6666]【结局】[/color]
+已打出[color=#CC6666]{ErrorHandAttackCount}[/color]张[color=#CC6666]攻击[/color]牌
+
+KEY: MANOSABA_LIN_CARD_HIRO_BAD_ENDING.title
+ZHS: 【坏结局】
+
+KEY: MANOSABA_LIN_CARD_HIRO_BAD_ENDING.description
+ZHS: [color=#CC6666][jitter]「众人将与一人别离，惟此人将觐见奇迹」[/jitter][/color]
+[b]此牌被丢弃时会返回手卡,被[b]消耗[/b]时会返回手卡[/b]
+[color=CC6666]回合开始[/color]时选择1张[color=CC6666]所有牌[/color]里的[color=#CC6666]【轮回】[/color]卡[b]消耗[/b]，获得[color=#CC6666]【伪证】[/color]时减少1层，打出[b]攻击[/b]牌时获得20[b]【魔女化】[/b]，
+[color=CC6666]回合结束[/color]时减少相当于[color=#CC6666]【正义】[/color]的血量，获得3层[b]【嫌疑】[/b]
+
+KEY: MANOSABA_LIN_CARD_HIRO_BAD_ENDING.selectionScreenPrompt
+ZHS: 选择卡
+
+KEY: MANOSABA_LIN_CARD_THREEHIRO.title
+ZHS: 三阶堂希罗
+
+KEY: MANOSABA_LIN_CARD_THREEHIRO.description
+ZHS: 选择抽牌1张，手牌1张，弃牌1张获得[color=#CC6666]【轮轮轮回回回】[/color]
+
+KEY: MANOSABA_LIN_CARD_THREEHIRO.selectionScreenPrompt
+ZHS: 选择个体
+
+KEY: MANOSABA_LIN_CARD_HIRODEATH.title
+ZHS: 「众人将与一人别离，惟此人将觐见奇迹」
+
+KEY: MANOSABA_LIN_CARD_HIRODEATH.description
+ZHS: 名为[color=#CC6666]【二阶堂希罗】[/color]个体的结局
+
+KEY: MANOSABA_LIN_CARD_EMADEATH.title
+ZHS: 「汝将收梢于花开中，亦如终结诞下起始」
+
+KEY: MANOSABA_LIN_CARD_EMADEATH.description
+ZHS: 名为[color=#ff99cc]【樱羽艾玛】[/color]个体的结局
+
+KEY: MANOSABA_LIN_CARD_HIROPARANOID.title
+ZHS: 二阶堂希罗的偏执
+
+KEY: MANOSABA_LIN_CARD_HIROPARANOID.description
+ZHS: [color=#CC6666]「能导正这个世界的，只有我」[/color]
+当抽到的时候失去{energyPrefix:energyIcons(1)}，打出时丢弃1张手卡
+
+KEY: MANOSABA_LIN_CARD_HIROPARANOID.selectionScreenPrompt
+ZHS: 做出选择
+
+KEY: MANOSABA_LIN_CARD_MLLM.title
+ZHS: 冰上梅露露
+
+KEY: MANOSABA_LIN_CARD_MLLM.description
+ZHS: 获得1层[b]【嫌疑】[/b],给予友方目标{Damage:diff()}点伤害,给予{MllmPower:diff()}层
+[color=#ffcc99]【冰上梅露露的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_MGM.title
+ZHS: 宝生玛格
+
+KEY: MANOSABA_LIN_CARD_MGM.description
+ZHS: 获得{SuspectPower:diff()}层[b]【嫌疑】[/b],获得{Block:diff()}点[color=#CC6666]格挡[/color],获得{MgmPower:diff()}层
+[purple]【宝生玛格的魔法】[/purple]
+
+KEY: MANOSABA_LIN_CARD_LYM.title
+ZHS: 莲见蕾雅
+
+KEY: MANOSABA_LIN_CARD_LYM.description
+ZHS: 获得4层[b]【嫌疑】[/b]，给予
+[gold]【莲见蕾雅的魔法】[/gold]
+
+KEY: MANOSABA_LIN_CARD_LYMONE.title
+ZHS: 嫉妒
+
+KEY: MANOSABA_LIN_CARD_LYMONE.description
+ZHS: 给予目标{PowerAmount:diff()}层[gold]【莲见蕾雅的魔法】[/gold]
+
+KEY: MANOSABA_LIN_CARD_FRIEND.title
+ZHS: 朋友
+
+KEY: MANOSABA_LIN_CARD_FRIEND.description
+ZHS: 获得1层[b]【嫌疑】[/b]，选择1张[color=#33ccff]【橘雪莉】{IfUpgraded:show:+|}[/color]
+或[green]【远野汉娜】{IfUpgraded:show:+|}[/green]加入手卡
+
+KEY: MANOSABA_LIN_CARD_FRIEND.selectionScreenPrompt
+ZHS: 选择卡牌
+
+KEY: MANOSABA_LIN_CARD_XLM.title
+ZHS: 橘雪莉
+
+KEY: MANOSABA_LIN_CARD_XLM.description
+ZHS: 获得{XlmPower:diff()}层[color=#33ccff]【橘雪莉的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_XLMK.title
+ZHS: 橘雪莉
+
+KEY: MANOSABA_LIN_CARD_XLMK.description
+ZHS: 给予选择的敌人[color=#33ccff]【冲击】[/color]
+层数等于你当前拥有的[color=#33ccff]【橘雪莉的魔法】[/color]{IfUpgraded:show:|的一半}
+
+KEY: MANOSABA_LIN_CARD_HNM.title
+ZHS: 远野汉娜
+
+KEY: MANOSABA_LIN_CARD_HNM.description
+ZHS: 获得[green]【远野汉娜的魔法】[/green]
+
+KEY: MANOSABA_LIN_CARD_POWERONEONECARD.title
+ZHS: 疑心暗起
+
+KEY: MANOSABA_LIN_CARD_POWERONEONECARD.description
+ZHS: [b]消耗[/b]{PerjuryCost:diff()}层[color=#CC6666]【伪证】[/color]
+[color=CC6666]回合开始[/color]时失去1层[color=#CC6666]【正义】[/color]，获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_POWERTWOTWOCARD.title
+ZHS: 书本中的真相
+
+KEY: MANOSABA_LIN_CARD_POWERTWOTWOCARD.description
+ZHS: 100层[b]【魔女化】[/b]可用，获得{RitualCeremonyPower:diff()}层[b]【魔女仪式】[/b]
+
+KEY: MANOSABA_LIN_CARD_ATTACKONEONE.title
+ZHS: 裁碎知厄
+
+KEY: MANOSABA_LIN_CARD_ATTACKONEONE.description
+ZHS: 造成{Damage}点[color=#CC6666]伤害[/color]，随机1张手牌添加[color=#CC6666]【轮回】[/color]，获得{PerjuryIncrease:diff()}层伪证
+[color=#CC6666]本局游戏[/color]每打出1次，伤害+{Increase:diff()}，伪证+{PerjuryIncrease:diff()}
+
+KEY: MANOSABA_LIN_CARD_ATTACKONEONE.selectionScreenPrompt
+ZHS: 选择
+
+KEY: MANOSABA_LIN_CARD_ATTACKTWOTWO.title
+ZHS: 决断
+
+KEY: MANOSABA_LIN_CARD_ATTACKTWOTWO.description
+ZHS: 对敌方全体造成{Damage:diff()}点[color=#CC6666]伤害[/color]{CalculatedHits}次
+[color=CC6666]本回合[/color]每获得1层[color=#CC6666]【伪证】[/color]就增加1次[color=#CC6666]攻击[/color]次数
+
+KEY: MANOSABA_LIN_CARD_ATTACKTHREETHREE.title
+ZHS: 虚假的共鸣
+
+KEY: MANOSABA_LIN_CARD_ATTACKTHREETHREE.description
+ZHS: 造成8点[color=#CC6666]伤害[/color]
+获得{JusticeNextTurnPower:diff()}层[color=#CC6666]【二周目的正义】[/color]
+
+KEY: MANOSABA_LIN_CARD_ATTACKFOURFOUR.title
+ZHS: 谎言之芽
+
+KEY: MANOSABA_LIN_CARD_ATTACKFOURFOUR.description
+ZHS: 造成6点[color=#CC6666]伤害[/color]，获得1层[color=#CC6666]【伪证】[/color]，随机打出[color=#CC6666]抽牌堆[/color]1张[color=#CC6666]攻击[/color]牌
+
+KEY: MANOSABA_LIN_CARD_ATTACKFIVEFIVE.title
+ZHS: 罪与赎
+
+KEY: MANOSABA_LIN_CARD_ATTACKFIVEFIVE.description
+ZHS: 造成{Damage:diff()}点[color=#CC6666]伤害[/color]，[color=#CC6666]斩杀时[/color]恢复等于[color=#CC6666]【正义】[/color]层数的[color=#CC6666]血量[/color]
+
+KEY: MANOSABA_LIN_CARD_ELEVATOR_TRIAL.title
+ZHS: 电梯审判·无尽下坠
+
+KEY: MANOSABA_LIN_CARD_ELEVATOR_TRIAL.description
+ZHS: [color=#CC6666]【无尽下坠】[/color]
+造成{Damage:diff()}点[color=#CC6666]伤害[/color]，打出后洗回[color=#CC6666]抽牌堆[/color]，本场战斗每次打出[color=#CC6666]伤害[/color]加{RecursionDamage:diff()}
+[b]消耗[/b]手牌中1张随机非[color=#CC6666]攻击[/color]牌
+
+KEY: MANOSABA_LIN_CARD_WITCH_CHAOS.title
+ZHS: 无限制魔法格斗大赛
+
+KEY: MANOSABA_LIN_CARD_WITCH_CHAOS.description
+ZHS: [color=#CC6666][jitter]「你错了，我不是邪恶」[/jitter][/color]
+随机[color=#CC6666]攻击[/color]敌方或友方1点[color=#CC6666]伤害[/color][b]{HitCount:diff()}[/b]次
+命中敌方随机施加[b]负面[/b]
+命中友方随机获得[b]【魔法】[/b]
+
+KEY: MANOSABA_LIN_CARD_SUSPECT_SPREAD.title
+ZHS: 嫌疑扩散
+
+KEY: MANOSABA_LIN_CARD_SUSPECT_SPREAD.description
+ZHS: 造成{Damage:diff()}点[color=#CC6666]伤害[/color]，自身每有1层[b]【嫌疑】[/b]伤害+1
+给目标和自身各施加1层[b]【嫌疑】[/b]
+
+KEY: MANOSABA_LIN_CARD_GUILTY_CHAIN.title
+ZHS: 罪链
+
+KEY: MANOSABA_LIN_CARD_GUILTY_CHAIN.description
+ZHS: 获得1层[b]【罪链】[/b]
+[color=CC6666]每回合[/color]当你对有[b]【嫌疑】[/b]的敌人打出牌时，随机给另1名敌人施加1层[b]【嫌疑】[/b]，[color=CC6666]每回合[/color]最多触发2次
+
+KEY: MANOSABA_LIN_CARD_POWERTHREETHREECARD.title
+ZHS: 誓言
+
+KEY: MANOSABA_LIN_CARD_POWERTHREETHREECARD.description
+ZHS: [color=#CC6666]「应该道谢的，是我才对」[/color]
+指定目标获得1张
+[gold]【蕾雅[/gold]与[color=#CC6666]希罗】[/color]
+
+KEY: MANOSABA_LIN_CARD_LY_XL.title
+ZHS: 蕾雅与希罗
+
+KEY: MANOSABA_LIN_CARD_LY_XL.description
+ZHS: [gold][sine]「我想让希罗只看着我一个人」[/sine][/gold]
+
+KEY: MANOSABA_LIN_CARD_LY_XL_EFFECT.title
+ZHS: 蕾雅与希罗
+
+KEY: MANOSABA_LIN_CARD_LY_XL_EFFECT.description
+ZHS: [color=#CC6666]自身死亡[/color]
+使目标获得100层[b]【魔女化】[/b]，1层[gold]【共犯】[/gold]，1层[b]【魔女仪式】[/b]
+
+KEY: MANOSABA_LIN_CARD_POWERFOURFOURCARD.title
+ZHS: 魔女监狱
+
+KEY: MANOSABA_LIN_CARD_POWERFOURFOURCARD.description
+ZHS: [color=CC6666]回合开始[/color]时获得40层[b]【魔女化】[/b]
+
+KEY: MANOSABA_LIN_CARD_JUSTICE_ENFORCER.title
+ZHS: 正义的执行者
+
+KEY: MANOSABA_LIN_CARD_JUSTICE_ENFORCER.description
+ZHS: [b]消耗[/b]手牌中的[color=#CC6666]【轮回】[/color]卡每张生成[color=#CC6666]【轮回】[/color]卡，获得1层[color=#CC6666]【伪证】[/color]并回复1点[color=#CC6666]生命[/color]
+[b]消耗[/b]每层[color=#CC6666]【伪证】[/color]对随机敌人造成2+[b]【魔女化】[/b]一半点[color=#CC6666]伤害[/color]，获得等量[color=#CC6666]【正义】[/color]，每层[b]【嫌疑】[/b]获得15层[b]【魔女化】[/b]并回复1点[color=#CC6666]能量[/color]，按照[color=#CC6666]【正义】[/color]层数全体[color=#CC6666]回血[/color]，≥10层则所有手牌获得[color=#CC6666]【轮回】[/color]
+若[b]【魔女化】[/b]≥100，获得1层[color=#CC6666]【原罪】[/color]
+
+KEY: MANOSABA_LIN_CARD_LYHELP.title
+ZHS: 蕾雅的协力
+
+KEY: MANOSABA_LIN_CARD_LYHELP.description
+ZHS: 选择1个敌人将其[color=#CC6666]意图目标[/color]转给1个敌方，造成8点[color=#CC6666]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_AMTARGET.title
+ZHS: 希罗的针对
+
+KEY: MANOSABA_LIN_CARD_AMTARGET.description
+ZHS: 使1个友方失去3点[color=#CC6666]血量[/color]，全体获得3层[color=#CC6666]【正义】[/color]
+
+KEY: MANOSABA_LIN_CARD_AMHELP.title
+ZHS: 艾玛的协力
+
+KEY: MANOSABA_LIN_CARD_AMHELP.description
+ZHS: 自身失去6点[color=#CC6666]血量[/color]，使全体队友获得{Block:diff()}点[color=#CC6666]格挡[/color]，恢复{HealAmount:diff()}点[color=#CC6666]血量[/color]
+
+KEY: MANOSABA_LIN_CARD_XHELP.title
+ZHS: 雪的协力
+
+KEY: MANOSABA_LIN_CARD_XHELP.description
+ZHS: 给予目标{Block:diff()}点[color=#CC6666]格挡[/color]，给予全体队友{JusticePower:diff()}层[color=#CC6666]【正义】[/color]，获得1层[b]【嫌疑】[/b]，若目标[b]【魔女化】[/b]≥50，[b]消耗[/b]10%[b]【魔女化】[/b]换取[color=#CC6666]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_SHADOW_SLASH.title
+ZHS: 残影斩
+
+KEY: MANOSABA_LIN_CARD_SHADOW_SLASH.description
+ZHS: 造成{Damage:diff()}点伤害，若[color=CC6666]本回合[/color]通过[color=#CC6666]【轮回】[/color]打出过卡牌，造成{BonusDamage:diff()}点伤害
+
+KEY: MANOSABA_LIN_CARD_NYM.title
+ZHS: 城崎诺亚
+
+KEY: MANOSABA_LIN_CARD_NYM.description
+ZHS: 造成{Damage:diff()}点[color=#CC6666]伤害[/color]，获得1层[b]【嫌疑】[/b]，获得10层[b]【魔女化】[/b]，给予目标2层
+[blue]【城崎诺亚的魔法】[/blue]
+
+KEY: MANOSABA_LIN_CARD_KKM.title
+ZHS: 泽度可可
+
+KEY: MANOSABA_LIN_CARD_KKM.description
+ZHS: 选择1个[color=#CC6666]友方[/color]造成1点[color=#CC6666]伤害[/color]，使其获得{KkmPower:diff()}层
+[color=#ff9966]【泽度可可的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_NYXM.title
+ZHS: 黑部奈叶香
+
+KEY: MANOSABA_LIN_CARD_NYXM.description
+ZHS: 造成{Damage:diff()}点[color=#CC6666]伤害[/color],获得1层
+[color=#999999]【黑部奈叶香的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_AMM.title
+ZHS: 樱羽艾玛
+
+KEY: MANOSABA_LIN_CARD_AMM.description
+ZHS: 造成{CalculatedDamage:diff()}点[color=#CC6666]伤害[/color]（基础{CalculationBase:diff()} + 【嫌疑】{SuspectBonus:diff()} + 【魔女化】{WitchificationBonus:diff()}）。获得{SuspectPower:diff()}层[b]【嫌疑】[/b]和{WithPower:diff()}层[b]【魔女化】[/b]
+获得{AmmPower:diff()}层[color=#ff99cc]【樱羽艾玛的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_AAM.title
+ZHS: 夏目安安
+
+KEY: MANOSABA_LIN_CARD_AAM.description
+ZHS: 获得3层[b]【嫌疑】[/b]，选择1个敌人获得
+[color=#6666cc]【夏目安安的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_WITCH_MARK.title
+ZHS: 魔女印记
+
+KEY: MANOSABA_LIN_CARD_WITCH_MARK.description
+ZHS: 回合结束时若在手牌中，获得{WithPower:diff()}层[b]【魔女化】[/b]
+
+KEY: MANOSABA_LIN_CARD_THIRTEEN_WATER.title
+ZHS: 特雷德基姆
+
+KEY: MANOSABA_LIN_CARD_THIRTEEN_WATER.description
+ZHS: 目标不能再复活。将Boss当前生命减半
+清除其他玩家手牌中的[b]特雷德基姆[/b]。
+
+KEY: MANOSABA_LIN_CARD_WITCH_BURN.title
+ZHS: 魔女灼烧
+
+KEY: MANOSABA_LIN_CARD_WITCH_BURN.description
+ZHS: 回合开始时返回手牌
+回合结束时对自己造成{Damage}点伤害
+
+KEY: MANOSABA_LIN_CARD_NYM_SLASH.title
+ZHS: 诺亚的协力
+
+KEY: MANOSABA_LIN_CARD_NYM_SLASH.description
+ZHS: 造成{Damage:diff()}点[color=#CC6666]伤害[/color]，给予目标{NymPower:diff()}层[blue]【城崎诺亚的魔法】[/blue]
+
+KEY: MANOSABA_LIN_CARD_REVOKATION.title
+ZHS: 【魔女化】
+
+KEY: MANOSABA_LIN_CARD_REVOKATION.description
+ZHS: 降低3点[color=#CC6666]血量上限[/color]，造成{Damage:diff()}点[color=#CC6666]伤害[/color]
+可选择1张[color=#CC6666]【死亡回溯】[/color]移除，移除自身的[color=#CC6666]【死亡回溯】[/color]能力
+若成功[b]消耗[/b]卡牌或移除能力，加入1张[b]保留[/b]的[color=#CC6666]【正义】[/color]进入手牌
+
+KEY: MANOSABA_LIN_CARD_REVOKATION.selectionScreenPrompt
+ZHS: 选择1张【死亡回溯】[b]消耗[/b]
+
+KEY: MANOSABA_LIN_CARD_PERJURY_AURA.title
+ZHS: 昭雪
+
+KEY: MANOSABA_LIN_CARD_PERJURY_AURA.description
+ZHS: [color=CC6666]回合开始[/color]获得{PerjuryAuraPower:diff()}层[color=#CC6666]【伪证】[/color]
+
+KEY: MANOSABA_LIN_CARD_BULLET_CARD.title
+ZHS: 子弹
+
+KEY: MANOSABA_LIN_CARD_BULLET_CARD.description
+ZHS: 造成{Damage:diff()}点伤害，抽{Cards:diff()}张牌，获得{energyPrefix:energyIcons(1)}
+打出移除
+
+KEY: MANOSABA_LIN_CARD_WITCHRESTCEREMONY.title
+ZHS: 魔女安息仪式
+
+KEY: MANOSABA_LIN_CARD_WITCHRESTCEREMONY.description
+ZHS: 获得{RitualCeremonyPower:diff()}层[b]【魔女仪式】[/b]，获得{WithPower:diff()}层[b]【魔女化】[/b]
+
+KEY: MANOSABA_LIN_CARD_EMALIN_ATTACK.title
+ZHS: 打击
+
+KEY: MANOSABA_LIN_CARD_EMALIN_ATTACK.description
+ZHS: 造成{Damage:diff()}点[color=#ff99cc]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_EMALIN_DEFEND.title
+ZHS: 防御
+
+KEY: MANOSABA_LIN_CARD_EMALIN_DEFEND.description
+ZHS: 获得{Block:diff()}点[color=#ff99cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_EMALIN_MENTAL_TRAUMA.title
+ZHS: 精神创伤
+
+KEY: MANOSABA_LIN_CARD_EMALIN_MENTAL_TRAUMA.description
+ZHS: 获得{WithPower:diff()}层[b]【魔女化】[/b]{IfUpgraded:show:
+抽取1张[color=#ff99cc]卡牌[/color]}
+
+KEY: MANOSABA_LIN_CARD_CROSSBOW_BOLT.title
+ZHS: 弩枪的箭矢
+
+KEY: MANOSABA_LIN_CARD_CROSSBOW_BOLT.description
+ZHS: 造成{Damage:diff()}点[color=#ff99cc]伤害[/color]。若目标是[color=#CC6666]攻击意图[/color]，[color=#ff99cc]伤害[/color]翻倍
+
+KEY: MANOSABA_LIN_CARD_BROKEN_DOOR_LOCK.title
+ZHS: 坏掉的门锁
+
+KEY: MANOSABA_LIN_CARD_BROKEN_DOOR_LOCK.description
+ZHS: 造成{Damage:diff()}点[color=#ff99cc]伤害[/color]。此[color=#ff99cc]伤害[/color]无视[color=#ff99cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_BURNT_MARKS.title
+ZHS: 烧焦的痕迹
+
+KEY: MANOSABA_LIN_CARD_BURNT_MARKS.description
+ZHS: 造成{Damage:diff()}点[color=#ff99cc]伤害[/color]。对所有敌人造成3点[color=#ff99cc]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_UNDERGROUND_FREEZER.title
+ZHS: 地下冷冻室
+
+KEY: MANOSABA_LIN_CARD_UNDERGROUND_FREEZER.description
+ZHS: 造成{Damage:diff()}点[color=#ff99cc]伤害[/color]。目标失去1点[b]力量[/b]
+
+KEY: MANOSABA_LIN_CARD_NYX_GUN.title
+ZHS: 奈叶香的枪
+
+KEY: MANOSABA_LIN_CARD_NYX_GUN.description
+ZHS: 造成{Damage:diff()}点[color=#ff99cc]伤害[/color]。若[color=ff99cc]本回合[/color]打出[color=#339966]反驳[/color]大于3，[color=#ff99cc]攻击[/color]1个敌人
+
+KEY: MANOSABA_LIN_CARD_ANN_SKETCHBOOK.title
+ZHS: 安安的素描本
+
+KEY: MANOSABA_LIN_CARD_ANN_SKETCHBOOK.description
+ZHS: 检视[color=#ff99cc]抽牌堆[/color]顶部{Cards:diff()}张牌，选择{IfUpgraded:show:2|1}张加入手牌
+
+KEY: MANOSABA_LIN_CARD_ANN_SKETCHBOOK.selectionScreenPrompt
+ZHS: 选择[color=#ff99cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_SMALL_KEY.title
+ZHS: 小钥匙
+
+KEY: MANOSABA_LIN_CARD_SMALL_KEY.description
+ZHS: 抽{Cards:diff()}张[color=#ff99cc]卡牌[/color]。
+手牌中第一张带[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔的牌费用-1
+
+KEY: MANOSABA_LIN_CARD_HANNA_RECORDING.title
+ZHS: 昨晚的照片
+
+KEY: MANOSABA_LIN_CARD_HANNA_RECORDING.description
+ZHS: 获得{IfUpgraded:show:{energyPrefix:energyIcons(3)}|{energyPrefix:energyIcons(1)}}。选择[color=#ff99cc]弃牌堆[/color]1张牌打出
+
+KEY: MANOSABA_LIN_CARD_HANNA_RECORDING.selectionScreenPrompt
+ZHS: 选择[color=#ff99cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_CONTROL_PANEL.title
+ZHS: 控制面板
+
+KEY: MANOSABA_LIN_CARD_CONTROL_PANEL.description
+ZHS: 抽{Cards:diff()}张[color=#ff99cc]卡牌[/color]，然后弃1张牌
+
+KEY: MANOSABA_LIN_CARD_CONTROL_PANEL.selectionScreenPrompt
+ZHS: 选择[color=#ff99cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_DATA.title
+ZHS: 便签条
+
+KEY: MANOSABA_LIN_CARD_DATA.description
+ZHS: 抽{Cards:diff()}张[color=#ff99cc]卡牌[/color]。
+[color=ff99cc]本回合[/color]手牌里[color=#cc9966]疑问[/color]附魔卡费用变为0
+
+KEY: MANOSABA_LIN_CARD_BLOODY_HEADBAND.title
+ZHS: 沾血的发带
+
+KEY: MANOSABA_LIN_CARD_BLOODY_HEADBAND.description
+ZHS: 获得{Block:diff()}点[color=#ff99cc]格挡[/color]。选择1名友方获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_TORTURE_SHOW_INVITE.title
+ZHS: 汉娜的录音数据
+
+KEY: MANOSABA_LIN_CARD_TORTURE_SHOW_INVITE.description
+ZHS: 友方获得{Block:diff()}点[color=#ff99cc]格挡[/color]。
+若[color=ff99cc]本回合[/color]打出[color=#6699cc]赞同[/color]附魔大于2，友方抽1张[color=#ff99cc]卡牌[/color]，自己获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_PRISON_BLUEPRINT.title
+ZHS: 典狱长的雕像
+
+KEY: MANOSABA_LIN_CARD_PRISON_BLUEPRINT.description
+ZHS: 每当你打出[color=#6699cc]赞同[/color]牌，获得1点[color=#ff99cc]格挡[/color]。友方获得2点[color=#ff99cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_CANDLE.title
+ZHS: 蜡烛
+
+KEY: MANOSABA_LIN_CARD_CANDLE.description
+ZHS: 获得{Block:diff()}点[color=#ff99cc]格挡[/color]。随机1名友方回复3点[color=#ff99cc]生命[/color]。
+友方获得{IfUpgraded:show:{energyPrefix:energyIcons(2)}|{energyPrefix:energyIcons(1)}}
+
+KEY: MANOSABA_LIN_CARD_PISTOL.title
+ZHS: 手枪
+
+KEY: MANOSABA_LIN_CARD_PISTOL.description
+ZHS: 获得{Block:diff()}点[color=#ff99cc]格挡[/color]，选择1名友方获得{TempStrength:diff()}点[b]临时力量[/b]
+
+KEY: MANOSABA_LIN_CARD_REASONING_ESTABLISHED.title
+ZHS: 推理成立
+
+KEY: MANOSABA_LIN_CARD_REASONING_ESTABLISHED.description
+ZHS: 造成{Damage:diff()}点[color=#ff99cc]伤害[/color]。
+[color=ff99cc]本回合[/color]每打过1种[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔牌，就造成{IfUpgraded:show:3|2}点伤害
+
+KEY: MANOSABA_LIN_CARD_ACCOMPLICE_SILENCE.title
+ZHS: 共犯的沉默
+
+KEY: MANOSABA_LIN_CARD_ACCOMPLICE_SILENCE.description
+ZHS: 获得{energyPrefix:energyIcons(1)}。
+若[color=#ff99cc]本回合[/color]打过[color=#6699cc]赞同[/color]和[color=#339966]反驳[/color]附魔卡，友方获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_PRISON_LAW.title
+ZHS: 监狱的法则
+
+KEY: MANOSABA_LIN_CARD_PRISON_LAW.description
+ZHS: 造成{Damage:diff()}点[color=#ff99cc]伤害[/color]。
+若[color=ff99cc]本回合[/color]打过[color=#cc9966]疑问[/color]附魔卡，伤害+{Damage:diff()}
+
+KEY: MANOSABA_LIN_CARD_FAKE_DEATH.title
+ZHS: 他杀的真相
+
+KEY: MANOSABA_LIN_CARD_FAKE_DEATH.description
+ZHS: 抽{Cards:diff()}张[color=#ff99cc]卡牌[/color]。
+若[color=ff99cc]本回合[/color]打出3种[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔牌，改为抽4张[color=#ff99cc]卡牌[/color]，友方回复2点[color=#ff99cc]生命[/color],友方获得{energyPrefix:energyIcons(2)}
+
+KEY: MANOSABA_LIN_CARD_EMALIN_REST_CEREMONY.title
+ZHS: 失控的恨意
+
+KEY: MANOSABA_LIN_CARD_EMALIN_REST_CEREMONY.description
+ZHS: 造成{Damage:diff()}点[color=#ff99cc]伤害[/color]。
+[color=ff99cc]本回合[/color]每打过1种[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔卡，伤害+10
+
+KEY: MANOSABA_LIN_CARD_WITCH_TRIAL.title
+ZHS: 魔女裁判
+
+KEY: MANOSABA_LIN_CARD_WITCH_TRIAL.description
+ZHS: [color=ff99cc]每回合[/color]开始时
+[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔的计数器+1
+
+KEY: MANOSABA_LIN_CARD_INVESTIGATION.title
+ZHS: 搜查
+
+KEY: MANOSABA_LIN_CARD_INVESTIGATION.description
+ZHS: [color=ff99cc]每回合[/color]开始时，检视[color=#ff99cc]抽牌堆[/color]顶部{Stacks:diff()}张牌，可选择弃掉或放回
+
+KEY: MANOSABA_LIN_CARD_TRUE_CRIMINAL.title
+ZHS: 真犯人
+
+KEY: MANOSABA_LIN_CARD_TRUE_CRIMINAL.description
+ZHS: [color=ff99cc]每回合[/color]打出[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔牌达到5的倍数时，对生命值最低的敌人造成15点[color=#ff99cc]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_MLLM.title
+ZHS: 冰上梅露露
+
+KEY: MANOSABA_LIN_CARD_EMA_MLLM.description
+ZHS: 获得{SuspectPower:diff()}层[b]【嫌疑】[/b]，造成{Damage:diff()}点[color=#ff99cc]伤害[/color]，给予目标{MllmPower:diff()}层
+[color=#ffcc99]【冰上梅露露的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_MGM.title
+ZHS: 宝生玛格
+
+KEY: MANOSABA_LIN_CARD_EMA_MGM.description
+ZHS: 获得{SuspectPower:diff()}层[b]【嫌疑】[/b]，获得{Block:diff()}点[color=#ff99cc]格挡[/color]，获得{MgmPower:diff()}层
+[purple]【宝生玛格的魔法】[/purple]
+
+KEY: MANOSABA_LIN_CARD_EMA_LYM.title
+ZHS: 莲见蕾雅
+
+KEY: MANOSABA_LIN_CARD_EMA_LYM.description
+ZHS: 获得4层[b]【嫌疑】[/b]，给予目标
+[gold]【莲见蕾雅的魔法】[/gold]
+
+KEY: MANOSABA_LIN_CARD_EMA_LYM.selectionScreenPrompt
+ZHS: 选择[gold]意图目标[/gold]
+
+KEY: MANOSABA_LIN_CARD_EMA_NYXM.title
+ZHS: 黑部奈叶香
+
+KEY: MANOSABA_LIN_CARD_EMA_NYXM.description
+ZHS: 造成{Damage:diff()}点[color=#ff99cc]伤害[/color]，获得1层
+[color=#999999]【黑部奈叶香的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_KKM.title
+ZHS: 泽度可可
+
+KEY: MANOSABA_LIN_CARD_EMA_KKM.description
+ZHS: 选择1个友方造成1点[color=#ff99cc]伤害[/color]，使其获得{KkmPower:diff()}层
+[color=#ff9966]【泽度可可的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_NYM.title
+ZHS: 城崎诺亚
+
+KEY: MANOSABA_LIN_CARD_EMA_NYM.description
+ZHS: 造成{Damage:diff()}点[color=#ff99cc]伤害[/color]，获得1层[b]【嫌疑】[/b]和10层[b]【魔女化】[/b]，给予目标2层
+[blue]【城崎诺亚的魔法】[/blue]
+
+KEY: MANOSABA_LIN_CARD_EMA_AMM.title
+ZHS: 樱羽艾玛
+
+KEY: MANOSABA_LIN_CARD_EMA_AMM.description
+ZHS: 场上所有敌方单位获得等于其[color=#ff99cc]最大生命值[/color]5%层数的[color=#ff99cc]【魔女因子】[/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_AAM.title
+ZHS: 夏目安安
+
+KEY: MANOSABA_LIN_CARD_EMA_AAM.description
+ZHS: 获得3层[b]【嫌疑】[/b]，选择1个敌人获得
+[color=#6666cc]【夏目安安的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_TEN.title
+ZHS: 二阶堂希罗
+
+KEY: MANOSABA_LIN_CARD_EMA_TEN.description
+ZHS: 获得{SuspectPower}层嫌疑。获得1层[color=#CC6666]【二阶堂希罗的魔法】[/color]
+[color=#ff99cc]移除卡组里面所有同名卡[/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_TWELVE.title
+ZHS: 紫藤亚里沙
+
+KEY: MANOSABA_LIN_CARD_EMA_TWELVE.description
+ZHS: 减少1个友方{ConsumeAmount:diff()}层[b]【嫌疑】[/b]，获得{IfUpgraded:show:{energyPrefix:energyIcons(3)}|{energyPrefix:energyIcons(2)}}，自己获得{SuspectPower:diff()}层[b]【嫌疑】[/b]，获得1层
+[color=#ff0000]【紫藤亚里沙的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_FRIEND.title
+ZHS: 朋友
+
+KEY: MANOSABA_LIN_CARD_EMA_FRIEND.selectionScreenPrompt
+ZHS: 选择卡牌
+
+KEY: MANOSABA_LIN_CARD_EMA_FRIEND.description
+ZHS: 获得1层[b]【嫌疑】[/b]，选择1张[color=#33ccff]【橘雪莉】{IfUpgraded:show:+|}[/color]
+或[green]【远野汉娜】{IfUpgraded:show:+|}[/green]加入手卡
+
+KEY: MANOSABA_LIN_CARD_EMA_WITCH_KILLER_CARD.title
+ZHS: 「魔女杀手」
+
+KEY: MANOSABA_LIN_CARD_EMA_WITCH_KILLER_CARD.description
+ZHS: [b]魔法[/b]
+[color=#ff99cc][jitter]「大家都去死就好了」[/jitter][/color]
+
+KEY: MANOSABA_LIN_CARD_THESWAPLIE.title
+ZHS: 换身的谎言
+
+KEY: MANOSABA_LIN_CARD_THESWAPLIE.description
+ZHS: 抽{Cards:diff()}张[color=#ff99cc]卡牌[/color]。
+若[color=ff99cc]本回合[/color][color=#cc9966]【疑问】[/color]达到2，选择手牌中{TransformCount:diff()}张牌，将其[color=#cc9966]变化[/color]为1张同稀有度的牌
+
+KEY: MANOSABA_LIN_CARD_THESWAPLIE.selectionScreenPrompt
+ZHS: 选择
+
+KEY: MANOSABA_LIN_CARD_ENCHANT_TRANSFORM.title
+ZHS: 狂乱的魔法
+
+KEY: MANOSABA_LIN_CARD_ENCHANT_TRANSFORM.description
+ZHS: 选择1张手牌获得[blue]重放[/blue]
+若[color=ff99cc]本回合[/color]已打出[color=#339966]反驳[/color]附魔为3，选择1张手牌读取其附魔，再从牌组中选择任意带有相同附魔的卡进行[green]变化[/green]并添加同一种附魔
+
+KEY: MANOSABA_LIN_CARD_ENCHANT_TRANSFORM.selectionScreenPrompt
+ZHS: [green]选择[/green]
+
+KEY: MANOSABA_LIN_CARD_SWAP_BODY_SUCCESS.title
+ZHS: 替身的温柔
+
+KEY: MANOSABA_LIN_CARD_SWAP_BODY_SUCCESS.description
+ZHS: [color=#cc9966][b]「亲近」[/b][/color]
+获得1张友方目标卡池[color=#cc9966]零费[/color]卡
+若[color=#cc9966]「亲近」[/color]>[color=#ff99cc]「疏远」[/color]
+目标则获得1张[color=#ff99cc]零费[/color]卡
+
+KEY: MANOSABA_LIN_CARD_BALLOON_FRAGMENTS.title
+ZHS: 气球的碎片
+
+KEY: MANOSABA_LIN_CARD_BALLOON_FRAGMENTS.description
+ZHS: [color=#cc9966][b]「疏远」[/b][/color]
+造成{Damage:diff()}点[color=#cc9966]伤害[/color]，获得{Block:diff()}点[color=#ff99cc]格挡[/color]
+若[color=#cc9966]疏远[/color]>[color=#ff99cc]「亲近」[/color]
+施加2层[b]虚弱[/b]
+
+KEY: MANOSABA_LIN_CARD_GUARDIAN_OATH.title
+ZHS: 守护的誓言
+
+KEY: MANOSABA_LIN_CARD_GUARDIAN_OATH.description
+ZHS: [color=#ff0000][b]「亲近」[/b][/color]
+对随机目标施加3层[color=#ff0000]【紫藤亚里沙的魔法】[/color]。若目标是[color=#ff99cc]友方[/color]，其获得{IfUpgraded:show:{energyPrefix:energyIcons(2)}|{energyPrefix:energyIcons(1)}}
+若[color=#ff0000]「亲近」[/color]>[color=#ff99cc]「疏远」[/color]
+再回复1点生命。若目标是[color=#ff0000]敌人[/color]，施加1层易伤
+
+KEY: MANOSABA_LIN_CARD_SHAREDFATE.title
+ZHS: 命运的共鸣
+
+KEY: MANOSABA_LIN_CARD_SHAREDFATE.description
+ZHS: [color=#33ccff][b]「亲近」[/b][/color]
+获得{XlmPower:diff()}层[color=#33ccff]【橘雪莉的魔法】[/color]
+若[color=#33ccff]「亲近」[/color]>[color=#ff99cc]「疏远」[/color]
+友方获得5点[b]临时力量[/b]
+
+KEY: MANOSABA_LIN_CARD_DOLL_GIFT.title
+ZHS: 玩偶的心意
+
+KEY: MANOSABA_LIN_CARD_DOLL_GIFT.description
+ZHS: [green][b]「亲近」[/b][/green]
+获得1层[green]缓冲[/green]
+若[green]「亲近」[/green]>[color=#ff99cc]「疏远」[/color]
+友方获得1层[color=#ff99cc]缓冲[/color]
+
+KEY: MANOSABA_LIN_CARD_STABBING_BLADE.title
+ZHS: 背叛的利刃
+
+KEY: MANOSABA_LIN_CARD_STABBING_BLADE.description
+ZHS: [green][b]「疏远」[/b][/green]
+选择1张[green]攻击卡[/green]附魔[green][b]【魔女化】[/b][/green]
+若[green]「疏远」[/green]>[color=#ff99cc]「亲近」[/color]
+[green]打出[/green]该卡
+
+KEY: MANOSABA_LIN_CARD_STABBING_BLADE.selectionScreenPrompt
+ZHS: 选择1张[green]攻击卡[/green]附魔[green][b]【魔女化】[/b][/green]
+
+KEY: MANOSABA_LIN_CARD_SHATTERED_RESONANCE.title
+ZHS: 碎裂的共鸣
+
+KEY: MANOSABA_LIN_CARD_SHATTERED_RESONANCE.description
+ZHS: [color=#33ccff][b]「疏远」[/b][/color]
+获得1层[green]【远野汉娜的魔法】[/green]。全体敌人获得{StrGain:diff()}点[b]力量[/b]
+若[color=#33ccff]「疏远」[/color]>[color=#ff99cc]「亲近」[/color]
+全体敌人降低10点[b]力量[/b]
+
+KEY: MANOSABA_LIN_CARD_WITCH_CLEANSING.title
+ZHS: 可悲的自虐
+
+KEY: MANOSABA_LIN_CARD_WITCH_CLEANSING.description
+ZHS: [color=#ff0000][b]「疏远」[/b][/color]
+对自己造成5点[color=#ff0000]伤害[/color]。移除[color=#ff99cc]友方[/color]四分之1的【魔女化】
+若[color=#ff0000]「疏远」[/color]>[color=#ff99cc]「亲近」[/color]
+移除的[b]【魔女化】[/b]转移到[color=#ff0000]自己[/color]身上
+
+KEY: MANOSABA_LIN_CARD_THE_ONLY_CLUE.title
+ZHS: 利用的背后
+
+KEY: MANOSABA_LIN_CARD_THE_ONLY_CLUE.description
+ZHS: [color=#999999][b]「亲近」[/b][/color]
+获得2层[color=#999999]【黑部奈叶香的魔法】[/color]，抽2张[color=#999999]卡牌[/color]弃1张
+若[color=#999999]「亲近」[/color]>[color=#ff99cc]「疏远」[/color]
+弃掉的牌获得[color=#ff99cc]重放[/color]
+
+KEY: MANOSABA_LIN_CARD_THE_ONLY_CLUE.selectionScreenPrompt
+ZHS: [color=#999999]选择卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_CHAINED_TRUST.title
+ZHS: 戒备的内心
+
+KEY: MANOSABA_LIN_CARD_CHAINED_TRUST.description
+ZHS: [color=#999999][b]「疏远」[/b][/color]
+获得{NyxmStacks:diff()}层[color=#999999]【黑部奈叶香的魔法】[/color]，回收[color=#999999]弃牌堆[/color]1张牌
+若[color=#999999]「疏远」[/color]>[color=#ff99cc]「亲近」[/color]
+从牌组随机[color=#ff99cc]打出[/color]1张[color=#999999]攻击[/color]牌
+
+KEY: MANOSABA_LIN_CARD_CHAINED_TRUST.selectionScreenPrompt
+ZHS: [color=#999999]选择卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_SUBSTITUTE_COST.title
+ZHS: 虚假的共犯
+
+KEY: MANOSABA_LIN_CARD_SUBSTITUTE_COST.description
+ZHS: [color=#ffcc99][b]「亲近」[/b][/color]
+获得等于[color=ffcc99]亲近[/color]层数的[b]临时力量[/b]，[color=ffcc99]下回合[/color]失去{energyPrefix:energyIcons(2)}
+若[color=#ffcc99]「亲近」[/color]>[color=#ff99cc]「疏远」[/color]
+将失去改为[color=ff99cc]下回合[/color]获得{IfUpgraded:show:{energyPrefix:energyIcons(2)}|{energyPrefix:energyIcons(1)}}
+
+KEY: MANOSABA_LIN_CARD_PAWN_REALIZATION.title
+ZHS: 棋子的觉悟
+
+KEY: MANOSABA_LIN_CARD_PAWN_REALIZATION.description
+ZHS: [color=#ffcc99][b]「疏远」[/b][/color]
+对自己造成等同[color=ffcc99]疏远[/color]层数的[color=ff99cc]伤害[/color]，获得等同[color=ffcc99]疏远[/color]层数两倍的[color=ffcc99]格挡[/color]
+若[color=#ffcc99]「疏远」[/color]>[color=#ff99cc]「亲近」[/color]
+获得1层[color=#ffcc99]【冰上梅露露的魔法】[/color]
+若打出后[color=#ffcc99]「羁[/color][color=#ff99cc]绊」[/color]等于13则与牌组里面的[color=#ffcc99]虚假的共犯[/color]融合
+
+KEY: MANOSABA_LIN_CARD_MERURU_AND_EMA.title
+ZHS: 梅露露与艾玛
+
+KEY: MANOSABA_LIN_CARD_MERURU_AND_EMA.description
+ZHS: {CompPre}
+[color=#ffcc99][jitter][b]「你不想死对吧？不想逃跑对吧？我们是朋友对吧？」[/b][/jitter][/color]{CompPost}
+
+KEY: MANOSABA_LIN_CARD_MERURU_AND_EMA.autoPlayLine
+ZHS: [color=#ff99cc]战斗开始时自动打出[/color]
+
+KEY: MANOSABA_LIN_CARD_MERURU_AND_EMA_EFFECT.title
+ZHS: 梅露露与艾玛
+
+KEY: MANOSABA_LIN_CARD_MERURU_AND_EMA_EFFECT.description
+ZHS: 获得{AccompliceStacks}层[color=#ffcc99][b]「共[/b][/color][color=#ff99cc][b]犯」[/b][/color]。
+战斗中每有[b][color=#ff99cc]敌人死亡[/color][/b]，本卡获得[b][color=#ffcc99]能力层数[/color][/b]加1。
+当本卡能力层数达到{AutoPlayThreshold}层及以上，[color=#ff99cc]战斗开始时自动打出[/color]。
+
+KEY: MANOSABA_LIN_CARD_NOAH_AFFINITY.title
+ZHS: 水之茧
+
+KEY: MANOSABA_LIN_CARD_NOAH_AFFINITY.description
+ZHS: [blue][b]「亲近」[/b][/blue]
+每有1层[blue]亲近[/blue]造成{Damage:diff()}点伤害
+若[blue]「亲近」[/blue]>[color=#ff99cc]「疏远」[/color]
+先随机给予[blue]【城崎诺亚的魔法】[/blue]再[color=#ff99cc]攻击[/color]
+
+KEY: MANOSABA_LIN_CARD_NOAH_ESTRANGEMENT.selectionScreenPrompt
+ZHS: [blue]选择卡牌[/blue]
+
+KEY: MANOSABA_LIN_CARD_NOAH_ESTRANGEMENT.title
+ZHS: 蝶落无声
+
+KEY: MANOSABA_LIN_CARD_NOAH_ESTRANGEMENT.description
+ZHS: [blue][b]「疏远」[/b][/blue]
+选择1张手卡获得[color=#ff99cc]重放[/color]，丢弃1张手牌
+若[blue]「疏远」[/blue]>[color=#ff99cc]「亲近」[/color]
+获得1层[blue]【蝴蝶】[/blue]
+
+KEY: MANOSABA_LIN_CARD_MARGARET_AFFINITY.title
+ZHS: 替身之盾
+
+KEY: MANOSABA_LIN_CARD_MARGARET_AFFINITY.description
+ZHS: [purple][b]「亲近」[/b][/purple]
+获得{MgmStacks:diff()}层[purple]【宝生玛格的魔法】[/purple]，[purple]本回合[/purple]承受选择的友方受到的伤害，[color=ff99cc]下回合[/color]给予其等于[purple]本回合[/purple]受到伤害的[color=ff99cc]格挡[/color]
+若[purple]「亲近」[/purple]>[color=#ff99cc]「疏远」[/color]
+[purple]下回合[/purple]你也获得等于受到伤害的[color=ff99cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_MARGARET_ESTRANGEMENT.title
+ZHS: 命运的嘲弄
+
+KEY: MANOSABA_LIN_CARD_MARGARET_ESTRANGEMENT.description
+ZHS: [purple][b]「疏远」[/b][/purple]
+选择1个友方[purple]复制[/purple]其牌组随机1张加入手牌
+若[purple]「疏远」[/purple]>[color=#ff99cc]「亲近」[/color]
+复制的卡能[color=ff99cc]免费[/color]打出1次
+
+KEY: MANOSABA_LIN_CARD_COCO_AFFINITY.title
+ZHS: 认可的目光
+
+KEY: MANOSABA_LIN_CARD_COCO_AFFINITY.description
+ZHS: [color=#ff9966][b]「亲近」[/b][/color]
+根据[color=#ff9966]敌人意图[/color][color=#ff99cc]友方[/color]获得增益，
+[color=#ff9966]攻击[/color]：获得20[b]硬化外壳[/b]，[color=#ff9966]格挡或增益[/color]：获得9[b]仪式[/b]，[color=#ff9966]负面[/color]：获得5[b]人工制品[/b]，[color=#ff9966]召唤或塞牌[/color]：7层[b]荆棘[/b]
+若[color=#ff9966]「亲近」[/color]>[color=#ff99cc]「疏远」[/color]
+[color=#ff99cc]再获得[/color]1个意图效果
+
+KEY: MANOSABA_LIN_CARD_COCO_ESTRANGEMENT.title
+ZHS: 俯瞰的凝视
+
+KEY: MANOSABA_LIN_CARD_COCO_ESTRANGEMENT.description
+ZHS: [color=#ff9966][b]「疏远」[/b][/color]
+根据[color=#ff9966]敌人意图[/color]施加[color=#ff99cc]负面[/color]，
+[color=#ff99cc]攻击[/color]：[b]缩小[/b]，[color=#ff99cc]格挡或增益[/color]：[b]脆弱[/b]，[color=#ff99cc]负面[/color]：[b]虚弱[/b]+[b]易伤[/b]
+若[color=#ff9966]「疏远」[/color]>[color=#ff99cc]「亲近」[/color]
+对[color=#ff99cc]全部敌人[/color]生效
+
+KEY: MANOSABA_LIN_CARD_ANN_AFFINITY.title
+ZHS: 追向那个人
+
+KEY: MANOSABA_LIN_CARD_ANN_AFFINITY.description
+ZHS: [color=#6666cc][b]「亲近」[/b][/color]
+选择[color=#6666cc]抽牌堆[/color]{PickCount:diff()}张卡，将其费用随机变为0~2费
+若[color=#6666cc]「亲近」[/color]>[color=#ff99cc]「疏远」[/color]
+变为[color=#ff99cc]0[/color]
+
+KEY: MANOSABA_LIN_CARD_ANN_AFFINITY.selectionScreenPrompt
+ZHS: [color=#6666cc]选择卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_ANN_ESTRANGEMENT.title
+ZHS: 致命的洗脑
+
+KEY: MANOSABA_LIN_CARD_ANN_ESTRANGEMENT.description
+ZHS: [color=#6666cc][b]「疏远」[/b][/color]
+对[color=#6666cc]目标[/color]施加2层[b]虚弱[/b]和2层[b]脆弱[/b]
+若[color=#6666cc]「疏远」[/color]>[color=#ff99cc]「亲近」[/color]
+造成[color=#ff99cc]疏远[/color]值乘{DamageMult:diff()}点[color=#6666cc]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_ANN_ESTRANGEMENT.selectionScreenPrompt
+ZHS: [color=#6666cc]选择卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_POWERFOURFOURCARD.title
+ZHS: 魔女监狱
+
+KEY: MANOSABA_LIN_CARD_EMA_POWERFOURFOURCARD.description
+ZHS: [color=ff99cc]回合开始[/color]获得40层[b]【魔女化】[/b]
+
+KEY: MANOSABA_LIN_CARD_EMA_POWERTWOTWOCARD.title
+ZHS: 书本中的真相
+
+KEY: MANOSABA_LIN_CARD_EMA_POWERTWOTWOCARD.description
+ZHS: 100层[b]【魔女化】[/b]可用，获得{RitualCeremonyPower:diff()}层[b]【魔女仪式】[/b]
+
+KEY: MANOSABA_LIN_CARD_EMA_SUSPECT_SPREAD.title
+ZHS: 嫌疑扩散
+
+KEY: MANOSABA_LIN_CARD_EMA_SUSPECT_SPREAD.description
+ZHS: 造成{Damage:diff()}点[color=#ff99cc]伤害[/color]，自身每有1层[b]【嫌疑】[/b]伤害+1
+给目标和自身各施加1层[b]【嫌疑】[/b]
+
+KEY: MANOSABA_LIN_CARD_EMA_TWO.title
+ZHS: 罪之前置
+
+KEY: MANOSABA_LIN_CARD_EMA_TWO.description
+ZHS: 获得{SuspectPower:diff()}层[b]【嫌疑】[/b]，抽取{Cards:diff()}张[color=#ff99cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_SEVEN.title
+ZHS: 共犯
+
+KEY: MANOSABA_LIN_CARD_EMA_SEVEN.description
+ZHS: 给予[color=#ff99cc]友方[/color]3张{IfUpgraded:show:罪之前置+|罪之前置}
+
+KEY: MANOSABA_LIN_CARD_EMA_THREE.title
+ZHS: 逆转魔染
+
+KEY: MANOSABA_LIN_CARD_EMA_THREE.description
+ZHS: 降低一个友方目标{Reduction:diff()}层[b]【魔女化】[/b]，自己和友方目标抽取{Draw:diff()}张[color=#ff99cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_GUILTY_CHAIN.title
+ZHS: 罪链
+
+KEY: MANOSABA_LIN_CARD_EMA_GUILTY_CHAIN.description
+ZHS: [color=ff99cc]每回合[/color]当你对有[b]【嫌疑】[/b]的敌人打出牌时，随机给另一名敌人施加1层[b]【嫌疑】[/b]，[color=ff99cc]每回合[/color]最多触发2次
+
+KEY: MANOSABA_LIN_CARD_EMA_ONE.title
+ZHS: 罪疑蚀骨
+
+KEY: MANOSABA_LIN_CARD_EMA_ONE.description
+ZHS: 使敌人获得{SuspectPower:diff()}层[b]【嫌疑】[/b]和[b]虚弱[/b]
+
+KEY: MANOSABA_LIN_CARD_EMA_EIGHT.title
+ZHS: 脱罪
+
+KEY: MANOSABA_LIN_CARD_EMA_EIGHT.description
+ZHS: 失去1层[b]【嫌疑】[/b]，获得{Block:diff()}点[color=#ff99cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_MLYM.title
+ZHS: 佐伯米莉亚
+
+KEY: MANOSABA_LIN_CARD_MLYM.description
+ZHS: 选择1个队友给予[color=#cc9966]【佐伯米莉亚的魔法】[/color]，交换你们的手牌然后给这些手牌附上[color=#cc9966]【魔法的遗症】[/color]
+
+KEY: MANOSABA_LIN_CARD_EMAMONV.title
+ZHS: 魔女审判
+
+KEY: MANOSABA_LIN_CARD_EMAMONV.description
+ZHS: 选择获得[color=#ff99cc]亲近[/color]还是[color=#CC6666]疏远[/color]，生成一张[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔卡
+
+KEY: MANOSABA_LIN_CARD_EMAMONV.selectionScreenPrompt
+ZHS: [color=#ff99cc]选[/color][color=#6666cc]择[/color]
+
+KEY: MANOSABA_LIN_CARD_EMAMQINJIN.title
+ZHS: 魔女审判
+
+KEY: MANOSABA_LIN_CARD_EMAMQINJIN.description
+ZHS: [color=#ff99cc][b]「亲近」[/b][/color]
+
+KEY: MANOSABA_LIN_CARD_EMAMSHUYUAN.title
+ZHS: 魔女审判
+
+KEY: MANOSABA_LIN_CARD_EMAMSHUYUAN.description
+ZHS: [color=#CC6666][b]「疏远」[/b][/color]
+
+KEY: MANOSABA_LIN_CARD_XUESHUYUANCARD.title
+ZHS: 错乱的记忆
+
+KEY: MANOSABA_LIN_CARD_XUESHUYUANCARD.description
+ZHS: [color=#cccccc][b]「疏远」[/b][/color]
+[color=cccccc]回合开始[/color]时交换
+[color=#ff99cc][b]【亲近】[/b][/color]与[color=#CC6666][b]【疏远】[/b][/color]
+的数值
+
+KEY: MANOSABA_LIN_CARD_XUEQINJINCARD1.title
+ZHS: 独自的记忆
+
+KEY: MANOSABA_LIN_CARD_XUEQINJINCARD1.description
+ZHS: [color=#cccccc][b]「疏远」[/b][/color]
+造成3点[color=cccccc]伤害[/color]，将1张手牌变化为随机[color=#cccccc]【疏远】[/color]牌并添加保留
+若[color=#cccccc]「亲近」[/color]>7本卡变化
+
+KEY: MANOSABA_LIN_CARD_XUEQINJINCARD1.selectionScreenPrompt
+ZHS: [color=#cccccc]【[/color][color=#ff99cc]选[/color][color=#CC6666]择[/color][color=#cccccc]】[/color]
+
+KEY: MANOSABA_LIN_CARD_XUEQINJINCARD2.title
+ZHS: 三人的回忆
+
+KEY: MANOSABA_LIN_CARD_XUEQINJINCARD2.description
+ZHS: [color=#cccccc][b]「亲近」[/b][/color]
+生成三张零费随机[color=#cccccc]【[/color][color=#ff99cc]亲[/color][color=#CC6666]近[/color][color=#cccccc]】[/color]卡，可选择一张加入手卡
+
+KEY: MANOSABA_LIN_CARD_XUEQINJINCARD2.selectionScreenPrompt
+ZHS: [color=#cccccc]【[/color][color=#ff99cc]选[/color][color=#CC6666]择[/color][color=#cccccc]】[/color]
+
+KEY: MANOSABA_LIN_CARD_EMAWICHPOWER.title
+ZHS: 魔女之力
+
+KEY: MANOSABA_LIN_CARD_EMAWICHPOWER.description
+ZHS: [color=#ff99cc][jitter]「我听到了一个声音，让我把魔女......大量屠杀」[/jitter][/color]
+100层[b]【魔女化】[/b]可用
+获得2层[b]【魔女仪式】[/b]，1层[color=#ff99cc]无实体[/color]，
+[color=#ff99cc]【死神形态】[/color]
+
+KEY: MANOSABA_LIN_CARD_LAMORT.title
+ZHS: 死神
+
+KEY: MANOSABA_LIN_CARD_LAMORT.description
+ZHS: [color=#ff99cc][jitter]「既没能帮助她，也没能为她发声，我是单纯在一旁看着的——旁观者!」[/jitter][/color]
+
+KEY: MANOSABA_LIN_CARD_LAMORT_EFFECT.title
+ZHS: 死神
+
+KEY: MANOSABA_LIN_CARD_LAMORT_EFFECT.description
+ZHS: 获得100层[b]【魔女化】[/b]，1层[b]【魔女仪式】[/b]
+[color=#cccccc]传播[/color]1/4的[color=#ff99cc]【魔女因子】[/color]
+选择获得3点[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]，生成等量[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]牌，按照[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]较低值随机变成零费，可选择变成[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]卡并自由放入[color=#ff99cc]抽牌堆[/color]
+
+KEY: MANOSABA_LIN_CARD_LAMORT.selectionScreenPrompt
+ZHS: [color=#ff99cc]选[/color][color=#CC6666]择[/color]
+
+KEY: MANOSABA_LIN_CARD_HIROSHUYUANCARD.title
+ZHS: 我讨厌你的事实永远都不会改变
+
+KEY: MANOSABA_LIN_CARD_HIROSHUYUANCARD.description
+ZHS: [color=#CC6666][b]「疏远」[/b][/color]
+[color=#CC6666][jitter]「我讨厌你的事实永远都不会改变」[/jitter][/color]
+
+KEY: MANOSABA_LIN_CARD_LYQINJIN.title
+ZHS: 共同的战线
+
+KEY: MANOSABA_LIN_CARD_LYQINJIN.description
+ZHS: [gold][b]「亲近」[/b][/gold]
+选择一个[gold]友方[/gold]，你和友方减少1层[b]【嫌疑】[/b]，然后给予随机敌人等量[b]【嫌疑】[/b]
+若[gold]「亲近」[/gold]>[color=#ff99cc]「疏远」[/color]
+[color=#ff99cc]友方[/color]减少1层[b]【嫌疑】[/b]
+
+KEY: MANOSABA_LIN_CARD_YALISA.title
+ZHS: 别再缠着我了
+
+KEY: MANOSABA_LIN_CARD_YALISA.description
+ZHS: [color=#ff0000][b]「亲近」[/b][/color]与[color=#ff0000][b]「疏远」[/b][/color]+1
+若[color=#ff0000]「亲近」[/color]与[color=#ff0000]「疏远」[/color]之和>6
+此卡变化为[color=#ff99cc]「我不听，我需要你」[/color]返回手卡
+
+KEY: MANOSABA_LIN_CARD_YALISAQINJIN.title
+ZHS: 我不听，我需要你
+
+KEY: MANOSABA_LIN_CARD_YALISAQINJIN.description
+ZHS: [color=#ff0000][jitter]「你这家伙，不是才吃了亏，还不长记忆吗。我的魔法很危险的!」[/jitter][/color]
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTY_SIX.title
+ZHS: 相对的正义
+
+KEY: MANOSABA_LIN_CARD_CARD_EIGHTY_SIX.description
+ZHS: 造成{Damage:diff()}点[color=#CC6666]伤害[/color]
+抽{Cards:diff()}张[color=#CC6666]卡牌[/color]{CompPost}
+随机[b]附着[/b]至[color=#CC6666]抽牌堆[/color]的1张牌
+
+KEY: ManosabaLin.GenerateComponent.postfix
+ZHS: 
+[color=#4a0000]将「{CardTitle}」放回手牌[/color]
+
+KEY: MANOSABA_LIN_CARD_REVIVERITUAL.title
+ZHS: 学姐的圣遗物
+
+KEY: MANOSABA_LIN_CARD_REVIVERITUAL.description
+ZHS: 将目标[color=#ff99cc]击杀[/color]并复活回复1血，给予3层[color=#ff99cc]【地雷】[/color]和999层[b]【缓冲】[/b]
+生成等于其最大生命值数量的[color=#ff99cc]【碎片】[/color]
+随机分配至所有队友的[color=#ff99cc]抽牌堆[/color]
+
+KEY: MANOSABA_LIN_CARD_REVIVEFRAGMENT.title
+ZHS: 碎片
+
+KEY: MANOSABA_LIN_CARD_REVIVEFRAGMENT.description
+ZHS: 被抽取时[color=#ff99cc]自动打出[/color]，回复全体1点生命值，自己抽1
+
+KEY: MANOSABA_LIN_CARD_TRIALENCHANTCYCLECARD.title
+ZHS: 穷举法
+
+KEY: MANOSABA_LIN_CARD_TRIALENCHANTCYCLECARD.description
+ZHS: [color=ff99cc]回合开始[/color]时，清除所有[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔
+按照清除数量随机选一种附魔，给等量无附魔卡附上相同[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔
+[color=#ff99cc]生成[/color]1张对应关键词的零费卡并附上该附魔加入手牌
+
+KEY: MANOSABA_LIN_CARD_BOND_EXCHANGECARD.title
+ZHS: 旁观者的迎合
+
+KEY: MANOSABA_LIN_CARD_BOND_EXCHANGECARD.description
+ZHS: [color=#ff99cc][b]「疏远」[/b][/color]
+[color=ff99cc]回合开始[/color]时，[b]消耗[/b]2层[color=#CC6666]【疏远】[/color]或2层[color=#ff99cc]【亲近】[/color]
+若[b]消耗[/b][color=#CC6666]【疏远】[/color]：选择1张手牌变成随机[color=#CC6666]【疏远】[/color]卡，可免费打出1次
+若[b]消耗[/b][color=#ff99cc]【亲近】[/color]：生成1张随机[color=#ff99cc]【亲近】[/color]卡，可免费打出1次
+
+KEY: MANOSABA_LIN_CARD_BOND_EXCHANGECARD.selectionScreenPrompt
+ZHS: 选择1张手卡变成[color=#CC6666]疏远[/color]卡
+
+KEY: MANOSABA_LIN_CARD_WITCHFACTORECHANTCARD.title
+ZHS: 恍然的醒悟
+
+KEY: MANOSABA_LIN_CARD_WITCHFACTORECHANTCARD.description
+ZHS: 每有{Divisor:inverseDiff()}层[b]【魔女化】[/b]获得1层[color=#ff99cc]【恍然的醒悟】[/color]
+每获得1层时，为[color=#ff99cc]抽牌堆[/color]里随机无附魔卡获得随机[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔并减1费
+
+KEY: MANOSABA_LIN_CARD_FINAL_JUDGMENT.title
+ZHS: 受厌恶之人
+
+KEY: MANOSABA_LIN_CARD_FINAL_JUDGMENT.description
+ZHS: 对全体敌人2倍([color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]+[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]卡)伤害
+[color=#ff99cc]「亲近」[/color]>[color=#CC6666]「疏远」[/color]：全体友方获得3倍[color=#ff99cc]「亲近」[/color]的[color=#ff99cc]格挡[/color]，[color=#CC6666]「疏远」[/color]>[color=#ff99cc]「亲近」[/color]：全体敌人获得[color=#CC6666]「疏远」[/color]层[b]易伤[/b]。抽[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】卡[/color]+每50[b]【魔女化】[/b]张牌，每50[b]【魔女化】[/b]1点能量，每≥1002点能量，对每个有[b]【嫌疑】[/b]的敌人造成3倍[b]【嫌疑】[/b]+[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]值点伤害
+移除上述资源([color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]卡发生[b]消耗[/b]效果)
+
+KEY: MANOSABA_LIN_CARD_LYSHUYUAN.title
+ZHS: 暗藏的嫉妒
+
+KEY: MANOSABA_LIN_CARD_LYSHUYUAN.description
+ZHS: [gold][b]「疏远」[/b][/gold]
+造成{Damage:diff()}点[gold]伤害[/gold]，[b]消耗[/b]较高方的[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]值，升级所有牌中等量的[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]卡
+若[gold]「疏远」[/gold]>[color=#ff99cc]「亲近」[/color]
+先选择相当于[b]消耗[/b]数值的所有卡变成随机升级后的[gold]【疏远】[/gold]卡
+
+KEY: MANOSABA_LIN_CARD_LYSHUYUAN.selectionScreenPrompt
+ZHS: [gold]选择[/gold]
+
+KEY: MANOSABA_LIN_CARD_EMAMLYM.title
+ZHS: 佐伯米莉亚
+
+KEY: MANOSABA_LIN_CARD_EMAMLYM.description
+ZHS: 选择1个队友给予[color=#cc9966]【佐伯米莉亚的魔法】[/color]，交换你们的手牌然后给这些手牌附上[color=#cc9966]【魔法的遗症】[/color]
+
+KEY: MANOSABA_LIN_CARD_RANDOMTRIALENCHANTCARD.title
+ZHS: 先行投票
+
+KEY: MANOSABA_LIN_CARD_RANDOMTRIALENCHANTCARD.description
+ZHS: [color=ff99cc]回合开始[/color]，随机使[color=#ff99cc]抽牌堆[/color]中{Stacks:diff()}张没有附魔的卡获得[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔
+
+KEY: MANOSABA_LIN_CARD_MONVQIUFAN.title
+ZHS: 魔女囚犯
+
+KEY: MANOSABA_LIN_CARD_MONVQIUFAN.description
+ZHS: [color=ff99cc]本回合[/color]内获得6层[b]力量[/b]，5层[b]敏捷[/b]，9点[color=#ff99cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_EMAREVOKATION.title
+ZHS: 【魔女化】
+
+KEY: MANOSABA_LIN_CARD_EMAREVOKATION.description
+ZHS: 降低3点[color=ff99cc]血量上限[/color]，造成{Damage:diff()}点[color=#ff99cc]伤害[/color]
+可选择所有卡中的1张[color=#ff99cc]【魔女杀手】[/color][b]消耗[/b]，移除自身的[color=#ff99cc]【魔女杀手】[/color]能力
+若成功[b]消耗[/b]卡牌或移除能力，加入1张[b]保留[/b]的[color=#ff99cc]【死神】[/color]进入手牌
+
+KEY: MANOSABA_LIN_CARD_EMAREVOKATION.selectionScreenPrompt
+ZHS: 选择1张【魔女杀手】[b]消耗[/b]
+
+KEY: MANOSABA_LIN_CARD_BOND_SETTLEMENT.title
+ZHS: 你才是，给我跟上
+
+KEY: MANOSABA_LIN_CARD_BOND_SETTLEMENT.description
+ZHS: [color=#ff99cc][b]「亲近」[/b][/color]
+[b]消耗[/b]所有[color=#ff99cc]【亲近】[/color]和[color=#CC6666]【疏远】[/color]卡
+每张造成6点[color=ff99cc]伤害[/color]
+按[color=#ff99cc]「亲近」[/color]层数生成等量[color=#ff99cc]【亲近】[/color]卡
+选择[color=#CC6666]「疏远」[/color]层数张手牌减1费
+
+KEY: MANOSABA_LIN_CARD_BOND_SETTLEMENT.selectionScreenPrompt
+ZHS: 选择卡牌减费
+
+KEY: MANOSABA_LIN_CARD_WILD_DANCE.title
+ZHS: 狂人日记
+
+KEY: MANOSABA_LIN_CARD_WILD_DANCE.description
+ZHS: [color=#4a0000][jitter]「在痛苦之中，去死就好了」[/jitter][/color]
+将手牌中所有[color=ff99cc]攻击[/color]牌随机目标打出
+若命中敌人则打出{DamageMultiplier:diff()}次
+若命中友方：目标减少1层[b]【嫌疑】[/b]，获得1张该角色可免费打出1次的卡
+
+KEY: ManosabaLin.Witchification.postfix
+ZHS: [green]【魔女化】[/green]
+
+KEY: ManosabaLin.Witchification.hovertip.title
+ZHS: 【魔女化】
+
+KEY: ManosabaLin.Witchification.hovertip.description
+ZHS: 打出一次
+
+KEY: ManosabaLin.Executorofjustice.prefix
+ZHS: [color=#CC6666][b]原罪[/b][/color]
+
+
+KEY: ManosabaLin.Executorofjustice.hovertip.title
+ZHS: 正义的执行者
+
+KEY: ManosabaLin.Executorofjustice.hovertip.description
+ZHS: [color=#CC6666][jitter]她至今走过的路，未曾有一星污点。
+在那个名为独善的理想乡中，容不得绞刑台这般异物的存在[/jitter][/color]
+
+KEY: ManosabaLin.Hatedperson.prefix
+ZHS: [color=#ff99cc][b]原罪[/b][/color]
+
+
+KEY: ManosabaLin.Hatedperson.hovertip.title
+ZHS: 受厌恶之人
+
+KEY: ManosabaLin.Hatedperson.hovertip.description
+ZHS: [color=#ff99cc][jitter]她是应受厌恶之人。
+而比任何人都厌恶她的，正是她本人[/jitter][/color]
+
+KEY: ManosabaLin.UniqueComponent.prefix
+ZHS: [b]唯一[/b]
+
+KEY: ManosabaLin.UniqueComponent.hovertip.title
+ZHS: 唯一
+
+KEY: ManosabaLin.UniqueComponent.hovertip.description
+ZHS: 牌组中最多存在一张同名牌。
+
+KEY: ManosabaLin.EmaTrueEndingRewardComponent.postfix
+ZHS: [color=#ff99cc]获得{Amount}层「明明希罗自己也在哭，还说我」[/color]
+
+KEY: ManosabaLin.EmaTrueEndingRewardComponent.hovertip.title
+ZHS: 「没办法，就待在你身边吧」
+
+KEY: ManosabaLin.EmaTrueEndingTagComponent.postfix
+ZHS: [gold]移除[/gold]{CanIncreaseAchieveCount:
+[color=#4a0000]使「真结局」计数减1。[/color]|}
+
+KEY: ManosabaLin.EmaTrueEndingTagComponent.hovertip.title
+ZHS: 「魔女的记忆」
+
+KEY: MANOSABA_LIN_CARD_EMA_ENDING.title
+ZHS: 结局
+
+KEY: MANOSABA_LIN_CARD_EMA_ENDING.description
+ZHS: [color=#CC6666][b]「亲近」[/b][/color]
+回复{energyPrefix:energyIcons(1)}，抽1张[color=#ff99cc]卡牌[/color]
+若[color=#ff99cc]「亲近」[/color]=[color=#cccccc]13[/color]变化
+若[color=#CC6666]「疏远」[/color]=[color=#cccccc]13[/color]变化
+
+KEY: MANOSABA_LIN_CARD_EMA_TRUE_ENDING.title
+ZHS: 「真结局」
+
+KEY: MANOSABA_LIN_CARD_EMA_TRUE_ENDING.description
+ZHS: [color=#ff99cc][b]「亲[/b][/color][color=#CC6666][b]近」[/b][/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_TRUE_ENDING_EFFECT.title
+ZHS: 「真结局」
+
+KEY: MANOSABA_LIN_CARD_EMA_TRUE_ENDING_EFFECT.description
+ZHS: 当你打出同一张牌第2次时，打出的该牌会获得「魔女的记忆」标记，并且获得[color=#ff99cc]重放[/color]和[color=#CC6666]打出移除[/color]，每个卡名[color=#CC6666]只生效一次[/color]
+若满足移除13张卡，给予卡组里面的【结局】1层[color=#ff99cc]「明明希罗自己也在哭，还说我」[/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_BAD_ENDING.title
+ZHS: 「好结局」
+
+KEY: MANOSABA_LIN_CARD_EMA_BAD_ENDING.description
+ZHS: [color=#ff99cc][b]「疏[/b][/color][color=#CC6666][b]远」[/b][/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_BAD_ENDING_EFFECT.title
+ZHS: 「好结局」
+
+KEY: MANOSABA_LIN_CARD_EMA_BAD_ENDING_EFFECT.description
+ZHS: 使全体敌人获得1层[color=#CC6666]【多周目的重演】[/color]，自己获得1层[color=#CC6666]【三周目的决定】[/color]
+
+KEY: ManosabaLin.EmaBadEndingRewardComponent.postfix
+ZHS: [color=#ff99cc]打出{CardCount}张附加的牌[/color]
+
+KEY: ManosabaLin.EmaBadEndingRewardComponent.rightClickPrompt
+ZHS: {CardCount}张附加的牌
+
+KEY: MANOSABA_LIN_CARD_TRANSFORMATION_MAGIC.title
+ZHS: 变身的魔法
+
+KEY: MANOSABA_LIN_CARD_TRANSFORMATION_MAGIC.description
+ZHS: 回合开始时，可以选择1张手牌，本卡变身为该卡牌的复制
+
+KEY: MANOSABA_LIN_CARD_TRANSFORMATION_MAGIC.selectionScreenPrompt
+ZHS: 选择1张手牌变身为该卡
+
+KEY: MANOSABA_LIN_CARD_MAGIC_ABSORPTION.title
+ZHS: 幻视的魔法
+
+KEY: MANOSABA_LIN_CARD_MAGIC_ABSORPTION.description
+ZHS: 使敌人降低50层[b]【魔女化】[/b]，获得20点[color=#999999]格挡[/color]，自己获得1层[color=#999999]【黑部奈叶香的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_EMA_FORGOTTEN_ONE.title
+ZHS: 【坏结局】
+
+KEY: MANOSABA_LIN_CARD_EMA_FORGOTTEN_ONE.description
+ZHS: [color=#ff99cc][jitter]「汝将收梢于花开中，亦如终结诞下起始」[/jitter][/color]
+[b]此牌被丢弃时会返回手卡,被[b]消耗[/b]时会返回手卡[/b]
+[color=ff99cc]回合开始[/color]时，[color=#ff99cc]【亲近】[/color]和[color=#CC6666]【疏远】[/color]同时降至两者中较低值,打出[color=ff99cc]攻击[/color]牌时获得20层[b]【魔女化】[/b]
+[color=ff99cc]回合结束[/color]时失去等于[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔数量的血量，并移除四分之一的[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔,获得3层[b]【嫌疑】[/b]
+
+KEY: ManosabaLin.EmaDeath.prefix
+ZHS: [color=#cccccc][b]樱羽艾玛的结局[/b][/color]
+
+KEY: ManosabaLin.EmaDeath.hovertip.title
+ZHS: 魔女处刑
+
+KEY: ManosabaLin.EmaDeath.hovertip.description
+ZHS: [b]此牌[color=ff99cc]回合[/color]开始时会返回手卡[/b]
+打出[color=#cccccc]死亡[/color],
+按照[color=#ff99cc]【亲近】[/color]或[color=#CC6666]【疏远】[/color]较高值的一半，给予全体队友等量的[color=#ff99cc]【羁[/color][color=#CC6666]绊】[/color]卡并减1费
+按照[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔数量的一半，给全体队友的所有牌随机无附魔卡附上随机[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔
+[b]消耗[/b]全体队友50层[b]【魔女化】[/b]和3层[b]【嫌疑】[/b]
+
+KEY: ManosabaLin.HiroDeath.prefix
+ZHS: [color=#cccccc][b]二阶堂希罗的结局[/b][/color]
+
+KEY: ManosabaLin.HiroDeath.hovertip.title
+ZHS: 魔女处刑
+
+KEY: ManosabaLin.HiroDeath.hovertip.description
+ZHS: [b]此牌[color=CC6666]回合[/color]开始时会返回手卡[/b]
+打出[color=#cccccc]死亡[/color],
+给予全体队友一半的[color=#CC6666]【正义】[/color]能力
+统计自身的[color=#CC6666]【轮回】[/color]关键词个数，每20张使全体队友[color=#CC6666]抽牌堆[/color]中1张随机卡获得[color=#CC6666]【轮回】[/color]并添加2张相同卡进入[color=#CC6666]抽牌堆[/color]
+[b]消耗[/b]全体队友50层[b]【魔女化】[/b]和3层[b]【嫌疑】[/b]
+
+KEY: ManosabaLin.AgreementTrialComponent.prefix
+ZHS: [color=#6699cc]赞同[/color]
+
+KEY: ManosabaLin.AgreementTrialComponent.hovertip.title
+ZHS: 赞同
+
+KEY: ManosabaLin.AgreementTrialComponent.hovertip.description
+ZHS: 打出时，赞同+1
+
+KEY: ManosabaLin.RebuttalTrialComponent.prefix
+ZHS: [color=#339966]反驳[/color]
+
+KEY: ManosabaLin.RebuttalTrialComponent.hovertip.title
+ZHS: 反驳
+
+KEY: ManosabaLin.RebuttalTrialComponent.hovertip.description
+ZHS: 打出时，反驳+1
+
+KEY: ManosabaLin.DoubtTrialComponent.prefix
+ZHS: [color=#cc9966]疑问[/color]
+
+KEY: ManosabaLin.DoubtTrialComponent.hovertip.title
+ZHS: 疑问
+
+KEY: ManosabaLin.DoubtTrialComponent.hovertip.description
+ZHS: 打出时，疑问+1
+
+KEY: ManosabaLin.BlackHandComponent.prefix
+ZHS: [color=gray]变身的魔法[/color]
+
+KEY: ManosabaLin.BlackHandComponent.hovertip.title
+ZHS: 魔法
+
+KEY: ManosabaLin.BlackHandComponent.hovertip.description
+ZHS: 被标记的卡牌，保留
+
+KEY: ManosabaLin.LevitationComponent.hovertip.title
+ZHS: 浮空
+
+KEY: ManosabaLin.LevitationComponent.hovertip.description
+ZHS: 当你打出2费及以上的卡时，此卡自动打出
+
+KEY: ManosabaLin.LevitationComponent.prefix
+ZHS: [green]浮空[/green]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_ATTACK.title
+ZHS: 打击
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_ATTACK.description
+ZHS: 造成{Damage:diff()}点[color=#33ccff]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_DEFEND.title
+ZHS: 防御
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_DEFEND.description
+ZHS: 获得{Block:diff()}点[color=#33ccff]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_ONE.title
+ZHS: 罪疑蚀骨
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_ONE.description
+ZHS: 使敌人获得{SuspectPower:diff()}层[b]【嫌疑】[/b]和[b]虚弱[/b]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_TWO.title
+ZHS: 罪之前置
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_TWO.description
+ZHS: 使自己获得{SuspectPower:diff()}层[b]【嫌疑】[/b]，抽取{Cards:diff()}张[color=#33ccff]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_THREE.title
+ZHS: 逆转魔染
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_THREE.description
+ZHS: 降低一个友方目标{Reduction:diff()}层[b]【魔女化】[/b]，自己和友方目标抽取{Draw:diff()}张[color=#33ccff]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_SEVEN.title
+ZHS: 共犯
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_SEVEN.description
+ZHS: 给予友方3张{IfUpgraded:show:罪之前置+|罪之前置}
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_EIGHT.title
+ZHS: 脱罪
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_EIGHT.description
+ZHS: 失去1层[b]【嫌疑】[/b]，获得{Block:diff()}点[color=#33ccff]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_CARD_TEN.title
+ZHS: 二阶堂希罗
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_CARD_TEN.description
+ZHS: 获得{SuspectPower}层嫌疑。获得1层[color=#CC6666]【二阶堂希罗的魔法】[/color]
+[color=#33ccff]移除[color=#33ccff]卡牌[/color]组里面所有同名卡[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_MLLM.title
+ZHS: 冰上梅露露
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_MLLM.description
+ZHS: 获得1层[b]【嫌疑】[/b],给予友方目标{Damage:diff()}点[color=#33ccff]伤害[/color],给予{MllmPower:diff()}层
+[color=#ffcc99]【冰上梅露露的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_MGM.title
+ZHS: 宝生玛格
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_MGM.description
+ZHS: 获得{SuspectPower:diff()}层[b]【嫌疑】[/b],获得{Block:diff()}点[color=#33ccff]格挡[/color],获得{MgmPower:diff()}层
+[purple]【宝生玛格的魔法】[/purple]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_LYM.title
+ZHS: 莲见蕾雅
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_LYM.description
+ZHS: 获得4层[b]【嫌疑】[/b]，给予
+[gold]【莲见蕾雅的魔法】[/gold]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_NYXM.title
+ZHS: 黑部奈叶香
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_NYXM.description
+ZHS: 造成{Damage:diff()}点[color=#33ccff]伤害[/color],获得1层
+[color=#999999]【黑部奈叶香的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_KKM.title
+ZHS: 泽度可可
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_KKM.description
+ZHS: 选择1个友方造成1点[color=#33ccff]伤害[/color]，使其获得{KkmPower:diff()}层
+[color=#ff9966]【泽度可可的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_NYM.title
+ZHS: 城崎诺亚
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_NYM.description
+ZHS: 造成{Damage:diff()}点[color=#33ccff]伤害[/color]，获得1层[b]【嫌疑】[/b]，获得10层[b]【魔女化】[/b]，给予目标2层
+[blue]【城崎诺亚的魔法】[/blue]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_AMM.title
+ZHS: 樱羽艾玛
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_AMM.description
+ZHS: 造成{CalculatedDamage:diff()}点[color=#33ccff]伤害[/color]（基础{CalculationBase:diff()} + 【嫌疑】{SuspectBonus:diff()} + 【魔女化】{WitchificationBonus:diff()}）。获得{SuspectPower:diff()}层[b]【嫌疑】[/b]和{WithPower:diff()}层[b]【魔女化】[/b]
+获得{AmmPower:diff()}层[color=#ff99cc]【樱羽艾玛的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_AAM.title
+ZHS: 夏目安安
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_AAM.description
+ZHS: 获得3层[b]【嫌疑】[/b]，选择1个敌人获得
+[color=#6666cc]【夏目安安的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_MLYM.title
+ZHS: 佐伯米莉亚
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_MLYM.description
+ZHS: 选择1个队友给予[color=#cc9966]【佐伯米莉亚的魔法】[/color]，交换你们的手牌然后给这些手牌附上[color=#cc9966]【魔法的遗症】[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_SUSPECT_SPREAD.title
+ZHS: 嫌疑扩散
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_SUSPECT_SPREAD.description
+ZHS: 造成{Damage:diff()}点[color=#33ccff]伤害[/color]，自身每有1层[b]【嫌疑】[/b][color=#33ccff]伤害[/color]+1
+给目标和自身各施加1层[b]【嫌疑】[/b]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_GUILTY_CHAIN.title
+ZHS: 罪链
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_GUILTY_CHAIN.description
+ZHS: 获得1层[b]【罪链】[/b]
+[color=33ccff]每回合[/color]当你对有[b]【嫌疑】[/b]的敌人打出牌时，随机给另1名敌人施加1层[b]【嫌疑】[/b]，每[color=33ccff]回合[/color]最多触发2次
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_POWERTWOTWOCARD.title
+ZHS: 书本中的真相
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_POWERTWOTWOCARD.description
+ZHS: 100层[b]【魔女化】[/b]可用，获得{RitualCeremonyPower:diff()}层[b]【魔女仪式】[/b]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_POWERFOURFOURCARD.title
+ZHS: 魔女监狱
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_POWERFOURFOURCARD.description
+ZHS: [color=33ccff]回合开始[/color]时获得40层[b]【魔女化】[/b]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_FRIEND.title
+ZHS: 朋友
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_FRIEND.description
+ZHS: 获得1层[b]【嫌疑】[/b]，选择1张[color=#33ccff]【橘雪莉】{IfUpgraded:show:+|}[/color]
+或[green]【远野汉娜】{IfUpgraded:show:+|}[/green]加入手卡
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_FRIEND.selectionScreenPrompt
+ZHS: 选择卡牌
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_TWELVE.title
+ZHS: 紫藤亚里沙
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_TWELVE.description
+ZHS: 减少1个友方{ConsumeAmount:diff()}层[b]【嫌疑】[/b]，获得{IfUpgraded:show:{energyPrefix:energyIcons(3)}|{energyPrefix:energyIcons(2)}},自己获得{SuspectPower:diff()}层[b]【嫌疑】[/b],获得1层[color=#ff0000]【紫藤亚里沙的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_A_STUDY_IN_SCARLET.title
+ZHS: 血字的研究
+
+KEY: MANOSABA_LIN_CARD_A_STUDY_IN_SCARLET.description
+ZHS: 造成{Damage:diff()}点[color=#33ccff]伤害[/color]。 
+若[color=33ccff]本回合[/color][b]消耗[/b]过卡牌，抽1张[color=#33ccff]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_THE_VALLEY_OF_FEAR.title
+ZHS: 恐怖谷
+
+KEY: MANOSABA_LIN_CARD_THE_VALLEY_OF_FEAR.description
+ZHS: [b]消耗[/b]所有手牌，抽取等量[color=#33ccff]卡牌[/color]。
+每抽取1张[color=#33ccff]卡牌[/color]，对随机敌人造成{Damage:diff()}点[color=#33ccff]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_THE_THREE_GARRIDEBS.title
+ZHS: 三个同姓人
+
+KEY: MANOSABA_LIN_CARD_THE_THREE_GARRIDEBS.description
+ZHS: 获得5点[color=#33ccff]格挡[/color]，
+{IfUpgraded:show:，抽取1张[color=#33ccff]卡牌[/color]|}
+若[color=33ccff]本回合[/color]触发过[color=#33ccff]【翻案】[/color]，获得{energyPrefix:energyIcons(3)}
+
+KEY: MANOSABA_LIN_CARD_THE_ENGINEERS_THUMB.title
+ZHS: 工程师的拇指
+
+KEY: MANOSABA_LIN_CARD_THE_ENGINEERS_THUMB.description
+ZHS: [b]消耗[/b]手牌1张卡，获得等于该卡费用{BlockMultiplier:diff()}倍的[color=#33ccff]格挡[/color]
+若消耗卡有2费抽1张[color=#33ccff]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_THE_ENGINEERS_THUMB.selectionScreenPrompt
+ZHS: 选择要[b]消耗[/b]的卡
+
+KEY: MANOSABA_LIN_CARD_THE_BLUE_CARBUNCLE.title
+ZHS: 蓝宝石案
+
+KEY: MANOSABA_LIN_CARD_THE_BLUE_CARBUNCLE.description
+ZHS: 随机[b]消耗[/b]手牌1张，抽{Cards:diff()}张[color=#33ccff]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_SILVER_BLAZE.title
+ZHS: 银色马
+
+KEY: MANOSABA_LIN_CARD_SILVER_BLAZE.description
+ZHS: 随机[b]消耗[/b]手牌1张[b]攻击[/b]卡，生成1张添加对应基础数值的【替身】
+
+KEY: MANOSABA_LIN_CARD_SILVER_BLAZE_TOKEN.title
+ZHS: 替身
+
+KEY: MANOSABA_LIN_CARD_SILVER_BLAZE_TOKEN.description
+ZHS: 造成{Damage:diff()}点[color=#33ccff]伤害[/color]。
+若造成10点[color=#33ccff]伤害[/color]抽1张[color=#33ccff]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_THE_SIX_NAPOLEONS.title
+ZHS: 六座拿破仑
+
+KEY: MANOSABA_LIN_CARD_THE_SIX_NAPOLEONS.description
+ZHS: 随机[b]消耗[/b][color=#33ccff]所有牌[/color]中等于[color=#33ccff]【橘雪莉的魔法】[/color]层数的卡牌，每[b]消耗[/b]{Divisor:diff()}张生成1张更高稀有度的卡
+
+KEY: MANOSABA_LIN_CARD_THE_NORWOOD_BUILDER.title
+ZHS: 诺伍德的建筑师
+
+KEY: MANOSABA_LIN_CARD_THE_NORWOOD_BUILDER.description
+ZHS: 每当你[b]消耗[/b]卡牌，获得{Block:diff()}[color=#33ccff]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_THE_GREEK_INTERPRETER.title
+ZHS: 希腊译员
+
+KEY: MANOSABA_LIN_CARD_THE_GREEK_INTERPRETER.description
+ZHS: 获得8点[color=#33ccff]格挡[/color]，
+将[color=#33ccff]消耗堆[/color]随机1张卡移入手牌，[color=33ccff]本回合[/color]可免费打出1次
+
+KEY: MANOSABA_LIN_CARD_THE_SECOND_STAIN.title
+ZHS: 第二块血迹
+
+KEY: MANOSABA_LIN_CARD_THE_SECOND_STAIN.selectionScreenPrompt
+ZHS: 选择一张牌消耗
+
+KEY: MANOSABA_LIN_CARD_THE_SECOND_STAIN.description
+ZHS: 选择[color=#33ccff]弃牌堆[/color]1张卡[b]消耗[/b]并打出1次{IfUpgraded:show:并获得等于该卡费用{BlockMultiplier:diff()}倍的[color=#33ccff]格挡[/color]|}
+
+KEY: MANOSABA_LIN_CARD_THE_DANCING_MEN.title
+ZHS: 跳舞的小人
+
+KEY: MANOSABA_LIN_CARD_THE_DANCING_MEN.description
+ZHS: [color=33ccff]回合开始[/color]时选择[color=#33ccff]抽牌堆[/color]1张卡[b]消耗[/b]，获得等于其费用的临时[b]力量[/b]，获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_THE_LIONS_MANE.title
+ZHS: 狮鬃水母
+
+KEY: MANOSABA_LIN_CARD_THE_LIONS_MANE.description
+ZHS: 获得{energyPrefix:energyIcons(1)}，对随机敌人造成{Damage:diff()}点[color=#33ccff]伤害[/color]。
+在[color=#33ccff]消耗堆[/color]时[color=33ccff]回合开始[/color]自动打出
+
+KEY: MANOSABA_LIN_CARD_THE_COPPER_BEECHES.title
+ZHS: 铜山毛榉案
+
+KEY: MANOSABA_LIN_CARD_THE_COPPER_BEECHES.description
+ZHS: 获得{Block:diff()}[color=#33ccff]格挡[/color]。
+若[color=33ccff]本回合[/color][b]消耗[/b]过卡牌，获得{Block:diff()}[color=#33ccff]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_THE_DEVILS_FOOT.title
+ZHS: 魔鬼之足根
+
+KEY: MANOSABA_LIN_CARD_THE_DEVILS_FOOT.description
+ZHS: 每当你消耗卡则手卡里面本卡
+减{energyPrefix:energyIcons(1)}对全部敌人造成等于[color=#33ccff]消耗堆[/color]牌数{Multiplier:diff()}倍的[color=#33ccff]伤害[/color]，自己获得等量[color=#33ccff]格挡[/color]，恢复等于上限的全部{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.title
+ZHS: 格兰其庄园
+
+KEY: MANOSABA_LIN_CARD_THE_GRANGE_PUZZLE.description
+ZHS: 按照[color=#33ccff]【橘雪莉的魔法】[/color]层数{IfUpgraded:show:+2}随机升级[color=#33ccff]消耗堆[/color]中的卡牌
+获得[color=#33ccff]【橘雪莉的魔法】[/color]层数一半的{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_EMOTION_ANGER.title
+ZHS: 愤怒
+
+KEY: MANOSABA_LIN_CARD_EMOTION_ANGER.description
+ZHS: [color=#CC6666]【二阶堂希罗】[/color]
+造成双倍[color=#CC6666]伤害[/color]，每造成20[color=#CC6666]伤害[/color]对随机友方造成1点[color=#CC6666]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_EMOTION_DISGUST.title
+ZHS: 厌恶
+
+KEY: MANOSABA_LIN_CARD_EMOTION_DISGUST.description
+ZHS: [color=#6666cc]【夏目安安】[/color]
+当你[color=#6666cc]受到[/color]敌人的[b]攻击[/b]时对敌人造成[color=#6666cc]受能力影响[/color]的等量伤害，当你血条被打到立刻[color=#6666cc]移除[/color]
+
+KEY: MANOSABA_LIN_CARD_EMOTION_SADNESS.title
+ZHS: 悲伤
+
+KEY: MANOSABA_LIN_CARD_EMOTION_SADNESS.description
+ZHS: [color=#ffcc99]【冰上梅露露】[/color]
+[color=#ffcc99]本回合[/color]你每打出1张卡获得1点[color=#ffcc99]护盾[/color]，回复随机队友包括自己1点[color=#ffcc99]生命[/color]
+
+KEY: MANOSABA_LIN_CARD_EMOTION_FEAR.title
+ZHS: 恐惧
+
+KEY: MANOSABA_LIN_CARD_EMOTION_FEAR.description
+ZHS: [color=#ff99cc]【樱羽艾玛】[/color]
+你无法打出[color=#ff99cc][b]攻击[/b][/color]牌
+[color=#ff99cc]回合结束[/color]获得当前一半的[color=#ff99cc][color=#33ccff]格挡[/color][/color]，随机给予1个[color=#ff99cc]友方队友[/color]等量[color=#33ccff]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_EMOTION_JOY.title
+ZHS: 快乐
+
+KEY: MANOSABA_LIN_CARD_EMOTION_JOY.description
+ZHS: [purple]【宝生玛格】[/purple]
+[purple]本回合[/purple]你每打出1张[purple]攻击[/purple]卡获得1层[purple]临时减[b]力量[/b][/purple]，每打出1张[purple][b]攻击[/b][/purple]1张[purple]技能[/purple]1张[purple]能力[/purple]获得{energyPrefix:energyIcons(2)}
+
+KEY: MANOSABA_LIN_CARD_EMOTION_SURPRISE.title
+ZHS: 惊讶
+
+KEY: MANOSABA_LIN_CARD_EMOTION_SURPRISE.description
+ZHS: [color=#cc9966]【佐伯米莉亚】[/color]
+[color=#cc9966]回合结束[/color]记录当前手卡数量，[color=#cc9966]下回合开始[/color]抽取[color=#cc9966]等量[/color][color=#33ccff]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_EMOTION_MELANCHOLY.title
+ZHS: 怅然
+
+KEY: MANOSABA_LIN_CARD_EMOTION_MELANCHOLY.description
+ZHS: [color=#999999]【黑部奈叶香】[/color]
+每打出[color=#999999][b]攻击[/b][/color]牌获得1层[color=#999999]临时减[b]力量[/b][/color]，随机队友回复2[color=#999999]血量[/color]；每打出技能获得2[color=#999999][color=#33ccff]格挡[/color][/color]，每3张[color=#999999]技能[/color]牌回复{energyPrefix:energyIcons(1)}；打出[color=#999999]能力[/color]牌友方获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_EMOTION_IRRITATED_FEAR.title
+ZHS: 恼惧
+
+KEY: MANOSABA_LIN_CARD_EMOTION_IRRITATED_FEAR.description
+ZHS: [color=#ff9966]【泽度可可】[/color]
+无法打出[color=#ff9966][b]攻击[/b][/color]牌
+[color=#ff9966]回合结束[/color]失去3点血量然后[color=#ff9966]自己和队友[/color]获得剩下等量护盾
+
+KEY: MANOSABA_LIN_CARD_EMOTION_DESOLATE.title
+ZHS: 凄惶
+
+KEY: MANOSABA_LIN_CARD_EMOTION_DESOLATE.description
+ZHS: [color=#ff0000]【紫藤亚里沙】[/color]
+无法打出[color=#ff0000][b]攻击[/b][/color]牌和[color=#ff0000]能力[/color]牌
+[color=#ff0000]回合结束[/color]回复等于护盾量[color=#ff0000]二分之一[/color]的血量，并在[color=#ff0000]下回合开始[/color]获得等量[color=#33ccff]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_EMOTION_HORROR_DISGUST.title
+ZHS: 骇厌
+
+KEY: MANOSABA_LIN_CARD_EMOTION_HORROR_DISGUST.description
+ZHS: [gold]【莲见蕾雅】[/gold]
+当你受到[gold]伤害[/gold]时对敌方全体造成[gold]被能力影响[/gold]的伤害并抽1，[gold]下回合开始[/gold]随机对敌人造成等于[gold]手牌数[/gold]的1点伤害
+
+KEY: MANOSABA_LIN_CARD_EMOTION_ELATION.title
+ZHS: 雀跃
+
+KEY: MANOSABA_LIN_CARD_EMOTION_ELATION.description
+ZHS: [blue]【城崎诺亚】[/blue]
+立刻获得等于[blue]能量上限[/blue]的{energyPrefix:energyIcons(1)}和等量[blue]下回合[/blue]减少{energyPrefix:energyIcons(1)}，当你抽[blue]4[/blue]张[color=#33ccff]卡牌[/color]失去1层[blue]下回合[/blue]减少{energyPrefix:energyIcons(1)}，当你没有[blue]下回合[/blue]减少{energyPrefix:energyIcons(1)}[blue]重复生效获得[/blue]
+
+KEY: MANOSABA_LIN_CARD_EMOTION_CURIOSITY.title
+ZHS: 好奇
+
+KEY: MANOSABA_LIN_CARD_EMOTION_CURIOSITY.description
+ZHS: [color=33ccff]【橘雪莉】[/color]
+[color=#33ccff]【翻案】[/color]触发时获得等于[color=33ccff]弃牌堆[/color]进[color=#33ccff]消耗堆[/color]数量的[color=33ccff]【橘雪莉的魔法】[/color]，抽取[color=33ccff]【橘雪莉的魔法】[/color]四分之一张[color=#33ccff]卡牌[/color]，获得[color=33ccff]消耗堆[/color]四分之一{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_EMOTION_HELPLESSNESS.title
+ZHS: 无助
+
+KEY: MANOSABA_LIN_CARD_EMOTION_HELPLESSNESS.description
+ZHS: [green]【远野汉娜】[/green]
+[green]回合开始[/green]费用+1，费用≥4获得[green]升空[/green]
+[green]回合结束[/green]在手卡时随机1张[color=33ccff][b]【魔女化】[/b][/color]的卡计数+1
+获得{Strength}力量，减少{Dexterity}敏捷，造成{Damage}[color=#33ccff]伤害[/color]，获得{Block}[color=#33ccff]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_EMOTION_FRIENDSHIP.title
+ZHS: 友谊
+
+KEY: MANOSABA_LIN_CARD_EMOTION_FRIENDSHIP.description
+ZHS: [color=#33ccff][b]「自[/b][/color][green][b]由」[/b][/green]
+[color=#33ccff]每打出牌[/color]抽2张[color=#33ccff]卡牌[/color]，牌第一次打出费用加1，第二次打出恢复原费用（交替）
+[green]每两张牌[/green]回复{energyPrefix:energyIcons(1)}
+[color=#ff99cc]每三张牌[/color]获得1层[b]临时力量[/b]
+[color=#ffcc99]每4张牌[/color]消耗手牌中1张[color=#33ccff]诅咒[/color]/[green]状态[/green]
+
+KEY: MANOSABA_LIN_CARD_EMOTION_SURGE.title
+ZHS: 情绪涌动
+
+KEY: MANOSABA_LIN_CARD_EMOTION_SURGE.description
+ZHS: [color=33ccff]本回合[/color]每打出1张牌，[rainbow]情绪[/rainbow]额外加1
+当获得[rainbow]情绪[/rainbow]卡时恢复{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_MENTAL_TRAUMA.title
+ZHS: 精神创伤
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_MENTAL_TRAUMA.description
+ZHS: 获得1层[rainbow][b]【情绪】[/b][/rainbow]
+{IfUpgraded:show:选择[color=#33ccff]抽牌堆[/color]1张卡[b]消耗[/b]|}
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_MENTAL_TRAUMA.selectionScreenPrompt
+ZHS: 选择一张牌消耗
+
+KEY: MANOSABA_LIN_CARD_CYCLE_MIND.title
+ZHS: 循环心绪
+
+KEY: MANOSABA_LIN_CARD_CYCLE_MIND.description
+ZHS: 若[b]【他人的情绪】[/b]有牌，使[color=#33ccff]抽牌堆[/color]随机1张卡获得重放{IfUpgraded:show:2|1}
+
+KEY: MANOSABA_LIN_CARD_MADNESS_SPREAD.title
+ZHS: 狂想漫延
+
+KEY: MANOSABA_LIN_CARD_MADNESS_SPREAD.description
+ZHS: 从[color=#33ccff]抽牌堆[/color]顶依次打出总费用等于[b]消耗[/b]{energyPrefix:energyIcons(1)}{IfUpgraded:show:+2|}的卡
+每打出一张卡牌对随机敌人造成1点[color=#33ccff]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_ABANDON_RESHAPE.title
+ZHS: 弃念换形
+
+KEY: MANOSABA_LIN_CARD_ABANDON_RESHAPE.description
+ZHS: 选择{IfUpgraded:show:2张|1张}手牌本场战斗[color=#33ccff]移除[/color]。
+随机生成1张无色[b]消耗[/b]卡加入手牌
+
+KEY: MANOSABA_LIN_CARD_ABANDON_RESHAPE.selectionScreenPrompt
+ZHS: 选择要[color=#33ccff]移除[/color]的卡
+
+KEY: MANOSABA_LIN_CARD_EMOTION_MIMIC.title
+ZHS: 情绪摹写
+
+KEY: MANOSABA_LIN_CARD_EMOTION_MIMIC.description
+ZHS: 选择[b]【他人的情绪】[/b]1张基础[rainbow][b]【情绪】[/b][/rainbow]卡，复制加入手牌
+
+KEY: MANOSABA_LIN_CARD_EMOTION_MIMIC.selectionScreenPrompt
+ZHS: 选择一张基础[rainbow][b]【情绪】[/b][/rainbow]卡
+
+KEY: MANOSABA_LIN_CARD_PERPETUAL_FRENZY.title
+ZHS: 永续狂潮
+
+KEY: MANOSABA_LIN_CARD_PERPETUAL_FRENZY.description
+ZHS: 使当前[rainbow][b]【情绪】[/b][/rainbow]指数翻倍。若因此获得了[rainbow][b]【情绪】[/b][/rainbow]卡，随机1张手卡[color=33ccff]本回合[/color]费用变为0{IfUpgraded:show:|
+[color=#33ccff]移除[/color]}
+
+KEY: MANOSABA_LIN_CARD_INSTANT_STRIKE.title
+ZHS: 瞬击
+
+KEY: MANOSABA_LIN_CARD_INSTANT_STRIKE.description
+ZHS: 造成{Damage:diff()}点[color=#33ccff]伤害[/color]{IfUpgraded:show:。抽1张[color=#33ccff]卡牌[/color]|}
+
+KEY: MANOSABA_LIN_CARD_THREE_FOLD_TRICK.title
+ZHS: 三筹巧变
+
+KEY: MANOSABA_LIN_CARD_THREE_FOLD_TRICK.description
+ZHS: 抽{Cards:diff()}张[color=#33ccff]卡牌[/color]。
+[color=33ccff]本回合[/color]你下1张[b]攻击[/b]卡费用变为0
+
+KEY: MANOSABA_LIN_CARD_MAD_CARD_CHASE.title
+ZHS: 妄牌逐空
+
+KEY: MANOSABA_LIN_CARD_MAD_CARD_CHASE.description
+ZHS: 将[color=#33ccff]抽牌堆[/color]顶3张加入手牌。[color=33ccff]回合结束[/color]随机打出当前手牌1/3的卡
+
+KEY: MANOSABA_LIN_CARD_ZERO_ENERGY_GRAB.title
+ZHS: 零能撷取
+
+KEY: MANOSABA_LIN_CARD_ZERO_ENERGY_GRAB.description
+ZHS: 将{Cards:diff()}张随机零费卡加入手牌，这些牌打出后移除
+
+KEY: MANOSABA_LIN_CARD_DUAL_ASCENSION.title
+ZHS: 双相升华
+
+KEY: MANOSABA_LIN_CARD_DUAL_ASCENSION.description
+ZHS: 每打出5张手牌，随机升级1张手牌{IfUpgraded:show:和[color=#33ccff]抽牌堆[/color]1张|}
+
+KEY: MANOSABA_LIN_CARD_NASCENT_EMOTION.title
+ZHS: 初生情绪
+
+KEY: MANOSABA_LIN_CARD_NASCENT_EMOTION.description
+ZHS: [color=33ccff]回合开始[/color]时获得{NascentEmotionPower:diff()}层[rainbow][b]【情绪】[/b][/rainbow]
+
+KEY: MANOSABA_LIN_CARD_EMOTION_SHIELD.title
+ZHS: 守绪之盾
+
+KEY: MANOSABA_LIN_CARD_EMOTION_SHIELD.description
+ZHS: 获得{Block:diff()}[color=#33ccff]格挡[/color]。
+[color=33ccff]下回合开始[/color]前每受到1次[b]攻击[/b]获得1层[rainbow][b]【情绪】[/b][/rainbow]
+
+KEY: MANOSABA_LIN_CARD_GLOBAL_RAGE.title
+ZHS: 全域怒意
+
+KEY: MANOSABA_LIN_CARD_GLOBAL_RAGE.description
+ZHS: 对全体敌人造成{Damage:diff()}点[color=#33ccff]伤害[/color]。每命中1个敌人获得1层[rainbow][b]【情绪】[/b][/rainbow]
+
+KEY: MANOSABA_LIN_CARD_EMOTION_DIVERGE.title
+ZHS: 绪分两途
+
+KEY: MANOSABA_LIN_CARD_EMOTION_DIVERGE.description
+ZHS: 若[rainbow][b]【情绪】[/b][/rainbow]<6层：对敌人造成{Damage:diff()}点[color=#33ccff]伤害[/color]。若[rainbow][b]【情绪】[/b][/rainbow]≥6层：获得{Block:diff()}[color=#33ccff]格挡[/color]{IfUpgraded:show:
+获得等于友方存活数量的[rainbow][b]【情绪】[/b][/rainbow]层数|}
+
+KEY: MANOSABA_LIN_CARD_HANNA_ASSIST.title
+ZHS: 汉娜的协力
+
+KEY: MANOSABA_LIN_CARD_HANNA_ASSIST.description
+ZHS: 抽1张[color=#33ccff]卡牌[/color]，
+对敌人造成{Damage:diff()}点[color=#33ccff]伤害[/color]，获得{EmotionPower:diff()}层[rainbow][b]【情绪】[/b][/rainbow]
+
+KEY: MANOSABA_LIN_CARD_MIND_COST_DRAW.title
+ZHS: 耗念引牌
+
+KEY: MANOSABA_LIN_CARD_MIND_COST_DRAW.description
+ZHS: [color=33ccff]回合开始[/color]时选择1张手牌[b]消耗[/b]，抽{Cards:diff()}张[color=33ccff]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_COSMIC_APATHY.title
+ZHS: 宇宙冷漠
+
+KEY: MANOSABA_LIN_CARD_COSMIC_APATHY.description
+ZHS: [b]消耗[/b][rainbow][b]【情绪】[/b][/rainbow]直到只剩1层。
+每[b]消耗[/b]1层随机[b]攻击[/b]全场1个目标造成1点[color=#33ccff]伤害[/color]。
+[b]攻击[/b]到敌人使其获得[color=#33ccff]【受到冷漠】[/color]。[b]攻击[/b]到友方获得10层[rainbow][b]【情绪】[/b][/rainbow]
+
+KEY: MANOSABA_LIN_CARD_I_HAVE_A_FRIEND.title
+ZHS: 吾有一友
+
+KEY: MANOSABA_LIN_CARD_I_HAVE_A_FRIEND.description
+ZHS: 选择1张[b]【他人的情绪】[/b]给予1个队友。
+若无队友：获得[color=#33ccff]【吾即吾友】[/color]
+
+KEY: MANOSABA_LIN_CARD_I_HAVE_A_FRIEND.selectionScreenPrompt
+ZHS: 选择要给予的卡
+
+KEY: MANOSABA_LIN_CARD_STARE_DOWN_FOOL.title
+ZHS: 和笨蛋对视
+
+KEY: MANOSABA_LIN_CARD_STARE_DOWN_FOOL.description
+ZHS: 选择1个敌人。若其意图为[b]攻击[/b]：施加{WeakPower:diff()}层[b]虚弱[/b]。若非[b]攻击[/b]：施加{VulnerablePower:diff()}层[b]易伤[/b]然后抽1张[color=33ccff]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_ONE_HAND_KNOCKOUT.title
+ZHS: 我一只手就可以把你扣晕
+
+KEY: MANOSABA_LIN_CARD_ONE_HAND_KNOCKOUT.description
+ZHS: 结束一个友方的回合，给予{BufferPower:diff()}层[b]缓冲[/b]，自己获得{energyPrefix:energyIcons(2)}
+[color=#33ccff]移除[/color]
+
+KEY: MANOSABA_LIN_CARD_ONE_HAND_KNOCKOUT.selectionScreenPrompt
+ZHS: 选择队友
+
+KEY: MANOSABA_LIN_CARD_SUPER_STRENGTH.title
+ZHS: 怪力
+
+KEY: MANOSABA_LIN_CARD_SUPER_STRENGTH.description
+ZHS: [b]魔法[/b]
+[color=#33ccff][sine]「欸~?我可没有什么神奇能力耶？不过特技倒有一样」[/sine][/color]
+
+KEY: MANOSABA_LIN_CARD_SHOCKWAVE_FIST.title
+ZHS: 被称为冲击波的拳风
+
+KEY: MANOSABA_LIN_CARD_SHOCKWAVE_FIST.description
+ZHS: 获得5层[color=#33ccff]【冲击】[/color]。
+自己失去1点生命。随机造成1点[color=#33ccff]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_WITCH_TRIAL_EMOTION.title
+ZHS: 魔女审判
+
+KEY: MANOSABA_LIN_CARD_WITCH_TRIAL_EMOTION.description
+ZHS: 获得1层[rainbow][b]【情绪】[/b][/rainbow]，获得20[b]【魔女化】[/b]，抽1张然后随机[color=#33ccff]消耗[/color]1张手牌。 
+若[b]【魔女化】[/b]=100，清空[b]【魔女化】[/b]并本战斗[color=#33ccff]移除[/color]本卡
+
+KEY: MANOSABA_LIN_CARD_WITCHIFICATION_EMOTION.title
+ZHS: 【魔女化】
+
+KEY: MANOSABA_LIN_CARD_WITCHIFICATION_EMOTION.description
+ZHS: [color=#cccccc]【月代雪】[/color]
+造成三倍[color=#33ccff]伤害[/color]，你每造成20[color=#33ccff]伤害[/color]就失去1点生命，以此失去的生命不致死[color=#cccccc]([color=33ccff]回合结束[/color]自身死亡)[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_WITCH_POWER.title
+ZHS: 魔女之力
+
+KEY: MANOSABA_LIN_CARD_SHERRYLIN_WITCH_POWER.description
+ZHS: [color=#33ccff][jitter]「我果然，是从出生就不识人心，身心都丑陋不堪的怪物--是【魔女】啊」[/jitter][/color]
+[b]消耗[/b]一半[b]【他人的情绪】[/b]
+获得3层[b]【魔女仪式】[/b]，1层[color=#33ccff]无实体[/color]，
+[color=33ccff]【怀旧】[/color]
+
+KEY: MANOSABA_LIN_CARD_THE_FOOL.title
+ZHS: 愚者
+
+KEY: MANOSABA_LIN_CARD_THE_FOOL.description
+ZHS: [color=#33ccff][jitter]「我，也讨厌自己，讨厌不得不做出那个选择的自己」[/jitter][/color]
+
+KEY: MANOSABA_LIN_CARD_THE_FOOL_EFFECT.title
+ZHS: 愚者
+
+KEY: MANOSABA_LIN_CARD_THE_FOOL_EFFECT.description
+ZHS: 获得100层[b]【魔女化】[/b]，1层[b]【魔女仪式】[/b]
+立刻[color=#33ccff]【翻案】[/color]，获得等于抽牌堆的[color=#33ccff]【橘雪莉的魔法】[/color]，获得随机2张[rainbow][b]【情绪】[/b][/rainbow]卡，按[color=#33ccff]抽牌堆[/color]回能(不高于当前上限)抽[color=#33ccff]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_WITCHS_FIST.title
+ZHS: 【魔女化】
+
+KEY: MANOSABA_LIN_CARD_WITCHS_FIST.description
+ZHS: 降低3点[color=33ccff]血量上限[/color]，造成{Damage:diff()}点[color=#33ccff]伤害[/color]
+可选择所有卡中的1张[color=#33ccff]【怪力】[/color][b]消耗[/b]，移除自身的[color=#33ccff]【怪力】[/color]能力
+若成功[b]消耗[/b]卡牌或移除能力，加入1张[b]保留[/b]的[color=#33ccff]【愚者】[/color]进入手牌
+
+KEY: MANOSABA_LIN_CARD_WITCHS_FIST.selectionScreenPrompt
+ZHS: 选择1张怪力卡移除
+
+KEY: MANOSABA_LIN_CARD_CASE_FILE_RETRIEVAL.title
+ZHS: 案卷调取
+
+KEY: MANOSABA_LIN_CARD_CASE_FILE_RETRIEVAL.description
+ZHS: 【他人的情绪】中每有一张卡获得{Block:diff()}[color=#33ccff]格挡[/color]，
+随机给手牌中一张攻击卡添加保留
+
+KEY: MANOSABA_LIN_CARD_RETAIN_CHARGE.title
+ZHS: 蓄力充能
+
+KEY: MANOSABA_LIN_CARD_RETAIN_CHARGE.description
+ZHS: 获得{Energy:diff()}{energyPrefix:energyIcons(1)}，抽{Draw:diff()}张[color=#33ccff]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_RETAIN_STRIKE.title
+ZHS: 蓄力攻防
+
+KEY: MANOSABA_LIN_CARD_RETAIN_STRIKE.description
+ZHS: 造成{Damage:diff()}[color=#33ccff]伤害[/color]，获得{Block:diff()}[color=#33ccff]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_RETAIN_GUIDE.title
+ZHS: 蓄力引导
+
+KEY: MANOSABA_LIN_CARD_RETAIN_GUIDE.description
+ZHS: 抽取{IfUpgraded:show:2|1}张[color=33ccff][b]【魔女化】[/b][/color][color=#33ccff]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_RETAIN_GRANT.title
+ZHS: 蓄力赋予
+
+KEY: MANOSABA_LIN_CARD_RETAIN_GRANT.description
+ZHS: 选择1张手牌获得[color=33ccff][b]【魔女化】[/b][/color]组件
+
+KEY: MANOSABA_LIN_CARD_RETAIN_GRANT.selectionScreenPrompt
+ZHS: 选择一张卡获得[color=33ccff][b]【魔女化】[/b][/color]
+
+KEY: MANOSABA_LIN_CARD_RETAIN_AMPLIFY.title
+ZHS: 蓄力增幅
+
+KEY: MANOSABA_LIN_CARD_RETAIN_AMPLIFY.description
+ZHS: 随机{CardCount:diff()}张[color=33ccff][b]【魔女化】[/b][/color]卡计数加{IfUpgraded:show:2|1}
+
+KEY: MANOSABA_LIN_CARD_RETAIN_RECOVER.title
+ZHS: 蓄力回收
+
+KEY: MANOSABA_LIN_CARD_RETAIN_RECOVER.description
+ZHS: 选择[color=#33ccff]弃牌堆[/color]1张[color=33ccff][b]【魔女化】[/b][/color]卡移回手牌，计数+{IfUpgraded:show:2|1}
+
+KEY: MANOSABA_LIN_CARD_RETAIN_RECOVER.selectionScreenPrompt
+ZHS: 选择1张[color=33ccff][b]【魔女化】[/b][/color]卡
+
+KEY: MANOSABA_LIN_CARD_RETAIN_SWEEP.title
+ZHS: 蓄力横扫
+
+KEY: MANOSABA_LIN_CARD_RETAIN_SWEEP.description
+ZHS: 对全体敌人造成{Damage:diff()}[color=#33ccff]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_RETAIN_ECHO.title
+ZHS: 蓄力反噬
+
+KEY: MANOSABA_LIN_CARD_RETAIN_ECHO.description
+ZHS: [color=33ccff][b]【魔女化】[/b][/color]增加时对随机目标造成能被能力影响的等量[color=#33ccff]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_RETAIN_TRANSFER.title
+ZHS: 蓄力转移
+
+KEY: MANOSABA_LIN_CARD_RETAIN_TRANSFER.description
+ZHS: 选择1张[color=33ccff][b]【魔女化】[/b][/color]卡，将计数转移给另1张
+
+KEY: MANOSABA_LIN_CARD_RETAIN_TRANSFER.selectionScreenPrompt
+ZHS: 选择
+
+KEY: MANOSABA_LIN_CARD_RETAIN_BURST.title
+ZHS: 蓄力释放
+
+KEY: MANOSABA_LIN_CARD_RETAIN_BURST.description
+ZHS: 将手牌中所有[color=33ccff][b]【魔女化】[/b][/color]卡的计数归零，
+每归零1点获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_NO_FOOTPRINTS_CULPRIT.title
+ZHS: 没有脚印，犯人是…
+
+KEY: MANOSABA_LIN_CARD_NO_FOOTPRINTS_CULPRIT.description
+ZHS: 清空你的减[b]力量[/b]，选择一个队友获得等于你当前[b]【嫌疑】[/b]一半的[b]【嫌疑】[/b]和等量[b]力量[/b]。
+若获得3层则[green]队友[/green]和自己各获得一层[green]【远野汉娜的魔法】[/green]
+
+KEY: MANOSABA_LIN_CARD_SUSPECT_TRANSFER.title
+ZHS: 嫌疑转移
+
+KEY: MANOSABA_LIN_CARD_SUSPECT_TRANSFER.description
+ZHS: 令友方全体失去1层[b]【嫌疑】[/b]，将等量[b]【嫌疑】[/b]转移至任意敌方
+
+KEY: MANOSABA_LIN_CARD_SUSPECT_STRENGTH.title
+ZHS: 嫌疑之力
+
+KEY: MANOSABA_LIN_CARD_SUSPECT_STRENGTH.description
+ZHS: 使随机队友获得1点[b]力量[/b]，次数等于友方全体[b]【嫌疑】[/b]层数
+
+KEY: ManosabaLin.RetainCounterComponent.hovertip.title
+ZHS: 【魔女化】
+
+KEY: ManosabaLin.RetainCounterComponent.hovertip.description
+ZHS: 获得保留，每[color=33ccff]回合开始[/color]计数+1，然后卡牌数值乘以计数改变
+
+KEY: ManosabaLin.RetainCounterComponent.prefix
+ZHS: [color=33ccff][b]【魔女化】[/b][/color]
+
+KEY: ManosabaLin.RemoveOnPlayComponent.hovertip.title
+ZHS: 移除
+
+KEY: ManosabaLin.RemoveOnPlayComponent.hovertip.description
+ZHS: 打出后将此卡从战斗中永久移除
+
+KEY: ManosabaLin.RemoveOnPlayComponent.postfix
+ZHS: 
+[color=33ccff]移除[/color]
+
+KEY: MANOSABA_LIN_MODEL_CAPABILITY_REMOVE_ON_PLAY_CAPABILITY.hovertip.title
+ZHS: 移除
+
+KEY: MANOSABA_LIN_MODEL_CAPABILITY_REMOVE_ON_PLAY_CAPABILITY.hovertip.description
+ZHS: 打出后将此卡从战斗中永久移除
+
+KEY: MANOSABA_LIN_MODEL_CAPABILITY_REMOVE_ON_PLAY_CAPABILITY.afterBase
+ZHS: [color=33ccff]移除[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYMONVQIUFAN.title
+ZHS: 魔女囚犯
+
+KEY: MANOSABA_LIN_CARD_SHERRYMONVQIUFAN.description
+ZHS: 获得6点[b]临时力量[/b]，6点[b]临时敏捷[/b]，造成7点[color=#33ccff]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_BANYANFA.title
+ZHS: 扮演法
+
+KEY: MANOSABA_LIN_CARD_BANYANFA.description
+ZHS: 若你[color=#33ccff]抽牌堆[/color]里面[color=#33ccff][b]【魔女化】[/b][/color]大于一半
+则获得一张[green]【无助】[/green]，
+反之获得一张[color=#33ccff]【好奇】[/color]
+
+KEY: MANOSABA_LIN_CARD_EMAXIELI.title
+ZHS: 艾玛的协力
+
+KEY: MANOSABA_LIN_CARD_EMAXIELI.description
+ZHS: [color=33ccff]回合开始[/color]给予全体敌人10层[color=#ff99cc]【魔女因子】[/color]
+
+KEY: MANOSABA_LIN_CARD_DESTROY_EVERYTHING.title
+ZHS: 破坏侦探
+
+KEY: MANOSABA_LIN_CARD_DESTROY_EVERYTHING.description
+ZHS: 造成13点[color=#33ccff]伤害[/color]，立刻[color=#33ccff]【翻案】[/color]，随机移除[color=#33ccff]抽牌、弃牌、手牌[/color]中各1张牌(每1回1抽1)
+对所有敌人造成等同于[b]【嫌疑】[/b]五倍的[color=#33ccff]伤害[/color]，消耗[b]【他人的情绪】[/b]中最多4张，每张随机敌人受到8点[color=#33ccff]伤害[/color]([rainbow][b]【复杂的情绪】[/b][/rainbow]则全体敌人)
+所有[color=#33ccff][b]【魔女化】[/b][/color]计数归零，每有1生成1张减1费的卡。若归零≥13，再次[color=#33ccff]【翻案】[/color]，随机获得[green]无助[/green]或[color=#33ccff]好奇[/color]，能量回满
+
+KEY: MANOSABA_LIN_CARD_DUAL_FIST.title
+ZHS: 左手大力气，右手力气大
+
+KEY: MANOSABA_LIN_CARD_DUAL_FIST.description
+ZHS: [color=33ccff]回合开始[/color]随机获得【左拳】或【右拳】
+
+KEY: MANOSABA_LIN_CARD_EMPTY_HOUSE.title
+ZHS: 空屋
+
+KEY: MANOSABA_LIN_CARD_EMPTY_HOUSE.description
+ZHS: 回合开始时标记[color=#33ccff]消耗堆[/color]中1张牌
+打出时造成{Damage:diff()}点[color=#33ccff]伤害[/color]，每有1张标记造成1次[color=#33ccff]伤害[/color]，并将标记的牌加入手牌。
+若[color=33ccff]本回合[/color]触发过[color=#33ccff]【翻案】[/color]，这些牌[color=33ccff]本回合[/color]可免费打出1次
+
+KEY: MANOSABA_LIN_CARD_FINAL_FAREWELL.title
+ZHS: 最后致意
+
+KEY: MANOSABA_LIN_CARD_FINAL_FAREWELL.description
+ZHS: 清空[b]【魔女化】[/b]
+{IfUpgraded:show:立刻记录80[color=#33ccff]【风暴】[/color]|}
+[thinky_dots][b][color=#33ccff]「等风暴过去，阳光下会有一片[/color][/b][/thinky_dots][b][thinky_dots][green]更干净、更美好、更坚实的土地」[/green][/thinky_dots][/b]
+
+KEY: MANOSABA_LIN_CARD_LAST_CASE.title
+ZHS: 最后一案
+
+KEY: MANOSABA_LIN_CARD_LAST_CASE.description
+ZHS: 选1张[rainbow][b]【情绪】[/b][/rainbow]卡保留，[color=#33ccff]移除[/color]其他所有[rainbow][b]【情绪】[/b][/rainbow]卡。
+造成13点[color=#33ccff]伤害[/color]，每[color=#33ccff]移除[/color]1张造成4点[color=#33ccff]伤害[/color]。
+若触发过[color=#33ccff]【翻案】[/color]，每张改为{IfUpgraded:show:10点[color=#33ccff]伤害[/color]|8点[color=#33ccff]伤害[/color]}并获得[color=#33ccff]移除[/color]一半的[rainbow][b]【基础情绪】[/b][/rainbow]。
+若[color=#33ccff]移除[/color]大于8张，立刻[color=#33ccff]【翻案】[/color]，
+获得[color=#33ccff]好奇[/color]或[green]无助[/green]，获得{IfUpgraded:show:2|1}层[rainbow][b]【复杂的情绪】[/b][/rainbow]
+
+KEY: MANOSABA_LIN_CARD_LAST_CASE.selectionScreenPrompt
+ZHS: 选择一张保留
+
+KEY: MANOSABA_LIN_CARD_SACRIFICE_TANK.title
+ZHS: 苦命鸳鸯
+
+KEY: MANOSABA_LIN_CARD_SACRIFICE_TANK.description
+ZHS: 承受双倍来自敌人的[color=#33ccff]伤害[/color]。敌人的伤害对友方[green]减半[/green]
+每累计受到20点攻击[color=#33ccff]伤害[/color]自己获得1层[color=33ccff]下回合[/color]{energyPrefix:energyIcons(1)}，其他队友各获得1层[green]下回合抽牌[/green]和10层[b]【魔女化】[/b]
+
+KEY: ManosabaLin.EMPTY_HOUSE_COMPONENT.hovertip.title
+ZHS: 伏笔
+
+KEY: ManosabaLin.EMPTY_HOUSE_COMPONENT.hovertip.description
+ZHS: 被【空屋】标记。打出【空屋】时加入手牌。
+
+KEY: ManosabaLin.EMPTY_HOUSE_COMPONENT.postfix
+ZHS: 
+[color=33ccff]伏笔[/color]
+
+KEY: ManosabaLin.Sherryyuanzui.prefix
+ZHS: [color=#33ccff][b]原罪[/b][/color]
+
+
+KEY: ManosabaLin.Sherryyuanzui.hovertip.title
+ZHS: 破坏侦探
+
+KEY: ManosabaLin.Sherryyuanzui.hovertip.description
+ZHS: [color=#33ccff][jitter]她毁灭了一切。
+不论是案件，还是人，甚至还有自己的心[/jitter][/color]
+
+KEY: MANOSABA_LIN_CARD_PERIODIC_FUSION.title
+ZHS: 大调查
+
+KEY: MANOSABA_LIN_CARD_PERIODIC_FUSION.description
+ZHS: [color=33ccff]每{Interval:diff()}回合[/color]获得1层[rainbow][b]【复杂的情绪】[/b][/rainbow]并获得1张随机[rainbow][b]【基础情绪】[/b][/rainbow]
+
+KEY: MANOSABA_LIN_CARD_EXHAUST_FIST.title
+ZHS: [黑洞]的魔法
+
+KEY: MANOSABA_LIN_CARD_EXHAUST_FIST.description
+ZHS: 造成{CalculatedDamage:diff()}点[color=#33ccff]伤害[/color]
+本场战斗每消耗1张牌，这张卡造成3点[color=#33ccff]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_SHERRYBADENDING.title
+ZHS: 【坏结局】
+
+KEY: MANOSABA_LIN_CARD_SHERRYBADENDING.description
+ZHS: [color=#33ccff][jitter]「花海尽头，生者的魂灵将温暖汝之指尖，相拥之后，便是永恒的离别」[/jitter][/color]
+[b]此牌被丢弃时会返回手卡,被[b]消耗[/b]时会返回手卡[/b]
+[color=#33ccff]回合开始[/color]获得3层[b]【嫌疑】[/b]，[color=#33ccff]【翻案】[/color]时无法获得[color=#33ccff]【橘雪莉的魔法】[/color]并移除一半所有卡
+[color=#33ccff]回合结束[/color]手牌中[color=#33ccff]【魔女化】[/color]计数-1并移除2张[rainbow][b]【情绪】[/b][/rainbow]卡
+
+KEY: MANOSABA_LIN_CARD_SHERRYDEATH.title
+ZHS: 「花海尽头，生者的魂灵将温暖汝之指尖，相拥之后，便是永恒的离别」
+
+KEY: MANOSABA_LIN_CARD_SHERRYDEATH.description
+ZHS: 名为[color=#33ccff]【橘雪莉】[/color]个体的结局
+
+KEY: ManosabaLin.SherryDeath.prefix
+ZHS: [color=#cccccc][b]橘雪莉的结局[/b][/color]
+
+KEY: ManosabaLin.SherryDeath.hovertip.title
+ZHS: 魔女处刑
+
+KEY: ManosabaLin.SherryDeath.hovertip.description
+ZHS: [b]此牌[color=33ccff]回合[/color]开始时会返回手卡[/b]
+打出[color=#cccccc]死亡[/color]
+,给予全体队友所有牌一半的[color=#33ccff]【橘雪莉的魔法】[/color]
+[b]【他人的情绪】[/b]卡数大于2将1张随机[rainbow][b]【基础情绪】[/b][/rainbow]加入队友[color=#33ccff]抽牌堆[/color]，大于4为[rainbow][b]【复杂情绪】[/b][/rainbow]，大于20为[color=#33ccff][b]「友[/b][/color][green][b]谊」[/b][/green]
+[b]消耗[/b]全体队友50层[b]【魔女化】[/b]和3层[b]【嫌疑】[/b]
+
+KEY: MANOSABA_LIN_CARD_GEINILUNHUI.title
+ZHS: 歌珥轮回
+
+KEY: MANOSABA_LIN_CARD_GEINILUNHUI.description
+ZHS: 从[color=#CC6666]所有卡[/color]选择1张卡并自动选择至多2张同卡名失去[color=#CC6666]【轮回】[/color]，目标友方[color=#CC6666]抽牌堆[/color]1张卡获得[color=#CC6666]【轮回】[/color]并复制至多2张
+
+KEY: MANOSABA_LIN_CARD_GEINILUNHUI.selectionScreenPrompt
+ZHS: 选择卡失去[color=#CC6666]【轮回】[/color]
+
+KEY: MANOSABA_LIN_CARD_SHARED_WITCH_RITUAL.title
+ZHS: 共祭巫仪
+
+KEY: MANOSABA_LIN_CARD_SHARED_WITCH_RITUAL.description
+ZHS: 若你和目标友方都有100层[b]【魔女化】[/b]则
+你与目标友方获得1层[b]【魔女仪式】[/b]
+
+KEY: MANOSABA_LIN_CARD_SHARED_EXHAUST_PLAY.title
+ZHS: 共享耗尽演奏 
+
+KEY: MANOSABA_LIN_CARD_SHARED_EXHAUST_PLAY.description
+ZHS: 消耗其他友方[color=#33ccff]抽牌堆[/color]或[color=#33ccff]弃牌堆[/color]1张卡，
+令友方各打出1次消耗的卡
+
+KEY: MANOSABA_LIN_CARD_TEAM_ZERO_GIFT.title
+ZHS: 零能增礼
+
+KEY: MANOSABA_LIN_CARD_TEAM_ZERO_GIFT.description
+ZHS: 给予其他友方{Cards:diff()}张带[color=#33ccff]移除[/color]的零费卡
+
+KEY: MANOSABA_LIN_CARD_THREE_CARD_OMEN.title
+ZHS: 预兆
+
+KEY: MANOSABA_LIN_CARD_THREE_CARD_OMEN.description
+ZHS: 选择一个友方，其本回合[color=#33ccff]连续[/color]打出3张[color=#33ccff]同类型[/color]牌时获得对应能力
+仅一次
+
+KEY: MANOSABA_LIN_CARD_ENCHANTMENT_CONVERGENCE.title
+ZHS: 审判开庭
+
+KEY: MANOSABA_LIN_CARD_ENCHANTMENT_CONVERGENCE.description
+ZHS: 本回合内当你任一[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔计数达到5进行锚定，
+之后此附魔计数的额外效果友方也能获得
+
+KEY: MANOSABA_LIN_CARD_BOND_VERDICT.title
+ZHS: 你愿意和我做朋友吗？
+
+KEY: MANOSABA_LIN_CARD_BOND_VERDICT.description
+ZHS: 对敌方造成{Damage:diff()}伤害，友方获得{Block:diff()}格挡
+若[color=#ff99cc][b]「亲近」[/b][/color]>[color=#CC6666][b]「疏远」[/b][/color]
+给予友方{IfUpgraded:show:[color=#ff99cc][b]「亲近」[/b][/color]的正面能力|[color=#ff99cc][b]「亲近」[/b][/color]一半的正面能力}
+若[color=#CC6666][b]「疏远」[/b][/color]>[color=#ff99cc][b]「亲近」[/b][/color]
+给予敌方{IfUpgraded:show:[color=#CC6666][b]「疏远」[/b][/color]的负面能力|[color=#CC6666][b]「疏远」[/b][/color]一半的负面能力}
+
+KEY: MANOSABA_LIN_CARD_SUSPECT_COVENANT.title
+ZHS: 希罗，不要死
+
+KEY: MANOSABA_LIN_CARD_SUSPECT_COVENANT.description
+ZHS: 消耗[color=#CC6666]目标友方[/color]全部[b]嫌疑[/b]，[color=#ff99cc]你[/color]获得等量[b]嫌疑[/b]，
+若[color=#ff99cc]你[/color]有11层[b]嫌疑[/b]则[color=#ff99cc]你[/color]与[color=#CC6666]目标友方[/color]获得1层[b]【魔女仪式】[/b]{IfUpgraded:show:并平分[color=#ff99cc]你[/color]与[color=#CC6666]目标友方[/color]的[b]嫌疑[/b]|}
+
+KEY: MANOSABA_LIN_CARD_JUSTICE_RELAY.title
+ZHS: 殊途同归的正义
+
+KEY: MANOSABA_LIN_CARD_JUSTICE_RELAY.description
+ZHS: [color=#CC6666]本回合[/color]每当一个友方抽1张[color=#CC6666]卡牌[/color]且恢复{energyPrefix:energyIcons(1)}后给予其1层[color=#CC6666]【正义】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_ATTACK.title
+ZHS: 打击
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_ATTACK.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_DEFEND.title
+ZHS: 防御
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_DEFEND.description
+ZHS: 获得{Block:diff()}点[color=#6666cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MENTAL_TRAUMA.title
+ZHS: 精神创伤
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MENTAL_TRAUMA.description
+ZHS: 获得{WithPower:diff()}层[b]【魔女化】[/b]{IfUpgraded:show:
+抽1张[color=#6666cc]卡牌[/color]}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WITCH_PRISONER.title
+ZHS: 魔女囚犯
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WITCH_PRISONER.description
+ZHS: 获得{TempStrength:diff()}点[b]临时力量[/b]，获得{TempDexterity:diff()}点[b]临时敏捷[/b]。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WITCH_TRIAL.title
+ZHS: 魔女审判
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WITCH_TRIAL.description
+ZHS: 获得{SilentPower:diff()}层[color=#6666cc]【缄默】[/color]，抽{Cards:diff()}张[color=#6666cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_ONE.title
+ZHS: 罪疑蚀骨
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_ONE.description
+ZHS: 使敌人获得{SuspectPower:diff()}层[b]【嫌疑】[/b]和[b]虚弱[/b]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TWO.title
+ZHS: 罪之前置
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TWO.description
+ZHS: 使自己获得{SuspectPower:diff()}层[b]【嫌疑】[/b]，抽取{Cards:diff()}张[color=#6666cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_THREE.title
+ZHS: 逆转魔染
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_THREE.description
+ZHS: 降低一个友方目标{Reduction:diff()}层[b]【魔女化】[/b]，自己和友方目标抽取{Draw:diff()}张[color=#6666cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SEVEN.title
+ZHS: 共犯
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SEVEN.description
+ZHS: 给予友方3张{IfUpgraded:show:罪之前置+|罪之前置}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_EIGHT.title
+ZHS: 脱罪
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_EIGHT.description
+ZHS: 失去1层[b]【嫌疑】[/b]，获得{Block:diff()}点[color=#6666cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CARD_TEN.title
+ZHS: 二阶堂希罗
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CARD_TEN.description
+ZHS: 获得{SuspectPower}层嫌疑。获得1层[color=#CC6666]【二阶堂希罗的魔法】[/color]
+[color=#6666cc]移除卡组里面所有同名卡[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MLLM.title
+ZHS: 冰上梅露露
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MLLM.description
+ZHS: 获得1层[b]【嫌疑】[/b],给予友方目标{Damage:diff()}点[color=#6666cc]伤害[/color],给予{MllmPower:diff()}层
+[color=#ffcc99]【冰上梅露露的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MGM.title
+ZHS: 宝生玛格
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MGM.description
+ZHS: 获得{SuspectPower:diff()}层[b]【嫌疑】[/b],获得{Block:diff()}点[color=#6666cc]格挡[/color],获得{MgmPower:diff()}层
+[purple]【宝生玛格的魔法】[/purple]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_LYM.title
+ZHS: 莲见蕾雅
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_LYM.description
+ZHS: 获得4层[b]【嫌疑】[/b]，给予
+[gold]【莲见蕾雅的魔法】[/gold]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_NYXM.title
+ZHS: 黑部奈叶香
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_NYXM.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color],获得1层
+[color=#999999]【黑部奈叶香的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_KKM.title
+ZHS: 泽度可可
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_KKM.description
+ZHS: 选择1个友方造成1点[color=#6666cc]伤害[/color]，使其获得{KkmPower:diff()}层
+[color=#ff9966]【泽度可可的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_NYM.title
+ZHS: 城崎诺亚
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_NYM.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]，获得1层[b]【嫌疑】[/b]，获得10层[b]【魔女化】[/b]，给予目标2层
+[blue]【城崎诺亚的魔法】[/blue]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_AMM.title
+ZHS: 樱羽艾玛
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_AMM.description
+ZHS: 造成{CalculatedDamage:diff()}点[color=#6666cc]伤害[/color]（基础{CalculationBase:diff()} + 【嫌疑】{SuspectBonus:diff()} + 【魔女化】{WitchificationBonus:diff()}）。获得{SuspectPower:diff()}层[b]【嫌疑】[/b]和{WithPower:diff()}层[b]【魔女化】[/b]
+获得{AmmPower:diff()}层[color=#ff99cc]【樱羽艾玛的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_AAM.title
+ZHS: 夏目安安
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_AAM.description
+ZHS: 减少你{AnanlinBrainwashBacklashPower:diff()}层[color=#6666cc]【洗脑反噬】[/color]。
+此效果每场战斗只能生效一次。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MLYM.title
+ZHS: 佐伯米莉亚
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MLYM.description
+ZHS: 选择1个队友给予[color=#cc9966]【佐伯米莉亚的魔法】[/color]，交换你们的手牌然后给这些手牌附上[color=#cc9966]【魔法的遗症】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SUSPECT_SPREAD.title
+ZHS: 嫌疑扩散
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SUSPECT_SPREAD.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]，自身每有1层[b]【嫌疑】[/b][color=#6666cc]伤害[/color]+1
+给目标和自身各施加1层[b]【嫌疑】[/b]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_GUILTY_CHAIN.title
+ZHS: 罪链
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_GUILTY_CHAIN.description
+ZHS: 获得1层[b]【罪链】[/b]
+[color=6666cc]每回合[/color]当你对有[b]【嫌疑】[/b]的敌人打出牌时，随机给另1名敌人施加1层[b]【嫌疑】[/b]，[color=6666cc]每回合[/color]最多触发2次
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_POWERTWOTWOCARD.title
+ZHS: 书本中的真相
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_POWERTWOTWOCARD.description
+ZHS: 100层[b]【魔女化】[/b]可用，获得{RitualCeremonyPower:diff()}层[b]【魔女仪式】[/b]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_POWERFOURFOURCARD.title
+ZHS: 魔女监狱
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_POWERFOURFOURCARD.description
+ZHS: [color=6666cc]回合开始[/color]时获得40层[b]【魔女化】[/b]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FRIEND.title
+ZHS: 朋友
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FRIEND.description
+ZHS: 获得1层[b]【嫌疑】[/b]，选择1张[color=#33ccff]【橘雪莉】{IfUpgraded:show:+|}[/color]
+或[green]【远野汉娜】{IfUpgraded:show:+|}[/green]加入手卡
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FRIEND.selectionScreenPrompt
+ZHS: 选择卡牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TWELVE.title
+ZHS: 紫藤亚里沙
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TWELVE.description
+ZHS: 减少1个友方{ConsumeAmount:diff()}层[b]【嫌疑】[/b]，获得{IfUpgraded:show:{energyPrefix:energyIcons(3)}|{energyPrefix:energyIcons(2)}},自己获得{SuspectPower:diff()}层[b]【嫌疑】[/b],获得1层[color=#ff0000]【紫藤亚里沙的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_BLANK_PAGE.title
+ZHS: 空白书页
+
+KEY: MANOSABA_LIN_CARD_BLANK_PAGE.description
+ZHS: 随机获得1张已记录卡池的{IfUpgraded:show:已升级|}牌
+若记录满3个，改为三选一
+
+KEY: MANOSABA_LIN_CARD_BLANK_PAGE.selectionScreenPrompt
+ZHS: 选择借用的卡牌
+
+KEY: MANOSABA_LIN_CARD_MARGIN_PAGE.title
+ZHS: 留白书页
+
+KEY: MANOSABA_LIN_CARD_MARGIN_PAGE.description
+ZHS: 根据当前已记录卡池列出3个不同稀有度的选项，选择1张{IfUpgraded:show:已升级|}牌加入手牌
+
+KEY: MANOSABA_LIN_CARD_MARGIN_PAGE.selectionScreenPrompt
+ZHS: 选择留白书页
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SILENT_FORESHADOW.title
+ZHS: 无声伏笔
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SILENT_FORESHADOW.description
+ZHS: 获得{Silence:diff()}层[color=#6666cc]【缄默】[/color]。
+若本回合未打出过[b]攻击牌[/b]，抽{Cards:diff()}张[color=#6666cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_LOWER_VOICE.title
+ZHS: 压低声线
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_LOWER_VOICE.description
+ZHS: 获得{Block:diff()}点[color=#6666cc]格挡[/color]和{Silence:diff()}层[color=#6666cc]【缄默】[/color]。
+若有敌人意图为攻击，额外获得{AttackIntentBlock:diff()}点[color=#6666cc]格挡[/color]。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_INTERROGATION_PAUSE.title
+ZHS: 审讯停顿
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_INTERROGATION_PAUSE.description
+ZHS: 获得{Silence:diff()}层[color=#6666cc]【缄默】[/color]。下一次打出[b]攻击牌[/b]后，获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_OPPRESSIVE_SILENCE.title
+ZHS: 无声脚注
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_OPPRESSIVE_SILENCE.description
+ZHS: [color=#6666cc]每回合[/color]，第1次消耗[color=#6666cc]【缄默】[/color]时，获得{energyPrefix:energyIcons(1)}
+之后次数改为抽1张[color=#6666cc]卡牌[/color]。
+每4次循环
+{IfUpgraded:show:打出时，获得{energyPrefix:energyIcons(1)}|}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_RHETORICAL_QUESTION.title
+ZHS: 反问
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_RHETORICAL_QUESTION.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。
+若目标意图不是攻击，获得{Silence:diff()}层[color=#6666cc]【缄默】[/color]。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_NO_ANSWER.title
+ZHS: 不作答
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_NO_ANSWER.description
+ZHS: [color=#6666cc]回合结束[/color]时，若[color=#6666cc]本回合[/color]没有打出过[b]攻击牌[/b]，获得{AnanlinNoAnswerPower:diff()}层[color=#6666cc]【缄默】[/color]。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CLERK_HINT.title
+ZHS: 书记员提示
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CLERK_HINT.description
+ZHS: 获得{GainSilence:diff()}层[color=#6666cc]【缄默】[/color]或
+消耗{SpendSilence:diff()}层[color=#6666cc]【缄默】[/color]，抽{Cards:diff()}张[color=#6666cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CLERK_HINT.selectionScreenPrompt
+ZHS: 选择书记员提示
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_JUDGMENT_EVE.title
+ZHS: 宣判回声
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_JUDGMENT_EVE.description
+ZHS: 本场战斗中，每当1名敌人的意图被改写，记录1次。
+[color=#6666cc]回合开始[/color]时，若已记录至少3次，消耗至多{AnanlinJudgmentEvePower:diff()}次记录：抽等量[color=#6666cc]卡牌[/color]并获得等量{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_KEEP_DISTANCE.title
+ZHS: 保持距离
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_KEEP_DISTANCE.description
+ZHS: 获得{Block:diff()}点[color=#6666cc]格挡[/color]。
+若没有敌人意图为攻击，消耗{SilenceCost:diff()}层[color=#6666cc]【缄默】[/color]，获得{Vigor:diff()}层[b]活力[/b]，再造成{Damage:diff()}点[color=#6666cc]伤害[/color]{Hits:diff()}次
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_LOW_VOICE_REPETITION.title
+ZHS: 低声复述
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_LOW_VOICE_REPETITION.description
+ZHS: 获得等于[color=#6666cc]本回合[/color]已打出[b]技能牌[/b]数加{BaseSilence:diff()}的[color=#6666cc]【缄默】[/color]。抽{Cards:diff()}张[color=#6666cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TRACING.title
+ZHS: 临摹
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TRACING.description
+ZHS: 生成1张[color=#6666cc]【空白书页】[/color]。
+下一张[color=#6666cc]【空白书页】[/color]生成牌时，复制其生成的牌{IfUpgraded:show:，复制牌[color=#6666cc]本回合[/color]可以免费打出一次|}。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_INDEX_PAGE.title
+ZHS: 索引页
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_INDEX_PAGE.description
+ZHS: [color=#6666cc]【空白书页】[/color]生成牌时，额外出现{AnanlinIndexPagePower:diff()}个选项
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_THREE_COLOR_BOOKMARK.title
+ZHS: 三色书签
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_THREE_COLOR_BOOKMARK.description
+ZHS: 已记录卡池每有1个，抽{Cards:diff()}张[color=#6666cc]卡牌[/color]并获得{Block:diff()}点[color=#6666cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MARGINAL_NOTE.title
+ZHS: 旁注
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MARGINAL_NOTE.description
+ZHS: 选择1张已记录卡池手牌，将其变成1张[color=#6666cc]【{IfUpgraded:show:空白书页+|空白书页}】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MARGINAL_NOTE.selectionScreenPrompt
+ZHS: 选择已记录卡池的手牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BORROWING_PERIOD.title
+ZHS: 借阅期限
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BORROWING_PERIOD.description
+ZHS: 每回合前{AnanlinBorrowingPeriodPower:diff()}张已记录卡池的牌打出后改为[b]消耗[/b]，并抽1张[color=#6666cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CROSS_REFERENCE.title
+ZHS: 交叉引用
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CROSS_REFERENCE.description
+ZHS: 生成{Cards:diff()}张[color=#6666cc]【{IfUpgraded:show:留白书页+|留白书页}】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CROSS_REFERENCE.selectionScreenPrompt
+ZHS: 选择借用的牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_COMPLETE_CHARACTER.title
+ZHS: 补全角色
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_COMPLETE_CHARACTER.description
+ZHS: 若记录卡池少于3个，获得{energyPrefix:energyIcons(2)}并将此牌移出战斗。否则生成1张{IfUpgraded:show:升级后的|}已记录卡池牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SPECIFIED_GENRE.title
+ZHS: 指定体裁
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SPECIFIED_GENRE.description
+ZHS: 选择[b]攻击[/b]、[b]技能[/b]或[b]能力[/b]。
+接下来{BlankPages:diff()}张[color=#6666cc]【空白书页】[/color]优先生成该类型的牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SPECIFIED_GENRE.selectionScreenPrompt
+ZHS: 选择牌的类型
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TRIAL_READING.title
+ZHS: 试读
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TRIAL_READING.description
+ZHS: 生成1张已记录卡池的牌，它获得[b]消耗[/b]和[b]虚无[/b]。
+若没有记录卡池，获得{FallbackSilence:diff()}层[color=#6666cc]【缄默】[/color]
+{IfUpgraded:show:生成牌本回合可以免费打出一次|}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SPREAD_PROOFREADING.title
+ZHS: 合页校订
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SPREAD_PROOFREADING.description
+ZHS: 选择1张手牌，生成1张已记录卡池、同类型、更高稀有度的牌，
+并复制可兼容的附加效果{IfUpgraded:show:，新牌[color=#6666cc]本回合内[/color]费用-1|}。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SPREAD_PROOFREADING.selectionScreenPrompt
+ZHS: 选择手牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TEMPORARY_BORROWING.title
+ZHS: 临时借阅
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TEMPORARY_BORROWING.description
+ZHS: 获得1张[color=#6666cc]【{IfUpgraded:show:空白书页+|空白书页}】[/color]。
+生成1张{IfUpgraded:show:升级后的|}已记录卡池牌并消耗，若其小于2费将其打出后消耗。
+若记录池未满3个，生成牌也加入手牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CLERK_HINT_SILENCE_OPTION.title
+ZHS: 获得缄默
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CLERK_HINT_SILENCE_OPTION.description
+ZHS: 获得[color=#6666cc]【缄默】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CLERK_HINT_DRAW_OPTION.title
+ZHS: 消耗缄默
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CLERK_HINT_DRAW_OPTION.description
+ZHS: 消耗[color=#6666cc]【缄默】[/color]来抽[color=#6666cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_GENRE_ATTACK_OPTION.title
+ZHS: 攻击
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_GENRE_ATTACK_OPTION.description
+ZHS: 优先生成[b]攻击牌[/b]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_GENRE_SKILL_OPTION.title
+ZHS: 技能
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_GENRE_SKILL_OPTION.description
+ZHS: 优先生成[b]技能牌[/b]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_GENRE_POWER_OPTION.title
+ZHS: 能力
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_GENRE_POWER_OPTION.description
+ZHS: 优先生成[b]能力牌[/b]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MIRIAS_MOVIE_PROMISE.title
+ZHS: 米莉亚的电影约定
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MIRIAS_MOVIE_PROMISE.description
+ZHS: 选择1张手牌，将其移出战斗。
+[color=#6666cc]下回合开始[/color]时，将它的可免费打出一次的复制加入手牌。
+生成1张同卡池牌，它[color=#6666cc]本回合[/color]可以免费打出一次并获得[b]消耗[/b]和[b]虚无[/b]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MIRIAS_MOVIE_PROMISE.selectionScreenPrompt
+ZHS: 选择约定的牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_NOAHS_BUTTERFLY_TALISMAN.title
+ZHS: 诺亚的蝶之护符
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_NOAHS_BUTTERFLY_TALISMAN.description
+ZHS: 对所有敌人造成{Damage:diff()}点伤害。
+当前有敌人若意图为[b]攻击[/b]，记录{Record:diff()}点伤害为[blue]【红蝶】[/blue]储存，并获得{TriggerSilence:diff()}层[color=#6666cc]【缄默】[/color]，
+若没有一个攻击意图则获得{FallbackSilence:diff()}层[color=#6666cc]【缄默】[/color]，[color=#6666cc]下回合[/color]将本牌返回手牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_THE_PRISON_IS_HOME.title
+ZHS: 牢房才是家
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_THE_PRISON_IS_HOME.description
+ZHS: 每当你[color=#6666cc]上回合[/color]没有打出[b]攻击牌[/b]，[color=#6666cc]回合开始[/color]时进入[color=#6666cc]【牢房】[/color]
+{IfUpgraded:show:打出获得{energyPrefix:energyIcons(1)}|}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_PLAYWRIGHT_AND_ARTIST.title
+ZHS: 新的书签
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_PLAYWRIGHT_AND_ARTIST.description
+ZHS: 从[color=#6666cc]所有牌[/color]选择1张牌，改写为1张3选1当前可以打出的同类型不同名牌。
+若获得的牌来自已记录卡池，本回合费用变为0；否则本回合费用-1。获得[b]保留[/b]和[b]虚无[/b]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_PLAYWRIGHT_AND_ARTIST.selectionScreenPrompt
+ZHS: 选择要改写的牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_PLAYWRIGHT_AND_ARTIST.selectionScreenPrompt2
+ZHS: 选择改写后的牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_AFTER_AWAKENING.title
+ZHS: 惊醒以后
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_AFTER_AWAKENING.description
+ZHS: 若[color=#6666cc]本回合[/color]失去过[color=#6666cc]【安心】[/color]，抽{Cards:diff()}张[color=#6666cc]卡牌[/color]。
+否则，获得1层[color=#6666cc]【安心】[/color]
+每有1层[color=#6666cc]【安心】[/color]，获得{Silence:diff()}层[color=#6666cc]【缄默】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CLUTCH_SLEEVE.title
+ZHS: 抓紧衣角
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CLUTCH_SLEEVE.description
+ZHS: 选择1张手牌，[b]将其保留[/b]。
+若你没有[color=#6666cc]【安心】[/color]，获得1层[color=#6666cc]【安心】[/color]。
+若[color=#6666cc]下回合[/color]其被打出，获得1层[color=#6666cc]【安心】[/color]
+每有1层[color=#6666cc]【安心】[/color]，该牌费用-{CostReduction:diff()}直到打出
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CLUTCH_SLEEVE.selectionScreenPrompt
+ZHS: 选择要抓紧的牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SOFT_AGREEMENT.title
+ZHS: 小声答应
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SOFT_AGREEMENT.description
+ZHS: 选择1张手牌。若它[color=#6666cc]本回合[/color]没有被打出，[color=#6666cc]回合结束[/color]时获得{Peace:diff()}层[color=#6666cc]【安心】[/color]
+每有1层[color=#6666cc]【安心】[/color]，该牌[color=#6666cc]下回合[/color]打出时回复{Heal:diff()}点生命
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SOFT_AGREEMENT.selectionScreenPrompt
+ZHS: 选择留下的牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_UNNOTICED.title
+ZHS: 没被发现
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_UNNOTICED.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。
+若没有敌人意图攻击，获得1层[color=#6666cc]【安心】[/color]
+否则，[color=#6666cc]本回合[/color]你下一次打出非[b]攻击牌[/b]后，若没有敌人意图攻击，获得1层[color=#6666cc]【安心】[/color]
+每有1层[color=#6666cc]【安心】[/color]，抽{Cards:diff()}张[color=#6666cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_AVERTED_GAZE.title
+ZHS: 不再回避
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_AVERTED_GAZE.description
+ZHS: 每当你失去[color=#6666cc]【安心】[/color]，使下一张[b]攻击牌[/b]打出两次。[color=#6666cc]每回合[/color]限1次
+打出时，获得{Peace:diff()}层[color=#6666cc]【安心】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SYNCED_BREATHING.title
+ZHS: 呼吸对齐
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SYNCED_BREATHING.description
+ZHS: [color=#6666cc]本回合[/color]下一次你连续打出{RequiredStreak:diff()}张同类型牌时，获得1层[color=#6666cc]【安心】[/color]
+每有1层[color=#6666cc]【安心】[/color]，从[color=#6666cc]抽牌堆[/color]或[color=#6666cc]弃牌堆[/color]将{Cards:diff()}张不同类型的牌加入手牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_COUNTDOWN_OF_THREE.title
+ZHS: 倒数三声
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_COUNTDOWN_OF_THREE.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。
+[color=#6666cc]本回合[/color]你打出的第3张牌会回到手牌，其费用变为0，并在下次打出时消耗
+每有1层[color=#6666cc]【安心】[/color]，第3张牌[color=#6666cc]伤害[/color]和[color=#6666cc]格挡[/color]+{Bonus:diff()}。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CONFIRM_DOOR_GAP.title
+ZHS: 确认门缝
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CONFIRM_DOOR_GAP.description
+ZHS: 选择1张手牌。
+若你没有[color=#6666cc]【安心】[/color]，获得1层[color=#6666cc]【安心】[/color]。
+若[color=#6666cc]本回合[/color]没有打出[b]攻击牌[/b]，[color=#6666cc]回合结束[/color]时打出它的复制
+每有1层[color=#6666cc]【安心】[/color]，该牌打出时额外获得{Block:diff()}点[color=#6666cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CONFIRM_DOOR_GAP.selectionScreenPrompt
+ZHS: 选择确认的牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_GENTLE_NOD.title
+ZHS: 轻轻点头
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_GENTLE_NOD.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。
+若你有[color=#6666cc]【安心】[/color]，失去1层，使[color=#6666cc]本回合[/color]下一张非[b]攻击[/b]牌额外打出{ExtraPlays:diff()}次
+每有1层[color=#6666cc]【安心】[/color]，从[color=#6666cc]抽牌堆[/color]或[color=#6666cc]弃牌堆[/color]将{Cards:diff()}张非[b]攻击牌[/b]加入手牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_COUNT_TO_THREE_IS_FINE.title
+ZHS: 数到三就好
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_COUNT_TO_THREE_IS_FINE.description
+ZHS: [color=#6666cc]本回合[/color]你每打出3张牌，抽{Cards:diff()}张[color=#6666cc]卡牌[/color]
+每有1层[color=#6666cc]【安心】[/color]，每打出2张牌，下一张牌费用-{CostReduction:diff()}；以此降费打出的牌不计数
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_ROOM_ECHO.title
+ZHS: 房间里的回音
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_ROOM_ECHO.description
+ZHS: 若你没有[color=#6666cc]【安心】[/color]，获得1层[color=#6666cc]【安心】[/color]。
+若上一张打出的牌是[b]技能牌[/b]，重复其格挡
+若是[b]攻击牌[/b]，造成其伤害的一半
+每有1层[color=#6666cc]【安心】[/color]，重复值+{Bonus:diff()}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_DELETE_STRESS.title
+ZHS: 删去重音
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_DELETE_STRESS.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。
+若你有至少{Silence:diff()}层[color=#6666cc]【缄默】[/color]，消耗这些[color=#6666cc]【缄默】[/color]，使目标下一次攻击伤害降低50%。
+若目标当前意图不是攻击，清除素描本记录的1个攻击行为
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_AFTER_DEEP_BREATH.title
+ZHS: 深呼吸之后
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_AFTER_DEEP_BREATH.description
+ZHS: 失去所有[color=#6666cc]【安心】[/color]。
+每失去1层，获得{energyPrefix:energyIcons(1)}、抽1张[color=#6666cc]卡牌[/color]，并对目标造成{Damage:diff()}点[color=#6666cc]伤害[/color]。
+下一张非[b]攻击牌[/b]额外打出失去层数-1次
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_PUSH_THE_DOOR_OPEN.title
+ZHS: 把门推开
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_PUSH_THE_DOOR_OPEN.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]{Hits:diff()}次。
+若你有[color=#6666cc]【安心】[/color]，失去1层，并对所有敌人再造成同样[color=#6666cc]伤害[/color]
+每有1层[color=#6666cc]【安心】[/color]，此牌每段伤害+{PeaceBonus:diff()}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TAKE_THE_HIT_FOR_TEAMMATE.title
+ZHS: 替队友挨一下
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TAKE_THE_HIT_FOR_TEAMMATE.description
+ZHS: 获得一名随机队友当前[color=#6666cc]格挡[/color]等量的[color=#6666cc]格挡[/color]。
+若目标意图为攻击，令其立刻对你执行该攻击。你因此每抵挡{BlockThreshold:diff()}点攻击伤害，获得{ThornsPower:diff()}层[b]荆棘[/b]，
+然后将其下个意图改写为造成1点[color=#6666cc]伤害[/color]，次数等同于你因此抵挡的攻击段数
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SINGER_SANG_LIFE_AWAY.title
+ZHS: 主唱把命拼没了
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SINGER_SANG_LIFE_AWAY.description
+ZHS: 消耗所有[color=#6666cc]【缄默】[/color]，失去等量生命。以此牌失去的生命不会使你死亡。
+每因此消耗{SilencePerTrigger:diff()}层[color=#6666cc]【缄默】[/color]，抽{Cards:diff()}张[color=#6666cc]卡牌[/color]，获得{Energy:diff()}点{energyPrefix:energyIcons(1)}，并对所有敌人造成{Damage:diff()}点[color=#6666cc]伤害[/color]。
+若因此生命降至{LowHpThreshold:diff()}或以下，额外触发{BonusTriggers:diff()}次
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_GROUP_CHAT_SMELL.title
+ZHS: 群友一股味
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_GROUP_CHAT_SMELL.description
+ZHS: 获得{AnanlinGroupChatSmellPower:diff()}层[color=#6666cc]【群友一股味】[/color]。{IfUpgraded:show:
+对随机敌人施加{ImmediateSmell:diff()}层[color=#6666cc]【怪味】[/color]|}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WHAT_DOES_IT_MEAN.title
+ZHS: 何意味
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WHAT_DOES_IT_MEAN.description
+ZHS: 随机选择1张其他手牌，并随机使其可以免费打出一次、下一次攻击伤害翻倍、获得[b]消耗[/b]，替换为1张同稀有度牌。{IfUpgraded:show:
+你可以选择是否接受结果|}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WHAT_DOES_IT_MEAN.selectionScreenPrompt
+ZHS: 是否接受这次随机结果？
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WHAT_DOES_IT_MEAN_ACCEPT_OPTION.title
+ZHS: 接受
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WHAT_DOES_IT_MEAN_ACCEPT_OPTION.description
+ZHS: 接受这次随机结果。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WHAT_DOES_IT_MEAN_REJECT_OPTION.title
+ZHS: 算了
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WHAT_DOES_IT_MEAN_REJECT_OPTION.description
+ZHS: 放弃这次随机结果。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CONCEIVING_NOVELIST.title
+ZHS: 构思小说家
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CONCEIVING_NOVELIST.description
+ZHS: 获得{AnanlinConceivingNovelistPower:diff()}层[color=#6666cc]【构思小说家】[/color]。{IfUpgraded:show:
+复制牌费用变为0|}
+
+KEY: MANOSABA_LIN_MODEL_CAPABILITY_ANANLIN_NOVELIST_COPY_CAPABILITY.afterBase
+ZHS: 
+[color=#6666cc]搬石[/color]：打出后，获得1层[b]力量[/b]和1层[b]敏捷[/b]。
+
+KEY: MANOSABA_LIN_MODEL_CAPABILITY_ANANLIN_DOUBLE_DAMAGE_ONCE_CAPABILITY.afterBase
+ZHS: 
+下一次造成的[b]攻击[/b]伤害翻倍。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_LOVER.title
+ZHS: 恋人
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_LOVER.description
+ZHS: [color=#6666cc][jitter]「吾辈身边，一直以来没有任何人。但是在这里，第一次有人陪在了我身边」[/jitter][/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_LOVER_EFFECT.title
+ZHS: 恋人
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_LOVER_EFFECT.description
+ZHS: 获得{WithPower:diff()}层[b]【魔女化】[/b]，获得{RitualCeremonyPower:diff()}层[b]【魔女仪式】[/b]
+每有1个已记录卡池获得1层[color=#6666cc]【安心】[/color]。从已记录卡池生成至多{MaxCards:diff()}张[blue]稀有[/blue]牌。
+依次失去1层[color=#6666cc]【安心】[/color]，使该牌[color=#6666cc]本回合[/color]费用变为0并[blue]本回合[/blue]打出两次。获得等于[color=#6666cc]【缄默】[/color]层数倍{BlockPerSilence:diff()}的[color=#6666cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WEAVING_LIES_SLEEPING_PRINCESS.title
+ZHS: 编织谎言的沉睡公主
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WEAVING_LIES_SLEEPING_PRINCESS.description
+ZHS: 当前[color=#6666cc]【缄默】[/color]每有{SilencePerLie:diff()}层，获得1层[color=#6666cc]【谎言】[/color]
+失去所有[color=#6666cc]【安心】[/color]。若失去{PeaceThreshold:diff()}层，将所有敌人当前意图改写为:失去{SelfLoss:diff()}点生命，次数等于[color=#6666cc]【谎言】[/color]
+否则，使所有敌人失去等于失去[color=#6666cc]【安心】[/color]层数倍[color=#6666cc]【谎言】[/color]的[b]临时降低力量[/b]
+若敌人意图为攻击，清除安安的素描本记录的1个攻击行为。消耗[b]【魔女化】[/b]；每消耗{WitchPerGeneratedCard:diff()}层，从已记录卡池生成1张当前可以打出的牌
+
+KEY: ManosabaLin.SleepingPrincessLie.prefix
+ZHS: [color=#6666cc][b]原罪[/b][/color]
+
+
+KEY: ManosabaLin.SleepingPrincessLie.hovertip.title
+ZHS: 编织谎言的沉睡公主
+
+KEY: ManosabaLin.SleepingPrincessLie.hovertip.description
+ZHS: [color=#6666cc][jitter]她今天也独自沉睡着。
+因为只要不伤害任何人，那她自己也就不会受伤[/jitter][/color]
+
+KEY: MANOSABA_LIN_MODEL_CAPABILITY_ANANLIN_LOVER_DOUBLE_PLAY_CAPABILITY.afterBase
+ZHS: 
+[color=#6666cc]恋人[/color]：[color=#6666cc]本回合[/color]打出两次
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CROSS_OUT_TYPO.title
+ZHS: 划掉错字
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CROSS_OUT_TYPO.description
+ZHS: 选择并[b]消耗[/b]1张手牌。
+若消耗的是状态牌或诅咒牌，获得{Block:diff()}点[color=#6666cc]格挡[/color]并获得{Silence:diff()}层[color=#6666cc]【缄默】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_CROSS_OUT_TYPO.selectionScreenPrompt
+ZHS: 选择要划掉的牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TEAR_DIRTY_PAGE.title
+ZHS: 把脏页撕掉
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TEAR_DIRTY_PAGE.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。你可以消耗{MaxExhaust:diff()}张手牌，若如此，获得1张[color=#6666cc]【空白书页】[/color]。
+若其中有状态牌，额外获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_TEAR_DIRTY_PAGE.selectionScreenPrompt
+ZHS: 选择要撕掉的牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BLANK_PROOF.title
+ZHS: 空白校样
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BLANK_PROOF.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]，将1张[color=#6666cc]【{IfUpgraded:show:空白书页+|空白书页}】[/color]加入手牌。
+可以选择1张手牌消耗
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BLANK_PROOF.selectionScreenPrompt
+ZHS: 选择要消耗的手牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BITE_SENTENCE_END.title
+ZHS: 咬住句尾
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BITE_SENTENCE_END.description
+ZHS: 若你没有[color=#6666cc]【安心】[/color]，获得1层[color=#6666cc]【安心】[/color]。
+造成{Damage:diff()}点[color=#6666cc]伤害[/color]。
+若你有[color=#6666cc]【安心】[/color]，获得{Silence:diff()}层[color=#6666cc]【缄默】[/color]
+每有1层[color=#6666cc]【安心】[/color]，本牌伤害+{PeaceBonus:diff()}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_DOOR_NOT_LOCKED.title
+ZHS: 门还没锁
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_DOOR_NOT_LOCKED.description
+ZHS: [color=#6666cc]本回合[/color]下一次你将因受到未格挡伤害失去[color=#6666cc]【安心】[/color]时，改为只失去1层。
+若没有触发，[color=#6666cc]回合结束[/color]获得{Silence:diff()}层[color=#6666cc]【缄默】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FULL_TEXT_REPLACE.title
+ZHS: 全文替换
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FULL_TEXT_REPLACE.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]，消耗[color=#6666cc]所有卡[/color]中选择的同名牌。
+每消耗1张，获得{Silence:diff()}层[color=#6666cc]【缄默】[/color]和{Block:diff()}点格挡。
+若消耗至少{RewriteStep:diff()}张，改写一次敌人意图。
+每消耗{CardsPerBlankPage:diff()}张卡，将1张[color=#6666cc]【空白书页+】[/color]加入手牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FULL_TEXT_REPLACE.selectionScreenPrompt
+ZHS: 选择要全文替换的牌名
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_INVISIBLE_PAGE_NUMBER.title
+ZHS: 读者看不见的页码
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_INVISIBLE_PAGE_NUMBER.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。已记录卡池每有1个，重复1次。
+若已记录3个卡池，本牌打出后获得[b]消耗[/b]并返还{Energy:diff()}点能量
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SEALED_PAGE.title
+ZHS: 封口页
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SEALED_PAGE.description
+ZHS: 每当你因右键消耗13层[color=#6666cc]【缄默】[/color]改写意图后，获得{Block:diff()}点[color=#6666cc]格挡[/color]并将1张[color=#6666cc]【{IfUpgraded:show:空白书页+|空白书页}】[/color]加入手牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_KILLER_BEHIND_PAGE.title
+ZHS: 纸背凶手
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_KILLER_BEHIND_PAGE.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。
+消耗[color=#6666cc]所有牌[/color]中其他卡池的牌；每消耗1张，重复此伤害1次，并将1张[color=#6666cc]【空白书页】[/color]加入抽牌堆。
+若至少消耗1张，抽{Cards:diff()}张[color=#6666cc]卡牌[/color]，并将{energyPrefix:energyIcons(1)}恢复至当前上限
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_PAGE_CORNER.title
+ZHS: 书页的一角
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_PAGE_CORNER.description
+ZHS: 每当你消耗{EnergyThreshold:diff()}点{energyPrefix:energyIcons(1)}，将1张[color=#6666cc]【{IfUpgraded:show:留白书页+|留白书页}】[/color]加入手牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WITCH_POWER.title
+ZHS: 魔女之力
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_WITCH_POWER.description
+ZHS: [color=#6666cc][jitter]「我不要那样......!这种魔法，我根本不想要......」[/jitter][/color]
+100层[b]【魔女化】[/b]可用。
+获得{RitualCeremonyPower:diff()}层[b]【魔女仪式】[/b]，{IntangiblePower:diff()}层[color=#6666cc]无实体[/color]，
+[color=#6666cc]【虚空形态】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_DRAFT_REWRITE.title
+ZHS: 草稿重写
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_DRAFT_REWRITE.description
+ZHS: 获得{AnanlinDraftRewritePower:diff()}层[color=#cc99ff]【草稿重写】[/color]。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SILENT_AMPLIFICATION.title
+ZHS: 无声扩音
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SILENT_AMPLIFICATION.description
+ZHS: 每当你累计替换{Rewrites:diff()}次怪物意图，本场战斗[color=#6666cc]缄默[/color]替换意图池效果的基础倍率加1
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SILENCE_INTENT_ENERGY_OPTION.title
+ZHS: 余音回能
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SILENCE_INTENT_ENERGY_OPTION.description
+ZHS: 全体玩家在[color=#6666cc]下回合开始[/color]时，获得{Energy:diff()}点{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SILENCE_INTENT_DRAW_OPTION.title
+ZHS: 断句成牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SILENCE_INTENT_DRAW_OPTION.description
+ZHS: 全体玩家抽{Cards:diff()}张[color=#6666cc]卡牌[/color]。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SILENCE_INTENT_BLOCK_OPTION.title
+ZHS: 静默护幕
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SILENCE_INTENT_BLOCK_OPTION.description
+ZHS: 全体玩家获得{Block:diff()}点[color=#6666cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SILENCE_INTENT_VIGOR_OPTION.title
+ZHS: 话锋偏转
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SILENCE_INTENT_VIGOR_OPTION.description
+ZHS: 全体玩家获得{VigorPower:diff()}层[b]活力[/b]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SAVE_LOAD.title
+ZHS: 小说家与画家
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SAVE_LOAD.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。
+选择1张拥有[b]消耗[/b]或下次打出后消耗的手牌，将其[color=#6666cc]存入此卡[/color]，本牌返回手牌且此牌只能存1张。
+生成[blue]{ConsumedName}[/blue]并自动打出
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_SAVE_LOAD.selectionScreenPrompt
+ZHS: 选择要存档的消耗牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_UNFINISHED_DRAFT.title
+ZHS: 未完稿
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_UNFINISHED_DRAFT.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]并触发[b]魔法[/b],若记录完成则[blue]消耗[/blue]
+每升级1次，记录1种尚未记录的[b]魔法[/b]
+每打出{PlayRequirement:diff()}次，升级本牌1次
+已记录：[color=#6666cc]{RecordedMagic:diff()}[/color][b]/[/b][blue]{RequiredMagic:diff()}[/blue]
+已打出:[color=#6666cc]{PlayProgress:diff()}[/color][b]/[/b][blue]{PlayRequirement:diff()}[/blue]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FINISHED_DRAFT.title
+ZHS: 「完稿」
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FINISHED_DRAFT.description
+ZHS: 获得{Vigor:diff()}层[blue]活力[/blue]
+{Vigor:diff()}为[blue]本场战斗[/blue]打出的[blue]其他卡池[/blue]卡牌数加{Inherited:diff()}
+造成{Damage:diff()}点[color=#6666cc]伤害[/color]{Hits:diff()}次
+{Hits:diff()}为[color=#6666cc]本场战斗[/color]改写[color=#6666cc]意图[/color]次数加{Inherited:diff()}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BACKSTAGE_RESENTMENT.title
+ZHS: 幕后的不甘
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BACKSTAGE_RESENTMENT.description
+ZHS: 获得{Peace:diff()}层[color=#6666cc]【安心】[/color]和{Silence:diff()}层[color=#6666cc]【缄默】[/color]。
+[color=#6666cc]每回合开始[/color]时，触发[color=#6666cc]【试镜】[/color]：按你当前[color=#99ccff]【安心】[/color]层数，随机执行等量效果
+{IfUpgraded:show:第1个触发的效果额外触发1次|}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FAKE_DEATH_ACT.title
+ZHS: “假死”
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FAKE_DEATH_ACT.description
+ZHS: 失去所有[color=#6666cc]【安心】[/color]，获得1层[blue]【蝴蝶】[/blue]。
+[color=#6666cc]本回合[/color]下一次受到致命伤害时，改为保留1点生命，获得等同于失去[color=#6666cc]【安心】[/color]层数的[color=#6666cc]{IfUpgraded:show:【留白书页】|【空白书页】}[/color]。
+若没有触发，回合结束时获得1张[color=#6666cc]【留白书页】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FOURFOLD_MAGIC_FINALE.title
+ZHS: 有点阴招全用小孩身上了
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FOURFOLD_MAGIC_FINALE.description
+ZHS: 获得[purple]【宝生玛格的魔法】[/purple]
+[color=#ff9966]【泽度可可的魔法】[/color]
+[color=#999999]【黑部奈叶香的魔法】[/color]
+使目标获得[gold]【莲见蕾雅的魔法】[/gold]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FOURFOLD_MAGIC_FINALE.selectionScreenPrompt
+ZHS: 选择[color=#999999]【黑部奈叶香的魔法】[/color]要复制的消耗牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FOURFOLD_MAGIC_FINALE.cocoHovertip.title
+ZHS: 【泽度可可的魔法】
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FOURFOLD_MAGIC_FINALE.cocoHovertip.description
+ZHS: 每次加入手牌从每个已记录卡池随机记录1张牌，
+打出时触发对应效果
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FOURFOLD_MAGIC_FINALE.nayukaHovertip.title
+ZHS: 【黑部奈叶香的魔法】
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_FOURFOLD_MAGIC_FINALE.nayukaHovertip.description
+ZHS: 选择1张消耗堆的牌，将其临时复制加入手牌。若它本场战斗曾被打出过，费用变为0。打出复制牌后，移除复制牌和消耗堆中对应牌名的牌。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_COCO_MULTIVERSE_MAGIC.title
+ZHS: 命定之死
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_COCO_MULTIVERSE_MAGIC.description
+ZHS: [blue][jitter]「随便被人怨恨然后被杀，[/jitter][/blue]
+[color=#cc9966][jitter]随便怨恨别人然后杀人……!」[/jitter][/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_REVOKATION.title
+ZHS: 【魔女化】
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_REVOKATION.description
+ZHS: 降低3点[color=6666cc]血量上限[/color]，造成{Damage:diff()}点伤害
+可选择所有卡中的1张[color=#6666cc]【洗脑】[/color][b]消耗[/b]，移除自身的[color=#6666cc]【洗脑】[/color]能力
+若成功[b]消耗[/b]卡牌或移除能力，加入1张[b]保留[/b]的[color=#6666cc]【恋人】[/color]进入手牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_REVOKATION.selectionScreenPrompt
+ZHS: 选择要消耗的【洗脑】
+
+KEY: MANOSABA_LIN_MODEL_CAPABILITY_ANANLIN_AUDITION_PEACE_CAPABILITY.afterBase
+ZHS: 
+[color=#6666cc]【试镜】[/color]：打出后获得1层[color=#6666cc]【安心】[/color]。
+
+KEY: MANOSABA_LIN_MODEL_CAPABILITY_ANANLIN_COCO_MULTIVERSE_CAPABILITY.hovertip.title
+ZHS: 泽度可可的魔法
+
+KEY: MANOSABA_LIN_MODEL_CAPABILITY_ANANLIN_COCO_MULTIVERSE_CAPABILITY.hovertip.description
+ZHS: [color=#ff9966]【泽度可可的魔法】[/color]:
+每次加入手牌从每个已记录卡池随机记录1张牌
+打出时触发当前记录的对应效果
+当前记录：{Cards}
+
+KEY: MANOSABA_LIN_MODEL_CAPABILITY_ANANLIN_COCO_MULTIVERSE_CAPABILITY.empty
+ZHS: 无
+
+KEY: MANOSABA_LIN_MODEL_CAPABILITY_ANANLIN_NAYUKA_HISTORY_CAPABILITY.afterBase
+ZHS: 
+[color=#999999]【黑部奈叶香的魔法】[/color]：打出后，移除此复制牌和消耗堆中对应牌名的牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MILIA_ASSIST.title
+ZHS: 米莉亚的协力
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MILIA_ASSIST.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。
+选择1张手牌将其变形成{IfUpgraded:show:本回合费用为0且无视打出条件|已记录卡池中的可打出牌}
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_MILIA_ASSIST.selectionScreenPrompt
+ZHS: 选择要改写的手牌
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_NOAH_ASSIST.title
+ZHS: 诺亚的协力
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_NOAH_ASSIST.description
+ZHS: 本回合只有1次可以免费右键使用[color=#6666cc]【缄默】[/color]或[color=#6666cc]【洗脑】[/color]。
+回合结束时，给予被改写的敌人{RewrittenNymPower:diff()}层[blue]【城崎诺亚的魔法】[/blue]
+若没有改写敌人，给予所有敌人{NoRewriteNymPower:diff()}层。
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_YUJIAO_BEAN_SPROUT_MINE_GIRL.title
+ZHS: 郁娇豆芽菜地雷女
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_YUJIAO_BEAN_SPROUT_MINE_GIRL.description
+ZHS: [color=#6666cc]回合开始[/color]时，此牌加入手卡，并获得1层[color=#6666cc]【安心】[/color]
+获得{Energy:diff()}点{energyPrefix:energyIcons(1)}，抽{Cards:diff()}张[color=#6666cc]卡牌[/color]，获得1张[color=#6666cc]【留白书页】[/color]，若记录完成，打出后[color=#cc9966]消耗[/color]
+[color=#6666cc]回合结束[/color]时，记录当前[color=#6666cc]【安心】[/color]且若手牌中有本牌并有3层[color=#6666cc]【安心】[/color]，获得1张[b]保留[/b]的[color=#6666cc]【安心】[/color]消耗牌
+已记录：[color=#6666cc]{RecordedPeace:diff()}[/color][b]/[/b][blue]{RequiredPeace:diff()}[/blue]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BOMB_DISPOSAL_EXPERT.title
+ZHS: 「拆弹专家」
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BOMB_DISPOSAL_EXPERT.description
+ZHS: [color=#6666cc]本回合[/color]，你的[color=#cc9966][b]活力[/b][/color]有1次不会降低
+获得{PeaceVigor:diff()}层[color=#cc9966][b]活力[/b][/color]
+{PeaceVigor:diff()}为[color=#cc9966]本场战斗[/color]回合开始时拥有的{PeaceThreshold:diff()}层[color=#cc9966]【安心】[/color]层数
+获得{RewriteVigor:diff()}层[color=#6666cc][b]活力[/b][/color]
+{RewriteVigor:diff()}为[color=#6666cc]本场战斗[/color]改写[color=#6666cc]意图[/color]次数
+获得1张0费多段[b]攻击[/b]牌
+本牌每次打出后，本场战斗费用翻倍
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BRAINWASH.title
+ZHS: 「洗脑」
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BRAINWASH.description
+ZHS: [b]魔法[/b]
+[color=#6666cc][jitter]「吾辈的魔法……是会从那样的人身上夺走意志的魔法」[/jitter][/color]
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BAD_ENDING.title
+ZHS: 【坏结局】
+
+KEY: MANOSABA_LIN_CARD_ANANLIN_BAD_ENDING.description
+ZHS: [color=#6666cc][jitter]「终有一日，汝将背负旧恨，死于未曾回首之处」[/jitter][/color]
+[b]此牌被丢弃时会返回手卡,被消耗时会返回手卡[/b]
+[color=#6666cc]回合开始[/color]时，获得{SuspectGain:diff()}层[b]【嫌疑】[/b]。
+每当你消耗[color=#6666cc]【缄默】[/color]时，获得{BacklashGain:diff()}层[color=#6666cc]【洗脑反噬】[/color]。每当[color=#6666cc]书页[/color]生成牌时，有概率获得1张随机[b]诅咒[/b]
+[color=#6666cc]回合结束[/color]时，若你有[color=#6666cc]【安心】[/color]，获得[color=#6666cc]【孤立无援】[/color]
+
+KEY: MANOSABA_LIN_CARD_ANANDEATH.title
+ZHS: 「终有一日，汝将背负旧恨，死于未曾回首之处」
+
+KEY: MANOSABA_LIN_CARD_ANANDEATH.description
+ZHS: 名为[color=#6666cc]【夏目安安】[/color]个体的结局
+
+KEY: ManosabaLin.AnanDeath.prefix
+ZHS: [color=#cccccc][b]夏目安安的结局[/b][/color]
+
+KEY: ManosabaLin.AnanDeath.hovertip.title
+ZHS: 魔女处刑
+
+KEY: ManosabaLin.AnanDeath.hovertip.description
+ZHS: [b]此牌[color=6666cc]回合[/color]开始时会返回手卡[/b]
+打出[color=#cccccc]死亡[/color]
+随机[color=#6666cc]替换[/color]全体敌人意图，
+[color=#6666cc]本场战斗[/color]每打出10张其他卡池牌就给每个队友1张[color=#6666cc]已记录卡池[/color]中的0费卡
+消耗全体队友50层[b]【魔女化】[/b]和3层[b]【嫌疑】[/b]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_ATTACK.title
+ZHS: 打击
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_ATTACK.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_DEFEND.title
+ZHS: 防御
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_DEFEND.description
+ZHS: 获得{Block:diff()}点[color=#6666cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_MENTAL_TRAUMA.title
+ZHS: 精神创伤
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_MENTAL_TRAUMA.description
+ZHS: 获得{WithPower:diff()}层[b]【魔女化】[/b]{IfUpgraded:show:
+抽{Cards:diff()}张[color=#6666cc]卡牌[/color]|}
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_WITCH_PRISONER.title
+ZHS: 魔女囚犯
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_WITCH_PRISONER.description
+ZHS: 获得{TempStrength:diff()}点[b]临时力量[/b]，获得{TempDexterity:diff()}点[b]临时敏捷[/b]。
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_WITCH_TRIAL.title
+ZHS: 魔女审判
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_WITCH_TRIAL.description
+ZHS: 获得{SilentPower:diff()}层[color=#6666cc]【缄默】[/color]，抽{Cards:diff()}张[color=#6666cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_ONE.title
+ZHS: 罪疑蚀骨
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_ONE.description
+ZHS: 使敌人获得{SuspectPower:diff()}层[b]【嫌疑】[/b]和{WeakPower:diff()}层[b]虚弱[/b]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_TWO.title
+ZHS: 罪之前置
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_TWO.description
+ZHS: 使自己获得{SuspectPower:diff()}层[b]【嫌疑】[/b]，抽{Cards:diff()}张[color=#6666cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_THREE.title
+ZHS: 逆转魔染
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_THREE.description
+ZHS: 降低1个友方目标{Reduction:diff()}层[b]【魔女化】[/b]，自己和该友方目标各抽{Draw:diff()}张[color=#6666cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_SEVEN.title
+ZHS: 共犯
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_SEVEN.description
+ZHS: 将{Cards:diff()}张{IfUpgraded:show:升级后的|}【罪之前置】加入目标抽牌堆。
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_EIGHT.title
+ZHS: 脱罪
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_EIGHT.description
+ZHS: 失去1层[b]【嫌疑】[/b]，获得{Block:diff()}点[color=#6666cc]格挡[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_CARD_TEN.title
+ZHS: 二阶堂希罗
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_CARD_TEN.description
+ZHS: 获得{SuspectPower:diff()}层[b]【嫌疑】[/b]。获得{HiroMagicRevivePower:diff()}层[color=#CC6666]【二阶堂希罗的魔法】[/color]
+[color=#6666cc]战斗结束后，若打出过此牌，移除牌组里所有同名卡[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_MLLM.title
+ZHS: 冰上梅露露
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_MLLM.description
+ZHS: 获得{SuspectPower:diff()}层[b]【嫌疑】[/b]，给予目标{Damage:diff()}点[color=#6666cc]伤害[/color]，给予{MllmPower:diff()}层
+[color=#ffcc99]【冰上梅露露的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_MGM.title
+ZHS: 宝生玛格
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_MGM.description
+ZHS: 获得{SuspectPower:diff()}层[b]【嫌疑】[/b]，获得{Block:diff()}点[color=#6666cc]格挡[/color]，获得{MgmPower:diff()}层
+[purple]【宝生玛格的魔法】[/purple]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_LYM.title
+ZHS: 莲见蕾雅
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_LYM.description
+ZHS: 获得{SuspectPower:diff()}层[b]【嫌疑】[/b]，给予目标{LymPower:diff()}层
+[gold]【莲见蕾雅的魔法】[/gold]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_NYXM.title
+ZHS: 黑部奈叶香
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_NYXM.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]，获得1层
+[color=#999999]【黑部奈叶香的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_KKM.title
+ZHS: 泽度可可
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_KKM.description
+ZHS: 选择1个友方造成{Damage:diff()}点[color=#6666cc]伤害[/color]，使其获得{KkmPower:diff()}层
+[color=#ff9966]【泽度可可的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_NYM.title
+ZHS: 城崎诺亚
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_NYM.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]，获得{SuspectPower:diff()}层[b]【嫌疑】[/b]，获得{WithPower:diff()}层[b]【魔女化】[/b]，给予目标{NymPower:diff()}层
+[blue]【城崎诺亚的魔法】[/blue]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_AMM.title
+ZHS: 樱羽艾玛
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_AMM.description
+ZHS: 造成{CalculatedDamage:diff()}点[color=#6666cc]伤害[/color]（基础{CalculationBase:diff()} + 【嫌疑】{SuspectBonus:diff()} + 【魔女化】{WitchificationBonus:diff()}）。获得{SuspectPower:diff()}层[b]【嫌疑】[/b]和{WithPower:diff()}层[b]【魔女化】[/b]。
+获得{AmmPower:diff()}层[color=#ff99cc]【樱羽艾玛的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_AAM.title
+ZHS: 夏目安安
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_AAM.description
+ZHS: 获得{SuspectPower:diff()}层[b]【嫌疑】[/b]，选择1名敌人获得{AamPower:diff()}层
+[color=#6666cc]【夏目安安的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_MLYM.title
+ZHS: 佐伯米莉亚
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_MLYM.description
+ZHS: 选择1个队友给予{MlyPower:diff()}层[color=#cc9966]【佐伯米莉亚的魔法】[/color]，交换你们的手牌，然后给这些牌附上[color=#cc9966]【魔法的遗症】[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_SUSPECT_SPREAD.title
+ZHS: 嫌疑扩散
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_SUSPECT_SPREAD.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]，你每有1层[b]【嫌疑】[/b]，本牌[color=#6666cc]伤害[/color]+1。
+给目标和自己各施加1层[b]【嫌疑】[/b]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_GUILTY_CHAIN.title
+ZHS: 罪链
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_GUILTY_CHAIN.description
+ZHS: 获得1层[b]【罪链】[/b]
+[color=#6666cc]每回合[/color]当你对有[b]【嫌疑】[/b]的敌人打出牌时，随机给另1名敌人施加1层[b]【嫌疑】[/b]，[color=#6666cc]每回合[/color]最多触发2次。
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_POWERTWOTWOCARD.title
+ZHS: 书本中的真相
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_POWERTWOTWOCARD.description
+ZHS: 需要100层[b]【魔女化】[/b]。获得{RitualCeremonyPower:diff()}层[b]【魔女仪式】[/b]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_POWERFOURFOURCARD.title
+ZHS: 魔女监狱
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_POWERFOURFOURCARD.description
+ZHS: 获得1层[b]【魔女监狱】[/b]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_FRIEND.title
+ZHS: 朋友
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_FRIEND.description
+ZHS: 获得1层[b]【嫌疑】[/b]，选择1张[color=#33ccff]【橘雪莉】{IfUpgraded:show:+|}[/color]或[green]【远野汉娜】{IfUpgraded:show:+|}[/green]加入手牌
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_FRIEND.selectionScreenPrompt
+ZHS: 选择卡牌
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_TWELVE.title
+ZHS: 紫藤亚里沙
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_TWELVE.description
+ZHS: 减少目标{ConsumeAmount:diff()}层[b]【嫌疑】[/b]，给予目标{Energy:diff()}能量，自己获得{SuspectPower:diff()}层[b]【嫌疑】[/b]和{YlsmPower:diff()}层[color=#ff0000]【紫藤亚里沙的魔法】[/color]
+
+KEY: MANOSABA_LIN_CARD_YALISALIN_TOWER.title
+ZHS: 高塔
+
+KEY: MANOSABA_LIN_CARD_UNWANTEDKINDNESS.title
+ZHS: 不需要的善意
+
+KEY: MANOSABA_LIN_CARD_UNWANTEDKINDNESS.description
+ZHS: 获得{Block:diff()}点[color=#6666cc]格挡[/color]；若本次烧掉牌，抽1张。
+
+KEY: MANOSABA_LIN_CARD_RETURNEDHAIRRIBBON.title
+ZHS: 还给你的发带
+
+KEY: MANOSABA_LIN_CARD_RETURNEDHAIRRIBBON.description
+ZHS: 获得{Block:diff()}点[color=#6666cc]格挡[/color]，造成{Damage:diff()}点[color=#6666cc]伤害[/color]。从弃牌堆取回1张牌，使其获得[color=#ff0000]余火[/color]。
+
+KEY: MANOSABA_LIN_CARD_RETURNEDHAIRRIBBON.selectionScreenPrompt
+ZHS: 选择1张弃牌堆牌取回
+
+KEY: MANOSABA_LIN_CARD_DONTLOOKATME.title
+ZHS: 请别看见我
+
+KEY: MANOSABA_LIN_CARD_DONTLOOKATME.description
+ZHS: 选择1张手牌获得[color=#ff0000]余火[/color]；若它本回合被烧掉，抽1张。{IfUpgraded:show:被烧掉时获得6点[color=#6666cc]格挡[/color]。|}
+
+KEY: MANOSABA_LIN_CARD_DONTLOOKATME.selectionScreenPrompt
+ZHS: 选择1张手牌获得余火
+
+KEY: MANOSABA_LIN_CARD_BROKENTRUST.title
+ZHS: 坏掉的信任
+
+KEY: MANOSABA_LIN_CARD_BROKENTRUST.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。选择1张手牌获得[color=#ff0000]余火[/color]；这张牌的余火优先连接抽牌堆或弃牌堆中的攻击牌，若选择攻击牌，返还1能量。
+
+KEY: MANOSABA_LIN_CARD_BROKENTRUST.selectionScreenPrompt
+ZHS: 选择1张手牌获得余火
+
+KEY: MANOSABA_LIN_CARD_HOLDMYPAIN.title
+ZHS: 替我保管痛觉
+
+KEY: MANOSABA_LIN_CARD_HOLDMYPAIN.description
+ZHS: 余火获得：每回合前{IfUpgraded:show:2|1}次烧牌时，可右键强化候选牌。强化后你获得1层亚里沙的魔法；攻击牌给予敌人1层亚里沙的魔法，技能牌获得1能量，能力牌使所有牌中1张牌获得余火。
+
+KEY: MANOSABA_LIN_CARD_DAZZLINGTOLERANCE.title
+ZHS: 你的包容很刺眼
+
+KEY: MANOSABA_LIN_CARD_DAZZLINGTOLERANCE.description
+ZHS: 余火烧掉牌时，随机造成1点伤害并获得2点[color=#6666cc]格挡[/color]；烧掉诅咒时触发3次。
+
+KEY: MANOSABA_LIN_CARD_BURNEDAPOLOGY.title
+ZHS: 把道歉烧成灰
+
+KEY: MANOSABA_LIN_CARD_BURNEDAPOLOGY.description
+ZHS: 余火获得：被烧掉的牌若可以打出，先自动打出1次，然后再烧掉。自动打出的牌不触发余火。
+
+KEY: MANOSABA_LIN_CARD_UNNEEDEDGOODCHILD.title
+ZHS: 不被需要的好孩子
+
+KEY: MANOSABA_LIN_CARD_UNNEEDEDGOODCHILD.description
+ZHS: 强化本回合下一次余火：按被烧掉牌费用造成等量次1点伤害；若其费用大于3且自带余火，额外获得{Energy:diff()}能量。可右键强化1张候选牌，使其本次费用+1。
+
+KEY: MANOSABA_LIN_CARD_TWOSEPARATEDENDS.title
+ZHS: 隔开的两端
+
+KEY: MANOSABA_LIN_CARD_TWOSEPARATEDENDS.description
+ZHS: 你的余火：若选择原牌，获得{Block:diff()}点[color=#6666cc]格挡[/color]；若选择连接牌，抽{Cards:diff()}张牌并使其本次费用-1。
+
+KEY: MANOSABA_LIN_CARD_BEFOREFORGIVEN.title
+ZHS: 被原谅之前
+
+KEY: MANOSABA_LIN_CARD_BEFOREFORGIVEN.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]；若本次烧牌，额外造成{BurnDamage:diff()}点[color=#6666cc]伤害[/color]；若烧掉大于2费的牌，将其本次费用-1后返回手牌。
+
+KEY: MANOSABA_LIN_CARD_GLASSHUG.title
+ZHS: 隔着玻璃的拥抱
+
+KEY: MANOSABA_LIN_CARD_GLASSHUG.description
+ZHS: 获得{Block:diff()}点[color=#6666cc]格挡[/color]。若本牌被烧掉，下回合开始回到手牌，费用变为0，并获得本牌格挡值的格挡。
+
+KEY: MANOSABA_LIN_CARD_STAYINGSTILLHURTS.title
+ZHS: 留下也会受伤
+
+KEY: MANOSABA_LIN_CARD_STAYINGSTILLHURTS.description
+ZHS: 烧掉1张手牌。若它有余火，随机触发所有牌中1张带余火牌的选牌，并使其本次打出费用{IfUpgraded:show:-2|-1}；否则抽1张。
+
+KEY: MANOSABA_LIN_CARD_STAYINGSTILLHURTS.selectionScreenPrompt
+ZHS: 选择1张手牌烧掉
+
+KEY: MANOSABA_LIN_CARD_DONTBRINGMEHOME.title
+ZHS: 别把我带回家
+
+KEY: MANOSABA_LIN_CARD_DONTBRINGMEHOME.description
+ZHS: 获得{Block:diff()}点[color=#6666cc]格挡[/color]。选择1张手牌获得余火和保留。回合结束若仍在手牌，烧掉它；下回合获得{Energy:diff()}能量并抽{Cards:diff()}张牌。
+
+KEY: MANOSABA_LIN_CARD_DONTBRINGMEHOME.selectionScreenPrompt
+ZHS: 选择1张手牌获得余火和保留
+
+KEY: MANOSABA_LIN_CARD_WARMTHSHOULDNOTSTAY.title
+ZHS: 不该留下的温柔
+
+KEY: MANOSABA_LIN_CARD_WARMTHSHOULDNOTSTAY.description
+ZHS: 每当你打出带余火的牌后，随机1张没有余火的所有牌获得余火。
+
+KEY: MANOSABA_LIN_CARD_BURNEDECHO.title
+ZHS: 烧断回音
+
+KEY: MANOSABA_LIN_CARD_BURNEDECHO.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。本回合每有1张牌被余火烧掉，本牌伤害+{BurnBonus:diff()}；打出后费用在下回合开始前+1。
+
+KEY: MANOSABA_LIN_CARD_FIFTHSELFPROOF.title
+ZHS: 第五次自证
+
+KEY: MANOSABA_LIN_CARD_FIFTHSELFPROOF.description
+ZHS: 造成等于本牌计数的1点[color=#6666cc]伤害[/color]。每完成5次手动余火选择，本牌获得1计数。使用余火时，可消耗计数右键强化候选牌：攻击牌攻击次数+1；技能牌本次被选择并打出时额外打出1次；能力牌随机获得1张费用-1且带余火的能力牌。当前计数：{FireCount:diff()}。
+
+KEY: ManosabaLin.YalisalinFireComponent.prefix
+ZHS: [color=#ff0000]余火[/color]
+
+KEY: ManosabaLin.YalisalinFireComponent.hovertip.title
+ZHS: 余火
+
+KEY: ManosabaLin.YalisalinFireComponent.hovertip.description
+ZHS: 连接1张所有牌中的牌。选择1张牌打出，烧掉另一张。
+
+KEY: ManosabaLin.YalisalinFireComponent.selectionScreenPrompt
+ZHS: 选择1张牌打出，烧掉另一张
+
+KEY: ManosabaLin.YalisalinFireComponent.enhancement.absentThirteenth
+ZHS: 所有牌少于13张时，额外连接1张随机亚里沙牌；该牌本次费用为0，且只有该随机牌会被烧掉。
+
+KEY: ManosabaLin.YalisalinFireComponent.enhancement.painKeeper.count
+ZHS: 每回合可强化候选牌{Count}次；若强化则你获得1层亚里沙的魔法。
+
+KEY: ManosabaLin.YalisalinFireComponent.enhancement.dazzlingTolerance
+ZHS: 烧掉牌时，随机造成{Damage}点伤害并获得{Block}格挡；若烧掉诅咒，触发3次。
+
+KEY: ManosabaLin.YalisalinFireComponent.enhancement.burnedApology
+ZHS: 烧掉的牌自动打出1次，然后再烧掉。自动打出的牌不触发余火。
+
+KEY: ManosabaLin.YalisalinFireComponent.enhancement.separatedEnds
+ZHS: 选择原牌时，获得{Block}格挡。选择连接牌时，抽{Cards}张，并使其本次费用-1。
+
+KEY: ManosabaLin.YalisalinFireComponent.enhancement.warmthShouldNotStay
+ZHS: 随机1张没有余火的牌获得余火。
+
+KEY: ManosabaLin.YalisalinFireComponent.enhancement.unneededGoodChild
+ZHS: 按被烧牌费用造成等量次{Damage}点伤害；若费用大于3且自带余火，获得{Energy}能量。
+
+KEY: ManosabaLin.YalisalinFireComponent.rightClick.painKeeper.prompt
+ZHS: 右键：强化候选牌
+
+KEY: ManosabaLin.YalisalinFireComponent.rightClick.unneededGoodChild.prompt
+ZHS: 右键：使候选牌本次费用+1
+
+KEY: ManosabaLin.YalisalinFireComponent.rightClick.fifthSelfProof.prompt
+ZHS: 右键：消耗1计数强化候选牌
+
+KEY: ManosabaLin.YalisalinFireComponent.rightClick.painKeeper.hover.attack
+ZHS: 右键强化：选择并打出后，给予敌人1层亚里沙的魔法。
+
+KEY: ManosabaLin.YalisalinFireComponent.rightClick.painKeeper.hover.skill
+ZHS: 右键强化：选择并打出后，获得1能量。
+
+KEY: ManosabaLin.YalisalinFireComponent.rightClick.painKeeper.hover.power
+ZHS: 右键强化：选择并打出后，使所有牌中1张牌获得余火。
+
+KEY: ManosabaLin.YalisalinFireComponent.rightClick.fifthSelfProof.hover.attack
+ZHS: 右键强化：本次攻击次数+1。
+
+KEY: ManosabaLin.YalisalinFireComponent.rightClick.fifthSelfProof.hover.skill
+ZHS: 右键强化：本次被选择并打出时额外打出1次。
+
+KEY: ManosabaLin.YalisalinFireComponent.rightClick.fifthSelfProof.hover.power
+ZHS: 右键强化：选择并打出后，随机获得1张费用-1且带余火的能力牌。
+
+KEY: ManosabaLin.YalisalinFireComponent.rightClick.generic.hover
+ZHS: 右键：强化这张牌。
+
+KEY: MANOSABA_LIN_CARD_REVERSECALCULATION.title
+ZHS: 反向验算
+
+KEY: MANOSABA_LIN_CARD_REVERSECALCULATION.description
+ZHS: 降温目标最早1格火色。获得降温前颜色的封存火焰能力。{IfUpgraded:show:额外消耗1格火色。|}升温。
+
+KEY: MANOSABA_LIN_CARD_TWODIFFERENTTESTIMONIES.title
+ZHS: 两份不一样的证词
+
+KEY: MANOSABA_LIN_CARD_TWODIFFERENTTESTIMONIES.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]{Hits:diff()}次。每次命中后消耗1格火色。若本牌连续两次实际消耗的颜色不同，后一次额外结算1次。
+
+KEY: MANOSABA_LIN_CARD_UNUSEDCONCLUSION.title
+ZHS: 没被采用的结论
+
+KEY: MANOSABA_LIN_CARD_UNUSEDCONCLUSION.description
+ZHS: 每回合第一次你连续消耗不同火色时，获得后一次颜色的封存火焰能力并抽1张牌。
+
+KEY: MANOSABA_LIN_CARD_UNSEENKINDLING.title
+ZHS: 没看见的火种
+
+KEY: MANOSABA_LIN_CARD_UNSEENKINDLING.description
+ZHS: 选择1名敌人。若其没有火色，给予2格火色；若已有火色，给予1格火色并抽{Cards:diff()}张牌。升温。{IfUpgraded:show:获得{Block:diff()}点[color=#6666cc]格挡[/color]。|}
+
+KEY: MANOSABA_LIN_CARD_AFTERSCHOOLTESTBURN.title
+ZHS: 放学后的试烧
+
+KEY: MANOSABA_LIN_CARD_AFTERSCHOOLTESTBURN.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。消耗1格火色；若消耗后目标仍有火色，降温1格火色并额外获得降温前颜色的消耗奖励。
+
+KEY: MANOSABA_LIN_CARD_ASHINPAGES.title
+ZHS: 夹在书页里的灰
+
+KEY: MANOSABA_LIN_CARD_ASHINPAGES.description
+ZHS: 获得{Block:diff()}点[color=#6666cc]格挡[/color]。若你有封存火焰能力，复制1个封存火焰能力；否则获得目标最早火色的封存火焰能力。
+
+KEY: MANOSABA_LIN_CARD_BURNTTHERMOMETERPAPER.title
+ZHS: 烫坏的测温纸
+
+KEY: MANOSABA_LIN_CARD_BURNTTHERMOMETERPAPER.description
+ZHS: 失去{Life:diff()}点生命。给予目标火色直到满格；若目标已经满格，改为消耗{Consume:diff()}格火色。强升温。
+
+KEY: MANOSABA_LIN_CARD_DONTCOOLDOWN.title
+ZHS: 不准降下来
+
+KEY: MANOSABA_LIN_CARD_DONTCOOLDOWN.description
+ZHS: 回合开始获得1层保留最高火色能力。当你将要消耗最高火色时，可以消耗2格较低火色代替。每回合第一次该能力改写消耗时，获得1能量。
+
+KEY: MANOSABA_LIN_CARD_GRAZINGCRITICAL.title
+ZHS: 临界擦边
+
+KEY: MANOSABA_LIN_CARD_GRAZINGCRITICAL.description
+ZHS: 消耗1格火色。若目标因此离开满格，获得{Energy:diff()}能量并给予1格火色。升温；若目标重新满格，改为强升温。
+
+KEY: MANOSABA_LIN_CARD_DEADLINEHANDOFF.title
+ZHS: 压线提交
+
+KEY: MANOSABA_LIN_CARD_DEADLINEHANDOFF.description
+ZHS: 重复{Repeats:diff()}次：若目标未满格，造成{Damage:diff()}点[color=#6666cc]伤害[/color]并强升温一次；若目标满格，消耗{Consume:diff()}格火色。升温。
+
+KEY: MANOSABA_LIN_CARD_TEMPERATUREPROOF.title
+ZHS: 温差证明
+
+KEY: MANOSABA_LIN_CARD_TEMPERATUREPROOF.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。降温1格火色，然后消耗1格火色。若两次涉及颜色不同，给予1格火色。若本牌让目标进入或离开满格，升温改为强升温。抽{Cards:diff()}张牌。{IfUpgraded:show:获得{Energy:diff()}能量。|}
+
+KEY: MANOSABA_LIN_CARD_TICKETONWINDOW.title
+ZHS: 贴在窗上的罚单
+
+KEY: MANOSABA_LIN_CARD_TICKETONWINDOW.description
+ZHS: 每回合第一次目标火色被补至满格时，获得1层保留最高火色能力。
+
+KEY: MANOSABA_LIN_CARD_SAMEWRONGPROBLEM.title
+ZHS: 同一道错题
+
+KEY: MANOSABA_LIN_CARD_SAMEWRONGPROBLEM.description
+ZHS: 造成{Damage:diff()}点[color=#6666cc]伤害[/color]。若本回合上次消耗的火色与目标最早火色不同，消耗目标最早1格火色；否则降温目标最早1格火色并抽{Cards:diff()}张牌。
+
+KEY: MANOSABA_LIN_CARD_TOMORROWBURN.title
+ZHS: 留到明天的烫伤
+
+KEY: MANOSABA_LIN_CARD_TOMORROWBURN.description
+ZHS: 获得{Preserve:diff()}层保留最高火色能力。重复{Repeats:diff()}次：消耗1格火色。每次消耗后，若保留最高火色能力发挥作用，抽{Cards:diff()}张牌并获得{Energy:diff()}能量。升温。
+
+KEY: MANOSABA_LIN_CARD_THIRTEENTHLISTENER.title
+ZHS: 第十三格旁听
+
+KEY: MANOSABA_LIN_CARD_THIRTEENTHLISTENER.description
+ZHS: 每回合第一次你用封存火焰覆盖火色后，若目标满格，获得1层保留最高火色能力。每回合第一次保留最高火色能力改写消耗后，获得被保留颜色的封存火焰能力。
+
+KEY: MANOSABA_LIN_CARD_POCKETMATCHBOX.title
+ZHS: 口袋里的火柴盒
+
+KEY: MANOSABA_LIN_CARD_POCKETMATCHBOX.description
+ZHS: 将目标最后1格火色移到最前。若这格颜色与本回合上次消耗的火色不同，抽{Cards:diff()}张牌。{IfUpgraded:show:获得{Block:diff()}点[color=#6666cc]格挡[/color]。|}
+
+=== 仍为中文的条目总数: 1199 ===

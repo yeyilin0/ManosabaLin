@@ -52,7 +52,13 @@ internal static class SamePlaceTruthFusionPreviewPatch
     [HarmonyPostfix]
     private static void HolderUnfocusPostfix(NCardHolder __instance)
     {
-        if (NTargetManager.Instance == null) return;
+        // 非战斗环境（图鉴、主菜单等）下 NRun.Instance 为 null，而
+        // NTargetManager.Instance => NRun.Instance.GlobalUi.TargetManager，
+        // getter 会直接抛 NullReferenceException，因此不能拿它判空。
+        if (!IsTargetManagerAvailable())
+        {
+            return;
+        }
 
         if (__instance.CardModel is SamePlaceTruth truth && !ShouldKeepQueuedAfterUnfocus(__instance))
         {
@@ -110,13 +116,41 @@ internal static class SamePlaceTruthFusionPreviewPatch
             return;
         }
 
-        EnsurePreview(cardNode);
+        // 只有【旧识疑影】且右键已触发拼接（queue）时才显示霜覆初心预览；
+        // 其他任何卡都绝不能让预览节点出现，否则所有手牌都会被覆盖一层霜覆初心。
+        if (cardNode.Model is SamePlaceTruth truth && SamePlaceTruthFusionState.IsQueued(truth))
+        {
+            EnsurePreview(cardNode);
+        }
+        else
+        {
+            RemovePreview(cardNode);
+        }
     }
 
     private static bool IsCardPlayInProgress()
     {
-        return NPlayerHand.Instance?.InCardPlay == true
-            || (NTargetManager.Instance != null && NTargetManager.Instance.IsInSelection);
+        try
+        {
+            return NPlayerHand.Instance?.InCardPlay == true
+                || (NTargetManager.Instance != null && NTargetManager.Instance.IsInSelection);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static bool IsTargetManagerAvailable()
+    {
+        try
+        {
+            return NTargetManager.Instance != null;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     private static bool ShouldKeepQueuedAfterUnfocus(NCardHolder holder)

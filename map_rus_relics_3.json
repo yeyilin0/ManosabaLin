@@ -1,0 +1,23 @@
+{
+  "rus/relics.json": {
+    "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.title": "Лупа",
+    "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.description": "[color=#33ccff]【Пересмотр дела】[/color]: когда стопка добора пуста, обменяйте карты стопки сброса и стопки поглощения. За каждый успешный обмен получайте 2 уровня [color=#33ccff]【Магия Татибана Шерри】[/color] (когда карта удаляется, в этом бою эффект больше не получить; проклятия/статусы/древние карты при поглощении автоматически удаляются)",
+    "MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.flavor": "[color=#33ccff]【Символ】[/color] детектива Татибана Шерри, но никто не догадается, что она увидела через 【Лупу】",
+    "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.title": "Предмет, хранящий чувства",
+    "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.description": "[color=#33ccff]«Найди настоящего преступника и очисти подозрения Ханны!»[/color]\nВ [color=#33ccff]начале хода[/color] можете поглотить 1 карту из руки и взять 1 [color=#33ccff]карту[/color]. [rainbow][b]Эмоции[/b][/rainbow] теперь срабатывают при получении каждых 2 [rainbow][b]【Базовых эмоций】[/b][/rainbow]\nВ [color=#33ccff]конце хода[/color] счётчик [color=#33ccff]【Оведьмление】[/color] на 1 карте в руке +1",
+    "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.flavor": "[color=#33ccff]«Ненавижу, когда Ханна исчезает, ненавижу видеть Ханну в тревоге и боли... очень-очень ненавижу»[/color]",
+    "MANOSABA_LIN_RELIC_SHERRYLINS_BIRD.selectionScreenPrompt": "Выберите карту из руки для поглощения",
+    "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.title": "Фактор ведьмы",
+    "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.description": "Когда [b]【Оведьмление】[/b] достигает 100 уровней, получите карту [b]【Оведьмление】[/b][rainbow][b]【Эмоция】[/b][/rainbow] в руку\n[b][rainbow][b]【Базовые эмоции】[/b][/rainbow]:[purple]【Радость】[/purple], [color=#ffcc99]【Печаль】[/color], [color=#CC6666]【Гнев】[/color], [color=#ff99cc]【Страх】[/color], [color=#6666cc]【Отвращение】[/color], [color=#cc9966]【Удивление】[/color]\n[color=#33ccff]Рецепты слияния эмоций[/color]:\n[purple]【Радость】[/purple]+[color=#ffcc99]【Печаль】[/color] → [color=#999999]【Тоска】[/color]\n[color=#CC6666]【Гнев】[/color]+[color=#ff99cc]【Страх】[/color] → [color=#ff9966]【Тревожный гнев】[/color]\n[color=#ffcc99]【Печаль】[/color]+[color=#ff99cc]【Страх】[/color] → [color=#ff0000]【Ужас】[/color]\n[color=#6666cc]【Отвращение】[/color]+[color=#cc9966]【Удивление】[/color] → [gold]【Омерзение】[/gold]\n[purple]【Радость】[/purple]+[color=#cc9966]【Удивление】[/color] → [blue]【Восторг】[/blue][/b]\n6 [rainbow][b]【Базовых эмоций】[/b][/rainbow]+[b][color=33ccff]【Любопытство】[/color][/b]+[green][b]【Беспомощность】[/b][/green]→[b][color=#33ccff]«Дру[/color][green]жба»[/green][/b]",
+    "MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.flavor": "Сила ведьмы исходит из [color=#ff99cc]【эмоций】[/color] в сердце",
+    "MANOSABA_LIN_RELIC_XUELICHOUMA.title": "Фишка Татибана Шерри",
+    "MANOSABA_LIN_RELIC_XUELICHOUMA.description": "[color=#33ccff]В боевой комнате[/color] раз за ход можете правым кликом или тапом двумя пальцами использовать этот артефакт: потратьте 10 [gold]монет[/gold], чтобы добавить случайную карту в руку\n[color=#33ccff]Вне боевой комнаты[/color] — потратьте 100 [gold]монет[/gold] и получите одну случайную карточную награду",
+    "MANOSABA_LIN_RELIC_XUELICHOUMA.flavor": "Если повезёт, можно получить [color=#33ccff]неожиданную[/color] карту",
+    "MANOSABA_LIN_RELIC_HIROCHOUMA.title": "Фишка Никайдо Хиро",
+    "MANOSABA_LIN_RELIC_HIROCHOUMA.description": "[color=#CC6666]В боевой комнате[/color] раз за ход можете правым кликом или тапом двумя пальцами использовать этот артефакт: потратьте 10 [gold]монет[/gold], чтобы добавить случайную карту в руку\n[color=#CC6666]Вне боевой комнаты[/color] — потратьте 100 [gold]монет[/gold] и получите одну случайную карточную награду",
+    "MANOSABA_LIN_RELIC_HIROCHOUMA.flavor": "Если повезёт, можно получить [color=#CC6666]неожиданную[/color] карту",
+    "MANOSABA_LIN_RELIC_EMACHOUMA.title": "Фишка Сакураба Эммы",
+    "MANOSABA_LIN_RELIC_EMACHOUMA.description": "[color=#ff99cc]В боевой комнате[/color] раз за ход можете правым кликом или тапом двумя пальцами использовать этот артефакт: потратьте 10 [gold]монет[/gold], чтобы добавить случайную карту в руку\n[color=#ff99cc]Вне боевой комнаты[/color] — потратьте 100 [gold]монет[/gold] и получите одну случайную карточную награду",
+    "MANOSABA_LIN_RELIC_EMACHOUMA.flavor": "Если повезёт, можно получить [color=#ff99cc]неожиданную[/color] карту"
+  }
+}

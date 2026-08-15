@@ -270,7 +270,7 @@
     "MANOSABA_LIN_POWER_ANANLIN_CELL_POWER.description":  "[color=#6666cc]每回合[/color]打出的第一张[b]技能牌[/b]改为置于抽牌堆顶，且费用-1直到打出。\n[color=#6666cc]回合结束[/color]时，获得{Amount}层[color=#6666cc]【缄默】[/color]并保留至多1张手牌。\n若打出[b]攻击牌[/b]，离开[color=#6666cc]【牢房】[/color]。",
     "MANOSABA_LIN_POWER_ANANLIN_CELL_POWER.selectionScreenPrompt":  "选择要保留的牌",
     "MANOSABA_LIN_POWER_ANANLIN_PEACE_OF_MIND_POWER.title":  "安心",
-    "MANOSABA_LIN_POWER_ANANLIN_PEACE_OF_MIND_POWER.description":  "最多3层。\n受到任意未被格挡伤害时，失去所有[color=#99ccff]【安心】[/color]。\n打出不同牌触发效果:[b]攻击牌[/b]额外造成等同层数的伤害；[b]技能牌[/b]获得等同层数的格挡；[b]能力牌[/b]获得等同层数的[color=#6666cc]【缄默】[/color]。\n若连续2个你的[color=#6666cc]回合结束[/color]时[color=#99ccff]【安心】[/color]均为3层，失去它并获得[color=#6666cc]【孤立无援】[/color]",
+    "MANOSABA_LIN_POWER_ANANLIN_PEACE_OF_MIND_POWER.description":  "\n回合开始时，每有1层[color=#99ccff]【安心】[/color]随机触发1次：获得1点{energyPrefix:energyIcons(1)}或抽1张[color=#6666cc]卡牌[/color]。\n受到任意未被格挡伤害时，失去所有[color=#99ccff]【安心】[/color]。\n若一次性失去2层及以上[color=#6666cc]【安心】[/color]，选择一张手牌获得[color=#ff6666]【重放1】[/color]。\n若连续2个你的[color=#6666cc]回合结束[/color]时[color=#99ccff]【安心】[/color]均为3层，失去它并获得[color=#6666cc]【孤立无援】[/color]",
     "MANOSABA_LIN_POWER_ANANLIN_ISOLATED_POWER.title":  "孤立无援",
     "MANOSABA_LIN_POWER_ANANLIN_ISOLATED_POWER.description":  "无法获得[color=#99ccff]【安心】[/color]，\n你的[color=#6666cc]回合开始[/color]时少抽1张[color=#6666cc]卡牌[/color]，手牌上限降低一半并失去1点{energyPrefix:energyIcons(1)}\n[color=#6666cc]回合结束[/color]时移除",
     "MANOSABA_LIN_POWER_ANANLIN_AVERTED_GAZE_POWER.title":  "不再回避",
@@ -341,5 +341,6 @@
     "MANOSABA_LIN_POWER_ANANLIN_LEIA_INDUCTION_MAGIC_POWER.smartDescription":  "意图已被诱导；回合结束时移除。",
     "MANOSABA_LIN_POWER_TRUTH_POWER.title":  "真相",
     "MANOSABA_LIN_POWER_TRUTH_POWER.description":  "当你给予卡牌[color=#CC6666]【轮回】[/color]时，自动追加[color=#ffcc66]【真相】[/color]。\n[color=#ffcc66]【真相】[/color]的被自动打出时获得1点能量无效。\n每自动打出3张带[color=#ffcc66]【真相】[/color]组件的卡，获得1点能量并抽2张[color=#CC6666]卡牌[/color]。",
-    "MANOSABA_LIN_POWER_TRUTH_POWER.smartDescription":  "每自动打出3张带[color=#ffcc66]【真相】[/color]组件的卡，获得1点能量并抽2张[color=#CC6666]卡牌[/color]。"
+    "MANOSABA_LIN_POWER_TRUTH_POWER.smartDescription":  "每自动打出3张带[color=#ffcc66]【真相】[/color]组件的卡，获得1点能量并抽2张[color=#CC6666]卡牌[/color]。",
+  "MANOSABA_LIN_POWER_ANANLIN_PEACE_OF_MIND_POWER.selectionScreenPrompt": "选择一张手牌获得【重放1】"
 }

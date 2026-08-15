@@ -33,9 +33,11 @@ internal static class SamePlaceTruthSelectionLockPatch
 
     [HarmonyPatch(typeof(NChooseACardSelectionScreen), "SelectHolder")]
     [HarmonyPrefix]
-    private static bool SelectHolderPrefix(NCardHolder holder)
+    private static bool SelectHolderPrefix(NCardHolder cardHolder)
     {
-        return !SamePlaceTruth.IsSelectionLocked(holder.CardModel);
+        // 注意：Harmony 按参数名匹配原方法参数，v0.111.0 中
+        // SelectHolder 的参数名为 cardHolder（此前为 holder）。
+        return !SamePlaceTruth.IsSelectionLocked(cardHolder.CardModel);
     }
 }
 

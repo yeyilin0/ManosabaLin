@@ -1,6 +1,6 @@
 {
   "MANOSABA_LIN_ORB_EMOTION_ANGER_ORB.title": "분노",
-  "MANOSABA_LIN_ORB_EMOTION_ANGER_ORB.description": "[color=#CC6666]【二阶堂希罗】[/color]\n造成双倍[color=#CC6666]伤害[/color]，每造成20[color=#CC6666]伤害[/color]对随机友方造成1点[color=#CC6666]伤害[/color]",
+  "MANOSABA_LIN_ORB_EMOTION_ANGER_ORB.description": "[color=#CC6666]【니카이도 히로】[/color]\n두 배의 [color=#CC6666]피해[/color]를 입히고, [color=#CC6666]피해[/color] 20마다 무작위 아군에게 [color=#CC6666]피해[/color] 1을 입힌다",
   "MANOSABA_LIN_ORB_EMOTION_DISGUST_ORB.title": "혐오",
   "MANOSABA_LIN_ORB_EMOTION_DISGUST_ORB.description": "[color=#6666cc] [Natsume Yasuyasu] [/color] \n [color=#6666cc] 이 (가) [/color] 적의 [b] 공격 [/b] 에 공격당하면 적의 [color=#6666cc] 영향 받은 능력 [/color] 에 동일한 양의 피해를 입힙니다. [color=#6666cc] 즉시 [/color] 을 (를) 제거하기 위해 피를 흘릴 때",
   "MANOSABA_LIN_ORB_EMOTION_SADNESS_ORB.title": "슬프다.",
@@ -8,7 +8,7 @@
   "MANOSABA_LIN_ORB_EMOTION_FEAR_ORB.title": "공포",
   "MANOSABA_LIN_ORB_EMOTION_FEAR_ORB.description": "[color=#ff99cc] [엠마 사쿠라] [/color] \n 현재 [color=#ff99cc] [b] 블록 [/b] [/color] 의 절반과 무작위 [color=#ff99cc] 동맹 [/color] 이 [b] 블록 [/b] 으로 [color=#ff99cc] [b] 공격 [/b] [/color] 카드 \n [color=#ff99cc] 턴 [/color] 종료를 할 수 없습니다.",
   "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.title": "행복",
-  "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.description": "[purple]【宝生玛格】[/purple]\n本[purple]回合[/purple]你每打出1张[purple][b]攻击[/b][/purple]卡获得1层[purple]临时减[b]力量[/b][/purple]，每打出1张[purple][b]攻击[/b][/purple]1张[purple]技能[/purple]1张[purple]能力[/purple]获得2点能量",
+  "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.description": "[purple]【호죠 마그】[/purple]\n이 [purple]턴[/purple] [purple][b]공격[/b][/purple] 카드를 1장 낼 때마다 [purple]임시 [b]힘[/b] 감소[/purple] 1스택 획득, [purple][b]공격[/b][/purple] 1장·[purple]스킬[/purple] 1장·[purple]파워[/purple] 1장을 낼 때마다 에너지 2 획득",
   "MANOSABA_LIN_ORB_EMOTION_SURPRISE_ORB.title": "놀람",
   "MANOSABA_LIN_ORB_EMOTION_SURPRISE_ORB.description": "[color=#cc9966] [Zobomilia] [/color] \n [color=#cc9966] 턴 [/color] 현재 핸드 카운트 종료, 다음 [color=#cc9966] 턴 [/color] 무승부 [color=#cc9966] 등가 [/color] 카드",
   "MANOSABA_LIN_ORB_EMOTION_MELANCHOLY_ORB.title": "갑자기",
@@ -26,5 +26,5 @@
   "MANOSABA_LIN_ORB_EMOTION_HELPLESSNESS_ORB.title": "무기력",
   "MANOSABA_LIN_ORB_EMOTION_HELPLESSNESS_ORB.description": "[green] [Hannah] [/green] \n 다음 턴이 시작될 때, 모든 음의 교묘함을 소모하여 동일한 양의 [green] 가시 [/green] 로 전환하고 무작위 적의 힘을 [green] [/green] 감소시킵니다",
   "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.title": "우정",
-  "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.description": "[color=#33ccff][b]「自[/b][/color][green][b]由」[/b][/green]\n[color=#33ccff]每打出牌[/color]抽2张，牌第一次打出费用+1，第二次打出恢复原费用（交替）\n[green]每两张牌[/green]回复1能量\n[color=#ff99cc]每三张牌[/color]获得1层[b]临时力量[/b]\n[color=#ffcc99]每4张牌[/color]消耗手牌中1张[color=#33ccff]诅咒[/color]/[green]状态[/green]"
+  "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.description": "[color=#33ccff][b]「자[/b][/color][green][b]유」[/b][/green]\n[color=#33ccff]카드를 낼 때마다[/color] 2장 드로우. 처음 낸 카드는 비용 +1, 두 번째는 원래 비용으로 돌아감（교대）\n[green]2장마다[/green] 에너지 1 회복\n[color=#ff99cc]3장마다[/color] [b]임시 힘[/b] 1층 획득\n[color=#ffcc99]4장마다[/color] 손패의 [color=#33ccff]저주[/color]/[green]상태[/green] 카드 1장 소멸"
 }

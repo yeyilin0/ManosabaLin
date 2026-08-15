@@ -1,3 +1,4 @@
+using ManosabaLin.Characters.Ananlin.Capabilities;
 using ManosabaLin.Characters.Ananlin.Cards;
 using ManosabaLin.Characters.Ananlin.Powers;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -9,6 +10,7 @@ using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Ananlin.Relics;
 
@@ -30,6 +32,9 @@ public class AnansSketchbook : ManosabaRelicTemplate
     [SavedProperty] public int LastRecordRewardActIndex { get; set; } = -1;
     [SavedProperty] public bool PeaceLostThisTurn { get; set; }
     [SavedProperty] public int PendingNonAttackRepeatChargesThisTurn { get; set; }
+
+    /// <summary>上一张带安心组件的卡打出后，等待匹配的类型（本回合内有效）。</summary>
+    private CardType? _pendingReassuranceMatchType;
 
     internal int AttacksPlayedThisTurn { get; private set; }
     internal int SkillsPlayedThisTurn { get; private set; }
@@ -76,13 +81,32 @@ public class AnansSketchbook : ManosabaRelicTemplate
         AttacksPlayedThisTurn = 0;
         SkillsPlayedThisTurn = 0;
         PeaceLostThisTurn = false;
+        _pendingReassuranceMatchType = null;
         await OfferFirstCombatRecordReward(choiceContext);
         await AddSilence(choiceContext, 1, null);
+        AssignReassuranceMark();
     }
 
     public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         if (cardPlay.Card.Owner != Owner) return;
+
+        // 安心组件：若上一张打出的是带组件的卡，检查本张类型是否匹配
+        if (_pendingReassuranceMatchType is { } pendingType)
+        {
+            _pendingReassuranceMatchType = null;
+            if (cardPlay.Card.Type == pendingType)
+            {
+                await cardPlay.Card.GainPeaceOfMind(choiceContext);
+            }
+        }
+
+        // 若本次打出的卡带安心组件：记录待匹配类型，并重新给予一张手牌安心组件
+        if (cardPlay.Card.TryGetCapability<AnanlinReassuranceMarkCapability>(out _))
+        {
+            _pendingReassuranceMatchType = cardPlay.Card.Type;
+            AssignReassuranceMark();
+        }
 
         RecordFinishedCard(cardPlay.Card);
 
@@ -108,9 +132,31 @@ public class AnansSketchbook : ManosabaRelicTemplate
         IEnumerable<Creature> participants)
     {
         if (participants.Contains(Owner.Creature))
+        {
             PendingNonAttackRepeatChargesThisTurn = 0;
+            _pendingReassuranceMatchType = null;
+        }
 
         return Task.CompletedTask;
+    }
+
+    /// <summary>
+    /// 随机给予一张手牌【安心组件】：打出后，若下一张打出的牌与其类型相同，获得 1 层【安心】。
+    /// 若手牌已有一张带组件的卡，则不重复给予。
+    /// </summary>
+    private void AssignReassuranceMark()
+    {
+        var hand = PileType.Hand.GetPile(Owner).Cards;
+        if (hand.Count == 0) return;
+        if (hand.Any(card => card.TryGetCapability<AnanlinReassuranceMarkCapability>(out _))) return;
+
+        var candidates = hand
+            .Where(AnanlinCardHelpers.IsPlayableCombatCard)
+            .ToArray();
+        if (candidates.Length == 0) return;
+
+        var target = Owner.RunState.Rng.CombatCardSelection.NextItem(candidates);
+        target.GetOrCreateCapability<AnanlinReassuranceMarkCapability>();
     }
 
     public override async Task AfterPowerAmountChanged(

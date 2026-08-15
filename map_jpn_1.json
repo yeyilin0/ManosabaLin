@@ -1,0 +1,34 @@
+{
+  "jpn/card_keywords.json": {
+    "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[color=#CC6666][ DEATH RETRACEMENT ][/color]の贈り物、[color=#CC6666][ DEATH RETRACEMENT ][/color]の呪い\n[color=#CC6666]【転生】[/color]を持つカードをプレイすると、ドローパイルにある同じ名前の[color=#CC6666]【転生】[/color]カードも自動的にプレイされる（最大2枚）",
+    "MANOSABA_LIN_KEYWORD_AGREE.description": "1から5の倍数でプレイすると効果が発動する\n×1：味方全体が3点のシールドを得る\n×2：自身が3点のシールドを得る\n×3：味方全体が一時的な敏捷を1層得る\n×4：味方全体が一時的な力を2層得る\n×5：ランダムな手札1枚を無料で1回プレイでき、味方全体が1点のエネルギーを得る",
+    "MANOSABA_LIN_KEYWORD_DOUBT.description": "1から5の倍数でプレイすると効果が発動する\n×1：自身が1点のシールドを得る\n×2：自身がカードを1枚引く\n×3：自身が1点のエネルギーを得る\n×4：捨て札の山からカードを1枚回収する\n×5：手札1枚にリプレイ1を追加し、手札1枚が[color=#339966]【[/color][color=#cc9966]審[/color][color=#6699cc]判[/color][color=#339966]】[/color]エンチャントを得る",
+    "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "1から5の倍数でプレイすると効果が発動する\n×1：ランダムに1点のダメージを与える\n×2：自身が力を1点得る\n×3：敵全体が脆弱を1層得る\n×4：ランダムにその回数分の1点ダメージを与える\n×5：このカードをもう1回プレイする"
+  },
+  "jpn/characters.json": {
+    "MANOSABA_LIN_CHARACTER_HIRO.aromaPrinciple": "見張りではなく、別の何か......",
+    "MANOSABA_LIN_CHARACTER_HIRO.banter.alive.endTurnPing": "こんな私こそ、正されるべきなんだ......",
+    "MANOSABA_LIN_CHARACTER_HIRO.banter.dead.endTurnPing": "叶うなら、もう一度みんなと会いたい......",
+    "MANOSABA_LIN_CHARACTER_HIRO.description": "価値観は[red]【正しさ】[/red]を絶対の基準とし、悪のない理想世界を偏執的に追い求める。極端な判決の責任を負う覚悟があり、信頼する者に特別な感情を持つ",
+    "MANOSABA_LIN_CHARACTER_HIRO.eventDeathPrevention": "これは正しくない......",
+    "MANOSABA_LIN_CHARACTER_EMALIN.description": "彼女は外面は明るいが、それは[color=#ff99cc]【孤独】[/color]になるのが怖いからだ。頭の回転が速く、物事を冷静に観察して判断できる。しかし嫌われるのが怖く、時には[color=#ff99cc]【わざと】[/color]失敗を選ぶこともある",
+    "MANOSABA_LIN_CHARACTER_SHERRYLIN.description": "彼女はいつでも[color=#33ccff]笑顔[/color]を絶やさず、[color=#33ccff]活力[/color]に満ちた少女で、驚くべき好奇心を持つ。気になることがあれば他人の目も[color=#33ccff]顧みず[/color]駆け出し、その後は離れようとしない",
+    "MANOSABA_LIN_CHARACTER_YALISALIN.description": "未完成"
+  },
+  "jpn/enchantments.json": {
+    "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.description": "このカードをプレイすると、[b]最大HP[/b]を1獲得する。",
+    "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.extraCardText": "このカードをプレイすると、最大HPを1獲得する。",
+    "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.description": "このカードをプレイすると、もう一度自動的にプレイする",
+    "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.extraCardText": "このカードをプレイすると、もう一度自動的にプレイする"
+  },
+  "jpn/monsters.json": {
+    "MANOSABA_LIN_MONSTER_GUARD_ONE_MONSTER.moves.POISON_MOVE.title": "毒蝕",
+    "MANOSABA_LIN_MONSTER_GUARD_THREE_MONSTER.moves.PHASE2_ATTACK.title": "暴走攻撃",
+    "MANOSABA_LIN_MONSTER_GUARD_THREE_MONSTER.moves.ADD_CARDS.title": "偏執",
+    "MANOSABA_LIN_MONSTER_MALICES_MONSTER.moves.CORRUPT_ALL_MOVE.title": "全体腐蝕",
+    "MANOSABA_LIN_MONSTER_GUARD_TWO_BOSS_MONSTER.name": "[ナノハの姉]"
+  },
+  "jpn/static_hover_tips.json": {
+    "MANOSABA_LIN_CARDPILE_CASE_FILE_PILE.title": "他人の感情"
+  }
+}

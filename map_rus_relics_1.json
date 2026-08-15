@@ -1,0 +1,31 @@
+{
+  "rus/relics.json": {
+    "MANOSABA_LIN_RELIC_PEN.title": "Ручка Хиро",
+    "MANOSABA_LIN_RELIC_PEN.description": "В начале каждого боя получайте 3 уровня [color=#CC6666]【Правосудие】[/color]",
+    "MANOSABA_LIN_RELIC_PEN.flavor": "Ручка, которой [color=#CC6666]Хиро[/color] часто пользовался в средней школе. Она должна была давно быть подарена Юки",
+    "MANOSABA_LIN_RELIC_WITCH_FACTOR.title": "Фактор ведьмы",
+    "MANOSABA_LIN_RELIC_WITCH_FACTOR.description": "Когда вы разыгрываете карту атаки, получайте 20 уровней [b]【Оведьмление】[/b]; когда вы разыгрываете навык или силу, теряйте 10 уровней [b]【Оведьмление】[/b] (иногда карты могут разыгрываться автоматически)",
+    "MANOSABA_LIN_RELIC_WITCH_FACTOR.flavor": "Когда фактор ведьмы слишком активен, человек теряет рассудок и превращается в чудовище. Таких считают опасными особями, которых необходимо уничтожить",
+    "MANOSABA_LIN_RELIC_WITHHIRO.title": "То, чем владела Великая Ведьма",
+    "MANOSABA_LIN_RELIC_WITHHIRO.description": "[color=#CC6666]«Юки...... ты ошибаешься»[/color]\nВ начале каждого боя получайте 6 уровней [color=#CC6666]【Правосудие】[/color]\nВ начале хода можете выбрать 1 карту из руки и вернуть её в стопку добора\nКогда вы впервые за бой получаете [b]【Подозрение】[/b], оно уменьшается на 2 уровня",
+    "MANOSABA_LIN_RELIC_WITHHIRO.selectionScreenPrompt": "Выберите карту",
+    "MANOSABA_LIN_RELIC_WITHHIRO.flavor": "[color=#CC6666]«Но...... я всё равно хочу найти[/color][color=#CCCCCC]тебя[/color][color=#CC6666]»[/color]\n[color=#CC6666]«Я сейчас пойду к тебе — чтобы судить наши[/color][b]【Преступления】[/b][color=#CC6666]»[/color]",
+    "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.title": "Записи ведьм",
+    "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.description": "При получении: случайным образом создайте 26 карт из резерва карт ведьм и добавьте в колоду любое их количество",
+    "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.flavor": "Обширные материалы о торговле припасами с внешним миром и об информации о заключённых девушках. Здесь также есть личные дела и фотографии всех, включая Эмму. На расшифровку, кажется, потребуется много времени",
+    "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.selectionScreenPrompt": "Выберите карты для добавления в колоду",
+    "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.title": "Разобранные детали",
+    "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.description": "Каждый ход получайте {energyPrefix:energyIcons(1)}. В первый ход автоматически разыгрывайте все карты атаки по случайным врагам",
+    "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.flavor": "Детали арбалета, лежавшие в бочке в коридоре. Разобраны настолько мелко, что их трудно починить",
+    "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.title": "Магическая снайперская винтовка",
+    "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.description": "При входе в каждый узел получайте 1 патрон (макс. 6). Правый клик или тап двумя пальцами тратит 1 патрон и добавляет в руку карту [b]【Пуля】[/b]",
+    "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.flavor": "Максимальная ёмкость — 6 патронов. Оружие, созданное магией девушки, некогда находившейся в тюрьме. При смене даты автоматически заряжает 1 патрон",
+    "MANOSABA_LIN_RELIC_BLOODIEDCLOTHING.title": "Окровавленная одежда",
+    "MANOSABA_LIN_RELIC_BLOODIEDCLOTHING.description": "Потеряйте 26 [b]максимального запаса здоровья[/b]. Все навыки в колоде получают чары [b]【Смекалка】[/b]",
+    "MANOSABA_LIN_RELIC_BLOODIEDCLOTHING.flavor": "Прошлые [color=#CC6666]воспоминания[/color], прошлая [color=#ff99cc]одежда[/color], прошлые [color=#cccccc]друзья[/color]",
+    "MANOSABA_LIN_RELIC_FRUITPLATE.title": "Фруктовая тарелка из воспоминаний",
+    "MANOSABA_LIN_RELIC_FRUITPLATE.description": "При получении: выберите 1 карту в колоде и наложите чары [color=#ff99cc][b]【Яблоко Эммы】[/b][/color]",
+    "MANOSABA_LIN_RELIC_FRUITPLATE.flavor": "Это был давний полдень — тарелка фруктов, которую принесла Эмма",
+    "MANOSABA_LIN_RELIC_FRUITPLATE.selectionScreenPrompt": "Выберите 1 карту для чар [color=#ff99cc][b]【Яблоко Эммы】[/b][/color]"
+  }
+}

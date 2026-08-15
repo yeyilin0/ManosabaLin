@@ -19,9 +19,9 @@ using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
-[RegisterCard(typeof(HiroCardPool))]
+[RegisterCard(typeof(LinCardPool))]
 public sealed class SamePlaceTruth()
-    : ManosabaCardTemplate(0, CardType.Skill, CardRarity.Ancient, TargetType.Self), IEasyRightClickableCard
+    : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Ancient, TargetType.Self), IEasyRightClickableCard
 {
     private const string EffectHoverLocEntry = "MANOSABA_LIN_CARD_SAME_PLACE_TRUTH_EFFECT";
     private const string AutoPlayUnlockProgressKey = "AutoPlayUnlockProgress";
@@ -96,9 +96,15 @@ public sealed class SamePlaceTruth()
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
+        // 旧识疑影本身的效果：选择1张卡加入手牌（含移除消耗 / 轮回复制 + 真相）
+        await PlayPendingTruthEffect(choiceContext, cardPlay, componentContext);
+
+        // 右键强化：执行旧识疑影效果后，再额外执行【霜覆初心】的真相移除效果
         if (SamePlaceTruthFusionState.Consume(this))
         {
-            await PlayPendingTruthEffect(choiceContext, cardPlay, componentContext);
+            if (Owner is not { } player) return;
+            await SamePlacePendingTruth.PlayPendingTruthRemovalEffect(choiceContext, player, this);
+            return;
         }
 
         LockInDiscard();
@@ -106,6 +112,12 @@ public sealed class SamePlaceTruth()
 
     protected override CardLocation GetResultLocationForCardPlayC()
     {
+        // 右键强化（融合）：本体会随【霜覆初心】效果一并移出战斗，不落回弃牌堆
+        if (SamePlaceTruthFusionState.IsQueued(this))
+        {
+            return new CardLocation(Owner, PileType.None, CardPilePosition.Bottom);
+        }
+
         return new CardLocation(Owner, PileType.Discard, CardPilePosition.Bottom);
     }
 
@@ -173,7 +185,7 @@ public sealed class SamePlaceTruth()
                 PileType.Exhaust
             }
             .SelectMany(pile => pile.GetPile(player).Cards)
-            .Where(card => !ReferenceEquals(card, this))
+            .Where(card => !ReferenceEquals(card, this) && !IsSelectionLocked(card))
             .ToArray();
 
         if (candidates.Length == 0) return;

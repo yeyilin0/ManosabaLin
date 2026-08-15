@@ -1,7 +1,7 @@
 {
   "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.title": "エマのリンゴ",
-  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.extraCardText": "このカードをプレイすると、最大HPを1獲得。",
-  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.description": "このカードをプレイすると、 [b] 最大HP [/b] を1獲得。",
+  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.extraCardText": "このカードをプレイすると、最大HPを1獲得する。",
+  "MANOSABA_LIN_ENCHANTMENT_EMAAPPLE.description": "このカードをプレイすると、[b]最大HP[/b]を1獲得する。",
   "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.title": "反論",
   "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.extraCardText": "{Amount} 枚の[color=#339966][カウンター][/color]カードをプレイしました",
   "MANOSABA_LIN_ENCHANTMENT_REBUTTAL.description": "このターンに[b][color=#339966][カウンター][/color][/b]で魔法をかけたカードの枚数を記録します。\n ターン毎にリセット",
@@ -12,8 +12,8 @@
   "MANOSABA_LIN_ENCHANTMENT_DOUBT.extraCardText": "{Amount} 枚の[color=#cc9966][ QUESTION ][/color]カードをプレイしました",
   "MANOSABA_LIN_ENCHANTMENT_DOUBT.description": "[b][color=#cc9966][質問][/color][/b]がこのターンに魔法をかけたカードの枚数を記録します。\n ターン毎にリセット",
   "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.title": "魔術",
-  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.extraCardText": "このカードを自動的にもう一度プレイする",
-  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.description": "このカードを自動的にもう一度プレイする",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.extraCardText": "このカードをプレイすると、もう一度自動的にプレイする",
+  "MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.description": "このカードをプレイすると、もう一度自動的にプレイする",
   "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.title": "魔法の遺産",
   "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.extraCardText": "当たると少しダメージを受ける",
   "MANOSABA_LIN_ENCHANTMENT_MLYPOWER.description": "当たると少しダメージを受ける"

@@ -1,0 +1,18 @@
+{
+  "jpn/orbs.json": {
+    "MANOSABA_LIN_ORB_EMOTION_SADNESS_ORB.description": "[color=#ffcc99]【氷上メルル】[/color]\nこの[color=#ffcc99]ターン[/color]、カードを1枚プレイするごとに1点の[color=#ffcc99]シールド[/color]を得る。自分を含むランダムな味方の[color=#ffcc99]HP[/color]を1回復する",
+    "MANOSABA_LIN_ORB_EMOTION_FEAR_ORB.description": "[color=#ff99cc]【桜羽エマ】[/color]\n[color=#ff99cc][b]攻撃[/b][/color]カードをプレイできない\n[color=#ff99cc]ターン[/color]終了時、現在の[color=#ff99cc][b]ブロック[/b][/color]の半分を得て、ランダムな[color=#ff99cc]味方[/color]1体に同量の[b]ブロック[/b]を与える",
+    "MANOSABA_LIN_ORB_EMOTION_SURPRISE_ORB.description": "[color=#cc9966]【佐伯ミリア】[/color]\n[color=#cc9966]ターン[/color]終了時に現在の手札枚数を記録し、次の[color=#cc9966]ターン[/color]開始時に同数のカードを引く",
+    "MANOSABA_LIN_ORB_EMOTION_IRRITATED_FEAR_ORB.description": "[color=#ff9966]【沢渡ココ】[/color]\n[color=#ff9966][b]攻撃[/b][/color]カードをプレイできない\n[color=#ff9966]ターン[/color]終了時、HPを3失い、その後[color=#ff9966]自分と味方[/color]は残りと同量のシールドを得る",
+    "MANOSABA_LIN_ORB_EMOTION_DESOLATE_ORB.description": "[color=#ff0000]【紫藤アリサ】[/color]\n[color=#ff0000][b]攻撃[/b][/color]カードと[color=#ff0000]パワー[/color]カードをプレイできない\n[color=#ff0000]ターン[/color]終了時、シールド量の[color=#ff0000]半分[/color]に等しいHPを回復し、次のターン開始時に同量のブロックを得る",
+    "MANOSABA_LIN_ORB_EMOTION_ELATION_ORB.description": "[blue]【城崎ノア】[/blue]\n[blue]エネルギー上限[/blue]に等しいエネルギーを得て、同量の次[blue]ターン[/blue]のエネルギー減少を得る。[blue]4[/blue]枚引くごとに[blue]1層の[/blue]次ターンのエネルギー減少を失う。次ターンのエネルギー減少がないとき、[blue]効果を繰り返し得る[/blue]",
+    "MANOSABA_LIN_ORB_EMOTION_CURIOSITY_ORB.description": "[color=33ccff]【橘雪莉】[/color]\n翻案が発動すると、[color=33ccff]捨て札の山[/color]から[b]消耗[/b]された枚数に等しい[color=33ccff]【橘雪莉の魔法】[/color]を得る。[color=33ccff]【橘雪莉の魔法】[/color]を4分の1枚引き、[color=33ccff]消耗の山[/color]の4分の1のエネルギーを得る",
+    "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.description": "[color=#33ccff][b]「自[/b][/color][green][b]由」[/b][/green]\n[color=#33ccff]カードをプレイするごと[/color]に2枚引き、最初にプレイしたカードはコスト+1、2回目は元のコストに戻る（交互）\n[green]2枚ごと[/green]にエネルギーを1回復\n[color=#ff99cc]3枚ごと[/color]に[b]一時的な力[/b]を1層獲得\n[color=#ffcc99]4枚ごと[/color]に手札の[color=#33ccff]呪い[/color]/[green]状態[/green]カード1枚を消耗する"
+  },
+  "jpn/settings_ui.json": {
+    "MANOSABALIN_UPDATE_POPUP.body": "[color=#cccccc]現在の事件：[/color] [color=#ff99cc]{0}[/color]\n[color=#cccccc]最新の事件：[/color] [color=#CC6666]{1}[/color]\n一緒に[color=#ff99cc][b]「共[/b][/color][color=#CC6666][b]犯」[/b][/color]になりましょう！",
+    "MANOSABALIN_SETTINGS.mainMenuBackground.section.description": "ゲームのメインメニューをランダムなManosabaLinの静的背景に置き換えます。",
+    "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.label": "差し替えを有効にする",
+    "MANOSABALIN_SETTINGS.mainMenuBackground.enabled.description": "有効にすると、メインメニューを開くたびに3つの静的背景のうち1つがランダムに選ばれます。"
+  }
+}

@@ -1,12 +1,12 @@
 {
   "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title": "転生",
-  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[color=#CC6666][ DEATH RETRACEMENT ][/color]の贈り物、[color=#CC6666][ DEATH RETRACEMENT ][/color]の呪い\n[color=#CC6666][ REINCARNATION ][/color]でカードをプレイすると、ドロースタックに[color=#CC6666][ REINCARNATION ][/color]が入った同じ名前のカードが自動的にプレイされます（カード2枚まで）。",
+  "MANOSABA_LIN_KEYWORD_TRANSMIGRATION.description": "[color=#CC6666][ DEATH RETRACEMENT ][/color]の贈り物、[color=#CC6666][ DEATH RETRACEMENT ][/color]の呪い\n[color=#CC6666]【転生】[/color]を持つカードをプレイすると、ドローパイルにある同じ名前の[color=#CC6666]【転生】[/color]カードも自動的にプレイされる（最大2枚）",
   "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title": "転生転生",
   "MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.description": "[color=#CC6666][転生][/color]でカードをプレイするとき、どこからでも[color=#CC6666][転生][/color]でカードをプレイします。一度に最大3枚のカードをプレイできます",
   "MANOSABA_LIN_KEYWORD_AGREE.title": "そう思う",
-  "MANOSABA_LIN_KEYWORD_AGREE.description": "1から5の倍数で発動 \n × 1 ：味方全員がシールドを3つ得る \n × 2 ：味方全員がシールドを3つ得る \n × 3 ：味方全員が一時的なスウィフトを1つ得る \n × 4 ：味方全員が一時的なパワーを2つ得る \n × 5 ：ランダムなハンドカードを1枚無料でプレイでき、味方全員が1ポイントのエネルギーを得る",
+  "MANOSABA_LIN_KEYWORD_AGREE.description": "1から5の倍数でプレイすると効果が発動する\n×1：味方全体が3点のシールドを得る\n×2：自身が3点のシールドを得る\n×3：味方全体が一時的な敏捷を1層得る\n×4：味方全体が一時的な力を2層得る\n×5：ランダムな手札1枚を無料で1回プレイでき、味方全体が1点のエネルギーを得る",
   "MANOSABA_LIN_KEYWORD_DOUBT.title": "質問",
-  "MANOSABA_LIN_KEYWORD_DOUBT.description": "1から5の倍数で発動 \n × 1 ：自分のためにシールドを1つ得る \n × 2 ：自分のためにカードを1枚引く \n × 3 ：自分のためにエネルギーを1ポイント得る \n × 4 ：捨てられたカードのデッキ1枚をリサイクルする \n × 5 ： 1手リプレイ1を追加し、手1枚を獲得[color=#339966][[/color][color=#cc9966]レビュー[/color][color=#6699cc]ジャッジ[/color][color=#339966]][/color]エンチャント",
+  "MANOSABA_LIN_KEYWORD_DOUBT.description": "1から5の倍数でプレイすると効果が発動する\n×1：自身が1点のシールドを得る\n×2：自身がカードを1枚引く\n×3：自身が1点のエネルギーを得る\n×4：捨て札の山からカードを1枚回収する\n×5：手札1枚にリプレイ1を追加し、手札1枚が[color=#339966]【[/color][color=#cc9966]審[/color][color=#6699cc]判[/color][color=#339966]】[/color]エンチャントを得る",
   "MANOSABA_LIN_KEYWORD_REBUTTAL.title": "反論",
-  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "1から5の倍数で発動 \n x 1 ：ランダムに1ダメージを与える \n x 2 ：パワーを1得る \n x 3 ：敵全員が1スタックの脆弱性を得る \n x 4 ：ランダムに1ダメージを与える \n x 5 ：このカードに追加ダメージを1与える"
+  "MANOSABA_LIN_KEYWORD_REBUTTAL.description": "1から5の倍数でプレイすると効果が発動する\n×1：ランダムに1点のダメージを与える\n×2：自身が力を1点得る\n×3：敵全体が脆弱を1層得る\n×4：ランダムにその回数分の1点ダメージを与える\n×5：このカードをもう1回プレイする"
 }

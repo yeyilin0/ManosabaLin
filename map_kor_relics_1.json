@@ -1,0 +1,31 @@
+{
+  "kor/relics.json": {
+    "MANOSABA_LIN_RELIC_PEN.title": "히로의 만년필",
+    "MANOSABA_LIN_RELIC_PEN.description": "전투 시작 시 [color=#CC6666]【정의】[/color] 3스택 획득",
+    "MANOSABA_LIN_RELIC_PEN.flavor": "[color=#CC6666]히로[/color]가 중학교 때 자주 쓰던 만년필. 원래는 유키에게 선물했어야 했다",
+    "MANOSABA_LIN_RELIC_WITCH_FACTOR.title": "마녀 인자",
+    "MANOSABA_LIN_RELIC_WITCH_FACTOR.description": "공격 카드를 내면 [b]【마녀화】[/b] 20스택 획득, 스킬 또는 파워 카드를 내면 [b]【마녀화】[/b] 10스택 감소(때때로 카드가 자동으로 나갈 수 있음)",
+    "MANOSABA_LIN_RELIC_WITCH_FACTOR.flavor": "마녀 인자가 과도하게 활성화되면 사람은 이성을 잃고 괴물 같은 존재가 된다. 반드시 소멸시켜야 할 위험한 개체로 간주된다",
+    "MANOSABA_LIN_RELIC_WITHHIRO.title": "대마녀가 깃들었던 물건",
+    "MANOSABA_LIN_RELIC_WITHHIRO.description": "[color=#CC6666]「유키...... 너는 틀렸어」[/color]\n전투 시작 시 [color=#CC6666]【정의】[/color] 6스택 획득\n턴 시작 시 손패 1장을 골라 드로우 더미로 되돌릴 수 있음\n이번 전투에서 처음으로 [b]【혐의】[/b]를 얻으면 2스택 감소",
+    "MANOSABA_LIN_RELIC_WITHHIRO.selectionScreenPrompt": "카드 1장 선택",
+    "MANOSABA_LIN_RELIC_WITHHIRO.flavor": "[color=#CC6666]「하지만...... 그래도 나는[/color][color=#CCCCCC]너[/color][color=#CC6666]를 찾고 싶어」[/color]\n[color=#CC6666]「지금 너를 찾으러 간다——우리의[/color][b]【죄】[/b][color=#CC6666]를 심판하기 위해서」[/color]",
+    "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.title": "마녀 기록",
+    "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.description": "획득 시, 예비 마녀 카드에서 무작위로 26장 생성 후 원하는 만큼 덱에 추가",
+    "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.flavor": "섬 밖과 저택의 물자 거래, 수감된 소녀들의 정보가 적힌 방대한 자료. 에마를 비롯한 모두의 인적 사항과 얼굴 사진도 있다. 해독에는 많은 시간이 필요해 보인다",
+    "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.selectionScreenPrompt": "덱에 추가할 카드 선택",
+    "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.title": "분해된 부품",
+    "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.description": "매 턴 {energyPrefix:energyIcons(1)} 획득. 첫 턴에 무작위 적 대상에게 모든 공격 카드를 자동으로 사용",
+    "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.flavor": "복도 통에 들어 있던 쇠뇌 부품. 너무 잘게 분해되어 수리가 어렵다",
+    "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.title": "마법 저격총",
+    "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.description": "노드에 들어갈 때마다 탄약 1 획득(최대 6). 우클릭 또는 두 손가락 탭으로 탄약 1을 소모해 [b]【총알】[/b] 1장을 손패에 추가",
+    "MANOSABA_LIN_RELIC_MAGICSNIPERRIFLE.flavor": "최대 장탄 6발. 과거 감옥에 있던 소녀가 마법으로 만든 무기. 날짜가 바뀌면 자동으로 총알 1발이 장전된다",
+    "MANOSABA_LIN_RELIC_BLOODIEDCLOTHING.title": "피 묻은 옷",
+    "MANOSABA_LIN_RELIC_BLOODIEDCLOTHING.description": "[b]최대 체력[/b] 26 상실. 덱의 모든 스킬 카드에 [b]【영리함】[/b] 부여",
+    "MANOSABA_LIN_RELIC_BLOODIEDCLOTHING.flavor": "과거의 [color=#CC6666]기억[/color], 과거의 [color=#ff99cc]옷[/color], 과거의 [color=#cccccc]친구[/color]",
+    "MANOSABA_LIN_RELIC_FRUITPLATE.title": "기억 속 과일 접시",
+    "MANOSABA_LIN_RELIC_FRUITPLATE.description": "획득 시, 덱에서 카드 1장을 골라 [color=#ff99cc][b]【에마의 사과】[/b][/color]를 부여",
+    "MANOSABA_LIN_RELIC_FRUITPLATE.flavor": "아주 오래전 오후, 에마가 내어준 과일 접시",
+    "MANOSABA_LIN_RELIC_FRUITPLATE.selectionScreenPrompt": "카드 1장을 골라 [color=#ff99cc][b]【에마의 사과】[/b][/color] 부여"
+  }
+}

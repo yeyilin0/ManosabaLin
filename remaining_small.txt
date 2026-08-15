@@ -1,0 +1,1886 @@
+﻿===== jpn/afflictions.json : 2 条 =====
+KEY: BLACK_HAND_AFFLICTION.extraCardText
+CUR: 変身魔法
+ZHS: 变身的魔法
+
+KEY: BLACK_HAND_AFFLICTION.title
+CUR: 変身魔法
+ZHS: 变身的魔法
+
+===== jpn/card_keywords.json : 4 条 =====
+KEY: MANOSABA_LIN_KEYWORD_DOUBT.title
+CUR: 質問
+ZHS: 疑问
+
+KEY: MANOSABA_LIN_KEYWORD_REBUTTAL.title
+CUR: 反論
+ZHS: 反驳
+
+KEY: MANOSABA_LIN_KEYWORD_TRANSMIGRATION.title
+CUR: 転生
+ZHS: 轮回
+
+KEY: MANOSABA_LIN_KEYWORD_TRANSMIGRATION3.title
+CUR: 転生転生
+ZHS: 轮轮轮回回回
+
+===== jpn/characters.json : 21 条 =====
+KEY: MANOSABA_LIN_CHARACTER_ANANLIN.possessiveAdjective
+CUR: 彼女
+ZHS: 她的
+
+KEY: MANOSABA_LIN_CHARACTER_ANANLIN.pronounObject
+CUR: 一人称
+ZHS: 她
+
+KEY: MANOSABA_LIN_CHARACTER_ANANLIN.pronounPossessive
+CUR: 彼女
+ZHS: 她的
+
+KEY: MANOSABA_LIN_CHARACTER_ANANLIN.pronounSubject
+CUR: 一人称
+ZHS: 她
+
+KEY: MANOSABA_LIN_CHARACTER_EMALIN.possessiveAdjective
+CUR: 彼女
+ZHS: 她的
+
+KEY: MANOSABA_LIN_CHARACTER_EMALIN.pronounObject
+CUR: 一人称
+ZHS: 她
+
+KEY: MANOSABA_LIN_CHARACTER_EMALIN.pronounPossessive
+CUR: 彼女
+ZHS: 她的
+
+KEY: MANOSABA_LIN_CHARACTER_EMALIN.pronounSubject
+CUR: 一人称
+ZHS: 她
+
+KEY: MANOSABA_LIN_CHARACTER_HIRO.possessiveAdjective
+CUR: 彼女
+ZHS: 她的
+
+KEY: MANOSABA_LIN_CHARACTER_HIRO.pronounObject
+CUR: 一人称
+ZHS: 她
+
+KEY: MANOSABA_LIN_CHARACTER_HIRO.pronounPossessive
+CUR: 彼女
+ZHS: 她的
+
+KEY: MANOSABA_LIN_CHARACTER_HIRO.pronounSubject
+CUR: 一人称
+ZHS: 她
+
+KEY: MANOSABA_LIN_CHARACTER_SHERRYLIN.possessiveAdjective
+CUR: 彼女
+ZHS: 她的
+
+KEY: MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounObject
+CUR: 一人称
+ZHS: 她
+
+KEY: MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounPossessive
+CUR: 彼女
+ZHS: 她的
+
+KEY: MANOSABA_LIN_CHARACTER_SHERRYLIN.pronounSubject
+CUR: 一人称
+ZHS: 她
+
+KEY: MANOSABA_LIN_CHARACTER_YALISALIN.description
+CUR: 未完成
+ZHS: 未完成
+
+KEY: MANOSABA_LIN_CHARACTER_YALISALIN.possessiveAdjective
+CUR: 彼女
+ZHS: 她的
+
+KEY: MANOSABA_LIN_CHARACTER_YALISALIN.pronounObject
+CUR: 一人称
+ZHS: 她
+
+KEY: MANOSABA_LIN_CHARACTER_YALISALIN.pronounPossessive
+CUR: 彼女
+ZHS: 她的
+
+KEY: MANOSABA_LIN_CHARACTER_YALISALIN.pronounSubject
+CUR: 一人称
+ZHS: 她
+
+===== jpn/enchantments.json : 3 条 =====
+KEY: MANOSABA_LIN_ENCHANTMENT_DOUBT.title
+CUR: 質問
+ZHS: 疑问
+
+KEY: MANOSABA_LIN_ENCHANTMENT_REBUTTAL.title
+CUR: 反論
+ZHS: 反驳
+
+KEY: MANOSABA_LIN_ENCHANTMENT_WITCHIFICATION.title
+CUR: 魔術
+ZHS: 魔女化
+
+===== jpn/encounters.json : 1 条 =====
+KEY: MANOSABA_LIN_ENCOUNTER_GUARD_ONE_ENCOUNTER.title
+CUR: 残骸
+ZHS: 残骸
+
+===== jpn/events.json : 4 条 =====
+KEY: COLORFUL_PHILOSOPHERS.pages.INITIAL.options.ANANLINLIN.title
+CUR: 紫藍色
+ZHS: 紫蓝色
+
+KEY: COLORFUL_PHILOSOPHERS.pages.INITIAL.options.EMALIN.title
+CUR: 桃色
+ZHS: 粉红色
+
+KEY: COLORFUL_PHILOSOPHERS.pages.INITIAL.options.HIRO.title
+CUR: 暗紅色
+ZHS: 暗红色
+
+KEY: COLORFUL_PHILOSOPHERS.pages.INITIAL.options.SHERRYLIN.title
+CUR: 青藍色
+ZHS: 青蓝色
+
+===== jpn/monsters.json : 10 条 =====
+KEY: MANOSABA_LIN_MONSTER_EMA_AND_HIRO_MONSTER.moves.DUAL_ASSAULT_MOVE.title
+CUR: 2人強襲
+ZHS: 双人突击
+
+KEY: MANOSABA_LIN_MONSTER_GUARD_ONE_MONSTER.moves.POISON_MOVE.title
+CUR: 毒蝕
+ZHS: 毒蚀
+
+KEY: MANOSABA_LIN_MONSTER_GUARD_ONE_MONSTER.name
+CUR: 残骸
+ZHS: 残骸
+
+KEY: MANOSABA_LIN_MONSTER_GUARD_THREE_MONSTER.moves.ADD_CARDS.title
+CUR: 偏執
+ZHS: 偏执
+
+KEY: MANOSABA_LIN_MONSTER_GUARD_THREE_MONSTER.moves.EROSION_ATTACK.title
+CUR: 侵食攻撃
+ZHS: 侵蚀攻击
+
+KEY: MANOSABA_LIN_MONSTER_GUARD_THREE_MONSTER.moves.PHASE2_ATTACK.title
+CUR: 暴走攻撃
+ZHS: 失控袭击
+
+KEY: MANOSABA_LIN_MONSTER_MALICES_MONSTER.moves.CLAW_MOVE.title
+CUR: 爪
+ZHS: 利爪
+
+KEY: MANOSABA_LIN_MONSTER_MALICES_MONSTER.moves.CORRUPT_ALL_MOVE.title
+CUR: 全体腐蝕
+ZHS: 全体腐蚀
+
+KEY: MANOSABA_LIN_MONSTER_MALICES_MONSTER.moves.CORRUPT_MOVE.title
+CUR: 腐食
+ZHS: 腐蚀
+
+KEY: MANOSABA_LIN_MONSTER_MALICES_MONSTER.moves.DEVOUR_MOVE.title
+CUR: 貪食
+ZHS: 吞噬
+
+===== jpn/orbs.json : 7 条 =====
+KEY: MANOSABA_LIN_ORB_EMOTION_ANGER_ORB.title
+CUR: 憤激
+ZHS: 愤怒
+
+KEY: MANOSABA_LIN_ORB_EMOTION_CURIOSITY_ORB.title
+CUR: 好奇心
+ZHS: 好奇
+
+KEY: MANOSABA_LIN_ORB_EMOTION_DISGUST_ORB.title
+CUR: 嫌悪感
+ZHS: 厌恶
+
+KEY: MANOSABA_LIN_ORB_EMOTION_FEAR_ORB.title
+CUR: 恐怖
+ZHS: 恐惧
+
+KEY: MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.title
+CUR: 友情
+ZHS: 友谊
+
+KEY: MANOSABA_LIN_ORB_EMOTION_HELPLESSNESS_ORB.title
+CUR: 無力
+ZHS: 无助
+
+KEY: MANOSABA_LIN_ORB_EMOTION_MELANCHOLY_ORB.title
+CUR: 突然
+ZHS: 怅然
+
+===== jpn/powers.json : 339 条 =====
+KEY: MANOSABA_LIN_POWER_AAM_POWER.description
+CUR: 修改[color=#6666cc]目标意图[/color]并修改对象为任一友方
+ZHS: 修改[color=#6666cc]目标意图[/color]并修改对象为任一友方
+
+KEY: MANOSABA_LIN_POWER_AAM_POWER.title
+CUR: 夏目安安的魔法
+ZHS: 夏目安安的魔法
+
+KEY: MANOSABA_LIN_POWER_AMM_POWER.description
+CUR: 若目标血量百分比≤自身[b]魔女化[/b]四分之一，打出[color=#ff99cc]攻击牌[/color]造成[color=#ff99cc]不受格挡的伤害[/color]就直接斩杀目标并获得10层[b]【魔女化】[/b]
+ZHS: 若目标血量百分比≤自身[b]魔女化[/b]四分之一，打出[color=#ff99cc]攻击牌[/color]造成[color=#ff99cc]不受格挡的伤害[/color]就直接斩杀目标并获得10层[b]【魔女化】[/b]
+
+KEY: MANOSABA_LIN_POWER_AMM_POWER.title
+CUR: 樱羽艾玛的魔法
+ZHS: 樱羽艾玛的魔法
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_AAM_BACKLASH_REDUCTION_USED_POWER.description
+CUR: 本场战斗已经减少过[color=#6666cc]【洗脑反噬】[/color]
+ZHS: 本场战斗已经减少过[color=#6666cc]【洗脑反噬】[/color]
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_AAM_BACKLASH_REDUCTION_USED_POWER.title
+CUR: 减轻反噬
+ZHS: 减轻反噬
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_AVERTED_GAZE_POWER.description
+CUR: 每当你失去[color=#99ccff]【安心】[/color]，使下一张[b]攻击牌[/b]打出两次。
+[color=#6666cc]每回合[/color]限1次
+ZHS: 每当你失去[color=#99ccff]【安心】[/color]，使下一张[b]攻击牌[/b]打出两次。
+[color=#6666cc]每回合[/color]限1次
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_AVERTED_GAZE_POWER.title
+CUR: 不再回避
+ZHS: 不再回避
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_BACKSTAGE_RESENTMENT_POWER.description
+CUR: [color=#6666cc]回合开始[/color]时触发[color=#cc99ff]【试镜】[/color]，按当前[color=#99ccff]【安心】[/color]层数随机触发效果。
+1,生成已记录卡池临时0费消耗牌
+2,获得[color=#6666cc]【留白书页+】[/color]
+3,消耗{RequiredSilenceCost:diff()}层[color=#6666cc]【缄默】[/color]并触发[color=#6666cc]【洗脑】[/color]的改写，如果缄默不足或不能改写，则给[color=#6666cc]【空白书页】[/color]
+4,抽1张[color=#99ccff]卡牌[/color]并让随机手牌打出后获得1层[color=#99ccff]【安心】[/color]
+若来源牌已升级，额外触发1次第1次随机到的效果
+ZHS: [color=#6666cc]回合开始[/color]时触发[color=#cc99ff]【试镜】[/color]，按当前[color=#99ccff]【安心】[/color]层数随机触发效果。
+1,生成已记录卡池临时0费消耗牌
+2,获得[color=#6666cc]【留白书页+】[/color]
+3,消耗{RequiredSilenceCost:diff()}层[color=#6666cc]【缄默】[/color]并触发[color=#6666cc]【洗脑】[/color]的改写，如果缄默不足或不能改写，则给[color=#6666cc]【空白书页】[/color]
+4,抽1张[color=#99ccff]卡牌[/color]并让随机手牌打出后获得1层[color=#99ccff]【安心】[/color]
+若来源牌已升级，额外触发1次第1次随机到的效果
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_BACKSTAGE_RESENTMENT_POWER.smartDescription
+CUR: 每回合开始时按[color=#99ccff]【安心】[/color]层数随机触发[color=#cc99ff]【试镜】[/color]效果。
+当前触发[color=#6666cc]【洗脑】[/color]改写需消耗{RequiredSilenceCost:diff()}层[color=#6666cc]【缄默】[/color]。
+ZHS: 每回合开始时按[color=#99ccff]【安心】[/color]层数随机触发[color=#cc99ff]【试镜】[/color]效果。
+当前触发[color=#6666cc]【洗脑】[/color]改写需消耗{RequiredSilenceCost:diff()}层[color=#6666cc]【缄默】[/color]。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_BACKSTAGE_RESENTMENT_POWER.title
+CUR: 幕后的不甘
+ZHS: 幕后的不甘
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_BORROWING_PERIOD_POWER.description
+CUR: 每回合前{Amount}张已记录卡池的牌打出后改为消耗，并抽1张[color=#6666cc]卡牌[/color]
+ZHS: 每回合前{Amount}张已记录卡池的牌打出后改为消耗，并抽1张[color=#6666cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_BORROWING_PERIOD_POWER.title
+CUR: 借阅期限
+ZHS: 借阅期限
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_BRAINWASH_BACKLASH_POWER.description
+CUR: 第一次获得时：你当前[color=#99ccff]【安心】[/color]减少1。
+第二次获得时：将1张[color=#6666cc]【空白书页】[/color]加入抽牌堆。
+第三次获得时：失去所有[color=#99ccff]【安心】[/color]，获得{WithPower:diff()}层[b]【魔女化】[/b]，并使[color=#6666cc]【洗脑】[/color]在本能力为3层或以上时需要消耗[color=#6666cc]【缄默】[/color]。
+当前[color=#6666cc]【洗脑】[/color]需要消耗{NextBrainwashSilenceCost:diff()}层[color=#6666cc]【缄默】[/color]
+此后，每当你累计获得{SilenceTaxThreshold:diff()}层[color=#6666cc]【缄默】[/color]，失去等同于本能力层数的[color=#6666cc]【缄默】[/color]。
+ZHS: 第一次获得时：你当前[color=#99ccff]【安心】[/color]减少1。
+第二次获得时：将1张[color=#6666cc]【空白书页】[/color]加入抽牌堆。
+第三次获得时：失去所有[color=#99ccff]【安心】[/color]，获得{WithPower:diff()}层[b]【魔女化】[/b]，并使[color=#6666cc]【洗脑】[/color]在本能力为3层或以上时需要消耗[color=#6666cc]【缄默】[/color]。
+当前[color=#6666cc]【洗脑】[/color]需要消耗{NextBrainwashSilenceCost:diff()}层[color=#6666cc]【缄默】[/color]
+此后，每当你累计获得{SilenceTaxThreshold:diff()}层[color=#6666cc]【缄默】[/color]，失去等同于本能力层数的[color=#6666cc]【缄默】[/color]。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_BRAINWASH_BACKLASH_POWER.smartDescription
+CUR: 下一次洗脑消耗{NextBrainwashSilenceCost:diff()}层缄默
+ZHS: 下一次洗脑消耗{NextBrainwashSilenceCost:diff()}层缄默
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_BRAINWASH_BACKLASH_POWER.title
+CUR: 洗脑反噬
+ZHS: 洗脑反噬
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_BRAINWASH_POWER.description
+CUR: 右键或双指点击直接改写敌方全体当前意图，不消耗[color=#6666cc]【缄默】[/color]。
+强制洗脑后，获得1层[color=#6666cc]【洗脑反噬】[/color]
+ZHS: 右键或双指点击直接改写敌方全体当前意图，不消耗[color=#6666cc]【缄默】[/color]。
+强制洗脑后，获得1层[color=#6666cc]【洗脑反噬】[/color]
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_BRAINWASH_POWER.smartDescription
+CUR: 右键或双指点击直接改写敌方全体当前意图，不消耗[color=#6666cc]【缄默】[/color]。
+强制洗脑后，获得1层[color=#6666cc]【洗脑反噬】[/color]
+ZHS: 右键或双指点击直接改写敌方全体当前意图，不消耗[color=#6666cc]【缄默】[/color]。
+强制洗脑后，获得1层[color=#6666cc]【洗脑反噬】[/color]
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_BRAINWASH_POWER.title
+CUR: 洗脑
+ZHS: 洗脑
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_BUTTERFLY_TALISMAN_POWER.description
+CUR: 被标记敌人下次对你造成伤害时，至多记录{Amount}点[color=#6666cc]伤害[/color]为[blue]【红蝶】[/blue]治疗。若你已有[blue]【红蝶】[/blue]，则追加到其中；否则在[color=#6666cc]下回合开始[/color]时治疗。
+ZHS: 被标记敌人下次对你造成伤害时，至多记录{Amount}点[color=#6666cc]伤害[/color]为[blue]【红蝶】[/blue]治疗。若你已有[blue]【红蝶】[/blue]，则追加到其中；否则在[color=#6666cc]下回合开始[/color]时治疗。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_BUTTERFLY_TALISMAN_POWER.title
+CUR: 蝶之护符
+ZHS: 蝶之护符
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_CELL_POWER.description
+CUR: [color=#6666cc]每回合[/color]打出的第一张[b]技能牌[/b]改为置于抽牌堆顶，且费用-1直到打出。
+[color=#6666cc]回合结束[/color]时，获得{Amount}层[color=#6666cc]【缄默】[/color]并保留至多1张手牌。
+若打出[b]攻击牌[/b]，离开[color=#6666cc]【牢房】[/color]。
+ZHS: [color=#6666cc]每回合[/color]打出的第一张[b]技能牌[/b]改为置于抽牌堆顶，且费用-1直到打出。
+[color=#6666cc]回合结束[/color]时，获得{Amount}层[color=#6666cc]【缄默】[/color]并保留至多1张手牌。
+若打出[b]攻击牌[/b]，离开[color=#6666cc]【牢房】[/color]。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_CELL_POWER.selectionScreenPrompt
+CUR: 选择要保留的牌
+ZHS: 选择要保留的牌
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_CELL_POWER.title
+CUR: 牢房
+ZHS: 牢房
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_CLUTCH_SLEEVE_POWER.description
+CUR: 被记录的牌在[color=#6666cc]下回合[/color]打出时，获得1层[color=#99ccff]【安心】[/color]。
+ZHS: 被记录的牌在[color=#6666cc]下回合[/color]打出时，获得1层[color=#99ccff]【安心】[/color]。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_CLUTCH_SLEEVE_POWER.title
+CUR: 抓紧衣角
+ZHS: 抓紧衣角
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_CONCEIVING_NOVELIST_POWER.description
+CUR: [color=#6666cc]每回合[/color]每名队友第一次打出[b]稀有[/b]牌时，将1张费用为1的临时复制加入你的手牌。它获得[b]消耗[/b]。
+若此能力来自升级牌，复制牌费用改为0。
+你打出构思复制牌后，获得1层[b]力量[/b]和1层[b]敏捷[/b]。
+ZHS: [color=#6666cc]每回合[/color]每名队友第一次打出[b]稀有[/b]牌时，将1张费用为1的临时复制加入你的手牌。它获得[b]消耗[/b]。
+若此能力来自升级牌，复制牌费用改为0。
+你打出构思复制牌后，获得1层[b]力量[/b]和1层[b]敏捷[/b]。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_CONCEIVING_NOVELIST_POWER.title
+CUR: 构思小说家
+ZHS: 构思小说家
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_COUNT_TO_THREE_IS_FINE_POWER.description
+CUR: [color=#6666cc]本回合[/color]每打出3张计数牌，抽1张[color=#6666cc]卡牌[/color]。
+获得此能力时每有一层[color=#6666cc]安心[/color]，每打出2张计数牌，使下一张计数牌费用降低对应数值
+ZHS: [color=#6666cc]本回合[/color]每打出3张计数牌，抽1张[color=#6666cc]卡牌[/color]。
+获得此能力时每有一层[color=#6666cc]安心[/color]，每打出2张计数牌，使下一张计数牌费用降低对应数值
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_COUNT_TO_THREE_IS_FINE_POWER.title
+CUR: 数到三就好
+ZHS: 数到三就好
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_COUNTDOWN_OF_THREE_POWER.description
+CUR: [color=#6666cc]本回合[/color]第3张计数牌打出后回到手牌，费用变为0，并在下次打出时消耗。
+ZHS: [color=#6666cc]本回合[/color]第3张计数牌打出后回到手牌，费用变为0，并在下次打出时消耗。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_COUNTDOWN_OF_THREE_POWER.title
+CUR: 倒数三声
+ZHS: 倒数三声
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DELAYED_CARD_RETURN_POWER.description
+CUR: [color=#6666cc]下回合开始[/color]时，将{Amount}张暂存牌返回手牌。
+ZHS: [color=#6666cc]下回合开始[/color]时，将{Amount}张暂存牌返回手牌。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DELAYED_CARD_RETURN_POWER.title
+CUR: 延迟归还
+ZHS: 延迟归还
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DELETED_STRESS_POWER.description
+CUR: 接下来{Amount}次攻击造成的伤害降低50%。
+ZHS: 接下来{Amount}次攻击造成的伤害降低50%。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DELETED_STRESS_POWER.title
+CUR: 删去重音
+ZHS: 删去重音
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DOOR_GAP_BLOCK_BONUS_POWER.description
+CUR: 被记录的牌打出时，获得额外格挡。
+ZHS: 被记录的牌打出时，获得额外格挡。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DOOR_GAP_BLOCK_BONUS_POWER.title
+CUR: 门缝格挡
+ZHS: 门缝格挡
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DOOR_GAP_CONFIRMATION_POWER.description
+CUR: 若[color=#6666cc]本回合[/color]没有再打出[b]攻击[/b]，[color=#6666cc]回合结束[/color]时自动打出记录牌的复制。
+ZHS: 若[color=#6666cc]本回合[/color]没有再打出[b]攻击[/b]，[color=#6666cc]回合结束[/color]时自动打出记录牌的复制。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DOOR_GAP_CONFIRMATION_POWER.title
+CUR: 确认门缝
+ZHS: 确认门缝
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DOOR_NOT_LOCKED_POWER.description
+CUR: 下一次你将因受到未格挡伤害失去[color=#99ccff]【安心】[/color]时，改为只失去1层。
+若[color=#6666cc]回合结束[/color]前没有触发，获得1层[color=#6666cc]【缄默】[/color]。
+ZHS: 下一次你将因受到未格挡伤害失去[color=#99ccff]【安心】[/color]时，改为只失去1层。
+若[color=#6666cc]回合结束[/color]前没有触发，获得1层[color=#6666cc]【缄默】[/color]。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DOOR_NOT_LOCKED_POWER.title
+CUR: 门还没锁
+ZHS: 门还没锁
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DRAFT_REWRITE_POWER.description
+CUR: [color=#6666cc]回合开始[/color]时，你可以选择1张手牌；随后随机指定1个角色卡池，你可以选择该卡池中的1张牌，将手牌变形为它。若该卡池已被[color=#6666cc]安安的素描本[/color]记录，或通过此效果成功记录，将变形后的牌复制1张加入牌组。若素描本已记录3个卡池，你可以先选择牌组中1张属于已记录卡池的牌移除，并忘记该卡池。
+ZHS: [color=#6666cc]回合开始[/color]时，你可以选择1张手牌；随后随机指定1个角色卡池，你可以选择该卡池中的1张牌，将手牌变形为它。若该卡池已被[color=#6666cc]安安的素描本[/color]记录，或通过此效果成功记录，将变形后的牌复制1张加入牌组。若素描本已记录3个卡池，你可以先选择牌组中1张属于已记录卡池的牌移除，并忘记该卡池。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DRAFT_REWRITE_POWER.selectionScreenPrompt
+CUR: 选择要重写的手牌
+ZHS: 选择要重写的手牌
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DRAFT_REWRITE_POWER.selectionScreenPrompt2
+CUR: 选择指定卡池中的重写牌
+ZHS: 选择指定卡池中的重写牌
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DRAFT_REWRITE_POWER.selectionScreenPrompt3
+CUR: 选择要移除并忘记其卡池的牌
+ZHS: 选择要移除并忘记其卡池的牌
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DRAFT_REWRITE_POWER.smartDescription
+CUR: [color=#6666cc]回合开始[/color]时，随机指定1个角色卡池，可以重写1张手牌；该卡池已记录或成功记录时，将其复制进牌组。
+ZHS: [color=#6666cc]回合开始[/color]时，随机指定1个角色卡池，可以重写1张手牌；该卡池已记录或成功记录时，将其复制进牌组。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_DRAFT_REWRITE_POWER.title
+CUR: 草稿重写
+ZHS: 草稿重写
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_FAKE_DEATH_ACT_POWER.description
+CUR: [color=#6666cc]本回合[/color]下一次受到致命伤害时，改为保留1点生命并获得书页。
+若没有触发，[color=#6666cc]回合结束[/color]时获得1张[color=#6666cc]【留白书页】[/color]。
+ZHS: [color=#6666cc]本回合[/color]下一次受到致命伤害时，改为保留1点生命并获得书页。
+若没有触发，[color=#6666cc]回合结束[/color]时获得1张[color=#6666cc]【留白书页】[/color]。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_FAKE_DEATH_ACT_POWER.smartDescription
+CUR: 下一次致命伤害改为保留1点生命；未触发则回合结束获得[color=#6666cc]【留白书页】[/color]。
+ZHS: 下一次致命伤害改为保留1点生命；未触发则回合结束获得[color=#6666cc]【留白书页】[/color]。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_FAKE_DEATH_ACT_POWER.title
+CUR: “假死”
+ZHS: “假死”
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_GROUP_CHAT_SMELL_POWER.description
+CUR: 每当一名队友在其回合内第一次打出牌时，对随机敌人施加{Amount}层[color=#6666cc]【怪味】[/color]。
+每名队友每回合各触发1次。
+ZHS: 每当一名队友在其回合内第一次打出牌时，对随机敌人施加{Amount}层[color=#6666cc]【怪味】[/color]。
+每名队友每回合各触发1次。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_GROUP_CHAT_SMELL_POWER.title
+CUR: 群友一股味
+ZHS: 群友一股味
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_INDEX_PAGE_POWER.description
+CUR: [color=#6666cc]【空白书页】[/color]生成牌时，额外出现{Amount}个选项
+ZHS: [color=#6666cc]【空白书页】[/color]生成牌时，额外出现{Amount}个选项
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_INDEX_PAGE_POWER.title
+CUR: 索引页
+ZHS: 索引页
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_INTERROGATION_PAUSE_POWER.description
+CUR: 下一次打出[b]攻击牌[/b]后，获得{energyPrefix:energyIcons(1)}。
+ZHS: 下一次打出[b]攻击牌[/b]后，获得{energyPrefix:energyIcons(1)}。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_INTERROGATION_PAUSE_POWER.title
+CUR: 审讯停顿
+ZHS: 审讯停顿
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_ISOLATED_POWER.description
+CUR: 无法获得[color=#99ccff]【安心】[/color]，
+你的[color=#6666cc]回合开始[/color]时少抽1张[color=#6666cc]卡牌[/color]，手牌上限降低一半并失去1点{energyPrefix:energyIcons(1)}
+[color=#6666cc]回合结束[/color]时移除
+ZHS: 无法获得[color=#99ccff]【安心】[/color]，
+你的[color=#6666cc]回合开始[/color]时少抽1张[color=#6666cc]卡牌[/color]，手牌上限降低一半并失去1点{energyPrefix:energyIcons(1)}
+[color=#6666cc]回合结束[/color]时移除
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_ISOLATED_POWER.title
+CUR: 孤立无援
+ZHS: 孤立无援
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_JUDGMENT_EVE_POWER.description
+CUR: 本场战斗中，每当1名敌人的意图被改写，记录1次。
+[color=#6666cc]回合开始[/color]时，若已记录至少3次，消耗至多{Amount}次记录：抽等量[color=#6666cc]卡牌[/color]并获得等量{energyPrefix:energyIcons(1)}
+ZHS: 本场战斗中，每当1名敌人的意图被改写，记录1次。
+[color=#6666cc]回合开始[/color]时，若已记录至少3次，消耗至多{Amount}次记录：抽等量[color=#6666cc]卡牌[/color]并获得等量{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_JUDGMENT_EVE_POWER.title
+CUR: 宣判回声
+ZHS: 宣判回声
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_LEIA_INDUCTION_MAGIC_POWER.description
+CUR: 该敌人的意图已被强制诱导为另一个相同效果类型的意图
+ZHS: 该敌人的意图已被强制诱导为另一个相同效果类型的意图
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_LEIA_INDUCTION_MAGIC_POWER.smartDescription
+CUR: 意图已被诱导；回合结束时移除。
+ZHS: 意图已被诱导；回合结束时移除。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_LEIA_INDUCTION_MAGIC_POWER.title
+CUR: 莲见蕾雅的魔法
+ZHS: 莲见蕾雅的魔法
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_LIE_POWER.description
+CUR: 当你右键或双指点击[color=#6666cc]【缄默】[/color]使怪物立刻行动时，清除所有[color=#6666cc]【缄默】[/color]和[color=#9999ff]【谎言】[/color]，每层[color=#9999ff]【谎言】[/color]获得{VigorPerLie:diff()}层[b]活力[/b]，
+并获得1张从[color=#6666cc]【安安的素描本】[/color]记录卡池随机生成、当前可以打出的0费稳定多段[b]攻击[/b]牌。
+ZHS: 当你右键或双指点击[color=#6666cc]【缄默】[/color]使怪物立刻行动时，清除所有[color=#6666cc]【缄默】[/color]和[color=#9999ff]【谎言】[/color]，每层[color=#9999ff]【谎言】[/color]获得{VigorPerLie:diff()}层[b]活力[/b]，
+并获得1张从[color=#6666cc]【安安的素描本】[/color]记录卡池随机生成、当前可以打出的0费稳定多段[b]攻击[/b]牌。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_LIE_POWER.smartDescription
+CUR: 右键或双指点击[color=#6666cc]【缄默】[/color]后，清除所有[color=#6666cc]【缄默】[/color]并获得活力和0费多段[b]攻击[/b]牌。
+ZHS: 右键或双指点击[color=#6666cc]【缄默】[/color]后，清除所有[color=#6666cc]【缄默】[/color]并获得活力和0费多段[b]攻击[/b]牌。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_LIE_POWER.title
+CUR: 谎言
+ZHS: 谎言
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_MARGARET_VOICE_MAGIC_POWER.description
+CUR: 记录施加时所有敌人的当前意图。
+你受到已记录意图效果后，第二次受到相同记录意图的效果时免疫，并移除此魔法
+ZHS: 记录施加时所有敌人的当前意图。
+你受到已记录意图效果后，第二次受到相同记录意图的效果时免疫，并移除此魔法
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_MARGARET_VOICE_MAGIC_POWER.smartDescription
+CUR: 第二次受到相同记录意图的生命损失时免疫并移除。
+ZHS: 第二次受到相同记录意图的生命损失时免疫并移除。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_MARGARET_VOICE_MAGIC_POWER.title
+CUR: 宝生玛格的魔法
+ZHS: 宝生玛格的魔法
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_MOVIE_PROMISE_POWER.description
+CUR: [color=#6666cc]下回合开始[/color]时，将{Amount}张约定牌返回手牌并使其[color=#6666cc]本回合[/color]可免费打出一次；再从其卡池生成1张[color=#6666cc]本回合[/color]可免费打出一次、拥有[b]虚无[/b]和[b]消耗[/b]的牌。
+ZHS: [color=#6666cc]下回合开始[/color]时，将{Amount}张约定牌返回手牌并使其[color=#6666cc]本回合[/color]可免费打出一次；再从其卡池生成1张[color=#6666cc]本回合[/color]可免费打出一次、拥有[b]虚无[/b]和[b]消耗[/b]的牌。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_MOVIE_PROMISE_POWER.title
+CUR: 电影约定
+ZHS: 电影约定
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_NO_ANSWER_POWER.description
+CUR: [color=#6666cc]回合结束[/color]时，若[color=#6666cc]本回合[/color]没有打出过[b]攻击牌[/b]，获得{Amount}层[color=#6666cc]【缄默】[/color]
+ZHS: [color=#6666cc]回合结束[/color]时，若[color=#6666cc]本回合[/color]没有打出过[b]攻击牌[/b]，获得{Amount}层[color=#6666cc]【缄默】[/color]
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_NO_ANSWER_POWER.title
+CUR: 不作答
+ZHS: 不作答
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_NOAH_ASSIST_POWER.description
+CUR: 本回合可以免费右键或双指点击使用[color=#6666cc]【缄默】[/color]或[color=#6666cc]【洗脑】[/color]。[blue]回合结束[/blue]给予被这次免费改写的敌人{RewrittenNymPower:diff()}层[blue]【城崎诺亚的魔法】[/blue]；若没有改写敌人，给予所有敌人{NoRewriteNymPower:diff()}层。
+ZHS: 本回合可以免费右键或双指点击使用[color=#6666cc]【缄默】[/color]或[color=#6666cc]【洗脑】[/color]。[blue]回合结束[/blue]给予被这次免费改写的敌人{RewrittenNymPower:diff()}层[blue]【城崎诺亚的魔法】[/blue]；若没有改写敌人，给予所有敌人{NoRewriteNymPower:diff()}层。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_NOAH_ASSIST_POWER.title
+CUR: 诺亚的协力
+ZHS: 诺亚的协力
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_OPPRESSIVE_SILENCE_POWER.description
+CUR: [color=#6666cc]每回合[/color]，第1次消耗[color=#6666cc]【缄默】[/color]时，获得{energyPrefix:energyIcons(1)}，之后次数改为抽1张[color=#6666cc]卡牌[/color]。
+每4次循环
+ZHS: [color=#6666cc]每回合[/color]，第1次消耗[color=#6666cc]【缄默】[/color]时，获得{energyPrefix:energyIcons(1)}，之后次数改为抽1张[color=#6666cc]卡牌[/color]。
+每4次循环
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_OPPRESSIVE_SILENCE_POWER.title
+CUR: 无声脚注
+ZHS: 无声脚注
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_PAGE_CORNER_POWER.description
+CUR: 每累计消耗4点{energyPrefix:energyIcons(1)}，将1张[color=#6666cc]【留白书页】[/color]加入手牌。
+若来源牌已升级，改为[color=#6666cc]【留白书页+】[/color]。
+ZHS: 每累计消耗4点{energyPrefix:energyIcons(1)}，将1张[color=#6666cc]【留白书页】[/color]加入手牌。
+若来源牌已升级，改为[color=#6666cc]【留白书页+】[/color]。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_PAGE_CORNER_POWER.title
+CUR: 书页的一角
+ZHS: 书页的一角
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_PEACE_OF_MIND_POWER.description
+CUR: 最多3层。
+受到任意未被格挡伤害时，失去所有[color=#99ccff]【安心】[/color]。
+打出不同牌触发效果:[b]攻击牌[/b]额外造成等同层数的伤害；[b]技能牌[/b]获得等同层数的格挡；[b]能力牌[/b]获得等同层数的[color=#6666cc]【缄默】[/color]。
+若连续2个你的[color=#6666cc]回合结束[/color]时[color=#99ccff]【安心】[/color]均为3层，失去它并获得[color=#6666cc]【孤立无援】[/color]
+ZHS: 最多3层。
+受到任意未被格挡伤害时，失去所有[color=#99ccff]【安心】[/color]。
+打出不同牌触发效果:[b]攻击牌[/b]额外造成等同层数的伤害；[b]技能牌[/b]获得等同层数的格挡；[b]能力牌[/b]获得等同层数的[color=#6666cc]【缄默】[/color]。
+若连续2个你的[color=#6666cc]回合结束[/color]时[color=#99ccff]【安心】[/color]均为3层，失去它并获得[color=#6666cc]【孤立无援】[/color]
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_PEACE_OF_MIND_POWER.title
+CUR: 安心
+ZHS: 安心
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_PRISON_IS_HOME_POWER.description
+CUR: 每当你[color=#6666cc]上一回合[/color]没有打出[b]攻击牌[/b]，[color=#6666cc]本回合开始[/color]时进入[color=#6666cc]【牢房】[/color]。
+进入[color=#6666cc]【牢房】[/color]时获得{Amount}点能量。
+ZHS: 每当你[color=#6666cc]上一回合[/color]没有打出[b]攻击牌[/b]，[color=#6666cc]本回合开始[/color]时进入[color=#6666cc]【牢房】[/color]。
+进入[color=#6666cc]【牢房】[/color]时获得{Amount}点能量。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_PRISON_IS_HOME_POWER.title
+CUR: 牢房才是家
+ZHS: 牢房才是家
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_SEALED_PAGE_POWER.description
+CUR: 当右键或双指点击消耗13层[color=#6666cc]【缄默】[/color]改写意图后，获得{Amount}点格挡并将1张[color=#6666cc]【空白书页】[/color]加入手牌。
+若来源牌已升级，改为[color=#6666cc]【空白书页+】[/color]。
+ZHS: 当右键或双指点击消耗13层[color=#6666cc]【缄默】[/color]改写意图后，获得{Amount}点格挡并将1张[color=#6666cc]【空白书页】[/color]加入手牌。
+若来源牌已升级，改为[color=#6666cc]【空白书页+】[/color]。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_SEALED_PAGE_POWER.title
+CUR: 封口页
+ZHS: 封口页
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_SILENT_AMPLIFICATION_POWER.description
+CUR: 每当你累计替换{Rewrites:diff()}次怪物意图，升级本场战斗缄默替换意图池
+ZHS: 每当你累计替换{Rewrites:diff()}次怪物意图，升级本场战斗缄默替换意图池
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_SILENT_AMPLIFICATION_POWER.smartDescription
+CUR: 每累计替换{Rewrites:diff()}次怪物意图，升级本场战斗缄默替换意图池
+ZHS: 每累计替换{Rewrites:diff()}次怪物意图，升级本场战斗缄默替换意图池
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_SILENT_AMPLIFICATION_POWER.title
+CUR: 无声扩音
+ZHS: 无声扩音
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_SOFT_AGREEMENT_POWER.description
+CUR: 若记录牌[color=#6666cc]本回合[/color]没有被打出，[color=#6666cc]回合结束[/color]时获得{Amount}层[color=#99ccff]【安心】[/color]；之后打出该牌时回复生命。
+ZHS: 若记录牌[color=#6666cc]本回合[/color]没有被打出，[color=#6666cc]回合结束[/color]时获得{Amount}层[color=#99ccff]【安心】[/color]；之后打出该牌时回复生命。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_SOFT_AGREEMENT_POWER.title
+CUR: 小声答应
+ZHS: 小声答应
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_STRANGE_SMELL_POWER.description
+CUR: 受到攻击伤害时，移除1层，将该次未被格挡伤害的50%扩散给所有其他敌人。若没有其他敌人，改为获得1层[b]易伤[/b]。
+ZHS: 受到攻击伤害时，移除1层，将该次未被格挡伤害的50%扩散给所有其他敌人。若没有其他敌人，改为获得1层[b]易伤[/b]。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_STRANGE_SMELL_POWER.title
+CUR: 怪味
+ZHS: 怪味
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_SYNCED_BREATHING_POWER.description
+CUR: [color=#6666cc]本回合[/color]下一次连续打出指定张数的同类型牌时，获得1层[color=#99ccff]【安心】[/color]，并可从牌堆拿取不同类型的牌。
+ZHS: [color=#6666cc]本回合[/color]下一次连续打出指定张数的同类型牌时，获得1层[color=#99ccff]【安心】[/color]，并可从牌堆拿取不同类型的牌。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_SYNCED_BREATHING_POWER.title
+CUR: 呼吸对齐
+ZHS: 呼吸对齐
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_TRACING_POWER.description
+CUR: 下一张[color=#6666cc]【空白书页】[/color]生成牌时，复制其生成的牌
+ZHS: 下一张[color=#6666cc]【空白书页】[/color]生成牌时，复制其生成的牌
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_TRACING_POWER.title
+CUR: 临摹
+ZHS: 临摹
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_UNNOTICED_POWER.description
+CUR: [color=#6666cc]本回合[/color]下一次打出非[b]攻击[/b]牌后，若没有敌人意图攻击，获得1层[color=#99ccff]【安心】[/color]并抽牌
+ZHS: [color=#6666cc]本回合[/color]下一次打出非[b]攻击[/b]牌后，若没有敌人意图攻击，获得1层[color=#99ccff]【安心】[/color]并抽牌
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_UNNOTICED_POWER.title
+CUR: 没被发现
+ZHS: 没被发现
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_VIGOR_STAYS_POWER.description
+CUR: 本回合下{Amount}次[b]活力[/b]将要降低时，改为不降低。
+ZHS: 本回合下{Amount}次[b]活力[/b]将要降低时，改为不降低。
+
+KEY: MANOSABA_LIN_POWER_ANANLIN_VIGOR_STAYS_POWER.title
+CUR: 拆弹护持
+ZHS: 拆弹护持
+
+KEY: MANOSABA_LIN_POWER_BOND_EXCHANGEPOWER.description
+CUR: [color=#ff99cc]回合开始[/color]时，消耗2层[color=#CC6666]【疏远】[/color]选择手牌变[color=#CC6666]【疏远】[/color]卡，或消耗2层[color=#ff99cc]【亲近】[/color]生成[color=#ff99cc]【亲近】[/color]卡，均可免费打出1次
+ZHS: [color=#ff99cc]回合开始[/color]时，消耗2层[color=#CC6666]【疏远】[/color]选择手牌变[color=#CC6666]【疏远】[/color]卡，或消耗2层[color=#ff99cc]【亲近】[/color]生成[color=#ff99cc]【亲近】[/color]卡，均可免费打出1次
+
+KEY: MANOSABA_LIN_POWER_BOND_EXCHANGEPOWER.selectionScreenPrompt
+CUR: [color=#ff99cc][b]选择[/b][/color]
+ZHS: [color=#ff99cc][b]选择[/b][/color]
+
+KEY: MANOSABA_LIN_POWER_BOND_EXCHANGEPOWER.title
+CUR: 旁观者的迎合
+ZHS: 旁观者的迎合
+
+KEY: MANOSABA_LIN_POWER_BOND_POWER.description
+CUR: 记录[color=#ff99cc][b]【亲近】[/b][/color]与[color=#CC6666][b]【疏远】[/b][/color]的数值
+当你打出[b]「亲近」[/b]卡[color=#ff99cc]亲近[/color]加1
+当你打出[b]「疏远」[/b]卡[color=#CC6666]【疏远】[/color]加1
+ZHS: 记录[color=#ff99cc][b]【亲近】[/b][/color]与[color=#CC6666][b]【疏远】[/b][/color]的数值
+当你打出[b]「亲近」[/b]卡[color=#ff99cc]亲近[/color]加1
+当你打出[b]「疏远」[/b]卡[color=#CC6666]【疏远】[/color]加1
+
+KEY: MANOSABA_LIN_POWER_BOND_POWER.title
+CUR: 羁绊
+ZHS: 羁绊
+
+KEY: MANOSABA_LIN_POWER_CARD_EIGHTY_FIVE_POWER.description
+CUR: 你每打出1张[color=#CC6666]卡牌[/color]获得1[color=#CC6666]护盾[/color]，每打出2张[color=#CC6666]卡牌[/color]随机造成1点[color=#CC6666]伤害[/color]
+ZHS: 你每打出1张[color=#CC6666]卡牌[/color]获得1[color=#CC6666]护盾[/color]，每打出2张[color=#CC6666]卡牌[/color]随机造成1点[color=#CC6666]伤害[/color]
+
+KEY: MANOSABA_LIN_POWER_CARD_EIGHTY_FIVE_POWER.title
+CUR: 往复狂乱的攻守
+ZHS: 往复狂乱的攻守
+
+KEY: MANOSABA_LIN_POWER_CARD_FIFTEEN_POWER.description
+CUR: [color=#CC6666]回合开始[/color]时获得两层[color=#CC6666]【正义】[/color]
+ZHS: [color=#CC6666]回合开始[/color]时获得两层[color=#CC6666]【正义】[/color]
+
+KEY: MANOSABA_LIN_POWER_CARD_FIFTEEN_POWER.smartDescription
+CUR: [color=#CC6666]回合开始[/color]时获得两层[color=#CC6666]【正义】[/color]
+ZHS: [color=#CC6666]回合开始[/color]时获得两层[color=#CC6666]【正义】[/color]
+
+KEY: MANOSABA_LIN_POWER_CARD_FIFTEEN_POWER.title
+CUR: 希望的明天
+ZHS: 希望的明天
+
+KEY: MANOSABA_LIN_POWER_CARD_SIXTY_FIVE_POWER.description
+CUR: 每当你打出10张[color=#CC6666]【轮回】[/color]卡就获得1能量
+ZHS: 每当你打出10张[color=#CC6666]【轮回】[/color]卡就获得1能量
+
+KEY: MANOSABA_LIN_POWER_CARD_SIXTY_FIVE_POWER.title
+CUR: 十次回光
+ZHS: 十次回光
+
+KEY: MANOSABA_LIN_POWER_CARD_SIXTY_FOUR_POWER.description
+CUR: 你每打出一张[color=#CC6666]【轮回】[/color]卡就获得2层[color=#CC6666]【伪证】[/color]
+ZHS: 你每打出一张[color=#CC6666]【轮回】[/color]卡就获得2层[color=#CC6666]【伪证】[/color]
+
+KEY: MANOSABA_LIN_POWER_CARD_SIXTY_FOUR_POWER.smartDescription
+CUR: 你每打出一张[color=#CC6666]【轮回】[/color]卡就获得2层[color=#CC6666]【伪证】[/color]
+ZHS: 你每打出一张[color=#CC6666]【轮回】[/color]卡就获得2层[color=#CC6666]【伪证】[/color]
+
+KEY: MANOSABA_LIN_POWER_CARD_SIXTY_FOUR_POWER.title
+CUR: 叠罪
+ZHS: 叠罪
+
+KEY: MANOSABA_LIN_POWER_CARD_TWENTY_FIVE_POWER.description
+CUR: 丢弃所有手牌获得等量26
+ZHS: 丢弃所有手牌获得等量26
+
+KEY: MANOSABA_LIN_POWER_CARD_TWENTY_FIVE_POWER.smartDescription
+CUR: 丢弃所有手牌获得等量26
+ZHS: 丢弃所有手牌获得等量26
+
+KEY: MANOSABA_LIN_POWER_CARD_TWENTY_POWER.description
+CUR: 当[color=#CC6666]【伪证】[/color]转换为[color=#CC6666]【正义】[/color]时，抽1张[color=#CC6666]卡牌[/color]获得1能量
+ZHS: 当[color=#CC6666]【伪证】[/color]转换为[color=#CC6666]【正义】[/color]时，抽1张[color=#CC6666]卡牌[/color]获得1能量
+
+KEY: MANOSABA_LIN_POWER_CARD_TWENTY_POWER.smartDescription
+CUR: 当[color=#CC6666]【伪证】[/color]转换为[color=#CC6666]【正义】[/color]时，抽1张[color=#CC6666]卡牌[/color]获得1能量
+ZHS: 当[color=#CC6666]【伪证】[/color]转换为[color=#CC6666]【正义】[/color]时，抽1张[color=#CC6666]卡牌[/color]获得1能量
+
+KEY: MANOSABA_LIN_POWER_CARD_TWENTY_POWER.title
+CUR: 当伪证归于正义，便得新生
+ZHS: 当伪证归于正义，便得新生
+
+KEY: MANOSABA_LIN_POWER_CARD_TWO_POWER.description
+CUR: [color=#CC6666]回合结束[/color]时额外触发一次[color=#CC6666]【正义】[/color]的回血效果
+ZHS: [color=#CC6666]回合结束[/color]时额外触发一次[color=#CC6666]【正义】[/color]的回血效果
+
+KEY: MANOSABA_LIN_POWER_CARD_TWO_POWER.smartDescription
+CUR: [color=#CC6666]回合结束[/color]时额外触发一次[color=#CC6666]【正义】[/color]的回血效果
+ZHS: [color=#CC6666]回合结束[/color]时额外触发一次[color=#CC6666]【正义】[/color]的回血效果
+
+KEY: MANOSABA_LIN_POWER_CARD_TWO_POWER.title
+CUR: 执裁余温
+ZHS: 执裁余温
+
+KEY: MANOSABA_LIN_POWER_CHECK_MOVES_PHASE_POWER.description
+CUR: 如果玩家在本回合内没打出1张[b]攻击[/b]牌1张[b]技能[/b]牌1张[b]能力[/b]牌则给予伤害，自身获得魔女化
+ZHS: 如果玩家在本回合内没打出1张[b]攻击[/b]牌1张[b]技能[/b]牌1张[b]能力[/b]牌则给予伤害，自身获得魔女化
+
+KEY: MANOSABA_LIN_POWER_CHECK_MOVES_PHASE_POWER.title
+CUR: 幻觉
+ZHS: 幻觉
+
+KEY: MANOSABA_LIN_POWER_COSMIC_APATHY_DEBUFF_POWER.description
+CUR: 拥有者被攻击时，攻击者获得1层情绪，本能力减少1层
+ZHS: 拥有者被攻击时，攻击者获得1层情绪，本能力减少1层
+
+KEY: MANOSABA_LIN_POWER_COSMIC_APATHY_DEBUFF_POWER.title
+CUR: 受到冷漠
+ZHS: 受到冷漠
+
+KEY: MANOSABA_LIN_POWER_CRIMSONBUTTERFLY_POWER.description
+CUR: 记录[blue]本回合[/blue]受到的伤害。
+[blue]回合开始[/blue]时回复等于记录值的血量，然后减少一层
+ZHS: 记录[blue]本回合[/blue]受到的伤害。
+[blue]回合开始[/blue]时回复等于记录值的血量，然后减少一层
+
+KEY: MANOSABA_LIN_POWER_CRIMSONBUTTERFLY_POWER.title
+CUR: 蝴蝶
+ZHS: 蝴蝶
+
+KEY: MANOSABA_LIN_POWER_DEATH_REWIND_POWER.description
+CUR: 死亡时[color=#CC6666]复活[/color]，获得等于[b]魔女化[/b]层数的血量
+魔女化=200时，战斗后移除牌组中[color=#CC6666]死亡回溯[/color]
+魔女化=300时，此能力[color=#CC6666]失效[/color]
+ZHS: 死亡时[color=#CC6666]复活[/color]，获得等于[b]魔女化[/b]层数的血量
+魔女化=200时，战斗后移除牌组中[color=#CC6666]死亡回溯[/color]
+魔女化=300时，此能力[color=#CC6666]失效[/color]
+
+KEY: MANOSABA_LIN_POWER_DEATH_REWIND_POWER.smartDescription
+CUR: 死亡时[color=#CC6666]复活[/color]，获得等于[b]魔女化[/b]层数的血量
+魔女化=200时，战斗后移除牌组中[color=#CC6666]死亡回溯[/color]
+魔女化=300时，此能力[color=#CC6666]失效[/color]
+ZHS: 死亡时[color=#CC6666]复活[/color]，获得等于[b]魔女化[/b]层数的血量
+魔女化=200时，战斗后移除牌组中[color=#CC6666]死亡回溯[/color]
+魔女化=300时，此能力[color=#CC6666]失效[/color]
+
+KEY: MANOSABA_LIN_POWER_DEATH_REWIND_POWER.title
+CUR: 死亡回溯
+ZHS: 死亡回溯
+
+KEY: MANOSABA_LIN_POWER_DUAL_ASCENSION_POWER.description
+CUR: 每打出5张手牌，随机升级1张手牌。
+ZHS: 每打出5张手牌，随机升级1张手牌。
+
+KEY: MANOSABA_LIN_POWER_DUAL_ASCENSION_POWER.title
+CUR: 双相升华
+ZHS: 双相升华
+
+KEY: MANOSABA_LIN_POWER_DUAL_ASCENSION2_POWER.description
+CUR: 每打出足够数量的牌，随机升级1张手牌和1张抽牌堆牌。
+ZHS: 每打出足够数量的牌，随机升级1张手牌和1张抽牌堆牌。
+
+KEY: MANOSABA_LIN_POWER_DUAL_ASCENSION2_POWER.title
+CUR: 双相升华
+ZHS: 双相升华
+
+KEY: MANOSABA_LIN_POWER_DUAL_FIST_POWER.description
+CUR: 回合开始随机获得【左拳】或【右拳】
+ZHS: 回合开始随机获得【左拳】或【右拳】
+
+KEY: MANOSABA_LIN_POWER_DUAL_FIST_POWER.title
+CUR: 左手大力气，右手力气大
+ZHS: 左手大力气，右手力气大
+
+KEY: MANOSABA_LIN_POWER_EMA_AND_HIRO_PHASE_POWER.description
+CUR: [jitter][color=#cccccc]「第二幕开演」[/color][/jitter]
+生命值降至一半时，获得等于魔女化两倍的格挡并切换意图。
+ZHS: [jitter][color=#cccccc]「第二幕开演」[/color][/jitter]
+生命值降至一半时，获得等于魔女化两倍的格挡并切换意图。
+
+KEY: MANOSABA_LIN_POWER_EMA_AND_HIRO_PHASE_POWER.title
+CUR: 双生魔女之力
+ZHS: 双生魔女之力
+
+KEY: MANOSABA_LIN_POWER_EMA_BAD_ENDING_POWER.description
+CUR: 拥有此能力的敌人造成[color=#CC6666]伤害[/color]时，每1层增加百分之10，每回合结束加1层
+ZHS: 拥有此能力的敌人造成[color=#CC6666]伤害[/color]时，每1层增加百分之10，每回合结束加1层
+
+KEY: MANOSABA_LIN_POWER_EMA_BAD_ENDING_POWER.title
+CUR: 多周末的重演
+ZHS: 多周末的重演
+
+KEY: MANOSABA_LIN_POWER_EMA_BAD_ENDING_REWARD_POWER.description
+CUR: 战斗胜利时，从你的牌组中（排除【结局】本身）随机选取稀有或罕见的牌，将其复制进[color=#CC6666]【结局】[/color]，附加的[color=#CC6666]罕见卡[/color]可以打出一次附加效果，[color=#CC6666]稀有卡[/color]两次
+ZHS: 战斗胜利时，从你的牌组中（排除【结局】本身）随机选取稀有或罕见的牌，将其复制进[color=#CC6666]【结局】[/color]，附加的[color=#CC6666]罕见卡[/color]可以打出一次附加效果，[color=#CC6666]稀有卡[/color]两次
+
+KEY: MANOSABA_LIN_POWER_EMA_BAD_ENDING_REWARD_POWER.title
+CUR: 三周目的决定
+ZHS: 三周目的决定
+
+KEY: MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.description
+CUR: [color=#ff99cc][b]「亲[/b][/color][color=#CC6666][b]近」[/b][/color]
+当你打出同一张牌第2次时，打出的该牌会获得「魔女的记忆」标记，并且获得[color=#ff99cc]重放[/color]和[color=#CC6666]打出移除[/color]，每个卡名[color=#CC6666]只生效一次[/color]
+若满足移除13张卡（可右键或双指点击查看），给予卡组里面的【结局】1层[color=#ff99cc]「明明希罗自己也在哭，还说我」[/color]
+ZHS: [color=#ff99cc][b]「亲[/b][/color][color=#CC6666][b]近」[/b][/color]
+当你打出同一张牌第2次时，打出的该牌会获得「魔女的记忆」标记，并且获得[color=#ff99cc]重放[/color]和[color=#CC6666]打出移除[/color]，每个卡名[color=#CC6666]只生效一次[/color]
+若满足移除13张卡（可右键或双指点击查看），给予卡组里面的【结局】1层[color=#ff99cc]「明明希罗自己也在哭，还说我」[/color]
+
+KEY: MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.selectionScreenPrompt
+CUR: 已移除的卡牌
+ZHS: 已移除的卡牌
+
+KEY: MANOSABA_LIN_POWER_EMA_TRUE_ENDING_POWER.title
+CUR: 「真结局」
+ZHS: 「真结局」
+
+KEY: MANOSABA_LIN_POWER_EMA_TRUE_ENDING_REWARD_ACTION.description
+CUR: [color=#ff99cc]点击选择[/color]一个敌人，使其[color=#ff99cc]失去四分之一生命[/color]，失去1层并移除牌组1层[color=#CC6666]「没办法，就待在你身边吧」[/color]
+ZHS: [color=#ff99cc]点击选择[/color]一个敌人，使其[color=#ff99cc]失去四分之一生命[/color]，失去1层并移除牌组1层[color=#CC6666]「没办法，就待在你身边吧」[/color]
+
+KEY: MANOSABA_LIN_POWER_EMA_TRUE_ENDING_REWARD_ACTION.title
+CUR: 「明明希罗自己也在哭，还说我」
+ZHS: 「明明希罗自己也在哭，还说我」
+
+KEY: MANOSABA_LIN_POWER_EMA_WITCH_FACTOR_POWER.description
+CUR: 造成[color=ff99cc]不受格挡的伤害[/color]后若生命值等于或低于层数时直接[color=ff99cc]死亡[/color]
+ZHS: 造成[color=ff99cc]不受格挡的伤害[/color]后若生命值等于或低于层数时直接[color=ff99cc]死亡[/color]
+
+KEY: MANOSABA_LIN_POWER_EMA_WITCH_FACTOR_POWER.smartDescription
+CUR: 造成[color=ff99cc]不受格挡的伤害[/color]后若生命值等于或低于层数时直接[color=ff99cc]死亡[/color]
+ZHS: 造成[color=ff99cc]不受格挡的伤害[/color]后若生命值等于或低于层数时直接[color=ff99cc]死亡[/color]
+
+KEY: MANOSABA_LIN_POWER_EMA_WITCH_FACTOR_POWER.title
+CUR: 魔女因子
+ZHS: 魔女因子
+
+KEY: MANOSABA_LIN_POWER_EMA_WITCH_KILLER_POWER.description
+CUR: 回合开始时，所有敌方获得10层[color=#ff99cc]【魔女因子】[/color]，所有友方获得1层。
+敌方受伤时增加等量层数，友方受伤时增加四分之一层数
+ZHS: 回合开始时，所有敌方获得10层[color=#ff99cc]【魔女因子】[/color]，所有友方获得1层。
+敌方受伤时增加等量层数，友方受伤时增加四分之一层数
+
+KEY: MANOSABA_LIN_POWER_EMA_WITCH_KILLER_POWER.smartDescription
+CUR: 回合开始时，所有敌方获得10层[color=#ff99cc]【魔女因子】[/color]，所有友方获得1层。
+敌方受伤时增加等量层数，友方受伤时增加四分之一层数
+ZHS: 回合开始时，所有敌方获得10层[color=#ff99cc]【魔女因子】[/color]，所有友方获得1层。
+敌方受伤时增加等量层数，友方受伤时增加四分之一层数
+
+KEY: MANOSABA_LIN_POWER_EMA_WITCH_KILLER_POWER.title
+CUR: 魔女杀手
+ZHS: 魔女杀手
+
+KEY: MANOSABA_LIN_POWER_EMAXIELIPOWER.description
+CUR: 回合开始给予全体敌人10层[color=#ff99cc]【魔女因子】[/color]
+ZHS: 回合开始给予全体敌人10层[color=#ff99cc]【魔女因子】[/color]
+
+KEY: MANOSABA_LIN_POWER_EMAXIELIPOWER.title
+CUR: 艾玛的协力
+ZHS: 艾玛的协力
+
+KEY: MANOSABA_LIN_POWER_EMOTION_FUSION_POWER.description
+CUR: 点击可以选择复制1张当前可合成的[rainbow][b]【复杂情绪】[/b][/rainbow]加入[b]【他人的情绪】[/b]，也可以取消。选择后消耗对应素材和1层。
+ZHS: 点击可以选择复制1张当前可合成的[rainbow][b]【复杂情绪】[/b][/rainbow]加入[b]【他人的情绪】[/b]，也可以取消。选择后消耗对应素材和1层。
+
+KEY: MANOSABA_LIN_POWER_EMOTION_FUSION_POWER.selectionScreenPrompt
+CUR: 选择要复制的[rainbow][b]【复杂情绪】[/b][/rainbow]
+ZHS: 选择要复制的[rainbow][b]【复杂情绪】[/b][/rainbow]
+
+KEY: MANOSABA_LIN_POWER_EMOTION_FUSION_POWER.title
+CUR: 复杂的情绪
+ZHS: 复杂的情绪
+
+KEY: MANOSABA_LIN_POWER_EMOTION_POWER.description
+CUR: 每打出13张卡，随机获得1张[rainbow][b]【基础情绪】[/b][/rainbow]卡加入[b]【他人的情绪】[/b]，你可以点击此能力获取[rainbow][b]【情绪】[/b][/rainbow]卡。
+当一场对局获得3张[rainbow][b]【基础情绪】[/b][/rainbow]时获得一层[rainbow][b]【复杂的情绪】[/b][/rainbow]来融合[rainbow][b]【基础情绪】[/b][/rainbow]
+ZHS: 每打出13张卡，随机获得1张[rainbow][b]【基础情绪】[/b][/rainbow]卡加入[b]【他人的情绪】[/b]，你可以点击此能力获取[rainbow][b]【情绪】[/b][/rainbow]卡。
+当一场对局获得3张[rainbow][b]【基础情绪】[/b][/rainbow]时获得一层[rainbow][b]【复杂的情绪】[/b][/rainbow]来融合[rainbow][b]【基础情绪】[/b][/rainbow]
+
+KEY: MANOSABA_LIN_POWER_EMOTION_POWER.selectionScreenPrompt
+CUR: 选择一张[rainbow][b]【情绪】[/b][/rainbow]卡加入手牌
+ZHS: 选择一张[rainbow][b]【情绪】[/b][/rainbow]卡加入手牌
+
+KEY: MANOSABA_LIN_POWER_EMOTION_POWER.title
+CUR: 情绪
+ZHS: 情绪
+
+KEY: MANOSABA_LIN_POWER_EMOTION_SHIELD_POWER.description
+CUR: 下回合开始前每受到1次攻击获得1层情绪。
+ZHS: 下回合开始前每受到1次攻击获得1层情绪。
+
+KEY: MANOSABA_LIN_POWER_EMOTION_SHIELD_POWER.title
+CUR: 守绪之盾
+ZHS: 守绪之盾
+
+KEY: MANOSABA_LIN_POWER_EMOTION_SURGE_POWER.description
+CUR: 本回合每打出1张牌，情绪计数额外+1。
+ZHS: 本回合每打出1张牌，情绪计数额外+1。
+
+KEY: MANOSABA_LIN_POWER_EMOTION_SURGE_POWER.title
+CUR: 情绪涌动
+ZHS: 情绪涌动
+
+KEY: MANOSABA_LIN_POWER_ENCHANTMENT_CONVERGENCE_POWER.description
+CUR: 本回合内当你任一审判附魔计数达到5进行锚定，之后此附魔计数的额外效果友方也能触发
+ZHS: 本回合内当你任一审判附魔计数达到5进行锚定，之后此附魔计数的额外效果友方也能触发
+
+KEY: MANOSABA_LIN_POWER_ENCHANTMENT_CONVERGENCE_POWER.title
+CUR: 审判开庭
+ZHS: 审判开庭
+
+KEY: MANOSABA_LIN_POWER_FINAL_FAREWELL_POWER.description
+CUR: 本场战斗无法获得魔女化，改为记录风暴。回合开始每清除40点风暴获得1能量+抽1张+随机基础情绪
+ZHS: 本场战斗无法获得魔女化，改为记录风暴。回合开始每清除40点风暴获得1能量+抽1张+随机基础情绪
+
+KEY: MANOSABA_LIN_POWER_FINAL_FAREWELL_POWER.title
+CUR: 最后致意
+ZHS: 最后致意
+
+KEY: MANOSABA_LIN_POWER_FUSION_STAND_POWER.description
+CUR: Boss执行意图时，幻影追加执行一个意图
+ZHS: Boss执行意图时，幻影追加执行一个意图
+
+KEY: MANOSABA_LIN_POWER_FUSION_STAND_POWER.title
+CUR: 执念
+ZHS: 执念
+
+KEY: MANOSABA_LIN_POWER_GAIN_ENERGY_POWER.description
+CUR: 下回合开始时获得{energyPrefix:energyIcons(1)}
+ZHS: 下回合开始时获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_POWER_GAIN_ENERGY_POWER.title
+CUR: 能量恢复
+ZHS: 能量恢复
+
+KEY: MANOSABA_LIN_POWER_GEINIZHENGYIPOWER.description
+CUR: 本回合每当一个友方抽1张卡牌且恢复{energyPrefix:energyIcons(1)}后给予其1层正义
+ZHS: 本回合每当一个友方抽1张卡牌且恢复{energyPrefix:energyIcons(1)}后给予其1层正义
+
+KEY: MANOSABA_LIN_POWER_GEINIZHENGYIPOWER.title
+CUR: 殊途同归的正义
+ZHS: 殊途同归的正义
+
+KEY: MANOSABA_LIN_POWER_GREAT_WITCH_YUKI_PHASE_POWER.description
+CUR: [jitter][color=#cccccc]「第二幕开演」[/color][/jitter]
+生命值降至一半时，获得等于魔女化两倍的格挡并切换意图。
+ZHS: [jitter][color=#cccccc]「第二幕开演」[/color][/jitter]
+生命值降至一半时，获得等于魔女化两倍的格挡并切换意图。
+
+KEY: MANOSABA_LIN_POWER_GREAT_WITCH_YUKI_PHASE_POWER.title
+CUR: 大魔女之力
+ZHS: 大魔女之力
+
+KEY: MANOSABA_LIN_POWER_GUARD_ONE_PHASE_POWER.description
+CUR: [jitter][color=#cccccc]「魔女之岛再一次翱翔于天际」[/color][/jitter]
+生命值降至一半时获得等于魔女化两倍的护盾，切换意图
+ZHS: [jitter][color=#cccccc]「魔女之岛再一次翱翔于天际」[/color][/jitter]
+生命值降至一半时获得等于魔女化两倍的护盾，切换意图
+
+KEY: MANOSABA_LIN_POWER_GUARD_ONE_PHASE_POWER.title
+CUR: 魔女之力
+ZHS: 魔女之力
+
+KEY: MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.description
+CUR: [jitter][color=#cccccc]「丑恶化身——变成长生不死的怪物【魔女】，陷入无尽的绝望」[/color][/jitter]
+当[color=gray]第三意图[/color]的攻击后如果所有玩家手里有等于玩家总数3倍的[color=gray]【变身的魔法】[/color]牌，下回合[color=gray]额外[/color]再攻击1次
+每回合第一次死亡时避免死亡，生命变为无限并获得等于魔女化3倍的[b]格挡[/b]，切换意图[color=gray](1回合1次)[/color]；若格挡未被打破，下回合开始时最大生命恢复为进入战斗时的数值，并恢复一半生命。
+ZHS: [jitter][color=#cccccc]「丑恶化身——变成长生不死的怪物【魔女】，陷入无尽的绝望」[/color][/jitter]
+当[color=gray]第三意图[/color]的攻击后如果所有玩家手里有等于玩家总数3倍的[color=gray]【变身的魔法】[/color]牌，下回合[color=gray]额外[/color]再攻击1次
+每回合第一次死亡时避免死亡，生命变为无限并获得等于魔女化3倍的[b]格挡[/b]，切换意图[color=gray](1回合1次)[/color]；若格挡未被打破，下回合开始时最大生命恢复为进入战斗时的数值，并恢复一半生命。
+
+KEY: MANOSABA_LIN_POWER_GUARD_TWO_BOSS_LAST_STAND_POWER.title
+CUR: 魔女之力
+ZHS: 魔女之力
+
+KEY: MANOSABA_LIN_POWER_GUILTY_CHAIN_POWER.description
+CUR: [b]每回合[/b]当你对有[b]【嫌疑】[/b]的敌人打出牌时，随机给另一名敌人施加1层[b]【嫌疑】[/b]，每回合最多触发2次
+ZHS: [b]每回合[/b]当你对有[b]【嫌疑】[/b]的敌人打出牌时，随机给另一名敌人施加1层[b]【嫌疑】[/b]，每回合最多触发2次
+
+KEY: MANOSABA_LIN_POWER_GUILTY_CHAIN_POWER.title
+CUR: 罪链
+ZHS: 罪链
+
+KEY: MANOSABA_LIN_POWER_HEREHIRO_POWER.description
+CUR: 每有一层此能力减少1张手牌上限
+因侵蚀移出战斗的牌暂存在此处。此能力移除时，将这些牌移回手牌
+ZHS: 每有一层此能力减少1张手牌上限
+因侵蚀移出战斗的牌暂存在此处。此能力移除时，将这些牌移回手牌
+
+KEY: MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.description
+CUR: [color=CC6666]死亡[/color]时复活并回复40点生命，然后失去1层
+ZHS: [color=CC6666]死亡[/color]时复活并回复40点生命，然后失去1层
+
+KEY: MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.smartDescription
+CUR: [color=CC6666]死亡[/color]时复活并回复40点生命，然后失去1层
+ZHS: [color=CC6666]死亡[/color]时复活并回复40点生命，然后失去1层
+
+KEY: MANOSABA_LIN_POWER_HIRO_MAGIC_REVIVE_POWER.title
+CUR: 二阶堂希罗的魔法
+ZHS: 二阶堂希罗的魔法
+
+KEY: MANOSABA_LIN_POWER_HIROSHUYUANPOWER.description
+CUR: [color=#CC6666]回合开始[/color]时，[color=#CC6666][b]【疏远】[/b][/color]＋1，选择一张手牌变成随机[color=#CC6666][b]【疏远】[/b][/color]牌
+ZHS: [color=#CC6666]回合开始[/color]时，[color=#CC6666][b]【疏远】[/b][/color]＋1，选择一张手牌变成随机[color=#CC6666][b]【疏远】[/b][/color]牌
+
+KEY: MANOSABA_LIN_POWER_HIROSHUYUANPOWER.selectionScreenPrompt
+CUR: [color=#CC6666][b]选择[/b][/color]
+ZHS: [color=#CC6666][b]选择[/b][/color]
+
+KEY: MANOSABA_LIN_POWER_HIROSHUYUANPOWER.title
+CUR: 我讨厌你的事实永远都不会改变
+ZHS: 我讨厌你的事实永远都不会改变
+
+KEY: MANOSABA_LIN_POWER_HNM_POWER.description
+CUR: 在[green]本回合[/green]你受到的伤害减半
+ZHS: 在[green]本回合[/green]你受到的伤害减半
+
+KEY: MANOSABA_LIN_POWER_HNM_POWER.title
+CUR: 远野汉娜的魔法
+ZHS: 远野汉娜的魔法
+
+KEY: MANOSABA_LIN_POWER_I_AM_MY_OWN_FRIEND_POWER.description
+CUR: 下回合开始时随机复制1张基础情绪卡加入手牌。
+ZHS: 下回合开始时随机复制1张基础情绪卡加入手牌。
+
+KEY: MANOSABA_LIN_POWER_I_AM_MY_OWN_FRIEND_POWER.title
+CUR: 吾即吾友
+ZHS: 吾即吾友
+
+KEY: MANOSABA_LIN_POWER_INVESTIGATION_POWER.description
+CUR: [color=ff99cc]每回合[/color]开始时，检视[color=#ff99cc]抽牌堆[/color]顶部 {Stacks:diff()} 张牌，可选择弃掉或放回
+ZHS: [color=ff99cc]每回合[/color]开始时，检视[color=#ff99cc]抽牌堆[/color]顶部 {Stacks:diff()} 张牌，可选择弃掉或放回
+
+KEY: MANOSABA_LIN_POWER_INVESTIGATION_POWER.smartDescription
+CUR: [color=ff99cc]选择[/color]
+ZHS: [color=ff99cc]选择[/color]
+
+KEY: MANOSABA_LIN_POWER_INVESTIGATION_POWER.title
+CUR: 搜查
+ZHS: 搜查
+
+KEY: MANOSABA_LIN_POWER_JUDGEMENT_CHAIN_POWER.description
+CUR: [color=#CC6666]回合开始[/color]时获得{energyPrefix:energyIcons(1)}
+ZHS: [color=#CC6666]回合开始[/color]时获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_POWER_JUDGEMENT_CHAIN_POWER.smartDescription
+CUR: 回合开始时获得{energyPrefix:energyIcons(1)}
+ZHS: 回合开始时获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_POWER_JUDGEMENT_CHAIN_POWER.title
+CUR: 审判链
+ZHS: 审判链
+
+KEY: MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.description
+CUR: 回合结束时若手牌中[color=gray][变身的魔法][/color]数量为所有玩家中最多，失去等于全部玩家手牌里[color=gray][变身的魔法][/color]的血量。
+ZHS: 回合结束时若手牌中[color=gray][变身的魔法][/color]数量为所有玩家中最多，失去等于全部玩家手牌里[color=gray][变身的魔法][/color]的血量。
+
+KEY: MANOSABA_LIN_POWER_JUDGMENT_HAMMER_PHASE_POWER.title
+CUR: 残响
+ZHS: 残响
+
+KEY: MANOSABA_LIN_POWER_JUSTICE_NEXT_TURN_POWER.description
+CUR: [color=#cccccc]下回合开始[/color]获得1层[color=#CC6666]【正义】[/color]
+ZHS: [color=#cccccc]下回合开始[/color]获得1层[color=#CC6666]【正义】[/color]
+
+KEY: MANOSABA_LIN_POWER_JUSTICE_NEXT_TURN_POWER.smartDescription
+CUR: [color=#cccccc]下回合开始[/color]获得1层[color=#CC6666]【正义】[/color]
+ZHS: [color=#cccccc]下回合开始[/color]获得1层[color=#CC6666]【正义】[/color]
+
+KEY: MANOSABA_LIN_POWER_JUSTICE_NEXT_TURN_POWER.title
+CUR: 二周目的正义
+ZHS: 二周目的正义
+
+KEY: MANOSABA_LIN_POWER_JUSTICE_POWER.description
+CUR: [color=#CC6666]回合结束[/color]时恢复[color=#CC6666]血量[/color]并减少一层。
+ZHS: [color=#CC6666]回合结束[/color]时恢复[color=#CC6666]血量[/color]并减少一层。
+
+KEY: MANOSABA_LIN_POWER_JUSTICE_POWER.smartDescription
+CUR: [color=#CC6666]回合结束[/color]恢复{Amount}点血量。
+ZHS: [color=#CC6666]回合结束[/color]恢复{Amount}点血量。
+
+KEY: MANOSABA_LIN_POWER_JUSTICE_POWER.title
+CUR: 正义
+ZHS: 正义
+
+KEY: MANOSABA_LIN_POWER_KKM_POWER.description
+CUR: [color=#ff9966]回合开始[/color]时，根据场上敌人的意图获得对应增益
+攻击：获得5点格挡
+防御/增益：获得1点力量
+减益：获得1点敏捷
+其他：随机敌人获得1层虚弱
+ZHS: [color=#ff9966]回合开始[/color]时，根据场上敌人的意图获得对应增益
+攻击：获得5点格挡
+防御/增益：获得1点力量
+减益：获得1点敏捷
+其他：随机敌人获得1层虚弱
+
+KEY: MANOSABA_LIN_POWER_KKM_POWER.title
+CUR: 泽度可可的魔法
+ZHS: 泽度可可的魔法
+
+KEY: MANOSABA_LIN_POWER_LEFT_FIST_POWER.description
+CUR: 每当你对敌人造成攻击伤害时，获得1层临时力量
+ZHS: 每当你对敌人造成攻击伤害时，获得1层临时力量
+
+KEY: MANOSABA_LIN_POWER_LEFT_FIST_POWER.title
+CUR: 左拳
+ZHS: 左拳
+
+KEY: MANOSABA_LIN_POWER_LOSE_ENERGY_POWER.description
+CUR: 下回合开始时失去{energyPrefix:energyIcons(1)}
+ZHS: 下回合开始时失去{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_POWER_LOSE_ENERGY_POWER.title
+CUR: 能量消耗
+ZHS: 能量消耗
+
+KEY: MANOSABA_LIN_POWER_LOSEENGRY.description
+CUR: 回合开始减少等于本能力层数的能量
+ZHS: 回合开始减少等于本能力层数的能量
+
+KEY: MANOSABA_LIN_POWER_LOSEENGRY.title
+CUR: 下回合减少能量
+ZHS: 下回合减少能量
+
+KEY: MANOSABA_LIN_POWER_LYM_POWER.description
+CUR: 修改目标[gold]意图对象[/gold]（不可在目标有被攻击给攻击者卡牌能力或塞牌意图的情况下使用）
+ZHS: 修改目标[gold]意图对象[/gold]（不可在目标有被攻击给攻击者卡牌能力或塞牌意图的情况下使用）
+
+KEY: MANOSABA_LIN_POWER_LYM_POWER.title
+CUR: 莲见蕾雅的魔法
+ZHS: 莲见蕾雅的魔法
+
+KEY: MANOSABA_LIN_POWER_MAD_CARD_CHASE_POWER.description
+CUR: 回合结束时随机打出当前手牌1/3的卡。
+ZHS: 回合结束时随机打出当前手牌1/3的卡。
+
+KEY: MANOSABA_LIN_POWER_MAD_CARD_CHASE_POWER.title
+CUR: 妄牌逐空
+ZHS: 妄牌逐空
+
+KEY: MANOSABA_LIN_POWER_MALICES_PHASE_POWER.description
+CUR: [jitter][color=#cccccc]「第二幕开演」[/color][/jitter]
+生命值降至一半时，获得等于魔女化两倍的格挡并切换意图。
+ZHS: [jitter][color=#cccccc]「第二幕开演」[/color][/jitter]
+生命值降至一半时，获得等于魔女化两倍的格挡并切换意图。
+
+KEY: MANOSABA_LIN_POWER_MALICES_PHASE_POWER.title
+CUR: 恶意之力
+ZHS: 恶意之力
+
+KEY: MANOSABA_LIN_POWER_MERURU_AND_EMA_ACCOMPLICE_POWER.description
+CUR: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+ZHS: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+
+KEY: MANOSABA_LIN_POWER_MERURU_AND_EMA_ACCOMPLICE_POWER.selectionScreenPrompt
+CUR: 若消耗则获得50魔女化，反之失去30魔女化
+ZHS: 若消耗则获得50魔女化，反之失去30魔女化
+
+KEY: MANOSABA_LIN_POWER_MERURU_AND_EMA_ACCOMPLICE_POWER.smartDescription
+CUR: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+层数提高会继续增强敌方正面效果。
+ZHS: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+层数提高会继续增强敌方正面效果。
+
+KEY: MANOSABA_LIN_POWER_MERURU_AND_EMA_ACCOMPLICE_POWER.smartDescription12
+CUR: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+敌方回合开始时，敌人获得{Mllm}层[color=#ffcc99]【冰上梅露露的魔法】[/color]。每次攻击都对[color=#ffcc99]樱羽艾玛[/color]额外造成{Amount}点伤害，玩家攻击有{MisdirectChance}%概率误伤[color=#ffcc99]樱羽艾玛[/color]，此伤害不致死。
+将本角色当前生命降低为1；此后若本角色将死亡，层数变为{MaxStacks}。
+层数提高会改变效果。
+ZHS: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+敌方回合开始时，敌人获得{Mllm}层[color=#ffcc99]【冰上梅露露的魔法】[/color]。每次攻击都对[color=#ffcc99]樱羽艾玛[/color]额外造成{Amount}点伤害，玩家攻击有{MisdirectChance}%概率误伤[color=#ffcc99]樱羽艾玛[/color]，此伤害不致死。
+将本角色当前生命降低为1；此后若本角色将死亡，层数变为{MaxStacks}。
+层数提高会改变效果。
+
+KEY: MANOSABA_LIN_POWER_MERURU_AND_EMA_ACCOMPLICE_POWER.smartDescription13
+CUR: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+被攻击时无视格挡，攻击敌人时无视格挡和伤害限制。
+本场战斗可以复活1次至满血。
+ZHS: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+被攻击时无视格挡，攻击敌人时无视格挡和伤害限制。
+本场战斗可以复活1次至满血。
+
+KEY: MANOSABA_LIN_POWER_MERURU_AND_EMA_ACCOMPLICE_POWER.smartDescription3
+CUR: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+敌方回合开始时，敌人获得{Mllm}层[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+层数提高会继续增强敌方正面效果。
+ZHS: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+敌方回合开始时，敌人获得{Mllm}层[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+层数提高会继续增强敌方正面效果。
+
+KEY: MANOSABA_LIN_POWER_MERURU_AND_EMA_ACCOMPLICE_POWER.smartDescription6
+CUR: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+敌方回合开始时，敌人获得{Mllm}层[color=#ffcc99]【冰上梅露露的魔法】[/color]。每次攻击都对[color=#ffcc99]樱羽艾玛[/color]额外造成{Amount}点伤害。
+层数提高会继续增强敌方正面效果。
+ZHS: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+敌方回合开始时，敌人获得{Mllm}层[color=#ffcc99]【冰上梅露露的魔法】[/color]。每次攻击都对[color=#ffcc99]樱羽艾玛[/color]额外造成{Amount}点伤害。
+层数提高会继续增强敌方正面效果。
+
+KEY: MANOSABA_LIN_POWER_MERURU_AND_EMA_ACCOMPLICE_POWER.smartDescription9
+CUR: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+敌方回合开始时，敌人获得{Mllm}层[color=#ffcc99]【冰上梅露露的魔法】[/color]。每次攻击都对[color=#ffcc99]樱羽艾玛[/color]额外造成{Amount}点伤害，玩家攻击有{MisdirectChance}%概率误伤[color=#ffcc99]樱羽艾玛[/color]，此伤害不致死。
+层数提高会继续增强敌方正面效果。
+ZHS: 你的回合开始时，随机获得共计{Amount}次增益：
+获得能量，缓冲，[color=#ffcc99]【冰上梅露露的魔法】[/color]。
+可选择1张[color=ff99cc]所有牌消耗[/color]
+随机将1张卡牌[color=#ffcc99]本回合设为免费并移入手牌。[/color]
+敌方回合开始时，敌人获得{Mllm}层[color=#ffcc99]【冰上梅露露的魔法】[/color]。每次攻击都对[color=#ffcc99]樱羽艾玛[/color]额外造成{Amount}点伤害，玩家攻击有{MisdirectChance}%概率误伤[color=#ffcc99]樱羽艾玛[/color]，此伤害不致死。
+层数提高会继续增强敌方正面效果。
+
+KEY: MANOSABA_LIN_POWER_MERURU_AND_EMA_ACCOMPLICE_POWER.title
+CUR: 共犯
+ZHS: 共犯
+
+KEY: MANOSABA_LIN_POWER_MGM_POWER.description
+CUR: [purple]回合开始[/purple]时随机打出一张可打出手牌，然后移除一层
+ZHS: [purple]回合开始[/purple]时随机打出一张可打出手牌，然后移除一层
+
+KEY: MANOSABA_LIN_POWER_MGM_POWER.title
+CUR: 宝生玛格的魔法
+ZHS: 宝生玛格的魔法
+
+KEY: MANOSABA_LIN_POWER_MIND_COST_DRAW_POWER.description
+CUR: 回合开始时选择1张手牌消耗，抽牌。
+ZHS: 回合开始时选择1张手牌消耗，抽牌。
+
+KEY: MANOSABA_LIN_POWER_MIND_COST_DRAW_POWER.selectionScreenPrompt
+CUR: 选择要消耗的手牌
+ZHS: 选择要消耗的手牌
+
+KEY: MANOSABA_LIN_POWER_MIND_COST_DRAW_POWER.title
+CUR: 耗念引牌
+ZHS: 耗念引牌
+
+KEY: MANOSABA_LIN_POWER_MLLM_POWER.description
+CUR: [color=#ffcc99]回合开始[/color]时恢复30点血量
+ZHS: [color=#ffcc99]回合开始[/color]时恢复30点血量
+
+KEY: MANOSABA_LIN_POWER_MLLM_POWER.title
+CUR: 冰上梅露露的魔法
+ZHS: 冰上梅露露的魔法
+
+KEY: MANOSABA_LIN_POWER_MLY_POWER.description
+CUR: [color=#cc9966]禁止出牌[/color]直到互换手牌结束
+ZHS: [color=#cc9966]禁止出牌[/color]直到互换手牌结束
+
+KEY: MANOSABA_LIN_POWER_MLY_POWER.title
+CUR: 佐伯米莉亚的魔法
+ZHS: 佐伯米莉亚的魔法
+
+KEY: MANOSABA_LIN_POWER_NASCENT_EMOTION_POWER.description
+CUR: 回合开始时获得情绪层数。
+ZHS: 回合开始时获得情绪层数。
+
+KEY: MANOSABA_LIN_POWER_NASCENT_EMOTION_POWER.title
+CUR: 初生情绪
+ZHS: 初生情绪
+
+KEY: MANOSABA_LIN_POWER_NYM_POWER.description
+CUR: 当拥有本能力的目标受到[b]攻击牌[/b]伤害时，额外受到一次等于该段伤害数值的伤害。每张攻击牌最多清除1层。
+ZHS: 当拥有本能力的目标受到[b]攻击牌[/b]伤害时，额外受到一次等于该段伤害数值的伤害。每张攻击牌最多清除1层。
+
+KEY: MANOSABA_LIN_POWER_NYM_POWER.title
+CUR: 城崎诺亚的魔法
+ZHS: 城崎诺亚的魔法
+
+KEY: MANOSABA_LIN_POWER_NYXM_POWER.description
+CUR: [color=#999999]回合开始[/color]时从弃牌堆随机拿取1张卡，然后减少一层
+ZHS: [color=#999999]回合开始[/color]时从弃牌堆随机拿取1张卡，然后减少一层
+
+KEY: MANOSABA_LIN_POWER_NYXM_POWER.title
+CUR: 黑部奈叶香的魔法
+ZHS: 黑部奈叶香的魔法
+
+KEY: MANOSABA_LIN_POWER_ORIGINALSINJUSTICE_POWER.description
+CUR: [color=#CC6666]回合结束[/color]时
+消耗1层[color=#CC6666]【伪证】[/color]获得1层[color=#CC6666]【正义】[/color]
+消耗1层[b]【嫌疑】[/b]获得2层[b]【魔女化】[/b]
+ZHS: [color=#CC6666]回合结束[/color]时
+消耗1层[color=#CC6666]【伪证】[/color]获得1层[color=#CC6666]【正义】[/color]
+消耗1层[b]【嫌疑】[/b]获得2层[b]【魔女化】[/b]
+
+KEY: MANOSABA_LIN_POWER_ORIGINALSINJUSTICE_POWER.title
+CUR: 原罪
+ZHS: 原罪
+
+KEY: MANOSABA_LIN_POWER_PERIODIC_FUSION_POWER.description
+CUR: 每{Amount}回合获得1层【复杂的情绪】并获得1张随机基础[rainbow][b]【情绪】[/b][/rainbow]
+ZHS: 每{Amount}回合获得1层【复杂的情绪】并获得1张随机基础[rainbow][b]【情绪】[/b][/rainbow]
+
+KEY: MANOSABA_LIN_POWER_PERIODIC_FUSION_POWER.title
+CUR: 大调查
+ZHS: 大调查
+
+KEY: MANOSABA_LIN_POWER_PERJURY_AURA_POWER.description
+CUR: [color=#CC6666]回合开始[/color]获得1层[color=#CC6666]【伪证】[/color]
+ZHS: [color=#CC6666]回合开始[/color]获得1层[color=#CC6666]【伪证】[/color]
+
+KEY: MANOSABA_LIN_POWER_PERJURY_AURA_POWER.title
+CUR: 昭雪
+ZHS: 昭雪
+
+KEY: MANOSABA_LIN_POWER_PERJURY_POWER.description
+CUR: 叠加五层转化为一层[color=#CC6666]【正义】[/color]
+ZHS: 叠加五层转化为一层[color=#CC6666]【正义】[/color]
+
+KEY: MANOSABA_LIN_POWER_PERJURY_POWER.smartDescription
+CUR: 叠加五层转化为一层[color=#CC6666]【正义】[/color]
+ZHS: 叠加五层转化为一层[color=#CC6666]【正义】[/color]
+
+KEY: MANOSABA_LIN_POWER_PERJURY_POWER.title
+CUR: 伪证
+ZHS: 伪证
+
+KEY: MANOSABA_LIN_POWER_POWERFOURFOUR.description
+CUR: [b]回合开始[/b]时获得40层[b]【魔女化】[/b]
+ZHS: [b]回合开始[/b]时获得40层[b]【魔女化】[/b]
+
+KEY: MANOSABA_LIN_POWER_POWERFOURFOUR.title
+CUR: 魔女监狱
+ZHS: 魔女监狱
+
+KEY: MANOSABA_LIN_POWER_POWERONEONE.description
+CUR: [color=#CC6666]回合开始[/color]时失去1层[color=#CC6666]【正义】[/color]，获得{energyPrefix:energyIcons(1)}
+ZHS: [color=#CC6666]回合开始[/color]时失去1层[color=#CC6666]【正义】[/color]，获得{energyPrefix:energyIcons(1)}
+
+KEY: MANOSABA_LIN_POWER_POWERONEONE.title
+CUR: 疑心暗起
+ZHS: 疑心暗起
+
+KEY: MANOSABA_LIN_POWER_POWERTHREETHREE.description
+CUR: 无视魔女化造成的减生命
+三回合后死亡
+[color=#CC6666]回合开始[/color]时每有50层[b]【魔女化】[/b]就从抽牌堆选取一张攻击牌，本回合将其[gold]设置为零费[/gold]
+ZHS: 无视魔女化造成的减生命
+三回合后死亡
+[color=#CC6666]回合开始[/color]时每有50层[b]【魔女化】[/b]就从抽牌堆选取一张攻击牌，本回合将其[gold]设置为零费[/gold]
+
+KEY: MANOSABA_LIN_POWER_POWERTHREETHREE.selectionScreenPrompt
+CUR: 选择要设置为零费的攻击牌
+ZHS: 选择要设置为零费的攻击牌
+
+KEY: MANOSABA_LIN_POWER_POWERTHREETHREE.title
+CUR: 共犯
+ZHS: 共犯
+
+KEY: MANOSABA_LIN_POWER_PRISON_BLUEPRINT_POWER.description
+CUR: 每当你打出[color=#6699cc]赞同[/color]牌，获得1点[color=#ff99cc]格挡[/color]。同伴获得2点[color=#ff99cc]格挡[/color]
+ZHS: 每当你打出[color=#6699cc]赞同[/color]牌，获得1点[color=#ff99cc]格挡[/color]。同伴获得2点[color=#ff99cc]格挡[/color]
+
+KEY: MANOSABA_LIN_POWER_PRISON_BLUEPRINT_POWER.title
+CUR: 典狱长的雕像
+ZHS: 典狱长的雕像
+
+KEY: MANOSABA_LIN_POWER_RANDOMTRIALENCHANTPOWER.description
+CUR: 随机使卡组中没有附魔的卡获得[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔
+ZHS: 随机使卡组中没有附魔的卡获得[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔
+
+KEY: MANOSABA_LIN_POWER_RANDOMTRIALENCHANTPOWER.title
+CUR: 先行投票
+ZHS: 先行投票
+
+KEY: MANOSABA_LIN_POWER_RETAIN_COUNTER_POWER.description
+CUR: 【魔女化】增加时对随机目标造成能被能力影响的等量伤害
+ZHS: 【魔女化】增加时对随机目标造成能被能力影响的等量伤害
+
+KEY: MANOSABA_LIN_POWER_RETAIN_COUNTER_POWER.title
+CUR: 蓄力反噬
+ZHS: 蓄力反噬
+
+KEY: MANOSABA_LIN_POWER_REVIVERITUALPOWER.description
+CUR: [color=#ff99cc]不能手动出牌[/color]
+满血时移除本能力和缓冲，3回合后若未满血则被再次击杀
+ZHS: [color=#ff99cc]不能手动出牌[/color]
+满血时移除本能力和缓冲，3回合后若未满血则被再次击杀
+
+KEY: MANOSABA_LIN_POWER_REVIVERITUALPOWER.smartDescription
+CUR: [color=#ff99cc]不能手动出牌[/color]
+满血时移除本能力和缓冲，3回合后若未满血则被再次击杀
+ZHS: [color=#ff99cc]不能手动出牌[/color]
+满血时移除本能力和缓冲，3回合后若未满血则被再次击杀
+
+KEY: MANOSABA_LIN_POWER_REVIVERITUALPOWER.title
+CUR: 地雷
+ZHS: 地雷
+
+KEY: MANOSABA_LIN_POWER_RIGHT_FIST_POWER.description
+CUR: 每当你打出一张牌，获得1层活力
+ZHS: 每当你打出一张牌，获得1层活力
+
+KEY: MANOSABA_LIN_POWER_RIGHT_FIST_POWER.title
+CUR: 右拳
+ZHS: 右拳
+
+KEY: MANOSABA_LIN_POWER_RITUAL_CEREMONY_POWER.description
+CUR: [color=#cccccc]回合开始[/color]获得1[color=#cccccc]力量[/color]，1[color=#CC6666]能量[/color]，1张[color=#ff99cc]卡牌[/color]
+ZHS: [color=#cccccc]回合开始[/color]获得1[color=#cccccc]力量[/color]，1[color=#CC6666]能量[/color]，1张[color=#ff99cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_POWER_RITUAL_CEREMONY_POWER.smartDescription
+CUR: [color=#cccccc]回合开始[/color]获得1[color=#cccccc]力量[/color]，1[color=#CC6666]能量[/color]，1张[color=#ff99cc]卡牌[/color]
+ZHS: [color=#cccccc]回合开始[/color]获得1[color=#cccccc]力量[/color]，1[color=#CC6666]能量[/color]，1张[color=#ff99cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_POWER_RITUAL_CEREMONY_POWER.title
+CUR: 魔女仪式
+ZHS: 魔女仪式
+
+KEY: MANOSABA_LIN_POWER_SACRIFICE_TANK_POWER.description
+CUR: 承受双倍来自敌人的伤害。敌人的伤害对盟友减半
+每累计受到20点攻击伤害自己获得1层下回合能量，其他队友各获得1层下回合抽牌和10层魔女化
+ZHS: 承受双倍来自敌人的伤害。敌人的伤害对盟友减半
+每累计受到20点攻击伤害自己获得1层下回合能量，其他队友各获得1层下回合抽牌和10层魔女化
+
+KEY: MANOSABA_LIN_POWER_SACRIFICE_TANK_POWER.title
+CUR: 苦命鸳鸯
+ZHS: 苦命鸳鸯
+
+KEY: MANOSABA_LIN_POWER_SHIELD_INTERCEPT_POWER.description
+CUR: [purple]本回合[/purple]承受队友受到的伤害。
+[purple]下回合[/purple]给予被保护的队友等于受到伤害的护盾。若亲近>疏远，你也获得等于受到伤害的护盾
+ZHS: [purple]本回合[/purple]承受队友受到的伤害。
+[purple]下回合[/purple]给予被保护的队友等于受到伤害的护盾。若亲近>疏远，你也获得等于受到伤害的护盾
+
+KEY: MANOSABA_LIN_POWER_SHIELD_INTERCEPT_POWER.title
+CUR: 替身之盾
+ZHS: 替身之盾
+
+KEY: MANOSABA_LIN_POWER_SHOCKWAVE_POWER.description
+CUR: 回合开始时失去等于层数的血量,拥有者被攻击时，额外造成层数二分之一的伤害
+ZHS: 回合开始时失去等于层数的血量,拥有者被攻击时，额外造成层数二分之一的伤害
+
+KEY: MANOSABA_LIN_POWER_SHOCKWAVE_POWER.title
+CUR: 冲击
+ZHS: 冲击
+
+KEY: MANOSABA_LIN_POWER_SILENT_POWER.description
+CUR: 右键或双指点击消耗13层[color=#6666cc]【缄默】[/color]使所有敌人立刻执行当前意图，然后选择1个替换意图且每种替换意图需[color=#6666cc]轮换选择[/color]
+ZHS: 右键或双指点击消耗13层[color=#6666cc]【缄默】[/color]使所有敌人立刻执行当前意图，然后选择1个替换意图且每种替换意图需[color=#6666cc]轮换选择[/color]
+
+KEY: MANOSABA_LIN_POWER_SILENT_POWER.title
+CUR: 缄默
+ZHS: 缄默
+
+KEY: MANOSABA_LIN_POWER_SUPER_STRENGTH_POWER.description
+CUR: 回合开始获得1张「冲击波的拳风」。
+ZHS: 回合开始获得1张「冲击波的拳风」。
+
+KEY: MANOSABA_LIN_POWER_SUPER_STRENGTH_POWER.title
+CUR: 怪力
+ZHS: 怪力
+
+KEY: MANOSABA_LIN_POWER_SUSPECT_POWER.description
+CUR: [b]魔女审判，开庭！[/b]
+每有2层本能力减少1点[b]力量[/b]，
+当友方拥有12层时获得[b]【坏结局】[/b]，
+当敌人拥有12层时失去正面能力，回合结束归还
+ZHS: [b]魔女审判，开庭！[/b]
+每有2层本能力减少1点[b]力量[/b]，
+当友方拥有12层时获得[b]【坏结局】[/b]，
+当敌人拥有12层时失去正面能力，回合结束归还
+
+KEY: MANOSABA_LIN_POWER_SUSPECT_POWER.title
+CUR: 嫌疑
+ZHS: 嫌疑
+
+KEY: MANOSABA_LIN_POWER_TEMP_DEXTERITY.description
+CUR: 回合结束时移除
+ZHS: 回合结束时移除
+
+KEY: MANOSABA_LIN_POWER_TEMP_DEXTERITY.title
+CUR: 临时敏捷
+ZHS: 临时敏捷
+
+KEY: MANOSABA_LIN_POWER_TEMP_STRENGTH.description
+CUR: 回合结束移除
+ZHS: 回合结束移除
+
+KEY: MANOSABA_LIN_POWER_TEMP_STRENGTH.title
+CUR: 临时力量
+ZHS: 临时力量
+
+KEY: MANOSABA_LIN_POWER_TEMP_STRENGTH_DOWN.description
+CUR: 回合结束时移除
+ZHS: 回合结束时移除
+
+KEY: MANOSABA_LIN_POWER_TEMP_STRENGTH_DOWN.title
+CUR: 临时降低力量
+ZHS: 临时降低力量
+
+KEY: MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.description
+CUR: 回合开始时选择抽牌堆1张卡消耗，获得等于其费用的临时力量，获得{energyPrefix:energyIcons(1)}。
+ZHS: 回合开始时选择抽牌堆1张卡消耗，获得等于其费用的临时力量，获得{energyPrefix:energyIcons(1)}。
+
+KEY: MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.selectionScreenPrompt
+CUR: 选择1张牌消耗
+ZHS: 选择1张牌消耗
+
+KEY: MANOSABA_LIN_POWER_THE_DANCING_MEN_POWER.title
+CUR: 跳舞的小人
+ZHS: 跳舞的小人
+
+KEY: MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.description
+CUR: 回合开始时，若消耗堆中有「狮鬃水母」，将其移入手牌并自动打出。
+ZHS: 回合开始时，若消耗堆中有「狮鬃水母」，将其移入手牌并自动打出。
+
+KEY: MANOSABA_LIN_POWER_THE_LIONS_MANE_POWER.title
+CUR: 狮鬃水母
+ZHS: 狮鬃水母
+
+KEY: MANOSABA_LIN_POWER_THE_NORWOOD_BUILDER_POWER.description
+CUR: 每当消耗卡牌时，获得{Amount}格挡。
+ZHS: 每当消耗卡牌时，获得{Amount}格挡。
+
+KEY: MANOSABA_LIN_POWER_THE_NORWOOD_BUILDER_POWER.title
+CUR: 诺伍德的建筑师
+ZHS: 诺伍德的建筑师
+
+KEY: MANOSABA_LIN_POWER_THIRTEEN_WATER_INTEL_POWER.description
+CUR: [jitter][color=#cccccc]「丧失理性并化为残骸的你，就算回到过去，也只会杀光所有人」[/color][/jitter]
+死亡时复活：全体玩家回满血并清除负面能力；自身清除其他负面能力，最大生命增加，回满血并获得50格挡
+被攻击造成生命损失时有20%概率给予攻击者1层[b]情报[/b]，每次死亡使概率提高10%，每回合最多触发5次
+ZHS: [jitter][color=#cccccc]「丧失理性并化为残骸的你，就算回到过去，也只会杀光所有人」[/color][/jitter]
+死亡时复活：全体玩家回满血并清除负面能力；自身清除其他负面能力，最大生命增加，回满血并获得50格挡
+被攻击造成生命损失时有20%概率给予攻击者1层[b]情报[/b]，每次死亡使概率提高10%，每回合最多触发5次
+
+KEY: MANOSABA_LIN_POWER_THIRTEEN_WATER_INTEL_POWER.title
+CUR: 魔女之力
+ZHS: 魔女之力
+
+KEY: MANOSABA_LIN_POWER_THIRTEEN_WATER_PLAYER_INTEL_POWER.description
+CUR: [jitter][color=#cccccc]「为了杀死【魔女】，似乎开发了具有相同作用的药物......」[/color][/jitter]
+叠满13层时，移除此能力并友方获得1张[b]特雷德基姆[/b]
+ZHS: [jitter][color=#cccccc]「为了杀死【魔女】，似乎开发了具有相同作用的药物......」[/color][/jitter]
+叠满13层时，移除此能力并友方获得1张[b]特雷德基姆[/b]
+
+KEY: MANOSABA_LIN_POWER_THIRTEEN_WATER_PLAYER_INTEL_POWER.title
+CUR: 情报
+ZHS: 情报
+
+KEY: MANOSABA_LIN_POWER_THIRTEEN_WATER_TASK_POWER.description
+CUR: 本回合内造成至少{DamageTarget}点伤害，并获得至少{BlockTarget}点格挡。
+完成：获得20格挡。
+失败：Boss获得10层[b]魔女化[/b]和20格挡，并记录1次任务失败（下次攻击每有一次失败额外受到伤害）
+ZHS: 本回合内造成至少{DamageTarget}点伤害，并获得至少{BlockTarget}点格挡。
+完成：获得20格挡。
+失败：Boss获得10层[b]魔女化[/b]和20格挡，并记录1次任务失败（下次攻击每有一次失败额外受到伤害）
+
+KEY: MANOSABA_LIN_POWER_THIRTEEN_WATER_TASK_POWER.smartDescription
+CUR: 本回合内造成至少{DamageTarget}点伤害，并获得至少{BlockTarget}点格挡。
+完成：获得20格挡。
+失败：Boss获得10层[b]魔女化[/b]和20格挡，并记录1次任务失败（下次攻击每有一次失败额外受到伤害）
+ZHS: 本回合内造成至少{DamageTarget}点伤害，并获得至少{BlockTarget}点格挡。
+完成：获得20格挡。
+失败：Boss获得10层[b]魔女化[/b]和20格挡，并记录1次任务失败（下次攻击每有一次失败额外受到伤害）
+
+KEY: MANOSABA_LIN_POWER_THIRTEEN_WATER_TASK_POWER.title
+CUR: 偏执的正义
+ZHS: 偏执的正义
+
+KEY: MANOSABA_LIN_POWER_THREE_CARD_OMEN_POWER.description
+CUR: 连续打出三张同类型牌获得能力(仅一次)
+攻击:耗念引牌
+技能:跳舞的小人
+能力:最后致意
+ZHS: 连续打出三张同类型牌获得能力(仅一次)
+攻击:耗念引牌
+技能:跳舞的小人
+能力:最后致意
+
+KEY: MANOSABA_LIN_POWER_THREE_CARD_OMEN_POWER.title
+CUR: 预兆
+ZHS: 预兆
+
+KEY: MANOSABA_LIN_POWER_TRIALENCHANTCYCLEPOWER.description
+CUR: [color=#ff99cc]回合开始[/color]时，清除卡组内所有[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔，按清除数量随机选一种附魔给等量无附魔卡附上，生成1张对应关键词的卡附上该附魔加入手牌
+ZHS: [color=#ff99cc]回合开始[/color]时，清除卡组内所有[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔，按清除数量随机选一种附魔给等量无附魔卡附上，生成1张对应关键词的卡附上该附魔加入手牌
+
+KEY: MANOSABA_LIN_POWER_TRIALENCHANTCYCLEPOWER.title
+CUR: 穷举法
+ZHS: 穷举法
+
+KEY: MANOSABA_LIN_POWER_TRUE_CRIMINAL_POWER.description
+CUR: [color=ff99cc]每回合[/color]打出[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔牌达到5的倍数时，对生命值最低的敌人造成15点[color=#ff99cc]伤害[/color]
+ZHS: [color=ff99cc]每回合[/color]打出[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔牌达到5的倍数时，对生命值最低的敌人造成15点[color=#ff99cc]伤害[/color]
+
+KEY: MANOSABA_LIN_POWER_TRUE_CRIMINAL_POWER.title
+CUR: 真犯人
+ZHS: 真犯人
+
+KEY: MANOSABA_LIN_POWER_TRUTH_POWER.title
+CUR: 真実
+ZHS: 真相
+
+KEY: MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.description
+CUR: [jitter][color=#CC6666]「在这个世界里，我变成了游走在监牢的残骸————」[/color][/jitter]
+每次执行意图后，每层有20%概率额外执行一次同一意图
+ZHS: [jitter][color=#CC6666]「在这个世界里，我变成了游走在监牢的残骸————」[/color][/jitter]
+每次执行意图后，每层有20%概率额外执行一次同一意图
+
+KEY: MANOSABA_LIN_POWER_UNCONTROLLED_JUSTICE_POWER.title
+CUR: 失控的正义
+ZHS: 失控的正义
+
+KEY: MANOSABA_LIN_POWER_WITCH_TRIAL_POWER.description
+CUR: [color=ff99cc]每回合[/color]开始时
+[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔的计数器+1
+ZHS: [color=ff99cc]每回合[/color]开始时
+[color=#339966]【[/color][color=#cc9966]审[/color][color=#6699cc]判[/color][color=#339966]】[/color]附魔的计数器+1
+
+KEY: MANOSABA_LIN_POWER_WITCH_TRIAL_POWER.title
+CUR: 魔女裁判
+ZHS: 魔女裁判
+
+KEY: MANOSABA_LIN_POWER_WITCHFACTORECHANTPOWER.description
+CUR: 打出卡牌时随机敌人获得3倍层数层[color=#ff99cc]【魔女因子】[/color]
+ZHS: 打出卡牌时随机敌人获得3倍层数层[color=#ff99cc]【魔女因子】[/color]
+
+KEY: MANOSABA_LIN_POWER_WITCHFACTORECHANTPOWER.title
+CUR: 恍然的醒悟
+ZHS: 恍然的醒悟
+
+KEY: MANOSABA_LIN_POWER_WITCHIFICATION_EMOTION_POWER.description
+CUR: 造成伤害时变为3倍，目标转为随机全场目标。此伤害不致死。1回合后移除。
+ZHS: 造成伤害时变为3倍，目标转为随机全场目标。此伤害不致死。1回合后移除。
+
+KEY: MANOSABA_LIN_POWER_WITCHIFICATION_EMOTION_POWER.title
+CUR: 魔女化
+ZHS: 魔女化
+
+KEY: MANOSABA_LIN_POWER_WITH_POWER.description
+CUR: 100层时获得魔法
+ZHS: 100层时获得魔法
+
+KEY: MANOSABA_LIN_POWER_WITH_POWER.smartDescription
+CUR: 随层数增加提升[b]伤害[/b]，当[b]100[/b]层时获得[b]【魔法】[/b]，
+当[b]200层[/b]时你打出[color=#CC6666]技能牌[/color]和[color=#ff99cc]能力牌[/color]失去1的生命回合结束时失去13的血量，
+当[b]300层[/b]你的技能牌获得消耗且当你打出时失去[b]魔女化[/b]除100的血量，此时你打出[color=#cccccc]攻击牌[/color]回复3的血量
+ZHS: 随层数增加提升[b]伤害[/b]，当[b]100[/b]层时获得[b]【魔法】[/b]，
+当[b]200层[/b]时你打出[color=#CC6666]技能牌[/color]和[color=#ff99cc]能力牌[/color]失去1的生命回合结束时失去13的血量，
+当[b]300层[/b]你的技能牌获得消耗且当你打出时失去[b]魔女化[/b]除100的血量，此时你打出[color=#cccccc]攻击牌[/color]回复3的血量
+
+KEY: MANOSABA_LIN_POWER_WITH_POWER.title
+CUR: 魔女化
+ZHS: 魔女化
+
+KEY: MANOSABA_LIN_POWER_XLM_POWER.description
+CUR: 当你在[color=#33ccff]本回合[/color]造成伤害时额外造成等于层数的伤害
+ZHS: 当你在[color=#33ccff]本回合[/color]造成伤害时额外造成等于层数的伤害
+
+KEY: MANOSABA_LIN_POWER_XLM_POWER.title
+CUR: 橘雪莉的魔法
+ZHS: 橘雪莉的魔法
+
+KEY: MANOSABA_LIN_POWER_XUESHUYUANPOWER.description
+CUR: [color=#cccccc]回合开始[/color]时交换[color=#ff99cc][b]【亲近】[/b][/color]与[color=#CC6666][b]【疏远】[/b][/color]的数值
+ZHS: [color=#cccccc]回合开始[/color]时交换[color=#ff99cc][b]【亲近】[/b][/color]与[color=#CC6666][b]【疏远】[/b][/color]的数值
+
+KEY: MANOSABA_LIN_POWER_XUESHUYUANPOWER.title
+CUR: 错乱的记忆
+ZHS: 错乱的记忆
+
+KEY: MANOSABA_LIN_POWER_YALISABOND.description
+CUR: [color=#ff0000][b]【亲近】[/b][/color]增加时获得[color=#ff99cc]等量能量[/color]和[color=#ff0000]【紫藤亚里沙的魔法】[/color]
+[color=#ff0000][b]【疏远】[/b][/color]增加时消耗等量[color=#ff0000]【紫藤亚里沙的魔法】[/color]抽取等量[color=#ff99cc]卡牌[/color]
+ZHS: [color=#ff0000][b]【亲近】[/b][/color]增加时获得[color=#ff99cc]等量能量[/color]和[color=#ff0000]【紫藤亚里沙的魔法】[/color]
+[color=#ff0000][b]【疏远】[/b][/color]增加时消耗等量[color=#ff0000]【紫藤亚里沙的魔法】[/color]抽取等量[color=#ff99cc]卡牌[/color]
+
+KEY: MANOSABA_LIN_POWER_YALISABOND.title
+CUR: 亚里沙的羁绊
+ZHS: 亚里沙的羁绊
+
+KEY: MANOSABA_LIN_POWER_YLSM_POWER.description
+CUR: [color=#ff0000]回合结束[/color]失去1点血量然后移除
+ZHS: [color=#ff0000]回合结束[/color]失去1点血量然后移除
+
+KEY: MANOSABA_LIN_POWER_YLSM_POWER.title
+CUR: 紫藤亚里沙的魔法
+ZHS: 紫藤亚里沙的魔法
+
+KEY: MOCK_RECORD_CARD_CHANGED_PILES_POWER.description
+CUR: 用于记录卡牌改变牌堆的内部效果。
+ZHS: 用于记录卡牌改变牌堆的内部效果。
+
+KEY: MOCK_RECORD_CARD_CHANGED_PILES_POWER.title
+CUR: 卡牌移堆记录
+ZHS: 卡牌移堆记录
+
+===== jpn/relics.json : 11 条 =====
+KEY: MANOSABA_LIN_RELIC_ANANLIN_WITCH_FACTOR.title
+CUR: 魔女因子
+ZHS: 魔女因子
+
+KEY: MANOSABA_LIN_RELIC_DISMANTLEDPARTS.title
+CUR: 分解部品
+ZHS: 拆解零件
+
+KEY: MANOSABA_LIN_RELIC_EMA_WITCH_FACTOR.title
+CUR: 魔女因子
+ZHS: 魔女因子
+
+KEY: MANOSABA_LIN_RELIC_EXTERNALINFORMATION.title
+CUR: 外部情報
+ZHS: 外部情报
+
+KEY: MANOSABA_LIN_RELIC_MAGNIFYING_GLASS.title
+CUR: 虫眼鏡
+ZHS: 放大镜
+
+KEY: MANOSABA_LIN_RELIC_SAFE.title
+CUR: 金庫
+ZHS: 保险箱
+
+KEY: MANOSABA_LIN_RELIC_WITCH_FACTOR.title
+CUR: 魔女因子
+ZHS: 魔女因子
+
+KEY: MANOSABA_LIN_RELIC_WITCHGRIMOIRE.title
+CUR: 魔女資料
+ZHS: 魔女资料
+
+KEY: MANOSABA_LIN_RELIC_WITCHIFICATION_EMOTION_RELIC.title
+CUR: 魔女因子
+ZHS: 魔女因子
+
+KEY: MANOSABA_LIN_RELIC_YALISALINS_HAIRPIN.fireColor.preserveHighest.title
+CUR: 最高火色維持能力
+ZHS: 保留最高火色能力
+
+KEY: MANOSABA_LIN_RELIC_YALISALINS_HAIRPIN.fireColor.title
+CUR: 火色
+ZHS: 火色
+
+===== jpn/settings_ui.json : 3 条 =====
+KEY: MANOSABALIN_TELEMETRY_DIAGNOSTICS
+CUR: 診断情報
+ZHS: 诊断信息
+
+KEY: MANOSABALIN_TELEMETRY_RUNS
+CUR: 履歴
+ZHS: 历史记录
+
+KEY: MANOSABALIN_TELEMETRY_USAGE
+CUR: 使用
+ZHS: 使用情况
+
+===== rus/settings_ui.json : 6 条 =====
+KEY: MANOSABALIN_SETTINGS.events.kinmaneyurakuchoEvent.description
+CUR: Разрешить появление 「魔法少女の魔女裁判」×「カラオケまねきねこ」
+ZHS: 允许 「魔法少女の魔女裁判」×「カラオケまねきねこ」 出现
+
+KEY: MANOSABALIN_SETTINGS.events.kinmaneyurakuchoEvent.label
+CUR: 「魔法少女の魔女裁判」×「カラオケまねきねこ」
+ZHS: 「魔法少女の魔女裁判」×「カラオケまねきねこ」
+
+KEY: MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.description
+CUR: Разрешить появление 「魔法少女ノ魔女裁判」×ポカチェコラボ
+ZHS: 允许 「魔法少女ノ魔女裁判」×ポカチェコラボ 出现
+
+KEY: MANOSABALIN_SETTINGS.events.multiplayerCooperationEvent.label
+CUR: 「魔法少女ノ魔女裁判」×ポカチェコラボ
+ZHS: 「魔法少女ノ魔女裁判」×ポカチェコラボ
+
+KEY: MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.description
+CUR: Разрешить появление 『魔法少女ノ魔女裁判』×『アクアリウムは踊らない』
+ZHS: 允许 『魔法少女ノ魔女裁判』×『アクアリウムは踊らない』 出现
+
+KEY: MANOSABALIN_SETTINGS.events.teamCardExchangeEvent.label
+CUR: 『魔法少女ノ魔女裁判』×『アクアリウムは踊らない』
+ZHS: 『魔法少女ノ魔女裁判』×『アクアリウムは踊らない』
+

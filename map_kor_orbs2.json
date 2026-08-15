@@ -1,0 +1,6 @@
+{
+  "kor/orbs.json": {
+    "MANOSABA_LIN_ORB_EMOTION_ANGER_ORB.description": "[color=#CC6666]【니카이도 히로】[/color]\n두 배의 [color=#CC6666]피해[/color]를 입히고, [color=#CC6666]피해[/color] 20마다 무작위 아군에게 [color=#CC6666]피해[/color] 1을 입힌다",
+    "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.description": "[purple]【호죠 마그】[/purple]\n이 [purple]턴[/purple] [purple][b]공격[/b][/purple] 카드를 1장 낼 때마다 [purple]임시 [b]힘[/b] 감소[/purple] 1스택 획득, [purple][b]공격[/b][/purple] 1장·[purple]스킬[/purple] 1장·[purple]파워[/purple] 1장을 낼 때마다 에너지 2 획득"
+  }
+}

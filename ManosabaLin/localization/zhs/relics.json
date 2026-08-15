@@ -1,4 +1,4 @@
-{
+﻿{
   "MANOSABA_LIN_RELIC_PEN.title": "希罗的钢笔",
   "MANOSABA_LIN_RELIC_PEN.description": "每场战斗开始时，获得3层 [color=#CC6666]【正义】[/color]",
   "MANOSABA_LIN_RELIC_PEN.flavor": "[color=#CC6666]希罗[/color]初中时常用的钢笔，本来应该已经送给雪了",
@@ -81,7 +81,7 @@
   "MANOSABA_LIN_RELIC_ANANLIN_WITCH_FACTOR.description": "当你打出攻击牌时，获得{AttackGain:diff()}层[b]【魔女化】[/b]。当你打出技能牌时，减少{SkillLoss:diff()}层[b]【魔女化】[/b]。当你打出能力牌时，减少{PowerLoss:diff()}层[b]【魔女化】[/b]。",
   "MANOSABA_LIN_RELIC_ANANLIN_WITCH_FACTOR.flavor": "魔女因子过度活跃时人会失去理智，变成怪物一样的存在，被视为必须消灭的危险个体。",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.title": "安安的素描本",
-  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "当你打出技能牌时，获得2层[color=#6666cc]【缄默】[/color]。当你打出攻击牌时，消耗1层[color=#6666cc]【缄默】[/color]并获得1层活力。\n每层[color=#6666cc]第一场战斗开始[/color]时，出现一次三选一卡牌选择，选择卡牌后记录其卡池",
+  "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.description": "当你打出技能牌时，获得2层[color=#6666cc]【缄默】[/color]。当你打出攻击牌时，消耗1层[color=#6666cc]【缄默】[/color]并获得1层活力。\n每层[color=#6666cc]第一场战斗开始[/color]时，出现一次三选一卡牌选择，选择卡牌后记录其卡池\n回合开始时，随机给予一张手牌[color=#99ccff]【安心书签】[/color]",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.flavor": "安安的素描本记录着别人的故事",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.selectionScreenPrompt": "选择缄默替换意图",
   "MANOSABA_LIN_RELIC_ANANS_SKETCHBOOK.recordedPools.title": "已记录卡池",

@@ -1,0 +1,12 @@
+{
+  "kor/characters.json": {
+    "MANOSABA_LIN_CHARACTER_ANANLIN.description": "집에 틀어박혀 사는 소녀로, 사람과 [color=#6666cc]말하지[/color] 않는 생활을 하고 있다. 원래는 친해지기 쉬운 성격이었지만, [color=#6666cc]사건[/color] 때문에 남을 거부하게 되었고, 조용하고 절제된 성격이 되었다. [blue]노아[/blue]와 [color=#cc9966]밀리아[/color]와 지내면서 점차 그녀들에게 [color=#6666cc]의존[/color]하게 되었다. 근본적으로 의존하기 좋아하는 성격의 소녀"
+  },
+  "kor/orbs.json": {
+    "MANOSABA_LIN_ORB_EMOTION_JOY_ORB.description": "[purple]【宝生마그】[/purple]\n이 [purple]턴[/purple] [purple][b]공격[/b][/purple] 카드를 1장 낼 때마다 [purple]임시 [b]힘[/b] 감소[/purple]를 1층 얻는다. [purple][b]공격[/b][/purple] 1장, [purple]스킬[/purple] 1장, [purple]파워[/purple] 1장을 낼 때마다 에너지 2를 얻는다",
+    "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.description": "[color=#33ccff][b]「자[/b][/color][green][b]유」[/b][/green]\n[color=#33ccff]카드를 낼 때마다[/color] 2장 드로우. 처음 낸 카드는 비용 +1, 두 번째는 원래 비용으로 돌아감（교대）\n[green]2장마다[/green] 에너지 1 회복\n[color=#ff99cc]3장마다[/color] [b]임시 힘[/b] 1층 획득\n[color=#ffcc99]4장마다[/color] 손패의 [color=#33ccff]저주[/color]/[green]상태[/green] 카드 1장 소멸"
+  },
+  "rus/orbs.json": {
+    "MANOSABA_LIN_ORB_EMOTION_FRIENDSHIP_ORB.description": "[color=#33ccff][b]«Сво[/b][/color][green][b]бода»[/b][/green]\n[color=#33ccff]За каждую сыгранную карту[/color] возьмите 2 карты; карта, сыгранная впервые, стоит на 1 дороже, при втором розыгрыше возвращается исходная стоимость (по очереди)\n[green]Каждые 2 карты[/green] восстанавливают 1 энергию\n[color=#ff99cc]Каждые 3 карты[/color] дают 1 уровень [b]временной Силы[/b]\n[color=#ffcc99]Каждые 4 карты[/color]: сожгите 1 [color=#33ccff]проклятие[/color]/[green]статус[/green] из руки"
+  }
+}

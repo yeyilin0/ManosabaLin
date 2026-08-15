@@ -145,7 +145,32 @@ internal static class AnanlinCardHelpers
 
         var lost = Math.Min(amount, (int)peace.Amount);
         await PowerCmd.ModifyAmount(choiceContext, peace, -lost, card.Owner.Creature, card);
+
+        // 一次性失去 2 层及以上安心：选择一张手牌获得【重放1】
+        if (lost >= 2)
+            await GrantReplayForPeaceLoss(choiceContext, card.Owner);
+
         return lost;
+    }
+
+    private static async Task GrantReplayForPeaceLoss(PlayerChoiceContext choiceContext, Player player)
+    {
+        var hand = PileType.Hand.GetPile(player).Cards
+            .Where(IsPlayableCombatCard)
+            .ToArray();
+        if (hand.Length == 0) return;
+
+        var selected = (await CardSelectCmd.FromSimpleGrid(
+            choiceContext,
+            hand,
+            player,
+            new CardSelectorPrefs(
+                new LocString("powers", "MANOSABA_LIN_POWER_ANANLIN_PEACE_OF_MIND_POWER.selectionScreenPrompt"),
+                1,
+                1))).FirstOrDefault();
+        if (selected is null) return;
+
+        selected.BaseReplayCount++;
     }
 
     internal static async Task<int> PullMatchingCardsToHand(

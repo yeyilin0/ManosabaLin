@@ -1,0 +1,30 @@
+{
+  "kor/events.json": {
+    "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.title": "놀라서 물러서다",
+    "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.title": "「마법소녀의 마녀재판」×「가라오케 마네키네코」",
+    "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.TRANSFORM.description": "골드 100 지불, 카드 4장 변형",
+    "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.UPGRADE.description": "무작위 물약 1개를 내고 카드 6장 강화",
+    "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.REMOVE.title": "「진실 추적자」",
+    "MANOSABA_LIN_EVENT_MULTIPLAYER_COOPERATION_EVENT.title": "「마법소녀의 마녀재판」×포카체 콜라보",
+    "MANOSABA_LIN_EVENT_MULTIPLAYER_COOPERATION_EVENT.pages.INITIAL.options.ALL_IN.title": "올인",
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.EMALIN.title": "분홍색",
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.HIRO.title": "어두운 붉은색",
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.SHERRYLIN.title": "청람색",
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.ANANLINLIN.title": "자람색",
+    "MANOSABA_LIN_EVENT_TEAM_CARD_EXCHANGE_EVENT.title": "『마법소녀의 마녀재판』×『아쿠아리움은 춤추지 않는다』"
+  },
+  "rus/events.json": {
+    "MANOSABA_LIN_EVENT_GUARD_ONE_EVENT.pages.INITIAL.options.HEAL.title": "Встрепенуться и отступить",
+    "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.title": "«Суд над ведьмами» × «Караоке Манэкинэко»",
+    "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.TRANSFORM.description": "Заплатите 100 монет, чтобы превратить 4 карты",
+    "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.UPGRADE.description": "Отдайте случайное зелье, чтобы улучшить 6 карт",
+    "MANOSABA_LIN_EVENT_KINMANEYURAKUCHO_EVENT.pages.INITIAL.options.REMOVE.title": "«Искатель истины»",
+    "MANOSABA_LIN_EVENT_MULTIPLAYER_COOPERATION_EVENT.title": "«Суд над ведьмами» × коллаборация Покаче",
+    "MANOSABA_LIN_EVENT_MULTIPLAYER_COOPERATION_EVENT.pages.INITIAL.options.ALL_IN.title": "Ва-банк",
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.EMALIN.title": "Розовый",
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.HIRO.title": "Тёмно-красный",
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.SHERRYLIN.title": "Сине-голубой",
+    "COLORFUL_PHILOSOPHERS.pages.INITIAL.options.ANANLINLIN.title": "Сине-фиолетовый",
+    "MANOSABA_LIN_EVENT_TEAM_CARD_EXCHANGE_EVENT.title": "『Суд над ведьмами』×『Аквариум не танцует』"
+  }
+}

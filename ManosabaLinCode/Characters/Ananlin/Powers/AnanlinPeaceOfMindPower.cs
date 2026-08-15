@@ -77,38 +77,26 @@ public sealed class AnanlinPeaceOfMindPower : ManosabaPowerTemplate
         }
     }
 
-    public override async Task AfterCardPlayed(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (Owner.GetPower<AnanlinIsolatedPower>() is not null) return;
-        if (!ShouldEnhance(cardPlay.Card)) return;
+        if (player != Owner.Player) return;
 
-        var amount = Amount;
-        if (amount <= 0) return;
+        // 每有 1 层安心，随机触发一次：获得 1 点能量 或 抽 1 张牌（二选一随机）。
+        // 例如 3 层安心 → 随机触发 3 次。
+        var stacks = (int)Amount;
+        if (stacks <= 0) return;
 
-        switch (cardPlay.Card.Type)
+        var rng = player.RunState.Rng.CombatCardGeneration;
+        for (var i = 0; i < stacks; i++)
         {
-            case CardType.Attack:
-                if (cardPlay.Target is { IsAlive: true } target)
-                {
-                    Flash();
-                    await CreatureCmd.Damage(
-                        choiceContext,
-                        target,
-                        amount,
-                        ValueProp.Unpowered | ValueProp.Move,
-                        cardPlay.Card,
-                        cardPlay);
-                }
-
-                break;
-            case CardType.Skill:
-                Flash();
-                await CreatureCmd.GainBlock(Owner, amount, ValueProp.Move, cardPlay);
-                break;
-            case CardType.Power:
-                Flash();
-                await PowerCmd.Apply<SilentPower>(choiceContext, Owner, amount, Owner, cardPlay.Card);
-                break;
+            if (rng.NextFloat() < 0.5f)
+            {
+                await PlayerCmd.GainEnergy(1, player);
+            }
+            else
+            {
+                await CardPileCmd.Draw(choiceContext, 1, player);
+            }
         }
     }
 
@@ -137,14 +125,6 @@ public sealed class AnanlinPeaceOfMindPower : ManosabaPowerTemplate
     {
         if (Amount > MaxStacks)
             SetAmount(MaxStacks, silent: true);
-    }
-
-    private static bool ShouldEnhance(CardModel card)
-    {
-        return card.Owner?.Creature is not null
-            && card.Pool.Id == ModelDb.GetId(typeof(AnanlinCardPool))
-            && card is not IAnanlinPeaceOfMindSpecialCard
-            && card.Type is CardType.Attack or CardType.Skill or CardType.Power;
     }
 }
 
