@@ -156,11 +156,11 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
 
     /// <summary>
     ///     本回合被余火烧掉、且仍然可以返回手牌的牌（按烧掉顺序，已去重）。
-    ///     供「第二次点燃」随机取回使用。
+    ///     供「第二次点燃」随机取回使用；已经被取回（不在消耗堆）的牌不再算候选。
     /// </summary>
     public CardModel[] BurnedCardsThisTurn =>
         _burnedCardsThisTurn
-            .Where(static card => !card.HasBeenRemovedFromState)
+            .Where(static card => !card.HasBeenRemovedFromState && card.Pile?.Type == PileType.Exhaust)
             .ToArray();
 
     public int GetFireColorCount(Creature target)
@@ -397,6 +397,9 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         UnneededGoodChildPendingEnergy = 0;
         UnneededGoodChildPendingCount = 0;
         PendingYellowCostReduction = 0;
+
+        // 「别看我」只管本回合被烧掉；牌身上的余火保留。
+        _dontLookAtMeCards.Clear();
 
         foreach (var (card, pending) in _bringHomeCards.ToArray())
         {

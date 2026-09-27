@@ -143,7 +143,9 @@ public static class YalisalinFireComponentResolver
                 if (context.BurnedCard != null)
                     await TryAutoPlayBurnedCard(choiceContext, context);
 
-                await Burn(choiceContext, context);
+                // 「烧掉后」效果只在真的烧掉时触发：被烧牌若已离开战斗（例如自动打出的能力牌），不算烧牌。
+                if (!await Burn(choiceContext, context))
+                    continue;
 
                 foreach (var modifier in modifiers)
                     await modifier.AfterFireComponentBurned(choiceContext, context);
@@ -166,7 +168,8 @@ public static class YalisalinFireComponentResolver
                 foreach (var modifier in modifiers)
                     await modifier.BeforeFireComponentBurned(choiceContext, context);
 
-                await Burn(choiceContext, context);
+                if (!await Burn(choiceContext, context))
+                    continue;
 
                 foreach (var modifier in modifiers)
                     await modifier.AfterFireComponentBurned(choiceContext, context);
@@ -464,25 +467,26 @@ public static class YalisalinFireComponentResolver
         }
     }
 
-    private static async Task Burn(
+    /// <returns>这张牌是否真的被烧掉了。</returns>
+    private static async Task<bool> Burn(
         PlayerChoiceContext choiceContext,
         YalisalinFireComponentContext context)
     {
         if (context.BurnedCard is not { } burned || burned.HasBeenRemovedFromState)
-            return;
+            return false;
 
         switch (context.BurnMode)
         {
             case YalisalinFireComponentBurnMode.Exhaust:
                 await CardCmd.Exhaust(choiceContext, burned, skipVisuals: context.SkipBurnVisuals);
                 context.MarkBurned(burned);
-                break;
+                return true;
             case YalisalinFireComponentBurnMode.RemoveFromCombat:
                 await CardPileCmd.RemoveFromCombat(burned, context.SkipBurnVisuals);
                 context.MarkBurned(burned);
-                break;
+                return true;
             case YalisalinFireComponentBurnMode.None:
-                break;
+                return false;
             default:
                 throw new ArgumentOutOfRangeException(nameof(context.BurnMode), context.BurnMode, null);
         }
@@ -547,6 +551,12 @@ public static class YalisalinFireComponentResolver
         }
 
         foreach (var card in YalisalinFireComponentRules.AllCombatCards(context.Owner))
+        foreach (var modifier in YalisalinFireComponentRules.CardModifiers(card))
+            yield return modifier;
+
+        // 消耗堆里的牌同样参与：「第五次自证」写明无论此牌在哪都能计数与添火，而它最常见的去处就是被余火烧进消耗堆。
+        // 其余卡面修饰器都以「源卡/被烧牌是自己」为前提，放进来不会额外生效。
+        foreach (var card in PileType.Exhaust.GetPile(context.Owner).Cards)
         foreach (var modifier in YalisalinFireComponentRules.CardModifiers(card))
             yield return modifier;
     }
