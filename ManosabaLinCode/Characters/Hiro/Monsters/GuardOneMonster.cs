@@ -42,6 +42,7 @@ public sealed class GuardOneMonster : ModMonsterTemplate
     private int FrailAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 2, 2);
     private int VulnerableAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 2, 2);
     private int PoisonAttackPoisonAmount => 3;
+    private const int WeakAmountWhenPoisoned = 1;
 
     /// <summary>防止 <see cref="AfterDeath" /> 被重复调用时重复发放战胜奖励。</summary>
     private bool _bossRewardGranted;
@@ -118,10 +119,15 @@ public sealed class GuardOneMonster : ModMonsterTemplate
     {
         await CreatureCmd.TriggerAnim(Creature, "Cast", 0.5f);
 
+        // 已中毒的目标改为 1 层虚弱，避免毒层滚雪球；意图图标两种情况都是 Debuff，不需要动态切换。
         foreach (var target in targets)
         {
-            await PowerCmd.Apply<PoisonPower>(
-                new ThrowingPlayerChoiceContext(), target, PoisonAmount, Creature, null);
+            if (target.GetPower<PoisonPower>() is { Amount: > 0 })
+                await PowerCmd.Apply<WeakPower>(
+                    new ThrowingPlayerChoiceContext(), target, WeakAmountWhenPoisoned, Creature, null);
+            else
+                await PowerCmd.Apply<PoisonPower>(
+                    new ThrowingPlayerChoiceContext(), target, PoisonAmount, Creature, null);
         }
 
         await PowerCmd.Apply<WithPower>(
