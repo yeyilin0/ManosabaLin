@@ -276,6 +276,49 @@ public sealed class YalisalinFireColorMoreTests : CombatTestSuite
         Assert.Equal(hpBefore - 15, enemy.CurrentHp);
     }
 
+    /// <summary>卡面文本的变量都能解析（未升级与升级后），避免文案引用了卡上没有的动态变量。</summary>
+    [Fact]
+    public async Task Fire_color_card_descriptions_render()
+    {
+        AssertDescriptionRenders<Afterschooltestburn>();
+        AssertDescriptionRenders<Ashinpages>();
+        AssertDescriptionRenders<Temperatureproof>();
+        AssertDescriptionRenders<YalisalinWitchPrisoner>();
+        AssertDescriptionRenders<Reversecalculation>();
+        AssertDescriptionRenders<Dontcooldown>();
+        AssertDescriptionRenders<Grazingcritical>();
+        AssertDescriptionRenders<Pocketmatchbox>();
+        AssertDescriptionRenders<Ticketonwindow>();
+        AssertDescriptionRenders<Unusedconclusion>();
+        AssertDescriptionRenders<Samewrongproblem>();
+        AssertDescriptionRenders<Burntthermometerpaper>();
+        AssertDescriptionRenders<EmberBaptism>();
+        AssertDescriptionRenders<Deadlinehandoff>();
+        AssertDescriptionRenders<Tomorrowburn>();
+        AssertDescriptionRenders<KindlingSparkToken>();
+        AssertDescriptionRenders<Thirteenthlistener>();
+        AssertDescriptionRenders<BoundPrometheus>();
+        AssertDescriptionRenders<Burnedapology>();
+
+        await PlayWithEnergy(await AddToHand<YalisalinDefend>());
+    }
+
+    private void AssertDescriptionRenders<TCard>() where TCard : CardModel
+    {
+        var card = Combat.CreateCard<TCard>(Player);
+        foreach (var upgraded in new[] { false, true })
+        {
+            if (upgraded)
+                CardCmd.Upgrade(card);
+
+            var text = card.GetDescriptionForPile(PileType.Hand);
+            Assert.False(string.IsNullOrWhiteSpace(text), $"{typeof(TCard).Name} 描述为空");
+            Assert.DoesNotContain("{", text);
+            Assert.DoesNotContain("升温", text);
+            Assert.DoesNotContain("封存", text);
+        }
+    }
+
     [Fact]
     public async Task Temperatureproof_gives_then_detonates_orange_for_double_block()
     {
