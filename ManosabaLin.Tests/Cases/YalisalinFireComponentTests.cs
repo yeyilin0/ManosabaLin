@@ -51,41 +51,31 @@ public sealed class YalisalinFireComponentTests : CombatTestSuite
     }
 
     /// <summary>
-    /// （升温组件运行时验证）——验证两件事：
-    /// 1) capability 是否真正挂载到升温卡上（Burntthermometerpaper 等）。
-    /// 2) 引擎运行时 LocString.GetIfExists 能否查到 afterBase/afterBaseStrong 键。
-    /// 若 capability 没挂上 → 注册/挂载环节问题；若键查不到 → 本地化加载环节问题。
+    /// （把道歉烧成灰·回归）——被余火烧掉的牌先自动打出一次，且不消耗能量。
+    /// 牌堆补到 13 张以上，避免发夹额外连接一张本来就 0 费的随机牌，让被烧的是 1 费防御。
     /// </summary>
     [Fact]
-    public async Task HeatWord_capability_mounted_and_loc_keys_resolve()
+    public async Task Burnedapology_autoplays_burned_card_for_free()
     {
-        var card = await AddToHand<Burntthermometerpaper>();
+        await ApplyPower<BurnedApologyPower>(Player.Creature, 1);
+        for (var i = 0; i < 13; i++)
+        {
+            var filler = Combat.CreateCard<YalisalinDefend>(Player);
+            await CardPileCmd.AddGeneratedCardToCombat(filler, PileType.Draw, Player);
+        }
 
+        var card = await AddToHand<Unwantedkindness>();
         await PlayerCmd.SetEnergy(10, Player);
         await WaitForIdle();
+        await Play(card);
 
-        // 1) capability 必须挂载
-        Assert.True(card.TryGetCapability<YalisalinHeatWordCapability>(out var heat),
-            "Burntthermometerpaper 没有挂载 YalisalinHeatWordCapability");
-        Assert.NotNull(heat);
+        var exhaust = PileType.Exhaust.GetPile(Player).Cards.ToArray();
+        Assert.Single(exhaust);
+        Assert.IsType<YalisalinDefend>(exhaust[0]);
 
-        // 2) 运行时本地化键必须可解析（这正是 GetDescriptionFragments 依赖的键）
-        //    注意：文案里可能带富文本标记（如 [color=#ff0000]升温[/color]），
-        //    这里剥掉标记再比对，免得以后只调颜色就把这条测试弄红。
-        var afterBase = LocString.GetIfExists("cards",
-            "MANOSABA_LIN_MODEL_CAPABILITY_YALISALIN_HEAT_WORD.afterBase");
-        Assert.NotNull(afterBase);
-        Assert.Equal("升温", StripTextMarkup(afterBase.GetRawText()));
-
-        var afterBaseStrong = LocString.GetIfExists("cards",
-            "MANOSABA_LIN_MODEL_CAPABILITY_YALISALIN_HEAT_WORD.afterBaseStrong");
-        Assert.NotNull(afterBaseStrong);
-        Assert.Equal("强升温", StripTextMarkup(afterBaseStrong.GetRawText()));
-
-        // 末尾打出一次，满足 TestTheSpire 的"至少执行 1 个战斗动作"校验（否则整批 TERMINATE）。
-        var enemy = EnemyAt(0);
-        await PlayerCmd.SetEnergy(10, Player);
-        await Play(card, enemy);
+        // 只付了不需要的善意自己的 1 费；被烧的防御免费打出（5 格挡）
+        Assert.Equal(9, Player.PlayerCombatState!.Energy);
+        Assert.Equal(7 + 5, Player.Creature.Block);
     }
 
     [Fact]

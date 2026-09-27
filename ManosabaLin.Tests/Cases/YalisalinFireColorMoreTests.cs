@@ -1,11 +1,11 @@
-using ManosabaLin.Characters.Common.Powers;
-using ManosabaLin.Characters.Hiro.Powers;
 using ManosabaLin.Characters.Yalisalin;
 using ManosabaLin.Characters.Yalisalin.Cards;
 using ManosabaLin.Characters.Yalisalin.Powers;
 using ManosabaLin.Characters.Yalisalin.Relics;
 using MegaCrit.Sts2.Core.Commands;
-using MegaCrit.Sts2.Core.Entities.Powers;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Monsters;
 using MegaCrit.Sts2.Core.Models.Powers;
 using TestTheSpire;
@@ -14,7 +14,8 @@ using Xunit;
 namespace ManosabaLin.Tests.Cases;
 
 /// <summary>
-/// 火色系剩余卡（带发夹）。
+/// 火色 v2（带发夹）：6 格量表按格位定色（1-2 浅橙 / 3-4 亮黄 / 5-6 赤红），
+/// 卡牌从低往高给予，攻击牌造成伤害后从最新格消耗，连续两次同色触发连续奖励。
 /// </summary>
 public sealed class YalisalinFireColorMoreTests : CombatTestSuite
 {
@@ -27,195 +28,264 @@ public sealed class YalisalinFireColorMoreTests : CombatTestSuite
             .WithSeed("manosaba-yalisalin-firemore");
     }
 
-    /// <summary>（没被采用的结论）——Power，启用混合结论标记，打出不崩溃。</summary>
-    [Fact]
-    public async Task Unusedconclusion_plays_without_error()
+    private YalisalinsHairpin Hairpin
     {
-        var card = await AddToHand<Unusedconclusion>();
+        get
+        {
+            Assert.True(YalisalinFireColorSystem.TryGetHairpin(Player, out var hairpin));
+            return hairpin;
+        }
+    }
+
+    private async Task PlayWithEnergy(CardModel card, Creature? target = null)
+    {
+        await PlayerCmd.SetEnergy(10, Player);
+        await WaitForIdle();
+        await Play(card, target);
+    }
+
+    [Fact]
+    public async Task Slot_colors_follow_position()
+    {
+        Assert.Equal(YalisalinFireColor.LightOrange, YalisalinsHairpin.SlotColor(1));
+        Assert.Equal(YalisalinFireColor.LightOrange, YalisalinsHairpin.SlotColor(2));
+        Assert.Equal(YalisalinFireColor.BrightYellow, YalisalinsHairpin.SlotColor(3));
+        Assert.Equal(YalisalinFireColor.BrightYellow, YalisalinsHairpin.SlotColor(4));
+        Assert.Equal(YalisalinFireColor.Red, YalisalinsHairpin.SlotColor(5));
+        Assert.Equal(YalisalinFireColor.Red, YalisalinsHairpin.SlotColor(6));
+
+        // TestTheSpire 要求每条测试至少执行 1 个战斗动作
+        await PlayWithEnergy(await AddToHand<YalisalinDefend>());
+    }
+
+    /// <summary>攻击不再给予火色；给予由卡牌完成（没看见的火种：无火色时给 2 格）。</summary>
+    [Fact]
+    public async Task Attack_no_longer_gives_fire_and_cards_give_from_bottom()
+    {
+        var enemy = EnemyAt(0);
+
+        await PlayWithEnergy(await AddToHand<YalisalinAttack>(), enemy);
+        Assert.Equal(0, Hairpin.GetFireColorCount(enemy));
+
+        await PlayWithEnergy(await AddToHand<Unseenkindling>(), enemy);
+        Assert.Equal(2, Hairpin.GetFireColorCount(enemy));
+        Assert.All(Hairpin.GetFireColorSegments(enemy), s => Assert.Equal(YalisalinFireColor.LightOrange, s.Color));
+    }
+
+    /// <summary>满格后攻击一次：消耗的是最新的第 6 格（赤红），不是最早的浅橙。</summary>
+    [Fact]
+    public async Task Attack_consumes_newest_slot_first()
+    {
+        var enemy = EnemyAt(0);
+        await PlayWithEnergy(await AddToHand<Tomorrowburn>(), enemy);
+        Assert.Equal(6, Hairpin.GetFireColorCount(enemy));
+
+        var logStart = Hairpin.ConsumptionLog.Count;
+        await PlayWithEnergy(await AddToHand<YalisalinAttack>(), enemy);
+
+        Assert.Equal(5, Hairpin.GetFireColorCount(enemy));
+        Assert.Equal(YalisalinFireColor.Red, Hairpin.ConsumptionLog[logStart]);
+    }
+
+    /// <summary>连续消耗两格浅橙：每格 4 格挡，第二格凑成连续。</summary>
+    [Fact]
+    public async Task Two_orange_in_a_row_trigger_continuous()
+    {
+        var enemy = EnemyAt(0);
+        await PlayWithEnergy(await AddToHand<Unseenkindling>(), enemy);
+        Assert.Equal(2, Hairpin.GetFireColorCount(enemy));
+
+        var continuousBefore = Hairpin.ContinuousTriggersThisCombat;
+        var blockBefore = Player.Creature.Block;
+
+        // 升级后的临界擦边：消耗 1 格并无条件再给 1 格，所以用未升级版，靠「不满格」跳过回填。
+        await PlayWithEnergy(await AddToHand<Grazingcritical>(), enemy);
+        await PlayWithEnergy(await AddToHand<Grazingcritical>(), enemy);
+
+        Assert.Equal(0, Hairpin.GetFireColorCount(enemy));
+        Assert.Equal(blockBefore + 8, Player.Creature.Block);
+        Assert.Equal(continuousBefore + 1, Hairpin.ContinuousTriggersThisCombat);
+    }
+
+    /// <summary>
+    /// 超出格数：满格时再给予 6 格，按第 1..6 格的颜色一次性补结算，
+    /// 三对同色各触发一次连续（赤红连续给 1 力量）。
+    /// </summary>
+    [Fact]
+    public async Task Tomorrowburn_overflow_resolves_slot_colors_once()
+    {
+        var enemy = EnemyAt(0);
+        await PlayWithEnergy(await AddToHand<Tomorrowburn>(), enemy);
+        Assert.Equal(6, Hairpin.GetFireColorCount(enemy));
+
+        var logStart = Hairpin.ConsumptionLog.Count;
+        var continuousBefore = Hairpin.ContinuousTriggersThisCombat;
+        await PlayWithEnergy(await AddToHand<Tomorrowburn>(), enemy);
+
+        Assert.Equal(6, Hairpin.GetFireColorCount(enemy));
+        Assert.Equal(
+            [
+                YalisalinFireColor.LightOrange, YalisalinFireColor.LightOrange,
+                YalisalinFireColor.BrightYellow, YalisalinFireColor.BrightYellow,
+                YalisalinFireColor.Red, YalisalinFireColor.Red
+            ],
+            Hairpin.ConsumptionLog.Skip(logStart).ToArray());
+        Assert.Equal(continuousBefore + 3, Hairpin.ContinuousTriggersThisCombat);
+        Assert.Equal(1, CardTestAssertions.PowerAmount<StrengthPower>(Player.Creature));
+    }
+
+    /// <summary>反向验算：消耗本回合给予的最早一格（浅橙），消耗效果翻倍 → 5 格挡 + 4×2。</summary>
+    [Fact]
+    public async Task Reversecalculation_consumes_earliest_given_this_turn_doubled()
+    {
+        var enemy = EnemyAt(0);
+        await PlayWithEnergy(await AddToHand<Tomorrowburn>(), enemy);
+
+        var blockBefore = Player.Creature.Block;
+        var logStart = Hairpin.ConsumptionLog.Count;
+        await PlayWithEnergy(await AddToHand<Reversecalculation>(), enemy);
+
+        Assert.Equal(5, Hairpin.GetFireColorCount(enemy));
+        Assert.Equal(YalisalinFireColor.LightOrange, Hairpin.ConsumptionLog[logStart]);
+        Assert.Equal(blockBefore + 5 + 8, Player.Creature.Block);
+    }
+
+    /// <summary>同一道错题：两段攻击消耗 亮黄→浅橙（异色），下一张技能牌 0 费。</summary>
+    [Fact]
+    public async Task Samewrongproblem_different_colors_make_next_skill_free()
+    {
+        var enemy = EnemyAt(0);
+        await PlayWithEnergy(await AddToHand<Unseenkindling>(), enemy); // 2 格
+        await PlayWithEnergy(await AddToHand<Unseenkindling>(), enemy); // 已有火色：+1 → 第 3 格亮黄
+        Assert.Equal(3, Hairpin.GetFireColorCount(enemy));
+
+        await PlayWithEnergy(await AddToHand<Samewrongproblem>(), enemy);
+        Assert.Equal(1, Hairpin.PendingFreeSkillCount);
+
+        var skill = await AddToHand<YalisalinDefend>();
+        await PlayerCmd.SetEnergy(10, Player);
+        await WaitForIdle();
+        await Play(skill);
+        Assert.Equal(10, Player.PlayerCombatState!.Energy);
+        Assert.Equal(0, Hairpin.PendingFreeSkillCount);
+    }
+
+    /// <summary>被缚的普罗米修斯：之后的消耗不触发连续，每次对该敌人追加 6 点伤害。</summary>
+    [Fact]
+    public async Task BoundPrometheus_blocks_continuous_and_adds_damage()
+    {
+        var enemy = EnemyAt(0);
+        await PlayWithEnergy(await AddToHand<Tomorrowburn>(), enemy);
+
+        await PlayWithEnergy(await AddToHand<BoundPrometheus>(), enemy);
+        Assert.NotNull(Player.Creature.GetPower<BoundPrometheusPower>());
+        Assert.Equal(5, Hairpin.GetFireColorCount(enemy));
+
+        var continuousBefore = Hairpin.ContinuousTriggersThisCombat;
+        var hpBefore = enemy.CurrentHp;
+        await PlayWithEnergy(await AddToHand<Grazingcritical>(), enemy);
+
+        Assert.Equal(continuousBefore, Hairpin.ContinuousTriggersThisCombat);
+        Assert.True(hpBefore - enemy.CurrentHp >= BoundPrometheusPower.DamagePerConsume);
+    }
+
+    /// <summary>窗上的罚单：每次给予额外 +1 格。</summary>
+    [Fact]
+    public async Task Ticketonwindow_adds_one_to_each_give()
+    {
+        var enemy = EnemyAt(0);
+        await PlayWithEnergy(await AddToHand<Ticketonwindow>());
+        await PlayWithEnergy(await AddToHand<Unseenkindling>(), enemy);
+
+        Assert.Equal(3, Hairpin.GetFireColorCount(enemy));
+    }
+
+    /// <summary>烬火洗礼：清空所有敌人的火色，至少 6 格时抽 3 张并获得 3 点能量。</summary>
+    [Fact]
+    public async Task EmberBaptism_consumes_all_and_rewards_full_gauge()
+    {
+        var enemy = EnemyAt(0);
+        await PlayWithEnergy(await AddToHand<Tomorrowburn>(), enemy);
+
+        var hpBefore = enemy.CurrentHp;
+        var card = await AddToHand<EmberBaptism>();
         await PlayerCmd.SetEnergy(10, Player);
         await WaitForIdle();
         await Play(card);
-        Assert.True(true);
+
+        Assert.Equal(0, Hairpin.GetFireColorCount(enemy));
+        Assert.True(hpBefore - enemy.CurrentHp >= 36);
+        // 10 - 3 费 + 3 能量 + 亮黄连续 1 能量
+        Assert.Equal(11, Player.PlayerCombatState!.Energy);
     }
 
-    /// <summary>（灰烬书页）——7 格挡；无火色可封存时只给格挡。</summary>
     [Fact]
-    public async Task Ashinpages_gives_seven_block()
+    public async Task Burntthermometerpaper_loses_three_life_and_gives_four()
     {
+        var enemy = EnemyAt(0);
+        var hpBefore = Player.Creature.CurrentHp;
+        await PlayWithEnergy(await AddToHand<Burntthermometerpaper>(), enemy);
+
+        Assert.Equal(hpBefore - 3, Player.Creature.CurrentHp);
+        Assert.Equal(4, Hairpin.GetFireColorCount(enemy));
+    }
+
+    [Fact]
+    public async Task Ashinpages_gives_four_to_single_enemy()
+    {
+        var enemy = EnemyAt(0);
         var card = await AddToHand<Ashinpages>();
         await PlayerCmd.SetEnergy(10, Player);
         await WaitForIdle();
 
-        // 这张牌是 TargetType.AllEnemies：IsValidTarget(非 null 目标) 对它一律返回 false，
-        // 传具体敌人会被 harness 判成「打出失败」并把整轮 runner 打断，所以这里必须不带目标。
+        // AllEnemies 牌不能带目标，否则 harness 判成打出失败
         await Play(card);
-        Assert.Equal(7, Player.Creature.Block);
+        Assert.Equal(4, Hairpin.GetFireColorCount(enemy));
     }
 
-    /// <summary>（烧过的温度计纸）——先自伤 2 点（不可格挡/不受力量），无火色时只自伤。</summary>
     [Fact]
-    public async Task Burntthermometerpaper_damages_self_two()
+    public async Task Pocketmatchbox_damages_when_entering_new_color_band()
     {
         var enemy = EnemyAt(0);
-        var hpBefore = Player.Creature.CurrentHp;
-        var card = await AddToHand<Burntthermometerpaper>();
-        await PlayerCmd.SetEnergy(10, Player);
-        await WaitForIdle();
-        await Play(card, enemy);
-        Assert.Equal(hpBefore - 2, Player.Creature.CurrentHp);
+        await PlayWithEnergy(await AddToHand<Unseenkindling>(), enemy); // 2 格浅橙
+
+        var hpBefore = enemy.CurrentHp;
+        await PlayWithEnergy(await AddToHand<Pocketmatchbox>(), enemy); // 第 3 格亮黄 ≠ 第 2 格浅橙
+        Assert.Equal(3, Hairpin.GetFireColorCount(enemy));
+        Assert.Equal(hpBefore - 8, enemy.CurrentHp);
     }
 
-    /// <summary>（不要冷却）——Power，启用回合开始保留最高火色，打出不崩溃。</summary>
     [Fact]
-    public async Task Dontcooldown_plays_without_error()
+    public async Task Power_cards_apply_their_effects()
     {
-        var card = await AddToHand<Dontcooldown>();
-        await PlayerCmd.SetEnergy(10, Player);
-        await WaitForIdle();
-        await Play(card);
-        Assert.True(true);
+        await PlayWithEnergy(await AddToHand<Unusedconclusion>());
+        await PlayWithEnergy(await AddToHand<Dontcooldown>());
+        await PlayWithEnergy(await AddToHand<Thirteenthlistener>());
+
+        Assert.NotNull(Player.Creature.GetPower<MixedConclusionPower>());
+        Assert.NotNull(Player.Creature.GetPower<ThirteenthListenerPower>());
+        Assert.Equal(4, Hairpin.TurnStartFireGift);
     }
 
-    /// <summary>（擦边临界）——无火色时消耗无效、不加能量，不崩溃。</summary>
     [Fact]
-    public async Task Grazingcritical_plays_without_error()
-    {
-        var enemy = EnemyAt(0);
-        var card = await AddToHand<Grazingcritical>();
-        await PlayerCmd.SetEnergy(10, Player);
-        await WaitForIdle();
-        await Play(card, enemy);
-        Assert.True(true);
-    }
-
-    /// <summary>（截止转交）——3 次 4 伤，敌人无火色时共 12 伤。</summary>
-    [Fact]
-    public async Task Deadlinehandoff_deals_three_hits_of_four()
+    public async Task Deadlinehandoff_deals_three_hits_of_five()
     {
         var enemy = EnemyAt(0);
         var hpBefore = enemy.CurrentHp;
-        var card = await AddToHand<Deadlinehandoff>();
-        await PlayerCmd.SetEnergy(10, Player);
-        await WaitForIdle();
-        await Play(card, enemy);
-        Assert.Equal(hpBefore - 12, enemy.CurrentHp);
+        await PlayWithEnergy(await AddToHand<Deadlinehandoff>(), enemy);
+        Assert.Equal(hpBefore - 15, enemy.CurrentHp);
     }
 
-    /// <summary>（窗边车票）——Power，启用满格保留，打出不崩溃。</summary>
     [Fact]
-    public async Task Ticketonwindow_plays_without_error()
-    {
-        var card = await AddToHand<Ticketonwindow>();
-        await PlayerCmd.SetEnergy(10, Player);
-        await WaitForIdle();
-        await Play(card);
-        Assert.True(true);
-    }
-
-    /// <summary>（明天的燃烧）——无火色时循环无消耗，不崩溃。</summary>
-    [Fact]
-    public async Task Tomorrowburn_plays_without_error()
-    {
-        var enemy = EnemyAt(0);
-        var card = await AddToHand<Tomorrowburn>();
-        await PlayerCmd.SetEnergy(10, Player);
-        await WaitForIdle();
-        await Play(card, enemy);
-        Assert.True(true);
-    }
-
-    /// <summary>（第十三位听众）——Power，启用聆听标记，打出不崩溃。</summary>
-    [Fact]
-    public async Task Thirteenthlistener_plays_without_error()
-    {
-        var card = await AddToHand<Thirteenthlistener>();
-        await PlayerCmd.SetEnergy(10, Player);
-        await WaitForIdle();
-        await Play(card);
-        Assert.True(true);
-    }
-
-    /// <summary>
-    /// （温差证明）——7 伤；敌人无火色时封存选择返回 null，仍抽 1。
-    /// 2026-09-09 已补 selectionScreenPrompt 本地化键（5 语），此前打出必崩。
-    /// </summary>
-    [Fact]
-    public async Task Temperatureproof_deals_seven_damage()
+    public async Task Temperatureproof_gives_then_detonates_orange_for_double_block()
     {
         var enemy = EnemyAt(0);
         var hpBefore = enemy.CurrentHp;
-        var card = await AddToHand<Temperatureproof>();
+        await PlayWithEnergy(await AddToHand<Temperatureproof>(), enemy);
 
-        await PlayerCmd.SetEnergy(10, Player);
-        await WaitForIdle();
-        await Play(card, enemy);
-
-        Assert.Equal(hpBefore - 7, enemy.CurrentHp);
-    }
-
-    /// <summary>
-    /// （口袋里的火柴盒）——敌人无火色时封存选择返回 null 直接结束，不崩溃。
-    /// 2026-09-09 已补 selectionScreenPrompt 本地化键（5 语），此前打出必崩。
-    /// </summary>
-    [Fact]
-    public async Task Pocketmatchbox_plays_without_error()
-    {
-        var enemy = EnemyAt(0);
-        var card = await AddToHand<Pocketmatchbox>();
-
-        await PlayerCmd.SetEnergy(10, Player);
-        await WaitForIdle();
-        await Play(card, enemy);
-
-        Assert.True(true);
-    }
-
-    /// <summary>
-    /// （每色独立能力）——封存暗橘火色后，能力栏出现对应的
-    /// <see cref="YalisalinSealedLightOrangeFirePower"/>，且不会出现其他 3 色的能力。
-    /// </summary>
-    /// <summary>
-    ///     （夹在书页里的灰）——按「当前封存火焰」的最高一档，给全体敌人施加对应层数的易伤：
-    ///     浅橙 1 层 / 亮黄 2 层 / 赤红 3 层 / 黑红碳化 4 层；没有封存火焰时只给格挡。
-    /// </summary>
-    /// <remarks>
-    ///     这张牌**只读取**封存火焰、自己并不封存（封存由发夹内部完成），所以测试直接把封存
-    ///     塞进发夹，再验证卡牌的读取+施加链路。旧版断言认为打这张牌会「封存目标最早火色」，
-    ///     那是被替换掉的设计（zhs 文案与卡片实现现在都是「读取封存→易伤」），故一并更新。
-    /// </remarks>
-    [Fact]
-    public async Task Sealed_fire_power_is_per_color()
-    {
-        var enemy = EnemyAt(0);
-
-        Assert.True(YalisalinFireColorSystem.TryGetHairpin(Player, out var hairpin));
-        Assert.NotNull(hairpin);
-
-        // ① 没有任何封存火焰 → 只给 7 点格挡，不给易伤
-        var ash = await AddToHand<Ashinpages>();
-        await PlayerCmd.SetEnergy(10, Player);
-        await WaitForIdle();
-        await Play(ash);
-        Assert.Equal(7, Player.Creature.Block);
-        Assert.Equal(0, CardTestAssertions.PowerAmount<VulnerablePower>(enemy));
-
-        // ② 封存 1 层浅橙（最低档）→ 最高档 = 浅橙 = 1 层易伤
-        hairpin!.GrantSealedFire(YalisalinFireColor.LightOrange);
-        var ash2 = await AddToHand<Ashinpages>();
-        await PlayerCmd.SetEnergy(10, Player);
-        await WaitForIdle();
-        await Play(ash2);
-        Assert.Equal(1, CardTestAssertions.PowerAmount<VulnerablePower>(enemy));
-
-        // ③ 再封存 1 层黑红碳化（最高档）→ 最高档变黑红 = 4 层，叠加在已有的 1 层之上
-        hairpin.GrantSealedFire(YalisalinFireColor.BlackRed);
-        var ash3 = await AddToHand<Ashinpages>();
-        await PlayerCmd.SetEnergy(10, Player);
-        await WaitForIdle();
-        await Play(ash3);
-        Assert.Equal(5, CardTestAssertions.PowerAmount<VulnerablePower>(enemy));
-
-        // 最高档仍是黑红：不会因为浅橙层数多而回落
-        Assert.Equal(4, hairpin.GetHighestSealedFireStacks());
+        Assert.Equal(hpBefore - 8, enemy.CurrentHp);
+        Assert.Equal(0, Hairpin.GetFireColorCount(enemy));
+        // 浅橙消耗效果 4 + 本牌 5 × 2（引爆的是浅橙）
+        Assert.Equal(14, Player.Creature.Block);
     }
 }

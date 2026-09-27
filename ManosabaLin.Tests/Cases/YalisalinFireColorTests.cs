@@ -75,7 +75,7 @@ public sealed class YalisalinFireColorWithHairpinTests : CombatTestSuite
     }
 
     [Fact]
-    public async Task Samewrongproblem_deals_five_damage()
+    public async Task Samewrongproblem_deals_two_hits_of_five()
     {
         var enemy = EnemyAt(0);
         var hpBefore = enemy.CurrentHp;
@@ -85,7 +85,7 @@ public sealed class YalisalinFireColorWithHairpinTests : CombatTestSuite
         await WaitForIdle();
         await Play(card, enemy);
 
-        Assert.Equal(hpBefore - 5, enemy.CurrentHp);
+        Assert.Equal(hpBefore - 10, enemy.CurrentHp);
     }
 
     [Fact]
@@ -114,8 +114,9 @@ public sealed class YalisalinFireColorWithHairpinTests : CombatTestSuite
         await WaitForIdle();
         await Play(card, enemy);
 
-        // 目标无火色可封存：不应崩溃，也不应造成伤害
+        // 目标本回合没被给予火色：只拿格挡，不消耗、不造成伤害
         Assert.Equal(hpBefore, enemy.CurrentHp);
+        Assert.Equal(5, Player.Creature.Block);
     }
 }
 
