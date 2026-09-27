@@ -9,23 +9,35 @@ using MegaCrit.Sts2.Core.Saves.Runs;
 
 namespace ManosabaLin.Characters.Yalisalin.Relics;
 
+/// <summary>
+///     亚里沙的发夹：承载火色量表与余火组件的各种强化。
+///
+///     火色量表（每名敌人各一条，由每个亚里沙玩家各自独立记录）：
+///     - 共 <see cref="MaxSegments" /> 格，颜色由格位决定：1-2 浅橙、3-4 亮黄、5-6 赤红。
+///     - 卡牌效果从最低的空格往上给予；量表恒为 1..n 的连续前缀，因此只需记录已填格数。
+///     - 用攻击牌对敌人造成伤害后，从最新（最高）的一格开始消耗，并触发该格颜色的消耗效果。
+///     - 连续两次消耗同色火色触发该色的「连续」奖励（两两成对，第三次同色重新起算）。
+/// </summary>
 [RegisterRelic(typeof(YalisalinRelicPool))]
 [RegisterCharacterStarterRelic(typeof(Yalisalin))]
 public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireComponentModifier
 {
     public const string LocalizationEntry = "MANOSABA_LIN_RELIC_YALISALINS_HAIRPIN";
     public const int MaxSegments = 6;
-    private const decimal WitchificationRequiredForCarbonization = 100m;
     private const int OrangeConsumeBlock = 4;
     private const int RedConsumeBaseDamage = 3;
+    private const int TicketEnergyThreshold = 5;
 
     private readonly Dictionary<Creature, YalisalinFireColorGauge> _gauges = [];
     private readonly Dictionary<CardModel, bool> _dontLookAtMeCards = [];
     private readonly List<(CardModel Card, int Block)> _glassReturnCards = [];
     private readonly Dictionary<CardModel, BringHomePendingCard> _bringHomeCards = [];
     private readonly List<CardModel> _burnedCardsThisTurn = [];
-    private Creature? _currentFireColorTarget;
-    private long _conversionSequence;
+    private readonly List<YalisalinFireColor> _consumptionLog = [];
+    private readonly YalisalinFireColorChain _chain = new();
+
+    // 火色效果（赤红伤害等）本身也是卡牌来源的伤害；结算期间不再触发「攻击后消耗火色」，否则会一路连锁烧穿量表。
+    private int _fireEffectDepth;
 
     [SavedProperty] public int PainKeeperPerTurnLimit { get; private set; }
     [SavedProperty] public int PainKeeperUsedThisTurn { get; private set; }
@@ -41,24 +53,20 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
     [SavedProperty] public int YellowNextTurnEnergyGrantedThisTurn { get; private set; }
     [SavedProperty] public int PendingYellowCostReduction { get; private set; }
     [SavedProperty] public int RedConsumeDamage { get; private set; }
-    [SavedProperty] public int PreserveHighestFireColor { get; private set; }
-    [SavedProperty] public int PreserveHighestAtTurnStart { get; private set; }
-    [SavedProperty] public bool PreserveHighestRewriteEnergyEnabled { get; private set; }
-    [SavedProperty] public bool PreserveHighestRewriteEnergyUsedThisTurn { get; private set; }
-    [SavedProperty] public bool FullRefillPreserveEnabled { get; private set; }
-    [SavedProperty] public bool FullRefillPreserveUsedThisTurn { get; private set; }
-    [SavedProperty] public bool ThirteenthListeningEnabled { get; private set; }
-    [SavedProperty] public bool ThirteenthCoverUsedThisTurn { get; private set; }
-    [SavedProperty] public bool ThirteenthRewriteUsedThisTurn { get; private set; }
-    [SavedProperty] public int SealedLightOrange { get; private set; }
-    [SavedProperty] public int SealedBrightYellow { get; private set; }
-    [SavedProperty] public int SealedRed { get; private set; }
-    [SavedProperty] public int SealedBlackRed { get; private set; }
-    [SavedProperty] public int OrangeConsumePairProgress { get; private set; }
-    [SavedProperty] public int YellowConsumePairProgress { get; private set; }
-    [SavedProperty] public int RedConsumePairProgress { get; private set; }
-    [SavedProperty] public bool HasLastConsumedFireColorThisTurn { get; private set; }
-    [SavedProperty] public YalisalinFireColor LastConsumedFireColorThisTurn { get; private set; }
+
+    /// <summary>「不要冷却」：每回合开始时随机给予敌人的火色格数（多张叠加）。</summary>
+    [SavedProperty] public int TurnStartFireGift { get; private set; }
+
+    /// <summary>「窗上的车票」：每次给予火色额外多给的格数（多张叠加）。</summary>
+    [SavedProperty] public int TicketStacks { get; private set; }
+
+    [SavedProperty] public int FireGivenThisTurn { get; private set; }
+    [SavedProperty] public bool TicketEnergyGrantedThisTurn { get; private set; }
+
+    /// <summary>「同样错误的问题」：下一张技能牌费用变为 0 的待用次数。</summary>
+    [SavedProperty] public int PendingFreeSkillCount { get; private set; }
+
+    [SavedProperty] public int ContinuousTriggersThisCombat { get; private set; }
 
     // —— 原罪体系战斗计数（罪业圣盾 / 嫉恨反噬 共用同一个过失计数器）——
     private bool _sinHookActive;
@@ -72,7 +80,15 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
     public override RelicRarity Rarity => RelicRarity.Starter;
     public override bool ShowCounter => false;
     public override int DisplayAmount => 0;
-    public bool IsCarbonizationUnlocked => Owner.Creature.GetPower<WithPower>()?.Amount >= WitchificationRequiredForCarbonization;
+
+    /// <summary>
+    ///     在「连续」奖励之外，每次触发连续时额外再结算几次连续奖励。
+    ///     只在「截稿前的交接」结算期间被临时抬高，不跨卡牌保留。
+    /// </summary>
+    public int ExtraContinuousTriggers { get; set; }
+
+    /// <summary>本场战斗中被实际消耗（含超出格数的补结算）的火色，按发生顺序。卡牌据此判断「这次打出消耗了什么」。</summary>
+    public IReadOnlyList<YalisalinFireColor> ConsumptionLog => _consumptionLog;
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -82,15 +98,18 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
                 new LocString("relics", $"{Id.Entry}.fireColor.title"),
                 new LocString("relics", $"{Id.Entry}.fireColor.description"));
 
-            if (PreserveHighestFireColor > 0 || PreserveHighestAtTurnStart > 0)
-            {
-                yield return new HoverTip(
-                    new LocString("relics", $"{Id.Entry}.fireColor.preserveHighest.title"),
-                    new LocString("relics", $"{Id.Entry}.fireColor.preserveHighest.description"));
-            }
-
             yield return YalisalinFireComponentCapability.CreateHoverTip(Owner);
         }
+    }
+
+    public static YalisalinFireColor SlotColor(int slot)
+    {
+        return slot switch
+        {
+            <= 2 => YalisalinFireColor.LightOrange,
+            <= 4 => YalisalinFireColor.BrightYellow,
+            _ => YalisalinFireColor.Red
+        };
     }
 
     public static IEnumerable<string> GetFireComponentEnhancementDescriptions(Player owner)
@@ -114,105 +133,25 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         Flash();
     }
 
-    public void EnablePreserveHighestAtTurnStart()
-    {
-        PreserveHighestAtTurnStart++;
-        Flash();
-    }
-
-    public void EnablePreserveHighestRewriteEnergy()
-    {
-        PreserveHighestRewriteEnergyEnabled = true;
-        Flash();
-    }
-
-    public void EnableFullRefillPreserve()
-    {
-        FullRefillPreserveEnabled = true;
-        Flash();
-    }
-
-    public void EnableThirteenthListening()
-    {
-        ThirteenthListeningEnabled = true;
-        Flash();
-    }
-
-    public void GainPreserveHighestFireColor(int amount)
+    public void AddTurnStartFireGift(int amount)
     {
         if (amount <= 0)
             return;
 
-        PreserveHighestFireColor += amount;
+        TurnStartFireGift += amount;
         Flash();
     }
 
-    public void GrantSealedFire(YalisalinFireColor color, int amount = 1)
+    public void AddTicketStack()
     {
-        if (amount <= 0)
-            return;
-
-        switch (color)
-        {
-            case YalisalinFireColor.LightOrange:
-                SealedLightOrange += amount;
-                break;
-            case YalisalinFireColor.BrightYellow:
-                SealedBrightYellow += amount;
-                break;
-            case YalisalinFireColor.Red:
-                SealedRed += amount;
-                break;
-            case YalisalinFireColor.BlackRed:
-                SealedBlackRed += amount;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(color), color, null);
-        }
-
+        TicketStacks++;
         Flash();
     }
 
-    public bool HasAnySealedFire()
+    public void QueueFreeSkill()
     {
-        return SealedLightOrange > 0
-               || SealedBrightYellow > 0
-               || SealedRed > 0
-               || SealedBlackRed > 0;
-    }
-
-    /// <summary>
-    ///     当前四档封存火色的总数量。
-    ///     供「被缚的普罗米修斯」在结算瞬间读取（这是那张卡的核心张力）。
-    /// </summary>
-    public int TotalSealedFireCount =>
-        SealedLightOrange + SealedBrightYellow + SealedRed + SealedBlackRed;
-
-    /// <summary>
-    ///     当前封存火焰能力里最高一档对应的层数：
-    ///     浅橙 1 / 亮黄 2 / 赤红 3 / 黑红碳化 4；没有任何封存火焰时返回 0。
-    ///     供「夹在书页里的灰」按颜色给全体敌人施加易伤使用。
-    /// </summary>
-    public int GetHighestSealedFireStacks()
-    {
-        if (SealedBlackRed > 0)
-            return 4;
-        if (SealedRed > 0)
-            return 3;
-        if (SealedBrightYellow > 0)
-            return 2;
-        if (SealedLightOrange > 0)
-            return 1;
-        return 0;
-    }
-
-    public bool TryCopySealedFire()
-    {
-        if (!TryGetSealedFireColorToCopy(out var color))
-            return false;
-
-        GrantSealedFire(color);
-        return true;
+        PendingFreeSkillCount++;
+        Flash();
     }
 
     /// <summary>
@@ -224,111 +163,19 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
             .Where(static card => !card.HasBeenRemovedFromState)
             .ToArray();
 
-    public bool TrySealEarliestFireColor(Creature target, out YalisalinFireColor color)
+    public int GetFireColorCount(Creature target)
     {
-        color = default;
-        if (!_gauges.TryGetValue(target, out var gauge) || !gauge.TryRemoveEarliest(out color))
-            return false;
-
-        GrantSealedFire(color);
-        _currentFireColorTarget = target;
-        return true;
-    }
-
-    public IReadOnlyList<YalisalinFireColor> SealEarliestDistinctFireColors(Creature target, int count)
-    {
-        if (!_gauges.TryGetValue(target, out var gauge) || count <= 0)
-            return [];
-
-        var sealedColors = new List<YalisalinFireColor>();
-        foreach (var segment in gauge.Segments)
-        {
-            if (sealedColors.Contains(segment.Color))
-                continue;
-            if (!gauge.TryRemoveSegment(segment))
-                continue;
-
-            sealedColors.Add(segment.Color);
-            if (sealedColors.Count >= count)
-                break;
-        }
-
-        foreach (var color in sealedColors)
-            GrantSealedFire(color);
-
-        if (sealedColors.Count > 0)
-            _currentFireColorTarget = target;
-        return sealedColors;
-    }
-
-    public bool TrySealFireColorSegment(Creature target, YalisalinFireColorSegment segment)
-    {
-        if (!_gauges.TryGetValue(target, out var gauge) || !gauge.TryRemoveSegment(segment))
-            return false;
-
-        GrantSealedFire(segment.Color);
-        _currentFireColorTarget = target;
-        return true;
-    }
-
-    public bool TryGetEarliestFireColor(Creature target, out YalisalinFireColor color)
-    {
-        color = default;
-        return _gauges.TryGetValue(target, out var gauge)
-               && gauge.TryGetEarliestColor(out color);
-    }
-
-    public bool TryGetHighestFireColor(Creature target, out YalisalinFireColor color)
-    {
-        color = default;
-        return _gauges.TryGetValue(target, out var gauge)
-               && gauge.TryGetHighestColor(out color);
+        return _gauges.TryGetValue(target, out var gauge) ? gauge.Filled : 0;
     }
 
     public bool TargetHasFireColor(Creature target)
     {
-        return _gauges.TryGetValue(target, out var gauge) && gauge.Count > 0;
+        return GetFireColorCount(target) > 0;
     }
 
     public bool IsFireColorFull(Creature target)
     {
-        return _gauges.TryGetValue(target, out var gauge) && gauge.IsFull;
-    }
-
-    public bool TryGetLastConsumedFireColorThisTurn(out YalisalinFireColor color)
-    {
-        color = LastConsumedFireColorThisTurn;
-        return HasLastConsumedFireColorThisTurn;
-    }
-
-    public bool TryUseSealedFire(
-        Creature target,
-        YalisalinFireColor color,
-        int slotIndex = 0,
-        CardModel? source = null)
-    {
-        if (!CanTrack(target) || !TrySpendSealedFire(color))
-            return false;
-
-        _currentFireColorTarget = target;
-        var gauge = GetOrCreateGauge(target);
-        var wasFull = gauge.IsFull;
-        gauge.InsertColor(color, slotIndex, ref _conversionSequence);
-
-        // 只有插回补满（从未满→满）才触发补满效果；满量表替换掉对应火色不触发
-        if (!wasFull && gauge.IsFull)
-        {
-            AfterTargetFireColorFilledToFull();
-
-            if (ThirteenthListeningEnabled && !ThirteenthCoverUsedThisTurn)
-            {
-                ThirteenthCoverUsedThisTurn = true;
-                GainPreserveHighestFireColor(1);
-            }
-        }
-
-        Flash();
-        return true;
+        return GetFireColorCount(target) >= MaxSegments;
     }
 
     public void QueueUnneededGoodChild(int energyGain)
@@ -395,13 +242,28 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
     public override Task BeforeCombatStart()
     {
         HookSinEvents();
+        ResetCombatState();
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterCombatEnd(CombatRoom room)
+    {
+        UnhookSinEvents();
+        ResetCombatState();
+        return Task.CompletedTask;
+    }
+
+    private void ResetCombatState()
+    {
         _gauges.Clear();
         _dontLookAtMeCards.Clear();
         _glassReturnCards.Clear();
         _bringHomeCards.Clear();
         _burnedCardsThisTurn.Clear();
-        _currentFireColorTarget = null;
-        _conversionSequence = 0;
+        _consumptionLog.Clear();
+        _chain.Reset();
+        _fireEffectDepth = 0;
+        ExtraContinuousTriggers = 0;
         SinForgiveThisCombat = 0;
         SinPunishThisCombat = 0;
         SinForgiveThisTurn = 0;
@@ -422,68 +284,12 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         YellowNextTurnEnergyGrantedThisTurn = 0;
         PendingYellowCostReduction = 0;
         RedConsumeDamage = RedConsumeBaseDamage;
-        PreserveHighestFireColor = 0;
-        PreserveHighestAtTurnStart = 0;
-        PreserveHighestRewriteEnergyEnabled = false;
-        PreserveHighestRewriteEnergyUsedThisTurn = false;
-        FullRefillPreserveEnabled = false;
-        FullRefillPreserveUsedThisTurn = false;
-        ThirteenthListeningEnabled = false;
-        ThirteenthCoverUsedThisTurn = false;
-        ThirteenthRewriteUsedThisTurn = false;
-        SealedLightOrange = 0;
-        SealedBrightYellow = 0;
-        SealedRed = 0;
-        SealedBlackRed = 0;
-        OrangeConsumePairProgress = 0;
-        YellowConsumePairProgress = 0;
-        RedConsumePairProgress = 0;
-        HasLastConsumedFireColorThisTurn = false;
-        return Task.CompletedTask;
-    }
-
-    public override Task AfterCombatEnd(CombatRoom room)
-    {
-        UnhookSinEvents();
-        _gauges.Clear();
-        _dontLookAtMeCards.Clear();
-        _glassReturnCards.Clear();
-        _bringHomeCards.Clear();
-        _burnedCardsThisTurn.Clear();
-        _currentFireColorTarget = null;
-        _conversionSequence = 0;
-        PainKeeperPerTurnLimit = 0;
-        PainKeeperUsedThisTurn = 0;
-        UnneededGoodChildPendingCount = 0;
-        UnneededGoodChildPendingEnergy = 0;
-        SeparatedEndsEnabled = false;
-        SeparatedEndsBlock = 0;
-        SeparatedEndsDraw = 0;
-        FireComponentBurnsThisTurn = 0;
-        ManualFireComponentsCompletedThisCombat = 0;
-        PendingBringHomeEnergy = 0;
-        PendingBringHomeDraw = 0;
-        YellowNextTurnEnergyGrantedThisTurn = 0;
-        PendingYellowCostReduction = 0;
-        RedConsumeDamage = RedConsumeBaseDamage;
-        PreserveHighestFireColor = 0;
-        PreserveHighestAtTurnStart = 0;
-        PreserveHighestRewriteEnergyEnabled = false;
-        PreserveHighestRewriteEnergyUsedThisTurn = false;
-        FullRefillPreserveEnabled = false;
-        FullRefillPreserveUsedThisTurn = false;
-        ThirteenthListeningEnabled = false;
-        ThirteenthCoverUsedThisTurn = false;
-        ThirteenthRewriteUsedThisTurn = false;
-        SealedLightOrange = 0;
-        SealedBrightYellow = 0;
-        SealedRed = 0;
-        SealedBlackRed = 0;
-        OrangeConsumePairProgress = 0;
-        YellowConsumePairProgress = 0;
-        RedConsumePairProgress = 0;
-        HasLastConsumedFireColorThisTurn = false;
-        return Task.CompletedTask;
+        TurnStartFireGift = 0;
+        TicketStacks = 0;
+        FireGivenThisTurn = 0;
+        TicketEnergyGrantedThisTurn = false;
+        PendingFreeSkillCount = 0;
+        ContinuousTriggersThisCombat = 0;
     }
 
     private void HookSinEvents()
@@ -544,21 +350,17 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         _burnedCardsThisTurn.Clear();
         YellowNextTurnEnergyGrantedThisTurn = 0;
         PendingYellowCostReduction = 0;
-        PreserveHighestRewriteEnergyUsedThisTurn = false;
-        Owner.Creature.GetPower<MixedConclusionPower>()?.ResetUsedThisTurn();
-        FullRefillPreserveUsedThisTurn = false;
-        ThirteenthCoverUsedThisTurn = false;
-        ThirteenthRewriteUsedThisTurn = false;
-        HasLastConsumedFireColorThisTurn = false;
+        FireGivenThisTurn = 0;
+        TicketEnergyGrantedThisTurn = false;
+        _chain.Reset();
+        foreach (var gauge in _gauges.Values)
+            gauge.MarkTurnStart();
 
         // 新回合开始：把已结束回合的宽恕/自惩数转移到“上一回合”
         SinForgiveLastTurn = SinForgiveThisTurn;
         SinPunishLastTurn = SinPunishThisTurn;
         SinForgiveThisTurn = 0;
         SinPunishThisTurn = 0;
-
-        if (PreserveHighestAtTurnStart > 0)
-            PreserveHighestFireColor += PreserveHighestAtTurnStart;
 
         foreach (var (card, block) in _glassReturnCards.ToArray())
         {
@@ -581,7 +383,7 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         PendingBringHomeEnergy = 0;
         PendingBringHomeDraw = 0;
 
-        await ResolveFireColorTurnStartRewards(choiceContext);
+        await ResolveTurnStartFireGift(choiceContext);
     }
 
     public override async Task BeforeSideTurnEnd(
@@ -612,19 +414,32 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
     public override bool TryModifyEnergyCostInCombatLate(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
         modifiedCost = originalCost;
-        if (PendingYellowCostReduction <= 0 || !CanApplyPendingYellowCostReduction(card))
+        if (!IsOwnCardInHandOrPlay(card) || card.EnergyCost.CostsX)
             return false;
 
-        modifiedCost = Math.Max(0m, originalCost - PendingYellowCostReduction);
+        if (PendingFreeSkillCount > 0 && card.Type == CardType.Skill)
+            modifiedCost = 0m;
+        else if (PendingYellowCostReduction > 0)
+            modifiedCost = Math.Max(0m, originalCost - PendingYellowCostReduction);
+
         return modifiedCost != originalCost;
     }
 
     public override Task BeforeCardPlayed(CardPlay cardPlay)
     {
-        if (PendingYellowCostReduction > 0
-            && cardPlay.IsFirstInSeries
-            && !cardPlay.IsAutoPlay
-            && CanApplyPendingYellowCostReduction(cardPlay.Card))
+        if (!cardPlay.IsFirstInSeries
+            || cardPlay.IsAutoPlay
+            || !IsOwnCardInHandOrPlay(cardPlay.Card)
+            || cardPlay.Card.EnergyCost.CostsX)
+            return Task.CompletedTask;
+
+        // 与费用修改的优先级一致：技能牌先吃「0 费」，吃掉了就不再占用亮黄的 -1。
+        if (PendingFreeSkillCount > 0 && cardPlay.Card.Type == CardType.Skill)
+        {
+            PendingFreeSkillCount--;
+            Flash();
+        }
+        else if (PendingYellowCostReduction > 0)
         {
             PendingYellowCostReduction = 0;
             Flash();
@@ -718,7 +533,7 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         UnneededGoodChildPendingCount = 0;
     }
 
-    public override Task AfterDamageGiven(
+    public override async Task AfterDamageGiven(
         PlayerChoiceContext choiceContext,
         Creature? dealer,
         DamageResult result,
@@ -726,16 +541,13 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         Creature target,
         CardModel? cardSource)
     {
-        if (result.TotalDamage <= 0)
-            return Task.CompletedTask;
+        if (result.TotalDamage <= 0 || _fireEffectDepth > 0)
+            return;
 
-        if (!IsYalisalinCardDamage(target, dealer, cardSource))
-            return Task.CompletedTask;
+        if (!IsYalisalinAttackCardDamage(target, dealer, cardSource) || !CanTrack(target))
+            return;
 
-        if (TryAddFireColor(target, 1, cardSource))
-            Flash();
-
-        return Task.CompletedTask;
+        await ConsumeFireColor(choiceContext, target, 1, cardSource);
     }
 
     public async Task AfterFireComponentBurned(
@@ -813,343 +625,240 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
             await CreatureCmd.GainBlock(Owner.Creature, 6, ValueProp.Move, cardPlay: null);
     }
 
-    private static bool IsCurse(CardModel card)
-    {
-        return card.Type == CardType.Curse || card.Rarity == CardRarity.Curse;
-    }
-
-    public bool TryAddFireColor(Creature target, int amount = 1, CardModel? source = null)
+    /// <summary>
+    ///     给予目标火色，从最低的空格往上填。「窗上的车票」的额外格数在这里统一加上。
+    ///
+    ///     量表已满时多出来的格数默认直接丢弃；<paramref name="overflowTriggersConsume" /> 为真时（「予燎」类效果），
+    ///     多出的第 k 格按第 k 个格位的颜色一次性补结算消耗效果（超出 1-2 格为浅橙，3-4 格亮黄，5-6 格赤红，
+    ///     再往后循环），这批补结算自成一条连续链，不与本回合此前的消耗相连。
+    /// </summary>
+    /// <returns>实际填进量表的格数。</returns>
+    public async Task<int> GiveFireColor(
+        PlayerChoiceContext choiceContext,
+        Creature target,
+        int amount,
+        CardModel? source = null,
+        bool overflowTriggersConsume = false)
     {
         if (!CanTrack(target) || amount <= 0)
-            return false;
+            return 0;
 
-        _currentFireColorTarget = target;
+        var total = amount + TicketStacks;
         var gauge = GetOrCreateGauge(target);
-        var changed = false;
-        for (var i = 0; i < amount; i++)
+        var added = gauge.Fill(total);
+        var overflow = total - added;
+
+        FireGivenThisTurn += added + (overflowTriggersConsume ? overflow : 0);
+        if (added > 0)
+            Flash();
+
+        if (TicketStacks > 0 && !TicketEnergyGrantedThisTurn && FireGivenThisTurn >= TicketEnergyThreshold)
         {
-            var wasFull = gauge.IsFull;
-            changed |= gauge.AddLightOrange(ref _conversionSequence);
-            if (!wasFull && gauge.IsFull)
-                AfterTargetFireColorFilledToFull();
+            TicketEnergyGrantedThisTurn = true;
+            await PlayerCmd.GainEnergy(TicketStacks, Owner);
         }
 
-        return changed;
+        if (overflowTriggersConsume && overflow > 0)
+        {
+            var overflowChain = new YalisalinFireColorChain();
+            for (var i = 0; i < overflow; i++)
+                await ResolveConsumedColor(choiceContext, target, SlotColor(i % MaxSegments + 1), source, overflowChain, 1);
+        }
+
+        return added;
     }
 
-    public bool TryConvertFireColor(Creature target, out YalisalinFireColor promoteColor, CardModel? source = null)
-    {
-        promoteColor = default;
-        if (!CanTrack(target))
-            return false;
-
-        _currentFireColorTarget = target;
-        var changed = GetOrCreateGauge(target).TryPromoteOnce(IsCarbonizationUnlocked, ref _conversionSequence, out promoteColor);
-        if (changed)
-            Flash();
-
-        return changed;
-    }
-
-    public bool TryStrongConvertFireColor(Creature target, out YalisalinFireColor promoteColor, CardModel? source = null)
-    {
-        promoteColor = default;
-        if (!CanTrack(target))
-            return false;
-
-        _currentFireColorTarget = target;
-        var changed = GetOrCreateGauge(target).TryStrongPromoteOnce(IsCarbonizationUnlocked, ref _conversionSequence, out promoteColor);
-        if (changed)
-            Flash();
-
-        return changed;
-    }
-
-    public bool TryDowngradeFireColor(
-        Creature target,
-        out YalisalinFireColor originalColor,
-        CardModel? source = null)
-    {
-        originalColor = default;
-        if (!_gauges.TryGetValue(target, out var gauge))
-            return false;
-
-        _currentFireColorTarget = target;
-        var changed = gauge.TryDowngradeEarliest(out originalColor);
-        if (changed)
-            Flash();
-
-        return changed;
-    }
-
-    public bool TryMoveLastFireColorToFront(
-        Creature target,
-        out YalisalinFireColor movedColor,
-        CardModel? source = null)
-    {
-        movedColor = default;
-        if (!_gauges.TryGetValue(target, out var gauge))
-            return false;
-
-        _currentFireColorTarget = target;
-        var changed = gauge.TryMoveLastToFront(out movedColor);
-        if (changed)
-            Flash();
-
-        return changed;
-    }
-
-    public async Task<IReadOnlyList<YalisalinFireColorSegment>> ConsumeFireColor(
+    /// <summary>从最新（最高）的一格开始消耗目标的火色。</summary>
+    /// <returns>按消耗顺序排列的颜色。</returns>
+    public async Task<IReadOnlyList<YalisalinFireColor>> ConsumeFireColor(
         PlayerChoiceContext choiceContext,
         Creature target,
         int amount,
-        CardModel? source = null)
+        CardModel? source = null,
+        int effectMultiplier = 1)
     {
-        var result = await ConsumeFireColorDetailed(choiceContext, target, amount, source);
-        return result.Consumed;
+        List<YalisalinFireColor> consumed = [];
+        if (!_gauges.TryGetValue(target, out var gauge))
+            return consumed;
+
+        for (var i = 0; i < amount && gauge.Filled > 0; i++)
+            consumed.Add(await ConsumeSlot(choiceContext, target, gauge, gauge.Filled, source, effectMultiplier));
+
+        return consumed;
     }
 
-    public async Task<YalisalinFireColorConsumeResult> ConsumeFireColorDetailed(
+    public Task<IReadOnlyList<YalisalinFireColor>> ConsumeAllFireColor(
         PlayerChoiceContext choiceContext,
         Creature target,
-        int amount,
         CardModel? source = null)
     {
-        if (!_gauges.TryGetValue(target, out var gauge) || amount <= 0)
-            return YalisalinFireColorConsumeResult.Empty;
-
-        _currentFireColorTarget = target;
-        var result = gauge.Consume(amount, PreserveHighestFireColor);
-        if (result.PreservedHighest.Count > 0)
-        {
-            PreserveHighestFireColor = Math.Max(0, PreserveHighestFireColor - result.PreservedHighest.Count);
-            await ResolvePreservedHighestFireColor(choiceContext, result.PreservedHighest, source);
-        }
-
-        if (result.Consumed.Count > 0)
-        {
-            await ResolveFireColorConsumedRewards(choiceContext, result.Consumed, source);
-            Flash();
-
-            // 「被缚的普罗米修斯」：本次消耗照常全额结算（上面的余火/原罪钩子都已触发），
-            // 额外再把其中 1 格封存给自己 —— 是额外收益，不是替换。
-            if (Owner.Creature.GetPower<BoundPrometheusPower>() is { Amount: > 0 })
-            {
-                GrantSealedFire(result.Consumed[0].Color);
-                Flash();
-            }
-        }
-
-        return result;
+        return ConsumeFireColor(choiceContext, target, GetFireColorCount(target), source);
     }
 
+    /// <summary>
+    ///     消耗目标本回合被给予的火色里最早的一格（「倒着算」的特例：不从最新格开始）。
+    ///     量表按格位定色，抽走中间一格后上方各格整体下落，颜色跟随新格位。
+    /// </summary>
+    public async Task<YalisalinFireColor?> ConsumeEarliestGivenThisTurn(
+        PlayerChoiceContext choiceContext,
+        Creature target,
+        CardModel? source = null,
+        int effectMultiplier = 1)
+    {
+        if (!_gauges.TryGetValue(target, out var gauge) || gauge.GivenThisTurn <= 0)
+            return null;
+
+        return await ConsumeSlot(choiceContext, target, gauge, gauge.TurnStartFloor + 1, source, effectMultiplier);
+    }
+
+    /// <summary>只结算某色的单格消耗奖励，不进连续链、不计入消耗记录（用于「两份不同的证词」等额外奖励）。</summary>
     public async Task ResolveExtraFireColorReward(
         PlayerChoiceContext choiceContext,
         YalisalinFireColor color,
         CardModel? source = null)
     {
-        await ResolveSingleFireColorConsumedReward(choiceContext, color, source, countPairs: false, recordConsumption: false);
+        _fireEffectDepth++;
+        try
+        {
+            await ResolveBaseReward(choiceContext, color, source);
+        }
+        finally
+        {
+            _fireEffectDepth--;
+        }
+
         Flash();
     }
 
     public IReadOnlyList<YalisalinFireColorSegment> GetFireColorSegments(Creature target)
     {
-        return _gauges.TryGetValue(target, out var gauge) ? gauge.Segments : [];
+        var filled = GetFireColorCount(target);
+        return Enumerable.Range(1, filled)
+            .Select(static slot => new YalisalinFireColorSegment(SlotColor(slot), slot))
+            .ToArray();
     }
 
-    private async Task ResolveFireColorTurnStartRewards(PlayerChoiceContext choiceContext)
-    {
-        var target = GetCurrentFireColorRewardTarget();
-        if (target == null)
-            return;
-
-        var colors = GetFireColorSegments(target)
-            .Select(segment => segment.Color)
-            .ToHashSet();
-        if (colors.Count == 0)
-            return;
-
-        var resolvedAny = false;
-        // 同色多段在同一回合只结算一次（colors 已去重）；每种颜色独立触发自己的奖励
-        if (colors.Contains(YalisalinFireColor.LightOrange))
-            resolvedAny |= await TryRandomFireColorCardToHand(choiceContext);
-
-        if (colors.Contains(YalisalinFireColor.BrightYellow))
-        {
-            await PlayerCmd.GainEnergy(1, Owner);
-            resolvedAny = true;
-        }
-
-        if (colors.Contains(YalisalinFireColor.Red))
-        {
-            await PowerCmd.Apply<StrengthPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, null, false);
-            await PowerCmd.Apply<DexterityPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, null, false);
-            resolvedAny = true;
-        }
-
-        if (resolvedAny)
-            Flash();
-    }
-
-    // 浅橙色回合开始奖励：从抽牌堆/弃牌堆自动随机取 1 张加入手牌（不弹窗）。
-    private async Task<bool> TryRandomFireColorCardToHand(PlayerChoiceContext choiceContext)
-    {
-        var options = new[] { PileType.Draw, PileType.Discard }
-            .SelectMany(pileType => pileType.GetPile(Owner).Cards)
-            .Where(card => !card.HasBeenRemovedFromState)
-            .Distinct()
-            .ToList();
-
-        if (options.Count == 0)
-            return false;
-
-        // 联机下必须用同步 RNG：Random.Shared 是进程本地随机，房主/客机会各选一张不同的牌，
-        // 导致「回合开始」检查点状态分歧（RitsuLib StateDivergence → 踢客机）。
-        var selected = Owner.RunState.Rng.CombatCardSelection.NextItem(options);
-        await CardPileCmd.Add(selected, PileType.Hand);
-        return true;
-    }
-
-    private Creature? GetCurrentFireColorRewardTarget()
-    {
-        if (_currentFireColorTarget != null
-            && CanTrack(_currentFireColorTarget)
-            && GetFireColorSegments(_currentFireColorTarget).Count > 0)
-            return _currentFireColorTarget;
-
-        return _gauges
-            .Where(pair => CanTrack(pair.Key) && pair.Value.Count > 0)
-            .Select(pair => pair.Key)
-            .FirstOrDefault();
-    }
-
-    private async Task ResolveFireColorConsumedRewards(
+    private async Task<YalisalinFireColor> ConsumeSlot(
         PlayerChoiceContext choiceContext,
-        IReadOnlyList<YalisalinFireColorSegment> consumed,
-        CardModel? source)
+        Creature target,
+        YalisalinFireColorGauge gauge,
+        int slot,
+        CardModel? source,
+        int effectMultiplier)
     {
-        foreach (var segment in consumed.OrderBy(segment => segment.Order))
-            await ResolveSingleFireColorConsumedReward(
-                choiceContext,
-                segment.Color,
-                source,
-                countPairs: true,
-                recordConsumption: true);
+        var color = SlotColor(slot);
+        gauge.RemoveSlot();
+        Flash();
+        await ResolveConsumedColor(choiceContext, target, color, source, _chain, effectMultiplier);
+        return color;
     }
 
-    private async Task ResolveSingleFireColorConsumedReward(
+    private async Task ResolveConsumedColor(
         PlayerChoiceContext choiceContext,
+        Creature target,
         YalisalinFireColor color,
         CardModel? source,
-        bool countPairs,
-        bool recordConsumption)
+        YalisalinFireColorChain chain,
+        int effectMultiplier)
     {
-        if (recordConsumption)
-            await RecordActualFireColorConsumption(choiceContext, color, source);
+        var bound = Owner.Creature.GetPower<BoundPrometheusPower>();
+        if (bound?.LockedColor is { } lockedColor)
+            color = lockedColor;
 
+        _consumptionLog.Add(color);
+
+        _fireEffectDepth++;
+        try
+        {
+            for (var i = 0; i < Math.Max(1, effectMultiplier); i++)
+                await ResolveBaseReward(choiceContext, color, source);
+
+            // 「被缚的普罗米修斯」期间所有消耗视为同色、且不触发连续；改为每次消耗额外造成伤害。
+            if (bound != null)
+            {
+                await bound.OnFireColorConsumed(choiceContext, target);
+                return;
+            }
+
+            if (!chain.Advance(color))
+                return;
+
+            ContinuousTriggersThisCombat++;
+            for (var i = 0; i < 1 + Math.Max(0, ExtraContinuousTriggers); i++)
+                await ResolveContinuousReward(choiceContext, color, source);
+
+            if (Owner.Creature.GetPower<MixedConclusionPower>() is { } mixed)
+                await mixed.OnContinuousTriggered(choiceContext);
+
+            if (Owner.Creature.GetPower<ThirteenthListenerPower>() is { } listener)
+                await listener.OnContinuousTriggered(choiceContext, target, source);
+        }
+        finally
+        {
+            _fireEffectDepth--;
+        }
+    }
+
+    private async Task ResolveBaseReward(
+        PlayerChoiceContext choiceContext,
+        YalisalinFireColor color,
+        CardModel? source)
+    {
         switch (color)
         {
             case YalisalinFireColor.LightOrange:
                 await CreatureCmd.GainBlock(Owner.Creature, OrangeConsumeBlock, ValueProp.Move, cardPlay: null);
-                if (countPairs && AdvanceOrangePairCounter())
-                    await CardPileCmd.Draw(choiceContext, 1, Owner);
                 break;
             case YalisalinFireColor.BrightYellow:
                 PendingYellowCostReduction++;
                 await ApplyYellowNextTurnEnergy(choiceContext, 1, source);
-                if (countPairs && AdvanceYellowPairCounter())
-                    await PlayerCmd.GainEnergy(1, Owner);
                 break;
             case YalisalinFireColor.Red:
-                await ResolveSingleRedFireColorConsumedReward(choiceContext, source, countPairs);
-                break;
-            case YalisalinFireColor.BlackRed:
+                var damage = RedConsumeDamage;
+                var damagedEnemies = await DealRedFireColorDamage(choiceContext, damage, source);
+                foreach (var enemy in damagedEnemies.Where(static enemy => enemy.IsAlive).Distinct())
+                    await PowerCmd.Apply<YlsmPower>(choiceContext, enemy, damage, Owner.Creature, source, false);
+
+                RedConsumeDamage++;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(color), color, null);
         }
     }
 
-    private async Task RecordActualFireColorConsumption(
+    private async Task ResolveContinuousReward(
         PlayerChoiceContext choiceContext,
         YalisalinFireColor color,
         CardModel? source)
     {
-        var mixed = Owner.Creature.GetPower<MixedConclusionPower>();
-        if (mixed is { } mc
-            && !mc.IsUsedThisTurn
-            && HasLastConsumedFireColorThisTurn
-            && LastConsumedFireColorThisTurn != color)
+        switch (color)
         {
-            mc.MarkUsed();
-            GrantSealedFire(color);
-            await YalisalinSealedFirePower.Sync(choiceContext, Owner, source);
-            await CardPileCmd.Draw(choiceContext, 1, Owner);
-        }
-
-        LastConsumedFireColorThisTurn = color;
-        HasLastConsumedFireColorThisTurn = true;
-    }
-
-    private async Task ResolvePreservedHighestFireColor(
-        PlayerChoiceContext choiceContext,
-        IReadOnlyList<YalisalinFireColorSegment> preserved,
-        CardModel? source)
-    {
-        foreach (var segment in preserved)
-        {
-            if (PreserveHighestRewriteEnergyEnabled && !PreserveHighestRewriteEnergyUsedThisTurn)
-            {
-                PreserveHighestRewriteEnergyUsedThisTurn = true;
+            case YalisalinFireColor.LightOrange:
+                await CardPileCmd.Draw(choiceContext, 1, Owner);
+                break;
+            case YalisalinFireColor.BrightYellow:
                 await PlayerCmd.GainEnergy(1, Owner);
-            }
-
-            if (ThirteenthListeningEnabled && !ThirteenthRewriteUsedThisTurn)
-            {
-                ThirteenthRewriteUsedThisTurn = true;
-                GrantSealedFire(segment.Color);
-                await YalisalinSealedFirePower.Sync(choiceContext, Owner, source);
-            }
+                break;
+            case YalisalinFireColor.Red:
+                // 「额外造成一次第 2 段赤红的伤害」：第 2 段结算后赤红伤害已 +1，这里取回第 2 段当时的数值。
+                await DealRedFireColorDamage(choiceContext, RedConsumeDamage - 1, source);
+                await PowerCmd.Apply<StrengthPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, source, false);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(color), color, null);
         }
     }
 
-    private void AfterTargetFireColorFilledToFull()
+    private async Task ResolveTurnStartFireGift(PlayerChoiceContext choiceContext)
     {
-        if (!FullRefillPreserveEnabled || FullRefillPreserveUsedThisTurn)
+        if (TurnStartFireGift <= 0 || Owner.Creature.CombatState is not { } combatState)
             return;
 
-        FullRefillPreserveUsedThisTurn = true;
-        GainPreserveHighestFireColor(1);
-    }
+        var target = Owner.RunState.Rng.CombatTargets.NextItem(combatState.HittableEnemies.Where(CanTrack));
+        if (target == null)
+            return;
 
-    private bool AdvanceOrangePairCounter()
-    {
-        OrangeConsumePairProgress++;
-        if (OrangeConsumePairProgress < 2)
-            return false;
-
-        OrangeConsumePairProgress -= 2;
-        return true;
-    }
-
-    private bool AdvanceYellowPairCounter()
-    {
-        YellowConsumePairProgress++;
-        if (YellowConsumePairProgress < 2)
-            return false;
-
-        YellowConsumePairProgress -= 2;
-        return true;
-    }
-
-    private bool AdvanceRedPairCounter()
-    {
-        RedConsumePairProgress++;
-        if (RedConsumePairProgress < 2)
-            return false;
-
-        RedConsumePairProgress -= 2;
-        return true;
+        await GiveFireColor(choiceContext, target, TurnStartFireGift);
     }
 
     private async Task ApplyYellowNextTurnEnergy(
@@ -1165,25 +874,6 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         var amount = Math.Min(yellow, remaining);
         YellowNextTurnEnergyGrantedThisTurn += amount;
         await PowerCmd.Apply<EnergyNextTurnPower>(choiceContext, Owner.Creature, amount, Owner.Creature, source);
-    }
-
-    private async Task ResolveSingleRedFireColorConsumedReward(
-        PlayerChoiceContext choiceContext,
-        CardModel? source,
-        bool countPairs)
-    {
-        var damage = RedConsumeDamage;
-        var damagedEnemies = await DealRedFireColorDamage(choiceContext, damage, source);
-        foreach (var enemy in damagedEnemies.Where(static enemy => enemy.IsAlive).Distinct())
-            await PowerCmd.Apply<YlsmPower>(choiceContext, enemy, damage, Owner.Creature, source, false);
-
-        RedConsumeDamage++;
-
-        if (countPairs && AdvanceRedPairCounter())
-        {
-            await DealRedFireColorDamage(choiceContext, damage, source);
-            await PowerCmd.Apply<StrengthPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, source, false);
-        }
     }
 
     private async Task<IReadOnlyList<Creature>> DealRedFireColorDamage(
@@ -1219,66 +909,12 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         return [target];
     }
 
-    private bool CanApplyPendingYellowCostReduction(CardModel card)
+    private bool IsOwnCardInHandOrPlay(CardModel card)
     {
-        if (card.Owner != Owner || card.EnergyCost.CostsX)
-            return false;
-
-        return card.Pile?.Type is PileType.Hand or PileType.Play;
+        return card.Owner == Owner && card.Pile?.Type is PileType.Hand or PileType.Play;
     }
 
-    private bool TryGetSealedFireColorToCopy(out YalisalinFireColor color)
-    {
-        if (SealedBlackRed > 0)
-        {
-            color = YalisalinFireColor.BlackRed;
-            return true;
-        }
-
-        if (SealedRed > 0)
-        {
-            color = YalisalinFireColor.Red;
-            return true;
-        }
-
-        if (SealedBrightYellow > 0)
-        {
-            color = YalisalinFireColor.BrightYellow;
-            return true;
-        }
-
-        if (SealedLightOrange > 0)
-        {
-            color = YalisalinFireColor.LightOrange;
-            return true;
-        }
-
-        color = default;
-        return false;
-    }
-
-    private bool TrySpendSealedFire(YalisalinFireColor color)
-    {
-        switch (color)
-        {
-            case YalisalinFireColor.LightOrange when SealedLightOrange > 0:
-                SealedLightOrange--;
-                return true;
-            case YalisalinFireColor.BrightYellow when SealedBrightYellow > 0:
-                SealedBrightYellow--;
-                return true;
-            case YalisalinFireColor.Red when SealedRed > 0:
-                SealedRed--;
-                return true;
-            case YalisalinFireColor.BlackRed when SealedBlackRed > 0:
-                SealedBlackRed--;
-                return true;
-            default:
-                return false;
-        }
-    }
-
-    private bool IsYalisalinCardDamage(
+    private bool IsYalisalinAttackCardDamage(
         Creature target,
         Creature? dealer,
         CardModel? cardSource)
@@ -1289,7 +925,7 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         if (target.Side == Owner.Creature.Side)
             return false;
 
-        return cardSource?.Owner == Owner;
+        return cardSource?.Owner == Owner && cardSource.Type == CardType.Attack;
     }
 
     public bool CanTrack(Creature target)
@@ -1306,30 +942,16 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         _gauges[target] = gauge;
         return gauge;
     }
-
-    public int GetSealedFireCount(YalisalinFireColor color)
-    {
-        return color switch
-        {
-            YalisalinFireColor.LightOrange => SealedLightOrange,
-            YalisalinFireColor.BrightYellow => SealedBrightYellow,
-            YalisalinFireColor.Red => SealedRed,
-            YalisalinFireColor.BlackRed => SealedBlackRed,
-            _ => 0
-        };
-    }
-
-    public bool HasSealedFireOf(YalisalinFireColor color) => GetSealedFireCount(color) > 0;
 }
 
 public enum YalisalinFireColor
 {
     LightOrange,
     BrightYellow,
-    Red,
-    BlackRed
+    Red
 }
 
+/// <param name="Order">格位（1 起）。</param>
 public readonly record struct YalisalinFireColorSegment(YalisalinFireColor Color, long Order)
 {
     public Color DisplayColor => Color switch
@@ -1337,240 +959,76 @@ public readonly record struct YalisalinFireColorSegment(YalisalinFireColor Color
         YalisalinFireColor.LightOrange => new Color("#c4631c"),
         YalisalinFireColor.BrightYellow => new Color("#7f1d1d"),
         YalisalinFireColor.Red => new Color("#dc143c"),
-        YalisalinFireColor.BlackRed => new Color("#2a0707"),
         _ => Colors.White
     };
 }
 
-public readonly record struct YalisalinFireColorConsumeResult(
-    IReadOnlyList<YalisalinFireColorSegment> Consumed,
-    IReadOnlyList<YalisalinFireColorSegment> PreservedHighest)
-{
-    public static YalisalinFireColorConsumeResult Empty { get; } = new([], []);
-}
-
 internal readonly record struct BringHomePendingCard(int Energy, int Draw);
 
+/// <summary>
+///     一名敌人的火色量表。格位决定颜色，量表恒为 1..<see cref="Filled" /> 的连续前缀，
+///     所以这里只记已填格数，以及本回合开始以来的最低水位（用于「本回合给予的火色」）。
+/// </summary>
 internal sealed class YalisalinFireColorGauge
 {
-    private readonly List<YalisalinFireColorSegment> _segments = [];
+    public int Filled { get; private set; }
 
-    public int Count => _segments.Count;
-    public bool IsFull => _segments.Count >= YalisalinsHairpin.MaxSegments;
-    public IReadOnlyList<YalisalinFireColorSegment> Segments => OrderedSegments().ToArray();
+    /// <summary>本回合开始以来量表降到过的最低格数；其上方的格子都是本回合给予的。</summary>
+    public int TurnStartFloor { get; private set; }
 
-    public bool AddLightOrange(ref long conversionSequence)
+    public int GivenThisTurn => Filled - TurnStartFloor;
+
+    public int Fill(int amount)
     {
-        if (IsFull)
-            return false;
-
-        _segments.Add(new YalisalinFireColorSegment(
-            YalisalinFireColor.LightOrange,
-            ++conversionSequence));
-
-        return true;
+        var added = Math.Clamp(amount, 0, YalisalinsHairpin.MaxSegments - Filled);
+        Filled += added;
+        return added;
     }
 
-    public bool TryPromoteOnce(bool canCarbonize, ref long conversionSequence, out YalisalinFireColor promoteColor)
+    public void RemoveSlot()
     {
-        promoteColor = default;
-        if (!IsFull)
-            return false;
+        if (Filled <= 0)
+            return;
 
-        var lowestColor = _segments.Min(segment => segment.Color);
-        promoteColor = lowestColor;
-        return TryPromoteColor(lowestColor, canCarbonize, ref conversionSequence);
+        Filled--;
+        TurnStartFloor = Math.Min(TurnStartFloor, Filled);
     }
 
-    public bool TryStrongPromoteOnce(bool canCarbonize, ref long conversionSequence, out YalisalinFireColor promoteColor)
+    public void MarkTurnStart()
     {
-        promoteColor = default;
-        if (_segments.Count == 0)
-            return false;
-
-        var highestColor = _segments.Max(segment => segment.Color);
-        promoteColor = highestColor;
-        return TryPromoteColor(highestColor, canCarbonize, ref conversionSequence);
+        TurnStartFloor = Filled;
     }
+}
 
-    public bool TryGetEarliestColor(out YalisalinFireColor color)
+/// <summary>连续消耗链：同色两两成对触发一次「连续」，异色重新起算。</summary>
+internal sealed class YalisalinFireColorChain
+{
+    private YalisalinFireColor? _color;
+    private int _length;
+
+    /// <returns>这一次消耗是否凑成了一对同色连续。</returns>
+    public bool Advance(YalisalinFireColor color)
     {
-        var earliest = OrderedSegments().FirstOrDefault();
-        color = earliest.Color;
-        return _segments.Count > 0;
-    }
-
-    public bool TryGetHighestColor(out YalisalinFireColor color)
-    {
-        color = default;
-        if (_segments.Count == 0)
-            return false;
-
-        color = _segments.Max(segment => segment.Color);
-        return true;
-    }
-
-    public bool TryDowngradeEarliest(out YalisalinFireColor originalColor)
-    {
-        originalColor = default;
-        var earliest = OrderedSegments().FirstOrDefault();
-        if (_segments.Count == 0 || earliest.Color == YalisalinFireColor.LightOrange)
-            return false;
-
-        var index = _segments.IndexOf(earliest);
-        if (index < 0)
-            return false;
-
-        originalColor = earliest.Color;
-        _segments[index] = new YalisalinFireColorSegment(GetPreviousColor(earliest.Color), earliest.Order);
-        return true;
-    }
-
-    public bool TryMoveLastToFront(out YalisalinFireColor movedColor)
-    {
-        movedColor = default;
-        var ordered = OrderedSegments().ToArray();
-        if (ordered.Length <= 1)
-            return false;
-
-        var latest = ordered[^1];
-        var index = _segments.IndexOf(latest);
-        if (index < 0)
-            return false;
-
-        movedColor = latest.Color;
-        _segments[index] = new YalisalinFireColorSegment(latest.Color, ordered[0].Order - 1);
-        return true;
-    }
-
-    public bool TryRemoveEarliest(out YalisalinFireColor color)
-    {
-        color = default;
-        var ordered = OrderedSegments().ToArray();
-        if (ordered.Length == 0)
-            return false;
-
-        color = ordered[0].Color;
-        return _segments.Remove(ordered[0]);
-    }
-
-    public bool TryRemoveSegment(YalisalinFireColorSegment segment)
-    {
-        return _segments.Remove(segment);
-    }
-
-    public void InsertColor(YalisalinFireColor color, int slotIndex, ref long conversionSequence)
-    {
-        var ordered = OrderedSegments().ToList();
-
-        // 选格插入：
-        // - 点击空格子（slotIndex >= 已有火色数）：追加到已有火色末尾的「下一格」。
-        // - 点击已有火色格：在该格插入，原该格及其后火色整体下移一格；
-        //   超出量表上限（MaxSegments）的火色直接消失，不触发任何消耗/奖励效果。
-        var insertIndex = slotIndex >= ordered.Count
-            ? ordered.Count
-            : Math.Clamp(slotIndex, 0, Math.Max(0, ordered.Count - 1));
-        ordered.Insert(insertIndex, new YalisalinFireColorSegment(color, 0));
-
-        if (ordered.Count > YalisalinsHairpin.MaxSegments)
-            ordered.RemoveRange(YalisalinsHairpin.MaxSegments, ordered.Count - YalisalinsHairpin.MaxSegments);
-
-        _segments.Clear();
-        foreach (var segment in ordered)
-            _segments.Add(new YalisalinFireColorSegment(segment.Color, ++conversionSequence));
-    }
-
-    public YalisalinFireColorConsumeResult Consume(int amount, int preserveHighestLayers)
-    {
-        List<YalisalinFireColorSegment> consumed = [];
-        List<YalisalinFireColorSegment> preserved = [];
-
-        for (var i = 0; i < amount && _segments.Count > 0; i++)
+        if (_color == color)
         {
-            var ordered = OrderedSegments().ToArray();
-            var next = ordered[0];
-            var highestColor = ordered.Max(segment => segment.Color);
-            if (preserveHighestLayers > preserved.Count
-                && next.Color == highestColor
-                && TryConsumeTwoLowerColors(highestColor, consumed))
-            {
-                preserved.Add(next);
-                continue;
-            }
-
-            _segments.Remove(next);
-            consumed.Add(next);
+            _length++;
+        }
+        else
+        {
+            _color = color;
+            _length = 1;
         }
 
-        return new YalisalinFireColorConsumeResult(consumed, preserved);
-    }
-
-    private bool TryPromoteColor(YalisalinFireColor color, bool canCarbonize, ref long conversionSequence)
-    {
-        var nextColor = GetNextColor(color, canCarbonize);
-        if (nextColor == null)
+        if (_length < 2)
             return false;
 
-        var changed = false;
-        for (var i = 0; i < _segments.Count; i++)
-        {
-            if (_segments[i].Color != color)
-                continue;
-
-            _segments[i] = new YalisalinFireColorSegment(nextColor.Value, ++conversionSequence);
-            changed = true;
-        }
-
-        return changed;
-    }
-
-    private bool TryConsumeTwoLowerColors(
-        YalisalinFireColor highestColor,
-        List<YalisalinFireColorSegment> consumed)
-    {
-        var lower = OrderedSegments()
-            .Where(segment => segment.Color < highestColor)
-            .OrderBy(segment => segment.Color)
-            .ThenBy(segment => segment.Order)
-            .Take(2)
-            .ToArray();
-
-        if (lower.Length < 2)
-            return false;
-
-        foreach (var segment in lower)
-        {
-            _segments.Remove(segment);
-            consumed.Add(segment);
-        }
-
+        _length = 0;
         return true;
     }
 
-    private IEnumerable<YalisalinFireColorSegment> OrderedSegments()
+    public void Reset()
     {
-        return _segments.OrderBy(segment => segment.Order);
-    }
-
-    private static YalisalinFireColor GetPreviousColor(YalisalinFireColor color)
-    {
-        return color switch
-        {
-            YalisalinFireColor.BrightYellow => YalisalinFireColor.LightOrange,
-            YalisalinFireColor.Red => YalisalinFireColor.BrightYellow,
-            YalisalinFireColor.BlackRed => YalisalinFireColor.Red,
-            _ => color
-        };
-    }
-
-    private static YalisalinFireColor? GetNextColor(YalisalinFireColor color, bool canCarbonize)
-    {
-        return color switch
-        {
-            YalisalinFireColor.LightOrange => YalisalinFireColor.BrightYellow,
-            YalisalinFireColor.BrightYellow => YalisalinFireColor.Red,
-            YalisalinFireColor.Red when canCarbonize => YalisalinFireColor.BlackRed,
-            _ => null
-        };
+        _color = null;
+        _length = 0;
     }
 }

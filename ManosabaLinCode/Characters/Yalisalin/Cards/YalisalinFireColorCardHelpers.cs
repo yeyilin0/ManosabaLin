@@ -1,8 +1,4 @@
-using ManosabaLin.Characters.Yalisalin.Capabilities;
-using ManosabaLin.Characters.Yalisalin.Components;
-using ManosabaLin.Characters.Yalisalin.Powers;
 using ManosabaLin.Characters.Yalisalin.Relics;
-using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Yalisalin.Cards;
 
@@ -22,24 +18,37 @@ internal static class YalisalinFireColorCardHelpers
             .Execute(choiceContext);
     }
 
-    public static async Task ApplyHeat(PlayerChoiceContext choiceContext, Player owner, Creature target, CardModel source, bool strong = false)
+    /// <summary>
+    ///     把 <paramref name="amount" /> 格火色逐格随机分给存活敌人，再按敌人合并成一次给予，
+    ///     这样「予燎」的超出格数能按每名敌人一次性补结算。
+    /// </summary>
+    public static async Task GiveRandomlyAmongEnemies(
+        PlayerChoiceContext choiceContext,
+        Player owner,
+        int amount,
+        CardModel source,
+        bool overflowTriggersConsume)
     {
-        YalisalinFireColor promoteColor;
-        var promoted = strong
-            ? YalisalinFireColorSystem.TryStrongConvertFireColor(owner, target, out promoteColor, source)
-            : YalisalinFireColorSystem.TryConvertFireColor(owner, target, out promoteColor, source);
-
-        if (!promoted)
+        if (owner.Creature.CombatState is not { } combatState)
             return;
 
-        // 第十三格旁听（独立能力）：升温成功后，对升温前颜色触发一次被消耗奖励
-        if (owner.Creature.GetPower<ThirteenthListenerPower>() is { } listener)
-            await listener.HandleHeatPromote(choiceContext, promoteColor, source);
-    }
+        var enemies = combatState.Enemies.Where(static enemy => enemy.IsAlive).ToArray();
+        if (enemies.Length == 0)
+            return;
 
-    public static void SetHeatWord(this CardModel card, bool strong)
-    {
-        if (card.TryGetCapability<YalisalinHeatWordCapability>(out var heat))
-            heat.SetStrongHeat(strong);
+        var rng = owner.RunState.Rng.CombatTargets;
+        var counts = new Dictionary<Creature, int>();
+        for (var i = 0; i < amount; i++)
+        {
+            var target = rng.NextItem(enemies)!;
+            counts[target] = counts.GetValueOrDefault(target) + 1;
+        }
+
+        foreach (var enemy in enemies)
+        {
+            if (counts.TryGetValue(enemy, out var count))
+                await YalisalinFireColorSystem.GiveFireColor(
+                    choiceContext, owner, enemy, count, source, overflowTriggersConsume);
+        }
     }
 }

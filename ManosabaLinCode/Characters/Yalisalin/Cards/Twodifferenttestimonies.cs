@@ -25,13 +25,17 @@ public sealed class Twodifferenttestimonies()
         var hits = IsUpgraded ? 3 : 2;
         DynamicVars["Hits"].BaseValue = hits;
 
+        YalisalinFireColorSystem.TryGetHairpin(Owner, out var hairpin);
+
         for (var i = 0; i < hits; i++)
         {
+            // 每段伤害后的消耗由发夹的「攻击后消耗火色」完成，这里只读消耗记录判断颜色。
+            var logStart = hairpin?.ConsumptionLog.Count ?? 0;
             await YalisalinFireColorCardHelpers.Attack(choiceContext, cardPlay, this, target, DynamicVars.Damage.BaseValue);
-            var result = await YalisalinFireColorSystem.ConsumeFireColorDetailed(choiceContext, Owner, target, 1, this);
-            var currentColor = result.Consumed.LastOrDefault().Color;
-            if (result.Consumed.Count == 0)
+            if (hairpin == null || hairpin.ConsumptionLog.Count <= logStart)
                 continue;
+
+            var currentColor = hairpin.ConsumptionLog[logStart];
 
             if (previousColor != null && previousColor.Value != currentColor)
                 await YalisalinFireColorSystem.ResolveExtraFireColorReward(choiceContext, Owner, currentColor, this);

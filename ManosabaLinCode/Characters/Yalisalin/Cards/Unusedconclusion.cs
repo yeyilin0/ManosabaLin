@@ -9,7 +9,7 @@ public sealed class Unusedconclusion()
 {
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
-        // 没被采用的结论（独立能力 Power）：混合结论
+        // 每回合第一次触发火色连续时获得能量并抽牌，逻辑在能力里
         await PowerCmd.Apply<MixedConclusionPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this, false);
     }
 

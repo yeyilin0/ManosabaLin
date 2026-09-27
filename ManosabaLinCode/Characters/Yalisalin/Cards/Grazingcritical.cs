@@ -1,8 +1,4 @@
-using ManosabaLin.Characters.Yalisalin.Capabilities;
-using ManosabaLin.Characters.Yalisalin.Components;
-using ManosabaLin.Characters.Yalisalin.Powers;
 using ManosabaLin.Characters.Yalisalin.Relics;
-using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Yalisalin.Cards;
 
@@ -22,17 +18,10 @@ public sealed class Grazingcritical()
 
         var wasFull = hairpin.IsFireColorFull(target);
         await hairpin.ConsumeFireColor(choiceContext, target, 1, this);
-        if (wasFull && !hairpin.IsFireColorFull(target))
-        {
-            await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
-            hairpin.TryAddFireColor(target, 1, this);
-        }
+        await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
 
-        await YalisalinFireColorCardHelpers.ApplyHeat(choiceContext, Owner, target, this);
-    }
-
-    protected override void OnUpgrade(ComponentContext componentContext)
-    {
-        EnergyCost.UpgradeBy(-1);
+        // 升级后去掉「因此不再满格」的条件
+        if (IsUpgraded || (wasFull && !hairpin.IsFireColorFull(target)))
+            await hairpin.GiveFireColor(choiceContext, target, 1, this);
     }
 }

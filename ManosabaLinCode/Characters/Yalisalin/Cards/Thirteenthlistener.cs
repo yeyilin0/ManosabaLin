@@ -2,7 +2,6 @@ using ManosabaLin.Characters.Yalisalin.Capabilities;
 using ManosabaLin.Characters.Yalisalin.Components;
 using ManosabaLin.Characters.Yalisalin.Powers;
 using ManosabaLin.Characters.Yalisalin.Relics;
-using MegaCrit.Sts2.Core.Commands;
 using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Yalisalin.Cards;
@@ -13,7 +12,7 @@ public sealed class Thirteenthlistener()
 {
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
-        // 第十三格旁听：独立能力 Power（升温成功后对升温前颜色触发被消耗奖励）
+        // 每当触发火色连续，额外消耗 1 格并抽 1 张，逻辑在能力里
         await PowerCmd.Apply<ThirteenthListenerPower>(choiceContext, Owner.Creature, 1m, Owner.Creature, this, false);
     }
 

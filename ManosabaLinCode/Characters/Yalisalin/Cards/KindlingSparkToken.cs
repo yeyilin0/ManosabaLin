@@ -5,7 +5,7 @@ namespace ManosabaLin.Characters.Yalisalin.Cards;
 
 /// <summary>
 ///     火种（0 费 攻击・衍生）：
-///     由「火种盒」生成，造成 5 点伤害并消耗目标 1 格火色，打出后从本场移除。
+///     由「火种盒」生成，造成 5 点伤害并给予目标 1 格火色，打出后从本场移除。
 /// </summary>
 [RegisterCard(typeof(TokenCardPool))]
 public sealed class KindlingSparkToken()
@@ -35,7 +35,8 @@ public sealed class KindlingSparkToken()
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
 
-        // 消耗目标 1 格火色：走正常消耗流程，会照常触发该火色的被消耗效果。
-        await YalisalinFireColorSystem.ConsumeFireColor(choiceContext, owner, target, 1, this);
+        // 攻击本身已按发夹规则引爆 1 格；之后再给予 1 格。
+        if (target.IsAlive)
+            await YalisalinFireColorSystem.GiveFireColor(choiceContext, owner, target, 1, this);
     }
 }

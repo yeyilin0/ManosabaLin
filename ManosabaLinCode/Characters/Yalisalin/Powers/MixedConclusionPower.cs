@@ -3,8 +3,8 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Yalisalin.Powers;
 
 /// <summary>
-/// 没被采用的结论（独立能力）：一回合一次，当火色实际被消耗且与上一次消耗的颜色不同时，
-/// 封存本次消耗的颜色并抽1张。存在即生效（层数保留为开关，逻辑与 per-turn 标记归本 Power）。
+/// 没被采用的结论：每回合第一次触发火色「连续」时，获得层数点能量并抽层数张牌。
+/// 由发夹在凑成同色连续后调用 <see cref="OnContinuousTriggered" />。
 /// </summary>
 [RegisterPower]
 public sealed class MixedConclusionPower : ManosabaPowerTemplate
@@ -14,16 +14,22 @@ public sealed class MixedConclusionPower : ManosabaPowerTemplate
 
     private bool _usedThisTurn;
 
-    public bool IsUsedThisTurn => _usedThisTurn;
-
-    public void MarkUsed()
+    public async Task OnContinuousTriggered(PlayerChoiceContext choiceContext)
     {
+        if (_usedThisTurn || Owner.Player is not { } player)
+            return;
+
         _usedThisTurn = true;
+        Flash();
+        await PlayerCmd.GainEnergy((int)Amount, player);
+        await CardPileCmd.Draw(choiceContext, (int)Amount, player);
     }
 
-    /// <summary>由遗物在回合开始时调用，重置 per-turn 标记。</summary>
-    public void ResetUsedThisTurn()
+    public override Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        _usedThisTurn = false;
+        if (player == Owner.Player)
+            _usedThisTurn = false;
+
+        return Task.CompletedTask;
     }
 }

@@ -1,37 +1,34 @@
-using ManosabaLin.Characters.Yalisalin.Capabilities;
-using ManosabaLin.Characters.Yalisalin.Components;
-using ManosabaLin.Characters.Yalisalin.Powers;
 using ManosabaLin.Characters.Yalisalin.Relics;
-using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Yalisalin.Cards;
 
+/// <summary>
+///     同一道错题：造成两段伤害，每段攻击各自引爆 1 格；这两格颜色不同时，下一张技能牌费用变为 0。
+/// </summary>
 [RegisterCard(typeof(YalisalinCardPool))]
 public sealed class Samewrongproblem()
     : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5, ValueProp.Move), new CardsVar(1)];
+    private const int Hits = 2;
+
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5, ValueProp.Move)];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var target = cardPlay.Target;
         ArgumentNullException.ThrowIfNull(target);
 
-        await YalisalinFireColorCardHelpers.Attack(choiceContext, cardPlay, this, target, DynamicVars.Damage.BaseValue);
+        YalisalinFireColorSystem.TryGetHairpin(Owner, out var hairpin);
+        var logStart = hairpin?.ConsumptionLog.Count ?? 0;
 
-        if (!YalisalinFireColorSystem.TryGetHairpin(Owner, out var hairpin)
-            || !hairpin.TryGetEarliestFireColor(target, out var earliest))
+        for (var i = 0; i < Hits && target.IsAlive; i++)
+            await YalisalinFireColorCardHelpers.Attack(choiceContext, cardPlay, this, target, DynamicVars.Damage.BaseValue);
+
+        if (hairpin == null || hairpin.ConsumptionLog.Count - logStart < 2)
             return;
 
-        if (hairpin.TryGetLastConsumedFireColorThisTurn(out var last) && last != earliest)
-        {
-            await hairpin.ConsumeFireColor(choiceContext, target, 1, this);
-            return;
-        }
-
-        // 否则将升温改为强升温
-        await YalisalinFireColorCardHelpers.ApplyHeat(choiceContext, Owner, target, this, strong: true);
-        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
+        if (hairpin.ConsumptionLog[logStart] != hairpin.ConsumptionLog[logStart + 1])
+            hairpin.QueueFreeSkill();
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

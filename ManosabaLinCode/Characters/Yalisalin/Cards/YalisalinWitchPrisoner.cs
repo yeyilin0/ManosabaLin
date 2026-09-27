@@ -51,28 +51,12 @@ public sealed class YalisalinWitchPrisoner() : ManosabaCardTemplate(3, CardType.
             false
         );
 
-        // 予燎6点附带升温的火色：分6次，每次随机给予任意敌人1点浅橙火色，给予后满足升温条件则触发升温
-        if (!YalisalinFireColorSystem.TryGetHairpin(Owner, out var hairpin))
-            return;
-
-        var enemies = Owner.Creature.CombatState.Enemies
-            .Where(static e => e.IsAlive)
-            .ToArray();
-        if (enemies.Length == 0) return;
-
-        var rng = Owner.RunState.Rng.CombatTargets;
-        for (var i = 0; i < 6; i++)
-        {
-            var target = rng.NextItem(enemies);
-            var wasFull = hairpin.IsFireColorFull(target);
-            if (!hairpin.TryAddFireColor(target, 1, this))
-                continue;
-
-            // 若给予后满足升温条件（火色被补满），触发升温效果
-            if (!wasFull && hairpin.IsFireColorFull(target))
-                await YalisalinFireColorCardHelpers.ApplyHeat(choiceContext, Owner, target, this, strong: false);
-        }
+        // 予燎：6 格火色逐格随机分给敌人，超出量表的部分一次性补结算消耗效果
+        await YalisalinFireColorCardHelpers.GiveRandomlyAmongEnemies(
+            choiceContext, Owner, IgniteAmount, this, overflowTriggersConsume: true);
     }
+
+    private const int IgniteAmount = 6;
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {

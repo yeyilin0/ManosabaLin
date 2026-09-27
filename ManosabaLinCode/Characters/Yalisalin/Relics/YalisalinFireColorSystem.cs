@@ -8,49 +8,20 @@ public static class YalisalinFireColorSystem
         return hairpin != null;
     }
 
-    public static bool TryAddFireColor(Player player, Creature target, int amount = 1, CardModel? source = null)
-    {
-        return TryGetHairpin(player, out var hairpin)
-               && hairpin.TryAddFireColor(target, amount, source);
-    }
-
-    public static bool TryConvertFireColor(Player player, Creature target, out YalisalinFireColor promoteColor, CardModel? source = null)
-    {
-        promoteColor = default;
-        return TryGetHairpin(player, out var hairpin)
-               && hairpin.TryConvertFireColor(target, out promoteColor, source);
-    }
-
-    public static bool TryStrongConvertFireColor(Player player, Creature target, out YalisalinFireColor promoteColor, CardModel? source = null)
-    {
-        promoteColor = default;
-        return TryGetHairpin(player, out var hairpin)
-               && hairpin.TryStrongConvertFireColor(target, out promoteColor, source);
-    }
-
-    public static bool TryDowngradeFireColor(
+    public static Task<int> GiveFireColor(
+        PlayerChoiceContext choiceContext,
         Player player,
         Creature target,
-        out YalisalinFireColor originalColor,
-        CardModel? source = null)
+        int amount,
+        CardModel? source = null,
+        bool overflowTriggersConsume = false)
     {
-        originalColor = default;
         return TryGetHairpin(player, out var hairpin)
-               && hairpin.TryDowngradeFireColor(target, out originalColor, source);
+            ? hairpin.GiveFireColor(choiceContext, target, amount, source, overflowTriggersConsume)
+            : Task.FromResult(0);
     }
 
-    public static bool TryMoveLastFireColorToFront(
-        Player player,
-        Creature target,
-        out YalisalinFireColor movedColor,
-        CardModel? source = null)
-    {
-        movedColor = default;
-        return TryGetHairpin(player, out var hairpin)
-               && hairpin.TryMoveLastFireColorToFront(target, out movedColor, source);
-    }
-
-    public static Task<IReadOnlyList<YalisalinFireColorSegment>> ConsumeFireColor(
+    public static Task<IReadOnlyList<YalisalinFireColor>> ConsumeFireColor(
         PlayerChoiceContext choiceContext,
         Player player,
         Creature target,
@@ -59,19 +30,7 @@ public static class YalisalinFireColorSystem
     {
         return TryGetHairpin(player, out var hairpin)
             ? hairpin.ConsumeFireColor(choiceContext, target, amount, source)
-            : Task.FromResult<IReadOnlyList<YalisalinFireColorSegment>>([]);
-    }
-
-    public static Task<YalisalinFireColorConsumeResult> ConsumeFireColorDetailed(
-        PlayerChoiceContext choiceContext,
-        Player player,
-        Creature target,
-        int amount,
-        CardModel? source = null)
-    {
-        return TryGetHairpin(player, out var hairpin)
-            ? hairpin.ConsumeFireColorDetailed(choiceContext, target, amount, source)
-            : Task.FromResult(YalisalinFireColorConsumeResult.Empty);
+            : Task.FromResult<IReadOnlyList<YalisalinFireColor>>([]);
     }
 
     public static Task ResolveExtraFireColorReward(

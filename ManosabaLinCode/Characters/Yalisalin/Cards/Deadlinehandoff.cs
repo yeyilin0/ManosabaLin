@@ -1,20 +1,19 @@
-using ManosabaLin.Characters.Yalisalin.Capabilities;
-using ManosabaLin.Characters.Yalisalin.Components;
-using ManosabaLin.Characters.Yalisalin.Powers;
 using ManosabaLin.Characters.Yalisalin.Relics;
-using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Yalisalin.Cards;
 
+/// <summary>
+///     压线提交（技能）：多段伤害，每段命中后引爆 1 格火色；本牌结算期间每次触发连续，连续奖励额外再结算一次。
+///     本牌是技能牌，不走攻击牌的「攻击后消耗」，所以引爆写在牌里。
+/// </summary>
 [RegisterCard(typeof(YalisalinCardPool))]
 public sealed class Deadlinehandoff()
     : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4, ValueProp.Move),
-        new DynamicVar("Repeats", 3),
-        new DynamicVar("Consume", 2)
+        new DamageVar(5, ValueProp.Move),
+        new DynamicVar("Repeats", 3)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
@@ -22,28 +21,28 @@ public sealed class Deadlinehandoff()
         var target = cardPlay.Target;
         ArgumentNullException.ThrowIfNull(target);
 
-        if (!YalisalinFireColorSystem.TryGetHairpin(Owner, out var hairpin))
-            return;
+        YalisalinFireColorSystem.TryGetHairpin(Owner, out var hairpin);
+        if (hairpin != null)
+            hairpin.ExtraContinuousTriggers++;
 
-        var consume = IsUpgraded ? 3 : 2;
-        DynamicVars["Consume"].BaseValue = consume;
-
-        for (var i = 0; i < DynamicVars["Repeats"].IntValue; i++)
+        try
         {
-            if (!hairpin.IsFireColorFull(target))
+            for (var i = 0; i < DynamicVars["Repeats"].IntValue && target.IsAlive; i++)
             {
                 await YalisalinFireColorCardHelpers.Attack(choiceContext, cardPlay, this, target, DynamicVars.Damage.BaseValue);
-                await YalisalinFireColorCardHelpers.ApplyHeat(choiceContext, Owner, target, this, strong: true);
-                continue;
+                if (hairpin != null && target.IsAlive)
+                    await hairpin.ConsumeFireColor(choiceContext, target, 1, this);
             }
-
-            await hairpin.ConsumeFireColor(choiceContext, target, consume, this);
-            await YalisalinFireColorCardHelpers.ApplyHeat(choiceContext, Owner, target, this, strong: false);
+        }
+        finally
+        {
+            if (hairpin != null)
+                hairpin.ExtraContinuousTriggers--;
         }
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
-        DynamicVars["Consume"].UpgradeValueBy(1);
+        DynamicVars["Repeats"].UpgradeValueBy(1);
     }
 }

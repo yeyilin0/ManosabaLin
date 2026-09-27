@@ -1,20 +1,20 @@
-using ManosabaLin.Characters.Yalisalin.Capabilities;
-using ManosabaLin.Characters.Yalisalin.Components;
-using ManosabaLin.Characters.Yalisalin.Powers;
 using ManosabaLin.Characters.Yalisalin.Relics;
-using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Yalisalin.Cards;
 
+/// <summary>
+///     温差证明：造成伤害，给予 1 格火色并立即引爆最新的 1 格，获得格挡；引爆的是浅橙时格挡翻倍。
+/// </summary>
 [RegisterCard(typeof(YalisalinCardPool))]
 public sealed class Temperatureproof()
     : ManosabaCardTemplate(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 {
+    public override bool GainsBlock => true;
+
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(7, ValueProp.Move),
-        new EnergyVar(1),
-        new CardsVar(1)
+        new DamageVar(8, ValueProp.Move),
+        new BlockVar(5, ValueProp.Move)
     ];
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
@@ -24,28 +24,22 @@ public sealed class Temperatureproof()
 
         await YalisalinFireColorCardHelpers.Attack(choiceContext, cardPlay, this, target, DynamicVars.Damage.BaseValue);
 
-        if (!YalisalinFireColorSystem.TryGetHairpin(Owner, out var hairpin))
-            return;
-
-        // 选择1格火色进行封存
-        YalisalinFireColor? sealedColor = null;
-        if (await YalisalinFireColorSegmentPicker.Pick(Owner, target, SelectionScreenPrompt) is { } sealedSegment
-            && hairpin.TrySealFireColorSegment(target, sealedSegment))
+        var consumedOrange = false;
+        if (YalisalinFireColorSystem.TryGetHairpin(Owner, out var hairpin))
         {
-            sealedColor = sealedSegment.Color;
-            await YalisalinSealedFirePower.Sync(choiceContext, Owner, this);
+            await hairpin.GiveFireColor(choiceContext, target, 1, this);
+            var consumed = await hairpin.ConsumeFireColor(choiceContext, target, 1, this);
+            consumedOrange = consumed.Count > 0 && consumed[0] == YalisalinFireColor.LightOrange;
         }
 
-        var consumed = await hairpin.ConsumeFireColorDetailed(choiceContext, target, 1, this);
-        if (sealedColor != null
-            && consumed.Consumed.Count > 0
-            && sealedColor.Value != consumed.Consumed.Last().Color)
-        {
-            hairpin.TryAddFireColor(target, 1, this);
-        }
+        await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+        if (consumedOrange)
+            await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
+    }
 
-        await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
-        if (IsUpgraded)
-            await PlayerCmd.GainEnergy(DynamicVars.Energy.IntValue, Owner);
+    protected override void OnUpgrade(ComponentContext componentContext)
+    {
+        DynamicVars.Damage.UpgradeValueBy(2);
+        DynamicVars.Block.UpgradeValueBy(3);
     }
 }

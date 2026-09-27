@@ -1,18 +1,20 @@
 using ManosabaLin.Characters.Yalisalin.Powers;
+using ManosabaLin.Characters.Yalisalin.Relics;
 
 namespace ManosabaLin.Characters.Yalisalin.Cards;
 
 /// <summary>
-///     被缚的普罗米修斯（2 费 技能・稀有）：
-///     本回合和下回合，每当你消耗敌人身上的火色时，其中 1 格在正常进入消耗结算的同时，
-///     额外获得为你自己的封存火色；
-///     下回合结束时，失去等同于你当前所有封存火色总数量的格挡（升级只失去一半）。
+///     被缚的普罗米修斯（2 费 技能・稀有）：消耗目标 1 格火色，然后本回合你的消耗都视为同色、不触发连续，
+///     每次消耗对该敌人造成伤害。升级版把本回合的颜色锁定为这张牌消耗的那一格。
 /// </summary>
 [RegisterCard(typeof(YalisalinCardPool))]
 public sealed class BoundPrometheus()
-    : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
+    : ManosabaCardTemplate(2, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
 {
-    private const int DurationTurns = 2;
+    protected override IEnumerable<DynamicVar> CanonicalVars =>
+    [
+        new DynamicVar("BurnDamage", BoundPrometheusPower.DamagePerConsume)
+    ];
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -24,20 +26,16 @@ public sealed class BoundPrometheus()
         CardPlay cardPlay,
         ComponentContext componentContext)
     {
-        if (Owner is not { } owner)
+        if (Owner is not { } owner || cardPlay.Target is not { } target)
             return;
 
         await CreatureCmd.TriggerAnim(owner.Creature, "Cast", owner.Character.CastAnimDelay);
 
+        var consumed = await YalisalinFireColorSystem.ConsumeFireColor(choiceContext, owner, target, 1, this);
+
         var power = await PowerCmd.Apply<BoundPrometheusPower>(
-            choiceContext, owner.Creature, DurationTurns, owner.Creature, this, false);
-
-        if (power is not null)
-            power.HalfBlockLoss = IsUpgraded;
-    }
-
-    protected override void OnUpgrade(ComponentContext componentContext)
-    {
-        // 升级：结算时只失去一半格挡（在 OnPlay 时按 IsUpgraded 写入能力）。
+            choiceContext, owner.Creature, 1, owner.Creature, this, false);
+        if (power is not null && IsUpgraded && consumed.Count > 0)
+            power.LockedColor = consumed[0];
     }
 }

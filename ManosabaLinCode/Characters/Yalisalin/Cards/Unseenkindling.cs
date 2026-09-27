@@ -1,8 +1,4 @@
-using ManosabaLin.Characters.Yalisalin.Capabilities;
-using ManosabaLin.Characters.Yalisalin.Components;
-using ManosabaLin.Characters.Yalisalin.Powers;
 using ManosabaLin.Characters.Yalisalin.Relics;
-using STS2RitsuLib.Models.Capabilities;
 
 namespace ManosabaLin.Characters.Yalisalin.Cards;
 
@@ -23,15 +19,13 @@ public sealed class Unseenkindling()
             return;
 
         var hadFireColor = hairpin.TargetHasFireColor(target);
-        hairpin.TryAddFireColor(target, hadFireColor ? 1 : 2, this);
+        await hairpin.GiveFireColor(choiceContext, target, hadFireColor ? 1 : 2, this);
 
         if (hadFireColor)
             await CardPileCmd.Draw(choiceContext, DynamicVars.Cards.IntValue, Owner);
 
         if (IsUpgraded)
             await CreatureCmd.GainBlock(Owner.Creature, DynamicVars.Block, cardPlay);
-
-        await YalisalinFireColorCardHelpers.ApplyHeat(choiceContext, Owner, target, this);
     }
 
 }

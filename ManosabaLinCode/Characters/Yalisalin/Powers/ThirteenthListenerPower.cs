@@ -6,8 +6,8 @@ using STS2RitsuLib.Interop.AutoRegistration;
 namespace ManosabaLin.Characters.Yalisalin.Powers;
 
 /// <summary>
-/// 第十三格旁听（独立能力）：每次火色升温成功后，对「升温前那个颜色」触发一次该颜色的被消耗奖励。
-/// 触发由升温入口（升温卡 / ApplyHeat）在升温成功后调用 <see cref="HandleHeatPromote"/>。
+/// 第十三格旁听：每当触发火色「连续」，额外消耗同一名敌人层数格火色，并抽层数张牌。
+/// 额外消耗照常进入连续链，可能再次凑成连续；量表有限，链条总会停下。
 /// </summary>
 [RegisterPower]
 public sealed class ThirteenthListenerPower : ManosabaPowerTemplate
@@ -15,20 +15,17 @@ public sealed class ThirteenthListenerPower : ManosabaPowerTemplate
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
-    /// <summary>
-    /// 升温成功后调用：对升温前颜色触发一次「被消耗奖励」。
-    /// </summary>
-    public async Task HandleHeatPromote(
+    public async Task OnContinuousTriggered(
         PlayerChoiceContext choiceContext,
-        YalisalinFireColor promoteColor,
+        Creature target,
         CardModel? source = null)
     {
-        if (Owner is null || Owner.Player is not { } player)
+        if (Owner.Player is not { } player
+            || !YalisalinFireColorSystem.TryGetHairpin(player, out var hairpin))
             return;
 
-        if (!YalisalinFireColorSystem.TryGetHairpin(player, out var hairpin))
-            return;
-
-        await hairpin.ResolveExtraFireColorReward(choiceContext, promoteColor, source);
+        Flash();
+        await CardPileCmd.Draw(choiceContext, (int)Amount, player);
+        await hairpin.ConsumeFireColor(choiceContext, target, (int)Amount, source);
     }
 }
