@@ -292,11 +292,12 @@ public static class YalisalinFireComponentResolver
         if (context.CustomData.GetValueOrDefault("AutoPlayBurnedCard") is not true)
             return;
 
+        // 「把道歉烧成灰」的自动打出不消耗能量，因此只看非资源类的可打出条件。
         if (context.BurnedCard is not { } burned
-            || !CanPlayFromFireComponent(context, burned, ResolveTarget(burned, context.Target)))
+            || !CanPlayFromFireComponent(context, burned, ResolveTarget(burned, context.Target), ignoreResources: true))
             return;
 
-        await PlayCardWithSuppressedFireComponent(choiceContext, context, burned);
+        await PlayCardWithSuppressedFireComponent(choiceContext, context, burned, free: true);
     }
 
     private static async Task PlayChosenCardIfPossible(
@@ -318,7 +319,8 @@ public static class YalisalinFireComponentResolver
         YalisalinFireComponentContext context,
         CardModel card,
         Creature? target,
-        bool includePendingChoiceEffects = false)
+        bool includePendingChoiceEffects = false,
+        bool ignoreResources = false)
     {
         if (card.HasBeenRemovedFromState)
             return false;
@@ -341,6 +343,9 @@ public static class YalisalinFireComponentResolver
             if (nonResourceReasons != UnplayableReason.None)
                 return false;
         }
+
+        if (ignoreResources)
+            return true;
 
         return HasEnoughResourcesForFireComponent(
             context,
@@ -386,53 +391,77 @@ public static class YalisalinFireComponentResolver
             : 0;
     }
 
+    /// <summary>
+    ///     在余火语境下打出一张牌（余火组件本身被抑制，避免嵌套再触发）。
+    ///
+    ///     搬到 Play 堆交给原版 <see cref="CardModel.OnPlayWrapper" /> 的自动打出分支完成，并且不跳过视觉：
+    ///     手动以 skipVisuals 从手牌移走时，原版不会搬运手牌里的 NCard 节点，牌面会残留在手牌区。
+    ///     <paramref name="free" /> 为真时按原版 <see cref="CardCmd.AutoPlay" /> 的口径结算：不扣能量/星星，
+    ///     X 费取当前能量。
+    /// </summary>
     private static async Task PlayCardWithSuppressedFireComponent(
         PlayerChoiceContext choiceContext,
         YalisalinFireComponentContext context,
-        CardModel card)
+        CardModel card,
+        bool free = false)
     {
         var target = ResolveTarget(card, context.Target);
         var combatState = card.CombatState ?? card.Owner.Creature.CombatState;
         if (combatState == null)
             return;
 
-        if (!CanPlayFromFireComponent(context, card, target))
+        if (!CanPlayFromFireComponent(context, card, target, ignoreResources: free))
             return;
 
-        context.ApplyTemporaryCostOffset(card);
-        if (!CanPlayFromFireComponent(context, card, target))
-            return;
+        ResourceInfo resources;
+        if (free)
+        {
+            if (card.EnergyCost.CostsX)
+                card.EnergyCost.CapturedXValue = card.Owner.PlayerCombatState?.Energy ?? 0;
+            card.LastStarsSpent = card.HasStarCostX
+                ? card.Owner.PlayerCombatState?.Stars ?? 0
+                : Math.Max(0, card.GetStarCostWithModifiers());
 
-        await MoveCardToPlayPileForFireComponent(card);
+            resources = new ResourceInfo
+            {
+                EnergySpent = 0,
+                EnergyValue = card.EnergyCost.GetAmountToSpend(),
+                StarsSpent = 0,
+                StarValue = Math.Max(0, card.GetStarCostWithModifiers())
+            };
+        }
+        else
+        {
+            context.ApplyTemporaryCostOffset(card);
+            if (!CanPlayFromFireComponent(context, card, target))
+                return;
+
+            var (energySpent, starsSpent) = await card.SpendResources();
+            resources = new ResourceInfo
+            {
+                EnergySpent = energySpent,
+                EnergyValue = energySpent,
+                StarsSpent = starsSpent,
+                StarValue = starsSpent
+            };
+        }
+
         if (card.CombatState == null)
             return;
 
-        var (energySpent, starsSpent) = await card.SpendResources();
-        var resources = new ResourceInfo
-        {
-            EnergySpent = energySpent,
-            EnergyValue = energySpent,
-            StarsSpent = starsSpent,
-            StarValue = starsSpent
-        };
+        // 余火额外连接的随机牌是刚生成、还不在任何牌堆里的牌；与原版 AutoPlay 一样先放进 Play 堆。
+        if (card.Pile == null)
+            await CardPileCmd.Add(card, PileType.Play);
 
         SuppressedCards.Add(card);
         try
         {
-            await card.OnPlayWrapper(choiceContext, target, isAutoPlay: true, resources, skipCardPileVisuals: true);
+            await card.OnPlayWrapper(choiceContext, target, isAutoPlay: true, resources);
         }
         finally
         {
             SuppressedCards.Remove(card);
         }
-    }
-
-    private static async Task MoveCardToPlayPileForFireComponent(CardModel card)
-    {
-        if (card.Pile?.Type == PileType.Play)
-            return;
-
-        await CardPileCmd.Add(card, PileType.Play, skipVisuals: true);
     }
 
     private static async Task Burn(
