@@ -84,6 +84,40 @@ protected override string SmartDescriptionLocKey =>
 - Existing project precedents: `MeruruAndEmaAccomplicePower` (stack-count tiers `description2`/`description3`…), `BoundPrometheusPower` (`descriptionLocked`), the 13 powers using `descriptionEnhanced`.
 - If only one state has custom text, keep the base key and add only the variant (smart channel falls back to `Description` automatically when its key is missing).
 
+## Presentation Throttling
+
+A power that resolves **N times in a loop** (N can reach dozens) must not play the full animation for every
+iteration — it feels tedious. The engine already ships three switches for "resolve quickly in sequence";
+**use them instead of patching anything**.
+
+| To suppress | Switch |
+|---|---|
+| the target's hurt (`Hit`) animation | add `ValueProp.SkipHurtAnim` to the damage props (`0x10`) |
+| the wait after gaining block | `CreatureCmd.GainBlock(creature, amount, props, cardPlay, fast: true)` → wait drops `0.25s` → `0.03s` |
+| the flash + wait of a power amount change | `PowerCmd.Apply<T>(..., silent: true)` / `PowerCmd.ModifyAmount(..., silent: true)` |
+
+```csharp
+private const int MaxPlayedHits = 10;
+for (var i = 0; i < hitCount; i++)
+{
+    var animated = i < MaxPlayedHits;
+    var props = animated ? ValueProp.Unpowered : ValueProp.Unpowered | ValueProp.SkipHurtAnim;
+    await CreatureCmd.Damage(choiceContext, target, damage, props, Owner, null, null);
+    await CreatureCmd.GainBlock(ally, 1m, ValueProp.Move, null, fast: !animated);
+    await PowerCmd.Apply<VulnerablePower>(choiceContext, target, 1m, Owner, null, silent: !animated);
+}
+```
+
+- All three are **presentation only** — numbers, ordering, and every `Hook.*` judgment are untouched
+  (nothing in `Hook` reads `SkipHurtAnim`). Deterministic on both ends ⇒ **no multiplayer desync risk**.
+- `SkipHurtAnim` only skips `TriggerAnim(receiver, "Hit", 0f)`; damage numbers and hit sparks still spawn.
+- ⚠️ Never "speed up" a loop by bypassing `CreatureCmd.Damage` / writing `CurrentHp` directly — that skips
+  `Hook.ModifyDamage` / `ModifyHpLost` / `BeforeDamageReceived`.
+- ⚠️ A cap like `MaxPlayedHits` is **per call**. If several upstream callers each invoke the power once
+  (e.g. one trigger per card), the total still accumulates.
+- Precedent: `Characters/Yalisalin/Powers/IgnitePower.cs` (`TriggerIgnite`). Details in
+  `.workbuddy/memory/ENGINE-API.md` → "表现节流".
+
 ## Art
 
 `ManosabaPowerTemplate` resolves:

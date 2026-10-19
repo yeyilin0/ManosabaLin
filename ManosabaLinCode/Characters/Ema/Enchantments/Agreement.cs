@@ -71,8 +71,10 @@ public class Agreement : ModEnchantmentTemplate
         // ×5：下一张免费 + 全体1能量
         if (count % 5 == 0)
         {
+            // ⚠️ 候选集必须两端一致：用 IsEligibleForCostEffect（不看能量）而不是 CanPlay()，
+            //    否则 RNG 会在两个对端抽出不同的牌，被设为 0 费的那张不一致 ⇒ StateDivergence。
             var otherCards = PileType.Hand.GetPile(owner)
-                .Cards.Where(c => c != card && c.CanPlay())
+                .Cards.Where(c => c != card && EmalinCombatHelper.IsEligibleForCostEffect(c))
                 .ToList();
 
             if (otherCards.Count > 0)

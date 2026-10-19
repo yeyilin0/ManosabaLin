@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://ManosabaLin/scenes/Hiro/error_glass/error_glass.gd" id="1"]
+[node name="ErrorGlass" type="CanvasLayer"]
+layer = 8
+script = ExtResource("1")

@@ -1,5 +1,6 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ema.Cards;
+using ManosabaLin.Characters.Ema.Vfx;
 using ManosabaLin.Characters.Emalin.Components;
 using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -11,6 +12,7 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
+using MegaCrit.Sts2.Core.Rooms;
 using MinionLib.RightClick;
 using MinionLib.RightClick.Easy;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -41,6 +43,38 @@ public class EmaTrueEndingPower : ManosabaPowerTemplate, IEasyRightClickablePowe
         _cardCounter = [];
     }
 
+    public override Task AfterApplied(Creature? applier, CardModel? cardSource)
+    {
+        // The card starts its opening only after PowerCmd.Apply has completed.
+        if (cardSource is not EmaTrueEnding) TrueEndingVfx.Restore(this);
+        return Task.CompletedTask;
+    }
+
+    public override Task BeforeCombatStart()
+    {
+        TrueEndingVfx.Restore(this);
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    {
+        // Covers a restored combat model whose visual room was attached later.
+        TrueEndingVfx.Restore(this);
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterRemoved(Creature oldOwner)
+    {
+        TrueEndingVfx.Finish(oldOwner);
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterCombatEnd(CombatRoom room)
+    {
+        TrueEndingVfx.Finish(Owner);
+        return Task.CompletedTask;
+    }
+
     public override async Task AfterCardChangedPilesLate(CardModel card, PileType oldPileType, AbstractModel? clonedBy)
     {
         if (card.Pile == null && card.Owner.Creature == Owner && card.HasComponent<EmaTrueEndingTagComponent>())
@@ -49,6 +83,7 @@ public class EmaTrueEndingPower : ManosabaPowerTemplate, IEasyRightClickablePowe
             {
                 InvokeDisplayAmountChanged();
                 Flash();
+                TrueEndingVfx.Notify(this, 2, card);
                 if (_achievedCards.Count == AchieveCountTarget)
                     await OnAchieve();
             }
@@ -81,10 +116,11 @@ public class EmaTrueEndingPower : ManosabaPowerTemplate, IEasyRightClickablePowe
         }
     }
 
-    private static void GrantTrueEndingTag(CardModel card)
+    private void GrantTrueEndingTag(CardModel card)
     {
-        card.TryAddComponent(new EmaTrueEndingTagComponent());
+        var attached = card.TryAddComponent(new EmaTrueEndingTagComponent());
         card.BaseReplayCount++;
+        if (attached != null) TrueEndingVfx.Notify(this, 1, card);
     }
 
 
@@ -93,7 +129,8 @@ public class EmaTrueEndingPower : ManosabaPowerTemplate, IEasyRightClickablePowe
         if (!Owner.IsPlayer) return;
         var target = Owner.Player!.Deck.Cards.OfType<EmaEnding>().FirstOrDefault();
 
-        target?.AddComponent(new EmaTrueEndingRewardComponent(1));
+        if (target?.AddComponent(new EmaTrueEndingRewardComponent(1)) != null)
+            TrueEndingVfx.Notify(this, 3, target);
     }
 
     public async Task OnRightClick(PlayerChoiceContext choiceContext, RightClickContext clickContext)

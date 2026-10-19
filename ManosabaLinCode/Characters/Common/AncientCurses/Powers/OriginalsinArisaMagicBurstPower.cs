@@ -1,5 +1,13 @@
 namespace ManosabaLin.Characters.Common.AncientCurses.Powers;
 
+/// <summary>
+///     【负疚】：「本回合」当你给予【紫藤亚里沙的魔法】达到 10 层时立刻引爆
+///     —— 对该敌人造成等量伤害、移除其身上全部【紫藤亚里沙的魔法】，并获得 1 点能量。
+///     <para>
+///         文案里的「本回合」跨过敌方回合 ⇒ 不在自己回合结束时清除，
+///         而是在<b>下一个自己回合开始时</b>才清除。
+///     </para>
+/// </summary>
 [RegisterPower]
 public sealed class OriginalsinArisaMagicBurstPower : ManosabaPowerTemplate
 {
@@ -32,11 +40,16 @@ public sealed class OriginalsinArisaMagicBurstPower : ManosabaPowerTemplate
 
         // 移除目标身上所有的【紫藤亚里沙的魔法】
         power.RemoveInternal();
+
+        // 获得1点能量
+        if (Owner.Player is { } burstOwner)
+            await PlayerCmd.GainEnergy(1m, burstOwner);
     }
 
-    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
+    // 本回合跨过敌方回合，下一个自己回合开始时才清除
+    public override async Task AfterPlayerTurnStart(PlayerChoiceContext choiceContext, Player player)
     {
-        if (side != Owner.Side) return;
+        if (player.Creature != Owner) return;
         await PowerCmd.Remove(this);
     }
 }

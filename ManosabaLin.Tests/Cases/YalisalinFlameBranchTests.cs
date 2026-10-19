@@ -28,28 +28,29 @@ public sealed class YalisalinFlameBranchTests : CombatTestSuite
     }
 
     /// <summary>
-    /// 传火（<c>LinkTheFire</c>）：8 点格挡；卡面效果改走悬浮提示 ——
+    /// 传火（<c>LinkTheFire</c>）：卡面效果改走悬浮提示 ——
     /// 提示要能挂上，且文案必须能解析出数值（键写错、或占位符没有对应变量，
     /// 都会在 <c>HoverTip</c> 构造时 <c>GetFormattedText</c> 直接抛异常）。
+    /// 打出效果是随机点火（分拆摇 effect，且可能弹选择键），不在单测里断言，这里只守提示解析。
     /// </summary>
     [Fact]
-    public async Task LinkTheFire_gains_block_and_exposes_effect_hover_tip()
+    public async Task LinkTheFire_exposes_effect_hover_tip()
     {
         var card = await AddToHand<LinkTheFire>();
         await PlayerCmd.SetEnergy(10, Player);
         await WaitForIdle();
 
-        await Play(card);
-        await WaitForIdle();
-
-        Assert.Equal(8, Player.Creature.Block);
-
         var tip = EffectTipDescription(card, "MANOSABA_LIN_CARD_LINK_THE_FIRE_EFFECT");
         Assert.NotNull(tip);
-        Assert.Contains("8", tip!);
+        Assert.Contains("4", tip!); // SoulCap 基础值
+
+        // harness 规则：零动作测试会在 headless cleanup 阶段 TERMINATE，必须至少执行一个战斗动作。
+        // 打出本身只做存在性验证（效果随机，不断言）。
+        await Play(card);
+        await WaitForIdle();
     }
 
-    /// <summary>夺火（<c>UsurpTheFlame</c>）：9 点伤害；卡面效果改走悬浮提示。</summary>
+    /// <summary>夺火（<c>UsurpTheFlame</c>）：初始 5 点伤害；卡面效果改走悬浮提示。</summary>
     [Fact]
     public async Task UsurpTheFlame_deals_damage_and_exposes_effect_hover_tip()
     {
@@ -62,17 +63,17 @@ public sealed class YalisalinFlameBranchTests : CombatTestSuite
 
         var tip = EffectTipDescription(card, "MANOSABA_LIN_CARD_USURP_THE_FLAME_EFFECT");
         Assert.NotNull(tip);
-        Assert.Contains("9", tip!);
+        Assert.Contains("5", tip!);
 
         await Play(card, enemy);
         await WaitForIdle();
 
-        Assert.Equal(hpBefore - 9, enemy.CurrentHp);
+        Assert.Equal(hpBefore - 5, enemy.CurrentHp);
     }
 
     /// <summary>
-    /// 灭火（<c>ExtinguishFlame</c>）：打出后自己获得 12 层【灭火】；
-    /// 卡面效果也改走悬浮提示（与另两张分支牌对称）。
+    /// 灭火（<c>ExtinguishFlame</c>）：打出后自己获得【灭火】能力（Amount 仅作存在标记 = 1）；
+    /// 卡面效果走悬浮提示（与另两张分支牌对称）。
     /// </summary>
     [Fact]
     public async Task ExtinguishFlame_applies_extinguish_power_of_twelve()
@@ -84,11 +85,11 @@ public sealed class YalisalinFlameBranchTests : CombatTestSuite
         await Play(card);
         await WaitForIdle();
 
-        Assert.Equal(12, CardTestAssertions.PowerAmount<ExtinguishFlamePower>(Player.Creature));
+        Assert.Equal(1, CardTestAssertions.PowerAmount<ExtinguishFlamePower>(Player.Creature));
 
         var tip = EffectTipDescription(card, "MANOSABA_LIN_CARD_EXTINGUISH_FLAME_EFFECT");
         Assert.NotNull(tip);
-        Assert.Contains("12", tip!);
+        Assert.Contains("减半", tip!);
     }
 
     /// <summary>
@@ -123,9 +124,9 @@ public sealed class YalisalinFlameBranchTests : CombatTestSuite
         Assert.NotNull(extinguishTip);
         Assert.NotNull(usurpTip);
 
-        Assert.Contains("8", linkTip!);
-        Assert.Contains("12", extinguishTip!);
-        Assert.Contains("9", usurpTip!);
+        Assert.Contains("4", linkTip!);
+        Assert.Contains("减半", extinguishTip!);
+        Assert.Contains("5", usurpTip!);
     }
 
     /// <summary>

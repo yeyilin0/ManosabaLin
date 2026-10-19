@@ -24,7 +24,7 @@ public sealed class XingJiaJiaShenPower : ManosabaPowerTemplate
     public int CountPerTurn { get; set; } = 1;
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Single;
+    public override PowerStackType StackType => PowerStackType.Counter;
 
     /// <summary>
     ///     描述随「来源牌是否升级」切键（升级也是一种达成条件）。两侧通道都切，做法对齐「共犯」/

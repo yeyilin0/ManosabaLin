@@ -6,8 +6,8 @@ using MegaCrit.Sts2.Core.Runs;
 namespace ManosabaLin.Characters.Yalisalin.Cards;
 
 /// <summary>
-///     后继机（0 费 技能・衍生）：
-///     由「2887」生成，从亚里沙卡池与无色卡池中随机获得 1 张已升级的卡牌，然后从本场移除。
+///     后继机（0 费 技能・衍生 / Token）：
+///     由「2887」生成，从无色卡池中随机获得 1 张已升级的稀有牌加入手牌，然后从本场移除。
 /// </summary>
 [RegisterCard(typeof(TokenCardPool))]
 public sealed class SuccessorUnit()
@@ -31,12 +31,11 @@ public sealed class SuccessorUnit()
 
         var pools = new CardPoolModel[]
         {
-            owner.Character.CardPool,
             ModelDb.CardPool<ColorlessCardPool>()
         };
 
         var options = CardCreationOptions
-            .ForNonCombatWithUniformOdds(pools)
+            .ForNonCombatWithUniformOdds(pools, c => c.Rarity == CardRarity.Rare)
             .GetPossibleCards(owner);
 
         var card = CardFactory

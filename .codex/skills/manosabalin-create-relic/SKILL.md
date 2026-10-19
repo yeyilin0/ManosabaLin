@@ -26,6 +26,15 @@ public sealed class ExampleRelic : ManosabaRelicTemplate
 }
 ```
 
+> ⚠️ **池的选择（2026-10-15 最终裁定；曾按「角色专属必须挂角色池」改过一轮、又由用户改回）**：
+> - **普通角色专属遗物** → 注册进该角色的 `*RelicPool`（`SherrylinRelicPool` / `HiroRelicPool` /
+>   `AnanlinRelicPool` / `EmalinRelicPool` / `YalisalinRelicPool`）。引擎的角色归属判定
+>   `RelicModel.Pool => ModelDb.AllRelicPools.First(p => p.AllRelicIds.Contains(Id))` 与图鉴的
+>   「角色遗物 vs 通用」归类（`ModelDb.AllCharacterRelicPools`）都只看池成员。
+> - **12 个海克斯联动遗物 → 一律留在共享池 `LinRelicPool`**：「角色专属」由**海克斯侧**表达 ——
+>   `SetPlayerRuneCharacter` 绑定（150% 加权；判定口径）＋展示层补丁
+>   `HextechCharacterGroupsPatch`（图鉴专属分区）。**不要改挂角色池**（2026-10-15 用户裁定）。
+
 ## Common Relic Pieces
 
 - RitsuLib public entry is `MANOSABA_LIN_RELIC_<TYPE_NAME>`.

@@ -5,6 +5,8 @@ namespace ManosabaLin.Characters.Common.Powers;
 ///     复用「嫌疑」满层时对敌人使用的同一套处理方式（快照 → 移除 → 回合结束归还），
 ///     归还时机取敌方的回合结束（失效区间覆盖「本回合剩余时间 + 敌人整个回合」），
 ///     并为「敌人没轮到就被打死」的情况补一个玩家回合开始时的兜底。
+///     剥离范围见 <see cref="BuffStripRules"/>：引擎结构性能力（IllusionPower / MinionPower）
+///     必须原样保留，否则惊吓幻影在复活窗口期受伤会空引用崩掉整个打牌动作。
 /// </summary>
 [RegisterPower]
 public sealed class AbilityNullifyPower : ManosabaPowerTemplate
@@ -49,7 +51,7 @@ public sealed class AbilityNullifyPower : ManosabaPowerTemplate
         _buffsRemoved = true;
 
         var removed = new List<Snapshot>();
-        foreach (var power in Owner.Powers.ToList().Where(static p => p.Type == PowerType.Buff))
+        foreach (var power in BuffStripRules.StrippableBuffs(Owner))
         {
             removed.Add(new Snapshot(power.Id, power.Amount));
             await PowerCmd.Remove(power);

@@ -16,7 +16,7 @@ using System.Linq;
 namespace ManosabaLin.Characters.Sherrylin.Cards;
 
 /// <summary>
-/// 吾有一友：选择一张额外牌组的卡给一个队友手牌，如果没有队友则获得吾即吾友能力，升级减一费。
+/// 吾有一友：选择一张额外牌组的卡给予一个队友；给予自己（无队友）时获得吾即吾友能力，升级减一费。
 /// </summary>
 [RegisterCard(typeof(SherrylinCardPool))]
 public sealed class IHaveAFriend() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
@@ -69,6 +69,12 @@ public sealed class IHaveAFriend() : ManosabaCardTemplate(1, CardType.Skill, Car
             CardCmd.Upgrade(newCard);
         await CardPileCmd.AddGeneratedCardToCombat(newCard, PileType.Hand, target.Player);
         CaseFilePileHelper.Remove(selectedCard);
+
+        // 给予自己（= 无队友，本卡唯一的「选择自己」路径）时获得【吾即吾友】——
+        // 本地化即规范；此前只发了牌、漏了能力本身（悬浮提示一直挂着这个能力）。
+        if (target == source.Owner.Creature)
+            await PowerCmd.Apply<IAmMyOwnFriendPower>(
+                choiceContext, target, 1m, source.Owner.Creature, source);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)

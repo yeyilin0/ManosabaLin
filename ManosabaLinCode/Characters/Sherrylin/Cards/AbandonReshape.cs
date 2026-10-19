@@ -40,8 +40,11 @@ public sealed class AbandonReshape() : ManosabaCardTemplate(2, CardType.Skill, C
         }
 
         // 从无色卡池随机生成1张带消耗的卡
+        // 多人检测：GetUnlockedCards 会按 runState.CardMultiplayerConstraint 过滤——
+        // 单人局不会随机到多人专属卡，多人局不会随机到单人专属卡（与 HextechColorlessPage 等同 pattern）。
         var rng = source.Owner.RunState.Rng.CombatCardSelection;
-        var colorlessExhaustCards = ModelDb.CardPool<ColorlessCardPool>().AllCards
+        var colorlessExhaustCards = ModelDb.CardPool<ColorlessCardPool>()
+            .GetUnlockedCards(source.Owner.UnlockState, source.Owner.RunState.CardMultiplayerConstraint)
             .Where(c => c.Rarity != CardRarity.Token
                         && c.Type != CardType.Curse
                         && c.Type != CardType.Status

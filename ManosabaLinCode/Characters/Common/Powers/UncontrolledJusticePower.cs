@@ -16,10 +16,18 @@ public sealed class UncontrolledJusticePower : ManosabaPowerTemplate
     public override PowerType Type => PowerType.Debuff;
     public override PowerStackType StackType => PowerStackType.Counter;
 
+    /// <summary>整场首次拦截时留一条日志，便于把「未拦截」与「拦截被抢」两类问题分开定性。</summary>
+    private bool _loggedFirstIntercept;
+
     public override bool ShouldDie(Creature creature)
     {
         if (creature != Owner) return true;
         if (Owner.Monster is not GuardThreeMonster) return true;
+        if (!_loggedFirstIntercept)
+        {
+            _loggedFirstIntercept = true;
+            Log.Info("[GuardThree] UncontrolledJustice intercepting a lethal hit (first time this combat).");
+        }
         return false;
     }
 

@@ -155,7 +155,10 @@ public sealed class EnchantmentConvergencePower : ManosabaPowerTemplate
         {
             if (ally is not null)
             {
-                var allyCards = PileType.Hand.GetPile(ally).Cards.Where(c => c.CanPlay()).ToList();
+                // ⚠️ 不用 CanPlay()：能量是瞬时量，两端候选集可能不同 ⇒ RNG 抽出不同的牌 ⇒ 状态分歧。
+                var allyCards = PileType.Hand.GetPile(ally).Cards
+                    .Where(EmalinCombatHelper.IsEligibleForCostEffect)
+                    .ToList();
                 if (allyCards.Count > 0)
                     ally.RunState.Rng.CombatCardSelection.NextItem(allyCards).SetToFreeThisTurn();
             }

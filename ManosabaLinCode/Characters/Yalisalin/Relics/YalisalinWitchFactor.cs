@@ -1,5 +1,6 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.AncientCurses;
+using ManosabaLin.Characters.Common.Components;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -77,6 +78,10 @@ public sealed class YalisalinWitchFactor : ManosabaRelicTemplate
                 return;
 
             var curse = combatState.CreateCard<WitchificationCurse>(Owner);
+
+            // 原罪诅咒本身已不自带组件：由本遗物发放的【魔女化】额外挂上「对应原罪」组件。
+            curse.TryAddComponent(new Originalsin());
+
             await CardPileCmd.AddGeneratedCardToCombat(
                 curse,
                 PileType.Draw,

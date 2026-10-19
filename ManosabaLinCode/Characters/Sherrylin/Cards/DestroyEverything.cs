@@ -77,8 +77,11 @@ public sealed class DestroyEverything() : ManosabaCardTemplate(3, CardType.Attac
         }
 
         // === 毁灭自己的心 ===
-        var caseFilePile = MainFile.CaseFilePile.GetPile(source.Owner);
-        var caseCards = caseFilePile.Cards.ToList();
+        // 防御性取案卷牌堆（与 Sherrydeath 同 pattern）：非雪莉角色（例如被「魔女资料」发进牌组）可能没有该牌堆，
+        // 而 PileType.GetPile 取不到会直接抛异常 ⇒ OnPlay 中途中断 ⇒ 本卡 NCard 永远留在 PlayContainer
+        // （表现就是「牌卡在屏幕上打不出去」）。
+        var caseFilePile = Owner.Piles.FirstOrDefault(p => p.Type == MainFile.CaseFilePile);
+        var caseCards = caseFilePile?.Cards.ToList() ?? new List<CardModel>();
         var toExhaust = caseCards.OrderBy(_ => source.Owner.RunState.Rng.CombatCardSelection.NextFloat())
             .Take(4)
             .ToList();
@@ -118,8 +121,10 @@ public sealed class DestroyEverything() : ManosabaCardTemplate(3, CardType.Attac
 
         for (int i = 0; i < totalCounterReset; i++)
         {
+            // 与「魔女资料」同类型的效果：只从图鉴可见的正牌卡里 roll，
+            // 衍生卡（Token / 选项牌等 shouldShowInCardLibrary=false，如「被称为冲击波的拳风」）不参与。
             var pool = Owner.Character.CardPool.GetUnlockedCards(Owner.UnlockState, Owner.RunState.CardMultiplayerConstraint)
-                .Where(c => c.EnergyCost.Canonical > 0)
+                .Where(c => c.EnergyCost.Canonical > 0 && c.ShouldShowInCardLibrary)
                 .ToList();
             if (pool.Count > 0)
             {

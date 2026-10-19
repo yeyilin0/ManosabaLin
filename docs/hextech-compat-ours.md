@@ -263,6 +263,15 @@ var register = interop.GetMethod("RegisterPlayerRune",
 ⚠️ 只被 `[RegisterRelic]` 注入的池**不会**自动进 `ModelDb.AllRelicPools`，所以必须用
 `[RegisterSharedRelicPool]` 而不是裸 `TypeListRelicPoolModel`。
 
+> ⚠️ **2026-10-15（用户裁定）**：12 个联动遗物**保留注册在 `LinRelicPool`**
+> （曾短暂改挂到各自角色的专属池，随后按用户指令改回）。
+> 「角色专属」**不由引擎的角色遗物池表达**，而由**海克斯侧**决定：
+> ① `SetPlayerRuneCharacter` 的绑定（150% 加权；判定口径也以它为准）；
+> ② 本 mod 的展示层补丁 `ManosabaLinCode/Compat/Hextech/HextechCharacterGroupsPatch.cs` ——
+> 把「已绑定我方角色」的符文从图鉴的「通用」档移入专属档（档位键
+> `HEXTECH_CHARACTER.MANOSABA_LIN_<角色>`，文案在我们 5 语的 `relic_collection.json` 里）。
+> 补丁只动 `GetCharacterRuneGroups` / `GetGenericVisibleRuneTypes` 两个**纯展示**方法，带形状校验与失败降级。
+
 **6 个遗物**（全部 `ManosabaRelicTemplate` + `[RegisterRelic(typeof(LinRelicPool))]` + `Rarity => RelicRarity.Starter`；
 目录 `ManosabaLinCode/Characters/Common/LinRelics/`）：
 
@@ -762,6 +771,9 @@ var register = interop.GetMethod("RegisterPlayerRune",
    ① 我方符文同时进 `LinRelicPool`（我方登记）与 `SharedRelicPool`（海克斯登记）时的**去重表现**
    （图鉴/遗物列表会不会出现两份）；
    ② `LocString("relic_collection", <缺失键>)` 的确切表现（指南说「显示键名、不报错」，实测确认）；
-   ③ 重复注册时对方的警告文案（用来核对我们的幂等保护）。
+   ③ 重复注册时对方的警告文案（用来核对我们的幂等保护）；
+   ④ **图鉴分区补丁**（`HextechCharacterGroupsPatch`）的实测：绑定成功后，我方 12 符文应从海克斯图鉴的
+   「通用」档消失、出现在 `HEXTECH_CHARACTER.MANOSABA_LIN_*` 的 4 个专属档里；
+   Godot 日志应无我们前缀的 Error（失败会自动降级回官方行为并报一次错）。
 5. **待确认**：`ApiVersion` 是否随 `HextechRunesInterop` 新增能力而递增（指南承诺了，但当前仍是 1）；
    将来若它变 ≥ 2，我们要用「按需降级」而不是「整体拒绝」。

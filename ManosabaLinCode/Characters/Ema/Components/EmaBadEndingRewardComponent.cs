@@ -1,4 +1,5 @@
 using MegaCrit.Sts2.Core.CardSelection;
+using ManosabaLin.Characters.Ema.Vfx;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -8,6 +9,7 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using MegaCrit.Sts2.Core.Rooms;
 using MinionLib.Component;
 using MinionLib.Component.Core;
 using MinionLib.Component.Interfaces;
@@ -82,6 +84,7 @@ public sealed partial class EmaBadEndingRewardComponent : CardComponent
         {
             Card!.CombatState!.AddCard(card, Card.Owner);
             await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Play, Card.Owner, CardPilePosition.Top);
+            BadEndingVfx.NotifyAutoplay(card);
             await CardCmd.AutoPlay(choiceContext, card, null);
             if (card.Pile is { IsCombatPile: true })
                 await CardPileCmd.RemoveFromCombat(card);
@@ -92,6 +95,18 @@ public sealed partial class EmaBadEndingRewardComponent : CardComponent
     }
 
     public override bool CanHandleRightClick(RightClickContext context) => true;
+
+    public override Task BeforeCombatStartPostfix(ComponentContext componentContext)
+    {
+        if (Card?.Owner?.Creature is { } owner) BadEndingVfx.Prepare(owner);
+        return Task.CompletedTask;
+    }
+
+    public override Task AfterRoomEnteredPostfix(AbstractRoom room, ComponentContext componentContext)
+    {
+        if (room is CombatRoom && Card?.Owner?.Creature is { } owner) BadEndingVfx.Prepare(owner);
+        return Task.CompletedTask;
+    }
 
     public override async Task OnRightClick(PlayerChoiceContext choiceContext, RightClickContext clickContext)
     {

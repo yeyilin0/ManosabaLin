@@ -1,0 +1,4 @@
+interface:
+  display_name: "ManosabaLin Multiplayer Desync"
+  short_description: "Diagnose/fix StS2 multiplayer StateDivergence."
+  default_prompt: "Use $manosabalin-multiplayer-desync to diagnose a Slay the Spire 2 StateDivergence and make the effect multiplayer-safe."

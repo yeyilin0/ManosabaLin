@@ -1,7 +1,9 @@
-﻿using ManosabaLin.Characters.Ema.Cards;
+﻿using ManosabaLin.Characters.Ananlin.Cards;
+using ManosabaLin.Characters.Common.Powers;
+using ManosabaLin.Characters.Ema.Cards;
 using ManosabaLin.Characters.Hiro.Cards;
-using ManosabaLin.Characters.Ananlin.Cards;
 using ManosabaLin.Characters.Sherrylin.Cards;
+using ManosabaLin.Characters.Yalisalin.Cards;
 using ManosabaLin.Characters.Yalisalin.Powers;
 
 namespace ManosabaLin.Characters.Hiro.Powers;
@@ -78,7 +80,7 @@ public sealed class SuspectPower : ManosabaPowerTemplate
 
         var removed = new List<PowerSnapShot>();
 
-        foreach (var p in Owner.Powers.ToList().Where(p => p.Type == PowerType.Buff))
+        foreach (var p in BuffStripRules.StrippableBuffs(Owner))
         {
             removed.Add(new PowerSnapShot(Owner, p.Id, p.Amount));
             await PowerCmd.Remove(p);
@@ -128,6 +130,8 @@ public sealed class SuspectPower : ManosabaPowerTemplate
             curseModelId = ModelDb.GetId<AnanlinBadEnding>();
         else if (characterType == typeof(Sherrylin.Sherrylin))
             curseModelId = ModelDb.GetId<Sherrybadending>();
+        else if (characterType == typeof(Yalisalin.Yalisalin))
+            curseModelId = ModelDb.GetId<YalisalinBadEnding>();
         else
             curseModelId = ModelDb.GetId<HiroBadEnding>();
 

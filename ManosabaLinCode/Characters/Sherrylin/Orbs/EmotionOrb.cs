@@ -1,4 +1,5 @@
 using HarmonyLib;
+using ManosabaLin.Audio.Services;
 using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Nodes.Cards;
@@ -18,6 +19,34 @@ public abstract class EmotionOrb<T> : ModOrbTemplate, IEmotionOrb where T : Card
     public override Color DarkenedColor => OrbColor;
 
     protected abstract Color OrbColor { get; }
+
+    /// <summary>
+    /// 引擎在 orb 被引导（channel）时会调 <see cref="OrbModel.PlayChannelSfx"/>：
+    /// <c>ChannelSfx != ""</c> 走 FMOD，否则回退到
+    /// <c>res://debug_audio/{Id.Entry.ToLowerInvariant()}_channel.mp3</c>。
+    /// 我们没有那个 mp3，不覆写的话每引导一颗情绪球都会刷一条
+    /// "No loader found for resource"（而且完全没声音）。
+    /// 这里按 mod 既有做法（<see cref="CardAudioService"/> 那套「先探测再选用」）挑一个真实存在的事件；
+    /// 列表末尾是原版 orb 自用的通道音，必然存在，用作兜底。
+    /// </summary>
+    protected override string ChannelSfx => _channelSfx ??= PickChannelSfx();
+
+    private static string? _channelSfx;
+
+    private static readonly string[] ChannelSfxCandidates =
+    [
+        "event:/sfx/buff",
+        "event:/sfx/ui/gain_energy",
+        "event:/sfx/characters/defect/defect_lightning_channel",
+    ];
+
+    private static string PickChannelSfx()
+    {
+        foreach (var candidate in ChannelSfxCandidates)
+            if (FmodHelper.IsEventExists(candidate))
+                return candidate;
+        return ChannelSfxCandidates[^1];
+    }
 
     /// <summary>
     /// 球体画面上渲染的就是那张情绪卡（见 <see cref="EmotionOrbVisualPatch" />），

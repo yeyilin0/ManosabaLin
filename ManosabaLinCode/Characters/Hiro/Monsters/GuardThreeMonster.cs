@@ -52,6 +52,8 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
     private int Phase2ExtraDamage => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 16, 15);
     private int _phase2DeathTextCount;
     private bool _isPhaseTwo;
+    /// <summary>阶段一复活补课也失败时置位，放行后续死亡：避免与引擎防递归打架、避免战斗卡死。</summary>
+    private bool _releasedDeath;
     private Timer? _phaseOneTextTimer;
     private string _lastVisual = "phase1";
 
@@ -116,10 +118,17 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
     {
         _phase2DeathTextCount = 0;
         _isPhaseTwo = false;
-        StartPhaseOneTextTimer();
+        _releasedDeath = false;
 
-        await PowerCmd.Apply<UncontrolledJusticePower>(
+        // 先施加【不受控的正义】：它是阶段一复活（ShouldDie 拦截 + AfterPreventingDeath）的承载体。
+        // 文本计时器改到施加之后启动——它此前跑在施加之前，一旦抛错就会静默跳过施加（曾观察到复活机制整场失效且零日志）。
+        var justice = await PowerCmd.Apply<UncontrolledJusticePower>(
             new ThrowingPlayerChoiceContext(), Creature, InitialJusticeAmount, Creature, null);
+        if (justice == null)
+            Log.Error("[GuardThree] UncontrolledJusticePower failed to apply at combat start; " +
+                      "the phase-one resurrection safety net (ShouldDie/AfterPreventingDeath) will try to recover it.");
+
+        StartPhaseOneTextTimer();
     }
 
     public async Task EnterPhaseTwo()
@@ -399,10 +408,44 @@ public sealed class GuardThreeMonster : ModMonsterTemplate
 
     // ========== 死亡/复活 ==========
 
+    // 阶段一复活双保险：正常路径下 UncontrolledJusticePower（powers 先于 monster 被询问）会拦下死亡并
+    // 执行 HandlePhaseOneResurrection；曾观察到双人局里它整场失效、本 BOSS 被普通伤害直接击杀且零日志。
+    // 若它因任何原因不在场，这里垫一层：能力缺失时先拦下死亡，交给 AfterPreventingDeath 补课并补跑复活；
+    // 补课也失败才放行死亡。阶段二（_isPhaseTwo）由 ThirteenWaterIntelPower 接管拦截，不在这里参与。
     public override bool ShouldDie(Creature creature)
     {
         if (creature != Creature) return true;
-        return true;
+        if (_releasedDeath) return true;
+        if (_isPhaseTwo) return true;
+        if (Creature.GetPower<UncontrolledJusticePower>() != null)
+            return true; // 正常局面：轮不到这里（能力自己会拦），保持原行为。
+        Log.Error("[GuardThree] UncontrolledJustice power is MISSING at death time; intercepting death to recover.");
+        return false;
+    }
+
+    public override async Task AfterPreventingDeath(Creature creature)
+    {
+        if (creature != Creature) return;
+        if (_isPhaseTwo) return; // 防御：阶段二不该走到这里。
+
+        var justice = Creature.GetPower<UncontrolledJusticePower>();
+        if (justice == null)
+        {
+            justice = await PowerCmd.Apply<UncontrolledJusticePower>(
+                new ThrowingPlayerChoiceContext(), Creature, InitialJusticeAmount, Creature, null);
+            if (justice != null)
+                Log.Error("[GuardThree] UncontrolledJustice power recovered during death prevention; resuming phase-one resurrection.");
+        }
+
+        if (justice == null)
+        {
+            // 补课失败：放行死亡（本次不再拦截，等引擎按正常流程处理），防止战斗无法结束。
+            _releasedDeath = true;
+            Log.Error("[GuardThree] Recovery failed; releasing the death so the combat cannot soft-lock.");
+            return;
+        }
+
+        await GuardThreeCombatSingleton.HandlePhaseOneResurrection(creature, justice);
     }
 
     public override Task AfterDeath(PlayerChoiceContext choiceContext, Creature creature, bool wasRemovalPrevented,

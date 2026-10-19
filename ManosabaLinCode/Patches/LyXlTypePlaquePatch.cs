@@ -117,7 +117,9 @@ internal static class LyXlTypePlaquePatch
             EmaForgottenOne or
             Sherrydeath or
             Sherrybadending or
+            YalisalinBadEnding or
             Anandeath or
+            Yalisalindeath or
             EmaBadEnding or
             TheEnd or
             AnanlinBombDisposalExpert or

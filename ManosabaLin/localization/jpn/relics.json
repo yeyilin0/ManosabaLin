@@ -1,4 +1,4 @@
-﻿{
+{
   "MANOSABA_LIN_RELIC_PEN.title": "ヒロのペン",
   "MANOSABA_LIN_RELIC_PEN.description": "各戦闘開始時、[color=#CC6666]【正義】[/color]を3層獲得",
   "MANOSABA_LIN_RELIC_PEN.flavor": "[color=#CC6666]ヒロ[/color]が中学時代によく使っていたペン。本来ならもう雪に渡しているはずだった",
@@ -10,7 +10,7 @@
   "MANOSABA_LIN_RELIC_WITHHIRO.selectionScreenPrompt": "カードを1枚選択",
   "MANOSABA_LIN_RELIC_WITHHIRO.flavor": "[color=#CC6666]「だが……それでも俺は[/color][color=#CCCCCC]お前[/color][color=#CC6666]を探したい」[/color]\n[color=#CC6666]「今すぐ会いに行く——俺たちの[/color][b]【罪】[/b][color=#CC6666]を裁くために」[/color]",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.title": "魔女資料",
-  "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.description": "獲得時、予備魔女カードからランダムに26枚生成し、任意の枚数を選んでデッキに加える。",
+  "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.description": "獲得時、予備魔女カードからランダムに39枚生成し、任意の枚数を選んでデッキに加える。",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.flavor": "島と屋敷の物資取引、そして囚われた少女たちの情報が大量に記された資料。エマたち全員の人物資料と顔写真も載っている。解読には多大な時間がかかるようだ",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.selectionScreenPrompt": "デッキに加えるカードを選択",
   "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.title": "分解部品",

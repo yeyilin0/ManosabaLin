@@ -24,11 +24,16 @@ namespace ManosabaLin.Characters.Yalisalin.Cards;
 /// </summary>
 [RegisterCard(typeof(YalisalinCardPool))]
 public sealed class YalisalinTower()
-    : ManosabaCardTemplate(0, CardType.Power, CardRarity.Ancient, TargetType.Self)
+    : ManosabaCardTemplate(2, CardType.Power, CardRarity.Ancient, TargetType.Self)
 {
     private const string EffectHoverLocEntry = "MANOSABA_LIN_CARD_YALISALIN_TOWER_EFFECT";
 
-    public override int MaxUpgradeLevel => 0;
+    public override int MaxUpgradeLevel => 1;
+
+    protected override void OnUpgrade(ComponentContext componentContext)
+    {
+        EnergyCost.UpgradeBy(-1);
+    }
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {

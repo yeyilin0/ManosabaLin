@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://ManosabaLin/scenes/Ananlin/finished_draft/finished_draft.gd" id="1"]
+[node name="FinishedDraft" type="CanvasLayer"]
+layer = 7
+[node name="Stage" type="Node2D" parent="."]
+script = ExtResource("1")

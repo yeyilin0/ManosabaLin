@@ -19,10 +19,17 @@ namespace ManosabaLin.Compat.Hextech;
 ///         ⚠️ 本文件<b>刻意不引用</b> <c>HextechRunes.dll</c>：全程字符串 + 反射 ⇒ 对方没装也能正常加载本 mod。
 ///         因此产物 DLL 里不会出现对 <c>HextechRunes</c> 的任何编译期引用。
 ///     </para>
-///     <para>
-///         ⚠️ <b>绝不对对方的 <c>internal</c> 类（如 <c>HextechCatalog</c>）打 Harmony 补丁</b> —— 指南明令禁止。
-///         缺能力就开 issue（草稿见 <c>docs/hextech-compat-hextech.md</c>）。
-///     </para>
+    ///     <para>
+    ///         ⚠️ <b>绝不对对方的 <c>internal</c> 类（如 <c>HextechCatalog</c>）打 Harmony 补丁</b> —— 指南的立场；
+    ///         缺能力就开 issue（草稿见 <c>docs/hextech-compat-hextech.md</c>）。
+    ///         用户 2026-10-15 裁定：曾加的「角色专属分区」<b>展示层 Harmony 补丁</b>（postfix
+    ///         <c>GetCharacterRuneGroups</c> / <c>GetGenericVisibleRuneTypes</c>，用 <c>SetPlayerRuneCharacter</c>
+    ///         登记表反射重建图鉴档位）会导致本地化整体加载失败（仅在海克斯启用时触发），已删除；
+    ///         <b>但 <c>SetPlayerRuneCharacter</c> 的角色绑定保留</b>——联动遗物进角色专属池 + 150% 加权靠它，
+    ///         且它只登记数据、不碰展示层。已知回归：该绑定会在海克斯启用时间接触发我方全部卡牌 LocKey 前缀
+    ///         （<c>MANOSABA_LIN_CARD_</c>）被剥离的本地化问题（根因在海克斯黑盒内），用户裁定保留绑定、
+    ///         本地化问题另行向海克斯作者报兼容。
+    ///     </para>
 /// </summary>
 /// <remarks>
 ///     <para>
@@ -150,8 +157,8 @@ internal static class HextechCompat
         {
             TargetAssembly ??= assembly;
 
-            // 已完成（绑定成功 + 9 个符文全部登记）⇒ 不再重复解析/重复注册。
-            if (IsReady && HextechRuneRegistrar.AllRegistered) return;
+            // 已完成（绑定成功 + 全部符文登记 + 角色全部绑定）⇒ 不再重复解析/重复注册。
+            if (IsReady && HextechRuneRegistrar.AllRegistered && HextechRuneRegistrar.AllBound) return;
 
             ApiVersion = 0;
             InteropType = interopType = assembly.GetType(InteropTypeName, throwOnError: false);
@@ -190,7 +197,7 @@ internal static class HextechCompat
     ///         正是在那之后才真正关闭。也就是说这是「窗口还开着、对方也准备好了」的最后一个安全时刻。
     ///     </para>
     ///     <para>
-    ///         因此它兜住「注册窗口关闭 ⇒ 9 个符文静默少注册」的三条路径：
+    ///         因此它兜住「注册窗口关闭 ⇒ 符文静默少注册 / 角色静默未绑定」的三条路径：
     ///         ① 对方程序集加载时我们还**没订阅** <see cref="AppDomain.AssemblyLoad" />（错过事件）；
     ///         ② 首次尝试发生在**对方自己的初始化完成之前**（loader 先加载 dll、后调它的 <c>Initialize</c>）；
     ///         ③ 首次尝试真的撞上窗口关闭 —— 这一次会以 <c>Error</c> 级日志把原因喊出来，不再静默。
@@ -202,7 +209,7 @@ internal static class HextechCompat
     /// </summary>
     private static void SubscribeLateSweeps()
     {
-        if (HextechRuneRegistrar.AllRegistered) return;
+        if (HextechRuneRegistrar.AllRegistered && HextechRuneRegistrar.AllBound) return;
 
         lock (Gate)
         {
@@ -225,20 +232,20 @@ internal static class HextechCompat
     {
         try
         {
-            if (HextechRuneRegistrar.AllRegistered) return;
+            if (HextechRuneRegistrar.AllRegistered && HextechRuneRegistrar.AllBound) return;
 
             var assembly = TargetAssembly ?? FindLoadedAssembly();
             if (assembly is null)
             {
-                Warn($"late sweep ({whence}): '{AssemblyName}' 仍未加载 ⇒ 9 个符文保持未注册。");
+                Warn($"late sweep ({whence}): '{AssemblyName}' 仍未加载 ⇒ 符文保持未注册。");
                 return;
             }
 
             Info($"late sweep ({whence}): retrying Hextech rune registration.");
             TryBind(assembly);
 
-            if (!HextechRuneRegistrar.AllRegistered)
-                Error($"late sweep ({whence}): 仍未注册齐全 ⇒ 见上面 RegisterPlayerRune failed 的逐条原因。");
+            if (!HextechRuneRegistrar.AllRegistered || !HextechRuneRegistrar.AllBound)
+                Error($"late sweep ({whence}): 仍未完成（注册/角色绑定）⇒ 见上面 RegisterPlayerRune / SetPlayerRuneCharacter failed 的逐条原因。");
         }
         catch (Exception ex)
         {

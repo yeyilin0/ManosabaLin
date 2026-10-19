@@ -1,6 +1,8 @@
 ﻿using ManosabaLin.Characters.Common.Components;
 using ManosabaLin.Characters.Hiro.Cards;
 
+using MegaCrit.Sts2.Core.Entities.Powers;
+
 namespace ManosabaLin.Characters.Yalisalin.Powers;
 
 /// <summary>
@@ -13,7 +15,8 @@ public sealed class ShuangGuiRiPower : ManosabaPowerTemplate
     private bool _hooked;
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Single;
+    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     public override Task AfterApplied(Creature? applier, CardModel? cardSource)
     {

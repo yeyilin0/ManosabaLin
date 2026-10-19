@@ -312,9 +312,13 @@ public sealed class AnanTestConsoleCommand : AbstractConsoleCmd
     private static string DescribeEnemy(Creature enemy)
     {
         var move = enemy.Monster?.NextMove;
-        return move is null
-            ? $"{enemy.Monster?.Id.Entry ?? "UNKNOWN"}: no move"
-            : $"{enemy.Monster?.Id.Entry ?? "UNKNOWN"}: {move.StateId} [{string.Join(", ", move.Intents.Select(static intent => intent.GetType().Name))}]";
+        var moveText = move is null
+            ? "no move"
+            : $"{move.StateId} [{string.Join(", ", move.Intents.Select(static intent => intent.GetType().Name))}]";
+        var powers = enemy.Powers.Count == 0
+            ? "powers=none"
+            : "powers=[" + string.Join(", ", enemy.Powers.Select(static power => $"{power.Id.Entry} x{power.Amount}")) + "]";
+        return $"{enemy.Monster?.Id.Entry ?? "UNKNOWN"}: {moveText}; {powers}";
     }
 
     private const string Usage =

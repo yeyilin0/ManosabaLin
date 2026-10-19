@@ -10,6 +10,8 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Keywords;
+using STS2RitsuLib.Models.Capabilities;
+using ManosabaLin.Characters.Hiro.Capabilities;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -29,64 +31,114 @@ public sealed class CardSeventyNine() : ManosabaCardTemplate(1, CardType.Skill, 
     public override IEnumerable<CardKeyword> CanonicalKeywords =>
         new[] { TransmigrationRules.TransmigrationCardKeyword };
 
+    /// <summary>
+    ///     打出条件：**当前手牌里有带【轮回】的卡**（＝此刻有卡可以「失去轮回」）才允许打出。
+    ///     <para>
+    ///         ⭐ **不排除自己** —— 这张卡自身也带【轮回】（见 <see cref="CanonicalKeywords" />），
+    ///         所以只要它在手牌里，条件就成立。
+    ///     </para>
+    ///     <para>
+    ///         ⚠️ 非战斗场合（卡库 / 牌组预览）直接放行：<c>PileType.GetPile</c> 在战斗外会抛
+    ///         <c>InvalidOperationException</c>（"Tried to get Hand pile while out of combat."）。
+    ///     </para>
+    /// </summary>
+    protected override bool IsPlayableC
+    {
+        get
+        {
+            if (!base.IsPlayableC) return false;
+            if (Owner is not { } player) return base.IsPlayableC;
+            if (player.Creature?.CombatState is null) return base.IsPlayableC;
+
+            return PileType.Hand.GetPile(player).Cards
+                .Any(c => c.HasModKeyword(TransmigrationRules.TransmigrationCardKeyword));
+        }
+    }
+
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
 
-        var handCards = PileType.Hand.GetPile(source.Owner).Cards.ToList();
-        if (handCards.Count == 0) return;
+        var handPile = PileType.Hand.GetPile(source.Owner);
+        if (handPile.Cards.Count == 0) return;
 
         var removeCount = source.DynamicVars[RemoveCountKey].IntValue;
         var grantCount = source.DynamicVars[GrantCountKey].IntValue;
         var rebirthId = TransmigrationRules.TransmigrationCardKeyword;
 
-        // 1. 选择要失去"轮回"的牌
-        var cardsToRemove = await CardSelectCmd.FromHand(
-            choiceContext,
-            Owner,
-            new CardSelectorPrefs(source.SelectionScreenPrompt, removeCount),
-            c => c != this && c.HasModKeyword(rebirthId),
-            this);
-
-        foreach (var card in cardsToRemove)
+        // 1. 第 1 次选择：选择要失去「轮回」的牌
+        //    ⚠️ 打出条件（IsPlayableC）不排除自己，所以这里要先看有没有可失去的候选（`c != this`），
+        //       没有就整段跳过 —— 免得弹出空的选择屏。
+        var removableCandidates = handPile.Cards.Any(c => c != this && c.HasModKeyword(rebirthId));
+        if (removableCandidates)
         {
-            card.RemoveModKeyword(rebirthId);
-            RefreshCardVisuals(card);
+            var cardsToRemove = (await CardSelectCmd.FromHand(
+                choiceContext,
+                Owner,
+                new CardSelectorPrefs(source.SelectionScreenPrompt, removeCount),
+                c => c != this && c.HasModKeyword(rebirthId),
+                this)).ToList();
+
+            foreach (var card in cardsToRemove)
+            {
+                card.RemoveModKeyword(rebirthId);
+                RefreshCardVisuals(card);
+            }
         }
 
-        // 2. 选择要获得"轮回"的牌
-        var cardsToGrant = await CardSelectCmd.FromHand(
-            choiceContext,
-            Owner,
-            new CardSelectorPrefs(source.SelectionScreenPrompt, grantCount),
-            c => c != this && !c.HasModKeyword(rebirthId),
-            this);
+        // 2. 「获得轮回」是**逐张选择**：第 2 次选择选 1 张、第 3 次再选 1 张（连第 1 步共 **三次选择**），
+        //    不是一次选中 2 张。每选出一张就立刻给它加上【轮回】（并刷新卡面）。
+        //    ⭐ 升级后的隐藏配对（只作用于**获得轮回**的卡；第 1 步那张完全不参与、不挂任何东西）：
+        //       · 第 2 次选择那张 → 加关键词 + 挂隐藏能力；它同时是这一对的**卡名来源**，本身**不改名**。
+        //       · 第 3 次选择那张 → 加关键词 + 挂同一个隐藏能力 + **改名**（改成第 2 次那张的卡名）。
+        string? pairName = null;
 
-        foreach (var card in cardsToGrant)
+        for (var grantIndex = 0; grantIndex < grantCount; grantIndex++)
         {
-            card.AddModKeyword(rebirthId);
-            RefreshCardVisuals(card);
+            if (!handPile.Cards.Any(c => c != this && !c.HasModKeyword(rebirthId))) break;
+
+            var picked = (await CardSelectCmd.FromHand(
+                choiceContext,
+                Owner,
+                new CardSelectorPrefs(source.SelectionScreenPrompt, 1),
+                c => c != this && !c.HasModKeyword(rebirthId),
+                this)).ToList();
+
+            if (picked.Count == 0) break;
+
+            foreach (var card in picked)
+            {
+                card.AddModKeyword(rebirthId);
+
+                if (IsUpgraded)
+                {
+                    if (grantIndex == 0)
+                    {
+                        // 第 2 次选择：这一对的**卡名来源**（自己不改名），只挂隐藏配对能力。
+                        pairName = CardRename.EffectiveName(card);
+                        if (!string.IsNullOrEmpty(pairName))
+                            AttachPairCapability(card, pairName);
+                    }
+                    else if (!string.IsNullOrEmpty(pairName))
+                    {
+                        // 第 3 次选择：挂同一个隐藏配对能力 + 改名成第 2 次那张的卡名（CardRename，纯视觉）。
+                        AttachPairCapability(card, pairName);
+                        CardRename.Set(card, pairName);
+                    }
+                }
+
+                RefreshCardVisuals(card);
+            }
         }
+    }
 
-        // 3. 升级追加（卡面 {IfUpgraded:show:并使后一张卡名改为前一张卡卡名|}）：
-        //    把「获得轮回的那些卡」（后一张）的卡名改成「失去轮回的那张卡」（前一张）的卡名。
-        //    两张卡因此**同名** ⇒ 【轮回】能互相认出对方（见 CardRename.SameName）。
-        //    ⚠️ 只改卡名显示，卡的效果 / 描述一字不动。
-        if (!IsUpgraded) return;
-
-        var removeList = cardsToRemove.ToList();
-        var grantList = cardsToGrant.ToList();
-        if (removeList.Count == 0 || grantList.Count == 0) return;
-
-        var newName = CardRename.EffectiveName(removeList[0]);
-        if (string.IsNullOrEmpty(newName)) return;
-
-        foreach (var card in grantList)
-        {
-            CardRename.Set(card, newName);
-            RefreshCardVisuals(card);
-        }
+    /// <summary>
+    ///     给一张手牌挂上隐藏的「轮回配对」能力（已存在则只往里追加配对名）。
+    /// </summary>
+    private static void AttachPairCapability(CardModel card, string pairName)
+    {
+        card.GetOrCreateCapability<TransmigrationPairCapability>().AddPairName(pairName);
     }
 
     private static void RefreshCardVisuals(CardModel card)

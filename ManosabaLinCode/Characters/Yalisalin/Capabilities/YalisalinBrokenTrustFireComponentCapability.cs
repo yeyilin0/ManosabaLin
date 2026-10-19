@@ -12,8 +12,9 @@ public sealed class YalisalinBrokenTrustFireComponentCapability : ManosabaCardCa
         if (context.SourceCard != Owner)
             return;
 
-        var attacks = new[] { PileType.Draw, PileType.Discard }
-            .SelectMany(pile => pile.GetPile(context.Owner).Cards)
+        // 文案（2026-10-18 用户改 zhs）：「这张牌的余火连接抽牌堆中的攻击牌」——
+        // 原为「先连接抽牌堆或弃牌堆中的攻击牌」，去掉弃牌堆。
+        var attacks = PileType.Draw.GetPile(context.Owner).Cards
             .Where(card => card != context.SourceCard)
             .Where(card => card.Type == CardType.Attack)
             .ToArray();

@@ -1,4 +1,4 @@
-﻿{
+{
   "MANOSABA_LIN_RELIC_PEN.title": "希罗的钢笔",
   "MANOSABA_LIN_RELIC_PEN.description": "每场战斗开始时，获得3层 [color=#CC6666]【正义】[/color]",
   "MANOSABA_LIN_RELIC_PEN.flavor": "[color=#CC6666]希罗[/color]初中时常用的钢笔，本来应该已经送给雪了",
@@ -10,7 +10,7 @@
   "MANOSABA_LIN_RELIC_WITHHIRO.selectionScreenPrompt":"选择一张卡",
   "MANOSABA_LIN_RELIC_WITHHIRO.flavor": "[color=#CC6666]「但......我依然想找到[/color][color=#CCCCCC]你[/color][color=#CC6666]」[/color]\n[color=#CC6666]「我现在就去找你————为了审判我们的[/color][b]【罪行】[/b][color=#CC6666]」[/color]",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.title": "魔女资料",
-  "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.description": "获得时，从预备魔女卡牌中随机生成26张卡牌，选择任意数量加入牌组。",
+  "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.description": "获得时，从预备魔女卡牌中随机生成39张卡牌，可选择任意数量加入牌组。",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.flavor": "写有岛外与宅邸的物资交易，以及在押少女们的情报的大量资料。上面也有艾玛她们所有人的人物资料和人脸照片。解读似乎需要耗费大量时间",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.selectionScreenPrompt": "选择要加入牌组的卡牌",
   "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.title": "拆解零件",

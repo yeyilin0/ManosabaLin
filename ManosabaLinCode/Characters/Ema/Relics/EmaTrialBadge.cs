@@ -59,6 +59,43 @@ public class EmaTrialBadge : ManosabaRelicTemplate
         set { AssertMutable(); _lastResetRound = value; }
     }
 
+    /// <summary>
+    ///     ⚠️ 三个审判计数必须走 <c>[SavedProperty]</c>：它们决定 ×2/×3/×4/×5 的阈值效果
+    ///     （含「随机 1 张手牌免费」这类直接改<b>卡牌费用</b>的效果），而费用进校验和 ——
+    ///     计数一旦在两端不一致，就会在某个 ×5 的回合让一端改牌、另一端不改 ⇒ StateDivergence（踢人）。
+    ///     <para>
+    ///         计数器还有个天然放大器：<see cref="SyncCountersToEnchantments" /> 会把本地计数写进
+    ///         <c>Enchantment.Amount</c>（那是**同步**字段）—— 计数不同步会直接把差别刻进同步状态里。
+    ///     </para>
+    ///     <para>
+    ///         普通私有字段在**重连/中途加入**时不会被传递（对端只收到 <c>RelicState</c> 里的 props），
+    ///         所以队友掉线重连后计数会被清 0，与本机脱节 —— 这正是 2026-10-15 那次掉线后
+    ///         再次分歧的温床。
+    ///     </para>
+    /// </summary>
+    [SavedProperty]
+    public int SavedAgreeCount
+    {
+        get => _agreeCount;
+        set { AssertMutable(); _agreeCount = value; }
+    }
+
+    /// <summary>【疑问】计数（同步字段，说明见 <see cref="SavedAgreeCount" />）。</summary>
+    [SavedProperty]
+    public int SavedDoubtCount
+    {
+        get => _doubtCount;
+        set { AssertMutable(); _doubtCount = value; }
+    }
+
+    /// <summary>【反驳】计数（同步字段，说明见 <see cref="SavedAgreeCount" />）。</summary>
+    [SavedProperty]
+    public int SavedRebuttalCount
+    {
+        get => _rebuttalCount;
+        set { AssertMutable(); _rebuttalCount = value; }
+    }
+
     [SavedProperty]
     public bool EnchantedThisCombat
     {

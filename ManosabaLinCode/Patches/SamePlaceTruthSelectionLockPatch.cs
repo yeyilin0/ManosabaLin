@@ -1,5 +1,6 @@
 using HarmonyLib;
 using ManosabaLin.Characters.Hiro.Cards;
+using ManosabaLin.Characters.Yalisalin.Components;
 using MegaCrit.Sts2.Core.CardSelection;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -21,6 +22,8 @@ namespace ManosabaLin.Patches;
 //   2. NChooseACardSelectionScreen.SelectHolder —— 非网格的"从给定列表选卡"屏幕
 //      （奖励/事件类）的点击确认入口，拦截对锁定卡的选择。
 // 过滤判定由卡片自带：SamePlaceTruth.IsSelectionLocked（card is SamePlaceTruth && LockedInDiscard）。
+// 余火选卡界面另有第二层判定：YalisalinFireComponentUnplayableRegistry（本次语境下打不出的
+// 候选牌，仅在选择进行中登记），命中时同样点击无响应。
 [HarmonyPatch]
 internal static class SamePlaceTruthSelectionLockPatch
 {
@@ -37,7 +40,19 @@ internal static class SamePlaceTruthSelectionLockPatch
     {
         // 注意：Harmony 按参数名匹配原方法参数，v0.111.0 中
         // SelectHolder 的参数名为 cardHolder（此前为 holder）。
-        return !SamePlaceTruth.IsSelectionLocked(cardHolder.CardModel);
+        var card = cardHolder.CardModel;
+
+        if (SamePlaceTruth.IsSelectionLocked(card))
+            return false;
+
+        // 余火选卡界面：本次语境下打不出的候选牌只能看、不能选 ——
+        // 点击直接无响应（和手牌里拖不出去的卡一个观感），
+        // 与 YalisalinFireComponentUnplayablePatch 点亮的是同一个 registry。
+        // 右键「添火」是余火界面的功能交互，刻意不拦。
+        if (YalisalinFireComponentUnplayableRegistry.Contains(card))
+            return false;
+
+        return true;
     }
 }
 

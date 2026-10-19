@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="460" viewBox="0 0 520 460">
+<defs><linearGradient id="membrane" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="white" stop-opacity=".02"/><stop offset=".52" stop-color="white" stop-opacity=".10"/><stop offset="1" stop-color="white" stop-opacity=".025"/></linearGradient></defs>
+<g transform="translate(260 230)" fill="none" stroke="white" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+<g transform="scale(-1 1)">
+<path d="M 0,-7 C 27,-79.5 73.5,-147.87 175,-159 C 205,-171 169.75,-85.86 101.5,-18 Q 57.75,8 8,15 C 91.0,-17 168.0,-11 148.75,28 C 178,55 120.74999999999999,69 141.75,89 C 148.75,126 84.0,114 78.75,123 Q 42.0,136 26,61 C 12,31 6,22 0,8 Z" fill="url(#membrane)"/>
+<path d="M 4,-3 Q 59.50000000000001,-19.08 108.5,-89.04" stroke-width="1.7"/>
+</g>
+<g transform="scale(1 1)">
+<path d="M 0,-7 C 27,-79.5 73.5,-147.87 175,-159 C 205,-171 169.75,-85.86 101.5,-18 Q 57.75,8 8,15 C 91.0,-17 168.0,-11 148.75,28 C 178,55 120.74999999999999,69 141.75,89 C 148.75,126 84.0,114 78.75,123 Q 42.0,136 26,61 C 12,31 6,22 0,8 Z" fill="url(#membrane)"/>
+<path d="M 4,-3 Q 59.50000000000001,-19.08 108.5,-89.04" stroke-width="1.7"/>
+</g>
+<path d="M-1,-26 Q10,17 -1,56 M-1,-18 Q-9,-52 -28,-59 M3,-18 Q12,-52 29,-59"/>
+</g></svg>

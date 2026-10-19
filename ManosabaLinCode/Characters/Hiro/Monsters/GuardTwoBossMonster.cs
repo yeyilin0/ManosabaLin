@@ -28,6 +28,9 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
     /// <summary>该 BOSS 每次攻击自带的护盾量；诈尸护盾也以它为下限，避免诈尸时无盾可破。</summary>
     public int ShieldAmount => AscensionHelper.GetValueIfAscension(AscensionLevel.DeadlyEnemies, 50, 40);
 
+    /// <summary>补课也失败时置位，放行后续死亡：避免与引擎防递归（recursion 上限 10）打架，也避免战斗卡死。</summary>
+    private bool _releasedDeath;
+
     public override MonsterAssetProfile AssetProfile => new(
         VisualsScenePath: "res://ManosabaLin/scenes/monsters/guard_two_boss.tscn"
     );
@@ -72,8 +75,51 @@ public sealed class GuardTwoBossMonster : ModMonsterTemplate
 
     public override async Task AfterAddedToRoom()
     {
-        await PowerCmd.Apply<GuardTwoBossLastStandPower>(
+        _releasedDeath = false;
+        var power = await PowerCmd.Apply<GuardTwoBossLastStandPower>(
             new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
+        if (power == null)
+            Log.Error("[GuardTwoBoss] GuardTwoBossLastStandPower failed to apply at combat start; " +
+                      "the last-stand safety net (ShouldDie/AfterPreventingDeath) will try to recover it.");
+    }
+
+    // ========== 诈尸双保险 ==========
+    // 曾观察到：双人局里本 BOSS 被普通伤害直接击杀，既没有触发诈尸也没有任何日志（大闹一场后正常发奖励）。
+    // 正常路径下 GuardTwoBossLastStandPower（powers 先于 monster 被询问）会拦下死亡并执行诈尸；
+    // 若它因任何原因不在场，ShouldDie 根本不会被它问到 —— 于是在这里垫一层：
+    // 能力缺失时先拦下死亡，交给 AfterPreventingDeath 现场补课并补跑诈尸；补课也失败才放行死亡。
+    public override bool ShouldDie(Creature creature)
+    {
+        if (creature != Creature) return true;
+        if (_releasedDeath) return true;
+        if (Creature.GetPower<GuardTwoBossLastStandPower>() != null)
+            return true; // 正常局面：轮不到这里（能力自己会拦），保持原行为。
+        Log.Error("[GuardTwoBoss] Last-stand power is MISSING at death time; intercepting death to recover.");
+        return false;
+    }
+
+    public override async Task AfterPreventingDeath(Creature creature)
+    {
+        if (creature != Creature) return;
+
+        var power = Creature.GetPower<GuardTwoBossLastStandPower>();
+        if (power == null)
+        {
+            power = await PowerCmd.Apply<GuardTwoBossLastStandPower>(
+                new ThrowingPlayerChoiceContext(), Creature, 1, Creature, null);
+            if (power != null)
+                Log.Error("[GuardTwoBoss] Last-stand power recovered during death prevention; resuming the last-stand sequence.");
+        }
+
+        if (power == null)
+        {
+            // 补课失败：放行死亡（本次不再拦截，等引擎按正常流程处理），防止战斗无法结束。
+            _releasedDeath = true;
+            Log.Error("[GuardTwoBoss] Recovery failed; releasing the death so the combat cannot soft-lock.");
+            return;
+        }
+
+        await power.AfterPreventingDeath(creature);
     }
 
     public async Task CheckMovesMove(IReadOnlyList<Creature> targets)

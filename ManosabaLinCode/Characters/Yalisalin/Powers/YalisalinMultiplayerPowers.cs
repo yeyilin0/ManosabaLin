@@ -3,6 +3,7 @@ using ManosabaLin.Characters.Common.Powers;
 using ManosabaLin.Characters.Ema.Cards;
 using ManosabaLin.Characters.Hiro.Cards;
 using ManosabaLin.Characters.Sherrylin.Cards;
+using ManosabaLin.Characters.Yalisalin.Cards;
 using ManosabaLin.Characters.Yalisalin.Relics;
 using STS2RitsuLib.Combat.AttackHits;
 
@@ -119,7 +120,7 @@ public sealed class SharedGuiltPower : ManosabaPowerTemplate
 
     public override PowerType Type => PowerType.Buff;
 
-    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerStackType StackType => PowerStackType.Single;
 
     /// <summary>升级：救人之后顺便清空他所有的「减力量」。</summary>
     public bool ClearsStrengthDown { get; set; }
@@ -210,7 +211,8 @@ public sealed class SharedGuiltPower : ManosabaPowerTemplate
             .Where(static card => card is HiroBadEnding
                 or EmaForgottenOne
                 or AnanlinBadEnding
-                or Sherrybadending)
+                or Sherrybadending
+                or YalisalinBadEnding)
             .ToArray();
 
         foreach (var curse in curses)

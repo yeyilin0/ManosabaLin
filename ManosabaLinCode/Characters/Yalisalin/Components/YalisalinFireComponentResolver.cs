@@ -10,7 +10,13 @@ namespace ManosabaLin.Characters.Yalisalin.Components;
 public static class YalisalinFireComponentResolver
 {
     private static readonly HashSet<CardModel> ResolvingCards = [];
-    private static readonly HashSet<CardModel> SuppressedCards = [];
+
+    /// <summary>
+    ///     组件被抑制的牌（余火选择后自动打出的候选牌）。抑制窗口覆盖整次自动打出
+    ///     （含其资源结算），供 <c>YalisalinFireComponentSourcePlayPatch</c> 区分
+    ///     「手动打出的余火源牌（不消耗能量）」与「自动打出的所选牌（正常消耗）」。
+    /// </summary>
+    internal static readonly HashSet<CardModel> SuppressedCards = [];
 
     public static async Task<YalisalinFireComponentContext> Resolve(
         PlayerChoiceContext choiceContext,
@@ -180,10 +186,22 @@ public static class YalisalinFireComponentResolver
 
             return context;
         }
+        catch (Exception ex)
+        {
+            // 余火结算整体跑在「打出源牌」的 OnPlay 前置钩子（BeforeOwnerCardOnPlay）里：
+            // 这里一旦把异常抛出去，本次 PlayCardAction 会中途失败，源牌的 NCard 节点会永远留在
+            // PlayContainer 里 —— 表现就是「牌卡在屏幕上打不出去」，之后抽到同一张牌还会撞上
+            // add_child ... already has a parent 'PlayContainer'、NCard already been freed。
+            // 因此把余火自身的失败吞在这里并完整记录，让源牌按原版流程正常打完；
+            // 结算本身已经做过的部分不回滚（与原版钩子失败时的行为一致），只保证不再打断出牌。
+            Log.Error($"[YalisalinFireComponent] resolve failed on {source.Id}: {ex}");
+        }
         finally
         {
             ResolvingCards.Remove(source);
         }
+
+        return context;
     }
 
     private static void BuildDefaultConnectionPool(YalisalinFireComponentContext context)
@@ -420,49 +438,65 @@ public static class YalisalinFireComponentResolver
         if (!CanPlayFromFireComponent(context, card, target, ignoreResources: free))
             return;
 
-        ResourceInfo resources;
-        if (free)
+        // 余火额外连接的随机牌（例如「高塔」用 combatState.CreateCard 生成的其他角色牌）是刚生成、
+        // 还没有任何牌堆的牌，必须**在结算资源之前**先放进 Play 堆：
+        //   1) CardModel.CombatState 直接由 Pile.IsCombatPile 推出，牌不在战斗牌堆时它与 null 无异，
+        //      而 CardModel.SpendResources → SpendEnergy 会把 CombatState 原样传给
+        //      Hook.AfterEnergySpent → IterateCombatHookListeners，在那里对 null 解引用抛
+        //      NullReferenceException（表现为「打出带【余火】的牌时整张牌中断」）；
+        //   2) OnPlayWrapper 也会在 combatState == null 时提前 return，跳过末尾的 PopModel，
+        //      污染 choiceContext 的模型栈。
+        // 已在某个非战斗牌堆（牌组）里的牌不能搬，直接放弃；其余战斗牌堆的牌保持原样，
+        // 交由 OnPlayWrapper 按原版口径处理。
+        if (card.CombatState == null)
         {
-            if (card.EnergyCost.CostsX)
-                card.EnergyCost.CapturedXValue = card.Owner.PlayerCombatState?.Energy ?? 0;
-            card.LastStarsSpent = card.HasStarCostX
-                ? card.Owner.PlayerCombatState?.Stars ?? 0
-                : Math.Max(0, card.GetStarCostWithModifiers());
-
-            resources = new ResourceInfo
-            {
-                EnergySpent = 0,
-                EnergyValue = card.EnergyCost.GetAmountToSpend(),
-                StarsSpent = 0,
-                StarValue = Math.Max(0, card.GetStarCostWithModifiers())
-            };
-        }
-        else
-        {
-            context.ApplyTemporaryCostOffset(card);
-            if (!CanPlayFromFireComponent(context, card, target))
+            if (card.Pile != null)
                 return;
 
-            var (energySpent, starsSpent) = await card.SpendResources();
-            resources = new ResourceInfo
-            {
-                EnergySpent = energySpent,
-                EnergyValue = energySpent,
-                StarsSpent = starsSpent,
-                StarValue = starsSpent
-            };
+            await CardPileCmd.Add(card, PileType.Play);
+            if (card.CombatState == null)
+                return;
         }
 
-        if (card.CombatState == null)
-            return;
-
-        // 余火额外连接的随机牌是刚生成、还不在任何牌堆里的牌；与原版 AutoPlay 一样先放进 Play 堆。
-        if (card.Pile == null)
-            await CardPileCmd.Add(card, PileType.Play);
-
+        // 抑制窗口覆盖本次自动打出的全程（含资源结算）：
+        // 手动打出的余火源牌不消耗能量（YalisalinFireComponentSourcePlayPatch），
+        // 而这张自动打出的候选牌要正常消耗，必须把它和源牌区分开。
         SuppressedCards.Add(card);
         try
         {
+            ResourceInfo resources;
+            if (free)
+            {
+                if (card.EnergyCost.CostsX)
+                    card.EnergyCost.CapturedXValue = card.Owner.PlayerCombatState?.Energy ?? 0;
+                card.LastStarsSpent = card.HasStarCostX
+                    ? card.Owner.PlayerCombatState?.Stars ?? 0
+                    : Math.Max(0, card.GetStarCostWithModifiers());
+
+                resources = new ResourceInfo
+                {
+                    EnergySpent = 0,
+                    EnergyValue = card.EnergyCost.GetAmountToSpend(),
+                    StarsSpent = 0,
+                    StarValue = Math.Max(0, card.GetStarCostWithModifiers())
+                };
+            }
+            else
+            {
+                context.ApplyTemporaryCostOffset(card);
+                if (!CanPlayFromFireComponent(context, card, target))
+                    return;
+
+                var (energySpent, starsSpent) = await card.SpendResources();
+                resources = new ResourceInfo
+                {
+                    EnergySpent = energySpent,
+                    EnergyValue = energySpent,
+                    StarsSpent = starsSpent,
+                    StarValue = starsSpent
+                };
+            }
+
             // 与原版 CardCmd.AutoPlay / AnanlinCardHelpers 一致：先广播「即将自动打出」，
             // 再走 OnPlayWrapper 的自动打出分支。
             await Hook.BeforeCardAutoPlayed(combatState, card, target, AutoPlayType.Default);

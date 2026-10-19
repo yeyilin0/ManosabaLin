@@ -70,6 +70,14 @@ public static class Transmigration3Rules
 
         foreach (var matchingCard in matchingCards)
         {
+            // 候选卡是触发开始时一次性快照的，可能已被前面的结算移出战斗；
+            // 此时再 AutoPlay 会让引擎在 OnPlayWrapper 里「PushModel 之后提前 return」→ 栈残留。
+            // 详见 TransmigrationRules.CanStillAutoPlay 的注释。
+            if (!TransmigrationRules.CanStillAutoPlay(matchingCard))
+            {
+                continue;
+            }
+
             // 如果牌在手牌中，先移到弃牌堆再打出，避免递归
             if (matchingCard.Pile?.Type == PileType.Hand)
             {

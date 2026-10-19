@@ -1,6 +1,7 @@
 // GuardThreeCombatSingleton.cs
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
@@ -9,8 +10,10 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Modding;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.MonsterMoves.MonsterMoveStateMachine;
+using MegaCrit.Sts2.Core.Runs;
 using STS2RitsuLib.Interop.AutoRegistration;
 using STS2RitsuLib.Cards.Transforms;
+using ManosabaLin.Characters.Common.GameActions;
 using ManosabaLin.Characters.Common.Powers;
 using ManosabaLin.Characters.Ema.Afflictions;
 using ManosabaLin.Characters.Hiro.Powers;
@@ -91,8 +94,27 @@ public sealed class GuardThreeCombatSingleton : SingletonModel
         if (_intelGainedThisTurn[player.NetId] < IntelEndTurnThreshold) return Task.CompletedTask;
 
         _intelEndTurnTriggered = true;
-        foreach (var p in player.Creature.CombatState.Players.Where(p => p.Creature.IsAlive))
-            PlayerCmd.EndTurn(p, false);
+
+        // ⭐★ 强制结束回合必须走 ActionQueue（不能直接 PlayerCmd.EndTurn）。
+        // 本 hook 由 ThirteenWaterIntelPower.ModifyHpLostBeforeOsty 里 fire-and-forget 的
+        // `_ = PowerCmd.Apply<ThirteenWaterPlayerIntelPower>(...)` 触发，而 PowerCmd.Apply 内部有
+        // `await Cmd.CustomScaledWait(0.1f, 0.25f)`，其时长取决于**本机设置** PrefsSave.FastMode
+        // （Instant 不等 / Fast 0.1s / Normal 0.25s）⇒ 各端恢复执行本 hook 的时刻不同，且完全脱离了
+        // ActionQueue 的执行栈。此处若直接改 CombatManager 的 ready 集合，会出现「一端已判定全员结束回合、
+        // 开始收尾，另一端队列里的出牌仍在结算」⇒ 状态分歧（checksum mismatch）⇒ 掉线。
+        //
+        // 正确做法：每个端只为本机玩家入队自己的结束回合 action（远程玩家的结束回合只能由他自己的端发起，
+        // host 代发会让 OwnerId 错位），顺序由 host 权威广播 ⇒ 两端队列一致。
+        var combatState = player.Creature.CombatState;
+        if (combatState == null) return Task.CompletedTask;
+        if (CombatManager.Instance.IsOverOrEnding) return Task.CompletedTask;
+
+        var me = LocalContext.GetMe(combatState);
+        if (me == null || !me.Creature.IsAlive) return Task.CompletedTask;
+        if (CombatManager.Instance.IsPlayerReadyToEndTurn(me)) return Task.CompletedTask;
+
+        RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(
+            new ForceEndPlayerTurnAction(me, me.PlayerCombatState.TurnNumber));
 
         return Task.CompletedTask;
     }

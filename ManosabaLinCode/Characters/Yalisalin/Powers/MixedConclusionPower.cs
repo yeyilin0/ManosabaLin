@@ -1,5 +1,7 @@
 using STS2RitsuLib.Interop.AutoRegistration;
 
+using MegaCrit.Sts2.Core.Entities.Powers;
+
 namespace ManosabaLin.Characters.Yalisalin.Powers;
 
 /// <summary>
@@ -11,6 +13,7 @@ public sealed class MixedConclusionPower : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Buff;
     public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     private bool _usedThisTurn;
 

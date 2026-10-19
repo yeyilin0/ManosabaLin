@@ -1,7 +1,11 @@
 using Godot;
 using HarmonyLib;
+using ManosabaLin.Characters.Ananlin.Cards;
 using ManosabaLin.Characters.Common.AncientCurses;
+using ManosabaLin.Characters.Ema.Cards;
 using ManosabaLin.Characters.Hiro.Cards;
+using ManosabaLin.Characters.Sherrylin.Cards;
+using ManosabaLin.Characters.Yalisalin.Cards;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 
 namespace ManosabaLin.Patches;
@@ -67,8 +71,18 @@ public static class LinAncientCurseFramePatch
 {
     private const string AncientBorderPath = "res://images/atlases/compressed.sprites/card_template/ancient_card_border.tres";
 
-    // CardModel 里 Curse 类型映射为 Skill 类型，这里用 skill 变体的先古文字底
-    private const string AncientTextBgPath = "res://images/atlases/compressed.sprites/card_template/ancient_card_text_bg_skill.tres";
+    // 先古文字底纹理路径模板：与原版 CardModel.AncientTextBg 的取法一致，按卡牌类型取对应变体
+    // （原版规则：None / Status / Curse 一律映射为 Skill，其余用自身类型）
+    private const string AncientTextBgPathFormat = "res://images/atlases/compressed.sprites/card_template/ancient_card_text_bg_{0}.tres";
+
+    private static string AncientTextBgPath(CardModel? model) => string.Format(
+        AncientTextBgPathFormat,
+        model?.Type switch
+        {
+            CardType.Attack => "attack",
+            CardType.Power => "power",
+            _ => "skill",
+        });
 
     private const string CanvasGroupMaskMaterialPath = "res://scenes/cards/card_canvas_group_mask_material.tres";
 
@@ -78,7 +92,27 @@ public static class LinAncientCurseFramePatch
         if (container == null) return;
 
         // 只处理 13 张原罪诅咒（统一继承 LinAncientCurseCard，含二阶堂希罗的偏执）
-        bool isOurCard = __instance.Model is LinAncientCurseCard;
+        // 以及各角色的初始卡「精神创伤」（同样套用先古卡面）
+        // 以及紫藤亚里沙的爆裂魔法
+        // 以及角色支援/联动卡：安安的米莉亚支援与诺亚支援、雪莉的艾玛希儿与汉娜支援
+        // 以及希罗的「协力」卡：艾玛的协力（Amhelp）、蕾雅的协力（Lyhelp）
+        // 以及「已有卡图」的多人专属卡（排除各角色的「佐伯米莉亚」Mlym 系列）
+        bool isOurCard = __instance.Model is LinAncientCurseCard
+            or YalisalinMentalTrauma or MentalTrauma or EmalinMentalTrauma
+            or AnanlinMentalTrauma or SherrylinMentalTrauma or ExplosionMagic
+            or AnanlinMiliaAssist or AnanlinNoahAssist or Emaxieli or HannaAssist
+            or Amhelp or Lyhelp or Xhelp or NymSlash
+            or AnanlinConceivingNovelist or AnanlinGroupChatSmell or AnanlinTakeTheHitForTeammate
+            or AnanlinFeelingAtEase or AnanlinPageStrike
+            or AnanlinSaveLoad or AnanlinMiriasMoviePromise
+            or BondVerdict or EnchantmentConvergence or SuspectCovenant
+            or FlowerBloom or JointJudgment or BondSettlement or BondExchangecard
+            or Geinilunhui or JusticeRelay or SharedWitchRitual
+            or IAmCorrect or InstantTransmigration or CardEightySix or Threehiro
+            or SharedExhaustPlay or TeamZeroGift or ThreeCardOmen
+            or EmotionTransfer or FriendshipSeeking or LastCase
+            or CombustionShared or StokeForYou or TorchPassing or SharedGuilt or EmberDividend
+            or AgeOfFire or BoundPrometheus or FinalFarewell;
 
         if (!isOurCard)
         {
@@ -151,10 +185,10 @@ public static class LinAncientCurseFramePatch
 
         // 纹理设置
         // model.AncientTextBg 内部检查 Rarity==Ancient 才返回，非 Ancient 卡会抛异常
-        // 需要手动拼路径加载先古文字底纹理（Curse 在 CardModel 中映射为 Skill）
+        // 需要手动按卡牌类型拼路径加载先古文字底纹理
         if (container.HasNode("AncientTextBg") && container.GetNode("AncientTextBg") is TextureRect ancientTextBg)
         {
-            var tex = ResourceLoader.Load<Texture2D>(AncientTextBgPath, null, ResourceLoader.CacheMode.Reuse);
+            var tex = ResourceLoader.Load<Texture2D>(AncientTextBgPath(__instance.Model), null, ResourceLoader.CacheMode.Reuse);
             if (tex != null)
                 ancientTextBg.Texture = tex;
         }

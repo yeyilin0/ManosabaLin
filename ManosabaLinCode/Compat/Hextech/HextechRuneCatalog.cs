@@ -16,12 +16,24 @@ namespace ManosabaLin.Compat.Hextech;
 ///     </para>
 /// </summary>
 /// <param name="RuneType">我方遗物类型；必须是具体、非泛型 <c>RelicModel</c> 子类且 <c>Rarity == Starter</c>。</param>
+/// <param name="CharacterType">
+///     该符文专属的<b>我方角色</b>类型（<c>CharacterModel</c> 子类）。
+///     <para>
+///         R4（海克斯 <c>ApiVersion &gt;= 2</c>，2026-10-13 作者回复）起经 <c>SetPlayerRuneCharacter</c>
+///         登记给对方，让模组角色也吃到 150% 角色加权；<see cref="CharacterPool" /> 仍恒 <c>null</c>
+///         （对方枚举里没有 mod 角色）。
+///     </para>
+/// </param>
 /// <param name="Rarity">
 ///     海克斯品级：<c>Silver</c> / <c>Gold</c> / <c>Prismatic</c>（枚举名，<b>不接受数字</b>）。
 ///     ⚠️ 这与我方 <c>RelicRarity.Starter</c> 是<b>两个维度</b>：前者是海克斯自己的三档品级，后者是原版稀有度。
 /// </param>
-/// <param name="Flags">逗号分隔的 <c>PlayerRuneFlags</c>；本组全部为 <c>null</c>。</param>
-/// <param name="CharacterPool">原版 5 角色池；通用 = <c>null</c>（对方枚举里<b>没有 mod 角色</b>）。</param>
+/// <param name="Flags">
+///     逗号分隔的 <c>PlayerRuneFlags</c>；本组全部为 <c>null</c>。
+///     ⚠️ 注册桥在 <c>ApiVersion &gt;= 2</c> 时会追加 <c>GuaranteedFirstPick</c>（每幕第一次三选一的保底槽），
+///     见 <c>HextechRuneRegistrar.RegisterRunes</c>；旧版本传这个标志会抛 <c>ArgumentException</c>。
+/// </param>
+/// <param name="CharacterPool">原版 5 角色池；通用 = <c>null</c>（模组角色的专属标记走 <see cref="CharacterType" />）。</param>
 /// <param name="CharacterOrder">角色池内排序；<see cref="CharacterPool" /> 为 null 时无意义。</param>
 /// <param name="TagKey">海克斯标签；<b>决定三选一加权</b>，自造可让我们只在自己人之间互相加权。</param>
 /// <param name="AssetModId">配置菜单「来源」显示用。</param>
@@ -29,6 +41,7 @@ namespace ManosabaLin.Compat.Hextech;
 /// <param name="Note">仅供人读的说明，不传给对方。</param>
 internal sealed record HextechRuneSpec(
     Type RuneType,
+    Type CharacterType,
     string Rarity,
     string? Flags,
     string? CharacterPool,
@@ -84,10 +97,14 @@ internal static class HextechRuneCatalog
     ///         以及本模组的<b>全局</b>设置（<c>HextechLinkageSettingsService.IsEnabled</c>，默认开、两端默认一致）。
     ///         不读本地 UI 或随机数。
     ///     </para>
-    ///     <para>
-    ///         我们用 <see cref="HextechRuneSpec.Availability" /> 而不是 <c>characterPool</c> 来按角色收窄，
-    ///         因为对方枚举里<b>只有原版 5 个角色</b>，没有本 mod 的角色。
-    ///     </para>
+///     <para>
+///         我们用 <see cref="HextechRuneSpec.Availability" /> 而不是 <c>characterPool</c> 来按角色收窄，
+///         因为对方枚举里<b>只有原版 5 个角色</b>，没有本 mod 的角色。
+///     </para>
+///     <para>
+///         ⚠️ R4（2026-10-13）起对方新增 <c>SetPlayerRuneCharacter</c>：模组角色的 150% 角色加权
+///         改由 <see cref="HextechRuneSpec.CharacterType" /> 登记（<c>characterPool</c> 仍恒 <c>null</c>）。
+///     </para>
     ///     <para>
     ///         门控语义 = <b>角色是安安/希罗/雪莉/艾玛，且全局联动开关未关</b>。用户的「专属联动遗物」门槛
     ///         等价于角色门槛本身（像海克斯原版角色专属遗物那样，不硬查某个具体遗物），故只按角色判断 + 设置开关。
@@ -98,6 +115,7 @@ internal static class HextechRuneCatalog
         // 1. 用户裁定：仅雪莉琳（原本我按「不依赖角色专属机制」定成通用，被否）。
         new HextechRuneSpec(
             typeof(HextechDeckCleanser),
+            typeof(Sherrylin),
             RuneRarity,
             null,
             null,
@@ -110,6 +128,7 @@ internal static class HextechRuneCatalog
         // 2. 情绪球是雪莉琳专属机制 ⇒ 别的角色拿到是废牌。
         new HextechRuneSpec(
             typeof(HextechEmotionOverflow),
+            typeof(Sherrylin),
             RuneRarity,
             null,
             null,
@@ -122,6 +141,7 @@ internal static class HextechRuneCatalog
         // 3. 用户裁定：仅雪莉琳（【魔女化】虽 5 个角色都有，但本遗物绑定的是雪莉琳那套组件链）。
         new HextechRuneSpec(
             typeof(HextechWitchificationCore),
+            typeof(Sherrylin),
             RuneRarity,
             null,
             null,
@@ -134,6 +154,7 @@ internal static class HextechRuneCatalog
         // 4 / 5 / 6. 【轮回】【伪证】【正义】都只存在于希罗的卡池（别的角色 0 处引用）。
         new HextechRuneSpec(
             typeof(HextechTransmigrationEcho),
+            typeof(Hiro),
             RuneRarity,
             null,
             null,
@@ -145,6 +166,7 @@ internal static class HextechRuneCatalog
 
         new HextechRuneSpec(
             typeof(HextechPerjuryPayment),
+            typeof(Hiro),
             RuneRarity,
             null,
             null,
@@ -156,6 +178,7 @@ internal static class HextechRuneCatalog
 
         new HextechRuneSpec(
             typeof(HextechJusticeRegen),
+            typeof(Hiro),
             RuneRarity,
             null,
             null,
@@ -168,6 +191,7 @@ internal static class HextechRuneCatalog
         // 7 / 8 / 9. 安安专属三件套（2026-09-29 追加）。书页 / 安心 / 缄默·洗脑 都只存在于安安的卡池与组件链。
         new HextechRuneSpec(
             typeof(HextechColorlessPage),
+            typeof(Ananlin),
             RuneRarity,
             null,
             null,
@@ -179,6 +203,7 @@ internal static class HextechRuneCatalog
 
         new HextechRuneSpec(
             typeof(HextechPeaceOfMindEcho),
+            typeof(Ananlin),
             RuneRarity,
             null,
             null,
@@ -190,6 +215,7 @@ internal static class HextechRuneCatalog
 
         new HextechRuneSpec(
             typeof(HextechBrainwashResonance),
+            typeof(Ananlin),
             RuneRarity,
             null,
             null,
@@ -202,6 +228,7 @@ internal static class HextechRuneCatalog
         // 10 / 11 / 12. 艾玛专属三件套（2026-10-01 追加）。魔女因子 / 审判附魔 / 亲近·疏远 都只存在于艾玛的机制链。
         new HextechRuneSpec(
             typeof(HextechWitchFactorErosion),
+            typeof(Emalin),
             RuneRarity,
             null,
             null,
@@ -213,6 +240,7 @@ internal static class HextechRuneCatalog
 
         new HextechRuneSpec(
             typeof(HextechTrialEmbodiment),
+            typeof(Emalin),
             RuneRarity,
             null,
             null,
@@ -224,6 +252,7 @@ internal static class HextechRuneCatalog
 
         new HextechRuneSpec(
             typeof(HextechBondDrift),
+            typeof(Emalin),
             RuneRarity,
             null,
             null,
@@ -255,6 +284,14 @@ internal static class HextechRuneCatalog
 
             if (spec.Rarity is not ("Silver" or "Gold" or "Prismatic"))
                 problems.Add($"{name}: 品级 '{spec.Rarity}' 非法（只接受 Silver/Gold/Prismatic）");
+
+            // CharacterType 经 SetPlayerRuneCharacter 交给对方（用户 2026-10-15 裁定保留该绑定，
+            // 联动遗物进角色专属池 + 150% 加权靠它）；类型合法性仍自检一道，避免漏配。
+            if (spec.CharacterType.IsAbstract || spec.CharacterType.ContainsGenericParameters)
+                problems.Add($"{name}: CharacterType 必须是具体、非泛型类型");
+
+            if (!typeof(CharacterModel).IsAssignableFrom(spec.CharacterType))
+                problems.Add($"{name}: CharacterType 必须是 CharacterModel 子类");
         }
 
         return problems;

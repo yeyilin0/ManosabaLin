@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://ManosabaLin/scenes/Ananlin/draft_butterflies/draft_butterflies.gd" id="1"]
+[node name="DraftButterflies" type="CanvasLayer"]
+layer = 8
+script = ExtResource("1")

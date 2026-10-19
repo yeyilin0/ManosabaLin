@@ -10,6 +10,9 @@ public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
     private const decimal InfiniteHp = 999999999m;
     private const decimal HealRatio = 0.5m;
 
+    /// <summary>整场首次拦截时留一条日志，便于把「未拦截」与「拦截被抢」两类问题分开定性。</summary>
+    private bool _loggedFirstIntercept;
+
     private sealed class Data
     {
         public bool TriggeredThisTurn;
@@ -50,6 +53,11 @@ public sealed class GuardTwoBossLastStandPower : ManosabaPowerTemplate
     {
         if (creature != Owner)
             return true;
+        if (!_loggedFirstIntercept)
+        {
+            _loggedFirstIntercept = true;
+            Log.Info("[GuardTwoBoss] Last-stand intercepting a lethal hit (first time this combat).");
+        }
         return false;
     }
 

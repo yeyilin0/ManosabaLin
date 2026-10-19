@@ -3,6 +3,7 @@ using ManosabaLin.Characters.Yalisalin.Components;
 using ManosabaLin.Characters.Yalisalin.Powers;
 using ManosabaLin.Characters.Yalisalin.Relics;
 using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2RitsuLib.Models.Capabilities;
 
@@ -24,8 +25,10 @@ public sealed class Unwantedkindness()
 
     public async Task AfterFireComponentBurned(PlayerChoiceContext choiceContext, YalisalinFireComponentContext context)
     {
+        // 文案（2026-10-18 用户改 zhs）：「若本次通过余火烧掉牌，获得1点力量」——原为抽 1 张。
         if (context.SourceCard == this)
-            await CardPileCmd.Draw(choiceContext, 1, Owner);
+            await PowerCmd.Apply<StrengthPower>(
+                choiceContext, Owner.Creature, 1m, Owner.Creature, this, false);
     }
 
     protected override void OnUpgrade(ComponentContext componentContext)
@@ -94,7 +97,7 @@ public sealed class Dontlookatme()
 
         if (YalisalinFireComponentRules.TryAddFireComponent(selected)
             && YalisalinFireColorSystem.TryGetHairpin(Owner, out var hairpin))
-            hairpin.TrackDontLookAtMe(selected, IsUpgraded);
+            hairpin.TrackDontLookAtMe(IsUpgraded);
     }
 }
 

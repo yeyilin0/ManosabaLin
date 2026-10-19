@@ -13,8 +13,9 @@ namespace ManosabaLin.Characters.Common.AncientCurses;
 
 /// <summary>
 /// 魔女化诅咒卡：白字灰描边（#cccccc）的先古诅咒卡，类型格子与其他原罪诅咒一致。
-/// 打出时获得 20 魔女化，并触发自带的原罪组件「自惩」。
-/// 组件由 <see cref="Originalsin"/> 提供（卡面显示 [color=#cccccc][b]原罪[/b][/color]），
+/// 打出时获得 20 魔女化。
+/// <b>本身不带原罪组件</b>：由魔女因子（<c>YalisalinWitchFactor</c>）发放的这张卡会主动挂载
+/// <see cref="Originalsin"/>（卡面显示 [color=#cccccc][b]原罪[/b][/color]），
 /// 宽恕/自惩的专属效果见 Originalsin 中对应 case。
 /// 卡名描边灰色由 LinAncientCurseTitleColors 提供。
 /// </summary>
@@ -22,9 +23,6 @@ namespace ManosabaLin.Characters.Common.AncientCurses;
 public sealed class WitchificationCurse : LinAncientCurseCard
 {
     public WitchificationCurse() : base(1, TargetType.Self) { }
-
-    protected override IEnumerable<ICardComponent> CanonicalComponents =>
-        [new Originalsin()];
 
     protected override IEnumerable<DynamicVar> CanonicalVars
     {

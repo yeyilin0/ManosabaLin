@@ -1,6 +1,7 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Common.Components;
 using ManosabaLin.Characters.Ema.Powers;
+using ManosabaLin.Characters.Ema.Vfx;
 using ManosabaLin.Characters.Emalin;
 using ManosabaLin.Characters.Emalin.Actions;
 using ManosabaLin.Characters.Emalin.Components;
@@ -10,6 +11,7 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Rooms;
 using MinionLib.Component.Core;
 using MinionLib.Component.Interfaces;
 using STS2RitsuLib.Interop.AutoRegistration;
@@ -21,6 +23,40 @@ public class EmaEnding() : ManosabaCardTemplate(1, CardType.Skill, CardRarity.Ra
 {
     private const string EmaTrueEndingEffectHoverLocEntry = "MANOSABA_LIN_CARD_EMA_TRUE_ENDING_EFFECT";
     private const string EmaBadEndingEffectHoverLocEntry = "MANOSABA_LIN_CARD_EMA_BAD_ENDING_EFFECT";
+
+    protected override IEnumerable<string> ExtraRunAssetPaths => base.ExtraRunAssetPaths
+        .Concat(TrueEndingVfx.AssetPaths).Concat(BadEndingVfx.AssetPaths);
+
+    private void PrepareEndingEffects()
+    {
+        // Prepare both outcomes while the source card is still 「结局」. Waiting
+        // for the transformed card's OnPlay leaves scene construction on the click.
+        TrueEndingVfx.Prepare(Owner.Creature);
+        BadEndingVfx.Prepare(Owner.Creature);
+    }
+
+    protected override Task BeforeCombatStart(ComponentContext componentContext)
+    {
+        PrepareEndingEffects();
+        return Task.CompletedTask;
+    }
+
+    protected override Task AfterRoomEntered(AbstractRoom room, ComponentContext componentContext)
+    {
+        if (room is CombatRoom)
+        {
+            PrepareEndingEffects();
+            if (Owner.Creature.GetPower<EmaTrueEndingPower>() is { } truePower) TrueEndingVfx.Restore(truePower);
+            if (Owner.Creature.GetPower<EmaBadEndingRewardPower>() is { } badPower) BadEndingVfx.Restore(badPower);
+        }
+        return Task.CompletedTask;
+    }
+
+    protected override Task AfterCardEnteredCombat(CardModel card, ComponentContext componentContext)
+    {
+        if (ReferenceEquals(card, this)) PrepareEndingEffects();
+        return Task.CompletedTask;
+    }
 
     protected override IEnumerable<DynamicVar> CanonicalVars =>
         [new EnergyVar(1), new CardsVar(1)];

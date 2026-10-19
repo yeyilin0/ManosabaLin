@@ -121,7 +121,10 @@ public sealed class JointJudgmentPower : ManosabaPowerTemplate
                 break;
 
             case 5: // ×5：随机 1 张手牌本回合免费 + 全体友方 1 能量
-                var freeTargets = PileType.Hand.GetPile(player).Cards.Where(static c => c.CanPlay()).ToList();
+                // ⚠️ 不用 CanPlay()：能量是瞬时量，两端候选集可能不同 ⇒ RNG 抽出不同的牌 ⇒ 状态分歧。
+                var freeTargets = PileType.Hand.GetPile(player).Cards
+                    .Where(EmalinCombatHelper.IsEligibleForCostEffect)
+                    .ToList();
                 if (freeTargets.Count > 0)
                     Owner.Player!.RunState.Rng.CombatCardSelection.NextItem(freeTargets)?.SetToFreeThisTurn();
 

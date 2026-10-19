@@ -20,23 +20,6 @@ public sealed class YalisalinCoreCardTests : CombatTestSuite
             .WithSeed("manosaba-yalisalin-core");
     }
 
-    /// <summary>点名罪证交换：嫌疑蔓延——6 伤，敌我各 +1 层【嫌疑】。</summary>
-    [Fact]
-    public async Task SuspectSpread_deals_six_and_gives_suspect_to_both()
-    {
-        var enemy = EnemyAt(0);
-        var hpBefore = enemy.CurrentHp;
-        var card = await AddToHand<YalisalinSuspectSpread>();
-
-        await PlayerCmd.SetEnergy(10, Player);
-        await WaitForIdle();
-        await Play(card, enemy);
-
-        Assert.Equal(hpBefore - 6, enemy.CurrentHp);
-        Assert.Equal(1, CardTestAssertions.PowerAmount<SuspectPower>(Player.Creature));
-        Assert.Equal(1, CardTestAssertions.PowerAmount<SuspectPower>(enemy));
-    }
-
     /// <summary>未命名111（SinGift）——8 伤，随机获得 1 张带【原罪】的原罪诅咒入手。</summary>
     [Fact]
     public async Task SinGift_deals_eight_damage()

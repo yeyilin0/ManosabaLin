@@ -49,5 +49,10 @@ public class SherrylinMentalTrauma : ManosabaCardTemplate
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
+        // 用户 2026-10-15 指令：升级后获得固有。
+        // 与原版 Afterimage / 同池 SuperStrength 一致 —— 必须走 AddKeyword 的实时写入：
+        // _keywords 是首次读取时从 CanonicalKeywords 快照下来的实例状态（且随克隆传播），
+        // 用 CanonicalKeywords + IsUpgraded 的写法在「已经读过关键字后再升级」时会被快照吞掉。
+        AddKeyword(CardKeyword.Innate);
     }
 }

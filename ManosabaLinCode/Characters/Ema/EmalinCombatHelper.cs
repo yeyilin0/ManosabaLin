@@ -1,6 +1,7 @@
 using ManosabaLin.Characters.Emalin.Enchantments;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Combat.History.Entries;
+using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Enchantments;
@@ -90,5 +91,39 @@ internal static class EmalinCombatHelper
             .Distinct()
             .Count();
         return plays >= 2;
+    }
+
+    /// <summary>
+    ///     「免费 / 降费」类效果的候选判定：<b>只按「非资源类」原因判可打性</b>（不看当前能量够不够）。
+    /// </summary>
+    /// <remarks>
+    ///     ⚠️⚠️ <b>多人同步铁律：这类效果的候选集绝不能用 <c>CanPlay()</c> 过滤。</b>
+    ///     <para>
+    ///         <c>CanPlay()</c> 把 <c>EnergyCostTooHigh / StarCostTooHigh</c> 一起算进来，而能量是随行动推进
+    ///         <b>瞬时变化</b>的 —— 两个对端在「同一个 OnPlay 内、但结算进度略有先后」的时刻求值，
+    ///         完全可能得到不同的候选集；再叠上 <c>Rng...NextItem()</c> 抽一张，就会
+    ///         <b>一端把 A 设为 0 费、另一端把 B 设为 0 费（或谁都没设）</b>。
+    ///         卡牌费用（<c>CardState.energyCost</c>）是校验和的一部分 ⇒ 直接触发 StateDivergence，
+    ///         主机把队友踢下线（2026-10-15 实测：一张「赞同」附魔的安安防御牌 主机 0 费 / 队友 原费）。
+    ///     </para>
+    ///     <para>
+    ///         口径与 <c>YalisalinFireComponentResolver</c> 一致：屏蔽掉资源类原因，
+    ///         只保留「不可打出（Unplayable 关键词）/ 目标非法 / 被 Hook 拦截」这类两端必然一致的否决。
+    ///         这同时更贴合卡面文案（本地化=规范）：「随机 1 张手牌免费」并不要求「你现在付得起」。
+    ///     </para>
+    /// </remarks>
+    public static bool IsEligibleForCostEffect(CardModel? card)
+    {
+        if (card == null) return false;
+        if (card.Keywords.Contains(CardKeyword.Unplayable)) return false;
+        if (card.Owner?.PlayerCombatState == null) return false;
+
+        if (card.CanPlay(out var reason, out _))
+            return true;
+
+        var nonResourceReasons = reason
+                                 & ~UnplayableReason.EnergyCostTooHigh
+                                 & ~UnplayableReason.StarCostTooHigh;
+        return nonResourceReasons == UnplayableReason.None;
     }
 }

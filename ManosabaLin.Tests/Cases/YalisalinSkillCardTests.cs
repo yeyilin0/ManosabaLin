@@ -98,19 +98,23 @@ public sealed class YalisalinSkillCardTests : CombatTestSuite
         Assert.Equal(6, CardTestAssertions.PowerAmount<TempDexterity>(Player.Creature));
     }
 
-    /// <summary>（Twelve）——0 费，自身 +3 嫌疑、+1【Ylsm】、+2 能量（无嫌疑可消耗时）。</summary>
+    /// <summary>
+    /// 十二（<c>YalisalinTwelve</c>）：2026-10-05 重做为「1 费攻击，获得 3 层【嫌疑】，
+    /// 立刻触发 1 次【点火】回合结束效果」（旧版「0 费 Skill，消耗嫌疑换 Ylsm+能量」已删除，
+    /// 本测试随之更新 —— 旧断言 ylsm/能量/SetEnergy(0) 是重做前的产物）。
+    /// </summary>
     [Fact]
-    public async Task Twelve_gives_suspect_ylsm_and_energy()
+    public async Task Twelve_gives_suspect_and_triggers_ignite()
     {
         var card = await AddToHand<YalisalinTwelve>();
 
-        await PlayerCmd.SetEnergy(0, Player);
+        await PlayerCmd.SetEnergy(10, Player);
         await WaitForIdle();
         await Play(card, Player.Creature);
 
         Assert.Equal(3, CardTestAssertions.PowerAmount<SuspectPower>(Player.Creature));
-        Assert.Equal(1, CardTestAssertions.PowerAmount<YlsmPower>(Player.Creature));
-        Assert.Equal(2, Player.PlayerCombatState.Energy);
+        // 本局没有【点火】能力，只验证不报错；能量按 1 费正常结算
+        Assert.Equal(9, Player.PlayerCombatState.Energy);
     }
 
     /// <summary>罪业圣盾——无发夹时获得 5 格挡。</summary>

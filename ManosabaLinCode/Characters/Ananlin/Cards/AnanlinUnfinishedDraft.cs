@@ -5,6 +5,8 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using MegaCrit.Sts2.Core.Rooms;
+using ManosabaLin.Characters.Ananlin.Vfx;
 
 namespace ManosabaLin.Characters.Ananlin.Cards;
 
@@ -38,6 +40,29 @@ public sealed class AnanlinUnfinishedDraft()
     }
 
     private static readonly DraftMagic[] AllDraftMagics = Enum.GetValues<DraftMagic>();
+
+    // The completed card is generated during combat, so prepare its theater from
+    // the source card rather than waiting for the player's first completed play.
+    protected override IEnumerable<string> ExtraRunAssetPaths =>
+        base.ExtraRunAssetPaths.Concat(FinishedDraftVfx.AssetPaths);
+
+    protected override Task BeforeCombatStart(ComponentContext componentContext)
+    {
+        FinishedDraftVfx.Prepare(Owner.Creature);
+        return Task.CompletedTask;
+    }
+
+    protected override Task AfterRoomEntered(AbstractRoom room, ComponentContext componentContext)
+    {
+        if (room is CombatRoom) FinishedDraftVfx.Prepare(Owner.Creature);
+        return Task.CompletedTask;
+    }
+
+    protected override Task AfterCardEnteredCombat(CardModel card, ComponentContext componentContext)
+    {
+        if (ReferenceEquals(card, this)) FinishedDraftVfx.Prepare(Owner.Creature);
+        return Task.CompletedTask;
+    }
 
     public override int MaxUpgradeLevel => int.MaxValue;
 
@@ -111,7 +136,16 @@ public sealed class AnanlinUnfinishedDraft()
         AdvancePermanentUpgradeProgress();
         // 若本次打出的永久升级补上了最后一种魔法，立即生成【完稿】
         if (wasComplete || IsComplete)
+        {
             await CreateFinishedDraft();
+            // The game captured resultLocation before OnPlay. Explicitly exhaust
+            // after completion, including the play which just records the tenth magic.
+            // Moving out of Play also prevents the wrapper from discarding it later.
+            if (Pile?.Type is not PileType.Exhaust and not PileType.None && Pile != null)
+                await CardCmd.Exhaust(choiceContext, this);
+        }
+        else
+            await PlayDraftButterflies(null);
     }
 
     private async Task ApplyMagic(
@@ -162,7 +196,34 @@ public sealed class AnanlinUnfinishedDraft()
 
         var finished = combatState.CreateCard<AnanlinFinishedDraft>(Owner);
         finished.InheritedUpgradeLevel = Math.Max(0, CurrentUpgradeLevel - RequiredMagicCount);
+        await PlayDraftButterflies(finished);
         await CardPileCmd.AddGeneratedCardToCombat(finished, PileType.Hand, Owner);
+    }
+
+    private async Task PlayDraftButterflies(CardModel? finished)
+    {
+        var visuals = GetRecordedMagics().Select(magic =>
+        {
+            PowerModel power = magic switch
+            {
+                DraftMagic.Yalisa => ModelDb.Power<YlsmPower>(),
+                DraftMagic.Meruru => ModelDb.Power<MllmPower>(),
+                DraftMagic.Margaret => ModelDb.Power<MgmPower>(),
+                DraftMagic.Leia => ModelDb.Power<LymPower>(),
+                DraftMagic.Sherrylin => ModelDb.Power<XlmPower>(),
+                DraftMagic.Hanna => ModelDb.Power<HnmPower>(),
+                DraftMagic.Noah => ModelDb.Power<NymPower>(),
+                DraftMagic.Coco => ModelDb.Power<KkmPower>(),
+                DraftMagic.Nayuka => ModelDb.Power<NyxmPower>(),
+                DraftMagic.Miria => ModelDb.Power<MlyPower>(),
+                _ => throw new ArgumentOutOfRangeException(nameof(magic))
+            };
+            var fallback = magic == DraftMagic.Noah ? "MANOSABA_LIN_CARD_ANANLIN_NYM.description" : null;
+            return new DraftButterflyMagic((int)magic, DraftButterflyVfx.ReadMagicColor(power, fallback));
+        }).ToArray();
+        using var butterflies = DraftButterflyVfx.Play(Owner.Creature, visuals, finished);
+        if (butterflies != null)
+            await butterflies.Finished;
     }
 
     private IEnumerable<DraftMagic> GetRecordedMagics()

@@ -1,3 +1,5 @@
+using MegaCrit.Sts2.Core.Entities.Powers;
+
 namespace ManosabaLin.Characters.Yalisalin.Powers;
 
 /// <summary>
@@ -17,6 +19,7 @@ public sealed class DragonWitchPower : ManosabaPowerTemplate
     public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     /// <summary>
     ///     描述随「来源牌是否升级」切键（升级也是一种达成条件）。两侧通道都切，做法对齐「共犯」/

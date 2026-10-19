@@ -1,4 +1,5 @@
 using ManosabaLin.Characters.Common;
+using ManosabaLin.Characters.Ema.Vfx;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Creatures;
@@ -15,6 +16,14 @@ public sealed class EmaBadEndingPower : ManosabaPowerTemplate
     public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType => PowerStackType.Counter;
+
+    public override Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power,
+        decimal amount, Creature? applier, CardModel? cardSource)
+    {
+        if (ReferenceEquals(power, this) && amount > 0)
+            BadEndingVfx.NotifyEnemy(Owner, Amount);
+        return Task.CompletedTask;
+    }
 
     public override decimal ModifyDamageMultiplicative(Creature? target, decimal amount, ValueProp props,
         Creature? dealer, CardModel? cardSource, CardPlay? cardPlay)

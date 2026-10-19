@@ -9,7 +9,7 @@ public sealed class ImmortalFlameBrandPower : ManosabaPowerTemplate
 {
     public override PowerType Type => PowerType.Debuff;
 
-    public override PowerStackType StackType => PowerStackType.Single;
+    public override PowerStackType StackType => PowerStackType.Counter;
 
     public override async Task AfterDamageGiven(
         PlayerChoiceContext choiceContext,

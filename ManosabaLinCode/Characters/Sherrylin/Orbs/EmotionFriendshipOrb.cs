@@ -1,6 +1,7 @@
 using Godot;
 using ManosabaLin.Characters.Common.Powers;
 using ManosabaLin.Characters.Sherrylin.Cards.Emotions;
+using ManosabaLin.Characters.Sherrylin.Vfx;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -22,6 +23,12 @@ public sealed class EmotionFriendshipOrb : EmotionOrb<EmotionFriendship>
     private int _cardsPlayed;
 
     protected override Color OrbColor => new(1f, 0.5f, 0.8f);
+
+    public override Task AfterOrbChanneled(PlayerChoiceContext choiceContext, Player player, OrbModel orb)
+    {
+        if (ReferenceEquals(orb, this)) FriendshipFieldVfx.BindChanneledOrb(this);
+        return Task.CompletedTask;
+    }
 
     public override bool TryModifyEnergyCostInCombat(CardModel card, decimal originalCost, out decimal modifiedCost)
     {
@@ -49,17 +56,20 @@ public sealed class EmotionFriendshipOrb : EmotionOrb<EmotionFriendship>
 
         _cardsPlayed++;
 
-        await CardPileCmd.Draw(choiceContext, 2, Owner);
+        var drawn = await CardPileCmd.Draw(choiceContext, 1, Owner);
+        FriendshipVfx.CardsDrawn(Owner, drawn);
 
         if (_cardsPlayed % 2 == 0)
         {
             await PlayerCmd.GainEnergy(1m, Owner);
+            FriendshipVfx.EnergyGained(Owner);
         }
 
         if (_cardsPlayed % 3 == 0)
         {
             await PowerCmd.Apply<TempStrength>(
                 choiceContext, Owner.Creature, 1, Owner.Creature, null, false);
+            FriendshipVfx.StrengthGained(Owner);
         }
 
         if (_cardsPlayed % 4 == 0)
@@ -70,7 +80,9 @@ public sealed class EmotionFriendshipOrb : EmotionOrb<EmotionFriendship>
             if (hand.Count > 0)
             {
                 var rng = Owner.Creature.CombatState.RunState.Rng.CombatCardSelection;
-                await CardCmd.Exhaust(choiceContext, hand[rng.NextInt(hand.Count)]);
+                var exhausted = hand[rng.NextInt(hand.Count)];
+                FriendshipVfx.CardExhausting(Owner, exhausted);
+                await CardCmd.Exhaust(choiceContext, exhausted);
             }
         }
     }

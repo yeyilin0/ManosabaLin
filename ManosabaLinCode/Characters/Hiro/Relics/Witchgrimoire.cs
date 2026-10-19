@@ -21,7 +21,7 @@ namespace ManosabaLin.Characters.Hiro.Relics;
 [RegisterRelic(typeof(HiroRelicPool))]
 public sealed class Witchgrimoire : ManosabaRelicTemplate
 {
-    public const int CardCount = 26;
+    public const int CardCount = 39;
 
     public override RelicRarity Rarity => RelicRarity.Ancient;
 
@@ -46,8 +46,11 @@ public sealed class Witchgrimoire : ManosabaRelicTemplate
         var sherrylinPool = ModelDb.GetById<CharacterModel>(new ModelId("CHARACTER", "MANOSABA_LIN_CHARACTER_SHERRYLIN")).CardPool;
         var ananlinPool = ModelDb.Character<AnanlinCharacter>().CardPool;
 
+        // 只从「角色卡牌图鉴」内可见的卡里 roll：衍生卡（Token / 选项牌等 shouldShowInCardLibrary=false，
+        // 如「接受」「被称为冲击波的拳风」）不是正式构筑卡，不应被本遗物这类随机发卡效果发出。
         var options = CardCreationOptions.ForNonCombatWithUniformOdds(
-                new CardPoolModel[] { hiroPool, emaPool, sherrylinPool, ananlinPool })
+                new CardPoolModel[] { hiroPool, emaPool, sherrylinPool, ananlinPool },
+                card => card.ShouldShowInCardLibrary)
             .WithFlags(CardCreationFlags.NoRarityModification | CardCreationFlags.NoCardPoolModifications);
 
         var cards = CardFactory.CreateForReward(relic.Owner, CardCount, options).ToList();

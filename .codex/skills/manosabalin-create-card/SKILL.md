@@ -35,11 +35,46 @@ public sealed class ExampleCard()
 
 - Use `[RegisterCard(typeof(...Pool))]`; RitsuLib gives the public entry `MANOSABA_LIN_CARD_<TYPE_NAME>`.
 - Use `protected override IEnumerable<DynamicVar> CanonicalVars` for text variables such as `DamageVar`, `BlockVar`, `CardsVar`, or project-specific vars.
-- Use `CanonicalKeywords` for printed keywords such as `CardKeyword.Exhaust`.
+- Use `CanonicalKeywords` for **创建即固定、此后不再变**的印刷关键字（如 `CardKeyword.Exhaust`）。
 - Put upgrade logic in `OnUpgrade(ComponentContext componentContext)`.
+  ⚠️ **升级授予的关键字必须在该处 `AddKeyword(...)` 实时写入**（原版先例 `Afterimage`：`OnUpgrade() { AddKeyword(CardKeyword.Innate); }`；同池 `SuperStrength` 同）。
+  **不要**用 `CanonicalKeywords + IsUpgraded` 表达"升级后获得关键字"：`CardModel._keywords` 是**首次读取时**从 `CanonicalKeywords` 快照下来的实例状态（且随克隆传播，`DowngradeInternal` 才会重置）
+  ⇒ 升级发生在任何一次关键字读取之后时会被快照吞掉（`FinalFarewell` 卡目前就是这种脆弱写法，尚未改动）。
 - Use command APIs (`DamageCmd`, `CreatureCmd`, `PowerCmd`, `CardPileCmd`, `PlayerCmd`) instead of mutating runtime state directly.
 - For generated combat cards, create mutable cards through `CombatState.CreateCard<T>(owner)`, `ICombatState.CreateCard(canonicalCard, owner)`, or `CardFactory.GetForCombat(...)`.
 - Attach model capabilities with `card.GetOrCreateCapability<TCapability>()`; use `$manosabalin-create-capability` for capability details.
+
+## Effect hover tips (卡浮层 `_EFFECT`)
+
+卡面主描述由引擎渲染，但「浮层」是另一套：本地化键用 `<卡键>_EFFECT`（`.title` / `.description`），
+由 `ManosabaLinCode/Characters/Common/CardEffectHoverTipFactory.cs` 生成：
+
+```csharp
+protected override IEnumerable<IHoverTip> AdditionalHoverTips
+{
+    get { yield return CardEffectHoverTipFactory.FromCard(this, EffectHoverLocEntry); }
+}
+```
+
+- ⚠️ **`{IfUpgraded:show:A|B}` 在主描述里由引擎注入 `IfUpgradedVar`，浮层里没有那一步** ⇒ 必须由
+  `CardEffectHoverTipFactory` 手动补（它已补了 `IfUpgradedVar` 与 `energyPrefix`），否则解析报错。
+- ⭐ **要展示「别人的牌」的效果时**（如「火之时代」预览它生成的三张分支牌），用重载
+  `FromCard<T>(locEntry)`（内部取 `ModelDb.Card<T>()` 规范模型）。
+- ⚠️★ **预览「我拿到手时会是升级版」的牌时，绝不能直接用规范模型** —— 规范模型恒未升级，
+  `{IfUpgraded:...}` 会走未升级分支、`DynamicVars` 也是旧数值。正解 = 自己拷一份可变副本并就地升级：
+
+```csharp
+var preview = ModelDb.Card<T>().ToMutable();   // 只拷贝，不注册进战斗
+preview.UpgradeInternal();                     // = CardCmd.Upgrade 去掉特效的那两步
+preview.FinalizeUpgradeInternal();
+return CardEffectHoverTipFactory.FromCard(preview, locEntry);   // 该重载按 card.IsUpgraded 解析
+```
+
+- ⚠️★ **`AdditionalHoverTips` 会被 UI 反复求值** ⇒ **不要**在它里面用 `CombatState.CreateCard<T>(owner)`
+  造预览牌（它内部 `AddCard` 会把牌注册进战斗状态，反复调用会不断堆积）。
+  `CombatState.CreateCard` 只用于「真的要生成一张牌进战斗」的场合。建议外面套 `try/catch` 兜底。
+- 先例：`AgeOfFire.cs`（火之时代，升级后分支牌浮层显示升级版）、
+  `CardCmd.Upgrade` 的等价两步见 `AnanlinSaveLoad.cs` / `AnanlinUnfinishedDraft.cs`。
 
 ## Localization
 

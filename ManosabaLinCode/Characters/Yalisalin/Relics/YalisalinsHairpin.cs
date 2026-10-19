@@ -29,7 +29,10 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
     private const int TicketEnergyThreshold = 5;
 
     private readonly Dictionary<Creature, YalisalinFireColorGauge> _gauges = [];
-    private readonly Dictionary<CardModel, bool> _dontLookAtMeCards = [];
+    // 「请别看见我」待触发队列：每项 = 该次打出时是否已升级（烧牌时额外给 6 格挡）。
+    // 2026-10-18 用户改 zhs：「本回合下一次余火烧掉牌时，抽1张牌」——原为「被选中的那张牌被烧掉」，
+    // 故不再按牌索引，改为「本回合下一次烧牌（任意牌）消耗一项」的 FIFO 队列，回合末清空。
+    private readonly List<bool> _dontLookAtMePending = [];
     private readonly List<(CardModel Card, int Block)> _glassReturnCards = [];
     private readonly Dictionary<CardModel, BringHomePendingCard> _bringHomeCards = [];
     private readonly List<CardModel> _burnedCardsThisTurn = [];
@@ -53,6 +56,15 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
     [SavedProperty] public int YellowNextTurnEnergyGrantedThisTurn { get; private set; }
     [SavedProperty] public int PendingYellowCostReduction { get; private set; }
     [SavedProperty] public int RedConsumeDamage { get; private set; }
+
+    /// <summary>【夺火】计数：每场战斗第 1 次打出夺火时 +1，整局游戏持续成长（存于发夹这个初始遗物）。</summary>
+    [SavedProperty] public int UsurpTheFlameCount { get; private set; }
+
+    /// <summary>本场战斗是否已经给夺火计过数，防止同一场多次打出重复 +1。</summary>
+    private bool _usurpCountGainedThisCombat;
+
+    /// <summary>待发放的夺火「额外回合」数（强化后的夺火打出时 +1，回合结束时按此数发放）。</summary>
+    [SavedProperty] public int PendingUsurpExtraTurns { get; private set; }
 
     /// <summary>「不要冷却」：每回合开始时随机给予敌人的火色格数（多张叠加）。</summary>
     [SavedProperty] public int TurnStartFireGift { get; private set; }
@@ -89,6 +101,12 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
 
     /// <summary>本场战斗中被实际消耗（含超出格数的补结算）的火色，按发生顺序。卡牌据此判断「这次打出消耗了什么」。</summary>
     public IReadOnlyList<YalisalinFireColor> ConsumptionLog => _consumptionLog;
+
+    /// <summary>
+    ///     【坏结局】毒化：所有牌里带着「紫藤亚里沙的坏结局」时，火色无法触发消耗效果。
+    ///     格位照常被消耗、消耗记录照常写入，只是不结算该色的基础奖励与「连续」奖励。
+    /// </summary>
+    public bool IsFireColorConsumeSuppressed => YalisalinBadEnding.IsHeldBy(Owner);
 
     protected override IEnumerable<IHoverTip> AdditionalHoverTips
     {
@@ -208,9 +226,9 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         Flash();
     }
 
-    public void TrackDontLookAtMe(CardModel card, bool gainBlock)
+    public void TrackDontLookAtMe(bool gainBlock)
     {
-        _dontLookAtMeCards[card] = gainBlock;
+        _dontLookAtMePending.Add(gainBlock);
     }
 
     public void QueueGlassReturn(CardModel card, int block)
@@ -285,7 +303,7 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
     private void ResetCombatState()
     {
         _gauges.Clear();
-        _dontLookAtMeCards.Clear();
+        _dontLookAtMePending.Clear();
         _glassReturnCards.Clear();
         _bringHomeCards.Clear();
         _burnedCardsThisTurn.Clear();
@@ -319,6 +337,63 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         TicketEnergyGrantedThisTurn = false;
         PendingFreeSkillCount = 0;
         ContinuousTriggersThisCombat = 0;
+        _usurpCountGainedThisCombat = false;
+        PendingUsurpExtraTurns = 0;
+    }
+
+    /// <summary>
+    ///     【夺火】计数：每场战斗第 1 次打出夺火时调用，保证每场只 +1 一次。
+    ///     由 <c>UsurpTheFlame</c> 在打出时调用；<see cref="_usurpCountGainedThisCombat" /> 在
+    ///     <see cref="ResetCombatState" /> 里于每场战斗开始时清零。
+    /// </summary>
+    public void GainUsurpTheFlameCountOnce()
+    {
+        if (_usurpCountGainedThisCombat)
+            return;
+        _usurpCountGainedThisCombat = true;
+        UsurpTheFlameCount++;
+    }
+
+    /// <summary>
+    ///     【夺火】右键「强化」时扣掉计数（不足则返回 false，不改动）。
+    ///     由 <c>UsurpTheFlame.OnRightClick</c> 调用。
+    /// </summary>
+    public bool TrySpendUsurpTheFlameCount(int amount)
+    {
+        if (amount <= 0 || UsurpTheFlameCount < amount)
+            return false;
+        UsurpTheFlameCount -= amount;
+        return true;
+    }
+
+    /// <summary>
+    ///     强化后的夺火打出时调用：记下 1 个待发放的「额外回合」。
+    ///     实际发放由覆写的原版钩子 <see cref="ShouldTakeExtraTurn" /> 在回合结束时完成。
+    /// </summary>
+    public void QueueUsurpExtraTurn()
+    {
+        PendingUsurpExtraTurns++;
+    }
+
+    /// <summary>
+    ///     ⭐ 原版额外回合钩子（<c>AbstractModel</c> 虚方法，与「佩尔之眼」PaelsEye 同款）——
+    ///     有排队中的夺火额外回合时，让持有者再走一个回合。**不是 Harmony patch**。
+    /// </summary>
+    public override bool ShouldTakeExtraTurn(Player player)
+    {
+        return PendingUsurpExtraTurns > 0 && player == Owner;
+    }
+
+    /// <summary>额外回合走完之后消耗掉排队数。</summary>
+    public override Task AfterTakingExtraTurn(Player player)
+    {
+        if (player != Owner)
+            return Task.CompletedTask;
+
+        if (PendingUsurpExtraTurns > 0)
+            PendingUsurpExtraTurns--;
+        Flash();
+        return Task.CompletedTask;
     }
 
     private void HookSinEvents()
@@ -431,8 +506,8 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         UnneededGoodChildPendingCount = 0;
         PendingYellowCostReduction = 0;
 
-        // 「别看我」只管本回合被烧掉；牌身上的余火保留。
-        _dontLookAtMeCards.Clear();
+        // 「别看我」只管本回合下一次烧牌（任意牌）；牌身上的余火保留。
+        _dontLookAtMePending.Clear();
 
         foreach (var (card, pending) in _bringHomeCards.ToArray())
         {
@@ -612,7 +687,7 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
             if (Owner.Creature.GetPower<DazzlingTolerancePower>() is { } tolerance)
                 await tolerance.ResolveBurned(choiceContext, burned, context.SourceCard, context.CardPlay);
 
-            await ResolveDontLookAtMe(choiceContext, burned);
+            await ResolveDontLookAtMe(choiceContext);
         }
     }
 
@@ -657,10 +732,14 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
         }
     }
 
-    private async Task ResolveDontLookAtMe(PlayerChoiceContext choiceContext, CardModel burned)
+    private async Task ResolveDontLookAtMe(PlayerChoiceContext choiceContext)
     {
-        if (!_dontLookAtMeCards.Remove(burned, out var gainBlock))
+        if (_dontLookAtMePending.Count == 0)
             return;
+
+        // FIFO：一次烧牌只消耗一次「请别看见我」的触发。
+        var gainBlock = _dontLookAtMePending[0];
+        _dontLookAtMePending.RemoveAt(0);
 
         await CardPileCmd.Draw(choiceContext, 1, Owner);
         if (gainBlock)
@@ -814,6 +893,10 @@ public sealed class YalisalinsHairpin : ManosabaRelicTemplate, IYalisalinFireCom
             color = lockedColor;
 
         _consumptionLog.Add(color);
+
+        // 【坏结局】毒化：火色不再触发消耗效果（格位已消耗、记录已写入，直接返回）。
+        if (IsFireColorConsumeSuppressed)
+            return;
 
         _fireEffectDepth++;
         try

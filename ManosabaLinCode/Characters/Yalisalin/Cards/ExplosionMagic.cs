@@ -1,5 +1,6 @@
 using ManosabaLin.Characters.Common.Powers;
 using ManosabaLin.Characters.Yalisalin.Powers;
+using ManosabaLin.Characters.Yalisalin.Vfx;
 
 namespace ManosabaLin.Characters.Yalisalin.Cards;
 
@@ -91,12 +92,19 @@ public sealed class ExplosionMagic()
                 choiceContext, enemy, 1m, owner.Creature, this, false);
         }
 
+        using var explosion = ExplosionMagicVfx.Play(owner.Creature, enemies);
+        if (explosion != null && !await explosion.Impact)
+            return; // The combat room was removed before detonation.
+
         var damage = spent * DynamicVars["DamagePerEnergy"].BaseValue;
         await DamageCmd.Attack(damage)
             .FromCard(this, cardPlay)
             .TargetingAllOpponents(combatState)
-            .WithHitFx("vfx/vfx_attack_slash")
+            .WithNoAttackerAnim()
             .Execute(choiceContext);
+
+        if (explosion != null)
+            await explosion.Finished;
 
         // 打出后立即结束本回合。
         PlayerCmd.EndTurn(owner, false);

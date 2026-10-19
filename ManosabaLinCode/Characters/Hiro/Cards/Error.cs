@@ -7,6 +7,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Interop.AutoRegistration;
+using ManosabaLin.Characters.Hiro.Vfx;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -89,13 +90,30 @@ public sealed class Error : ManosabaCardTemplate
 
         var handAttackCount = (int)DynamicVars["ErrorHandAttackCount"].BaseValue;
         var hpLoss = (int)(target.MaxHp * 0.01m * handAttackCount);
-        if (hpLoss > 0)
-            await CreatureCmd.Damage(choiceContext, target, hpLoss, DamageProps.cardHpLoss, source, cardPlay);
-
-        if (handAttackCount >= 12)
+        var earnsTheEnd = handAttackCount >= 12;
+        var glass = ErrorGlassVfx.Play(source.Owner.Creature, earnsTheEnd);
+        try
         {
-            var token = source.CombatState.CreateCard<TheEnd>(source.Owner);
-            await CardPileCmd.AddGeneratedCardToCombat(token, PileType.Hand, source.Owner);
+            if (glass != null && !await glass.Impact)
+                return;
+            if (hpLoss > 0)
+                await CreatureCmd.Damage(choiceContext, target, hpLoss, DamageProps.cardHpLoss, source, cardPlay);
+
+            if (earnsTheEnd)
+            {
+                var token = source.CombatState.CreateCard<TheEnd>(source.Owner);
+                await CardPileCmd.AddGeneratedCardToCombat(token, PileType.Hand, source.Owner);
+                if (glass != null && await glass.Prepared)
+                    glass.RetainUntilTheEnd();
+            }
+            else if (glass != null)
+                await glass.Finished;
+
+        }
+        finally
+        {
+            if (glass?.IsRetained != true)
+                glass?.Dispose();
         }
     }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dmnfgg05obcep"]
+[gd_scene load_steps=112 format=3 uid="uid://dmnfgg05obcep"]
 
 [ext_resource type="Texture2D" uid="uid://cgcnvs24i4l1p" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0001.png" id="1_shieri"]
 [ext_resource type="Texture2D" uid="uid://cek46n0p0t3vx" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0002.png" id="2_shieri"]
@@ -56,6 +56,216 @@
 [ext_resource type="Texture2D" uid="uid://ckqklpo6el255" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0054.png" id="54_shieri"]
 [ext_resource type="Texture2D" uid="uid://7pe2n1qf6j4d" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0055.png" id="55_shieri"]
 [ext_resource type="Texture2D" uid="uid://0ebl5xprswqw" path="res://ManosabaLin/images/characters/Sherrylin/shieri_16fps_minloop56_nodup_fullclip/shieri_0056.png" id="56_shieri"]
+
+[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Sherrylin/sherry_attack_19f_sheet_5x4.png" id="2_sherry_atk"]
+
+[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Sherrylin/sherry_hurt_8f_sheet_4x2.png" id="3_sherry_hurt"]
+
+[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Sherrylin/sherry_power_24f_sheet_6x4.png" id="4_sherry_power"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_01"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(0, 0, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_02"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(1478, 0, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_03"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(2956, 0, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_04"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(4434, 0, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_05"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(5912, 0, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_06"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(0, 1648, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_07"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(1478, 1648, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_08"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(2956, 1648, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_09"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(4434, 1648, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_10"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(5912, 1648, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_11"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(0, 3296, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_12"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(1478, 3296, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_13"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(2956, 3296, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_14"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(4434, 3296, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_15"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(5912, 3296, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_16"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(0, 4944, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_17"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(1478, 4944, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_18"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(2956, 4944, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_atk_19"]
+atlas = ExtResource("2_sherry_atk")
+region = Rect2(4434, 4944, 1478, 1648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_hurt_01"]
+atlas = ExtResource("3_sherry_hurt")
+region = Rect2(0, 0, 1118, 1288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_hurt_02"]
+atlas = ExtResource("3_sherry_hurt")
+region = Rect2(1118, 0, 1118, 1288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_hurt_03"]
+atlas = ExtResource("3_sherry_hurt")
+region = Rect2(2236, 0, 1118, 1288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_hurt_04"]
+atlas = ExtResource("3_sherry_hurt")
+region = Rect2(3354, 0, 1118, 1288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_hurt_05"]
+atlas = ExtResource("3_sherry_hurt")
+region = Rect2(0, 1288, 1118, 1288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_hurt_06"]
+atlas = ExtResource("3_sherry_hurt")
+region = Rect2(1118, 1288, 1118, 1288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_hurt_07"]
+atlas = ExtResource("3_sherry_hurt")
+region = Rect2(2236, 1288, 1118, 1288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_hurt_08"]
+atlas = ExtResource("3_sherry_hurt")
+region = Rect2(3354, 1288, 1118, 1288)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_01"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(0, 0, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_02"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(1022, 0, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_03"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(2044, 0, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_04"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(3066, 0, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_05"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(4088, 0, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_06"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(5110, 0, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_07"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(0, 1192, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_08"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(1022, 1192, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_09"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(2044, 1192, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_10"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(3066, 1192, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_11"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(4088, 1192, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_12"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(5110, 1192, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_13"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(0, 2384, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_14"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(1022, 2384, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_15"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(2044, 2384, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_16"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(3066, 2384, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_17"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(4088, 2384, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_18"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(5110, 2384, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_19"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(0, 3576, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_20"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(1022, 3576, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_21"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(2044, 3576, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_22"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(3066, 3576, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_23"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(4088, 3576, 1022, 1192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sherry_power_24"]
+atlas = ExtResource("4_sherry_power")
+region = Rect2(5110, 3576, 1022, 1192)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_shieri_idle"]
 animations = [{
@@ -231,6 +441,126 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_01")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_02")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_03")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_04")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_05")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_06")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_07")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_08")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_09")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_10")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_11")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_12")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_13")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_14")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_15")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_16")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_17")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_18")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sherry_atk_19")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 22.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_hurt_01")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_hurt_02")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_hurt_03")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_hurt_04")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_hurt_05")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_hurt_06")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_hurt_07")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_hurt_08")}],
+"loop": false,
+"name": &"hit",
+"speed": 16.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_01")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_02")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_03")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_04")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_05")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_06")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_07")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_08")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_09")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_10")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_11")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_12")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_13")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_14")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_15")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_16")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_17")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_18")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_19")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_20")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_21")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_22")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_23")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_sherry_power_24")}],
+"loop": false,
+"name": &"cast",
+"speed": 24.0
 }]
 
 [node name="Sherrylin" type="Node2D"]

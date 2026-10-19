@@ -6,6 +6,7 @@ using ManosabaLin.Characters.Yalisalin.Cards;
 using ManosabaLin.Characters.Yalisalin.Components;
 using ManosabaLin.Characters.Yalisalin.Powers;
 using ManosabaLin.Characters.Yalisalin.Relics;
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -75,9 +76,66 @@ public sealed class YalisalinFireComponentTests : CombatTestSuite
         Assert.Single(exhaust);
         Assert.IsType<YalisalinDefend>(exhaust[0]);
 
-        // 只付了不需要的善意自己的 1 费；被烧的防御免费打出（5 格挡）
-        Assert.Equal(9, Player.PlayerCombatState!.Energy);
+        // 2026-10-18 用户口径：手动打出余火源牌本身不消耗能量（原为「只付源牌 1 费」=9）；
+        // 被烧的防御依旧免费打出（5 格挡）
+        Assert.Equal(10, Player.PlayerCombatState!.Energy);
         Assert.Equal(7 + 5, Player.Creature.Block);
+    }
+
+    /// <summary>
+    /// （2026-10-18 用户口径）手动打出余火源牌：不消耗能量、不算卡牌打出。
+    /// 触发余火选择后，所选的牌才按正常打出结算（消耗能量并计入战斗历史）。
+    /// 自动选择器固定选第一项（源卡）→ 连接牌被烧、不再打出新牌，
+    /// 因此能量应原样保留，且战斗历史里查不到源牌的 CardPlayStarted。
+    /// </summary>
+    [Fact]
+    public async Task Fire_component_source_card_manual_play_is_free_and_uncounted()
+    {
+        var card = await AddToHand<Unwantedkindness>();
+        await AddToHand<YalisalinDefend>(); // 连接牌候选（会被烧）
+
+        await PlayerCmd.SetEnergy(3, Player);
+        await WaitForIdle();
+
+        await Play(card);
+
+        // 源牌 1 费但不消耗：能量原样保留
+        Assert.Equal(3, Player.PlayerCombatState!.Energy);
+
+        // 源牌不算卡牌打出：战斗历史里没有它的 CardPlayStarted
+        Assert.DoesNotContain(
+            CombatManager.Instance.History.CardPlaysStarted,
+            entry => ReferenceEquals(entry.CardPlay.Card, card));
+    }
+
+    /// <summary>
+    /// 回归（2026-10-19 用户实测）：capability 挂载的余火源牌手动打出同样不消耗能量、不算打出。
+    /// 此前判据只认「类本身实现 IYalisalinFireComponentModifier」的卡，漏掉 capability 一路
+    /// （坏掉的信任/静止也会痛，以及被「请别看见我」添火的普通牌）—— 用户打出带余火的打击时
+    /// 源牌费用照扣，再算上所选牌的费用，一共花了两费。
+    /// </summary>
+    [Fact]
+    public async Task Brokentrust_manual_play_is_free_and_uncounted()
+    {
+        var enemy = EnemyAt(0);
+        // 火池候选（抽牌堆攻击牌）保证是 1 费的打击：自动选一张打出只花 1 费，
+        // 且选攻击牌会 +1 能量（AfterFireComponentResolved），正好抵平。
+        await FillDrawPile<YalisalinAttack>(4);
+        var card = await AddToHand<Brokentrust>();
+
+        await PlayerCmd.SetEnergy(3, Player);
+        await WaitForIdle();
+
+        await Play(card, enemy);
+
+        // 源牌 1 费不消耗：3 - 1（自动打出的打击）+ 1（选攻击牌返能）= 3
+        // （修复前源牌照扣 1 费 ⇒ 只剩 2）
+        Assert.Equal(3, Player.PlayerCombatState!.Energy);
+
+        // 源牌不算卡牌打出
+        Assert.DoesNotContain(
+            CombatManager.Instance.History.CardPlaysStarted,
+            entry => ReferenceEquals(entry.CardPlay.Card, card));
     }
 
     private async Task FillDrawPile<TCard>(int count) where TCard : CardModel
@@ -107,8 +165,9 @@ public sealed class YalisalinFireComponentTests : CombatTestSuite
         Assert.Empty(PileType.Exhaust.GetPile(Player).Cards);
         Assert.True(YalisalinFireColorSystem.TryGetHairpin(Player, out var hairpin));
         Assert.Equal(0, hairpin.FireComponentBurnsThisTurn);
-        // 打出本牌 -1，没有「烧掉后抽 1」
+        // 打出本牌 -1，没有「烧掉后」效果（不得力量不抽牌）
         Assert.Equal(handBefore - 1, PileType.Hand.GetPile(Player).Cards.Count);
+        Assert.Equal(0, Player.Creature.GetPower<StrengthPower>()?.Amount ?? 0);
     }
 
     /// <summary>第五次自证在消耗堆里也照常累计余火选择次数（卡面：无论此牌在哪）。</summary>
@@ -166,13 +225,14 @@ public sealed class YalisalinFireComponentTests : CombatTestSuite
     }
 
     /// <summary>
-    /// （不需要的善意·回归）——打出后若本次通过余火烧掉了牌，应抽 1 张。
+    /// （不需要的善意·回归）——打出后若本次通过余火烧掉了牌，应获得 1 点力量。
+    /// 2026-10-18 用户改 zhs 文案「抽1张卡牌」→「获得1点力量」，代码随之对齐（原为抽 1 张）。
     /// 修复前：手动打出时源卡在 Play 堆，EnumerateModifierObjects（手/抽/弃）枚举不到源卡，
-    /// Unwantedkindness.AfterFireComponentBurned 永不触发 → 「烧牌没抽牌」。
-    /// 自动选择器固定选第一项（源卡）→ 连接牌被烧 → 修复后应抽 1。
+    /// Unwantedkindness.AfterFireComponentBurned 永不触发 → 「烧牌没效果」。
+    /// 自动选择器固定选第一项（源卡）→ 连接牌被烧 → 修复后应得 1 力量。
     /// </summary>
     [Fact]
-    public async Task Unwantedkindness_burns_card_and_draws_one()
+    public async Task Unwantedkindness_burns_card_and_gains_strength()
     {
         var card = await AddToHand<Unwantedkindness>();
         await AddToHand<YalisalinDefend>(); // 连接牌候选（会被烧）
@@ -190,9 +250,12 @@ public sealed class YalisalinFireComponentTests : CombatTestSuite
 
         var linkedWasInHand = handBefore.Contains(exhaust[0]);
 
-        // 修复后：手牌 = 原手牌 - 打出的本卡 - 从手牌烧掉的连接牌(若在手里) + 抽 1
-        var expectedHand = handBefore.Length - 1 - (linkedWasInHand ? 1 : 0) + 1;
+        // 手牌 = 原手牌 - 打出的本卡 - 从手牌烧掉的连接牌(若在手里)（不再有「烧掉后抽 1」）
+        var expectedHand = handBefore.Length - 1 - (linkedWasInHand ? 1 : 0);
         Assert.Equal(expectedHand, PileType.Hand.GetPile(Player).Cards.Count);
+
+        // 改为获得 1 点力量
+        Assert.Equal(1, Player.Creature.GetPower<StrengthPower>()?.Amount ?? 0);
     }
 
     /// <summary>

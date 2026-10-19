@@ -7,8 +7,8 @@
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-33.71527, 10.812681)
-scale = Vector2(0.455, 0.455)
+position = Vector2(-33.71527, 12.4)
+scale = Vector2(0.6097, 0.6097)
 texture = ExtResource("1_yalisalin")
 
 [node name="ControlRoot" type="Control" parent="."]

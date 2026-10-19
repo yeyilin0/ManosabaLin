@@ -6,8 +6,9 @@ namespace ManosabaLin.Characters.Common.HiroKeywords;
 /// <summary>
 ///     「卡名覆盖」登记表：让一张卡在结算中临时<b>显示成另一个名字</b>（效果完全不变）。
 ///     <para>
-///         ⭐ 用途：<c>CardSeventyNine</c>（宿命的轮替）升级后「使后一张卡名改为前一张卡卡名」，
-///         使两张卡在<b>卡名</b>这一层面对齐 ⇒ 可被【轮回】互相触发。
+///         ⭐ 用途：<c>CardSeventyNine</c>（宿命的轮替）升级后「使后一张卡名改为前一张卡卡名」。
+///         ⚠️ 这只是**视觉**：真正的「两张卡算同名」由 <c>TransmigrationPairCapability</c>
+///         这个隐藏能力承担（见 <c>TransmigrationRules</c>）—— 这里只负责玩家看到的名字。
 ///     </para>
 ///     <para>
 ///         ⚠️ 引擎没有「运行时改卡名」的原生 API（<c>CardModel.Title</c> 是从 <c>Id.Entry</c> 的本地化键
@@ -56,7 +57,12 @@ internal static class CardRename
     internal static string EffectiveName(CardModel card)
         => TryGet(card, out var name) ? name : card.TitleLocString.GetFormattedText();
 
-    /// <summary>两张卡是否「同名」（同 Id，或有效卡名相同）。</summary>
+    /// <summary>
+    ///     两张卡的<b>显示名</b>是否相同（同 Id，或有效卡名相同）。
+    ///     ⚠️ 只描述「玩家看到的名字」；【轮回】的配对判据**不再用它**，
+    ///     见 <c>TransmigrationRules.IsSameNameForTransmigration</c> 与
+    ///     <c>TransmigrationPairCapability</c>。
+    /// </summary>
     internal static bool SameName(CardModel a, CardModel b)
         => a.Id == b.Id || EffectiveName(a) == EffectiveName(b);
 }

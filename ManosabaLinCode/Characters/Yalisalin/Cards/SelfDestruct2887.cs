@@ -27,6 +27,7 @@ public sealed class SelfDestruct2887()
         get
         {
             yield return HoverTipFactory.FromCard<SuccessorUnit>(false);
+            yield return HoverTipFactory.FromCard<SuccessorUnit2>(false);
             yield return HoverTipFactory.FromKeyword(CardKeyword.Exhaust);
         }
     }
@@ -78,7 +79,12 @@ public sealed class SelfDestruct2887()
         var successors = exhausted / perSuccessor;
         for (var i = 0; i < successors; i++)
         {
-            var token = combatState.CreateCard<SuccessorUnit>(owner);
+            // 「后继机」泛指后继机与后继机2：每次随机加其中一种到抽牌堆。
+            CardModel token;
+            if (owner.RunState.Rng.CombatCardGeneration.NextFloat() < 0.5f)
+                token = combatState.CreateCard<SuccessorUnit2>(owner);
+            else
+                token = combatState.CreateCard<SuccessorUnit>(owner);
             await CardPileCmd.AddGeneratedCardToCombat(token, PileType.Draw, owner, CardPilePosition.Random);
         }
     }

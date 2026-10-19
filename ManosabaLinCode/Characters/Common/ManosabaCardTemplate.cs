@@ -61,6 +61,12 @@ public abstract class ManosabaCardTemplate(
 
         if (cardPlay.Card != this)
             return;
+
+        // 无 Spine 骨骼的角色（本 mod 全部角色）用 AnimatedSprite2D 播同名的出牌动画：
+        // 攻击牌 → attack，**能力牌（CardType.Power）→ cast**；技能牌不播出牌动画。
+        // 动画不存在时静默跳过。
+        CharacterPlayAnimation.PlayByCardType(Owner.Creature, Type);
+
         if (!BondCardVisualRules.IsBondCard(this))
             return;
 

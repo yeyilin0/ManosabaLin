@@ -5,6 +5,7 @@ using ManosabaLin.Characters.Common.Powers;
 using ManosabaLin.Characters.Hiro.Cards;
 using TempStrength = ManosabaLin.Characters.Common.Powers.TempStrength;
 using MegaCrit.Sts2.Core.Entities.Creatures;
+using MegaCrit.Sts2.Core.Helpers;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization;
 using System.Collections.Generic;
@@ -88,9 +89,21 @@ public sealed partial class Originalsin : KeywordLikeComponent
                 _ => null,
             };
             if (descriptionKey == null) yield break;
-            yield return new HoverTip(
-                new LocString("cards", HoverTipTitleKey),
-                new LocString("cards", descriptionKey));
+
+            var title = new LocString("cards", HoverTipTitleKey);
+            var description = new LocString("cards", descriptionKey);
+
+            // 组件悬浮提示的描述里用了 {energyPrefix:energyIcons(...)} 占位符，
+            // 必须像 CardEffectHoverTipFactory.FromCard 那样把 energyPrefix（取自本组件所属卡牌的能量色）
+            // 作为格式变量注入，否则 SmartFormat 找不到该 selector 会直接抛
+            // “No source extension could handle the selector named energyPrefix”。
+            var energyPrefix = EnergyIconHelper.GetPrefix(Card);
+            title.Add("energyPrefix", energyPrefix);
+            description.Add("energyPrefix", energyPrefix);
+            Card.DynamicVars.AddTo(title);
+            Card.DynamicVars.AddTo(description);
+
+            yield return new HoverTip(title, description);
         }
     }
 

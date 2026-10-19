@@ -28,7 +28,7 @@
 | **火色** | `hairpin.GiveFireColor(ctx,target,n)` / `ConsumeAllFireColor(...)`；`MaxSegments = 6`，格位定色 **1-2 浅橙 / 3-4 亮黄 / 5-6 赤红** |
 | **余火** | `YalisalinFireComponentRules.HasFireComponent(card)`＝`TryGetCapability<YalisalinFireComponentCapability>`；默认挂载 7 张 |
 | **魔女化** | `WithPower.Amount` |
-| **点火** | `IgnitePower`（`Ignite.cs`，2 费能力·Ancient，魔女化 100 时获得）：层数 N → 随机攻击 N 次；命中**敌** → 伤害 + 全体友方 1 格挡 + 无易伤则 1 易伤；命中**友** → 1 伤害且本能力 +2 层。⚠️ `TriggerIgnite` 是 `private` |
+| **点火** | `IgnitePower`（`Ignite.cs`，2 费能力·Ancient，魔女化 100 时获得）：层数 N → 随机攻击 N 次；命中**敌** → 层数一半（≥1）伤害 + 全体友方 1 格挡 + 无易伤则 1 易伤；命中**友** → 1 伤害且本能力 +2 层；**回合结束时失去一半层数**（向下取整，1 层时损失 0）。⚠️ 衰减只挂 `AfterSideTurnEnd`，`TriggerIgnite`（`internal`，紫藤亚里沙/自罚上瘾手动调用）只打不衰 |
 | **火色消耗奖励** | 浅橙→`OrangeConsumeBlock` 格挡；亮黄→下回合 1 能量 + 1 费减免；赤红→`RedConsumeDamage` 伤害 + 给敌【亚里沙的魔法】 |
 
 ### ⭐ 已查实的关键事实

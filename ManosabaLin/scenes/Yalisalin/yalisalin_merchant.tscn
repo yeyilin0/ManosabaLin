@@ -6,6 +6,6 @@
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(-7, -211)
-scale = Vector2(0.393, 0.393)
+position = Vector2(-7, -258.6)
+scale = Vector2(0.5352, 0.5352)
 texture = ExtResource("1_yalisalin")

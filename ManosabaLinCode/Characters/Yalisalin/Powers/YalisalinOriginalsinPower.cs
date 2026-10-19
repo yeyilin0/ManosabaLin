@@ -8,6 +8,8 @@ using STS2RitsuLib.Interop.AutoRegistration;
 using System;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Entities.Powers;
+
 namespace ManosabaLin.Characters.Yalisalin.Powers;
 
 /// <summary>
@@ -23,7 +25,8 @@ public sealed class YalisalinOriginalsinPower : ManosabaPowerTemplate
     private bool _hooked;
 
     public override PowerType Type => PowerType.Buff;
-    public override PowerStackType StackType => PowerStackType.Single;
+    public override PowerStackType StackType => PowerStackType.Counter;
+    public override PowerInstanceType InstanceType => PowerInstanceType.Instanced;
 
     public override Task AfterApplied(Creature? applier, CardModel? cardSource)
     {

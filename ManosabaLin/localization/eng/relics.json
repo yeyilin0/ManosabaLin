@@ -1,4 +1,4 @@
-﻿{
+{
   "MANOSABA_LIN_RELIC_PEN.title": "Hiro's Pen",
   "MANOSABA_LIN_RELIC_PEN.description": "At the start of each combat, gain 3 stacks of [color=#CC6666]【Justice】[/color]",
   "MANOSABA_LIN_RELIC_PEN.flavor": "The pen [color=#CC6666]Hiro[/color] often used in middle school. It should have been given to Yuki long ago",
@@ -10,7 +10,7 @@
   "MANOSABA_LIN_RELIC_WITHHIRO.selectionScreenPrompt": "Choose a card",
   "MANOSABA_LIN_RELIC_WITHHIRO.flavor": "[color=#CC6666]「But... I still want to find [/color][color=#CCCCCC]you[/color][color=#CC6666]」[/color]\n[color=#CC6666]「I will come find you now——to judge our [/color][b]【Crime】[/b][color=#CC6666]」[/color]",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.title": "Witch Records",
-  "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.description": "Upon obtaining, randomly generate 26 cards from the candidate witch card pool, and choose any number to add to your deck.",
+  "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.description": "Upon obtaining, randomly generate 39 cards from the candidate witch card pool, and choose any number to add to your deck.",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.flavor": "A vast record of material trades between the island and the mansion, as well as intelligence on the imprisoned girls. It also contains profiles and face photos of Ema and everyone else. Deciphering it seems to take a great deal of time",
   "MANOSABA_LIN_RELIC_WITCHGRIMOIRE.selectionScreenPrompt": "Choose cards to add to your deck",
   "MANOSABA_LIN_RELIC_DISMANTLEDPARTS.title": "Dismantled Parts",

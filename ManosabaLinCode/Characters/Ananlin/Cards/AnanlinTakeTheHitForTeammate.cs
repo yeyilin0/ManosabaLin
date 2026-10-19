@@ -32,6 +32,11 @@ public sealed class AnanlinTakeTheHitForTeammate()
         CardPlay cardPlay,
         ComponentContext componentContext)
     {
+        // 自动打出（如瓦库海克斯「接管回合」在 AutoPrePlay 阶段 AutoPlay 手牌）时跳过：
+        // 本卡会「令目标怪物立刻攻击」并结算怪物 move，这些依赖「怪物回合/玩家主动时机」，
+        // 在自动打出的暂停上下文里会死锁（卡停在 Play 堆、后续出牌被阻塞）。跳过让卡正常结算。
+        if (cardPlay.IsAutoPlay) return;
+
         var teammate = PickRandomTeammate();
         if (teammate is not null && teammate.Block > 0)
             await CreatureCmd.GainBlock(Owner.Creature, teammate.Block, ValueProp.Move, cardPlay);

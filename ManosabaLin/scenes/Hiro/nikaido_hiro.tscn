@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cmqkxjxdccrky"]
+[gd_scene load_steps=117 format=3 uid="uid://cmqkxjxdccrky"]
 
 [ext_resource type="Texture2D" uid="uid://oh5adrvmpfp3" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0001.png" id="1_hiro"]
 [ext_resource type="Texture2D" uid="uid://ddwy4tslr8gvk" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0002.png" id="2_hiro"]
@@ -61,6 +61,216 @@
 [ext_resource type="Texture2D" uid="uid://d0ri4iw04awv8" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0059.png" id="59_hiro"]
 [ext_resource type="Texture2D" uid="uid://b4waftg7h8r63" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0060.png" id="60_hiro"]
 [ext_resource type="Texture2D" uid="uid://d2tqudqnssgca" path="res://ManosabaLin/images/characters/Hiro/hiro_16fps_minloop61_nodup_fullclip/hiro_0061.png" id="61_hiro"]
+
+[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Hiro/hiro_attack_15f_sheet_5x3.png" id="2_hiro_atk"]
+
+[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Hiro/hiro_hurt_12f_sheet_6x2.png" id="3_hiro_hurt"]
+
+[ext_resource type="Texture2D" path="res://ManosabaLin/images/characters/Hiro/hiro_power_24f_sheet_6x4.png" id="4_hiro_power"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_01"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(0, 0, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_02"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(1476, 0, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_03"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(2952, 0, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_04"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(4428, 0, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_05"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(5904, 0, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_06"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(0, 1652, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_07"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(1476, 1652, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_08"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(2952, 1652, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_09"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(4428, 1652, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_10"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(5904, 1652, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_11"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(0, 3304, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_12"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(1476, 3304, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_13"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(2952, 3304, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_14"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(4428, 3304, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_atk_15"]
+atlas = ExtResource("2_hiro_atk")
+region = Rect2(5904, 3304, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_hurt_01"]
+atlas = ExtResource("3_hiro_hurt")
+region = Rect2(0, 0, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_hurt_02"]
+atlas = ExtResource("3_hiro_hurt")
+region = Rect2(1476, 0, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_hurt_03"]
+atlas = ExtResource("3_hiro_hurt")
+region = Rect2(2952, 0, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_hurt_04"]
+atlas = ExtResource("3_hiro_hurt")
+region = Rect2(4428, 0, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_hurt_05"]
+atlas = ExtResource("3_hiro_hurt")
+region = Rect2(5904, 0, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_hurt_06"]
+atlas = ExtResource("3_hiro_hurt")
+region = Rect2(7380, 0, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_hurt_07"]
+atlas = ExtResource("3_hiro_hurt")
+region = Rect2(0, 1652, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_hurt_08"]
+atlas = ExtResource("3_hiro_hurt")
+region = Rect2(1476, 1652, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_hurt_09"]
+atlas = ExtResource("3_hiro_hurt")
+region = Rect2(2952, 1652, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_hurt_10"]
+atlas = ExtResource("3_hiro_hurt")
+region = Rect2(4428, 1652, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_hurt_11"]
+atlas = ExtResource("3_hiro_hurt")
+region = Rect2(5904, 1652, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_hurt_12"]
+atlas = ExtResource("3_hiro_hurt")
+region = Rect2(7380, 1652, 1476, 1652)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_01"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(0, 0, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_02"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(1276, 0, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_03"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(2552, 0, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_04"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(3828, 0, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_05"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(5104, 0, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_06"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(6380, 0, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_07"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(0, 1452, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_08"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(1276, 1452, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_09"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(2552, 1452, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_10"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(3828, 1452, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_11"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(5104, 1452, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_12"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(6380, 1452, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_13"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(0, 2904, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_14"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(1276, 2904, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_15"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(2552, 2904, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_16"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(3828, 2904, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_17"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(5104, 2904, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_18"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(6380, 2904, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_19"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(0, 4356, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_20"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(1276, 4356, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_21"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(2552, 4356, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_22"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(3828, 4356, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_23"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(5104, 4356, 1276, 1452)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hiro_power_24"]
+atlas = ExtResource("4_hiro_power")
+region = Rect2(6380, 4356, 1276, 1452)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hiro_idle"]
 animations = [{
@@ -251,6 +461,114 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_01")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_02")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_03")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_04")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_05")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_06")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_07")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_08")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_09")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_10")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_11")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_12")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_13")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_14")
+},
+{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hiro_atk_15")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 20.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_hurt_01")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_hurt_02")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_hurt_03")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_hurt_04")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_hurt_05")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_hurt_06")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_hurt_07")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_hurt_08")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_hurt_09")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_hurt_10")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_hurt_11")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_hurt_12")}],
+"loop": false,
+"name": &"hit",
+"speed": 24.0
+}, {
+"frames": [{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_01")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_02")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_03")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_04")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_05")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_06")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_07")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_08")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_09")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_10")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_11")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_12")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_13")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_14")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_15")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_16")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_17")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_18")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_19")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_20")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_21")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_22")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_23")},
+{"duration": 1.0, "texture": SubResource("AtlasTexture_hiro_power_24")}],
+"loop": false,
+"name": &"cast",
+"speed": 24.0
 }]
 
 [node name="NikaidoHiro" type="Node2D"]

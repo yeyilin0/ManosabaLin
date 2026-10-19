@@ -23,6 +23,11 @@ internal static class CardEffectHoverTipFactory
 
         title.Add("energyPrefix", energyPrefix);
         description.Add("energyPrefix", energyPrefix);
+        // 卡面「主描述」由引擎在 GetDescriptionForPile 里注入 IfUpgraded（IfUpgradedVar）；
+        // 悬浮提示没有那一步 ⇒ 这里补上，`{IfUpgraded:show:A|B}` 才能在提示里正确解析。
+        var ifUpgraded = card.IsUpgraded ? UpgradeDisplay.Upgraded : UpgradeDisplay.Normal;
+        title.Add(new IfUpgradedVar(ifUpgraded));
+        description.Add(new IfUpgradedVar(ifUpgraded));
         card.DynamicVars.AddTo(title);
         card.DynamicVars.AddTo(description);
         ApplyEnergyPrefix(title, energyPrefix);

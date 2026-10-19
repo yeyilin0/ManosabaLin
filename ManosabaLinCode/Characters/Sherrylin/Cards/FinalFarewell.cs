@@ -28,15 +28,6 @@ public sealed class FinalFarewell() : ManosabaCardTemplate(2, CardType.Power, Ca
         }
     }
 
-    public override IEnumerable<CardKeyword> CanonicalKeywords
-    {
-        get
-        {
-            if (IsUpgraded)
-                yield return CardKeyword.Innate;
-        }
-    }
-
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay, ComponentContext componentContext)
     {
         var source = this;
@@ -55,5 +46,10 @@ public sealed class FinalFarewell() : ManosabaCardTemplate(2, CardType.Power, Ca
 
     protected override void OnUpgrade(ComponentContext componentContext)
     {
+        // 用户 2026-10-15 指令：升级后必须真的获得固有（原 CanonicalKeywords + IsUpgraded 的写法不生效）。
+        // 必须走 AddKeyword 的实时写入 —— _keywords 是首次读取时从 CanonicalKeywords 快照下来的
+        // 实例状态（且随克隆传播），「先读过关键字、再升级」时会被快照吞掉。
+        // 规范先例：原版 Afterimage / 同池 SuperStrength / 本池 SherrylinMentalTrauma。
+        AddKeyword(CardKeyword.Innate);
     }
 }

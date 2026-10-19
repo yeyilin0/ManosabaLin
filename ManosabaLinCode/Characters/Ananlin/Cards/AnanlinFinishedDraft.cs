@@ -1,6 +1,8 @@
 using ManosabaLin.Characters.Common;
 using ManosabaLin.Characters.Ananlin.Relics;
 using MegaCrit.Sts2.Core.Saves.Runs;
+using MegaCrit.Sts2.Core.Rooms;
+using ManosabaLin.Characters.Ananlin.Vfx;
 
 namespace ManosabaLin.Characters.Ananlin.Cards;
 
@@ -11,6 +13,9 @@ public sealed class AnanlinFinishedDraft()
     private const string InheritedKey = "Inherited";
 
     private int _inheritedUpgradeLevel;
+
+    protected override IEnumerable<string> ExtraRunAssetPaths =>
+        base.ExtraRunAssetPaths.Concat(FinishedDraftVfx.AssetPaths);
 
     public override int MaxUpgradeLevel => 0;
 
@@ -54,6 +59,10 @@ public sealed class AnanlinFinishedDraft()
         CardPlay cardPlay,
         ComponentContext componentContext)
     {
+        using var theater = FinishedDraftVfx.Play(Owner.Creature, cardPlay.Target);
+        if (theater != null) await theater.Opened;
+        try
+        {
         var vigorAmount = CalculateVigorAmount();
         if (vigorAmount > 0)
         {
@@ -72,13 +81,37 @@ public sealed class AnanlinFinishedDraft()
             .FromCard(this, cardPlay)
             .Targeting(target)
             .WithHitCount(hitCount)
+            .BeforeDamage(() => theater?.Hit() ?? Task.CompletedTask)
             .WithHitFx("vfx/vfx_attack_slash")
             .Execute(choiceContext);
+        }
+        finally
+        {
+            if (theater != null) { theater.End(); await theater.Closed; }
+        }
     }
 
     private int CalculateVigorAmount()
     {
         return CountOtherCardPoolCardsPlayedThisCombat() + Math.Max(0, InheritedUpgradeLevel);
+    }
+
+    protected override Task BeforeCombatStart(ComponentContext componentContext)
+    {
+        FinishedDraftVfx.Prepare(Owner.Creature);
+        return Task.CompletedTask;
+    }
+
+    protected override Task AfterRoomEntered(AbstractRoom room, ComponentContext componentContext)
+    {
+        if (room is CombatRoom) FinishedDraftVfx.Prepare(Owner.Creature);
+        return Task.CompletedTask;
+    }
+
+    protected override Task AfterCardEnteredCombat(CardModel card, ComponentContext componentContext)
+    {
+        if (ReferenceEquals(card, this)) FinishedDraftVfx.Prepare(Owner.Creature);
+        return Task.CompletedTask;
     }
 
     private int CalculateHitCount()

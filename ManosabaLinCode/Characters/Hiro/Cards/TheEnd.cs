@@ -8,6 +8,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Rooms;
 using MegaCrit.Sts2.Core.Saves.Runs;
 using STS2RitsuLib.Interop.AutoRegistration;
+using ManosabaLin.Characters.Hiro.Vfx;
 
 namespace ManosabaLin.Characters.Hiro.Cards;
 
@@ -47,6 +48,11 @@ public sealed class TheEnd : ManosabaCardTemplate
         var source = this;
 
         await CreatureCmd.TriggerAnim(source.Owner.Creature, "Cast", source.Owner.Character.CastAnimDelay);
+
+        // Consume retained cracks; keep the room present through the 2-second pink-white hold.
+        using var glass = ErrorGlassVfx.Burst(source.Owner.Creature);
+        if (glass != null)
+            await glass.Finished;
 
         var enemies = source.CombatState.Creatures
             .Where(c => !c.IsPlayer && c.IsAlive && c.IsHittable)

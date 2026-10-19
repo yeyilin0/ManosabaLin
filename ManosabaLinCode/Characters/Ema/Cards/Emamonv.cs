@@ -49,11 +49,24 @@ public sealed class Emamonv : ManosabaCardTemplate
         var options = new List<CardModel> { cardQinjin, cardShuyuan };
         var prefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
         var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, options, owner, prefs);
+
+        // ⚠️ 挂起后战斗可能已结束/玩家已死亡：引擎文档明示「an effect can be suspended past the end of
+        // its own combat」（出牌效果体内的 await 会被挂过战斗结束），CardCmd.AutoPlay 内部就有同款守卫
+        // （IsOverOrEnding || Owner.Creature.IsDead）会静默跳过。联机中队友掉线/分歧中止会话时会整体
+        // 拆除战斗状态 ⇒ player.Creature.CombatState 变 null，此时 GetDistinctForCombat 的
+        // `player.Creature.CombatState.CreateCard` 直接 NRE，把出牌流程整个炸掉。
+        // （2026-10-16 godot (13).log：队友选完牌后会话中止，本卡 OnPlay 恢复执行即 NRE。）
+        if (CombatManager.Instance.IsOverOrEnding || owner.Creature.IsDead)
+            return;
+
         var chosen = selected.FirstOrDefault();
 
         if (chosen == null) return;
 
         await CardCmd.AutoPlay(choiceContext, chosen, null);
+
+        if (CombatManager.Instance.IsOverOrEnding || owner.Creature.IsDead)
+            return;
 
         var keywords = new[]
         {
@@ -89,6 +102,10 @@ public sealed class Emamonv : ManosabaCardTemplate
 
         var pickPrefs = new CardSelectorPrefs(SelectionScreenPrompt, 1, 1);
         var pickResult = await CardSelectCmd.FromSimpleGrid(choiceContext, cards, owner, pickPrefs);
+
+        if (CombatManager.Instance.IsOverOrEnding || owner.Creature.IsDead)
+            return;
+
         var picked = pickResult.FirstOrDefault();
 
         if (picked == null) return;

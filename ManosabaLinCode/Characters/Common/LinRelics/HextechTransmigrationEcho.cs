@@ -53,6 +53,15 @@ public sealed class HextechTransmigrationEcho : ManosabaRelicTemplate
             if (pick is null) break;
 
             candidates.Remove(pick);
+
+            // 候选是触发开始时一次性快照的，可能已被前面的结算移出战斗；
+            // 此时再 AutoPlay 会让引擎在 OnPlayWrapper 里「PushModel 之后提前 return」→ 栈残留。
+            // 详见 TransmigrationRules.CanStillAutoPlay 的注释。
+            if (!TransmigrationRules.CanStillAutoPlay(pick))
+            {
+                continue;
+            }
+
             pick.SetToFreeThisTurn();
 
             await CardCmd.AutoPlay(choiceContext, pick, cardPlay.Target, skipCardPileVisuals: !isFirst);
