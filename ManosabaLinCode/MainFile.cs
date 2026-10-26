@@ -30,9 +30,12 @@ using Logger = MegaCrit.Sts2.Core.Logging.Logger;
 
 namespace ManosabaLin;
 
-// 告诉模组加载器在启动时调用当前类的 Initialize 方法。
-[ModInitializer(nameof(Initialize))]
+// ⚠️ 注意：本工程当前是单版本布局（MainFile 与可分发 dll 同一程序集），不存在独立的
+// ManosabaLin.Loader 工程，因此必须挂 [ModInitializer] 让框架调用本初始化方法。
+// 否则框架只会走兜底路径 Harmony.PatchAll，下面这一整批初始化（语音库加载、海克斯联动、
+// 情绪球/附魔钩子、内容包扩展）会全部静默失效。
 // 定义当前模组的主入口节点。
+[ModInitializer(nameof(Initialize))]
 public partial class MainFile : Node
 {
     // 定义模组唯一 Id，后续会被资源路径和日志器复用。
@@ -60,9 +63,16 @@ public partial class MainFile : Node
         RegisterManosabaLinTelemetry();
 
         ModTypeDiscoveryHub.RegisterModAssembly(ModId, assembly);
-        // 加载 FMOD 音频库
-        FmodStudioServer.TryLoadBank($"res://{ModId}/audio/{ModId}.bank");
-        FmodStudioServer.TryLoadStudioGuidMappings($"res://{ModId}/audio/GUIDs.txt");
+        // 加载 FMOD 音频库（角色选择/语音）。非致命：即使 bank 缺失也绝不能阻断后续初始化。
+        try
+        {
+            FmodStudioServer.TryLoadBank($"res://{ModId}/audio/{ModId}.bank");
+            FmodStudioServer.TryLoadStudioGuidMappings($"res://{ModId}/audio/GUIDs.txt");
+        }
+        catch (Exception ex)
+        {
+            Logger.Warn($"FMOD bank load failed (voice disabled, continuing): {ex.Message}");
+        }
 
 
         var ctx = RitsuLibFramework.CreateContentPack(ModId)

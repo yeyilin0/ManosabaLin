@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using ManosabaLin.Extensions;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;

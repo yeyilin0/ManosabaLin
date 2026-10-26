@@ -2,6 +2,8 @@
     <Import Project=".\local.props" Condition="Exists('.\local.props')"/>
     <PropertyGroup>
         <TargetFramework>net9.0</TargetFramework>
+        <!-- 显式列出配置，保证 Rider 的「发布到文件夹」能识别 ExportRelease（否则运行配置标红 ✕） -->
+        <Configurations>Debug;Release;ExportDebug;ExportRelease</Configurations>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <ImplicitUsings>true</ImplicitUsings>
         <LangVersion>preview</LangVersion>
@@ -11,7 +13,7 @@
         <EnableDynamicLoading>true</EnableDynamicLoading>
         <NoWarn>$(NoWarn);MSB3270;CS0436</NoWarn>
         <RootNamespace>ManosabaLin</RootNamespace>
-        <Version>0.5.7</Version>
+        <Version>0.5.8</Version>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -35,7 +37,7 @@
     <ItemGroup>
         <PackageReference Include="Krafs.Publicizer" Version="2.3.0" PrivateAssets="All"/>
         <!--        <PackageReference Include="Alchyr.Sts2.ModAnalyzers" Version="*" />-->
-        <PackageReference Include="STS2.RitsuLib" Version="0.6.7" PrivateAssets="All" GeneratePathProperty="true" />
+        <PackageReference Include="STS2.RitsuLib" Version="0.6.10" PrivateAssets="All" GeneratePathProperty="true" />
         <PackageReference Include="FuYnAloft.Sts2.MinionLib" Version="0.6.3" PrivateAssets="All" GeneratePathProperty="true" />
     </ItemGroup>
 
@@ -119,12 +121,14 @@
 
         <Message Text="Updating version in $(ManifestOutputFile) to $(Version)" Importance="high"/>
 
+        <!-- MinionLib 最低版本钉 0.0.0：用户实际装的 MinionLib 是 0.5.2，而 0.5.3 在 NuGet 上根本不存在，
+             要求更高会导致 mod 加载被拒，故不限制 MinionLib 版本。 -->
         <ItemGroup>
             <FileLines Include="$([System.IO.File]::ReadAllText($(ManifestTemplateFile))
                 .Replace('__THIS_VERSION__', '$(Version)')
                 .Replace('__GAME_VERSION__', '$(Sts2Version)')
                 .Replace('__STS2-RitsuLib_VERSION__', '$(RitsuVersion)')
-                .Replace('__MinionLib_VERSION__', '$(MinionLibVersion)'))"/>
+                .Replace('__MinionLib_VERSION__', '0.0.0'))"/>
         </ItemGroup>
 
         <WriteLinesToFile File="$(ManifestOutputFile)" Lines="@(FileLines)" Overwrite="true" WriteOnlyWhenDifferent="true"/>

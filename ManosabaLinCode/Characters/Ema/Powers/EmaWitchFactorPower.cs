@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 using STS2RitsuLib.Combat.HealthBars;
 using STS2RitsuLib.Interop.AutoRegistration;
+using System;
 using System.Collections.Generic;
 
 namespace ManosabaLin.Characters.Ema.Powers;
@@ -54,7 +55,7 @@ public class EmaWitchFactorPower : ManosabaPowerTemplate, IHealthBarForecastSour
         if (result.UnblockedDamage <= 0) return;
         if (!result.Props.IsPoweredAttack()) return;
 
-        var results = await CreatureCmd.Damage(choiceContext, Owner, Owner.CurrentHp, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+        var results = await DamageWithoutBreakingCardPlay(choiceContext);
 
         // 常规情况：上述伤害就是标准的「伤害 = 当前生命」，走完伤害管线敌人即死，行为与改动前完全一致。
         // 例外情况：「坚硬外壳」这类强制限伤（Hook.ModifyHpLost 里的 ModifyHpLostBeforeOstyLate 钩子）
@@ -64,7 +65,55 @@ public class EmaWitchFactorPower : ManosabaPowerTemplate, IHealthBarForecastSour
         // 因此这条补刀只会针对「伤害被削减」，不会越过「防止死亡」类效果。
         if (Owner.IsAlive && !results.Any(dealt => dealt.WasTargetKilled))
         {
+            await KillFallbackAsync();
+        }
+    }
+
+    /// <summary>
+    ///     走正常伤害管线执行即死，但**绝不让异常逃出去**。
+    ///     <para>
+    ///         ⚠️ 2026-10-25 联机 modpack 实测：外部 mod 在 <c>Hook.ModifyDamage</c> 上挂的补丁一旦抛
+    ///         <c>NullReferenceException</c>，这里就会把整条 <c>PlayCardAction</c> 打断 ——
+    ///         表现是「牌卡在屏幕中间不动」+「敌人残血不死」（即死没落地）。即死是这张牌的核心效果，
+    ///         不能因为别人的补丁崩掉就不生效 ⇒ 失败时直接返回空结果，交给下面的直接扣血兜底。
+    ///     </para>
+    /// </summary>
+    private async Task<IEnumerable<DamageResult>> DamageWithoutBreakingCardPlay(PlayerChoiceContext choiceContext)
+    {
+        try
+        {
+            return await CreatureCmd.Damage(
+                choiceContext, Owner, Owner.CurrentHp, ValueProp.Unblockable | ValueProp.Unpowered, null, null);
+        }
+        catch (Exception ex)
+        {
+            MegaCrit.Sts2.Core.Logging.Log.Warn($"[EmaWitchFactor] execute damage failed, falling back to direct hp loss: {ex.GetType().Name}: {ex.Message}", 2);
+            return Array.Empty<DamageResult>();
+        }
+    }
+
+    /// <summary>绕开伤害管线的兜底击杀（限伤 / 伤害管线异常两种情况都走这里）。</summary>
+    private async Task KillFallbackAsync()
+    {
+        if (!Owner.IsAlive) return;
+
+        try
+        {
             await CreatureCmd.SetCurrentHp(Owner, 0);
+        }
+        catch (Exception ex)
+        {
+            MegaCrit.Sts2.Core.Logging.Log.Error($"[EmaWitchFactor] direct hp loss failed, forcing Kill: {ex.GetType().Name}: {ex.Message}", 2);
+            // 最后一道保险：连直接扣血都被拦（例如被别的 mod 的限伤钩子截断）时强制击杀，
+            // 否则这张牌等于空放，且敌人残血会一直站在场上。
+            try
+            {
+                await CreatureCmd.Kill(Owner);
+            }
+            catch (Exception killEx)
+            {
+                MegaCrit.Sts2.Core.Logging.Log.Error($"[EmaWitchFactor] forced Kill failed: {killEx.GetType().Name}: {killEx.Message}", 2);
+            }
         }
     }
 

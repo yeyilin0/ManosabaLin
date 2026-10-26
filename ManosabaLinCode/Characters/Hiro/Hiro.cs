@@ -63,7 +63,7 @@ public class Hiro : ManosabaCharacterTemplate<HirolinCardPool, HiroRelicPool, Hi
 	{
 		var visuals = RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(
 			"nikaido_hiro.tscn".CharacterScenePath(CharacterId));
-		return visuals;
+		return WithAnimationAudio(visuals);
 	}
 
 	// 攻击建筑师的攻击特效列表

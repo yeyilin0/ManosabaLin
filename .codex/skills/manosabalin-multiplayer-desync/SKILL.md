@@ -73,6 +73,125 @@ if (withModifiers != card.EnergyCost.Canonical) result.energyCost = withModifier
 ⇒ **任何「改牌费用」的效果，只要两个对端选中的牌不同、或改/不改不同，就直接触发 StateDivergence。**
 而 `GetWithModifiers` 的 Global 部分只由 hooks 现算（两端同源），所以**分歧几乎总来自「改费用的那段代码选错了牌 / 只在一端跑了」**。
 
+## 3.5 ⚠️★ 主牌组（`PileType.Deck`）**不进战斗校验和** ⇒ 常驻改费的分歧要等到下一场战斗才爆
+
+**事实**（2026-10-20 实测，`checksum 289/434` 两份包）：
+- `LOCAL/REMOTE STATE DUMP` 里每个玩家只有 **Hand / Draw / Discard / Exhaust / Play** 五段，**没有 `Pile Deck`**。
+- 开战时牌组里的常驻卡（master）会被 **克隆**进抽牌堆（`PileType` 注释原话："When a new combat starts, all cards in here are cloned into your draw pile"）。
+- ⇒ 任何**写在 master 上**的改动（典型：`card.EnergyCost.UpgradeBy(-1)` 这种永久降费）**在本次战斗里完全不可见**，只能等下一场战斗开打、克隆出来才第一次被校验到。
+
+**因此这类分歧有固定形态，一眼可认：**
+1. 分歧点恒为**新战斗的第一个 `After player turn start`**（两边最后一个匹配的校验和是 `Exiting xxx room`）；
+2. 差异行只有 `Energy Cost:` 且**永远在对端（非作弊方）多一行/值更小**；
+3. RNG 全部状态、遗物/能力/附魔/组件**完全一致**（别再查这些，白费工）；
+4. 两边差异卡的数量 == 那个"一次改 N 张"效果的 N（如 `Witchfactorechantcard` 的 `stacks = With/50`）；
+5. 差异卡面恰好带那个效果才会上的**审判附魔**（且这些卡往往**没有 mod 关键词** ⇒ 不可能是 `EmaTrialBadge.EnchantAllTrialCards` 给的）。
+
+**排查顺序**（别倒着来）：
+1. 先 `diff` 两份 `*_dump.txt`，确认差异只有费用行 → 判为 master 常驻改动（本章）。
+2. 在 `ManosabaLinCode` 里 grep `PileType.Deck`（= 操作 master 的全部入口）与 `UpgradeBy(` / `SetThisCombat(` 的交集，收敛到唯一负责的文件。
+3. 再看该效果的**选牌是否依赖不可校验的量**：`PileType.Deck.GetPile(player).Cards` 的**列表顺序**、执行时点与战斗结束（`IsEnding`）的相对位置。两者都不在校验和里 ⇒ 天然危险。
+
+**已识别的高危唯一入口**：`Characters/Ema/Cards/Witchfactorechantcard.cs`——从 `PileType.Deck` 挑 `unenchanted` 后 `OrderBy(_ => rng.NextFloat()).Take(stacks)`，再 `CardCmd.Enchant(...)` + `EnergyCost.UpgradeBy(-1)`。
+
+### 🔴🔴 已 100% 锁定的部分 + 尚未锁定的最后一环（2026-10-20）
+
+**具体位置：`Characters/Ema/Cards/Witchfactorechantcard.cs`**
+```csharp
+var deckPile = PileType.Deck.GetPile(owner);        // 第 63 行：取主牌组（房间之间的卡）
+...
+foreach (var card in toEnchant)
+{
+    var enchant = rng.NextItem(TrialEnchants);
+    CardCmd.Enchant(enchant.ToMutable(), card, 1m);
+    card.EnergyCost.UpgradeBy(-1);                  // 第 91 行：★ 唯一的永久降费
+}
+```
+它是艾玛体系里**唯一**会永久改主牌组卡费用的地方（其余 `Emachouma`/`Hirochouma`/`Xuelichouma` 的 `setCostToZero` 出自筹码遗物，本 run 没持有；`Emadeath`/`Lamort`/`BondSettlement`/`SmallKey` 改的都是战斗内的克隆卡，战斗一结束就随卡消失）。
+- 引擎确实支持在 `PileType.Deck` 上附魔：`CardCmd.Enchant` 末尾专门 `if (pile != null && pile.Type == PileType.Deck)` 记历史；`CardCmd.Downgrade` 同理。⇒ 在 Deck 上动手脚是正规操作，不是野路子。
+
+**100% 证实的事**：差异就是这行产生的 —— 差异卡必带它才会上的审判附魔、张数 == 它的 `stacks`(With/50)、且**只出现在卡主自己那台机器上**。
+
+**尚未锁定的最后一环：为什么只有一端生效。** 已排除（都查过，别再重复）：
+- ❌ 序列化往返抹掉（见下面 A）—— **`FromSerializable` 只在**载入 run** 时被调用**（全量反编译只有 4 个调用点：两个 `StartRun` + `LoadRun` 链），房间切换不调用；`Clone(newCard)` **复制 `_base`**，克隆保留改动；#434 分歧窗口内两端日志**没有任何 save/load 记录**。
+- ❌ 选牌顺序 / 挑的卡不同：两端 RNG `CombatCardSelection` 计数器与四字状态**一字不差**，而旧代码 RNG 消耗 = `|unenchanted|` 次 `NextFloat` + `stacks` 次 `NextItem` ⇒ 候选集大小与 `stacks` 都相同。
+- ❌ 卡牌可变性：`EnergyCost.UpgradeBy` 首行 `_card.AssertMutable()`（`!IsMutable` 抛 `CanonicalModelException`），但主牌组的卡是 mutable 的，且两端日志在 `WITCHFACTORECHANTCARD` 执行前后**没有任何异常**。
+- ❌ 被降级抹掉：`EnergyCost.ResetForDowngrade()` 会把 `_base` 重置回 `Canonical`，但引擎里 `CardCmd.Downgrade` 只有 4 个调用点且本项目**无人调用**。
+- ❌ 全局钩子（`Hook.ModifyEnergyCostInCombat`）：两端都没有改费的能力/遗物。
+
+**⇒ 下一次取证靠插桩**（已加）：`-1` 前后各取一次 `EnergyCost.GetWithModifiers(CostModifiers.All)`，逐卡打 `before/after`。
+谁那侧出现 `before == after`（没变小），就是那一侧写入失败，直接定位，不用再猜。
+
+#### A. `SerializableCard` 不存费用 —— 是真事实，但**不是** #289/#434 的触发点
+（保留是因为它本身是个大坑，且同样会让永久降费在**存档读档**后消失）
+
+**`SerializableCard` 根本没有费用字段，`CardModel.FromSerializable` 也从不恢复它。**
+
+```csharp
+// MegaCrit.Sts2.Core.Saves.Runs.SerializableCard  —— 全字段只有 5 个：
+// Id / CurrentUpgradeLevel / Enchantment / Props / FloorAddedToDeck      ← 没有 energyCost
+
+// MegaCrit.Sts2.Core.Models.CardModel.FromSerializable
+CardModel cardModel = SaveUtil.CardOrDeprecated(save.Id).ToMutable();   // ← 从原型重建：_base = 原型 canonical
+save.Props?.Fill(cardModel);
+cardModel.AfterDeserialized();
+if (save.Enchantment != null) {
+    cardModel.EnchantInternal(...);
+    cardModel.Enchantment.ModifyCard();     // ★ 引擎会为「本体改动型附魔」重跑 ModifyCard
+    cardModel.FinalizeUpgradeInternal();
+}
+for (int i = 0; i < save.CurrentUpgradeLevel; i++) {   // ← 只按升级层数重放 UpgradeInternal()
+    cardModel.UpgradeInternal(); cardModel.FinalizeUpgradeInternal();
+}
+```
+
+⇒ **任何不是通过「升级」写进 `EnergyCost._base` 的改动（`EnergyCost.UpgradeBy(...)` 直改），在卡片被
+「序列化 → 反序列化重建」时会被**静默抹掉**。**
+
+⚠️ 但**这条不是 #289/#434 的触发点**（2026-10-20 自查推翻，见上）：`FromSerializable` 只在载入 run 时调用，
+房间切换不调用；`Clone` 保留 `_base`；分歧窗口内没有 save/load。⇒ 它解释不了「中途房间切换后卡没了 -1」。
+
+⚠️ 它在**单人模式**下仍是真 bug：存档退出再读档，永久降费一样会消失。别当成联机特有问题。
+
+**记账方法（判「挑的卡不同」还是「数量不对称」，必做）**：取每卡的**真实基础费用**（构造函数 `base(N, ...)`）
+与 **`OnUpgrade` 里真正的费用 Delta**，算出「本应打印的 Energy Cost」，再和实际打印值比。
+⚠️ 直接 grep `EnergyCost.UpgradeBy(` 会被 `OnPlay` 里改**别人**费用的那行污染（例如
+`Witchfactorechantcard.cs` 的 `card.EnergyCost.UpgradeBy(-1)`），必须只看 `OnUpgrade` 块。
+
+**正解（引擎认可的唯一做法）**：把「卡本体改动」放进**附魔的 `OnEnchant()`**，由
+`EnchantmentModel.ModifyCard()` 承载 —— 引擎在每次反序列化后**自动重跑**它（见上面的 `FromSerializable`）。
+原版就是这么做的：`TezcatarasEmber` / `MockFreeEnchantment` 在 `OnEnchant()` 里
+`EnergyCost.UpgradeBy(-当前费用)`（降到 0，天然幂等）；`Goopy` 等在里面 `AddKeyword`。
+
+⚠️ 但直接搬 `-1` 有两个坑，动手前必须算清：
+1. **两条路径要算出同一个值**。`FromSerializable` 里 `ModifyCard()` 在**升级重放之前**跑。
+   设 prototype=C、升级费用 Delta=U：活体路径 `C+U → -1 = C+U-1`；重建路径 `C → -1 = C-1 → +U = C+U-1`。
+   **用增量（`-1`）形式两条路径一致；用绝对值形式反而不一致**（重建时还不知道 U）。
+2. **幂等性**。增量形式不幂等，`ModifyCard()` 多跑一次就多减 1。要么学原版用
+   `UpgradeBy(-当前费用)` 的绝对形式（但那样就不是「-1」而是「降到 0」），要么另存标记。
+
+⇒ 这属于**机制语义变更**，先问用户再动。
+
+**降低风险（不改动语义，2026-10-20 已做）**：
+```csharp
+// 先把「牌组列表顺序」这个不可校验的自由度消掉：稳定排序后再随机挑
+var ordered = unenchanted
+    .OrderBy(static c => c.Id.Entry, StringComparer.Ordinal)
+    .ThenBy(static c => c.CurrentUpgradeLevel)
+    .ToList();
+var toEnchant = ordered.OrderBy(_ => rng.NextFloat()).Take(stacks).ToList();
+...
+Log.Info($"[<效果名>] ... targetCount={ordered.Count} enchanted=[{string.Join(", ", toEnchant.Select(static c => c.Id.Entry))}]");
+```
+`IN/OUT` 两行取证日志也很关键：下一份分歧包里 diff 两端 `local/remote-debug-log.records.json` 的这几行，能直接判定
+`with`/`stacks`（数量是否对称）与 `picks`（挑的是不是同一批卡），不用再猜。
+
+> ⚠️ **2026-10-20 实名：上面这条「稳定排序」定式只治标**，它消掉的「列表顺序」自由度**不是**本次分歧的原因
+> （候选集大小与 `stacks` 已由 RNG 计数器证为相同）。
+> 真正能一次命中「数量不对称」的是逐卡打点（见上）：`before/after` 谁没变小，就是那一侧写入失败。
+> 若证到是「写入失败」，正解是把卡本体改动挪进附魔的 `OnEnchant()`（由 `ModifyCard()` 承载，
+> 反序列化后引擎自动重跑）——属**语义变更，须先问用户**。
+
 ## 4. 已确认的「导致分歧」代码反模式
 
 ### ⚠️ 反模式 1：用 `CanPlay()` 给「改费用 / 免费」类效果筛候选（本项目真实事故）

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using ManosabaLin.Audio.Services;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using STS2RitsuLib.Scaffolding.Characters;
@@ -31,6 +32,25 @@ public abstract class ManosabaCharacterTemplate<TCardPool, TRelicPool, TPotionPo
     private static readonly string[] DeathAnimations = { "die", "dead", "Dead" };
 
     public override string CharacterSelectSfx => $"event:/{ModId}/sfx/characters/{GetType().Name.ToLowerInvariant()}/select";
+
+    protected override IEnumerable<string> ExtraAssetPaths =>
+        base.ExtraAssetPaths.Concat(CharacterAnimationAudio.AssetPaths(this));
+
+    /// <summary>Attach to the actual sprite at scene creation, before either animation entry point runs.</summary>
+    protected NCreatureVisuals? WithAnimationAudio(NCreatureVisuals? visuals)
+    {
+        if (visuals == null) return null;
+        try
+        {
+            var sprite = FindAnimatedSprite(visuals);
+            if (sprite != null) CharacterAnimationAudio.Attach(sprite, this);
+        }
+        catch (Exception ex)
+        {
+            Log.Warn($"Character animation audio unavailable; visuals remain usable: {ex.Message}");
+        }
+        return visuals;
+    }
 
     /// <summary>
     /// 用 <b>RitsuLib 官方接口</b>把引擎自带的动画触发器接到角色的 <see cref="AnimatedSprite2D" /> 上。

@@ -49,8 +49,8 @@ public class Ananlin : ManosabaCharacterTemplate<AnanlinCardPool, AnanlinRelicPo
 
     protected override NCreatureVisuals? TryCreateCreatureVisuals()
     {
-        return RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(
-            "ananlin.tscn".CharacterScenePath(CharacterId));
+        return WithAnimationAudio(RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(
+            "ananlin.tscn".CharacterScenePath(CharacterId)));
     }
 
     public override List<string> GetArchitectAttackVfx()

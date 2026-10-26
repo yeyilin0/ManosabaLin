@@ -7,10 +7,13 @@ using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
+using MegaCrit.Sts2.Core.GameActions;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Random;
+using MegaCrit.Sts2.Core.Runs;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -78,7 +81,8 @@ internal static class FlowerBloomInterceptPatches
             var original = transformation.Original;
             var owner = original.Owner;
 
-            if (context is null || owner is null || !FlowerBloomTracker.IsWatched(owner.Creature))
+            if (context is null || owner is null || !FlowerBloomTracker.IsWatched(owner.Creature)
+                || !IsSafeContext(context))
             {
                 rebuilt.Add(transformation);
                 continue;
@@ -124,7 +128,12 @@ internal static class FlowerBloomInterceptPatches
 
         // 只在卡牌结算过程中拦截：此时才有可暂停动作队列的选择上下文，
         // 也避免回合开始 / 遗物发牌等时机弹出选择界面把流程打断。
-        if (CardPlayContext.Current is null) return true;
+        // ⚠️ 还必须验证该上下文属于「当前正在执行的动作」：引擎的
+        // SignalPlayerChoiceBegun 在 CurrentlyRunningAction 不匹配时只会打日志并跳过暂停，
+        // 此时选择界面照样弹出，而随后的 SignalPlayerChoiceEnded 必然 NRE
+        // （2026-10-19 联机实测：技能药水生成卡时读到别的动作残留的 context）。
+        if (CardPlayContext.Current is not { } currentContext || !IsSafeContext(currentContext))
+            return true;
 
         var list = cards as IReadOnlyList<CardModel> ?? cards.ToArray();
         if (list.Count == 0) return true;
@@ -171,6 +180,27 @@ internal static class FlowerBloomInterceptPatches
     }
 
     // ---------------------------------------------------------------- 替换卡构造
+
+    /// <summary>
+    ///     该上下文是否真的可以安全地弹出玩家选择。
+    ///     <para>
+    ///         引擎 <see cref="GameActionPlayerChoiceContext.SignalPlayerChoiceBegun" /> 要求
+    ///         <see cref="ActionExecutor.CurrentlyRunningAction" /> 正是该上下文所属的动作，
+    ///         否则只打一条 Error 日志并跳过 <c>PauseActionForPlayerChoice</c>——此时选择界面
+    ///         照样弹出，而随后的 <c>SignalPlayerChoiceEnded</c> 必然 NRE。
+    ///     </para>
+    ///     <para>
+    ///         宁可安静放行（本次不拦截），也不能把动作队列拖崩。
+    ///         非联机 / 无执行器时（单机或测试桩）无法核对，按放行处理。
+    ///     </para>
+    /// </summary>
+    private static bool IsSafeContext(PlayerChoiceContext context)
+    {
+        if (context is not GameActionPlayerChoiceContext actionContext) return false;
+
+        var executor = RunManager.Instance.ActionExecutor;
+        return executor is null || ReferenceEquals(executor.CurrentlyRunningAction, actionContext.Action);
+    }
 
     /// <summary>
     ///     构造艾玛的 1 费消耗【亲近】/【疏远】牌：无论原卡多少费，生成后费用一律调整为 1，并获得【消耗】。

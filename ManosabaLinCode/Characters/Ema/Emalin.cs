@@ -64,7 +64,7 @@ public class Emalin : ManosabaCharacterTemplate<EmalinCardPool, EmalinRelicPool,
     {
         var visuals = RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(
             "emalin.tscn".CharacterScenePath(CharacterId));
-        return visuals;
+        return WithAnimationAudio(visuals);
     }
 
     // 攻击建筑师的攻击特效列表

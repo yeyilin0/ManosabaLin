@@ -51,8 +51,8 @@ public class Yalisalin : ManosabaCharacterTemplate<YalisalinCardPool, YalisalinR
 
     protected override NCreatureVisuals? TryCreateCreatureVisuals()
     {
-        return RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(
-            "yalisalin_idle.tscn".CharacterScenePath(CharacterId));
+        return WithAnimationAudio(RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(
+            "yalisalin_idle.tscn".CharacterScenePath(CharacterId)));
     }
 
     public override List<string> GetArchitectAttackVfx()

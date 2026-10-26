@@ -48,8 +48,27 @@ public sealed class SharedExhaustPlay() : ManosabaCardTemplate(3, CardType.Skill
                 var copy = CombatState.CreateCard(exhaustedCard.CanonicalInstance, player);
                 copy.SetToFreeThisTurn();
                 await CardPileCmd.AddGeneratedCardToCombat(copy, PileType.Hand, player);
-                await CardCmd.AutoPlay(choiceContext, copy, PickTarget(copy));
-                await CardPileCmd.RemoveFromCombat(copy);
+
+                try
+                {
+                    await CardCmd.AutoPlay(choiceContext, copy, PickTarget(copy));
+                }
+                catch (Exception ex)
+                {
+                    // 复制出来的牌可能是本 mod 里其它机制造出来的怪东西（能力牌等）。
+                    // 单张复制牌失败不得让整张「共享耗尽演奏」停在出牌区，记录后继续。
+                    Log.Warn($"[SharedExhaustPlay] 复制牌 {copy.Id} 自动打出失败：{ex}");
+                }
+
+                // 能力牌（Power）自动打出后引擎已在 OnPlayWrapper 收尾里把它移出战斗牌堆，
+                // 此时 Pile 为 null，再调 RemoveFromCombat 会抛
+                // InvalidOperationException("Card must be in a combat pile for it to be removed")。
+                // 该异常会把外层 OnPlayWrapper 的收尾（把本卡送去消耗堆）整段跳过 ⇒ 卡永久留在
+                // 出牌区、屏幕上一直挂着这张牌。
+                if (copy.Pile is { IsCombatPile: true })
+                {
+                    await CardPileCmd.RemoveFromCombat(copy);
+                }
             }
         }
     }

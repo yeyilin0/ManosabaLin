@@ -1,3 +1,4 @@
+using System.Reflection;
 using Godot;
 using HarmonyLib;
 using ManosabaLin.Characters.Hiro.Monsters;
@@ -11,6 +12,32 @@ using MegaCrit.Sts2.Core.Nodes.Combat;
 using ManosabaLin.Characters.Common.Powers;
 
 namespace ManosabaLin.Patches;
+
+/// <summary>
+/// Version-agnostic spine animation invocation.
+/// <see cref="SpineAnimationAccess.SetAnimation"/> / <see cref="SpineAnimationAccess.AddAnimation"/>
+/// changed their return type from <c>MegaTrackEntry?</c> (game 0.107.1) to <c>void</c> (game 0.111.0).
+/// A compile-time-bound call therefore throws <see cref="MissingMethodException"/> on the opposite
+/// version. We resolve the methods by name + parameter types via reflection (return type is not part
+/// of method resolution) so a single compiled binary works on both versions. Every call is best-effort
+/// and never escapes the patch's own try/catch.
+/// </summary>
+internal static class SpineAnim
+{
+    private static readonly MethodInfo? SetAnimation = typeof(SpineAnimationAccess)
+        .GetMethod("SetAnimation", new[] { typeof(string), typeof(bool), typeof(int) });
+    private static readonly MethodInfo? AddAnimation = typeof(SpineAnimationAccess)
+        .GetMethod("AddAnimation", new[] { typeof(string), typeof(float), typeof(bool), typeof(int) });
+
+    public static void Set(SpineAnimationAccess spine, string name, bool loop, int track)
+        => SetAnimation?.Invoke(spine, new object[] { name, loop, track });
+
+    public static void Add(SpineAnimationAccess spine, string name, float delay, bool loop, int track)
+        => AddAnimation?.Invoke(spine, new object[] { name, delay, loop, track });
+
+    public static bool IsReady(NCreatureVisuals? visuals)
+        => visuals?.SpineBody?.IsAnimationStateReady() == true;
+}
 
 [HarmonyPatch(typeof(NCreature), nameof(NCreature._Ready))]
 public static class FusionStandVisualPatch
@@ -112,14 +139,14 @@ public static class FusionStandVisualPatch
 
     internal static void PlayFirstAnimation(NCreatureVisuals visuals, IReadOnlyList<string> candidates, bool loop)
     {
-        if (visuals.SpineBody == null) return;
+        if (visuals.SpineBody == null || !visuals.SpineBody.IsAnimationStateReady()) return;
 
         foreach (var animation in candidates)
         {
             if (!visuals.SpineBody.HasAnimation(animation)) continue;
 
             var spine = new SpineAnimationAccess(visuals.SpineBody);
-            spine.SetAnimation(animation, loop, 0);
+            SpineAnim.Set(spine, animation, loop, 0);
             return;
         }
     }
@@ -152,7 +179,7 @@ public static class FusionStandAnimationSyncPatch
         {
             var creatureNode = creature.GetCreatureNode();
             var stand = creatureNode?.GetNodeOrNull<NCreatureVisuals>("FusionStand");
-            if (stand?.SpineBody == null) return;
+            if (!SpineAnim.IsReady(stand)) return;
 
             var candidates = triggerName.ToLowerInvariant() switch
             {
@@ -172,15 +199,16 @@ public static class FusionStandAnimationSyncPatch
                 return;
             }
 
-            spine.SetAnimation(animation, false, 0);
+            SpineAnim.Set(spine, animation, false, 0);
 
             var idle = IdleAnimations.FirstOrDefault(stand.SpineBody.HasAnimation);
             if (idle != null)
-                spine.AddAnimation(idle, 0f, true, 0);
+                SpineAnim.Add(spine, idle, 0f, true, 0);
         }
         catch
         {
             // Animation sync is best-effort only.
         }
     }
+
 }

@@ -51,7 +51,7 @@ public class Sherrylin : ManosabaCharacterTemplate<SherrylinCardPool, SherrylinR
     {
         var visuals = RitsuGodotNodeFactories.CreateFromScenePath<NCreatureVisuals>(
             "sherrylin.tscn".CharacterScenePath(CharacterId));
-        return visuals;
+        return WithAnimationAudio(visuals);
     }
 
     public override List<string> GetArchitectAttackVfx()

@@ -46,7 +46,12 @@ public sealed class AnnAffinity : ManosabaCardTemplate
         var drawCards = drawPile.Cards.ToList();
         if (drawCards.Count == 0) return;
 
-        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, pickCount, Math.Min(pickCount, drawCards.Count));
+        // ⚠️ CardSelectorPrefs 的第二个参数是 MinSelect、第三个才是 MaxSelect。
+        // 之前写成 (prompt, pickCount, min(pickCount, 张数))，在「升级后 pickCount=2、抽牌堆只剩 1 张」时
+        // 会得到 MinSelect=2 / MaxSelect=1 —— Min > Max，确认按钮要求选中 2 张但最多只能选 1 张，
+        // 于是确认键永远灰着，选择界面卡死。这里把两者一起按实际张数收紧：min == max == 实际可选数。
+        var pick = Math.Min(pickCount, drawCards.Count);
+        var prefs = new CardSelectorPrefs(SelectionScreenPrompt, pick);
         var selected = await CardSelectCmd.FromSimpleGrid(choiceContext, drawCards, owner, prefs);
 
         // 等待选择界面完全关闭后再继续：原版选择屏幕是延迟释放（QueueFreeSafely），
